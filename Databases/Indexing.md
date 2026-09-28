@@ -7,7 +7,7 @@
 ## Table of Contents
 0. [What is an index?](#0-what-is-an-index)
 1. [B-tree](#1-b-tree)
-2. [B+ tree](#2-b-tree-1)
+2. [B+ tree](#2-b-tree)
 3. [Bitmap indexing](#3-bitmap-indexing)
 4. [Practical indexing tips](#4-practical-indexing-tips)
 5. [Cheat sheet](#cheat-sheet)
