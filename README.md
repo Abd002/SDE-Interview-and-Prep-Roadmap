@@ -6,6 +6,10 @@ Welcome to the SDE Interview Preparation Roadmap! This repository is not just ab
 
 ## <span style="color:darkolivegreen;">Printable PDF Version of Checklist - [Click Here](/SDE-Interview-and-Prep-Roadmap.pdf)</span>
 
+## <span style="color:darkolivegreen;">Career Roadmap — [Click Here](./Career-Roadmap/README.md)</span>
+
+International job targets, remote work from Egypt, funded master's programmes, 2026 salary and visa rules, and a month-by-month application plan with a tracker.
+
 ## <span style="color:darkolivegreen;">**Domains and Topics**</span>
 
 <details>
