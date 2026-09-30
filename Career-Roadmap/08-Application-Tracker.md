@@ -8,7 +8,7 @@
 ## Table of Contents
 - [A. Hard deadlines (scholarships and graduate programmes)](#a-hard-deadlines-scholarships-and-graduate-programmes)
 - [B. Rolling job applications — P1](#b-rolling-job-applications--p1)
-- [C. Backup and parallel (Egypt and remote)](#c-backup-and-parallel-egypt-and-remote)
+- [C. Backup and parallel (Egypt, remote and startups)](#c-backup-and-parallel-egypt-remote-and-startups)
 - [D. Summary counters](#d-summary-counters)
 
 ---
@@ -64,7 +64,7 @@ Grouped by track (see [07 §3](07-Strategy-and-Roadmap.md#3-the-recommended-stra
 
 ---
 
-## C. Backup and parallel (Egypt and remote)
+## C. Backup and parallel (Egypt, remote and startups)
 
 | # | Company | Why | Where | Role | Status | Applied on | Next step | Details |
 |---|---|---|---|---|---|---|---|---|
@@ -74,6 +74,14 @@ Grouped by track (see [07 §3](07-Strategy-and-Roadmap.md#3-the-recommended-stra
 | 4 | **Valeo Egypt** | Automotive; AUTOSAR project fits | Cairo | Embedded Software Engineer | Not started | | Apply | [03](03-Egypt-Companies.md#-multinational-rd-centres-best-pay-in-egp-and-a-route-abroad-through-internal-transfer) |
 | 5 | **Instabug** | Developer tools; top local brand | Cairo | Software Engineer | Not started | | Apply | [03](03-Egypt-Companies.md#-egyptian-product-companies-and-startups) |
 | 6 | **VA Computing Egypt** | One of the few Rust roles in Egypt | New Cairo | C++/Rust Developer | Not started | | Apply | [03](03-Egypt-Companies.md#-multinational-rd-centres-best-pay-in-egp-and-a-route-abroad-through-internal-transfer) |
+| 7 | **Speechify** | Posts roles located in Cairo and Alexandria (EGP 800k–1.2M senior band) | Remote (Egypt) | Software Engineer, Platform | Not started | | Apply | [04](04-Remote-From-Egypt.md#2-startups-outside-egypt) |
+| 8 | **Zed Industries** | Rust editor; Linux Desktop Rust role; Europe time zones | Remote | Rust Engineer | Not started | | Apply | [04](04-Remote-From-Egypt.md#2-startups-outside-egypt) |
+| 9 | **Pydantic** | Rust core; fully remote | Remote | Rust Engineer | Not started | | Apply | [04](04-Remote-From-Egypt.md#2-startups-outside-egypt) |
+| 10 | **Prisma** | Rust; hires in UTC−5 to UTC+3 | Remote | Software Engineer (Rust) | Not started | | Apply | [04](04-Remote-From-Egypt.md#2-startups-outside-egypt) |
+| 11 | **Fly.io** | Hires almost anywhere; same pay everywhere | Remote | Networking / Infrastructure Engineer | Not started | | Apply | [04](04-Remote-From-Egypt.md#2-startups-outside-egypt) |
+| 12 | **Supabase** | Work from anywhere, 60+ countries | Remote | Engineer (Postgres / CLI) | Not started | | Apply | [04](04-Remote-From-Egypt.md#2-startups-outside-egypt) |
+| 13 | **Linaro** | Wants 1–3 yrs of kernel/Zephyr/Yocto upstream work | Remote (ask about Egypt) | Linux Software Engineer | Not started | | Apply | [04](04-Remote-From-Egypt.md#2-startups-outside-egypt) |
+| 14 | **Toradex** | Embedded Linux BSP; role listed as fully remote | Remote | Embedded Linux Engineer | Not started | | Apply | [04](04-Remote-From-Egypt.md#2-startups-outside-egypt) |
 
 ---
 
