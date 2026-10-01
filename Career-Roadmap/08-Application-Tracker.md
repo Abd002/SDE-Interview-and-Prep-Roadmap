@@ -61,6 +61,19 @@ Grouped by track (see [07 §3](07-Strategy-and-Roadmap.md#3-the-recommended-stra
 | 18 | **Optiver** | 1c Trading | Amsterdam | Graduate Software Engineer | ✅ | Not started | | | **Motivation letter** + HackerRank | [02](02-International-Companies.md#-netherlands) |
 | 19 | **Booking.com** | 1c Product | Amsterdam | Software Engineer | 🟡 | Not started | | | Apply | [02](02-International-Companies.md#-netherlands) |
 | 20 | **Delivery Hero** | 1c Product | Berlin | Software Engineer / Tech Grad | ✅ | Not started | | | Apply | [02](02-International-Companies.md#-germany) |
+| 21 | **TOPIC Embedded Systems** | 1b Embedded Linux | Best (Eindhoven) | Embedded Software Engineer | ✅ | Not started |  |  | Apply | [02](02-International-Companies.md#-netherlands) |
+| 22 | **Prodrive Technologies** | 1b Embedded | Eindhoven (Son) | Embedded Software Engineer | ✅ | Not started |  |  | Apply | [02](02-International-Companies.md#-netherlands) |
+| 23 | **Elektrobit** | 1b Automotive | Erlangen · Munich · Berlin | Software Engineer (Automotive) | ❔ | Not started |  |  | Apply | [02](02-International-Companies.md#-germany) |
+| 24 | **Analog Devices** | 1b Embedded (Zephyr) | Limerick · (Munich, Edinburgh) | Embedded Software Engineer | ❔ | Not started |  |  | Apply | [02](02-International-Companies.md#-ireland) |
+| 25 | **u-blox** | 1b Embedded | Thalwil (Zurich) | Embedded Software Engineer | ❔ | Not started |  |  | Apply | [02](02-International-Companies.md#-switzerland) |
+| 26 | **Dynatrace** | 1a Systems (C++) | Linz · Vienna · Graz · (Gdansk, Barcelona) | Software Engineer | 🟡 | Not started |  |  | Apply | [02](02-International-Companies.md#-austria) |
+| 27 | **TTTech Auto** | 1b Automotive | Vienna | Embedded Software Engineer | ❔ | Not started |  |  | Apply | [02](02-International-Companies.md#-austria) |
+| 28 | **Universal Robots** | 1b Robotics (C++) | Odense (DK) | Software Engineer C++ | ❔ | Not started |  |  | Apply | [02](02-International-Companies.md#-denmark--finland) |
+| 29 | **Nokia** | 1b Systems (C++) | Espoo · Tampere · Oulu (FI) | Software Engineer | ❔ | Not started |  |  | Apply | [02](02-International-Companies.md#-denmark--finland) |
+| 30 | **Barco** | 1b Embedded Linux | Kortrijk (BE) | Embedded Software Engineer | ❔ | Not started |  |  | Apply | [02](02-International-Companies.md#-belgium--luxembourg) |
+| 31 | **Starship Technologies** | 1b Robotics (C++) | Tallinn (EE) | Software Engineer | ✅ | Not started |  |  | Apply | [02](02-International-Companies.md#-estonia--the-baltics) |
+| 32 | **Nord Security** | 1a Rust / networking | Vilnius (LT) | Software Engineer (C++/Rust) | ❔ | Not started |  |  | Apply | [02](02-International-Companies.md#-estonia--the-baltics) |
+| 33 | **Ledger** | 1a Embedded Rust | Paris · Vierzon (FR) | Embedded / Firmware Engineer | ❔ | Not started |  |  | Apply | [02](02-International-Companies.md#-france--italy) |
 
 ---
 
@@ -82,6 +95,12 @@ Grouped by track (see [07 §3](07-Strategy-and-Roadmap.md#3-the-recommended-stra
 | 12 | **Supabase** | Work from anywhere, 60+ countries | Remote | Engineer (Postgres / CLI) | Not started | | Apply | [04](04-Remote-From-Egypt.md#2-startups-outside-egypt) |
 | 13 | **Linaro** | Wants 1–3 yrs of kernel/Zephyr/Yocto upstream work | Remote (ask about Egypt) | Linux Software Engineer | Not started | | Apply | [04](04-Remote-From-Egypt.md#2-startups-outside-egypt) |
 | 14 | **Toradex** | Embedded Linux BSP; role listed as fully remote | Remote | Embedded Linux Engineer | Not started | | Apply | [04](04-Remote-From-Egypt.md#2-startups-outside-egypt) |
+| 15 | **NoorNation (Linah Farms)** | Live Egypt posting that fits C/C++/embedded/verification | Giza | Embedded Systems Engineer · Full Stack Developer | Not started |  | Apply | [03](03-Egypt-Companies.md#-automotive-and-embedded-services-companies-egypt) |
+| 16 | **Voyance Health** | Live Egypt posting that fits C/C++/embedded/verification | New Cairo | Embedded Software Engineer · Computer Vision Engineer | Not started |  | Apply | [03](03-Egypt-Companies.md#-automotive-and-embedded-services-companies-egypt) |
+| 17 | **MediaTek** | Live Egypt posting that fits C/C++/embedded/verification | Cairo | Senior/Staff Digital Design Engineer | Not started |  | Apply | [03](03-Egypt-Companies.md#-telecom-semiconductors-and-hardware) |
+| 18 | **Analog Devices** | Live Egypt posting that fits C/C++/embedded/verification | New Cairo | Senior Engineer, Design Verification Engineering | Not started |  | Apply | [03](03-Egypt-Companies.md#-telecom-semiconductors-and-hardware) |
+| 19 | **Mixel-Egypt** | Live Egypt posting that fits C/C++/embedded/verification | Cairo | Digital Verification Development Engineer | Not started |  | Apply | [03](03-Egypt-Companies.md#-telecom-semiconductors-and-hardware) |
+| 20 | **SearchApi** | Remote role open to Egypt (see 04) | Remote | Browser / Kernel Engineer · Frontend Engineer & UI Designer | Not started |  | Apply | [04](04-Remote-From-Egypt.md#-foreign-startups-already-hiring-in-egypt) |
 
 ---
 
