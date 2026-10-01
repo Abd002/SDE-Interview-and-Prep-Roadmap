@@ -10,6 +10,10 @@ Welcome to the SDE Interview Preparation Roadmap! This repository is not just ab
 
 International job targets, remote work from Egypt, funded master's programmes, 2026 salary and visa rules, and a month-by-month application plan with a tracker.
 
+## <span style="color:darkolivegreen;">Contest Practice PDFs — [Click Here](./Contest-Practice/README.md)</span>
+
+20 printable contests (7 Codeforces Div. 4, 3 Codeforces Div. 3, 10 AtCoder Beginner Contests), printed from each site's own problems page. Each PDF ends with one hints page taken from the official editorial. One combined PDF holds all of them.
+
 ## <span style="color:darkolivegreen;">**Domains and Topics**</span>
 
 <details>
@@ -537,6 +541,7 @@ International job targets, remote work from Egypt, funded master's programmes, 2
      - [ ] [Algorithmic optimization](./Problem-solving%20and%20Coding/Optimization.md#1-algorithmic-optimization)
      - [ ] [Space-time trade-offs](./Problem-solving%20and%20Coding/Optimization.md#2-space-time-trade-offs)
      - [ ] [Profiling tools](./Problem-solving%20and%20Coding/Optimization.md#3-profiling-tools)
+   - [ ] [**Contest practice (Codeforces + AtCoder PDFs)**](./Contest-Practice/README.md)
 
 </details>
 
