@@ -107,6 +107,8 @@ Only gaps that change hiring outcomes are listed. **Public projects beat certifi
 
 Keep one master CV and produce three one-page versions. Each version reorders the same true facts; nothing is invented.
 
+**Done:** the LaTeX sources and PDFs are in [CV/](CV/). Its README says which version to send where and shows the ATS check results.
+
 | Version | Headline | Order of sections | Use for |
 |---|---|---|---|
 | **General SWE** | "Software Engineer — C++ · Rust · Linux · Codeforces Expert" | Skills → Open source → Experience → Projects → Achievements | Big Tech, trading, SaaS |

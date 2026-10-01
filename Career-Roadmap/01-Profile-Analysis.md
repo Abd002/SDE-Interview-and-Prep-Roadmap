@@ -4,7 +4,7 @@
 > **Public links:** [GitHub — Abd002](https://github.com/Abd002) · [GSoC 2026 report](https://github.com/Abd002/GSOC-2026) · [LinkedIn](https://www.linkedin.com/in/abd-elrahman-khalifa-8099b4218)
 > **Sources used:** his CV (Sept 2026 version; the primary source), his public GitHub profile and repositories, and the GSoC 2026 final report.
 > **Verified on:** 2026-09-29.
-> 🔒 His email address and phone number are left out on purpose, because this repository is public.
+> 🔒 This file leaves out his email address and phone number. At his request they appear only in the CVs in [CV/](CV/).
 
 This file answers five questions:
 1. What does he have?

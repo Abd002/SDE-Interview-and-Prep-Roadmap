@@ -6,7 +6,7 @@ A research database and application tracker for **Abdelrahman Khalifa** ([GitHub
 > **How facts were checked:** every fact links to its source. The research environment blocks most websites, so facts come from **web-search results** for the cited page rather than from opening the page. They are marked `S` in the "Verified on" column.
 > **Before you apply, re-open the official link** (careers page, government visa page, scholarship page). Visa thresholds change every January, and scholarship dates change every cycle.
 >
-> 🔒 This repository is public, so no private contact details (email, phone) are stored here.
+> 🔒 This repository is public. His contact details appear only in the CVs in [CV/](CV/), at his request.
 
 ## Start here
 
@@ -35,6 +35,7 @@ A research database and application tracker for **Abdelrahman Khalifa** ([GitHub
 | [06 — Salaries and Visas](06-Salaries-and-Visas.md) | 2026 salary benchmarks by city and 2026 visa rules for 🇩🇪 🇳🇱 🇬🇧 🇮🇪 🇺🇸 🇨🇦 🇸🇪 🇨🇭 🇵🇱 🇦🇪 🇸🇦 🇯🇵 🇰🇷 | — |
 | [07 — Strategy and Roadmap](07-Strategy-and-Roadmap.md) | Pathway comparison, country ranking, gap → project plan, application strategy, month-by-month roadmap | — |
 | [08 — Application Tracker](08-Application-Tracker.md) | Consolidated P1 targets with status columns | — |
+| [CV/](CV/) | LaTeX master CV and the three one-page versions from 07 §5.1 (General SWE, Systems/Rust, Embedded), with PDFs and ATS check results | **4 CVs** |
 
 ## Legends (used in every file)
 

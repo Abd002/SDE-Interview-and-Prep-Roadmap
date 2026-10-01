@@ -1,0 +1,73 @@
+% cv-style.sty: shared look for every CV version.
+% ATS-safe: one column, no tables/icons/images/headers/footers, real text
+% for every character (glyphtounicode + cmap), plain-text URLs.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cv-style}[2026/10/01 CV style]
+
+% Text extraction: map every glyph (ligatures, dashes, bullets) to Unicode.
+\input{glyphtounicode}
+\pdfgentounicode=1
+\RequirePackage{cmap}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[default]{lato}
+\renewcommand{\ttdefault}{lmtt}% vector Latin Modern mono for code names
+% No ligatures and no hyphenation: parsers then see whole, plain words
+% ("finalist", not a ligature glyph or "An-droid").
+\RequirePackage{microtype}
+\DisableLigatures[f]{encoding = *, family = *}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+\RequirePackage[a4paper,top=0.35in,bottom=0.35in,left=0.55in,right=0.55in]{geometry}
+\RequirePackage{xcolor}
+\RequirePackage{enumitem}
+\RequirePackage{titlesec}
+\RequirePackage[hidelinks,pdfusetitle]{hyperref}
+
+\definecolor{cvnavy}{HTML}{1B2A47}
+\definecolor{cvgray}{HTML}{4A5568}
+\definecolor{cvlink}{HTML}{1F5FA8}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\raggedright
+\linespread{1.0}
+\urlstyle{same}
+
+% Section heading: uppercase, navy, rule underneath.
+\titleformat{\section}{\color{cvnavy}\large\bfseries}{}{0pt}{\MakeUppercase}[{\color{cvnavy}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{5pt}{3pt}
+
+\setlist[itemize]{leftmargin=1.1em,label={\textbullet},nosep,topsep=1pt,itemsep=0pt}
+
+% \cvheader{Name}{Headline}
+\newcommand{\cvheader}[2]{%
+  \begin{center}
+    {\color{cvnavy}\fontsize{20}{24}\selectfont\bfseries #1}\\[3pt]
+    {\color{cvnavy}\large #2}\\[3pt]
+    {\small\color{cvgray}%
+      \href{mailto:abdelrahman.khalifa.gad@gmail.com}{abdelrahman.khalifa.gad@gmail.com}
+      \enspace|\enspace +20 114 250 5042
+      \enspace|\enspace Cairo, Egypt\\[1pt]
+      \href{https://linkedin.com/in/abd-elrahman-khalifa-8099b4218}{\color{cvlink}linkedin.com/in/abd-elrahman-khalifa-8099b4218}
+      \enspace|\enspace \href{https://github.com/Abd002}{\color{cvlink}github.com/Abd002}
+      \enspace|\enspace \href{https://codeforces.com/profile/_Khalifa}{\color{cvlink}codeforces.com/profile/\_Khalifa}}
+  \end{center}
+  \vspace{-6pt}}
+
+% \cventry{Role --- Organisation}{Dates}
+% The date sits on the same text run as the role (not floated right), so every
+% parser reads "Role --- Org | Dates" together and can count experience.
+\newcommand{\cventry}[2]{%
+  \par\vspace{3pt}{\bfseries\color{cvnavy}#1}\enspace{\color{cvgray}|}\enspace{\bfseries\small\color{cvgray}#2}\par}
+
+% \cvsub{italic second line, e.g. project name and links}
+\newcommand{\cvsub}[1]{{\small\itshape\color{cvgray}#1}\par}
+
+% \cvskill{Label}{items}
+\newcommand{\cvskill}[2]{\textbf{#1:} #2\par\vspace{1pt}}
+
+% \cvlink{url}{text}: visible, clickable link text.
+\newcommand{\cvlink}[2]{\href{#1}{\color{cvlink}#2}}
