@@ -1,0 +1,60 @@
+% Embedded version: Nordic, NXP, Arm, TomTom, Bosch, Continental,
+% Valeo and other automotive / firmware employers.
+% Build: pdflatex cv-embedded.tex (twice). Needs the lato package.
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Embedded Software Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Embedded Software Engineer --- Zephyr $\cdot$ Embedded Linux $\cdot$ Rust}
+
+\section*{Summary}
+Embedded software engineer with two years of professional firmware work on Zephyr RTOS and FreeRTOS, embedded Linux experience with Yocto and Buildroot, and upstream contributions to Zephyr. Writes C, modern C++ and Rust; completed Google Summer of Code 2026 with The Linux Foundation.
+
+\section*{Experience}
+\cventry{Embedded Systems Engineer --- EKSON}{Aug 2024 -- Present}
+\begin{itemize}
+  \item Developed Zephyr RTOS firmware for an ESP32-S3 3-DoF motion simulator, migrating it from FreeRTOS for more deterministic behavior and production readiness.
+  \item Integrated an MPU6050 IMU over I2C with calibration, filtering and compensation for stable motion estimation.
+  \item Built a modern C++/Qt desktop control application with reliable UART control of the simulator and optimized its performance by \textbf{\textasciitilde40\%} through asynchronous processing and fewer threads.
+\end{itemize}
+\cventry{Google Summer of Code 2026 Contributor --- The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
+\cvsub{COSMIC desktop printer setup tool in Rust \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026} \enspace|\enspace \cvlink{https://github.com/Abd002/cosmic-printers}{github.com/Abd002/cosmic-printers}}
+\begin{itemize}
+  \item Built a Linux printer-management stack as 5 Rust crates with an async client, a CUPS/IPP/DNS-SD backend behind a varlink IPC service, and a shared UI; tested on real HP printers.
+  \item Wrote FFI bindings from Rust to C (libcups3 DNS-SD API) and fixed crashes in libcups' Avahi code; \textbf{7 PRs merged upstream}.
+\end{itemize}
+\cventry{Embedded Linux Systems Intern --- ODC}{Dec 2023 -- Jan 2024}
+\begin{itemize}
+  \item Built Linux systems with Yocto and Buildroot; worked with kernel modules, device drivers, device trees, file systems and hardware flashing.
+\end{itemize}
+
+\section*{Open Source}
+\begin{itemize}
+  \item \textbf{Zephyr RTOS} (Mar 2024): implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules (150+ lines), reviewed and merged upstream (\cvlink{https://github.com/zephyrproject-rtos/zephyr/commit/b11703623c02f5afa4a5b0b7abdce3e324d7d470}{commit b117036}).
+  \item \textbf{OpenPrinting libcups and cups-rs} (2026): fixed DNS-SD crashes in libcups (C); ported cups-rs to libcups3 with CI (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}); Rust \texttt{lp}/\texttt{lpstat} in Winter of Code 2026.
+  \item \textbf{Rust ecosystem} (Dec 2025): Boa JavaScript engine string optimization (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}) and a Rust Clippy lint fix (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}).
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{AUTOSAR-Based V2X Ecosystem for SDV} (graduation project; FreeRTOS, AUTOSAR): software-defined vehicle prototype with ADAS (LKAS, driver monitoring), FOTA updates, and a secure bootloader with rollback. \cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}
+  \item \textbf{Seat Heater Control System} (Tiva C, FreeRTOS): real-time controller with temperature monitoring, heater-level control and UART diagnostics, using tasks, mutexes and event flags. \cvlink{https://github.com/Abd002/SeatHeaterControlSystem}{GitHub}
+  \item \textbf{IoT Device Communication System} (C++, Raspberry Pi 4, QEMU, Yocto): TCP unicast and UDP multicast framework between a Pi server and emulated clients; Yocto cross-compilation and Make. \cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}
+  \item \textbf{AUTOSAR PORT and GPIO drivers} (C, TM4C): developed and validated MCAL drivers following the AUTOSAR specification.
+  \item \textbf{Traffic Light Controller} (Verilog, Spartan-3E FPGA): FSM with debounce and delay modules, cutting signal timing errors by 20\%. \cvlink{https://github.com/Abd002/Traffic-Light-Controller}{GitHub}
+  \item \textbf{Door Locker Security System} (C, two MCUs): password lock with keypad, LCD, I2C EEPROM, timer and DC motor; UART between the MCUs. \cvlink{https://github.com/Abd002/Door-Locker-Security-Systems}{GitHub}
+\end{itemize}
+
+\section*{Technical Skills}
+\cvskill{Languages}{C, C++ (modern C++, Qt), Rust, Python, Bash, Verilog/VHDL}
+\cvskill{RTOS \& firmware}{Zephyr, FreeRTOS, ARM Cortex-M (STM32, TM4C), ESP32, AVR, AUTOSAR, MISRA C, bootloaders, FOTA}
+\cvskill{Embedded Linux}{Linux (Ubuntu/Debian), operating systems, Yocto, Buildroot, kernel modules, device drivers, device trees, QEMU, Raspberry Pi}
+\cvskill{Protocols \& tools}{UART, SPI, I2C, CAN, LIN, USB, Ethernet, TCP/UDP; Git, CMake, Make, CI, testing, debugging, performance optimization, code review}
+
+\section*{Education}
+\cventry{B.Sc. Computer and Systems Engineering --- Minia University}{2020 -- 2025}
+Very Good (84.6\%) with Honors. Codeforces Expert and ECPC 2023 finalist; Deloitte Software Engineering Mentorship (2024).
+
+\end{document}
