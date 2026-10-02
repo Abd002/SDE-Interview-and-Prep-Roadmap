@@ -1,7 +1,7 @@
 # 01 — Professional Profile Analysis
 
 > **Who:** Abdelrahman Khalifa, a software engineer based in Egypt.
-> **Public links:** [GitHub — Abd002](https://github.com/Abd002) · [GSoC 2026 report](https://github.com/Abd002/GSOC-2026) · [LinkedIn](https://www.linkedin.com/in/abd-elrahman-khalifa-8099b4218)
+> **Public links:** [GitHub — Abd002](https://github.com/Abd002) · [GSoC 2026 report](https://github.com/Abd002/GSOC-2026) · [LinkedIn](https://www.linkedin.com/in/abd002)
 > **Sources used:** his CV (Sept 2026 version; the primary source), his public GitHub profile and repositories, and the GSoC 2026 final report.
 > **Verified on:** 2026-09-29.
 > 🔒 This file leaves out his email address and phone number. At his request they appear only in the CVs in [CV/](CV/).
@@ -34,12 +34,12 @@ It deliberately treats him as a **software engineer first**. Embedded is one str
 | Item | Value |
 |---|---|
 | Degree | B.Sc. Computer & Systems Engineering, Minia University (2020–2025). Grade: **Very Good, 84.6%, with Honors**. |
-| Professional experience | About 2 years full-time at EKSON (Aug 2024 – present) + GSoC 2026 (Linux Foundation / OpenPrinting) + a 2-month ODC Embedded Linux internship |
+| Professional experience | About 1 year full-time at EKSON (Aug 2025 – present, after graduating) + GSoC 2026 (Linux Foundation / OpenPrinting) + a 2-month ODC Embedded Linux internship |
 | Main languages | **Rust, C, modern C++**, Python, Bash (also Java, C#, JavaScript/Node.js, Verilog, MATLAB) |
 | Signature work | Built a Rust async printer-management stack for the **COSMIC** desktop (System76 mentors). Contributed upstream to **libcups, cups-rs, Zephyr RTOS, Rust Clippy, and Boa** |
-| Competitive programming | **Codeforces Expert**; **ECPC finalist** (Egyptian Collegiate Programming Contest) |
+| Competitive programming | **Codeforces Expert**; **4-time ECPC finalist** (Egyptian Collegiate Programming Contest) |
 | Military service | Completed or exempt (his own answer), so there is no travel restriction |
-| Stage | Junior to mid-level (1–3 years). Aim for **new-grad / L3 / SWE I–II** roles at large companies and **mid-level** roles at smaller ones |
+| Stage | Junior (about 1 year of full-time work plus GSoC and upstream work). Aim for **new-grad / L3 / SWE I** roles at large companies and **junior-to-mid** roles at smaller ones |
 
 ---
 
@@ -50,7 +50,7 @@ Every row points to a source a recruiter can check.
 | Area | What he did | Evidence |
 |---|---|---|
 | **Education** | B.Sc. Computer & Systems Engineering, 84.6%, with Honors. His AUTOSAR/V2X graduation project covered a software-defined vehicle on FreeRTOS, lane-keeping and driver monitoring, firmware updates over the air, secure boot, and rollback. | CV |
-| **Industry job** | **Embedded Systems Engineer, EKSON** (Aug 2024 – present). He wrote Zephyr firmware for 3-DoF motion simulators and migrated it from FreeRTOS. He also built a C++/Qt control app and made it about **40% faster** using async processing and threads. | CV |
+| **Industry job** | **Embedded Systems Engineer, EKSON** (Aug 2025 – present). He wrote Zephyr firmware for 3-DoF motion simulators and migrated it from FreeRTOS. He also built a C++/Qt control app and made it about **40% faster** using async processing and threads. | CV |
 | **GSoC 2026 — Linux Foundation / OpenPrinting** | He built the printer-management tool for the **COSMIC** desktop in Rust: an async client API, a CUPS/IPP backend, DNS-SD printer discovery, and a UI in iced/libcosmic. The work is split into five crates: `printers-core`, `-client`, `-server`, `-ui`, `-app`. He tested on real HP printers and set up CI with `ippeveprinter`. | [GSOC-2026 report](https://github.com/Abd002/GSOC-2026), [cosmic-printers](https://github.com/Abd002/cosmic-printers) |
 | **Upstream C contributions** | **libcups**: PRs #164 and #165 merged, including DNS-SD crash fixes. | GSoC report |
 | **Upstream Rust contributions** | **cups-rs**: PRs #18–#22 merged (port to libcups3). **Rust Clippy**: fixed a `ref_as_ptr` false positive. **Boa** (a JavaScript engine written in Rust): optimized `JsStr::code_points`. Winter of Code 2026: implemented Rust `lp`/`lpstat` in cups-rs. | CV, GSoC report |
@@ -58,7 +58,7 @@ Every row points to a source a recruiter can check.
 | **Open PRs under review** | `cosmic-settings` #2182 and `cosmic-settings-daemon` #188 | GSoC report |
 | **Embedded Linux** | ODC internship (Dec 2023 – Jan 2024): Yocto, Buildroot, kernel modules, device drivers, device trees. Personal project: an IoT C++ TCP/UDP framework on a Raspberry Pi 4 and QEMU, built with Yocto. | CV |
 | **General software** | OS simulator (Java). Full-stack course project (Node/Express/MongoDB). Sports-management and inventory systems (C#). Python function solver. | [GitHub pinned repos](https://github.com/Abd002) |
-| **Algorithms** | Codeforces Expert, ECPC finalist, and this SDE interview-prep repository | [GitHub profile](https://github.com/Abd002) |
+| **Algorithms** | Codeforces Expert, 4-time ECPC finalist, and this SDE interview-prep repository | [GitHub profile](https://github.com/Abd002) |
 | **Other** | Deloitte mentorship program | CV |
 
 ---
@@ -76,7 +76,7 @@ Every row points to a source a recruiter can check.
    - developer-tools teams;
    - automotive software teams;
    - Linux desktop teams.
-3. **Strong algorithm skills.** Codeforces Expert and ECPC finalist are the best predictors of passing Big Tech coding rounds. This is his edge for general-SWE roles at Google, Meta, Amazon, and trading firms.
+3. **Strong algorithm skills.** Codeforces Expert and a 4-time ECPC finalist are the best predictors of passing Big Tech coding rounds. This is his edge for general-SWE roles at Google, Meta, Amazon, and trading firms.
 4. **Works across the whole stack of a device**, from the Verilog FSM up to the RTOS, kernel/drivers, and desktop UI. That breadth reads well for platform, OS and "full-stack systems" roles.
 5. **Known mentors.** GSoC mentors from OpenPrinting and System76 (Till Kamppeter, Michael Murphy and others) can give strong references and referrals.
 6. **Good degree grade (84.6%, with Honors).** It clears the academic bar for DAAD, Erasmus Mundus, and most funded master's programmes (see [05](05-Masters-and-Scholarships.md)).
@@ -99,20 +99,20 @@ Every row points to a source a recruiter can check.
 
 ## 5. Job titles that fit today
 
-The list is ordered from most general to most specialized. "Level" means the realistic entry level for about 2 years of experience plus GSoC.
+The list is ordered from most general to most specialized. "Level" means the realistic entry level for about 1 year of experience plus GSoC.
 
 | # | Title to search for | Level to apply at | Why he fits |
 |---|---|---|---|
-| 1 | **Software Engineer / Software Development Engineer (SDE)** | New grad, SWE I/II, L3 (Google), SDE I (Amazon), E3/E4 (Meta) | Algorithmic strength, C++, Rust |
+| 1 | **Software Engineer / Software Development Engineer (SDE)** | New grad, SWE I, L3 (Google), SDE I (Amazon), E3 (Meta) | Algorithmic strength, C++, Rust |
 | 2 | **Backend Software Engineer (Rust / C++ / Go)** | Junior to mid | Async Rust, IPC, services |
 | 3 | **Systems Software Engineer** | Junior to mid | Rust, C, CUPS, Linux, IPC |
 | 4 | **Infrastructure / Platform Engineer** | Junior | Linux, CI, build systems (CMake, Yocto) |
-| 5 | **Rust Engineer** | Mid | GSoC plus 4 Rust upstream projects |
+| 5 | **Rust Engineer** | Junior to mid | GSoC plus 4 Rust upstream projects |
 | 6 | **C++ Software Engineer (low-latency / performance)** | Graduate or junior at trading firms | C++, performance work, competitive programming |
 | 7 | **Developer Tools / Compiler / Language Runtime Engineer** | Junior | Clippy (a Rust linter), Boa (a JavaScript engine) |
 | 8 | **Linux / Open Source Software Engineer** (desktop, printing, graphics) | Junior to mid | OpenPrinting, COSMIC, libcups |
-| 9 | **Embedded Linux / BSP Engineer** | Mid | Yocto, Buildroot, drivers, device trees |
-| 10 | **Firmware / Embedded Software Engineer** (Zephyr / RTOS) | Mid | EKSON job, Zephyr upstream |
+| 9 | **Embedded Linux / BSP Engineer** | Junior to mid | Yocto, Buildroot, drivers, device trees |
+| 10 | **Firmware / Embedded Software Engineer** (Zephyr / RTOS) | Junior to mid | EKSON job, Zephyr upstream |
 | 11 | **Automotive Software Engineer** (AUTOSAR, software-defined vehicle) | Junior | AUTOSAR/V2X project, MISRA C |
 
 ---
@@ -136,10 +136,10 @@ The list is ordered from most general to most specialized. "Level" means the rea
 
 | Company type | Level to target | Notes |
 |---|---|---|
-| Google | L3 (possibly L4) | L4 needs roughly 2+ years of experience plus a system-design round. Apply for both if both are open. |
-| Amazon | SDE I (possibly SDE II) | |
-| Microsoft | SWE (59/60) or SWE II (61/62) | |
-| Meta | E3 (possibly E4) | |
+| Google | L3 | L4 needs roughly 2+ years of experience plus a system-design round, so aim for L3 now. |
+| Amazon | SDE I | |
+| Microsoft | SWE (59/60) | |
+| Meta | E3 | |
 | Trading firms | Graduate / junior C++ developer | |
 | Mid-size and open-source companies | "Software Engineer" (mid) | GSoC and upstream work count as experience at these companies. |
 

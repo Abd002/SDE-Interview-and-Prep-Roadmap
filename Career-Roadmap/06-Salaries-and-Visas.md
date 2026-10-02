@@ -26,7 +26,7 @@
   - Egypt salaries are often quoted **net per month**.
   - Gulf salaries are tax-free and quoted per month, usually as base + housing + transport allowances.
 - **Level matters more than city.** A Google L3 in Amsterdam earns about twice a local bank's junior in the same city (see the table below).
-- For about 2 years of experience, use the **entry-level / L3 / SWE I** rows. **Mid** is the stretch target.
+- For about 1 year of experience, use the **entry-level / L3 / SWE I** rows. **Mid** is the stretch target.
 
 ---
 
