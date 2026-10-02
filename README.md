@@ -14,9 +14,9 @@ International job targets, remote work from Egypt, funded master's programmes, 2
 
 20 printable contests (7 Codeforces Div. 4, 3 Codeforces Div. 3, 10 AtCoder Beginner Contests), printed from each site's own problems page. Each PDF ends with one hints page taken from the official editorial. One combined PDF holds all of them.
 
-## <span style="color:darkolivegreen;">20-Day Study Plan (PDF) — [Click Here](./Study-Plan/README.md)</span>
+## <span style="color:darkolivegreen;">Study Plan + Flagship Project — [Click Here](./Study-Plan/README.md)</span>
 
-A printable day-by-day plan for 2–21 Oct 2026. It covers CMU 15-445 (lectures, homeworks 1–4, projects 0–2), this repo's OS, Networking and Version Control domains, contest practice, and a small career slot.
+A printable step-by-step plan with no dates: 116 numbered steps, done in order at your own pace. It covers CMU 15-445 (lectures, homeworks 1–4, projects 0–2), this repo's OS, Networking, Version Control and System Design domains, contest practice, and a small career track. It also includes the guide for the flagship project, a Raft-replicated key-value store in Rust.
 
 ## <span style="color:darkolivegreen;">**Domains and Topics**</span>
 
