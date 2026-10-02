@@ -5,7 +5,7 @@
 🛰️ **[Flagship-Project.md](Flagship-Project.md)**: the flagship project guide (a Raft key-value store in Rust). It is also included at the end of the PDF.
 
 ## How it works
-- **No dates.** The plan is **116 numbered steps**. Do the lowest unfinished step, tick it, then move to the next. It is written for limited, changing free time (during military service), so the pace is open and only the order matters.
+- **No dates.** The plan is **138 numbered steps**. Do the lowest unfinished step, tick it, then move to the next. It is written for limited, changing free time (during military service), so the pace is open and only the order matters.
 - **Friday** (the one day off) is for the long steps: 2–4h project chunks, virtual contests and flagship coding.
 - **Real deadlines are the only exceptions:**
   - Knight-Hennessy (optional), by 6 Oct;
@@ -24,16 +24,16 @@
 | 4 · Indexes + execution | 62–76 | HW3 |
 | 5 · P2 B+Tree + concurrency | 77–96 | Raft leader election running in simulation |
 | 6 · Distributed DBs + wrap-up | 97–104 | HW4; all 24 lectures; P2 passes; flagship milestone M0 done |
-| 7 · Next | 105–116 | CMU P3/P4 + HW5–6, remaining repo domains, mock interviews, alternating with flagship milestones M1–M8 |
+| 7 · Next | 105–138 | CMU P3/P4 + HW5–6, alternating with every guide of **Programming Languages and Concepts** (106–120, incl. design patterns), **System Architecture** (122–129) and the rest of **System Design** (130–132); then contests, mock interviews and the final sweep. Alternates with flagship milestones M1–M8. |
 
 The plan mixes these tracks:
 - **CMU 15-445/645 Fall 2025:** lectures, homeworks 1–4, projects 0–2;
-- **this repo's domains:** Operating Systems, Networking, Version Control, System Design and Databases;
+- **this repo's domains:** Operating Systems, Networking, Version Control, Databases, System Design, Programming Languages and Concepts, and System Architecture;
 - **[Contest-Practice](../Contest-Practice/README.md)** sessions;
 - a small **[Career Roadmap](../Career-Roadmap/README.md)** track;
 - the **flagship project**.
 
-Phases 1–6 take about 104 hours in total.
+Phases 1–6 take about 104 hours, and Phase 7 about 53 more.
 
 **Out of scope:** domains 1 (Data Structures), 2 (Algorithms) and 9 (Problem-solving and Coding).
 

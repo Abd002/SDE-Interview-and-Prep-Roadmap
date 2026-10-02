@@ -16,7 +16,7 @@ International job targets, remote work from Egypt, funded master's programmes, 2
 
 ## <span style="color:darkolivegreen;">Study Plan + Flagship Project — [Click Here](./Study-Plan/README.md)</span>
 
-A printable step-by-step plan with no dates: 116 numbered steps, done in order at your own pace. It covers CMU 15-445 (lectures, homeworks 1–4, projects 0–2), this repo's OS, Networking, Version Control and System Design domains, contest practice, and a small career track. It also includes the guide for the flagship project, a Raft-replicated key-value store in Rust.
+A printable step-by-step plan with no dates: 138 numbered steps, done in order at your own pace. It covers CMU 15-445 (lectures, homeworks 1–4, projects 0–4), every guide in this repo's OS, Networking, Version Control, System Design, Programming Languages and Concepts, and System Architecture domains, contest practice, and a small career track. It also includes the guide for the flagship project, a Raft-replicated key-value store in Rust.
 
 ## <span style="color:darkolivegreen;">**Domains and Topics**</span>
 
