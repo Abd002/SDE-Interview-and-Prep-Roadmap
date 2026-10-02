@@ -10,7 +10,7 @@ These implement [07 §5.1](../07-Strategy-and-Roadmap.md#51-three-cv-versions): 
 - his [GitHub profile README](https://github.com/Abd002);
 - his older LaTeX CVs.
 
-LinkedIn could not be read: it blocks automated access. Check that it matches these CVs.
+LinkedIn was compared from its "Save to PDF" export (2 Oct 2026). That fixed the EKSON start date (Aug 2025) and the ECPC count (4-time finalist) in all CVs. **[LinkedIn.md](LinkedIn.md)** lists what is missing on the profile, with ready-to-paste text.
 
 | Version | PDF | Source | Headline | Section order | Send to |
 |---|---|---|---|---|---|

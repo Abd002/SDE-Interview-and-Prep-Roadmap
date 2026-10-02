@@ -7,7 +7,7 @@
 >
 > **Status is as of 2026-09-29.** Deadlines come from web-search results (`S`); the official pages were not opened. **Always confirm on the official link.**
 >
-> **Assumption about his dates:** B.Sc. finished in 2025 (the CV says 2020–2025), and full-time work started in Aug 2024 (EKSON). Some scholarships only count work done **after** the degree. Those rows are flagged ⚠️.
+> **Assumption about his dates:** B.Sc. finished in 2025 (the CV says 2020–2025), and full-time work started in Aug 2025 (EKSON), after graduation. Some scholarships only count work done **after** the degree. Those rows are flagged ⚠️.
 
 **31 programmes and scholarships.**
 
@@ -117,7 +117,7 @@ Living costs come from a blocked account (about €1,091/month; see [06](06-Sala
 | Criterion | His status | Consequence |
 |---|---|---|
 | Grade | 84.6%, "Very Good with Honors" | ✅ Clears MEXT (75%), DAAD, Erasmus Mundus, KAUST. ETH/EPFL are a stretch. |
-| Work experience | About 2 years full-time (Aug 2024 →), but part of it was **before graduation** | ⚠️ Chevening and DAAD EPOS (post-degree only) probably not until the 2028 intake. ✅ The DAAD all-disciplines scholarship does not need experience. |
+| Work experience | About 1 year full-time (Aug 2025 →), all of it **after graduation** | ⚠️ Chevening and DAAD EPOS (post-degree only) probably not until the 2028 intake. ✅ The DAAD all-disciplines scholarship does not need experience. |
 | English test | ❌ None yet | Blocks Erasmus Mundus, SI, Ireland and Canada → **book IELTS now** |
 | Research output | Upstream open-source work + GSoC report | ✅ A strong story for thesis-based Canadian M.Sc. and KAUST — contact supervisors in systems, OS or programming languages |
 | Age | Under 30 (likely) | ✅ MEXT (under 35), and extra points under Canada Express Entry |
