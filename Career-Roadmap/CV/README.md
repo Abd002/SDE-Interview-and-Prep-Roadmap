@@ -2,9 +2,12 @@
 
 These implement [07 §5.1](../07-Strategy-and-Roadmap.md#51-three-cv-versions): one master CV plus three one-page versions. Each version reorders the same true facts; nothing is invented.
 
-**Updated:** 2026-10-01.
+**Updated:** 2026-10-11.
+
+**Every fact comes from [facts.md](facts.md)**, the record built from an interview on 11 Oct 2026. If a fact changes, update facts.md first, then the CVs and [LinkedIn.md](LinkedIn.md). To prepare for interviews, read **[Interview-Talking-Guide.md](Interview-Talking-Guide.md)**.
 
 **Sources:**
+- the interview (11 Oct 2026), recorded in [facts.md](facts.md);
 - his latest CV (Sept 2026);
 - his [GSoC 2026 final report](https://github.com/Abd002/GSOC-2026);
 - his [GitHub profile README](https://github.com/Abd002);
@@ -14,9 +17,9 @@ LinkedIn was compared from its "Save to PDF" export (2 Oct 2026). That fixed the
 
 | Version | PDF | Source | Headline | Section order | Send to |
 |---|---|---|---|---|---|
-| **General SWE** | [cv-general-swe.pdf](cv-general-swe.pdf) | [.tex](cv-general-swe.tex) | Software Engineer — C++ · Rust · Linux · Codeforces Expert | Summary → Skills → Open source → Experience → Projects → Achievements → Education | Big Tech, trading firms, SaaS |
+| **General SWE** | [cv-general-swe.pdf](cv-general-swe.pdf) | [.tex](cv-general-swe.tex) | Software Engineer — Rust · C++ · Linux · GSoC 2026 · Codeforces Expert | Summary → Skills → Open source → Experience → Projects → Achievements → Education | Big Tech, trading firms, SaaS |
 | **Systems / Rust / open source** | [cv-systems-rust.pdf](cv-systems-rust.pdf) | [.tex](cv-systems-rust.tex) | Systems Software Engineer — Rust · C · Linux · GSoC 2026 (Linux Foundation) | Summary → Open source → Experience → Skills → Achievements → Education | Canonical, Red Hat, Collabora, Igalia, System76, JetBrains, Cloudflare, Ferrous Systems |
-| **Embedded** | [cv-embedded.pdf](cv-embedded.pdf) | [.tex](cv-embedded.tex) | Embedded Software Engineer — Zephyr · Embedded Linux · Rust | Summary → Experience → Open source (Zephyr first) → Projects → Skills → Education | Nordic, NXP, Arm, TomTom, Bosch, Valeo, automotive |
+| **Embedded** | [cv-embedded.pdf](cv-embedded.pdf) | [.tex](cv-embedded.tex) | Embedded Software Engineer — Zephyr · Embedded Linux · C · Rust | Summary → Experience → Open source (Zephyr first) → Projects → Skills → Education | Nordic, NXP, Arm, TomTom, Bosch, Valeo, automotive |
 | **Master (2 pages)** | [master-cv.pdf](master-cv.pdf) | [.tex](master-cv.tex) | Every fact, every project and course | — | Keep as the source. Use for master's applications after adding an academic section. |
 
 The shared look is in [cv-style.sty](cv-style.sty). Change it once and every version follows.
@@ -80,5 +83,6 @@ The missing keywords line up with the gaps in [01 §4](../01-Profile-Analysis.md
 3. Rebuild the PDF.
 
 ## Facts left out on purpose
-- **Military service:** none of the versions says anything about it. International employers don't ask. For Egyptian employers, add a line under the contact details.
-- **Zephyr issue #86977:** an older CV mentions it, but it could not be verified, so no version uses it.
+- **Military service:** none of the versions says anything about it. International employers don't ask. For Egyptian employers, add "Military service: completed" under the contact details.
+- **Removed after the interview:** the Deloitte mentorship, the Winter of Code lp/lpstat PRs (not merged) and the "C++/Qt" wording for the EKSON app (it is PyQt5).
+- **Zephyr issue #86977** is now verified (he was assigned and wrote the merged commit b117036), so the CVs link to it.

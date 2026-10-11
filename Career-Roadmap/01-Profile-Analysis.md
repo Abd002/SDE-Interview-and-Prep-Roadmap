@@ -49,17 +49,17 @@ Every row points to a source a recruiter can check.
 
 | Area | What he did | Evidence |
 |---|---|---|
-| **Education** | B.Sc. Computer & Systems Engineering, 84.6%, with Honors. His AUTOSAR/V2X graduation project covered a software-defined vehicle on FreeRTOS, lane-keeping and driver monitoring, firmware updates over the air, secure boot, and rollback. | CV |
-| **Industry job** | **Embedded Systems Engineer, EKSON** (Aug 2025 – present). He wrote Zephyr firmware for 3-DoF motion simulators and migrated it from FreeRTOS. He also built a C++/Qt control app and made it about **40% faster** using async processing and threads. | CV |
+| **Education** | B.Sc. Computer & Systems Engineering, 84.6%, with Honors. AUTOSAR/V2X graduation project on STM32 (team). His part: the firmware update path (an ESP32/Raspberry Pi gateway sends the image over UART) and a dual-bank bootloader with CRC check and rollback. He also studied the Trampoline OSEK/VDX RTOS. | CV |
+| **Industry job** | **Embedded Software Engineer, EKSON** (Aug 2025 – present, part-time/remote). The **only software engineer** on 3-DoF and 6-DoF pneumatic motion simulators. He wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr (PID valve control, MPU6050 IMU with a Mahony filter, safety stops, UART). He built the **PyQt5** desktop app (about **40% lower CPU/latency**, measured, after moving serial I/O to background threads), remote operation through a Node.js/Express + MongoDB backend, and firmware updates with esptool. | CV, [facts.md](CV/facts.md) |
 | **GSoC 2026 — Linux Foundation / OpenPrinting** | He built the printer-management tool for the **COSMIC** desktop in Rust: an async client API, a CUPS/IPP backend, DNS-SD printer discovery, and a UI in iced/libcosmic. The work is split into five crates: `printers-core`, `-client`, `-server`, `-ui`, `-app`. He tested on real HP printers and set up CI with `ippeveprinter`. | [GSOC-2026 report](https://github.com/Abd002/GSOC-2026), [cosmic-printers](https://github.com/Abd002/cosmic-printers) |
 | **Upstream C contributions** | **libcups**: PRs #164 and #165 merged, including DNS-SD crash fixes. | GSoC report |
-| **Upstream Rust contributions** | **cups-rs**: PRs #18–#22 merged (port to libcups3). **Rust Clippy**: fixed a `ref_as_ptr` false positive. **Boa** (a JavaScript engine written in Rust): optimized `JsStr::code_points`. Winter of Code 2026: implemented Rust `lp`/`lpstat` in cups-rs. | CV, GSoC report |
-| **Upstream RTOS contribution** | **Zephyr RTOS**: added `IP_MULTICAST_LOOP` support across 6 network modules. Merged in March 2024. | CV |
+| **Upstream Rust contributions** | **cups-rs**: PRs #18–#22 merged (port to libcups3). **Rust Clippy**: fixed a `ref_as_ptr` false positive. **Boa** (a JavaScript engine written in Rust): optimized `JsStr::code_points`. | CV, GSoC report |
+| **Upstream RTOS contribution** | **Zephyr RTOS**: added `IP_MULTICAST_LOOP` support across 6 network modules (issue #86977). His first open-source contribution, merged in March 2025. | CV |
 | **Open PRs under review** | `cosmic-settings` #2182 and `cosmic-settings-daemon` #188 | GSoC report |
-| **Embedded Linux** | ODC internship (Dec 2023 – Jan 2024): Yocto, Buildroot, kernel modules, device drivers, device trees. Personal project: an IoT C++ TCP/UDP framework on a Raspberry Pi 4 and QEMU, built with Yocto. | CV |
+| **Embedded Linux** | Orange Digital Center (ODC) internship (Dec 2023 – Jan 2024): Yocto, Buildroot, wrote a kernel module, device trees. Personal project: an IoT C++ TCP/UDP framework on a Raspberry Pi 4 and QEMU, built with Yocto. | CV |
 | **General software** | OS simulator (Java). Full-stack course project (Node/Express/MongoDB). Sports-management and inventory systems (C#). Python function solver. | [GitHub pinned repos](https://github.com/Abd002) |
 | **Algorithms** | Codeforces Expert, 4-time ECPC finalist, and this SDE interview-prep repository | [GitHub profile](https://github.com/Abd002) |
-| **Other** | Deloitte mentorship program | CV |
+| **Other** | IEEE student branch Treasurer (budget of more than $10k) | CV |
 
 ---
 
