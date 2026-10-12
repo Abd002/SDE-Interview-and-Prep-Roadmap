@@ -39,7 +39,7 @@ Part-time/remote during military service; still part-time now.
   - Not known: the PID loop rate. **Never quote a number.**
 - **Desktop control app: PyQt5 (Python).** It is **not** C++/Qt and **never** had a C++/QML version.
   - Sends commands and receives telemetry over UART.
-  - **About 40% lower CPU usage/latency**, measured, after making serial I/O and processing **asynchronous (async + background threads)**, off the UI thread. **He says async is what gave the performance gain**, so always name async first.
+  - **About 40% lower CPU usage/latency**, measured, after making serial I/O and processing **asynchronous with Python's `asyncio`** plus background threads, off the UI thread. **He says asyncio is what gave the performance gain**, so always name it first.
 - **Remote operation:**
   - The path is web app → **Node.js/Express** server with **MongoDB** → the desktop app **polls the REST API** → UART → microcontroller.
   - Used for remote control and session/telemetry data.
