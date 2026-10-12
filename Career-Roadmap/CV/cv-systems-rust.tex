@@ -7,25 +7,24 @@
 
 \begin{document}
 
-\cvheader{Abdelrahman Khalifa}{Systems Software Engineer --- Rust $\cdot$ C $\cdot$ Linux $\cdot$ GSoC 2026 (Linux Foundation)}
+\cvheader{Abdelrahman Khalifa}{Systems Software Engineer \enspace|\enspace Rust, C, Linux}
 
 \section*{Summary}
-Systems software engineer working in Rust, C and modern C++ on Linux. Completed Google Summer of Code 2026 with The Linux Foundation (OpenPrinting), building the COSMIC desktop's printer stack and landing 7 PRs upstream in cups-rs and libcups. Comfortable with FFI, IPC, async code and maintainer code review.
+Systems software engineer working in Rust, C and modern C++ on Linux. Completed Google Summer of Code 2026 with The Linux Foundation (OpenPrinting), building the Printers page for COSMIC Settings and landing 7 PRs upstream in cups-rs and libcups. Comfortable with FFI, IPC, async code and maintainer code review.
 
 \section*{Open Source}
 \cventry{Google Summer of Code 2026 Contributor --- The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
-\cvsub{COSMIC printer setup tool in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026} \enspace|\enspace \cvlink{https://github.com/Abd002/cosmic-printers}{github.com/Abd002/cosmic-printers}}
+\cvsub{Printers page for COSMIC Settings, in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026} \enspace|\enspace \cvlink{https://github.com/Abd002/cosmic-printers}{github.com/Abd002/cosmic-printers}}
 \begin{itemize}
-  \item Designed a printer-management stack as 5 Rust crates: \texttt{printers-core} (types, grouping queues into physical devices), \texttt{-client} (async varlink client), \texttt{-server} (CUPS, IPP, DNS-SD and Printer Application backend), \texttt{-ui} (iced/libcosmic) and \texttt{-app}.
-  \item Exposed the backend over varlink IPC from \texttt{cosmic-settings-daemon}, so the C FFI code never loads in the Settings GUI process; the standalone app falls back to running the server in-process.
-  \item Built a Printers page and an Add Printer flow for COSMIC Settings: live updates, print queue control, supply levels, and legacy printers set up through Printer Applications (PAPPL) instead of PPD drivers.
-  \item Tested on real HP printers and Printer Applications (Ghostscript, Gutenprint, HPLIP); CI checks formatting, Clippy and tests on several architectures and runs CUPS, Avahi and \texttt{ippeveprinter} to test discovery.
+  \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app sharing the same UI: printers grouped by device, status and supply levels, print queue control, test pages, live updates, and an Add Printer flow that sets up legacy printers through Printer Applications (PAPPL) instead of PPD drivers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item Designed the stack as 5 Rust crates: \texttt{printers-core} (types, grouping queues into physical devices), \texttt{-client} (async varlink client), \texttt{-server} (CUPS, IPP, DNS-SD backend), \texttt{-ui} (iced/libcosmic) and \texttt{-app}.
+  \item Ran the backend as a varlink IPC service in \texttt{cosmic-settings-daemon} (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}, in review), so the C FFI code never loads in the Settings process; the standalone app falls back to running it in-process.
+  \item Tested on real HP printers and Printer Applications (Ghostscript, Gutenprint, HPLIP); CI checks formatting, Clippy and tests on several architectures and runs CUPS, Avahi and \texttt{ippeveprinter}.
 \end{itemize}
-\cventry{Upstream contributions --- OpenPrinting cups-rs (Rust) and libcups (C), COSMIC}{2026}
+\cventry{Upstream contributions --- OpenPrinting cups-rs (Rust) and libcups (C)}{2026}
 \begin{itemize}
   \item cups-rs: ported to libcups3 with CUPS 2 and CUPS 3 builds and CI; added IPP management operations, Printer Application support, connections by IP/port, \texttt{lpoptions} support and FFI bindings for the libcups3 DNS-SD API (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}, merged).
   \item libcups: fixed crashes in \texttt{cupsDNSSDDelete()} and a leaked client in the Avahi DNS-SD code (\cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}, merged).
-  \item COSMIC (in review): Printers page (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}) and varlink printers server (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}).
 \end{itemize}
 \cventry{Contributor --- Zephyr RTOS, Boa JavaScript engine (Rust), Rust Clippy}{Mar 2025 -- Dec 2025}
 \begin{itemize}
@@ -60,6 +59,6 @@ Systems software engineer working in Rust, C and modern C++ on Linux. Completed 
 
 \section*{Education}
 \cventry{B.Sc. Computer and Systems Engineering --- Minia University}{2020 -- 2025}
-Very Good (84.6\%) with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; I built the firmware update path and a dual-bank bootloader with rollback.
+Very Good (84.6\%) with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; built the firmware update path and a dual-bank bootloader with rollback.
 
 \end{document}

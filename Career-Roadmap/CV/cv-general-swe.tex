@@ -6,10 +6,10 @@
 
 \begin{document}
 
-\cvheader{Abdelrahman Khalifa}{Software Engineer --- Rust $\cdot$ C++ $\cdot$ Linux $\cdot$ GSoC 2026 $\cdot$ Codeforces Expert}
+\cvheader{Abdelrahman Khalifa}{Software Engineer \enspace|\enspace Rust, C++, Linux}
 
 \section*{Summary}
-Software engineer working in Rust, modern C++, C and Python. Completed Google Summer of Code 2026 with The Linux Foundation (7 PRs merged upstream) and sole software engineer at EKSON, owning firmware, desktop app and backend. Codeforces Expert, 4-time ECPC finalist.
+Software engineer working in Rust, modern C++, C and Python. Built the Printers page for COSMIC Settings in Google Summer of Code 2026 with The Linux Foundation (7 PRs merged upstream) and sole software engineer at EKSON, owning firmware, desktop app and backend. Codeforces Expert, 4-time ECPC finalist.
 
 \section*{Technical Skills}
 \cvskill{Languages}{Rust, C++ (modern), C, Python, JavaScript (Node.js), SQL, Java, C\#, Bash}
@@ -19,16 +19,15 @@ Software engineer working in Rust, modern C++, C and Python. Completed Google Su
 
 \section*{Open Source}
 \cventry{Google Summer of Code 2026 Contributor --- The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
-\cvsub{COSMIC desktop printer setup tool in Rust; passed the final evaluation, still maintaining it \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\cvsub{Printers page for COSMIC Settings, in Rust; passed the final evaluation, still maintaining it \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
 \begin{itemize}
-  \item Designed a printer-management stack for the COSMIC desktop as 5 Rust crates: shared types, an async client, a CUPS/IPP/DNS-SD backend, a shared UI and a standalone app.
-  \item Ran the C FFI backend as a varlink IPC service in the settings daemon, so a native crash cannot take down Settings.
+  \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app sharing the same UI: printers grouped by device, status and supply levels, print queues, live updates, and an Add Printer flow for legacy printers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item Designed it as 5 Rust crates and ran the C FFI backend as a varlink IPC service in the settings daemon, so a native crash cannot take down Settings.
   \item \textbf{7 PRs merged upstream}: ported cups-rs to libcups3 with CUPS 2 and 3 builds and CI, added DNS-SD bindings, and fixed crashes and a leaked client in libcups (C).
-  \item Tested on real HP printers; CI runs formatting, Clippy and tests on several architectures with virtual IPP printers.
 \end{itemize}
 \cventry{Contributor --- Zephyr RTOS, Boa JavaScript engine (Rust), Rust Clippy}{Mar 2025 -- Dec 2025}
 \begin{itemize}
-  \item Zephyr RTOS: added the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}, merged).
+  \item Zephyr RTOS: added the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 in 6 networking modules (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}, merged).
   \item Boa: optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}, merged).
   \item Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}, merged).
 \end{itemize}
@@ -38,7 +37,7 @@ Software engineer working in Rust, modern C++, C and Python. Completed Google Su
 \cvsub{Sole software engineer for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
 \begin{itemize}
   \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.
-  \item Built the PyQt5 desktop control app and cut its CPU usage and latency by \textbf{\textasciitilde40\%} (measured) by moving serial I/O off the UI thread.
+  \item Built the PyQt5 desktop app and cut its CPU usage and latency by \textbf{\textasciitilde40\%} (measured) by moving serial I/O off the UI thread.
   \item Built remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST to relay commands and flash new firmware with esptool; GitHub Actions CI.
 \end{itemize}
 \cventry{Embedded Linux Systems Intern --- Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
@@ -62,6 +61,6 @@ Software engineer working in Rust, modern C++, C and Python. Completed Google Su
 
 \section*{Education}
 \cventry{B.Sc. Computer and Systems Engineering --- Minia University}{2020 -- 2025}
-Very Good (84.6\%) with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; I built the firmware update path and a dual-bank bootloader with rollback.
+Very Good (84.6\%) with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; built the firmware update path and a dual-bank bootloader with rollback.
 
 \end{document}

@@ -53,7 +53,11 @@ Part-time/remote during military service; still part-time now.
 
 ### Google Summer of Code 2026: The Linux Foundation / OpenPrinting · May 2026 – Oct 2026
 - **Outcome:** passed the final evaluation. He is **still maintaining** cosmic-printers.
-- **Project:** a printer setup tool for the **COSMIC desktop** (System76), in **Rust**.
+- **Main mission: the Printers page in COSMIC Settings** (System76's desktop), in **Rust**. Always say this first.
+  - The page shows printers grouped by physical printer, their state and supply levels, and the print queue (pause, resume, cancel, move jobs). It also sets the default printer and options, prints a test page, and updates live.
+  - **Add Printer flow:** legacy printers are set up through Printer Applications (PAPPL) instead of PPD drivers, which is the CUPS 3 way.
+  - A **standalone printers app** shares the same UI.
+  - PR: **pop-os/cosmic-settings #2182** "feat(printers): add printer setup tool to COSMIC Settings". Open, ready for review since 26 Sep 2026.
 - **Mentors:** Till Kamppeter, Mintu Gogoi, Michael Murphy, Titiksha Bansal.
 - **5 crates:**
   - `printers-core`: types, grouping queues into physical printers;

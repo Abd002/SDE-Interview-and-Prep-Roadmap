@@ -49,7 +49,7 @@ Limit: 2,600 characters. This text is about 1,400.
 ```
 I'm a software engineer who works close to the system: Rust, C and modern C++ on Linux and embedded devices.
 
-In Google Summer of Code 2026 with The Linux Foundation (OpenPrinting), I built the printer-management stack for the COSMIC desktop in Rust: five crates with an async client, a CUPS/IPP/DNS-SD backend that runs as a varlink service in the settings daemon, and one shared UI for COSMIC Settings and a standalone app. Along the way I ported cups-rs to libcups3 and fixed DNS-SD crashes in libcups: 7 pull requests merged upstream. I still maintain the project.
+In Google Summer of Code 2026 with The Linux Foundation (OpenPrinting), I built the Printers page for COSMIC Settings in Rust, plus a standalone printers app with the same UI. Behind it are five crates: an async client, and a CUPS/IPP/DNS-SD backend that runs as a varlink service in the settings daemon, so a crash in C code can't take down Settings. Along the way I ported cups-rs to libcups3 and fixed DNS-SD crashes in libcups: 7 pull requests merged upstream. I still maintain the project.
 
 At EKSON I'm the only software engineer on 3-DoF and 6-DoF pneumatic motion simulators. I wrote the ESP32-S3 firmware and moved it from FreeRTOS to Zephyr RTOS, with PID valve control and IMU feedback. I also built the PyQt5 desktop app that drives the simulator (about 40% lower CPU use and latency after moving serial I/O off the UI thread), plus remote control and firmware updates through a small Node.js backend.
 
@@ -74,9 +74,10 @@ Add the entries newest first, so LinkedIn sorts them correctly.
 - **Dates:** May 2026 – Oct 2026
 - **Description:**
 ```
-COSMIC desktop printer setup tool in Rust, mentored by Till Kamppeter, Mintu Gogoi, Michael Murphy and Titiksha Bansal (OpenPrinting and System76). Passed the final evaluation; I still maintain the project.
+Printers page for COSMIC Settings, in Rust, mentored by Till Kamppeter, Mintu Gogoi, Michael Murphy and Titiksha Bansal (OpenPrinting and System76). Passed the final evaluation; I still maintain the project.
 
-• Designed a printer-management stack as 5 Rust crates: shared types, an async varlink client, a CUPS/IPP/DNS-SD and Printer Application backend, a shared UI (iced/libcosmic) and a standalone app.
+• Built the Printers page for COSMIC Settings and a standalone printers app with the same UI: printers grouped by device, status and supply levels, print queue control, test pages, live updates, and an Add Printer flow that sets up legacy printers through Printer Applications instead of PPD drivers (cosmic-settings #2182, in review).
+• Designed the stack as 5 Rust crates: shared types, an async varlink client, a CUPS/IPP/DNS-SD and Printer Application backend, a shared UI (iced/libcosmic) and a standalone app.
 • Ran the backend as a varlink IPC service in cosmic-settings-daemon, so a crash in native C code can't take down the Settings app.
 • Ported cups-rs to libcups3 (CUPS 2 and 3 builds with CI), wrote FFI bindings for the libcups3 DNS-SD API, and fixed crashes and a client leak in libcups: 7 PRs merged upstream.
 • Tested on real HP printers; CI checks formatting, Clippy and tests on several architectures with virtual IPP printers (ippeveprinter).

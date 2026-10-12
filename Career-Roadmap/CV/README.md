@@ -17,9 +17,9 @@ LinkedIn was compared from its "Save to PDF" export (2 Oct 2026). That fixed the
 
 | Version | PDF | Source | Headline | Section order | Send to |
 |---|---|---|---|---|---|
-| **General SWE** | [cv-general-swe.pdf](cv-general-swe.pdf) | [.tex](cv-general-swe.tex) | Software Engineer — Rust · C++ · Linux · GSoC 2026 · Codeforces Expert | Summary → Skills → Open source → Experience → Projects → Achievements → Education | Big Tech, trading firms, SaaS |
-| **Systems / Rust / open source** | [cv-systems-rust.pdf](cv-systems-rust.pdf) | [.tex](cv-systems-rust.tex) | Systems Software Engineer — Rust · C · Linux · GSoC 2026 (Linux Foundation) | Summary → Open source → Experience → Skills → Achievements → Education | Canonical, Red Hat, Collabora, Igalia, System76, JetBrains, Cloudflare, Ferrous Systems |
-| **Embedded** | [cv-embedded.pdf](cv-embedded.pdf) | [.tex](cv-embedded.tex) | Embedded Software Engineer — Zephyr · Embedded Linux · C · Rust | Summary → Experience → Open source (Zephyr first) → Projects → Skills → Education | Nordic, NXP, Arm, TomTom, Bosch, Valeo, automotive |
+| **General SWE** | [cv-general-swe.pdf](cv-general-swe.pdf) | [.tex](cv-general-swe.tex) | Software Engineer \| Rust, C++, Linux | Summary → Skills → Open source → Experience → Projects → Achievements → Education | Big Tech, trading firms, SaaS |
+| **Systems / Rust / open source** | [cv-systems-rust.pdf](cv-systems-rust.pdf) | [.tex](cv-systems-rust.tex) | Systems Software Engineer \| Rust, C, Linux | Summary → Open source → Experience → Skills → Achievements → Education | Canonical, Red Hat, Collabora, Igalia, System76, JetBrains, Cloudflare, Ferrous Systems |
+| **Embedded** | [cv-embedded.pdf](cv-embedded.pdf) | [.tex](cv-embedded.tex) | Embedded Software Engineer \| C, Zephyr RTOS, Embedded Linux | Summary → Experience → Open source (Zephyr first) → Projects → Skills → Education | Nordic, NXP, Arm, TomTom, Bosch, Valeo, automotive |
 | **Master (2 pages)** | [master-cv.pdf](master-cv.pdf) | [.tex](master-cv.tex) | Every fact, every project and course | — | Keep as the source. Use for master's applications after adding an academic section. |
 
 The shared look is in [cv-style.sty](cv-style.sty). Change it once and every version follows.
@@ -33,6 +33,12 @@ pdflatex cv-general-swe.tex && pdflatex cv-general-swe.tex   # run twice; same f
 
 - **Packages:** the `lato` font package (in `texlive-fonts-extra`; Overleaf has it), `lmodern`, `titlesec`, `enumitem`, `cmap`, `microtype`, `hyperref`.
 - **On Overleaf:** upload the `.tex` and `cv-style.sty` files together and choose the pdfLaTeX compiler.
+
+## The title line under the name
+Each version has one short line under the name: **the job title, then 3 core skills**, for example `Systems Software Engineer | Rust, C, Linux`.
+- **Why this form:** career guides recommend starting with the job title, then a few skills, separated by a pipe, in fewer than 10 words. The job title matches what recruiters and ATS search for.
+- **What's not in it:** achievements like GSoC 2026 or Codeforces Expert. They are in the Summary and the sections, and a list of them under the name reads like a LinkedIn headline, not a CV.
+- **Before applying:** change the title to the exact title in the job ad if it is true for you (for example "Firmware Engineer" or "Backend Engineer").
 
 ## ATS checks (all four PDFs pass)
 
@@ -55,9 +61,16 @@ These rules are built into `cv-style.sty`:
   - every section heading;
   - each role's date on its own line;
   - no `(cid:` glyphs, no ligature characters and no split words.
+- **Second round (12 Oct 2026):**
+  - **Three extractors** (pdftotext, pdfminer.six, PyMuPDF) give the same word count for each PDF.
+  - **Smallest font** is 9 pt.
+  - **No first-person words** ("I", "my") in any CV.
+  - **Spelling:** checked with a spell checker; only technical terms were flagged.
+  - **Date format:** every role uses `Mon YYYY – Mon YYYY` or `Present`.
 - **Links:**
-  - The personal repos, the Google Play and live demo pages, LinkedIn and the GSoC project page all answered when checked.
-  - The upstream PR links come from his GSoC report.
+  - Every link in the PDFs was opened. All the personal repos, the upstream PRs, the Zephyr issue and the GSoC report exist.
+  - COSMIC PRs #2182 and #188 are open and ready for review (since 26 Sep 2026), so the CVs say "in review". Change that to "merged" when they merge.
+- **File name:** when you send a CV, rename it to `Abdelrahman-Khalifa-CV.pdf`. Recruiters see the file name.
 - **Not tested:** commercial ATS products such as Workday or Greenhouse can't be run here. They read the same PDF text layer, so the checks above cover what they parse.
 
 ### Keyword match against real job ads (Oct 2026)
