@@ -134,6 +134,16 @@ It holds every company from [02](02-International-Companies.md), [03](03-Egypt-C
 | People | Find recruiters, Find engineers, Find Egyptians there (LinkedIn search links), Contacts (named people for P1), Referral status |
 | Tracking | Status, Role applied, Job post, Applied on, Next step, Follow-up date, Notes, Verified on |
 
-**Views:** ⭐ P1 targets · 📋 Pipeline (board by Status) · 📅 Follow-ups (calendar) · 🇪🇬 Egypt offices · 🌍 Remote · ✈️ Relocation · 🦀 Rust & systems.
+**Views (tabs at the top of the database):**
+
+| Kind | Views |
+|---|---|
+| Everything | 🗂️ All companies (quick-filter bar: Priority, Status, Tech stack, Work mode, Visa, Roles, Best CV, From my list, Relocation, Referral status) · ⭐ P1 targets |
+| Where | 🇪🇬 Local (Egypt) · 🌍 Remote · 🏢 Hybrid · 🏭 On-site · ✈️ Relocation · 🛂 Visa sponsors (verified / likely) · 🇪🇺 Europe · 🕌 Gulf & Middle East · 🌏 Asia, Americas & Oceania |
+| Tech | 🦀 Rust & systems · ⚙️ C++ · 🔧 C · 🐍 Python · 🐹 Go · ☕ Java · 🐧 Linux / Kernel · 🔌 Embedded / RTOS · ☁️ Cloud / K8s / Databases |
+| Type | 🏛️ Big Tech · 🚀 Startups · 🌐 Open source · 🎓 Graduate / Junior |
+| Progress | 📋 Pipeline (board by Status) · 🔥 Active applications · 🤝 Referrals (board) · 📅 Follow-ups (calendar) |
+
+Every table view also has its own quick-filter bar, so filters can be combined (for example *🌍 Remote* + Tech stack = Rust).
 
 **Referral routine:** open *Find Egyptians there* first (warmest referrals), then *Find engineers* for someone on the team you want, then *Find recruiters*. Log each person in **Contacts** and set **Referral status**.
