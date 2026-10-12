@@ -7,10 +7,10 @@
 
 \begin{document}
 
-\cvheader{Abdelrahman Khalifa}{Embedded Software Engineer --- Zephyr $\cdot$ Embedded Linux $\cdot$ C $\cdot$ Rust}
+\cvheader{Abdelrahman Khalifa}{Embedded Software Engineer \enspace|\enspace C, Zephyr RTOS, Embedded Linux}
 
 \section*{Summary}
-Embedded software engineer and the sole software engineer at EKSON, where I wrote and own the Zephyr RTOS firmware for pneumatic motion simulators. Embedded Linux experience with Yocto and Buildroot, a merged Zephyr networking contribution, and Google Summer of Code 2026 with The Linux Foundation. Writes C, C++ and Rust.
+Embedded software engineer; sole software engineer at EKSON, writing and owning the Zephyr RTOS firmware for pneumatic motion simulators. Embedded Linux experience with Yocto and Buildroot, a merged Zephyr networking contribution, and the COSMIC Settings Printers page built in Google Summer of Code 2026 with The Linux Foundation. Writes C, C++ and Rust.
 
 \section*{Experience}
 \cventry{Embedded Software Engineer --- EKSON}{Aug 2025 -- Present}
@@ -22,9 +22,9 @@ Embedded software engineer and the sole software engineer at EKSON, where I wrot
   \item Built remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST, then flashes new firmware with esptool; GitHub Actions CI.
 \end{itemize}
 \cventry{Google Summer of Code 2026 Contributor --- The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
-\cvsub{COSMIC desktop printer setup tool in Rust \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\cvsub{Printers page for COSMIC Settings, in Rust \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
 \begin{itemize}
-  \item Built a Linux printer-management stack as 5 Rust crates with an async client, a CUPS/IPP/DNS-SD backend behind a varlink IPC service, and a shared UI; tested on real HP printers.
+  \item Built the \textbf{Printers page for COSMIC Settings} (printer status, supply levels, print queues, adding printers) as 5 Rust crates, with the CUPS/IPP/DNS-SD backend isolated behind a varlink IPC service (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
   \item Wrote Rust-to-C FFI bindings (libcups3 DNS-SD) and fixed crashes in libcups' Avahi code; \textbf{7 PRs merged upstream}.
 \end{itemize}
 \cventry{Embedded Linux Systems Intern --- Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
@@ -41,7 +41,7 @@ Embedded software engineer and the sole software engineer at EKSON, where I wrot
 
 \section*{Projects}
 \begin{itemize}
-  \item \textbf{AUTOSAR-Based V2X Vehicle} (graduation project, STM32): I built the firmware update path (an ESP32/RPi gateway sends the image over UART) and a dual-bank bootloader with CRC check and rollback. \cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}
+  \item \textbf{AUTOSAR-Based V2X Vehicle} (graduation project, STM32): built the firmware update path (an ESP32/RPi gateway sends the image over UART) and a dual-bank bootloader with CRC check and rollback. \cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}
   \item \textbf{Seat Heater Control System} (Tiva C, FreeRTOS): real-time controller with temperature monitoring, heater-level control and UART diagnostics, using tasks, mutexes and event flags. \cvlink{https://github.com/Abd002/SeatHeaterControlSystem}{GitHub}
   \item \textbf{IoT Device Communication System} (C++, Raspberry Pi 4, QEMU, Yocto): TCP unicast and UDP multicast framework between a Pi server and emulated clients. \cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}
   \item \textbf{AUTOSAR PORT and GPIO drivers} (C, TM4C): MCAL drivers written and validated to the AUTOSAR spec.

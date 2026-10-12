@@ -6,18 +6,19 @@
 
 \begin{document}
 
-\cvheader{Abdelrahman Khalifa}{Software Engineer --- Rust $\cdot$ C/C++ $\cdot$ Linux $\cdot$ Open Source (GSoC 2026) $\cdot$ Codeforces Expert}
+\cvheader{Abdelrahman Khalifa}{Software Engineer \enspace|\enspace Rust, C/C++, Linux, Embedded}
 
 \section*{Summary}
-Software engineer working in Rust, C and modern C++ on Linux and embedded systems. Sole software engineer at EKSON, owning the Zephyr firmware, PyQt5 desktop app and Node.js backend of its motion simulators; completed Google Summer of Code 2026 with The Linux Foundation (OpenPrinting), with 7 PRs merged upstream in cups-rs and libcups, plus merged contributions to Zephyr RTOS, Boa and Rust Clippy. Codeforces Expert and 4-time ECPC finalist.
+Software engineer working in Rust, C and modern C++ on Linux and embedded systems. Sole software engineer at EKSON, owning the Zephyr firmware, PyQt5 desktop app and Node.js backend of its motion simulators; built the Printers page for COSMIC Settings in Google Summer of Code 2026 with The Linux Foundation (OpenPrinting), with 7 PRs merged upstream in cups-rs and libcups, plus merged contributions to Zephyr RTOS, Boa and Rust Clippy. Codeforces Expert and 4-time ECPC finalist.
 
 \section*{Experience}
 \cventry{Google Summer of Code 2026 Contributor --- The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
-\cvsub{COSMIC desktop printer setup tool in Rust; passed the final evaluation and still maintaining it; mentors from OpenPrinting and System76 \enspace|\enspace \cvlink{https://summerofcode.withgoogle.com/programs/2026/projects/iYwK7khC}{GSoC project page} \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026} \enspace|\enspace \cvlink{https://github.com/Abd002/cosmic-printers}{github.com/Abd002/cosmic-printers}}
+\cvsub{Printers page for COSMIC Settings, in Rust; passed the final evaluation and still maintaining it; mentors from OpenPrinting and System76 \enspace|\enspace \cvlink{https://summerofcode.withgoogle.com/programs/2026/projects/iYwK7khC}{GSoC project page} \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026} \enspace|\enspace \cvlink{https://github.com/Abd002/cosmic-printers}{github.com/Abd002/cosmic-printers}}
 \begin{itemize}
-  \item Designed a printer-management stack as 5 Rust crates: \texttt{printers-core} (types, grouping queues into physical devices), \texttt{printers-client} (async varlink client), \texttt{printers-server} (CUPS, IPP, DNS-SD and Printer Application backend), \texttt{printers-ui} (iced/libcosmic) and \texttt{printers-app}.
-  \item Exposed the backend over varlink IPC from \texttt{cosmic-settings-daemon}, so the C FFI code never loads in the Settings GUI process; the standalone app falls back to running the server in-process.
-  \item Built a Printers page and an Add Printer flow for COSMIC Settings: printers grouped by device, state and supply levels, print queue control (pause, resume, cancel, move jobs), test pages and live updates; legacy printers are set up through Printer Applications (PAPPL) instead of PPD drivers.
+  \item Built the \textbf{Printers page for COSMIC Settings} and a standalone printers app that share the same UI: printers grouped by device, state and supply levels, print queue control (pause, resume, cancel, move jobs), default printer and options, test pages and live updates (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item Built the Add Printer flow: legacy and specialty printers are set up through Printer Applications (PAPPL) instead of PPD drivers, following the CUPS 3 architecture.
+  \item Designed the stack as 5 Rust crates: \texttt{printers-core} (types, grouping queues into physical devices), \texttt{printers-client} (async varlink client), \texttt{printers-server} (CUPS, IPP, DNS-SD and Printer Application backend), \texttt{printers-ui} (iced/libcosmic) and \texttt{printers-app}.
+  \item Exposed the backend over varlink IPC from \texttt{cosmic-settings-daemon} (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}, in review), so the C FFI code never loads in the Settings GUI process; the standalone app falls back to running the server in-process.
   \item Ported cups-rs to libcups3 with CUPS 2 and CUPS 3 builds and CI; wrote FFI bindings for the libcups3 DNS-SD API; fixed crashes and a leaked client in libcups' Avahi DNS-SD code (C). \textbf{7 PRs merged upstream.}
   \item Tested on real HP printers and Printer Applications (Ghostscript, Gutenprint, HPLIP, LPrint); CI checks formatting, Clippy and tests on several architectures and runs CUPS, Avahi and \texttt{ippeveprinter} to test discovery.
 \end{itemize}
@@ -43,7 +44,7 @@ Software engineer working in Rust, C and modern C++ on Linux and embedded system
   \item \textbf{COSMIC} (2026): Printers page and Add Printer flow in Settings (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}) and a varlink printers server in the settings daemon (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}), in review.
   \item \textbf{Boa JavaScript engine (Rust)} (Dec 2025): optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion; with tests (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}, merged).
   \item \textbf{Rust Clippy} (Dec 2025): fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}, merged).
-  \item \textbf{Zephyr RTOS} (Mar 2025, my first open-source contribution): implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules (150+ lines), merged upstream (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{issue \#86977}, \cvlink{https://github.com/zephyrproject-rtos/zephyr/commit/b11703623c02f5afa4a5b0b7abdce3e324d7d470}{commit b117036}).
+  \item \textbf{Zephyr RTOS} (Mar 2025, first open-source contribution): implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules (150+ lines), merged upstream (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{issue \#86977}, \cvlink{https://github.com/zephyrproject-rtos/zephyr/commit/b11703623c02f5afa4a5b0b7abdce3e324d7d470}{commit b117036}).
 \end{itemize}
 
 \section*{Technical Skills}
@@ -55,7 +56,7 @@ Software engineer working in Rust, C and modern C++ on Linux and embedded system
 
 \section*{Projects}
 \begin{itemize}
-  \item \textbf{AUTOSAR-Based V2X Ecosystem for SDV} (graduation project, team; STM32, FreeRTOS, AUTOSAR): software-defined vehicle prototype. My part: the firmware update path (an ESP32/Raspberry Pi gateway sends the image to the STM32 over UART, after a first attempt over CAN) and a dual-bank bootloader that checks the CRC before jumping and rolls back on failure. I also studied the Trampoline OSEK/VDX RTOS and helped the team start on it before it moved to FreeRTOS. \cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}
+  \item \textbf{AUTOSAR-Based V2X Ecosystem for SDV} (graduation project, team; STM32, FreeRTOS, AUTOSAR): software-defined vehicle prototype. Owned the firmware update path (an ESP32/Raspberry Pi gateway sends the image to the STM32 over UART, after a first attempt over CAN) and a dual-bank bootloader that checks the CRC before jumping and rolls back on failure. Also studied the Trampoline OSEK/VDX RTOS and helped the team start on it before it moved to FreeRTOS. \cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}
   \item \textbf{IoT Device Communication System} (C++, Raspberry Pi 4, QEMU, Yocto): modular object-oriented framework for TCP unicast and UDP multicast between a Pi server and emulated clients; Yocto cross-compilation and Make. \cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}
   \item \textbf{Seat Heater Control System} (Tiva C, FreeRTOS): real-time controller with temperature monitoring, heater-level control and UART diagnostics, using tasks, mutexes and event flags. \cvlink{https://github.com/Abd002/SeatHeaterControlSystem}{GitHub}
   \item \textbf{AUTOSAR PORT and GPIO drivers} (C, TM4C): developed and validated MCAL drivers following the AUTOSAR specification.

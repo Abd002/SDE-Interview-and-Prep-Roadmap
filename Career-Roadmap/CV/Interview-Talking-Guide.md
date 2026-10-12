@@ -35,7 +35,7 @@ You said the hard part is talking about yourself. These rules make it easier.
 | Item | Say this |
 |---|---|
 | **Who I am** | Software engineer: Rust, C, modern C++ on Linux and embedded. |
-| **Best thing** | Google Summer of Code 2026 with The Linux Foundation (OpenPrinting): a Rust printer tool for the COSMIC desktop. **7 PRs merged upstream** (cups-rs, libcups). Passed the final evaluation; I still maintain it. |
+| **Best thing** | Google Summer of Code 2026 with The Linux Foundation (OpenPrinting): **the Printers page in COSMIC Settings**, in Rust (PR #2182, in review). **7 PRs merged upstream** (cups-rs, libcups). Passed the final evaluation; I still maintain it. |
 | **Job** | **EKSON, Aug 2025 – now, part-time.** **The only software engineer** on 3-DoF and 6-DoF pneumatic motion simulators. Firmware (ESP32-S3, Zephyr), desktop app (PyQt5), web backend (Node.js/Express + MongoDB), CI. |
 | **Numbers** | ~40% lower CPU/latency (PyQt5 app, measured) · 5 Rust crates · 7 merged PRs · 6 Zephyr networking modules · Codeforces Expert · 4× ECPC finalist (2021–2024) · 84.6% with Honors |
 | **First open-source PR** | Zephyr RTOS, **March 2025**: `IP_MULTICAST_LOOP` socket option (issue #86977). A "good first issue". |
@@ -51,12 +51,12 @@ You said the hard part is talking about yourself. These rules make it easier.
 This is almost always the first question. The structure is: **now → before → why I'm here**.
 
 ### 2.1 Thirty seconds (phone screen, recruiter)
-> I'm a software engineer working mostly in Rust, C and C++ on Linux and embedded systems. This summer I did Google Summer of Code with The Linux Foundation, where I built a printer setup tool for the COSMIC desktop in Rust and got seven pull requests merged into the upstream CUPS libraries. I also work at EKSON, a motion-simulator startup, where I'm the only software engineer: I wrote the firmware, the desktop app and the backend. I'm looking for a role where I can work on systems software full time.
+> I'm a software engineer working mostly in Rust, C and C++ on Linux and embedded systems. This summer I did Google Summer of Code with The Linux Foundation, where I built the Printers page for the COSMIC desktop's Settings app in Rust and got seven pull requests merged into the upstream CUPS libraries. I also work at EKSON, a motion-simulator startup, where I'm the only software engineer: I wrote the firmware, the desktop app and the backend. I'm looking for a role where I can work on systems software full time.
 
 ### 2.2 Sixty seconds (start of a technical interview)
 > I'm a computer and systems engineer from Minia University, and I work close to the system: Rust, C and modern C++, on Linux and microcontrollers.
 >
-> Right now I have two things. First, Google Summer of Code 2026 with The Linux Foundation's OpenPrinting project. I designed a printer-management stack for the COSMIC desktop as five Rust crates. The C library code runs in a separate process behind a varlink service, so a crash there can't take down the Settings app. Along the way I got seven PRs merged upstream in cups-rs and libcups.
+> Right now I have two things. First, Google Summer of Code 2026 with The Linux Foundation's OpenPrinting project. I built the Printers page in COSMIC Settings: you can see your printers, their ink and status, manage the print queue, and add old printers. Under it are five Rust crates, and the C library code runs in a separate process behind a varlink service, so a crash there can't take down the Settings app. Along the way I got seven PRs merged upstream in cups-rs and libcups.
 >
 > Second, I'm the only software engineer at EKSON, which builds pneumatic motion simulators. I wrote the ESP32 firmware and moved it from FreeRTOS to Zephyr, built the PyQt5 control app (I cut its CPU use and latency by about 40%), and built the web backend for remote control and firmware updates.
 >
@@ -91,7 +91,7 @@ Use the 60-second version, and add one sentence to each part:
 
 | Question they ask | Story to use |
 |---|---|
-| Hardest technical problem / something you're proud of | 3.1 Zephyr migration, or 3.5 GSoC process isolation |
+| Hardest technical problem / something you're proud of | 3.1 Zephyr migration, or 3.5 GSoC Printers page |
 | Performance improvement / debugging | 3.3 The 40% fix |
 | Ownership / working without guidance | 3.2 Sole software engineer |
 | Designing a system end to end | 3.4 Remote control and firmware updates |
@@ -142,10 +142,15 @@ Use the 60-second version, and add one sentence to each part:
   - *What if an update fails halfway?* "esptool writes over serial, and the ESP32 ROM bootloader can always be re-entered, so you can flash again. A better design is a dual-bank OTA with rollback, like I built in my graduation project, or MCUboot."
   - *How do you know the firmware is genuine?* "Today the trust comes from the server and the user who uploads. A next step is to sign the image and verify the signature before flashing."
 
-### 3.5 GSoC: running the C backend in a separate process
-- **S:** COSMIC Settings needed a Printers page. The printing libraries (libcups) are C code called through **FFI**. A crash in C code inside the Settings app would close the whole Settings window.
-- **T:** Design the printer stack so that it's safe, reusable and testable.
+### 3.5 GSoC: the Printers page in COSMIC Settings
+**Always start with the mission:** "My GSoC project was adding a Printers page to COSMIC Settings." The crates, varlink and FFI are *how* you did it.
+
+- **S:** COSMIC, System76's new Rust desktop, had no way to manage printers in Settings. The printing libraries (libcups) are C code called through **FFI**. A crash in C code inside the Settings app would close the whole Settings window.
+- **T:** Build the Printers page and an Add Printer flow, and design the stack under them so it's safe, reusable and testable.
 - **A:**
+  - I built the **Printers page**: printers grouped by physical printer, state and supply levels, the print queue (pause, resume, cancel, move a job), default printer and options, test page, live updates.
+  - I built the **Add Printer flow**: old printers are set up through **Printer Applications** instead of PPD drivers, the CUPS 3 way.
+  - The same UI also runs as a **standalone printers app**.
   - I split it into **5 crates**: `printers-core` (types; groups several queues into one physical printer), `printers-client` (async varlink client), `printers-server` (CUPS, IPP, DNS-SD, Printer Applications), `printers-ui` (iced/libcosmic) and `printers-app` (standalone app).
   - The server runs inside **cosmic-settings-daemon** and talks **varlink IPC**, so the C code never loads in the Settings GUI process. The standalone app falls back to running the server in-process.
   - To make this work upstream, I ported **cups-rs** to **libcups3** with CUPS 2 and 3 builds, added DNS-SD bindings, and fixed crashes in libcups.
