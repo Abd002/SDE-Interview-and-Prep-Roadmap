@@ -29,7 +29,7 @@ Software engineer working in Rust, modern C++, C and Python. Built the Printers 
 \cvsub{Sole software engineer for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
 \begin{itemize}
   \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.
-  \item Built the PyQt5 control app; moving serial I/O off the UI thread cut CPU use and latency by \textbf{about 40\%} (measured).
+  \item Built the PyQt5 control app; async I/O and background threads cut CPU use and latency by \textbf{about 40\%} (measured).
   \item Built remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST to relay commands and flash new firmware with esptool; GitHub Actions CI.
 \end{itemize}
 \cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}

@@ -51,7 +51,7 @@ I'm a software engineer who works close to the system: Rust, C and modern C++ on
 
 In Google Summer of Code 2026 with The Linux Foundation (OpenPrinting), I built the Printers page for COSMIC Settings in Rust, plus a standalone printers app with the same UI. Behind it are five crates: an async client, and a CUPS/IPP/DNS-SD backend that runs as a varlink service in the settings daemon, so a crash in C code can't take down Settings. Along the way I ported cups-rs to libcups3 and fixed DNS-SD crashes in libcups: 7 pull requests merged upstream. I still maintain the project.
 
-At EKSON I'm the only software engineer on 3-DoF and 6-DoF pneumatic motion simulators. I wrote the ESP32-S3 firmware and moved it from FreeRTOS to Zephyr RTOS, with PID valve control and IMU feedback. I also built the PyQt5 desktop app that drives the simulator (about 40% lower CPU use and latency after moving serial I/O off the UI thread), plus remote control and firmware updates through a small Node.js backend.
+At EKSON I'm the only software engineer on 3-DoF and 6-DoF pneumatic motion simulators. I wrote the ESP32-S3 firmware and moved it from FreeRTOS to Zephyr RTOS, with PID valve control and IMU feedback. I also built the PyQt5 desktop app that drives the simulator (about 40% lower CPU use and latency after I made the serial I/O asynchronous, off the UI thread), plus remote control and firmware updates through a small Node.js backend.
 
 My first open-source contribution was to Zephyr RTOS (IPv4 multicast loopback, merged). I've since contributed to the Boa JavaScript engine and Rust Clippy.
 
@@ -98,7 +98,7 @@ Sole software engineer for 3-DoF and 6-DoF pneumatic motion simulators for train
 
 • Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS for more deterministic timing, devicetree-based drivers and easier porting.
 • Closed-loop PID control of the pneumatic valves with feedback from an MPU6050 IMU over I2C (calibration + Mahony filter), safety stops and a watchdog; UART protocol to the PC.
-• Built the PyQt5 desktop control app and cut its CPU usage and latency by about 40% (measured) by moving serial I/O and processing to background threads.
+• Built the PyQt5 desktop control app and cut its CPU usage and latency by about 40% (measured) by making serial I/O and processing asynchronous (async + background threads), off the UI thread.
 • Remote operation: web app → Node.js/Express + MongoDB backend → the desktop app polls the REST API → UART → the simulator.
 • Firmware updates: new firmware uploaded on the web is downloaded by the desktop app and flashed with esptool. GitHub Actions CI for builds and tests.
 • Unity proof of concept that streams game motion to the simulator.

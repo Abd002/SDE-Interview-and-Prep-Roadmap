@@ -123,13 +123,15 @@ Use the 60-second version, and add one sentence to each part:
 ### 3.3 The 40% performance fix
 - **S:** The PyQt5 desktop app was slow and used a lot of CPU. Reading the serial port and processing the data ran on the UI (main) thread.
 - **T:** Make the app responsive and lighter, without changing what it does.
-- **A:** I moved the serial I/O and the data processing to **background threads** (async), and sent the results back to the UI with Qt signals. The UI thread then only draws.
+- **A:** I made the serial I/O and the data processing **asynchronous**: the app no longer sits and waits for the serial port. The waiting and processing run with **async** code and **background threads**, and the results go back to the UI with Qt signals. The UI thread then only draws.
 - **R:** About **40% lower CPU usage and latency**, measured before and after.
-- **Lesson:** "Never block the UI thread. Blocking I/O goes on a worker thread."
+- **Lesson:** "Never block the UI thread. Make I/O async, so the program does useful work instead of waiting."
 - **Likely follow-ups:**
   - *How did you measure?* Say exactly what you used (for example the system monitor, or timing in code). Don't make up a tool.
   - *Python has the GIL. Why did threads help?* "The GIL is released while a thread waits on I/O, like reading the serial port. So a thread blocked on I/O doesn't block the UI thread."
-  - *Why not multiprocessing?* "The work was mostly waiting on I/O, not heavy computation, so threads were enough and simpler."
+  - *Why not multiprocessing?* "The work was mostly waiting on I/O, not heavy computation, so async and threads were enough and simpler."
+  - *Async vs threads, what's the difference?* "Async is one thread that switches to other work whenever a task would wait, for example on the serial port. Threads are separate flows the OS schedules. Async is lighter for many waits; threads are good for blocking calls you can't make async."
+  - *Which async library did you use?* Say exactly what you used (for example `asyncio`, or `qasync` to share Qt's event loop). Don't name a library you didn't use.
 
 ### 3.4 Remote control and firmware updates (system design)
 - **S:** The simulators needed remote control and a way to update firmware without someone connecting a laptop by hand.
