@@ -27,7 +27,7 @@ Software engineer working in Rust, C and modern C++ on Linux and embedded system
 \begin{itemize}
   \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS for more deterministic timing, devicetree-based drivers and easier porting to other boards.
   \item Implemented closed-loop PID control of the pneumatic valves, with feedback from an MPU6050 IMU over I2C (calibration and a Mahony filter for orientation), safety stops and a watchdog; UART protocol to the PC.
-  \item Built the PyQt5 desktop control app; cut its CPU usage and latency by \textbf{about 40\%} (measured) by making serial I/O and processing asynchronous (async + background threads), off the UI thread.
+  \item Built the PyQt5 desktop control app; cut its CPU usage and latency by \textbf{about 40\%} (measured) by making serial I/O and processing asynchronous with asyncio and background threads, off the UI thread.
   \item Built remote operation: a web app and a Node.js/Express + MongoDB backend that the desktop app polls over REST, relaying commands to the simulator over UART.
   \item Built firmware updates: new firmware uploaded on the web is downloaded by the desktop app and flashed to the ESP32-S3 with esptool; GitHub Actions CI for builds and tests.
   \item Built a Unity proof of concept that streams game motion to the simulator.
@@ -38,7 +38,7 @@ Software engineer working in Rust, C and modern C++ on Linux and embedded system
 \end{itemize}
 
 \section*{Technical Skills}
-\cvskill{Languages}{Rust, C, C++ (modern), Python, Java, C\#, SQL, JavaScript, Bash, Verilog/VHDL, MATLAB}
+\cvskill{Languages}{Rust, C, C++ (modern), Python (asyncio), Java, C\#, SQL, JavaScript, Bash, Verilog/VHDL, MATLAB}
 \cvskill{Systems \& Linux}{Linux (Ubuntu/Debian), operating systems, FFI, IPC (varlink, D-Bus; zbus, zlink), async/event-driven design, multithreading, memory management, CUPS/IPP, DNS-SD/mDNS (Avahi), kernel modules and device drivers}
 \cvskill{Embedded}{Zephyr (devicetree, west), FreeRTOS, ESP-IDF, OSEK/VDX (Trampoline), ARM Cortex-M (STM32, TM4C), ESP32-S3, AVR, AUTOSAR, bootloaders, FOTA, PID control, Yocto, Buildroot, QEMU; UART, SPI, I2C, CAN}
 \cvskill{Tools \& practices}{Git/GitHub, Cargo, Clippy, CMake, Make, GitHub Actions CI, esptool, unit and end-to-end testing (pytest, pytest-qt), debugging, code review, Xilinx, PCB design}

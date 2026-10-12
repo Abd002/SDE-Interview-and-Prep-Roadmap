@@ -18,7 +18,7 @@ Embedded software engineer; sole software engineer at EKSON, writing and owning 
 \begin{itemize}
   \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS for more deterministic timing, devicetree-based drivers and easier porting to other boards.
   \item Implemented closed-loop PID control of the pneumatic valves, with feedback from an MPU6050 IMU over I2C (calibration and a Mahony filter for orientation), plus safety stops and a watchdog.
-  \item Built the PyQt5 desktop app that controls the simulator over a UART protocol; cut its CPU usage and latency by about 40\% (measured) using async I/O and background threads, off the UI thread.
+  \item Built the PyQt5 desktop app that controls the simulator over a UART protocol; cut its CPU usage and latency by about 40\% (measured) using asyncio and background threads, off the UI thread.
   \item Built remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST, then flashes new firmware with esptool; GitHub Actions CI.
 \end{itemize}
 \cvjob{Software Developer (Google Summer of Code)}{The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
@@ -50,10 +50,10 @@ Embedded software engineer; sole software engineer at EKSON, writing and owning 
 \end{itemize}
 
 \section*{Technical Skills}
-\cvskill{Languages}{C, C++ (modern), Rust, Python, Bash, Verilog}
+\cvskill{Languages}{C, C++ (modern), Rust, Python (asyncio, PyQt5), Bash, Verilog}
 \cvskill{RTOS \& firmware}{Zephyr (devicetree, west), FreeRTOS, ESP-IDF, OSEK/VDX (Trampoline), ARM Cortex-M (STM32, TM4C), ESP32-S3, AVR, AUTOSAR, bootloaders, FOTA, PID control}
 \cvskill{Embedded Linux}{Linux, Yocto, Buildroot, kernel modules, device drivers, device trees, QEMU, Raspberry Pi}
-\cvskill{Protocols \& tools}{UART, I2C, SPI, CAN, TCP/UDP, REST; Git, GitHub Actions CI, CMake, Make, PyQt5, debugging}
+\cvskill{Protocols \& tools}{UART, I2C, SPI, CAN, TCP/UDP, REST; Git, GitHub Actions CI, CMake, Make, debugging}
 
 \section*{Education}
 \cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}

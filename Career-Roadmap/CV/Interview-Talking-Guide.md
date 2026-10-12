@@ -123,7 +123,7 @@ Use the 60-second version, and add one sentence to each part:
 ### 3.3 The 40% performance fix
 - **S:** The PyQt5 desktop app was slow and used a lot of CPU. Reading the serial port and processing the data ran on the UI (main) thread.
 - **T:** Make the app responsive and lighter, without changing what it does.
-- **A:** I made the serial I/O and the data processing **asynchronous**: the app no longer sits and waits for the serial port. The waiting and processing run with **async** code and **background threads**, and the results go back to the UI with Qt signals. The UI thread then only draws.
+- **A:** I made the serial I/O and the data processing **asynchronous**: the app no longer sits and waits for the serial port. The waiting and processing run with **asyncio** (Python's async library) and **background threads**, and the results go back to the UI with Qt signals. The UI thread then only draws.
 - **R:** About **40% lower CPU usage and latency**, measured before and after.
 - **Lesson:** "Never block the UI thread. Make I/O async, so the program does useful work instead of waiting."
 - **Likely follow-ups:**
@@ -131,7 +131,11 @@ Use the 60-second version, and add one sentence to each part:
   - *Python has the GIL. Why did threads help?* "The GIL is released while a thread waits on I/O, like reading the serial port. So a thread blocked on I/O doesn't block the UI thread."
   - *Why not multiprocessing?* "The work was mostly waiting on I/O, not heavy computation, so async and threads were enough and simpler."
   - *Async vs threads, what's the difference?* "Async is one thread that switches to other work whenever a task would wait, for example on the serial port. Threads are separate flows the OS schedules. Async is lighter for many waits; threads are good for blocking calls you can't make async."
-  - *Which async library did you use?* Say exactly what you used (for example `asyncio`, or `qasync` to share Qt's event loop). Don't name a library you didn't use.
+  - *Which async library did you use?* "Python's **asyncio**."
+  - *How does asyncio work?* "There's one **event loop**. Each task is a **coroutine** (`async def`). When a coroutine reaches `await`, for example waiting for serial data, it gives control back to the loop, and the loop runs another task that's ready. So one thread handles many waits without blocking."
+  - *How did asyncio work together with Qt?* Qt has its own event loop, so the two loops must not block each other. Be ready to say which way you did it: the asyncio loop ran in a **background thread** and sent results to the UI with Qt signals, or a bridge such as `qasync` ran asyncio on Qt's loop. Say the one you really used.
+  - *What would block the event loop?* "Any blocking call inside a coroutine, like a normal `time.sleep()` or a blocking serial read. Those must be awaited, or moved to a thread with `run_in_executor` / `asyncio.to_thread`."
+  - *Key words to know:* event loop · coroutine · `async def` / `await` · task (`asyncio.create_task`) · `asyncio.gather` · `asyncio.Queue` · `run_in_executor`.
 
 ### 3.4 Remote control and firmware updates (system design)
 - **S:** The simulators needed remote control and a way to update firmware without someone connecting a laptop by hand.
@@ -304,6 +308,8 @@ Read one group per day. Each line is what you'd say if an interviewer asked "wha
 | **WebSocket / MQTT** | Ways for the server to push messages to the client at once. MQTT is popular for IoT. |
 | **PyQt5** | Python bindings for the Qt GUI framework. My EKSON desktop app. |
 | **Qt signals and slots** | Qt's way to send events between objects, including safely from a worker thread to the UI thread. |
+| **asyncio** | Python's built-in async library: an event loop runs coroutines (`async def`) and switches between them at each `await`. I used it in the EKSON desktop app. |
+| **Coroutine** | A function that can pause at `await` and continue later, so other work can run in between. |
 | **GIL** | Python's Global Interpreter Lock: only one thread runs Python code at a time, but it's released during I/O. |
 
 ### 5.2 Operating systems and concurrency
