@@ -13,26 +13,26 @@
 Embedded software engineer; sole software engineer at EKSON, writing and owning the Zephyr RTOS firmware for pneumatic motion simulators. Embedded Linux experience with Yocto and Buildroot, a merged Zephyr networking contribution, and the COSMIC Settings Printers page built in Google Summer of Code 2026 with The Linux Foundation. Writes C, C++ and Rust.
 
 \section*{Experience}
-\cventry{Embedded Software Engineer --- EKSON}{Aug 2025 -- Present}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
 \cvsub{Sole software engineer for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
 \begin{itemize}
   \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS for more deterministic timing, devicetree-based drivers and easier porting to other boards.
   \item Implemented closed-loop PID control of the pneumatic valves, with feedback from an MPU6050 IMU over I2C (calibration and a Mahony filter for orientation), plus safety stops and a watchdog.
-  \item Built the PyQt5 desktop app that controls the simulator over a UART protocol; cut its CPU usage and latency by \textbf{\textasciitilde40\%} (measured) by moving serial I/O off the UI thread.
+  \item Built the PyQt5 desktop app that controls the simulator over a UART protocol; cut its CPU usage and latency by about 40\% (measured) by moving serial I/O off the UI thread.
   \item Built remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST, then flashes new firmware with esptool; GitHub Actions CI.
 \end{itemize}
-\cventry{Google Summer of Code 2026 Contributor --- The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
-\cvsub{Printers page for COSMIC Settings, in Rust \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\cvjob{Software Developer (Google Summer of Code)}{The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
+\cvsub{Google Summer of Code (GSoC) 2026: Printers page for COSMIC Settings, in Rust \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
 \begin{itemize}
   \item Built the \textbf{Printers page for COSMIC Settings} (printer status, supply levels, print queues, adding printers) as 5 Rust crates, with the CUPS/IPP/DNS-SD backend isolated behind a varlink IPC service (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
   \item Wrote Rust-to-C FFI bindings (libcups3 DNS-SD) and fixed crashes in libcups' Avahi code; \textbf{7 PRs merged upstream}.
 \end{itemize}
-\cventry{Embedded Linux Systems Intern --- Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
 \begin{itemize}
   \item Built Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing.
 \end{itemize}
 
-\section*{Open Source}
+\section*{Open Source Projects}
 \begin{itemize}
   \item \textbf{Zephyr RTOS} (Mar 2025): implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules (150+ lines), reviewed and merged upstream (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{issue \#86977}).
   \item \textbf{OpenPrinting libcups and cups-rs} (2026): fixed DNS-SD crashes in libcups (C); ported cups-rs to libcups3 with CI (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}, merged).
@@ -56,7 +56,9 @@ Embedded software engineer; sole software engineer at EKSON, writing and owning 
 \cvskill{Protocols \& tools}{UART, I2C, SPI, CAN, TCP/UDP, REST; Git, GitHub Actions CI, CMake, Make, PyQt5, debugging}
 
 \section*{Education}
-\cventry{B.Sc. Computer and Systems Engineering --- Minia University}{2020 -- 2025}
-Very Good (84.6\%) with Honors. Codeforces Expert; 4-time ECPC finalist (2021--2024); IEEE student branch Treasurer.
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors. Codeforces Expert; 4-time ECPC finalist (2021--2024); IEEE student branch Treasurer.
+\end{itemize}
 
 \end{document}

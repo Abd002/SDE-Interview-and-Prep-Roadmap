@@ -17,14 +17,27 @@ Software engineer working in Rust, modern C++, C and Python. Built the Printers 
 \cvskill{Systems \& Linux}{Linux (Ubuntu/Debian), FFI, IPC (varlink), CUPS/IPP, DNS-SD/mDNS, kernel modules and device drivers, Zephyr RTOS, FreeRTOS, Yocto, Buildroot}
 \cvskill{Backend \& tools}{Node.js, Express, MongoDB, REST APIs, PyQt5; Git/GitHub, GitHub Actions CI, Cargo, CMake, testing, debugging, code review}
 
-\section*{Open Source}
-\cventry{Google Summer of Code 2026 Contributor --- The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
-\cvsub{Printers page for COSMIC Settings, in Rust; passed the final evaluation, still maintaining it \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\section*{Experience}
+\cvjob{Software Developer (Google Summer of Code)}{The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
+\cvsub{Google Summer of Code (GSoC) 2026: Printers page for COSMIC Settings, in Rust; passed the final evaluation, still maintaining it \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
 \begin{itemize}
   \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app sharing the same UI: printers grouped by device, status and supply levels, print queues, live updates, and an Add Printer flow for legacy printers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
   \item Designed it as 5 Rust crates and ran the C FFI backend as a varlink IPC service in the settings daemon, so a native crash cannot take down Settings.
   \item \textbf{7 PRs merged upstream}: ported cups-rs to libcups3 with CUPS 2 and 3 builds and CI, added DNS-SD bindings, and fixed crashes and a leaked client in libcups (C).
 \end{itemize}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Sole software engineer for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
+\begin{itemize}
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.
+  \item Built the PyQt5 control app; moving serial I/O off the UI thread cut CPU use and latency by \textbf{about 40\%} (measured).
+  \item Built remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST to relay commands and flash new firmware with esptool; GitHub Actions CI.
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
+\begin{itemize}
+  \item Built Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing.
+\end{itemize}
+
+\section*{Open Source Projects}
 \cventry{Contributor --- Zephyr RTOS, Boa JavaScript engine (Rust), Rust Clippy}{Mar 2025 -- Dec 2025}
 \begin{itemize}
   \item Zephyr RTOS: added the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 in 6 networking modules (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}, merged).
@@ -32,24 +45,11 @@ Software engineer working in Rust, modern C++, C and Python. Built the Printers 
   \item Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}, merged).
 \end{itemize}
 
-\section*{Experience}
-\cventry{Embedded Software Engineer --- EKSON}{Aug 2025 -- Present}
-\cvsub{Sole software engineer for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
-\begin{itemize}
-  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.
-  \item Built the PyQt5 desktop app and cut its CPU usage and latency by \textbf{\textasciitilde40\%} (measured) by moving serial I/O off the UI thread.
-  \item Built remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST to relay commands and flash new firmware with esptool; GitHub Actions CI.
-\end{itemize}
-\cventry{Embedded Linux Systems Intern --- Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
-\begin{itemize}
-  \item Built Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing.
-\end{itemize}
-
 \section*{Projects}
 \begin{itemize}
   \item \textbf{IoT Device Communication System} (C++, Raspberry Pi 4, QEMU, Yocto): object-oriented framework for TCP unicast and UDP multicast between a server and emulated clients. \cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}
   \item \textbf{Operating System Simulator} (Java): CLI simulating scheduling, memory management, system calls and locks. \cvlink{https://github.com/Abd002/os-simulator}{GitHub}
-  \item \textbf{Inventory Management System} (C\#, WinForms, SQL): desktop app for stock, orders and deliveries with role-based access control and automated reports. \cvlink{https://github.com/Abd002/Inventory-Management-System}{GitHub}
+  \item \textbf{Inventory Management System} (C\#, WinForms, SQL): stock, orders and deliveries app with role-based access control and reports. \cvlink{https://github.com/Abd002/Inventory-Management-System}{GitHub}
   \item \textbf{Team projects (co-developed):} Sarh Al-Tafawuq, a production web platform (\cvlink{https://sarh-al-tafawuq-platform.vercel.app/}{live}); Nafaqati, a Flutter Android expense tracker (\cvlink{https://play.google.com/store/apps/details?id=com.mariam.nafaqati}{Google Play}).
 \end{itemize}
 
@@ -60,7 +60,9 @@ Software engineer working in Rust, modern C++, C and Python. Built the Printers 
 \end{itemize}
 
 \section*{Education}
-\cventry{B.Sc. Computer and Systems Engineering --- Minia University}{2020 -- 2025}
-Very Good (84.6\%) with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; built the firmware update path and a dual-bank bootloader with rollback.
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; built the firmware update path and a dual-bank bootloader with rollback.
+\end{itemize}
 
 \end{document}
