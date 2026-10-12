@@ -1,32 +1,41 @@
 # LinkedIn: what to update, with ready-to-paste text
 
-This file compares the LinkedIn profile (the "Save to PDF" export from 2 Oct 2026) with the [CVs](README.md). Every fact below comes from **[facts.md](facts.md)**, the record built from the interview on 11 Oct 2026. Nothing is new or inflated.
+This file compares the LinkedIn profile (the "Save to PDF" export from **12 Oct 2026**) with the [CVs](README.md). Every fact below comes from **[facts.md](facts.md)**, the record built from the interview on 11 Oct 2026. Nothing is new or inflated.
 
 **When the facts change, update facts.md first, then the CVs and LinkedIn.** Recruiters check that the dates match.
 
-## 1. What is missing or different
+## 0. Fix these first (about 20 minutes)
+1. **Headline.** It now says "Embedded Linux Systems Intern at Orange Digital Center Egypt". LinkedIn changed it on its own when you added the internship. Paste headline A from [§2](#2-headline). **This is the most urgent fix**: the headline shows under your name everywhere, and right now it says you're an intern.
+   - When you add or edit a position, LinkedIn asks "Update your headline?" or ticks a box for it. Always untick it.
+2. **EKSON entry.** It still says "modern C++/Qt desktop control application" and "fewer threads". **That's wrong**: the app is PyQt5 and the gain came from asyncio. Replace the title and the whole description with [§4.2](#42-ekson).
+3. **About.** It still says "C++/Qt" and "3-DoF" only, and the paragraphs run together ("devices.In Google", "upstream.At EKSON"). Replace it with [§3](#3-about), and press Enter twice between paragraphs.
+4. **GSoC entry.** It doesn't mention the Printers page, the main goal. Replace the description with [§4.1](#41-google-summer-of-code-2026).
 
-| Section | On LinkedIn now | What to do |
+## 1. What is done and what is left
+
+| Section | On LinkedIn now (12 Oct 2026) | Status and what to do |
 |---|---|---|
-| **Name** | "Abd ElRahman Khalifa" | Change it to **"Abdelrahman Khalifa"**, the spelling on the CVs, email and GitHub. |
-| **Headline** | GSoC'26 @The Linux Foundation \| Embedded Systems Engineer @EKSON \| Rust, C++ & Zephyr RTOS \| Open-Source Contributor \| 4x ECPC Finalist | Your GSoC-first style is right: keep "GSoC'26 @ The Linux Foundation" first. Add "Software Engineer", Linux and Codeforces, and use the EKSON title from the CVs → [§2](#2-headline). |
-| **About** | ❌ missing | Add it → [§3](#3-about). Recruiters read this first. |
-| **Experience: GSoC 2026** | ❌ only in the headline | Add it as its own entry → [§4.1](#41-google-summer-of-code-2026). This is your strongest item. |
-| **Experience: EKSON** | One long paragraph (ESP-IDF, PyQt5, QML, MongoDB/Express, CI, Unity PoC) | Replace it with [§4.2](#42-ekson): sole software engineer, Zephyr migration, PID + IMU, the PyQt5 app (~40% lower CPU/latency), remote operation, firmware updates. Title: **"Embedded Software Engineer"**, part-time, Aug 2025 – Present. |
-| **Experience: ODC internship** | ❌ missing | Add it → [§4.3](#43-orange-digital-center-internship). |
-| **Open source** (Zephyr, Boa, Clippy, cups-rs, libcups, COSMIC) | ❌ not visible (only "Zephyr Technical Contributor" under Certifications) | Add each one as a **Project** → [§5](#5-projects). |
-| **Projects** | ? The PDF export never includes Projects | Open the profile and check. Add whatever from [§5](#5-projects) is missing. |
-| **Skills** | Only 3 shown (Embedded C, Zephyr, Qt) | Add the list in [§6](#6-skills) and pin the top 5. |
-| **Honors & awards** | ❌ missing ("4x ECPC" is only in the headline) | Add GSoC 2026, Codeforces Expert and 4× ECPC finalist → [§7](#7-honors--awards). |
-| **Education** | "Bachelor's degree, Computer Engineering", 2020–2025, no grade | Degree name, grade, honors and your part of the graduation project → [§8](#8-education). |
-| **Volunteering** | ❌ missing | IEEE student branch Treasurer → [§9](#9-volunteering-languages-certifications). |
-| **Languages** | ❌ missing | Arabic (native) and English (professional working) → [§9](#9-volunteering-languages-certifications). |
-| **Featured** | ❌ (not in the PDF) | Pin the GSoC report, the cosmic-printers repo and the COSMIC Settings PR → [§10](#10-featured). |
-| **Contact info** | Email + LinkedIn URL | Add **GitHub** as a Website (type "Portfolio") → [§11](#11-contact-info-and-open-to-work). |
+| **Name** | Abdelrahman Khalifa | ✅ Done. |
+| **Headline** | "Embedded Linux Systems Intern at Orange Digital Center Egypt" | ❌ **Fix now.** Paste A from [§2](#2-headline). |
+| **Location** | Qesm El Maadi, Cairo, Egypt | ⚠️ Change it to **Cairo, Egypt**. Recruiters search by city, and the district adds nothing. |
+| **About** | Old text: "C++/Qt … 40% faster", 3-DoF only, paragraphs joined | ❌ Replace with [§3](#3-about). |
+| **Top skills** (shown under About) | Rust, CUPS, IPC | ⚠️ Pin **Rust · C++ · Linux · Embedded Systems · Zephyr RTOS** ([§6](#6-skills)). CUPS and IPC are too narrow to lead with. |
+| **Experience: EKSON** | "Embedded System Engineer", C++/Qt app, 3-DoF, "fewer threads" | ❌ Title **Embedded Software Engineer**, employment type **Part-time**, description [§4.2](#42-ekson). |
+| **Experience: GSoC 2026** | ✅ Added (The Linux Foundation, May–Oct 2026) | ⚠️ Replace the description with [§4.1](#41-google-summer-of-code-2026), which leads with the Printers page. |
+| **Experience: Orange Digital Center** | ✅ Added; "kernel modules, device drivers"; 100% final evaluation | ⚠️ Replace the first line with [§4.3](#43-orange-digital-center-internship) ("wrote a Linux kernel module"). Keep the 100% line. |
+| **Education** | "Bachelor's degree, Computer Engineering", Oct 2020 – Jun 2025, no grade | ❌ Field of study **Computer and Systems Engineering**, grade, activities, description → [§8](#8-education). |
+| **Honors & awards** | ✅ GSoC 2026 Contributor, ✅ Codeforces Expert | ❌ Add **4-time ECPC Finalist (2021–2024)** → [§7](#7-honors--awards). |
+| **Languages** | ✅ Arabic (Native), English (Full professional) | ✅ Done. |
+| **Certifications** | ✅ Zephyr Technical Contributor | ✅ Keep. |
+| **Contact info** | ✅ Email, LinkedIn, GitHub (Portfolio) | ✅ Done. |
+| **Projects** | Not in the PDF export | Open the profile and check. Add the ones from [§5](#5-projects) that are missing. |
+| **Skills** | Only the 3 top skills are in the PDF | Add the list in [§6](#6-skills). |
+| **Volunteering** | ❌ Not in the export | Add IEEE Student Branch Treasurer → [§9](#9-volunteering-languages-certifications). |
+| **Featured** | Not in the PDF export | Pin the GSoC report, cosmic-printers and the COSMIC Settings PR → [§10](#10-featured). |
 | **Open to work** | ? | Turn it on for **recruiters only** → [§11](#11-contact-info-and-open-to-work). |
-| **Custom URL** | ✅ `linkedin.com/in/abd002` | Done. The CVs use this URL too. |
+| **Custom URL** | ✅ `linkedin.com/in/abd002` | ✅ Done. |
 
-**Not on LinkedIn any more** (removed after the interview): the Deloitte mentorship, the Winter of Code lp/lpstat project, and any "C++/Qt" wording for the EKSON app (it is PyQt5).
+**Never on LinkedIn:** the Deloitte mentorship, the Winter of Code lp/lpstat project, and any "C++/Qt" wording for the EKSON app (it is PyQt5).
 
 ## 2. Headline
 **How people write it.** The common form is **`GSoC'26 @ Org`**, for example "GSoC'23 @OWASP" or "GSoC'24 @ FOSSology". The words "Google Summer of Code" are spelled out in the Experience entry and the About, so keyword search still finds them.
@@ -45,7 +54,7 @@ GSoC'26 @ The Linux Foundation (OpenPrinting) | Systems Software Engineer | Rust
 ```
 
 ## 3. About
-Limit: 2,600 characters. This text is about 1,400.
+Limit: 2,600 characters. This text is about 1,500. **Press Enter twice between paragraphs**, so each one stands apart (in your current About they run together).
 ```
 I'm a software engineer who works close to the system: Rust, C and modern C++ on Linux and embedded devices.
 
@@ -107,12 +116,13 @@ Sole software engineer for 3-DoF and 6-DoF pneumatic motion simulators for train
 
 ### 4.3 Orange Digital Center internship
 - **Title:** Embedded Linux Systems Intern
-- **Company:** Orange Digital Center (pick its LinkedIn company page)
+- **Company:** Orange Digital Center Egypt (the company page you already picked)
 - **Employment type:** Internship
 - **Dates:** Dec 2023 – Jan 2024
 - **Description:**
 ```
 • Built Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing.
+• Achieved a 100% score in the final internship evaluation.
 ```
 - **Skills:** Embedded Linux · Yocto · Buildroot · Linux Device Drivers
 
@@ -160,7 +170,7 @@ Graduation project: AUTOSAR-based V2X vehicle prototype on STM32 (team). My part
 
 ## 9. Volunteering, Languages, Certifications
 - **Volunteering:** Treasurer, IEEE student branch, Minia University. "Managed a budget of more than $10k."
-- **Languages:** Arabic (Native or bilingual) · English (Professional working proficiency; add the IELTS score after you take it).
+- **Languages:** Arabic (Native or bilingual) · English (Full professional, as on your profile; add the IELTS score after you take it).
 - **Certifications:** keep "Zephyr Technical Contributor".
 
 ## 10. Featured

@@ -13,7 +13,7 @@ Every CV, LinkedIn text and interview answer must match this file. It was built 
 | Location | Cairo, Egypt |
 | Links | linkedin.com/in/abd002 · github.com/Abd002 · codeforces.com/profile/_Khalifa |
 | Military service | **Completed** (Egypt). During service he kept working at EKSON part-time/remote. |
-| English | Professional working proficiency (IELTS not taken yet) |
+| English | Full professional proficiency, as he set it on LinkedIn (IELTS not taken yet) |
 | Languages, self-rated | **Rust, modern C++, C: strong** · Python: good |
 
 ## Experience
@@ -77,6 +77,7 @@ Part-time/remote during military service; still part-time now.
 - Built Linux images with **Yocto and Buildroot**.
 - **Wrote a kernel module / device driver.**
 - Worked with device trees, root file systems and flashing hardware.
+- **Scored 100% in the final internship evaluation** (from his LinkedIn, 12 Oct 2026).
 
 ## Open source (all merged unless noted)
 | What | When | Status | Link |
