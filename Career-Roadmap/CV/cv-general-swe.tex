@@ -19,9 +19,9 @@ Software engineer working in Rust, modern C++, C and Python. Built the Printers 
 
 \section*{Experience}
 \cvjob{Software Developer (Google Summer of Code)}{The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
-\cvsub{Google Summer of Code (GSoC) 2026: Printers page for COSMIC Settings, in Rust; passed the final evaluation, still maintaining it \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\cvsub{GSoC 2026: Printers page for COSMIC Settings, in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
 \begin{itemize}
-  \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app sharing the same UI: printers grouped by device, status and supply levels, print queues, live updates, and an Add Printer flow for legacy printers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app with the same UI: printers grouped by device, status and supply levels, print queues, live updates, and an Add Printer flow for legacy printers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
   \item Designed it as 5 Rust crates and ran the C FFI backend as a varlink IPC service in the settings daemon, so a native crash cannot take down Settings.
   \item \textbf{7 PRs merged upstream}: ported cups-rs to libcups3 with CUPS 2 and 3 builds and CI, added DNS-SD bindings, and fixed crashes and a leaked client in libcups (C).
 \end{itemize}
@@ -29,7 +29,7 @@ Software engineer working in Rust, modern C++, C and Python. Built the Printers 
 \cvsub{Sole software engineer for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
 \begin{itemize}
   \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.
-  \item Built the PyQt5 control app; asyncio and background threads cut CPU use and latency by \textbf{about 40\%} (measured).
+  \item Built the PyQt5 control app; used asyncio to wait for ESP32 and server messages concurrently, cutting CPU use and latency by about 40\% (measured).
   \item Built remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST to relay commands and flash new firmware with esptool; GitHub Actions CI.
 \end{itemize}
 \cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
