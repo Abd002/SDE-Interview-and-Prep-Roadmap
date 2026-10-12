@@ -10,14 +10,14 @@
 \cvheader{Abdelrahman Khalifa}{Systems Software Engineer \enspace|\enspace Rust, C, Linux}
 
 \section*{Summary}
-Systems software engineer working in Rust, C and modern C++ on Linux. Completed Google Summer of Code 2026 with The Linux Foundation (OpenPrinting), building the Printers page for COSMIC Settings and landing 7 PRs upstream in cups-rs and libcups. Comfortable with FFI, IPC, async code and maintainer code review.
+Systems software engineer working in Rust, C and modern C++ on Linux. Completed Google Summer of Code 2026 with The Linux Foundation (OpenPrinting), building the Printers page for COSMIC Settings and landing 7 PRs upstream in cups-rs and libcups. Comfortable with FFI, IPC, async code and upstream code review.
 
 \section*{Experience}
 \cvjob{Software Developer (Google Summer of Code)}{The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
 \cvsub{Google Summer of Code (GSoC) 2026: Printers page for COSMIC Settings, in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026} \enspace|\enspace \cvlink{https://github.com/Abd002/cosmic-printers}{github.com/Abd002/cosmic-printers}}
 \begin{itemize}
   \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app sharing the same UI: printers grouped by device, status and supply levels, print queue control, test pages, live updates, and an Add Printer flow that sets up legacy printers through Printer Applications (PAPPL) instead of PPD drivers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
-  \item Designed the stack as 5 Rust crates: \texttt{printers-core} (types, grouping queues into physical devices), \texttt{-client} (async varlink client), \texttt{-server} (CUPS, IPP, DNS-SD backend), \texttt{-ui} (iced/libcosmic) and \texttt{-app}.
+  \item Designed the stack as 5 Rust crates: \texttt{printers-core} (types, grouping queues into physical devices), \texttt{printers-client} (async varlink client), \texttt{printers-server} (CUPS/IPP), \texttt{printers-ui} (iced) and \texttt{printers-app}.
   \item Ran the backend as a varlink IPC service in \texttt{cosmic-settings-daemon} (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}, in review), so the C FFI code never loads in the Settings process; the standalone app falls back to running it in-process.
   \item Tested on real HP printers and Printer Applications (Ghostscript, Gutenprint, HPLIP); CI checks formatting, Clippy and tests on several architectures and runs CUPS, Avahi and \texttt{ippeveprinter}.
 \end{itemize}
@@ -40,7 +40,7 @@ Systems software engineer working in Rust, C and modern C++ on Linux. Completed 
 \end{itemize}
 \cventry{Contributor --- Zephyr RTOS, Boa JavaScript engine (Rust), Rust Clippy}{Mar 2025 -- Dec 2025}
 \begin{itemize}
-  \item Zephyr RTOS: added the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}, merged).
+  \item Zephyr RTOS: added the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 in 6 networking modules (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}, merged).
   \item Boa: optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}, merged).
   \item Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}, merged).
 \end{itemize}
@@ -54,7 +54,7 @@ Systems software engineer working in Rust, C and modern C++ on Linux. Completed 
 \section*{Achievements}
 \begin{itemize}
   \item Codeforces Expert (handle \_Khalifa); 4-time ECPC finalist, 2021--2024 (Egyptian Collegiate Programming Contest).
-  \item IEEE student branch Treasurer: managed a budget of more than \$10k.
+  \item Treasurer, IEEE Student Branch, Minia University: managed a budget of more than \$10k.
 \end{itemize}
 
 \section*{Education}
