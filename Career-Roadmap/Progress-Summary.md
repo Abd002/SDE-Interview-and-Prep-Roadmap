@@ -4,7 +4,7 @@
 
 **What it's for:** read it before a call, an interview or a networking chat, so you can say clearly what you're working on and what you've learned.
 
-**Where it comes from:** the 18 steps marked **Done** in the Notion study plan ("Study Plan — Step by Step"). The "How well I know it" column is filled in from the [knowledge check](Knowledge-Check.md), round by round.
+**Where it comes from:** the 18 steps marked **Done** in the Notion study plan ("Study Plan — Step by Step"). The "How well I know it" table (§4) is filled in from the [knowledge check](Knowledge-Check.md).
 
 ---
 
