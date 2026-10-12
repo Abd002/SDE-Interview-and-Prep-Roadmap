@@ -3,6 +3,7 @@
 > **One table to run the search from.** It lists the **P1 targets** from [02](02-International-Companies.md), [03](03-Egypt-Companies.md), [04](04-Remote-From-Egypt.md) and [05](05-Masters-and-Scholarships.md), sorted by the **next deadline or action**.
 > - Edit this file directly: change **Status**, fill **Applied on**, **Referral / contact** and **Next step**.
 > - Status values: `Not started` → `Preparing` → `Applied` → `Interview` → `Offer` / `Rejected` / `Withdrawn`.
+> - **All 523 companies** (P1 + P2 + P3) are also in the [Notion tracker](https://app.notion.com/p/65cf33df29f64fcdb0191c3a6522bb30), with LinkedIn, careers and contact-search links; see [E](#e-notion-tracker-all-523-companies).
 > - All rows were **verified on 2026-09-29** via web search (see each source file for its evidence). Re-check the official link before applying.
 
 ## Table of Contents
@@ -10,6 +11,7 @@
 - [B. Rolling job applications — P1](#b-rolling-job-applications--p1)
 - [C. Backup and parallel (Egypt, remote and startups)](#c-backup-and-parallel-egypt-remote-and-startups)
 - [D. Summary counters](#d-summary-counters)
+- [E. Notion tracker (all 523 companies)](#e-notion-tracker-all-523-companies)
 
 ---
 
@@ -116,3 +118,22 @@ Update these by hand.
 | Interview loops | 0 |
 | Offers | 0 |
 | Last updated | 2026-09-29 |
+
+---
+
+## E. Notion tracker (all 523 companies)
+
+**Link:** [Job Applications → Companies & Applications](https://app.notion.com/p/65cf33df29f64fcdb0191c3a6522bb30) (private Notion page).
+
+It holds every company from [02](02-International-Companies.md), [03](03-Egypt-Companies.md) and [04](04-Remote-From-Egypt.md), with duplicates merged: **523 rows** (65 P1, 178 P2, 280 P3). Rebuild the rows with `python3 tools/build_notion_tracker.py > companies.json`.
+
+| Group | Columns |
+|---|---|
+| Company | Company, Priority, From my list, Country / City, Industry, What they build, About page, Careers page, LinkedIn company page, LinkedIn jobs |
+| Fit | Roles for me, Tech stack, Work mode, Visa / Egypt eligibility, Relocation, Salary note, Best CV |
+| People | Find recruiters, Find engineers, Find Egyptians there (LinkedIn search links), Contacts (named people for P1), Referral status |
+| Tracking | Status, Role applied, Job post, Applied on, Next step, Follow-up date, Notes, Verified on |
+
+**Views:** ⭐ P1 targets · 📋 Pipeline (board by Status) · 📅 Follow-ups (calendar) · 🇪🇬 Egypt offices · 🌍 Remote · ✈️ Relocation · 🦀 Rust & systems.
+
+**Referral routine:** open *Find Egyptians there* first (warmest referrals), then *Find engineers* for someone on the team you want, then *Find recruiters*. Log each person in **Contacts** and set **Referral status**.

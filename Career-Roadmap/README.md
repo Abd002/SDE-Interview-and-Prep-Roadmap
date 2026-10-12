@@ -11,7 +11,7 @@ A research database and application tracker for **Abdelrahman Khalifa** ([GitHub
 ## Start here
 
 1. **Read [07 — Strategy and Roadmap](07-Strategy-and-Roadmap.md)** for the plan and the month-by-month calendar.
-2. **Work from [08 — Application Tracker](08-Application-Tracker.md)** and update the Status column as you go.
+2. **Work from [08 — Application Tracker](08-Application-Tracker.md)** and the [Notion tracker](https://app.notion.com/p/65cf33df29f64fcdb0191c3a6522bb30), and update the Status column as you go.
 3. Use files 01–06 as the reference database behind them.
 
 ### ⏰ Deadlines in the next 5 weeks (as of 2026-09-29)
@@ -34,7 +34,8 @@ A research database and application tracker for **Abdelrahman Khalifa** ([GitHub
 | [05 — Master's and Scholarships](05-Masters-and-Scholarships.md) | Funded programmes with deadlines, eligibility (including his fit), funding, visa and post-study work | **31 programmes** |
 | [06 — Salaries and Visas](06-Salaries-and-Visas.md) | 2026 salary benchmarks by city and 2026 visa rules for 🇩🇪 🇳🇱 🇬🇧 🇮🇪 🇺🇸 🇨🇦 🇸🇪 🇨🇭 🇵🇱 🇦🇪 🇸🇦 🇯🇵 🇰🇷 | — |
 | [07 — Strategy and Roadmap](07-Strategy-and-Roadmap.md) | Pathway comparison, country ranking, gap → project plan, application strategy, month-by-month roadmap | — |
-| [08 — Application Tracker](08-Application-Tracker.md) | Consolidated P1 targets with status columns | — |
+| [08 — Application Tracker](08-Application-Tracker.md) | Consolidated P1 targets with status columns, plus the link to the Notion tracker | — |
+| [Notion tracker](https://app.notion.com/p/65cf33df29f64fcdb0191c3a6522bb30) (private) | Every company from 02–04 with lists, about / careers / LinkedIn links, recruiter and engineer search links, and application status; built by [tools/build_notion_tracker.py](tools/build_notion_tracker.py) | **523 companies** |
 | [CV/](CV/) | LaTeX master CV and the three one-page versions from 07 §5.1 (General SWE, Systems/Rust, Embedded), with PDFs and ATS check results | **4 CVs** |
 | [Progress Summary](Progress-Summary.md) | What he is doing now and what he knows, from the Done steps in Notion; 30- and 60-second scripts | — |
 | [Knowledge Check](Knowledge-Check.md) | Multiple-choice exam on the finished steps, with results per topic | **51 questions** |
