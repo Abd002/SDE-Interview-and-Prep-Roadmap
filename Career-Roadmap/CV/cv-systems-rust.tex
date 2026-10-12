@@ -12,15 +12,27 @@
 \section*{Summary}
 Systems software engineer working in Rust, C and modern C++ on Linux. Completed Google Summer of Code 2026 with The Linux Foundation (OpenPrinting), building the Printers page for COSMIC Settings and landing 7 PRs upstream in cups-rs and libcups. Comfortable with FFI, IPC, async code and maintainer code review.
 
-\section*{Open Source}
-\cventry{Google Summer of Code 2026 Contributor --- The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
-\cvsub{Printers page for COSMIC Settings, in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026} \enspace|\enspace \cvlink{https://github.com/Abd002/cosmic-printers}{github.com/Abd002/cosmic-printers}}
+\section*{Experience}
+\cvjob{Software Developer (Google Summer of Code)}{The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
+\cvsub{Google Summer of Code (GSoC) 2026: Printers page for COSMIC Settings, in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026} \enspace|\enspace \cvlink{https://github.com/Abd002/cosmic-printers}{github.com/Abd002/cosmic-printers}}
 \begin{itemize}
   \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app sharing the same UI: printers grouped by device, status and supply levels, print queue control, test pages, live updates, and an Add Printer flow that sets up legacy printers through Printer Applications (PAPPL) instead of PPD drivers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
   \item Designed the stack as 5 Rust crates: \texttt{printers-core} (types, grouping queues into physical devices), \texttt{-client} (async varlink client), \texttt{-server} (CUPS, IPP, DNS-SD backend), \texttt{-ui} (iced/libcosmic) and \texttt{-app}.
   \item Ran the backend as a varlink IPC service in \texttt{cosmic-settings-daemon} (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}, in review), so the C FFI code never loads in the Settings process; the standalone app falls back to running it in-process.
   \item Tested on real HP printers and Printer Applications (Ghostscript, Gutenprint, HPLIP); CI checks formatting, Clippy and tests on several architectures and runs CUPS, Avahi and \texttt{ippeveprinter}.
 \end{itemize}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Sole software engineer for 3-DoF and 6-DoF pneumatic motion simulators}
+\begin{itemize}
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.
+  \item Built the PyQt5 desktop control app, cutting CPU usage and latency by \textbf{about 40\%} (measured) by moving serial I/O off the UI thread; added remote control and firmware updates through a Node.js/MongoDB backend.
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
+\begin{itemize}
+  \item Built Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing.
+\end{itemize}
+
+\section*{Open Source Projects}
 \cventry{Upstream contributions --- OpenPrinting cups-rs (Rust) and libcups (C)}{2026}
 \begin{itemize}
   \item cups-rs: ported to libcups3 with CUPS 2 and CUPS 3 builds and CI; added IPP management operations, Printer Application support, connections by IP/port, \texttt{lpoptions} support and FFI bindings for the libcups3 DNS-SD API (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}, merged).
@@ -31,18 +43,6 @@ Systems software engineer working in Rust, C and modern C++ on Linux. Completed 
   \item Zephyr RTOS: added the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}, merged).
   \item Boa: optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}, merged).
   \item Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}, merged).
-\end{itemize}
-
-\section*{Experience}
-\cventry{Embedded Software Engineer --- EKSON}{Aug 2025 -- Present}
-\cvsub{Sole software engineer for 3-DoF and 6-DoF pneumatic motion simulators}
-\begin{itemize}
-  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.
-  \item Built the PyQt5 desktop control app, cutting CPU usage and latency by \textbf{\textasciitilde40\%} (measured) by moving serial I/O off the UI thread; added remote control and firmware updates through a Node.js/MongoDB backend.
-\end{itemize}
-\cventry{Embedded Linux Systems Intern --- Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
-\begin{itemize}
-  \item Built Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing.
 \end{itemize}
 
 \section*{Technical Skills}
@@ -58,7 +58,9 @@ Systems software engineer working in Rust, C and modern C++ on Linux. Completed 
 \end{itemize}
 
 \section*{Education}
-\cventry{B.Sc. Computer and Systems Engineering --- Minia University}{2020 -- 2025}
-Very Good (84.6\%) with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; built the firmware update path and a dual-bank bootloader with rollback.
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; built the firmware update path and a dual-bank bootloader with rollback.
+\end{itemize}
 
 \end{document}

@@ -15,12 +15,14 @@ These implement [07 §5.1](../07-Strategy-and-Roadmap.md#51-three-cv-versions): 
 
 LinkedIn was compared from its "Save to PDF" export (2 Oct 2026). That fixed the EKSON start date (Aug 2025) and the ECPC count (4-time finalist) in all CVs. **[LinkedIn.md](LinkedIn.md)** lists what is missing on the profile, with ready-to-paste text.
 
-| Version | PDF | Source | Headline | Section order | Send to |
-|---|---|---|---|---|---|
-| **General SWE** | [cv-general-swe.pdf](cv-general-swe.pdf) | [.tex](cv-general-swe.tex) | Software Engineer \| Rust, C++, Linux | Summary → Skills → Open source → Experience → Projects → Achievements → Education | Big Tech, trading firms, SaaS |
-| **Systems / Rust / open source** | [cv-systems-rust.pdf](cv-systems-rust.pdf) | [.tex](cv-systems-rust.tex) | Systems Software Engineer \| Rust, C, Linux | Summary → Open source → Experience → Skills → Achievements → Education | Canonical, Red Hat, Collabora, Igalia, System76, JetBrains, Cloudflare, Ferrous Systems |
-| **Embedded** | [cv-embedded.pdf](cv-embedded.pdf) | [.tex](cv-embedded.tex) | Embedded Software Engineer \| C, Zephyr RTOS, Embedded Linux | Summary → Experience → Open source (Zephyr first) → Projects → Skills → Education | Nordic, NXP, Arm, TomTom, Bosch, Valeo, automotive |
-| **Master (2 pages)** | [master-cv.pdf](master-cv.pdf) | [.tex](master-cv.tex) | Every fact, every project and course | — | Keep as the source. Use for master's applications after adding an academic section. |
+| Version | PDF | Word | Source | Title line | Section order | Send to |
+|---|---|---|---|---|---|---|
+| **General SWE** | [cv-general-swe.pdf](cv-general-swe.pdf) | [.docx](cv-general-swe.docx) | [.tex](cv-general-swe.tex) | Software Engineer \| Rust, C++, Linux | Summary → Skills → Experience → Open Source Projects → Projects → Achievements → Education | Big Tech, trading firms, SaaS |
+| **Systems / Rust / open source** | [cv-systems-rust.pdf](cv-systems-rust.pdf) | [.docx](cv-systems-rust.docx) | [.tex](cv-systems-rust.tex) | Systems Software Engineer \| Rust, C, Linux | Summary → Experience → Open Source Projects → Skills → Achievements → Education | Canonical, Red Hat, Collabora, Igalia, System76, JetBrains, Cloudflare, Ferrous Systems |
+| **Embedded** | [cv-embedded.pdf](cv-embedded.pdf) | [.docx](cv-embedded.docx) | [.tex](cv-embedded.tex) | Embedded Software Engineer \| C, Zephyr RTOS, Embedded Linux | Summary → Experience → Open Source Projects → Projects → Skills → Education | Nordic, NXP, Arm, TomTom, Bosch, Valeo, automotive |
+| **Master (2 pages)** | [master-cv.pdf](master-cv.pdf) | [.docx](master-cv.docx) | [.tex](master-cv.tex) | Software Engineer \| Rust, C/C++, Linux, Embedded | Summary → Experience → Skills → Open Source Projects → Projects → Achievements → Courses → Education | Keep as the source. Use for master's applications after adding an academic section. |
+
+**PDF or Word?** Send the **PDF** by default. Use the **.docx** only when the job site asks for Word, or only accepts .doc/.docx. Both have the same text.
 
 The shared look is in [cv-style.sty](cv-style.sty). Change it once and every version follows.
 
@@ -34,44 +36,61 @@ pdflatex cv-general-swe.tex && pdflatex cv-general-swe.tex   # run twice; same f
 - **Packages:** the `lato` font package (in `texlive-fonts-extra`; Overleaf has it), `lmodern`, `titlesec`, `enumitem`, `cmap`, `microtype`, `hyperref`.
 - **On Overleaf:** upload the `.tex` and `cv-style.sty` files together and choose the pdfLaTeX compiler.
 
+**Word copies:** `python3 tex2docx.py cv-general-swe.tex cv-systems-rust.tex cv-embedded.tex master-cv.tex` (needs `pip install python-docx`). Rebuild them every time you change a `.tex` file.
+
 ## The title line under the name
 Each version has one short line under the name: **the job title, then 3 core skills**, for example `Systems Software Engineer | Rust, C, Linux`.
 - **Why this form:** career guides recommend starting with the job title, then a few skills, separated by a pipe, in fewer than 10 words. The job title matches what recruiters and ATS search for.
 - **What's not in it:** achievements like GSoC 2026 or Codeforces Expert. They are in the Summary and the sections, and a list of them under the name reads like a LinkedIn headline, not a CV.
 - **Before applying:** change the title to the exact title in the job ad if it is true for you (for example "Firmware Engineer" or "Backend Engineer").
 
-## ATS checks (all four PDFs pass)
+## ATS checks (all four PDFs and Word copies pass)
 
+**What an ATS does.** An Applicant Tracking System (Workday, Greenhouse, Lever, Taleo, iCIMS, SmartRecruiters…) is the first thing that reads a CV at most companies. It pulls out the text, splits it into sections, and fills fields: name, email, phone, each job's **title, company and dates**, the school, the degree and the skills. Recruiters then search those fields. If a job lands in the wrong field, or the parser skips a section, a human may never see it.
+
+### 1. Tested with a real resume parser
+The CVs were run through the **[OpenResume](https://github.com/xitanggg/open-resume) parser**, an open-source parser built to work like an ATS. It reads the PDF, finds the sections, then fills the fields. Results on 12 Oct 2026, for every PDF and every Word copy:
+
+| Field | Result |
+|---|---|
+| Name, email, LinkedIn URL, Summary | ✅ found |
+| Sections | ✅ Summary, Experience, Open Source Projects, Projects, Technical Skills, Achievements, Education all found |
+| Jobs | ✅ 3 jobs, each with the right title, company and dates: **Software Developer (Google Summer of Code)** at The Linux Foundation / OpenPrinting, May–Oct 2026 · **Embedded Software Engineer** at EKSON, Aug 2025 – Present · **Embedded Linux Systems Intern** at Orange Digital Center, Dec 2023 – Jan 2024 |
+| Education | ✅ Minia University · Bachelor of Science (B.Sc.), Computer and Systems Engineering · 2020 – 2025 |
+| Phone and city | ⚠️ This parser only knows US formats, so it drops "+20" and "Cairo, Egypt". Commercial ATS (Workday, Greenhouse, Textkernel-based ones) read international numbers. Type your phone and city into the job site's form fields anyway. |
+
+**What the first test found, and what was changed:**
+1. **GSoC was dropped completely**, because it sat under "Open Source", a heading an ATS doesn't map to work experience. GSoC now sits under **Experience**, and the other contributions are under **Open Source Projects** ("Projects" is a standard heading).
+2. **The job title and company were read as one piece of text** ("Embedded Software Engineer — EKSON"). Now each job line is `Title | Company | Dates`, with the three as separate pieces of text.
+3. **The GSoC title had no job-title word.** Parsers look for words like Engineer, Developer or Intern. "Google Summer of Code Contributor" has none, so the title came out empty. On the CVs it is now **"Software Developer (Google Summer of Code)"**. That is what the work was, and "Google Summer of Code (GSoC) 2026" is still written in the line below it, for keyword search. LinkedIn keeps the official "Google Summer of Code Contributor".
+4. **"84.6%" was read as a GPA of 4.6.** The grade is now "Very Good with Honors". Give the percentage when an Egyptian employer's form asks for it.
+5. **A line starting with "~40%"** (the raised "~") was read as the start of a new job. It now says "about 40%".
+6. **Master CV:** the page break fell right before a heading, and the heading got glued to the last line of page 1. Page 2 now starts in the middle of a bullet.
+7. **Word copies:** Word's own bullet symbol isn't known to parsers, and narrow gaps glued the title, company and dates together. The Word copies now use a plain "•" and wide gaps, like the PDFs.
+
+### 2. Text and layout checks
 These rules are built into `cv-style.sty`:
 
 | Check | How it is met | Result |
 |---|---|---|
-| One column, no tables, text boxes, icons, images, headers or footers | Plain paragraphs and lists only | ✅ |
+| One column, no tables, text boxes, icons, images, headers or footers | Plain paragraphs and lists only (Word copies too: 0 tables, empty header and footer) | ✅ |
 | Text extracts exactly | `glyphtounicode` + `cmap`; ligatures and hyphenation are off, so "finalist" is never extracted as a ligature glyph and "Android" is never split as "An-droid" | ✅ |
-| Fonts | All Type 1, embedded, with Unicode maps. No Type 3 bitmap fonts. | ✅ |
-| Standard section names | Summary, Experience, Open Source, Technical Skills, Projects, Achievements, Education | ✅ |
+| Three extractors agree | pdftotext, pdfminer.six and PyMuPDF give the same word count for each PDF | ✅ |
+| Word copy = PDF | Every word in each .docx matches the PDF (word-by-word comparison) | ✅ |
+| Fonts | All embedded, with Unicode maps. No Type 3 bitmap fonts. Smallest text 9 pt. | ✅ |
+| Standard section names | Summary, Experience, Open Source Projects, Projects, Technical Skills, Achievements, Education (real Word headings in the .docx) | ✅ |
 | Contact details as text | Email, phone and the full LinkedIn, GitHub and Codeforces URLs are written out, not hidden behind icons | ✅ |
-| Dates next to each role | `Role — Company \| Mon YYYY – Mon YYYY` on one line, so parsers can count years of experience | ✅ |
-| Length | One page for each version; two for the master | ✅ |
+| Dates | `Mon YYYY – Mon YYYY` or `Present` on the same line as the title and company | ✅ |
+| No first-person words | No "I" or "my" in any CV | ✅ |
+| Spelling | Spell checker: only technical terms flagged | ✅ |
+| Links | Every link was opened; all the repos, upstream PRs, the Zephyr issue and the GSoC report exist. COSMIC PRs #2182 and #188 are open and ready for review (since 26 Sep 2026), so the CVs say "in review". | ✅ |
+| Length | One page for each version; two for the master (PDF and Word) | ✅ |
 
-**How it was tested:**
-- Each PDF was parsed with **pdftotext** (Poppler) and **pdfminer.six**, the text layers that most ATS parsers build on. Both gave the same word count and reading order.
-- A script checked each extract for:
-  - the email, phone and URLs;
-  - every section heading;
-  - each role's date on its own line;
-  - no `(cid:` glyphs, no ligature characters and no split words.
-- **Second round (12 Oct 2026):**
-  - **Three extractors** (pdftotext, pdfminer.six, PyMuPDF) give the same word count for each PDF.
-  - **Smallest font** is 9 pt.
-  - **No first-person words** ("I", "my") in any CV.
-  - **Spelling:** checked with a spell checker; only technical terms were flagged.
-  - **Date format:** every role uses `Mon YYYY – Mon YYYY` or `Present`.
-- **Links:**
-  - Every link in the PDFs was opened. All the personal repos, the upstream PRs, the Zephyr issue and the GSoC report exist.
-  - COSMIC PRs #2182 and #188 are open and ready for review (since 26 Sep 2026), so the CVs say "in review". Change that to "merged" when they merge.
-- **File name:** when you send a CV, rename it to `Abdelrahman-Khalifa-CV.pdf`. Recruiters see the file name.
-- **Not tested:** commercial ATS products such as Workday or Greenhouse can't be run here. They read the same PDF text layer, so the checks above cover what they parse.
+### 3. What no one can promise
+- Every company sets up its ATS differently. Some auto-reject on knockout questions (visa, location, years of experience) no matter what the CV says. Answer those questions honestly on the form.
+- Some ATS rank CVs by how well they match the job ad's words. That's why each application should get the 3–5 exact phrases from the ad (see "Before each application" below).
+- When a job site shows its parsed version of your CV in a form, **always check it and fix any field by hand** before you submit.
+- **File name:** rename the file to `Abdelrahman-Khalifa-CV.pdf` (or `.docx`) before you upload it.
 
 ### Keyword match against real job ads (Oct 2026)
 

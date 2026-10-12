@@ -52,6 +52,7 @@ Part-time/remote during military service; still part-time now.
 - **His own view:** the desktop and web code was built without a senior to guide it, so he doesn't consider it his best code. Present it as **ownership and end-to-end delivery**, not as a code-quality showcase.
 
 ### Google Summer of Code 2026: The Linux Foundation / OpenPrinting · May 2026 – Oct 2026
+- **Title:** on the CVs, **"Software Developer (Google Summer of Code)"**, because ATS parsers need a job-title word such as Developer. On LinkedIn, the official **"Google Summer of Code Contributor"**. In interviews, say "I was a Google Summer of Code contributor".
 - **Outcome:** passed the final evaluation. He is **still maintaining** cosmic-printers.
 - **Main mission: the Printers page in COSMIC Settings** (System76's desktop), in **Rust**. Always say this first.
   - The page shows printers grouped by physical printer, their state and supply levels, and the print queue (pause, resume, cancel, move jobs). It also sets the default printer and options, prints a test page, and updates live.
