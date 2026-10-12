@@ -147,7 +147,7 @@ The list is ordered from most general to most specialized. "Level" means the rea
 
 ## 8. CV and LinkedIn keyword advice
 
-**Headline:** use a general-SWE headline, for example: *"Software Engineer — Rust · C++ · Linux · Open Source (GSoC 2026 @ Linux Foundation) · Codeforces Expert"*.
+**Headline:** use a general-SWE headline, for example: *"Google Summer of Code 2026 Contributor, The Linux Foundation | Software Engineer | Rust · C++ · Linux · Codeforces Expert"* (never the acronym "GSoC"; see [CV/LinkedIn.md §2.1](CV/LinkedIn.md#21-google-summer-of-code-rules)).
 
 **Keywords.** Recruiters' applicant-tracking systems filter on keywords, so put these words in the CV:
 

@@ -10,7 +10,7 @@
 \cvheader{Abdelrahman Khalifa}{Embedded Software Engineer \enspace|\enspace C, Zephyr RTOS, Embedded Linux}
 
 \section*{Summary}
-Embedded software engineer who writes and owns the Zephyr RTOS firmware for EKSON's pneumatic motion simulators, as its sole software engineer. Embedded Linux experience with Yocto and Buildroot, a merged Zephyr networking contribution, and the COSMIC Settings Printers page built in Google Summer of Code 2026 with The Linux Foundation. Works in C, modern C++ and Rust.
+Embedded software engineer who writes and owns the Zephyr RTOS firmware for EKSON's pneumatic motion simulators, as its sole software engineer. Embedded Linux experience with Yocto and Buildroot, a merged Zephyr networking contribution, and the COSMIC Settings Printers page, built as a Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting). Works in C, modern C++ and Rust.
 
 \section*{Experience}
 \cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
@@ -21,8 +21,8 @@ Embedded software engineer who writes and owns the Zephyr RTOS firmware for EKSO
   \item Built the PyQt5 desktop app that controls the simulator over a UART protocol; cut its CPU usage and latency by about 40\% (measured) using asyncio to wait for ESP32 and server messages concurrently, off the UI thread.
   \item Built remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST, then flashes new firmware with esptool; GitHub Actions CI.
 \end{itemize}
-\cvjob{Software Developer (Google Summer of Code)}{The Linux Foundation / OpenPrinting}{May 2026 -- Oct 2026}
-\cvsub{Google Summer of Code (GSoC) 2026: Printers page for COSMIC Settings, in Rust \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Open-source project: Printers page for COSMIC Settings, in Rust \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
 \begin{itemize}
   \item Built the \textbf{Printers page for COSMIC Settings} (printer status, supply levels, print queues, adding printers) as 5 Rust crates, with the CUPS/IPP/DNS-SD backend isolated behind a varlink IPC service (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
   \item Wrote Rust-to-C FFI bindings (libcups3 DNS-SD) and fixed crashes in libcups' Avahi code; \textbf{7 PRs merged upstream}.

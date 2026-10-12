@@ -1,6 +1,6 @@
 # Career facts: the single source of truth
 
-Every CV, LinkedIn text and interview answer must match this file. It was built from an interview on 11 Oct 2026 and checked against public sources (GitHub, the GSoC report).
+Every CV, LinkedIn text and interview answer must match this file. It was built from an interview on 11 Oct 2026 and checked against public sources (GitHub, the Google Summer of Code report).
 
 **If something changes, update this file first, then the CVs and LinkedIn.**
 
@@ -52,7 +52,7 @@ Part-time/remote during military service; still part-time now.
 - **His own view:** the desktop and web code was built without a senior to guide it, so he doesn't consider it his best code. Present it as **ownership and end-to-end delivery**, not as a code-quality showcase.
 
 ### Google Summer of Code 2026: The Linux Foundation / OpenPrinting · May 2026 – Oct 2026
-- **Title:** on the CVs, **"Software Developer (Google Summer of Code)"**, because ATS parsers need a job-title word such as Developer. On LinkedIn, the official **"Google Summer of Code Contributor"**. In interviews, say "I was a Google Summer of Code contributor".
+- **Title (the program's rules, Oct 2026):** always **"Google Summer of Code 2026 Contributor"**, followed by **The Linux Foundation (OpenPrinting)**. **Never "GSoC"**, and never call it a job or internship at Google or The Linux Foundation: he was a program contributor, not an employee. On the CVs the job line is `Google Summer of Code Contributor | The Linux Foundation (OpenPrinting) | May 2026 – Oct 2026` (the year sits in the dates, because parsers read a year in the title as a date), and each Summary has the full "Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting)". LinkedIn: title "Google Summer of Code 2026 Contributor", employment type empty. Rules: [LinkedIn.md §2.1](LinkedIn.md#21-google-summer-of-code-rules). In interviews, say "I was a Google Summer of Code 2026 contributor with The Linux Foundation's OpenPrinting project".
 - **Outcome:** passed the final evaluation. He is **still maintaining** cosmic-printers.
 - **Main mission: the Printers page in COSMIC Settings** (System76's desktop), in **Rust**. Always say this first.
   - The page shows printers grouped by physical printer, their state and supply levels, and the print queue (pause, resume, cancel, move jobs). It also sets the default printer and options, prints a test page, and updates live.
@@ -85,8 +85,8 @@ Part-time/remote during military service; still part-time now.
 | **Zephyr RTOS:** `IP_MULTICAST_LOOP` socket option for IPv4 in `net_context` (6 networking modules, 150+ lines). His **first open-source contribution**, a "good first issue". | **Mar 2025** | Merged, commit b117036; issue #86977, PR #87167 | github.com/zephyrproject-rtos/zephyr/issues/86977 |
 | **Boa** (JavaScript engine in Rust): `JsStr::code_points()` fast path for Latin1 strings, with tests | Dec 2025 | **Merged** | boa-dev/boa #4553 |
 | **Rust Clippy:** fixed `ref_as_ptr` false positives for non-temporary references in `let`/`const` | Dec 2025 | **Merged** | rust-lang/rust-clippy #16214 |
-| **cups-rs** (OpenPrinting) | 2026 | #18–#22 merged | GSoC |
-| **libcups** (OpenPrinting, C) | 2026 | #164, #165 merged | GSoC |
+| **cups-rs** (OpenPrinting) | 2026 | #18–#22 merged | Google Summer of Code |
+| **libcups** (OpenPrinting, C) | 2026 | #164, #165 merged | Google Summer of Code |
 | **COSMIC** settings + daemon | 2026 | **In review** | #2182, #188 |
 
 **Removed from all documents:**
@@ -114,7 +114,7 @@ Part-time/remote during military service; still part-time now.
 
 ## Projects to keep
 - **Strongest:**
-  - COSMIC printers (GSoC);
+  - COSMIC printers (Google Summer of Code);
   - the graduation project (FOTA/bootloader);
   - IoT TCP/UDP framework (RPi 4 + QEMU + Yocto);
   - seat heater (FreeRTOS, Tiva C);

@@ -9,7 +9,8 @@ This file compares the LinkedIn profile (the "Save to PDF" export from **12 Oct 
    - When you add or edit a position, LinkedIn asks "Update your headline?" or ticks a box for it. Always untick it.
 2. **EKSON entry.** It still says "modern C++/Qt desktop control application" and "fewer threads". **That's wrong**: the app is PyQt5 and the gain came from asyncio. Replace the title and the whole description with [§4.2](#42-ekson).
 3. **About.** It still says "C++/Qt" and "3-DoF" only, and the paragraphs run together ("devices.In Google", "upstream.At EKSON"). Replace it with [§3](#3-about), and press Enter twice between paragraphs.
-4. **GSoC entry.** It doesn't mention the Printers page, the main goal. Replace the description with [§4.1](#41-google-summer-of-code-2026).
+4. **Google Summer of Code entry.** It doesn't mention the Printers page, the main goal, and its wording doesn't follow the program's rules. Change the title, clear the employment type and replace the description with [§4.1](#41-google-summer-of-code-2026).
+5. **Google Summer of Code wording everywhere.** Follow [§2.1](#21-google-summer-of-code-rules) in the headline, Experience, Honors and Featured.
 
 ## 1. What is done and what is left
 
@@ -21,44 +22,57 @@ This file compares the LinkedIn profile (the "Save to PDF" export from **12 Oct 
 | **About** | Old text: "C++/Qt … 40% faster", 3-DoF only, paragraphs joined | ❌ Replace with [§3](#3-about). |
 | **Top skills** (shown under About) | Rust, CUPS, IPC | ⚠️ Pin **Rust · C++ · Linux · Embedded Systems · Zephyr RTOS** ([§6](#6-skills)). CUPS and IPC are too narrow to lead with. |
 | **Experience: EKSON** | "Embedded System Engineer", C++/Qt app, 3-DoF, "fewer threads" | ❌ Title **Embedded Software Engineer**, employment type **Part-time**, description [§4.2](#42-ekson). |
-| **Experience: GSoC 2026** | ✅ Added (The Linux Foundation, May–Oct 2026) | ⚠️ Replace the description with [§4.1](#41-google-summer-of-code-2026), which leads with the Printers page. |
+| **Experience: Google Summer of Code 2026** | ✅ Added (The Linux Foundation, May–Oct 2026) | ⚠️ Title **Google Summer of Code 2026 Contributor**, employment type **empty**, description [§4.1](#41-google-summer-of-code-2026), which leads with the Printers page. |
 | **Experience: Orange Digital Center** | ✅ Added; "kernel modules, device drivers"; 100% final evaluation | ⚠️ Replace the first line with [§4.3](#43-orange-digital-center-internship) ("wrote a Linux kernel module"). Keep the 100% line. |
 | **Education** | "Bachelor's degree, Computer Engineering", Oct 2020 – Jun 2025, no grade | ❌ Field of study **Computer and Systems Engineering**, grade, activities, description → [§8](#8-education). |
-| **Honors & awards** | ✅ GSoC 2026 Contributor, ✅ Codeforces Expert | ❌ Add **4-time ECPC Finalist (2021–2024)** → [§7](#7-honors--awards). |
+| **Honors & awards** | ✅ Google Summer of Code 2026 Contributor (check the issuer, [§7](#7-honors--awards)), ✅ Codeforces Expert | ❌ Add **4-time ECPC Finalist (2021–2024)** → [§7](#7-honors--awards). |
 | **Languages** | ✅ Arabic (Native), English (Full professional) | ✅ Done. |
 | **Certifications** | ✅ Zephyr Technical Contributor | ✅ Keep. |
 | **Contact info** | ✅ Email, LinkedIn, GitHub (Portfolio) | ✅ Done. |
 | **Projects** | Not in the PDF export | Open the profile and check. Add the ones from [§5](#5-projects) that are missing. |
 | **Skills** | Only the 3 top skills are in the PDF | Add the list in [§6](#6-skills). |
 | **Volunteering** | ❌ Not in the export | Add IEEE Student Branch Treasurer → [§9](#9-volunteering-languages-certifications). |
-| **Featured** | Not in the PDF export | Pin the GSoC report, cosmic-printers and the COSMIC Settings PR → [§10](#10-featured). |
+| **Featured** | Not in the PDF export | Pin the Google Summer of Code report, cosmic-printers and the COSMIC Settings PR → [§10](#10-featured). |
 | **Open to work** | ? | Turn it on for **recruiters only** → [§11](#11-contact-info-and-open-to-work). |
 | **Custom URL** | ✅ `linkedin.com/in/abd002` | ✅ Done. |
 
 **Never on LinkedIn:** the Deloitte mentorship, the Winter of Code lp/lpstat project, and any "C++/Qt" wording for the EKSON app (it is PyQt5).
 
 ## 2. Headline
-**How people write it.** The common form is **`GSoC'26 @ Org`**, for example "GSoC'23 @OWASP" or "GSoC'24 @ FOSSology". The words "Google Summer of Code" are spelled out in the Experience entry and the About, so keyword search still finds them.
-
-**Why GSoC goes first.** LinkedIn shows only about the **first 60 characters** in search results, comments and messages, so the first words are the ones people see. The limit for the whole headline is 220 characters.
+**Why Google Summer of Code goes first.** LinkedIn shows only about the **first 60 characters** in search results, comments and messages, so the first words are the ones people see. The limit for the whole headline is 220 characters.
 
 Pick one:
 
-**A (recommended, general, 175 characters):**
+**A (recommended, general, 191 characters):**
 ```
-GSoC'26 @ The Linux Foundation | Software Engineer | Rust · C++ · Linux · Zephyr RTOS | Embedded Software Engineer @ EKSON | Open Source | Codeforces Expert · 4x ECPC Finalist
+Google Summer of Code 2026 Contributor, The Linux Foundation | Software Engineer | Rust · C++ · Linux · Zephyr RTOS | Embedded Software Engineer @ EKSON | Codeforces Expert · 4x ECPC Finalist
 ```
-**B (systems/Rust focus, 160 characters):**
+**B (systems/Rust focus, 190 characters):**
 ```
-GSoC'26 @ The Linux Foundation (OpenPrinting) | Systems Software Engineer | Rust · C · Linux | Open Source: Zephyr, libcups, cups-rs, Clippy | Codeforces Expert
+Google Summer of Code 2026 Contributor, The Linux Foundation (OpenPrinting) | Systems Software Engineer | Rust · C · Linux | Open Source: Zephyr, libcups, cups-rs, Clippy | Codeforces Expert
 ```
+
+### 2.1 Google Summer of Code rules
+These come from the program's own "Tips for Resumes & Jobs", and they apply to the CVs, LinkedIn and anything else public:
+- **Always write "Google Summer of Code 2026 Contributor", followed by the organization:** The Linux Foundation (OpenPrinting).
+- **Never write "GSoC"**, and not "GSoC'26" either. Not everyone knows the acronym. The only exception is the report's URL, `github.com/Abd002/GSOC-2026`, because that is the repo's real name.
+- **You were not an employee or intern** of Google, the program or The Linux Foundation. You took part in the program as a contributor to an open-source organization. Recruiters check this, and the program's admins only confirm that you took part successfully. So:
+  - never "Software Engineer at Google", "Intern at The Linux Foundation" or "@ The Linux Foundation";
+  - leave the LinkedIn **employment type** empty, because every option (Seasonal, Internship…) means a job;
+  - in interviews, say "I was a Google Summer of Code contributor with The Linux Foundation's OpenPrinting project".
+- **Link the work:** the report, the code and the upstream PRs (Experience description and [§10](#10-featured)).
+- **Ask your org:** some organizations have a preferred wording. Message Till Kamppeter (OpenPrinting) and ask whether The Linux Foundation / OpenPrinting wants it written a certain way, then update this file and [facts.md](facts.md).
+- **Phone and email:** they are on every CV. On LinkedIn, add the phone under **Contact info** (only your connections see it).
+- **Length:** send only the 1-page CVs. The 2-page master is the source.
+- **Work permit:** apply only where you can legally work, or where the company sponsors a visa. Check the Visa column in the [Notion tracker](https://app.notion.com/p/65cf33df29f64fcdb0191c3a6522bb30).
+- **Apply early:** don't wait for the deadline.
 
 ## 3. About
 Limit: 2,600 characters. This text is about 1,500. **Press Enter twice between paragraphs**, so each one stands apart (in your current About they run together).
 ```
 I'm a software engineer who works close to the system: Rust, C and modern C++ on Linux and embedded devices.
 
-In Google Summer of Code 2026 with The Linux Foundation (OpenPrinting), I built the Printers page for COSMIC Settings in Rust, plus a standalone printers app with the same UI. Behind it are five crates: an async client, and a CUPS/IPP/DNS-SD backend that runs as a varlink service in the settings daemon, so a crash in C code can't take down Settings. Along the way I ported cups-rs to libcups3 and fixed DNS-SD crashes in libcups: 7 pull requests merged upstream. I still maintain the project.
+As a Google Summer of Code 2026 Contributor with The Linux Foundation (OpenPrinting), I built the Printers page for COSMIC Settings in Rust, plus a standalone printers app with the same UI. Behind it are five crates: an async client, and a CUPS/IPP/DNS-SD backend that runs as a varlink service in the settings daemon, so a crash in C code can't take down Settings. Along the way I ported cups-rs to libcups3 and fixed DNS-SD crashes in libcups: 7 pull requests merged upstream. I still maintain the project.
 
 At EKSON I'm the only software engineer on 3-DoF and 6-DoF pneumatic motion simulators. I wrote the ESP32-S3 firmware and moved it from FreeRTOS to Zephyr RTOS, with PID valve control and IMU feedback. I also built the PyQt5 desktop app that drives the simulator (about 40% lower CPU use and latency after I used asyncio to wait for ESP32 and server messages at the same time, off the UI thread), plus remote control and firmware updates through a small Node.js backend.
 
@@ -76,13 +90,15 @@ Email: abdelrahman.khalifa.gad@gmail.com
 Add the entries newest first, so LinkedIn sorts them correctly.
 
 ### 4.1 Google Summer of Code 2026
-- **Title:** Google Summer of Code Contributor
-- **Company:** The Linux Foundation (mention OpenPrinting in the description)
-- **Employment type:** Seasonal. GSoC is not formally an internship.
+- **Title:** Google Summer of Code 2026 Contributor
+- **Company or organization:** The Linux Foundation (OpenPrinting goes in the description)
+- **Employment type:** leave it **empty** (it is optional). You were a program contributor, not an employee or intern ([§2.1](#21-google-summer-of-code-rules)).
 - **Location:** Remote
 - **Dates:** May 2026 – Oct 2026
 - **Description:**
 ```
+Google Summer of Code 2026 Contributor with The Linux Foundation (OpenPrinting), an open-source contribution through the Google Summer of Code program.
+
 Printers page for COSMIC Settings, in Rust, mentored by Till Kamppeter, Mintu Gogoi, Michael Murphy and Titiksha Bansal (OpenPrinting and System76). Passed the final evaluation; I still maintain the project.
 
 • Built the Printers page for COSMIC Settings and a standalone printers app with the same UI: printers grouped by device, status and supply levels, print queue control, test pages, live updates, and an Add Printer flow that sets up legacy printers through Printer Applications instead of PPD drivers (cosmic-settings #2182, in review).
@@ -91,7 +107,8 @@ Printers page for COSMIC Settings, in Rust, mentored by Till Kamppeter, Mintu Go
 • Ported cups-rs to libcups3 (CUPS 2 and 3 builds with CI), wrote FFI bindings for the libcups3 DNS-SD API, and fixed crashes and a client leak in libcups: 7 PRs merged upstream.
 • Tested on real HP printers; CI checks formatting, Clippy and tests on several architectures with virtual IPP printers (ippeveprinter).
 
-Report: github.com/Abd002/GSOC-2026
+Google Summer of Code final report: github.com/Abd002/GSOC-2026
+Code: github.com/Abd002/cosmic-printers
 ```
 - **Skills:** Rust · Linux · CUPS · Inter-Process Communication (IPC) · FFI · Open-Source Development
 
@@ -152,7 +169,7 @@ Rust, C++, C, Python, asyncio, Linux, Embedded Systems, Zephyr RTOS, FreeRTOS, E
 ## 7. Honors & awards
 | Title | Issuer | Date | Description |
 |---|---|---|---|
-| Google Summer of Code 2026 Contributor | Google / The Linux Foundation | Oct 2026 | COSMIC printer setup tool in Rust; passed the final evaluation; 7 PRs merged upstream. |
+| Google Summer of Code 2026 Contributor | Google Summer of Code program | Oct 2026 | Google Summer of Code 2026 Contributor with The Linux Foundation (OpenPrinting): Printers page for COSMIC Settings in Rust; passed the final evaluation; 7 PRs merged upstream. |
 | Codeforces Expert | Codeforces | (your date) | Handle _Khalifa: codeforces.com/profile/_Khalifa |
 | 4-time ECPC Finalist | Egyptian Collegiate Programming Contest (ECPC) | 2021–2024 | Team finalist four years in a row. |
 
@@ -175,13 +192,14 @@ Graduation project: AUTOSAR-based V2X vehicle prototype on STM32 (team). My part
 
 ## 10. Featured
 Profile → Add section → Featured → Add a link. In this order:
-1. `github.com/Abd002/GSOC-2026`: the GSoC 2026 final report
+1. `github.com/Abd002/GSOC-2026`: the Google Summer of Code 2026 final report (title it "Google Summer of Code 2026: Printers page for COSMIC Settings")
 2. `github.com/Abd002/cosmic-printers`: the code
 3. `github.com/pop-os/cosmic-settings/pull/2182`: the COSMIC Settings Printers page PR
 4. Later: the flagship KV store repo
 
 ## 11. Contact info and open to work
 - **Contact info → Website:** `https://github.com/Abd002`, type "Portfolio".
+- **Contact info → Phone:** `+20 114 250 5042`, type Mobile. Only your connections see it; the program's tips say to always give a phone and email.
 - **Open to work:** choose **Recruiters only**, so there's no green banner.
   - **Job titles:** Software Engineer · Systems Software Engineer · Rust Engineer · Embedded Software Engineer · Firmware Engineer · Backend Engineer
   - **Workplace:** Remote · On-site · Hybrid
@@ -191,7 +209,7 @@ Profile → Add section → Featured → Add a link. In this order:
 ## 12. Order to do it in (about 1 hour)
 1. Name spelling, then the headline (§2)
 2. About (§3)
-3. Experience: add GSoC, rewrite EKSON, add Orange Digital Center (§4)
+3. Experience: fix the Google Summer of Code entry, rewrite EKSON, add Orange Digital Center (§4)
 4. Education (§8)
 5. Projects (§5)
 6. Skills, then pin the top 5 (§6)

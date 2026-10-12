@@ -9,7 +9,7 @@ These implement [07 §5.1](../07-Strategy-and-Roadmap.md#51-three-cv-versions): 
 **Sources:**
 - the interview (11 Oct 2026), recorded in [facts.md](facts.md);
 - his latest CV (Sept 2026);
-- his [GSoC 2026 final report](https://github.com/Abd002/GSOC-2026);
+- his [Google Summer of Code 2026 final report](https://github.com/Abd002/GSOC-2026);
 - his [GitHub profile README](https://github.com/Abd002);
 - his older LaTeX CVs.
 
@@ -41,7 +41,7 @@ pdflatex cv-general-swe.tex && pdflatex cv-general-swe.tex   # run twice; same f
 ## The title line under the name
 Each version has one short line under the name: **the job title, then 3 core skills**, for example `Systems Software Engineer | Rust, C, Linux`.
 - **Why this form:** career guides recommend starting with the job title, then a few skills, separated by a pipe, in fewer than 10 words. The job title matches what recruiters and ATS search for.
-- **What's not in it:** achievements like GSoC 2026 or Codeforces Expert. They are in the Summary and the sections, and a list of them under the name reads like a LinkedIn headline, not a CV.
+- **What's not in it:** achievements like Google Summer of Code 2026 or Codeforces Expert. They are in the Summary and the sections, and a list of them under the name reads like a LinkedIn headline, not a CV.
 - **Before applying:** change the title to the exact title in the job ad if it is true for you (for example "Firmware Engineer" or "Backend Engineer").
 
 ## ATS checks (all four PDFs and Word copies pass)
@@ -55,14 +55,17 @@ The CVs were run through the **[OpenResume](https://github.com/xitanggg/open-res
 |---|---|
 | Name, email, LinkedIn URL, Summary | ✅ found |
 | Sections | ✅ Summary, Experience, Open Source Projects, Projects, Technical Skills, Achievements, Education all found |
-| Jobs | ✅ 3 jobs, each with the right title, company and dates: **Software Developer (Google Summer of Code)** at The Linux Foundation / OpenPrinting, May–Oct 2026 · **Embedded Software Engineer** at EKSON, Aug 2025 – Present · **Embedded Linux Systems Intern** at Orange Digital Center, Dec 2023 – Jan 2024 |
+| Jobs | ✅ 3 jobs with the right dates. **Google Summer of Code Contributor**, May–Oct 2026: this parser leaves the title field empty and puts the title in the company field, because "Contributor" isn't in its list of job words (see item 3 below) · **Embedded Software Engineer** at EKSON, Aug 2025 – Present · **Embedded Linux Systems Intern** at Orange Digital Center, Dec 2023 – Jan 2024 |
 | Education | ✅ Minia University · Bachelor of Science (B.Sc.), Computer and Systems Engineering · 2020 – 2025 |
 | Phone and city | ⚠️ This parser only knows US formats, so it drops "+20" and "Cairo, Egypt". Commercial ATS (Workday, Greenhouse, Textkernel-based ones) read international numbers. Type your phone and city into the job site's form fields anyway. |
 
 **What the first test found, and what was changed:**
-1. **GSoC was dropped completely**, because it sat under "Open Source", a heading an ATS doesn't map to work experience. GSoC now sits under **Experience**, and the other contributions are under **Open Source Projects** ("Projects" is a standard heading).
+1. **Google Summer of Code was dropped completely**, because it sat under "Open Source", a heading an ATS doesn't map to work experience. It now sits under **Experience**, and the other contributions are under **Open Source Projects** ("Projects" is a standard heading).
 2. **The job title and company were read as one piece of text** ("Embedded Software Engineer — EKSON"). Now each job line is `Title | Company | Dates`, with the three as separate pieces of text.
-3. **The GSoC title had no job-title word.** Parsers look for words like Engineer, Developer or Intern. "Google Summer of Code Contributor" has none, so the title came out empty. On the CVs it is now **"Software Developer (Google Summer of Code)"**. That is what the work was, and "Google Summer of Code (GSoC) 2026" is still written in the line below it, for keyword search. LinkedIn keeps the official "Google Summer of Code Contributor".
+3. **The Google Summer of Code title follows the program's rules, not the parser.** The program asks contributors to always write "Google Summer of Code 2026 contributor" followed by the organization, never the acronym "GSoC", and never to present it as a job at Google or the organization ([LinkedIn.md §2.1](LinkedIn.md#21-google-summer-of-code-rules)). A version titled "Software Developer (Google Summer of Code)" parsed better, but it read like employment at The Linux Foundation, so it was dropped (Oct 2026).
+   - **Job line:** `Google Summer of Code Contributor | The Linux Foundation (OpenPrinting) | May 2026 – Oct 2026`. The year is not in the title, because a number in the title made the parser read "Google Summer of Code 2026 Contributor" as the date and lose May–Oct 2026.
+   - **Every Summary** has the full phrase "Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting)", for keyword search.
+   - **Parsed result:** dates ✅. The title lands in the company field, because "Contributor" isn't one of OpenResume's job words. **When a job site pre-fills this entry, fix it by hand:** title "Google Summer of Code 2026 Contributor", company "The Linux Foundation (OpenPrinting)".
 4. **"84.6%" was read as a GPA of 4.6.** The grade is now "Very Good with Honors". Give the percentage when an Egyptian employer's form asks for it.
 5. **A line starting with "~40%"** (the raised "~") was read as the start of a new job. It now says "about 40%".
 6. **Master CV:** the page break fell right before a heading, and the heading got glued to the last line of page 1. Page 2 now starts in the middle of a bullet.
@@ -83,8 +86,8 @@ These rules are built into `cv-style.sty`:
 | Dates | `Mon YYYY – Mon YYYY` or `Present` on the same line as the title and company | ✅ |
 | No first-person words | No "I" or "my" in any CV | ✅ |
 | Spelling | Spell checker: only technical terms flagged | ✅ |
-| Links | Every link was opened; all the repos, upstream PRs, the Zephyr issue and the GSoC report exist. COSMIC PRs #2182 and #188 are open and ready for review (since 26 Sep 2026), so the CVs say "in review". | ✅ |
-| Length | One page for each version; two for the master (PDF and Word) | ✅ |
+| Links | Every link was opened; all the repos, upstream PRs, the Zephyr issue and the Google Summer of Code report exist. COSMIC PRs #2182 and #188 are open and ready for review (since 26 Sep 2026), so the CVs say "in review". | ✅ |
+| Length | One page for each version; two for the master (PDF and Word). **Send only the 1-page versions** (the program's tips: 1 page for recent graduates); the master is the source | ✅ |
 
 ### 3. What no one can promise
 - Every company sets up its ATS differently. Some auto-reject on knockout questions (visa, location, years of experience) no matter what the CV says. Answer those questions honestly on the form.
