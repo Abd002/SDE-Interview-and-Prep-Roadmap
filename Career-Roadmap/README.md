@@ -36,6 +36,8 @@ A research database and application tracker for **Abdelrahman Khalifa** ([GitHub
 | [07 — Strategy and Roadmap](07-Strategy-and-Roadmap.md) | Pathway comparison, country ranking, gap → project plan, application strategy, month-by-month roadmap | — |
 | [08 — Application Tracker](08-Application-Tracker.md) | Consolidated P1 targets with status columns | — |
 | [CV/](CV/) | LaTeX master CV and the three one-page versions from 07 §5.1 (General SWE, Systems/Rust, Embedded), with PDFs and ATS check results | **4 CVs** |
+| [Progress Summary](Progress-Summary.md) | What he is doing now and what he knows, from the Done steps in Notion; 30- and 60-second scripts | — |
+| [Knowledge Check](Knowledge-Check.md) | Exam on the finished steps, round by round, with answers and grades | **6 rounds** |
 
 ## Legends (used in every file)
 
