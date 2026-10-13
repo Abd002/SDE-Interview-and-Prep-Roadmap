@@ -1,10 +1,10 @@
 # What I'm doing now, and what I know
 
-**Updated:** 12 Oct 2026.
+**Updated:** 13 Oct 2026.
 
 **What it's for:** read it before a call, an interview or a networking chat, so you can say clearly what you're working on and what you've learned.
 
-**Where it comes from:** the 18 steps marked **Done** in the Notion study plan ("Study Plan — Step by Step"). The "How well I know it" table (§4) is filled in from the [knowledge check](Knowledge-Check.md).
+**Where it comes from:** the 18 steps marked **Done** in the Notion study plan ("Study Plan — Step by Step"). Every line in §3 was checked on 13 Oct 2026 against the **main resource of its step** in the plan (the step's Link and Notes), linked under each heading. The "How well I know it" table (§4) is filled in from the [knowledge check](Knowledge-Check.md).
 
 ---
 
@@ -51,6 +51,8 @@ Use the 30-second answer, then add:
 These are the concepts from the finished steps, one line each, the way you'd say them to an engineer.
 
 ### 3.1 Relational model and SQL (L01, L02, HW1)
+> **Source:** CMU 15-445 Fall 2025 [L01 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/01-relationalmodel.pdf) · [L02 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/02-modernsql.pdf) · [HW1](https://15445.courses.cs.cmu.edu/fall2025/homework1/) (6 queries, Q1–Q6, in DuckDB on the Lahman baseball database)
+
 - **Relation:** an unordered set of tuples with the same attributes. A table is the everyday name.
 - **Primary key / foreign key:** a primary key uniquely identifies a row; a foreign key points to a primary key in another table.
 - **Data independence:** the user writes *what* they want (declarative SQL); the DBMS decides *how* to store and fetch it.
@@ -61,6 +63,8 @@ These are the concepts from the finished steps, one line each, the way you'd say
 - **Nested queries and CTEs:** `IN`, `EXISTS`, `ANY`, `ALL`; `WITH` names a sub-query; `WITH RECURSIVE` handles trees and graphs.
 
 ### 3.2 Storage (L03, L05)
+> **Source:** [L03 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/03-storage1.pdf) · [L05 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/05-storage2.pdf) (+ the slides with the same numbers)
+
 - **Disk-oriented DBMS:** the database lives on disk; the **buffer pool** brings pages into memory when they're needed.
 - **Sequential vs random I/O:** sequential is much faster, so storage design tries to turn random I/O into sequential I/O.
 - **Why not mmap:**
@@ -84,6 +88,8 @@ These are the concepts from the finished steps, one line each, the way you'd say
 - **Index-organized storage:** the tuples are stored inside the index itself, sorted by key, for example in the leaves of a B+Tree.
 
 ### 3.3 Buffer pool (L04, L05)
+> **Source:** [L04 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/04-bufferpool.pdf) · [L05 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/05-storage2.pdf) §1 (buffer pool optimizations) · [L04 slides](https://15445.courses.cs.cmu.edu/fall2025/slides/04-bufferpool.pdf)
+
 - **Buffer pool:** an array of fixed-size **frames** in memory.
   - The **page table** maps page ID → frame. It lives in memory only.
   - The **page directory** maps page ID → place on disk. It's stored on disk.
@@ -107,16 +113,21 @@ These are the concepts from the finished steps, one line each, the way you'd say
   - **Direct I/O (`O_DIRECT`)** to skip the OS page cache. PostgreSQL is the exception: it uses the OS cache.
 
 ### 3.4 Project 0: Count-Min Sketch (C++)
+> **Source:** [P0 C++ Primer page](https://15445.courses.cs.cmu.edu/fall2025/project0/)
+
 - **What it is:** a small, fixed-size structure that **estimates how often each item appears** in a stream.
   - A 2-D array of counters: `depth` rows, one hash function per row, `width` columns.
 - **Insert:** hash the item with each row's hash and add 1 to that cell in every row.
 - **Count:** take the **minimum** over the rows. Collisions only add, so the estimate is **never lower than the true count**; it can only overestimate.
 - **Merge:** add two sketches cell by cell. They must have the same width and depth.
+- **Clear:** reset all counters for a new stream.
 - **TopK:** return the k candidates with the highest estimated counts.
-- **Thread safety:** `Insert` had to be thread-safe and **faster than the sequential version (speedup > 1.2)**. That means per-counter atomics or fine-grained latches, not one global lock.
-- **Engineering:** CMake + clang, Google C++ style (clang-tidy), no memory leaks, move constructor and move assignment.
+- **Thread safety:** `Insert` had to be thread-safe and **faster than the sequential version (speedup > 1.2)**. The page says one global latch gives a speedup of about 1.0; the hint is finer-grained latches or no latch at all (`compare_exchange`).
+- **Engineering:** CMake + clang, the Google C++ Style Guide (checked with clang-tidy), no memory leaks (ASAN/LSAN), move constructor and move assignment.
 
 ### 3.5 Operating systems (repo guides)
+> **Source:** [Processes](../Operating%20Systems/Processes.md) · [Threads](../Operating%20Systems/Threads.md) · [Thread synchronization](../Operating%20Systems/Thread-Synchronization.md)
+
 - **Process:** a running program with its own address space (code, data, heap, stack). The OS tracks it in a **PCB** (process control block).
 - **States:** new → ready → running → waiting → terminated.
 - **`fork` + `exec`:** `fork` copies the process (copy-on-write); `exec` replaces the program; the parent `wait`s.
@@ -136,6 +147,8 @@ These are the concepts from the finished steps, one line each, the way you'd say
 - **Atomics:** lock-free updates of single values (`std::atomic`, `compare_exchange`).
 
 ### 3.6 Distributed systems (Raft paper, DDIA ch. 9, Jepsen)
+> **Source:** [Raft paper](https://raft.github.io/raft.pdf) §1–5 (replicated state machine, roles, terms, election, replication, safety) · [Jepsen consistency models](https://jepsen.io/consistency/models) (linearizability, the map, availability under partitions) · *DDIA* ch. 9 (lines marked *DDIA*; it's a paid book, so they were not checked against an online copy)
+
 - **Replicated state machine:** every node applies the same log of commands in the same order, so all nodes end up in the same state.
 - **Raft roles:** follower, candidate, leader. Time is split into **terms**, and each term has at most one leader.
 - **Leader election:**
@@ -152,17 +165,19 @@ These are the concepts from the finished steps, one line each, the way you'd say
 - **Linearizability:** the system acts as if there is one copy of the data, and every operation takes effect at one instant between its start and its end. It's a recency guarantee.
 - **Causality and ordering:**
   - Causal order is a partial order.
-  - **Lamport timestamps** give a total order that matches causality.
-  - **Total order broadcast** delivers messages to every node in the same order. It's equivalent to consensus.
-- **Consensus:** nodes agree on one value. Uses: leader election, atomic commit, locks.
-  - **Two-phase commit (2PC)** blocks if the coordinator fails.
+  - *DDIA:* **Lamport timestamps** give a total order that matches causality.
+  - *DDIA:* **Total order broadcast** delivers messages to every node in the same order. It's equivalent to consensus.
+- *DDIA:* **Consensus:** nodes agree on one value. Uses: leader election, atomic commit, locks.
+  - *DDIA:* **Two-phase commit (2PC)** blocks if the coordinator fails.
   - Raft, Paxos and ZAB tolerate failures as long as a majority is alive.
-- **CAP:** under a network partition, choose consistency (linearizable) or availability.
+- **CAP:** under a network partition, choose consistency (linearizable) or availability. Jepsen: linearizability "cannot be totally or sticky available".
 - **Jepsen map:**
   - consistency models form a hierarchy (strict serializable at the top, then linearizable and serializable, down to weaker ones such as causal and read-your-writes);
   - stronger models are less available under partitions.
 
 ### 3.7 Problem solving (CF Round 1074, Div. 4)
+> **Source:** [the round's PDF with the official hints](../Contest-Practice/Codeforces/CF-2185-Div4-Round1074.pdf)
+
 | Problem | Idea |
 |---|---|
 | **A. Perfect Root** | Every positive integer x is a "perfect root" of y = x², so print 1, 2, …, n. |
@@ -174,16 +189,23 @@ These are the concepts from the finished steps, one line each, the way you'd say
 
 ## 4. How well I know it
 
-From the [knowledge check](Knowledge-Check.md). Updated after each round.
+From the [knowledge check](Knowledge-Check.md), round 1 on **13 Oct 2026**, with no revision first: **28/32 (88%) of the questions answered**.
 
 | Topic | Level | Notes |
 |---|---|---|
-| Relational model + SQL | Not tested yet | |
-| Storage + buffer pool | Not tested yet | |
-| Project 0: Count-Min Sketch | Not tested yet | |
-| OS: processes, threads, synchronization | Not tested yet | |
-| Distributed: Raft, linearizability, consensus | Not tested yet | |
-| Contest problems A–D | Not tested yet | |
+| Relational model + SQL | Not tested yet | Part 1 skipped |
+| Storage + buffer pool | **OK** (10/12) | Gaps: Bloom filters, `O_DIRECT` |
+| Project 0: Count-Min Sketch | Not tested yet | Part 3 skipped |
+| OS: processes, threads, synchronization | **Strong** (10/10) | |
+| Distributed: Raft, linearizability, consensus | **OK** (8/10, 1 skipped) | Raft and Jepsen parts all right. Gaps: Lamport timestamps, total order broadcast, 2PC (all *DDIA* ch. 9) |
+| Contest problems A–D | Not tested yet | Part 6 skipped |
+
+**Review before the next interview** (5 minutes each; the details are in [Knowledge-Check.md](Knowledge-Check.md#what-to-re-read-the-5-missed-concepts)):
+1. **Bloom filter:** "definitely not here" or "maybe here"; no false negatives, never a location. *L05 notes §3.*
+2. **`O_DIRECT`:** skips the OS page cache. It does not replace `fsync`. *L04 notes §5.*
+3. **Lamport timestamps:** (counter, node ID), max on receive. A total order that respects causality, not wall-clock time. *DDIA ch. 9.*
+4. **Total order broadcast = consensus.** Raft's log is one. *DDIA ch. 9; Raft §2.*
+5. **2PC blocks** if the coordinator dies after the "yes" votes. Raft uses a majority instead. *DDIA ch. 9.*
 
 **Levels:**
 - **Strong:** can explain it and answer follow-ups.

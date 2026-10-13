@@ -1,6 +1,6 @@
 # Knowledge check
 
-**What it covers:** everything marked **Done** in the Notion study plan, as **51 multiple-choice questions**. Each has one correct answer.
+**What it covers:** everything marked **Done** in the Notion study plan, as **51 multiple-choice questions**. Each has one correct answer, taken from the **main resource of that step** in the plan (linked under each Part).
 
 **How to answer:**
 - Reply with the question number and a letter, for example: `1C 2A 3D …`
@@ -22,17 +22,19 @@
 
 ## Part 1: Relational model and SQL
 
+> **Source:** CMU 15-445 Fall 2025 [L01 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/01-relationalmodel.pdf) · [L02 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/02-modernsql.pdf) · [HW1](https://15445.courses.cs.cmu.edu/fall2025/homework1/)
+
 **1. What is the main difference between a relation (relational model) and a table in SQL?**
 - A) Relations are ordered; tables are not
 - B) Relations allow NULL; tables don't
 - C) A relation is a set (no duplicates); a SQL table is a bag, so SQL keeps duplicates unless you use `DISTINCT`
 - D) There is no difference
 
-**2. How can you build a join (R ⋈ S) from other relational algebra operators?**
-- A) A Cartesian product (×), then a selection (σ)
-- B) A union, then a projection
-- C) A difference, then a selection
-- D) A projection, then a union
+**2. What does "data independence" mean in the relational model?**
+- A) The user/application is isolated from how the data is stored; the DBMS can change the layout without changing the queries
+- B) Each table lives in its own file
+- C) Tables can't reference each other
+- D) Data is stored without a schema
 
 **3. What is the difference between `WHERE` and `HAVING`?**
 - A) `HAVING` filters rows before grouping; `WHERE` filters after
@@ -58,19 +60,21 @@
 - C) For any aggregation
 - D) To create a new table
 
-**7. `WHERE x NOT IN (SELECT y FROM t)`, and the sub-query returns a `NULL`. What happens?**
-- A) It returns every row
-- B) It raises an error
-- C) The `NULL` is ignored
-- D) It returns no rows, because comparing with `NULL` gives UNKNOWN
+**7. In a nested query, `x IN (sub-query)` is equivalent to:**
+- A) `x = ALL (sub-query)`
+- B) `EXISTS (sub-query)` with no condition
+- C) `x <> ANY (sub-query)`
+- D) `x = ANY (sub-query)`
 
-**8. What kind of database is DuckDB (used in HW1)?**
-- A) A client-server row store for transactions, like PostgreSQL
-- B) An embedded analytics (OLAP) database that stores data by column and runs inside your program
-- C) A key-value store
-- D) A document database
+**8. In `WHERE login LIKE '%@cs'`, what does `%` match?**
+- A) Exactly one character
+- B) Any substring, including an empty one
+- C) Only digits
+- D) A literal percent sign
 
 ## Part 2: Storage and buffer pool
+
+> **Source:** CMU 15-445 Fall 2025 [L03 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/03-storage1.pdf) · [L04 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/04-bufferpool.pdf) · [L05 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/05-storage2.pdf) (+ the slides with the same numbers)
 
 **9. Why do most database systems avoid `mmap`?**
 - A) The OS can write dirty pages to disk at any time, page faults stall threads, and errors are hard to handle
@@ -146,6 +150,8 @@
 
 ## Part 3: Project 0, Count-Min Sketch
 
+> **Source:** [P0 C++ Primer page](https://15445.courses.cs.cmu.edu/fall2025/project0/)
+
 **21. How does `Count(item)` estimate the count?**
 - A) The sum of the item's counters over all rows
 - B) The minimum of the item's counters over all rows
@@ -183,6 +189,8 @@
 - D) Sleeping between inserts
 
 ## Part 4: OS, processes, threads and synchronization
+
+> **Source:** repo guides [Processes](../Operating%20Systems/Processes.md) · [Threads](../Operating%20Systems/Threads.md) · [Thread synchronization](../Operating%20Systems/Thread-Synchronization.md)
 
 **27. What do threads of the same process share?**
 - A) Their stacks
@@ -245,6 +253,8 @@
 - D) Use bigger stacks
 
 ## Part 5: Distributed systems (Raft, DDIA ch. 9, Jepsen)
+
+> **Source:** [Raft paper](https://raft.github.io/raft.pdf) §1–5 (Q37–41) · [Jepsen consistency models](https://jepsen.io/consistency/models) (Q42, Q46, Q47) · *DDIA* ch. 9 (Q43–45; a paid book, so these were not checked against an online copy)
 
 **37. Why is Raft's election timeout random?**
 - A) To save power
@@ -314,6 +324,8 @@
 
 ## Part 6: Contest problems (CF Round 1074, Div. 4)
 
+> **Source:** [CF Round 1074 PDF with the official hints](../Contest-Practice/Codeforces/CF-2185-Div4-Round1074.pdf)
+
 **48. A. Perfect Root: x is a perfect root if √y = x for some integer y. What is a valid answer for n?**
 - A) 1, 2, …, n, because every x = √(x²)
 - B) Only perfect squares
@@ -341,4 +353,78 @@
 ---
 
 ## Results
-_(Filled in after you answer.)_
+
+**Round 1, 13 Oct 2026** (no revision before the test). Answered Parts 2, 4 and 5. Parts 1, 3 and 6 were skipped: you solved them long ago and don't remember them.
+
+| Part | Score | Level |
+|---|---|---|
+| 1 Relational model + SQL | not answered | — |
+| 2 Storage + buffer pool | **10/12** | OK |
+| 3 Project 0: Count-Min Sketch | not answered | — |
+| 4 OS: processes, threads, synchronization | **10/10** | Strong |
+| 5 Distributed systems | **8/10** answered, Q45 skipped | OK |
+| 6 Contest problems | not answered | — |
+| **Total** | **28/32 = 88%** of the questions you answered | |
+
+<details><summary>Every answer</summary>
+
+| Q | You | Right | |
+|---|---|---|---|
+| 9 | A | A | ✅ |
+| 10 | C | C | ✅ |
+| 11 | D | D | ✅ |
+| 12 | B | B | ✅ |
+| 13 | A | A | ✅ |
+| 14 | C | C | ✅ |
+| 15 | B | B | ✅ |
+| 16 | D | D | ✅ |
+| 17 | A | A | ✅ |
+| 18 | C | C | ✅ |
+| 19 | A | B | ❌ |
+| 20 | C | D | ❌ |
+| 27 | B | B | ✅ |
+| 28 | D | D | ✅ |
+| 29 | A | A | ✅ |
+| 30 | C | C | ✅ |
+| 31 | B | B | ✅ |
+| 32 | A | A | ✅ |
+| 33 | D | D | ✅ |
+| 34 | B | B | ✅ |
+| 35 | C | C | ✅ |
+| 36 | A | A | ✅ |
+| 37 | D | D | ✅ |
+| 38 | B | B | ✅ |
+| 39 | C | C | ✅ |
+| 40 | A | A | ✅ |
+| 41 | B | B | ✅ |
+| 42 | D | D | ✅ |
+| 43 | B | A | ❌ |
+| 44 | A | C | ❌ |
+| 45 | — | B | skipped |
+| 46 | D | D | ✅ |
+| 47 | C | C | ✅ |
+
+</details>
+
+### What to re-read (the 5 missed concepts)
+| Q | The right answer, and why | Re-read |
+|---|---|---|
+| 19 Bloom filter | **B.** A Bloom filter answers only "is this key possibly in this file?". "No" is always right (no false negatives); "yes" can be wrong (false positives). It never tells you *where* the key is. That is the job of the SSTable's sorted keys and min/max keys. | [L05 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/05-storage2.pdf) §3 "Log-Structured Storage" (the SummaryTable keeps a key filter, e.g. a Bloom filter, per level). The notes only name it; the false-positive rule is from the Bloom-filter video linked on the [P0 page](https://15445.courses.cs.cmu.edu/fall2025/project0/). |
+| 20 `O_DIRECT` | **D.** `O_DIRECT` makes reads and writes bypass the OS page cache, so pages aren't cached twice and the DBMS controls eviction itself. It does **not** turn off `fsync`; you still need `fsync` for durability. PostgreSQL is the exception that uses the OS cache. | [L04 notes](https://15445.courses.cs.cmu.edu/fall2025/notes/04-bufferpool.pdf) §5 "Disk I/O and OS Cache" (Direct I/O) |
+| 43 Lamport timestamps | **A.** Each node keeps a counter (and its node ID). It sends the counter with every message and takes the max on receive. Comparing (counter, node ID) gives a **total order that is consistent with causality**. They are **not** wall clocks, and they can't tell you whether two operations were concurrent (that needs version vectors). | *DDIA* ch. 9, "Sequence Number Ordering → Lamport timestamps" |
+| 44 Total order broadcast | **C.** Delivering every message to every node in the same order is **equivalent to consensus**: each one can be built from the other. Raft's replicated log is exactly a total order broadcast. | *DDIA* ch. 9, "Total Order Broadcast"; [Raft paper](https://raft.github.io/raft.pdf) §2 (replicated state machines) |
+| 45 2PC (skipped) | **B.** In two-phase commit, after a participant votes "yes" it must wait for the coordinator's decision. If the coordinator crashes then, the participant is **"in doubt" and blocked**: it can neither commit nor abort on its own. Raft avoids this with a majority instead of a single coordinator. | *DDIA* ch. 9, "Atomic Commit and Two-Phase Commit (2PC)" |
+
+**Next round:** Parts 1, 3 and 6 (none answered yet), plus 5 new questions on these 5 concepts. Do it after re-reading the table above.
+
+**Answer key changed on 13 Oct:** the sources check (below) found that 3 Part 1 questions were not taught in the step's main resource (join from product + selection, `NOT IN` with `NULL`, what kind of database DuckDB is). Q2, Q7 and Q8 were replaced with questions from the L01 and L02 notes. You hadn't answered Part 1, so no score changed.
+
+### Sources check (13 Oct 2026)
+Every right answer was checked against the main resource of its step in the Notion plan (the Link and Notes of each Done step):
+- **Parts 1–3:** CMU 15-445 Fall 2025 lecture notes and slides 01–05, the P0 page and the HW1 page. All match. Q19's "no false negatives" detail is only in the P0 page's linked video, not in the L05 notes.
+- **Part 4:** the repo's Processes, Threads and Thread-Synchronization guides. All match (Q36: Thread-Synchronization, "Common mistakes" under Mutex).
+- **Part 5:**
+  - Q37–41 match the Raft paper (§5.1 terms, §5.2 random timeouts, §5.3 majority commit, §5.4.1 election restriction, "five servers can tolerate two failures").
+  - Q42, Q46 and Q47 match the Jepsen pages ("linearizable … cannot be totally available"; "strict serializable implies both serializability and linearizability").
+  - Q43–45 come from *DDIA* ch. 9, which isn't online, so they were not checked against the text.
+- **Part 6:** the round's problem statements and official hints in `Contest-Practice/`.
