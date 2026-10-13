@@ -21,7 +21,7 @@ Every CV, LinkedIn text and interview answer must match this file. It was built 
 ### EKSON: Embedded Software Engineer · Aug 2025 – Present
 Part-time/remote during military service; still part-time now.
 
-- **Only software engineer.** He owned firmware, desktop app, web app and CI. The rest of the team was hardware and mechanical.
+- **Team:** EKSON has other software engineers; he is the only one on the **simulator** product, where he owns the firmware, desktop app, web app and CI. **Never write or say "sole/only software engineer"** (his decision, 13 Oct 2026).
 - **Product:** pneumatic motion simulators, 3-DoF and 6-DoF, for training and gaming.
 - **Firmware** (he wrote all of it):
   - ESP32-S3, first on **ESP-IDF/FreeRTOS**, then **migrated to Zephyr RTOS**.

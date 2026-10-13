@@ -36,7 +36,7 @@ This file compares the LinkedIn profile (the "Save to PDF" export from **12 Oct 
 | **Open to work** | ? | Turn it on for **recruiters only** → [§11](#11-contact-info-and-open-to-work). |
 | **Custom URL** | ✅ `linkedin.com/in/abd002` | ✅ Done. |
 
-**Never on LinkedIn:** the Deloitte mentorship, the Winter of Code lp/lpstat project, and any "C++/Qt" wording for the EKSON app (it is PyQt5).
+**Never on LinkedIn:** "sole" or "only software engineer" for EKSON, the Deloitte mentorship, the Winter of Code lp/lpstat project, and any "C++/Qt" wording for the EKSON app (it is PyQt5).
 
 ## 2. Headline
 **Why Google Summer of Code goes first.** LinkedIn shows only about the **first 60 characters** in search results, comments and messages, so the first words are the ones people see. The limit for the whole headline is 220 characters.
@@ -74,7 +74,7 @@ I'm a software engineer who works close to the system: Rust, C and modern C++ on
 
 As a Google Summer of Code 2026 Contributor with The Linux Foundation (OpenPrinting), I built the Printers page for COSMIC Settings in Rust, plus a standalone printers app with the same UI. Behind it are five crates: an async client, and a CUPS/IPP/DNS-SD backend that runs as a varlink service in the settings daemon, so a crash in C code can't take down Settings. Along the way I ported cups-rs to libcups3 and fixed DNS-SD crashes in libcups: 7 pull requests merged upstream. I still maintain the project.
 
-At EKSON I'm the only software engineer on 3-DoF and 6-DoF pneumatic motion simulators. I wrote the ESP32-S3 firmware and moved it from FreeRTOS to Zephyr RTOS, with PID valve control and IMU feedback. I also built the PyQt5 desktop app that drives the simulator (about 40% lower CPU use and latency after I used asyncio to wait for ESP32 and server messages at the same time, off the UI thread), plus remote control and firmware updates through a small Node.js backend.
+At EKSON I work on 3-DoF and 6-DoF pneumatic motion simulators. I wrote the ESP32-S3 firmware and moved it from FreeRTOS to Zephyr RTOS, with PID valve control and IMU feedback. I also built the PyQt5 desktop app that drives the simulator (about 40% lower CPU use and latency after I used asyncio to wait for ESP32 and server messages at the same time, off the UI thread), plus remote control and firmware updates through a small Node.js backend.
 
 My first open-source contribution was to Zephyr RTOS (IPv4 multicast loopback, merged). I've since contributed to the Boa JavaScript engine and Rust Clippy.
 
@@ -120,7 +120,7 @@ Code: github.com/Abd002/cosmic-printers
 - **Dates:** Aug 2025 – Present
 - **Description** (replace the current paragraph):
 ```
-Sole software engineer for 3-DoF and 6-DoF pneumatic motion simulators for training and gaming. I own the firmware, the desktop app, the web backend and CI.
+Software for 3-DoF and 6-DoF pneumatic motion simulators for training and gaming: firmware, desktop app, web backend and CI.
 
 • Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS for more deterministic timing, devicetree-based drivers and easier porting.
 • Closed-loop PID control of the pneumatic valves with feedback from an MPU6050 IMU over I2C (calibration + Mahony filter), safety stops and a watchdog; UART protocol to the PC.

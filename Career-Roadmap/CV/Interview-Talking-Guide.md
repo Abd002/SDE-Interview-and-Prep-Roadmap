@@ -23,7 +23,7 @@ You said the hard part is talking about yourself. These rules make it easier.
    - *Result* (a number, or what changed).
    - Then stop and let them ask.
 3. **Short first, details on request.** Answer in 30–60 seconds, then say: *"I can go deeper into any part of that."* The interviewer picks the direction, so you never have to guess.
-4. **Facts are not bragging.** "7 PRs merged upstream" or "the only software engineer" are facts. Say them plainly, the same way you'd say the date.
+4. **Facts are not bragging.** "7 PRs merged upstream" or "passed the final evaluation" are facts. Say them plainly, the same way you'd say the date.
 5. **"I don't remember" is a good answer when it's true.** Example: *"I don't remember the exact loop rate. I'd check it in the code, but the idea was …"* Never guess a number.
 6. **Pause instead of filling.** A 2-second pause to think sounds confident. Say *"Good question, let me think for a second."*
 7. **Name the concept, then explain it in one line.** For example: *"I used a Mahony filter, which fuses the gyroscope and the accelerometer to get a stable orientation."* This shows you know the name and that you understand it.
@@ -36,7 +36,7 @@ You said the hard part is talking about yourself. These rules make it easier.
 |---|---|
 | **Who I am** | Software engineer: Rust, C, modern C++ on Linux and embedded. |
 | **Best thing** | Google Summer of Code 2026 with The Linux Foundation (OpenPrinting): **the Printers page in COSMIC Settings**, in Rust (PR #2182, in review). **7 PRs merged upstream** (cups-rs, libcups). Passed the final evaluation; I still maintain it. |
-| **Job** | **EKSON, Aug 2025 – now, part-time.** **The only software engineer** on 3-DoF and 6-DoF pneumatic motion simulators. Firmware (ESP32-S3, Zephyr), desktop app (PyQt5), web backend (Node.js/Express + MongoDB), CI. |
+| **Job** | **EKSON, Aug 2025 – now, part-time.** Builds the software for 3-DoF and 6-DoF pneumatic motion simulators. Firmware (ESP32-S3, Zephyr), desktop app (PyQt5), web backend (Node.js/Express + MongoDB), CI. |
 | **Numbers** | ~40% lower CPU/latency (PyQt5 app, measured) · 5 Rust crates · 7 merged PRs · 6 Zephyr networking modules · Codeforces Expert · 4× ECPC finalist (2021–2024) · 84.6% with Honors |
 | **First open-source PR** | Zephyr RTOS, **March 2025**: `IP_MULTICAST_LOOP` socket option (issue #86977). A "good first issue". |
 | **Other open source** | Boa (JavaScript engine in Rust), Rust Clippy: both merged, Dec 2025. |
@@ -51,14 +51,14 @@ You said the hard part is talking about yourself. These rules make it easier.
 This is almost always the first question. The structure is: **now → before → why I'm here**.
 
 ### 2.1 Thirty seconds (phone screen, recruiter)
-> I'm a software engineer working mostly in Rust, C and C++ on Linux and embedded systems. This summer I did Google Summer of Code with The Linux Foundation, where I built the Printers page for the COSMIC desktop's Settings app in Rust and got seven pull requests merged into the upstream CUPS libraries. I also work at EKSON, a motion-simulator startup, where I'm the only software engineer: I wrote the firmware, the desktop app and the backend. I'm looking for a role where I can work on systems software full time.
+> I'm a software engineer working mostly in Rust, C and C++ on Linux and embedded systems. This summer I did Google Summer of Code with The Linux Foundation, where I built the Printers page for the COSMIC desktop's Settings app in Rust and got seven pull requests merged into the upstream CUPS libraries. I also work at EKSON, a motion-simulator startup, where I own the simulator's software: I wrote the firmware, the desktop app and the backend. I'm looking for a role where I can work on systems software full time.
 
 ### 2.2 Sixty seconds (start of a technical interview)
 > I'm a computer and systems engineer from Minia University, and I work close to the system: Rust, C and modern C++, on Linux and microcontrollers.
 >
 > Right now I have two things. First, Google Summer of Code 2026 with The Linux Foundation's OpenPrinting project. I built the Printers page in COSMIC Settings: you can see your printers, their ink and status, manage the print queue, and add old printers. Under it are five Rust crates, and the C library code runs in a separate process behind a varlink service, so a crash there can't take down the Settings app. Along the way I got seven PRs merged upstream in cups-rs and libcups.
 >
-> Second, I'm the only software engineer at EKSON, which builds pneumatic motion simulators. I wrote the ESP32 firmware and moved it from FreeRTOS to Zephyr, built the PyQt5 control app (I cut its CPU use and latency by about 40%), and built the web backend for remote control and firmware updates.
+> Second, at EKSON I work on pneumatic motion simulators. I wrote the ESP32 firmware and moved it from FreeRTOS to Zephyr, built the PyQt5 control app (I cut its CPU use and latency by about 40%), and built the web backend for remote control and firmware updates.
 >
 > Outside that, I'm a Codeforces Expert and was an ECPC finalist four times. I'm now looking for a full-time systems or embedded role.
 
@@ -66,7 +66,7 @@ This is almost always the first question. The structure is: **now → before →
 Use the 60-second version, and add one sentence to each part:
 - **Start:** "I got into low-level work through competitive programming and embedded courses at university; my graduation project was the bootloader and firmware-update part of an STM32 vehicle prototype."
 - **Open source:** "My first open-source contribution was to Zephyr RTOS in March 2025, a networking socket option. That gave me the confidence to apply to GSoC."
-- **EKSON:** "Being the only software person taught me to own everything end to end: from the PID loop on the microcontroller to the database on the server."
+- **EKSON:** "Owning the simulator software taught me to think end to end: from the PID loop on the microcontroller to the database on the server."
 
 ### 2.4 Change the first sentence to fit the role
 | Role | First sentence |
@@ -77,7 +77,7 @@ Use the 60-second version, and add one sentence to each part:
 | **Backend** | "I'm a software engineer who has built a full product path: firmware, desktop app, and a Node.js and MongoDB backend that controls devices remotely." |
 
 ### 2.5 Short answers to common follow-ups
-- **"Why are you leaving / looking?"** "EKSON is part-time and I'm the only software engineer there. I want to work full-time in a team with senior engineers, where I can learn faster and work on bigger systems."
+- **"Why are you leaving / looking?"** "EKSON is part-time. I want to work full-time in a team with senior engineers, where I can learn faster and work on bigger systems."
 - **"Why this company?"** Prepare one real reason per company: a product you use, an open-source project they own, or the tech stack. Example: *"You maintain [project], and I've already worked with the Linux printing stack upstream."*
 - **"Where do you see yourself in 3 years?"** "A strong systems engineer who owns a component in production and reviews other people's code. I want depth first."
 - **"What's your notice period?"** "I'm part-time now, so I can start quickly: [your real answer]."
@@ -93,7 +93,7 @@ Use the 60-second version, and add one sentence to each part:
 |---|---|
 | Hardest technical problem / something you're proud of | 3.1 Zephyr migration, or 3.5 GSoC Printers page |
 | Performance improvement / debugging | 3.3 The 40% fix |
-| Ownership / working without guidance | 3.2 Sole software engineer |
+| Ownership / working without guidance | 3.2 Owning the simulator software |
 | Designing a system end to end | 3.4 Remote control and firmware updates |
 | Working with others / code review / feedback | 3.5 GSoC, 3.6 libcups fixes |
 | Learning something new fast | 3.7 First Zephyr contribution |
@@ -113,9 +113,10 @@ Use the 60-second version, and add one sentence to each part:
   - *What was hard?* Say what was really hardest for you. The usual hard parts are learning devicetree and Kconfig, and moving the drivers from ESP-IDF's APIs to Zephyr's.
   - *What's the PID loop rate?* "I don't remember the exact number, so I won't guess. It ran as a fixed-period task, and the period was chosen to be faster than the valves can physically react."
 
-### 3.2 Being the only software engineer (ownership)
-- **S:** EKSON's team is hardware and mechanical engineers. I was the only software person.
-- **T:** Everything with code was mine: firmware, desktop app, web backend, firmware updates, CI.
+### 3.2 Owning the simulator software (ownership)
+- **Never say "the only software engineer"** (EKSON has other software engineers).
+- **S:** The simulator product needed firmware, a desktop app, a web backend and firmware updates.
+- **T:** I owned the simulator's code end to end: firmware, desktop app, web backend, firmware updates, CI.
 - **A:** I split the work by layers and built each one: firmware ↔ UART ↔ PyQt5 app ↔ REST ↔ Node.js server ↔ web. I set up GitHub Actions so every change was built and tested.
 - **R:** A working product path, from a button on a web page to a valve moving on the simulator.
 - **Honest part (say it if asked about code quality):** "I built it without a senior engineer to review it, so some of the desktop and web code isn't how I'd write it today. That's one reason I want to join a team now."
@@ -417,7 +418,7 @@ Read one group per day. Each line is what you'd say if an interviewer asked "wha
 
 | Question | Good answer |
 |---|---|
-| "Your EKSON job is part-time. Is it real experience?" | "Yes. I'm the only software engineer, so everything with code in the product is mine: the firmware, the desktop app, the backend and CI." |
+| "Your EKSON job is part-time. Is it real experience?" | "Yes. I own the simulator's software end to end: the firmware, the desktop app, the backend and CI." |
 | "You had no senior. How do you know your code is good?" | "I don't assume it is. I used CI and testing, and in open source I learned from strict reviews by maintainers. That's exactly why I want a team with seniors now." |
 | "What's your weakness?" | "I used to try to solve everything alone for too long, like with CAN in my graduation project. Now I set a time limit and ask earlier, which open source taught me." |
 | "Why do you have both embedded and Rust/Linux work?" | "They're the same skill: software close to the hardware and the OS. The firmware work taught me timing and constraints; the Linux work taught me IPC, processes and API design." |
