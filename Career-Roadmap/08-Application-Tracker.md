@@ -3,7 +3,7 @@
 > **One table to run the search from.** It lists the **P1 targets** from [02](02-International-Companies.md), [03](03-Egypt-Companies.md), [04](04-Remote-From-Egypt.md) and [05](05-Masters-and-Scholarships.md), sorted by the **next deadline or action**.
 > - Edit this file directly: change **Status**, fill **Applied on**, **Referral / contact** and **Next step**.
 > - Status values: `Not started` → `Preparing` → `Applied` → `Interview` → `Offer` / `Rejected` / `Withdrawn`.
-> - **All 524 companies** (P1 + P2 + P3) are also in the [Notion tracker](https://app.notion.com/p/65cf33df29f64fcdb0191c3a6522bb30), with LinkedIn, careers and contact-search links; see [E](#e-notion-tracker-all-524-companies).
+> - **All 553 companies** (P1 + P2 + P3) are also in the [Notion tracker](https://app.notion.com/p/65cf33df29f64fcdb0191c3a6522bb30), with LinkedIn, careers and contact-search links; see [E](#e-notion-tracker-all-553-companies).
 > - All rows were **verified on 2026-09-29** via web search (see each source file for its evidence). Re-check the official link before applying.
 
 ## Table of Contents
@@ -11,7 +11,7 @@
 - [B. Rolling job applications — P1](#b-rolling-job-applications--p1)
 - [C. Backup and parallel (Egypt, remote and startups)](#c-backup-and-parallel-egypt-remote-and-startups)
 - [D. Summary counters](#d-summary-counters)
-- [E. Notion tracker (all 524 companies)](#e-notion-tracker-all-524-companies)
+- [E. Notion tracker (all 553 companies)](#e-notion-tracker-all-553-companies)
 
 ---
 
@@ -121,11 +121,11 @@ Update these by hand.
 
 ---
 
-## E. Notion tracker (all 524 companies)
+## E. Notion tracker (all 553 companies)
 
 **Link:** [Job Applications → Companies & Applications](https://app.notion.com/p/65cf33df29f64fcdb0191c3a6522bb30) (private Notion page).
 
-It holds every company from [02](02-International-Companies.md), [03](03-Egypt-Companies.md) and [04](04-Remote-From-Egypt.md), with duplicates merged: **524 rows** (65 P1, 178 P2, 281 P3). Rebuild the rows with `python3 tools/build_notion_tracker.py > companies.json`.
+It holds every company from [02](02-International-Companies.md), [03](03-Egypt-Companies.md) and [04](04-Remote-From-Egypt.md), with duplicates merged: **553 rows** (65 P1, 180 P2, 308 P3). Rebuild the rows with `python3 tools/build_notion_tracker.py > companies.json`.
 
 | Group | Columns |
 |---|---|
@@ -139,7 +139,7 @@ It holds every company from [02](02-International-Companies.md), [03](03-Egypt-C
 | Kind | Views |
 |---|---|
 | Everything | 🗂️ All companies (quick-filter bar: Priority, Status, Tech stack, Work mode, Visa, Roles, Best CV, From my list, Relocation, Referral status) · ⭐ P1 targets |
-| Where | 🇪🇬 Local (Egypt) · 🌍 Remote · 🏢 Hybrid · 🏭 On-site · ✈️ Relocation · 🛂 Visa sponsors (verified / likely) · 🇪🇺 Europe · 🕌 Gulf & Middle East · 🌏 Asia, Americas & Oceania |
+| Where | 🇪🇬 Local (Egypt) · 🏙️ Smart Village · 🌍 Remote · 🏢 Hybrid · 🏭 On-site · ✈️ Relocation · 🛂 Visa sponsors (verified / likely) · 🇪🇺 Europe · 🕌 Gulf & Middle East · 🌏 Asia, Americas & Oceania |
 | Tech | 🦀 Rust & systems · ⚙️ C++ · 🔧 C · 🐍 Python · 🐹 Go · ☕ Java · 🐧 Linux / Kernel · 🔌 Embedded / RTOS · ☁️ Cloud / K8s / Databases |
 | Type | 🏛️ Big Tech · 🚀 Startups · 🌐 Open source · 🎓 Graduate / Junior |
 | Progress | 📋 Pipeline (board by Status) · 🔥 Active applications · 🤝 Referrals (board) · 📅 Follow-ups (calendar) |
