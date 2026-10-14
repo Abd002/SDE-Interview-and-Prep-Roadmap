@@ -8,7 +8,7 @@
 
 **Why:** it goes at the top of every CV version and covers what CMU 15-445 and GSoC 2026 don't show: distributed systems, backend services, Docker/Kubernetes, observability and measured performance.
 
-**Time:** there are no fixed dates, because the time available during military service varies. Milestone **M0** is 20 short steps woven into the [step-by-step study plan](README.md). After step 104, work through **M1 → M8 in order**, alternating with the Phase 7 steps. Use Friday, the one day off, for the coding-heavy milestones. The total is about 240 hours.
+**Time:** there are no fixed dates, because the time available during military service varies. Milestone **M0** is 20 short steps woven into the [step-by-step study plan](README.md). After step 104, work through **M1 → M8 in order**, alternating with the Phase 7 steps. Use Friday, the one day off, for the coding-heavy milestones. The total is about 244 hours.
 
 ## 1. Why this project (and not more CMU or GSoC)
 
@@ -26,7 +26,7 @@
 ## 2. Rules that make it impressive
 
 1. **Write your own Raft.** Use raft-rs or openraft only to compare against. Your own consensus code is what interviewers ask about.
-2. **Public repo from the first commit:**
+2. **Public repo from the first commit**, dual-licensed **MIT OR Apache-2.0** (the Rust convention):
    - small, clean commits;
    - one issue per task;
    - a design doc (RFC) for every big decision.
@@ -87,15 +87,15 @@ clients (CLI, Go SDK, Rust client)
 ## 5. Milestones (in order, no dates)
 | # | Milestone | Est. hours | Done when |
 |---|---|---|---|
-| M0 | Prep + skeleton: papers, Tokio/tonic, RFC-000, repo + CI, WAL + memtable, gRPC Get/Put, Raft election in simulation (the 20 flagship steps of the study plan) | 20 | CI green; RFC-000 in `docs/`; election test passes under turmoil with random delays |
+| M0 | Prep + skeleton: papers, Tokio/tonic, RFC-000, repo + CI, WAL + memtable, gRPC Get/Put, Raft election in simulation (the 20 flagship steps of the study plan) | 20 | CI green; RFC-000 in `docs/`; election test passes under turmoil with random delays; Cargo **workspace** set up so reusable parts can become their own crates later |
 | M1 | Storage engine (WAL with checksums, memtable, SSTables + bloom filters, compaction v0, crash recovery) + gRPC Get/Put/Delete/Scan + CLI + criterion benchmarks | 24 | `kill -9` mid-write never loses an acknowledged write; first benchmark numbers committed |
-| M2 | Raft core: election, log replication, commit, persistence, conflict handling; deterministic simulation with partitions, drops, reordering, crashes | 36 | Every Figure 2 rule has a test; 1000 seeded random runs pass; any failure replays from its seed |
+| M2 | Raft core: election, log replication, commit, persistence, conflict handling; deterministic simulation with partitions, drops, reordering, crashes, built as its own crate (`sim/`) with no dependency on the KV code | 36 | Every Figure 2 rule has a test; 1000 seeded random runs pass; any failure replays from its seed; the simulator crate has its own README and example |
 | M3 | Replicated KV: state machine, ReadIndex reads, client IDs for exactly-once retries, snapshots + InstallSnapshot, Maelstrom adapter | 24 | Maelstrom `lin-kv` passes on 5 nodes, including partitions |
-| M4 | Faults: docker + toxiproxy + tc netem (partitions, latency, loss, crashes, disk-full); history recorder + Porcupine | 24 | Fault matrix in the README, every scenario linearizable; each bug found has a regression test |
+| M4 | Faults: docker + toxiproxy + tc netem (partitions, latency, loss, crashes, disk-full); history recorder + linearizability checker, written in Rust as its own crate and cross-checked against Porcupine | 28 | Fault matrix in the README, every scenario linearizable; each bug found has a regression test; checker **published on crates.io** with docs.rs docs and a blog post |
 | M5 | Scale-out: multi-Raft per key range, shard router, membership change, shard split/move, rebalancing | 36 | Add/remove a node and move a shard under load with no lost or duplicated writes |
 | M6 | Ops: small Docker image, compose 3/5-node clusters, Helm chart on kind, Prometheus metrics, Grafana dashboard, tracing | 24 | `helm install` gives a healthy 3-node cluster; killing the leader shows a failover on the dashboard |
 | M7 | Performance + Go SDK: YCSB-style workloads, batching/pipelining, flamegraph tuning, comparison with etcd | 24 | Benchmark report with ops/s and p50/p99 for 3 workloads, before and after tuning, plus methodology |
-| M8 | Ship v1.0: final README, architecture doc + RFCs, 2 blog posts, 3-minute demo video, CV/LinkedIn update, Show HN / r/rust | 24 | v1.0 tagged; all three CVs rebuilt with real numbers; post published; GSoC mentors asked for feedback |
+| M8 | Ship v1.0: final README, architecture doc + RFCs, 2 blog posts, 3-minute demo video, CV/LinkedIn update, Show HN / r/rust, publish the reusable crates, open 5 good-first issues | 24 | v1.0 tagged; crates published; 5 labelled good-first issues open; all three CVs rebuilt with real numbers; post published; GSoC mentors asked for feedback |
 
 ## 6. How to present it to companies
 
@@ -114,7 +114,26 @@ clients (CLI, Go SDK, Rust client)
 - **Interview story (STAR):** the hardest bug, a trade-off you changed your mind on, and what you'd do differently.
 - **Share it:** a LinkedIn post at v1.0, r/rust, Hacker News "Show HN", and a message to the GSoC mentors asking for feedback or a referral.
 
-## 7. Routine
+## 7. Keeping it alive as an open-source project
+
+Nobody will run a hobby Raft store instead of etcd, so the store itself won't attract many users. The **reusable parts** will, because other Rust developers need them. Build them as separate crates from the start and publish them:
+
+| Crate | Built in | Who needs it |
+|---|---|---|
+| **Linearizability checker** (main one) | M4 | Anyone testing a distributed system or database in Rust. Porcupine is Go-only, so there is a real gap. |
+| **Deterministic simulator** (seeded faults, replay a failure from its seed) | M2 | Teams building any networked Rust service |
+| Storage engine (WAL, SSTables, bloom filters) | M1 | Lower demand (sled and fjall exist); publish only if it stays clean |
+
+**What brings people to the repo:**
+1. **Write about it.** Posts like "How my own checker found a linearizability bug" or "Deterministic simulation in Rust from scratch" bring more visitors than code. Share them on r/rust, Hacker News and *This Week in Rust*.
+2. **Publish on crates.io** with docs on docs.rs and runnable examples in each README.
+3. **Keep it alive:** tagged releases, a `CHANGELOG.md`, `CONTRIBUTING.md`, a few "good first issue" labels, and fast replies to issues and PRs.
+4. **Easy to try:** a 30-second "run a 3-node cluster" command and the fault matrix at the top of the README.
+5. **Link it everywhere:** pinned on GitHub, LinkedIn Featured, and mentioned where it helps someone (for example Maelstrom and Jepsen discussions).
+
+**Done when:** the checker crate has outside users (stars, issues or a dependent crate) and at least one PR from someone else.
+
+## 8. Routine
 
 - **Every session:** a small commit, then tick the step.
 - **Every week:** update the design doc, add a note to `docs/log.md`, run the full simulation suite.
