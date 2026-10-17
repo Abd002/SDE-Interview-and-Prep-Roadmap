@@ -516,43 +516,43 @@ Progress bars and counts are generated from checklist states when you commit cha
 
 - [ ] [**Arrays**](./Data%20Structures/Arrays.md) **`P0`**
 
-- [ ] **Graphs** **`P0`**
+- [ ] [**Graphs**](./Data%20Structures/Graphs.md) **`P0`**
 
-  - [ ] Acyclic graphs **`P0`**
+  - [ ] [Acyclic graphs](./Data%20Structures/Graphs.md#4-acyclic-graphs) **`P0`**
 
-  - [ ] Bipartite graphs **`P0`**
+  - [ ] [Bipartite graphs](./Data%20Structures/Graphs.md#6-bipartite-graphs) **`P0`**
 
-  - [ ] Directed graphs **`P0`**
+  - [ ] [Directed graphs](./Data%20Structures/Graphs.md#3-directed-graphs) **`P0`**
 
-  - [ ] Graphs with special properties (e.g., planar graphs, Eulerian graphs) **`P0`**
+  - [ ] [Graphs with special properties (e.g., planar graphs, Eulerian graphs)](./Data%20Structures/Graphs.md#8-graphs-with-special-properties-eg-planar-graphs-eulerian-graphs) **`P0`**
 
-  - [ ] Representations (adjacency matrix, adjacency list) **`P1`**
+  - [ ] [Representations (adjacency matrix, adjacency list)](./Data%20Structures/Graphs.md#1-representations-adjacency-matrix-adjacency-list) **`P1`**
 
-    - [ ] Edge list **`P1`**
+    - [ ] [Edge list](./Data%20Structures/Graphs.md#11-edge-list) **`P1`**
 
-    - [ ] Incidence matrix **`P2`**
+    - [ ] [Incidence matrix](./Data%20Structures/Graphs.md#12-incidence-matrix) **`P2`**
 
-  - [ ] Spanning trees (Minimum Spanning Tree, Maximum Spanning Tree) **`P0`**
+  - [ ] [Spanning trees (Minimum Spanning Tree, Maximum Spanning Tree)](./Data%20Structures/Graphs.md#7-spanning-trees-minimum-spanning-tree-maximum-spanning-tree) **`P0`**
 
-  - [ ] Traversal algorithms (DFS, BFS) **`P0`**
+  - [ ] [Traversal algorithms (DFS, BFS)](./Data%20Structures/Graphs.md#2-traversal-algorithms-dfs-bfs) **`P0`**
 
-  - [ ] Weighted graphs **`P0`**
+  - [ ] [Weighted graphs](./Data%20Structures/Graphs.md#5-weighted-graphs) **`P0`**
 
-- [ ] **Hash Tables** **`P0`**
+- [ ] [**Hash Tables**](./Data%20Structures/Hash-Tables.md) **`P0`**
 
-  - [ ] Bloom Filters **`P2`**
+  - [ ] [Bloom Filters](./Data%20Structures/Hash-Tables.md#6-bloom-filters) **`P2`**
 
-  - [ ] Collision resolution techniques (chaining, open addressing) **`P1`**
+  - [ ] [Collision resolution techniques (chaining, open addressing)](./Data%20Structures/Hash-Tables.md#2-collision-resolution-techniques-chaining-open-addressing) **`P1`**
 
-  - [ ] Count-Min Sketch **`P2`**
+  - [ ] [Count-Min Sketch](./Data%20Structures/Hash-Tables.md#7-count-min-sketch) **`P2`**
 
-  - [ ] Cuckoo Hashing **`P0`**
+  - [ ] [Cuckoo Hashing](./Data%20Structures/Hash-Tables.md#4-cuckoo-hashing) **`P0`**
 
-  - [ ] Hash functions **`P0`**
+  - [ ] [Hash functions](./Data%20Structures/Hash-Tables.md#1-hash-functions) **`P0`**
 
-  - [ ] Perfect Hashing **`P2`**
+  - [ ] [Perfect Hashing](./Data%20Structures/Hash-Tables.md#5-perfect-hashing) **`P2`**
 
-  - [ ] Robin Hood Hashing **`P0`**
+  - [ ] [Robin Hood Hashing](./Data%20Structures/Hash-Tables.md#3-robin-hood-hashing) **`P0`**
 
 - [ ] [**Linked Lists**](./Data%20Structures/LinkedList.md) **`P0`**
 
@@ -572,59 +572,59 @@ Progress bars and counts are generated from checklist states when you commit cha
 
   - [ ] Unrolled linked lists **`P2`**
 
-- [ ] **Queues** **`P0`**
+- [ ] [**Queues**](./Data%20Structures/Queues.md) **`P0`**
 
-  - [ ] Applications (e.g., BFS, job scheduling) **`P0`**
+  - [ ] [Applications (e.g., BFS, job scheduling)](./Data%20Structures/Queues.md#2-applications-eg-bfs-job-scheduling) **`P0`**
 
-  - [ ] Implementations (e.g., array-based, linked list-based, priority queues) **`P0`**
+  - [ ] [Implementations (e.g., array-based, linked list-based, priority queues)](./Data%20Structures/Queues.md#1-implementations-eg-array-based-linked-list-based-priority-queues) **`P0`**
 
-    - [ ] Circular queue **`P0`**
+    - [ ] [Circular queue](./Data%20Structures/Queues.md#11-circular-queue) **`P0`**
 
-    - [ ] Double-ended queue (Deque) **`P1`**
+    - [ ] [Double-ended queue (Deque)](./Data%20Structures/Queues.md#12-double-ended-queue-deque) **`P1`**
 
-- [ ] **Stacks** **`P0`**
+- [ ] [**Stacks**](./Data%20Structures/Stacks.md) **`P0`**
 
-  - [ ] Applications (e.g., expression evaluation, backtracking) **`P0`**
+  - [ ] [Applications (e.g., expression evaluation, backtracking)](./Data%20Structures/Stacks.md#2-applications-eg-expression-evaluation-backtracking) **`P0`**
 
-  - [ ] Implementations using arrays and linked lists **`P0`**
+  - [ ] [Implementations using arrays and linked lists](./Data%20Structures/Stacks.md#1-implementations-using-arrays-and-linked-lists) **`P0`**
 
-    - [ ] Array-based stack **`P0`**
+    - [ ] [Array-based stack](./Data%20Structures/Stacks.md#11-array-based-stack) **`P0`**
 
-    - [ ] Linked list-based stack **`P0`**
+    - [ ] [Linked list-based stack](./Data%20Structures/Stacks.md#12-linked-list-based-stack) **`P0`**
 
-  - [ ] Priority stacks **`P2`**
+  - [ ] [Priority stacks](./Data%20Structures/Stacks.md#3-priority-stacks) **`P2`**
 
-- [ ] **Trees** **`P0`**
+- [ ] [**Trees**](./Data%20Structures/Trees.md) **`P0`**
 
-  - [ ] AVL Trees **`P0`**
+  - [ ] [AVL Trees](./Data%20Structures/Trees.md#4-avl-trees) **`P0`**
 
-  - [ ] B-Trees **`P0`**
+  - [ ] [B-Trees](./Data%20Structures/Trees.md#7-b-trees) **`P0`**
 
-  - [ ] Binary Search Trees (BST) **`P0`**
+  - [ ] [Binary Search Trees (BST)](./Data%20Structures/Trees.md#2-binary-search-trees-bst) **`P0`**
 
-    - [ ] Self-balancing BST **`P1`**
+    - [ ] [Self-balancing BST](./Data%20Structures/Trees.md#3-self-balancing-bst) **`P1`**
 
-      - [ ] Scapegoat tree **`P2`**
+      - [ ] [Scapegoat tree](./Data%20Structures/Trees.md#31-scapegoat-tree) **`P2`**
 
-      - [ ] Tango tree **`P2`**
+      - [ ] [Tango tree](./Data%20Structures/Trees.md#32-tango-tree) **`P2`**
 
-  - [ ] Binary Trees **`P0`**
+  - [ ] [Binary Trees](./Data%20Structures/Trees.md#1-binary-trees) **`P0`**
 
-    - [ ] Complete binary tree **`P0`**
+    - [ ] [Complete binary tree](./Data%20Structures/Trees.md#12-complete-binary-tree) **`P0`**
 
-    - [ ] Full binary tree **`P0`**
+    - [ ] [Full binary tree](./Data%20Structures/Trees.md#11-full-binary-tree) **`P0`**
 
-    - [ ] Perfect binary tree **`P2`**
+    - [ ] [Perfect binary tree](./Data%20Structures/Trees.md#13-perfect-binary-tree) **`P2`**
 
-  - [ ] Heap Trees (min-heap, max-heap) **`P0`**
+  - [ ] [Heap Trees (min-heap, max-heap)](./Data%20Structures/Trees.md#6-heap-trees-min-heap-max-heap) **`P0`**
 
-  - [ ] Radix Trees **`P2`**
+  - [ ] [Radix Trees](./Data%20Structures/Trees.md#10-radix-trees) **`P2`**
 
-  - [ ] Red-Black Trees **`P0`**
+  - [ ] [Red-Black Trees](./Data%20Structures/Trees.md#5-red-black-trees) **`P0`**
 
-  - [ ] Splay Trees **`P2`**
+  - [ ] [Splay Trees](./Data%20Structures/Trees.md#8-splay-trees) **`P2`**
 
-  - [ ] Trie **`P0`**
+  - [ ] [Trie](./Data%20Structures/Trees.md#9-trie) **`P0`**
 
 </details>
 
