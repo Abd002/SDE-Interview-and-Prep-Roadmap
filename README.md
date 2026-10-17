@@ -1256,109 +1256,109 @@ Progress bars and counts are generated from checklist states when you commit cha
 <details>
 <summary><strong>View topics and checklist</strong></summary>
 
-- [ ] **Application and API Security** **`P0`**
+- [ ] [**Application and API Security**](./Security%20Engineering%20%26%20Authentication/Application-and-API-Security.md) **`P0`**
 
-  - [ ] API rate limiting, quotas, abuse prevention, and audit logs **`P0`**
+  - [ ] [API rate limiting, quotas, abuse prevention, and audit logs](./Security%20Engineering%20%26%20Authentication/Application-and-API-Security.md#1-api-rate-limiting-quotas-abuse-prevention-and-audit-logs) **`P0`**
 
-  - [ ] Broken object-level authorization (BOLA/IDOR) **`P0`**
+  - [ ] [Broken object-level authorization (BOLA/IDOR)](./Security%20Engineering%20%26%20Authentication/Application-and-API-Security.md#2-broken-object-level-authorization-bolaidor) **`P0`**
 
-  - [ ] CORS behavior and common misconfigurations **`P1`**
+  - [ ] [CORS behavior and common misconfigurations](./Security%20Engineering%20%26%20Authentication/Application-and-API-Security.md#3-cors-behavior-and-common-misconfigurations) **`P1`**
 
-  - [ ] Cross-site scripting (XSS), output encoding, and CSP **`P1`**
+  - [ ] [Cross-site scripting (XSS), output encoding, and CSP](./Security%20Engineering%20%26%20Authentication/Application-and-API-Security.md#4-cross-site-scripting-xss-output-encoding-and-csp) **`P1`**
 
-  - [ ] CSRF, SSRF, open redirects, and request smuggling basics **`P1`**
+  - [ ] [CSRF, SSRF, open redirects, and request smuggling basics](./Security%20Engineering%20%26%20Authentication/Application-and-API-Security.md#5-csrf-ssrf-open-redirects-and-request-smuggling-basics) **`P1`**
 
-  - [ ] File upload validation and malware scanning **`P1`**
+  - [ ] [File upload validation and malware scanning](./Security%20Engineering%20%26%20Authentication/Application-and-API-Security.md#6-file-upload-validation-and-malware-scanning) **`P1`**
 
-  - [ ] Input validation, schema validation, and safe deserialization **`P1`**
+  - [ ] [Input validation, schema validation, and safe deserialization](./Security%20Engineering%20%26%20Authentication/Application-and-API-Security.md#7-input-validation-schema-validation-and-safe-deserialization) **`P1`**
 
-  - [ ] OWASP Top 10 and common exploitation paths **`P0`**
+  - [ ] [OWASP Top 10 and common exploitation paths](./Security%20Engineering%20%26%20Authentication/Application-and-API-Security.md#8-owasp-top-10-and-common-exploitation-paths) **`P0`**
 
-  - [ ] SQL/NoSQL injection and parameterized queries **`P0`**
+  - [ ] [SQL/NoSQL injection and parameterized queries](./Security%20Engineering%20%26%20Authentication/Application-and-API-Security.md#9-sqlnosql-injection-and-parameterized-queries) **`P0`**
 
-- [ ] **Authentication and Authorization** **`P0`**
+- [ ] [**Authentication and Authorization**](./Security%20Engineering%20%26%20Authentication/Authentication-and-Authorization.md) **`P0`**
 
-  - [ ] Authentication vs. authorization; identity vs. session management **`P0`**
+  - [ ] [Authentication vs. authorization; identity vs. session management](./Security%20Engineering%20%26%20Authentication/Authentication-and-Authorization.md#1-authentication-vs-authorization-identity-vs-session-management) **`P0`**
 
-  - [ ] JWT structure, claims, signature validation, and key rotation **`P0`**
+  - [ ] [JWT structure, claims, signature validation, and key rotation](./Security%20Engineering%20%26%20Authentication/Authentication-and-Authorization.md#2-jwt-structure-claims-signature-validation-and-key-rotation) **`P0`**
 
-  - [ ] OAuth 2.0 roles, authorization code + PKCE, scopes, and refresh tokens **`P0`**
+  - [ ] [OAuth 2.0 roles, authorization code + PKCE, scopes, and refresh tokens](./Security%20Engineering%20%26%20Authentication/Authentication-and-Authorization.md#3-oauth-20-roles-authorization-code--pkce-scopes-and-refresh-tokens) **`P0`**
 
-  - [ ] OpenID Connect (OIDC) vs. OAuth 2.0 **`P0`**
+  - [ ] [OpenID Connect (OIDC) vs. OAuth 2.0](./Security%20Engineering%20%26%20Authentication/Authentication-and-Authorization.md#4-openid-connect-oidc-vs-oauth-20) **`P0`**
 
-  - [ ] RBAC vs. ABAC vs. policy-based access control **`P1`**
+  - [ ] [RBAC vs. ABAC vs. policy-based access control](./Security%20Engineering%20%26%20Authentication/Authentication-and-Authorization.md#5-rbac-vs-abac-vs-policy-based-access-control) **`P1`**
 
-  - [ ] Service-to-service authentication and workload identities **`P0`**
+  - [ ] [Service-to-service authentication and workload identities](./Security%20Engineering%20%26%20Authentication/Authentication-and-Authorization.md#6-service-to-service-authentication-and-workload-identities) **`P0`**
 
-  - [ ] Sessions, cookies, SameSite, HttpOnly, Secure, and CSRF protection **`P0`**
+  - [ ] [Sessions, cookies, SameSite, HttpOnly, Secure, and CSRF protection](./Security%20Engineering%20%26%20Authentication/Authentication-and-Authorization.md#7-sessions-cookies-samesite-httponly-secure-and-csrf-protection) **`P0`**
 
-  - [ ] SSO, SAML basics, MFA, and passkeys/WebAuthn **`P1`**
+  - [ ] [SSO, SAML basics, MFA, and passkeys/WebAuthn](./Security%20Engineering%20%26%20Authentication/Authentication-and-Authorization.md#8-sso-saml-basics-mfa-and-passkeyswebauthn) **`P1`**
 
-- [ ] **Core Security Principles** **`P1`**
+- [ ] [**Core Security Principles**](./Security%20Engineering%20%26%20Authentication/Core-Security-Principles.md) **`P1`**
 
-  - [ ] CIA triad, defense in depth, least privilege, and secure defaults **`P1`**
+  - [ ] [CIA triad, defense in depth, least privilege, and secure defaults](./Security%20Engineering%20%26%20Authentication/Core-Security-Principles.md#1-cia-triad-defense-in-depth-least-privilege-and-secure-defaults) **`P1`**
 
-  - [ ] Secure SDLC, security reviews, and responsible vulnerability disclosure **`P1`**
+  - [ ] [Secure SDLC, security reviews, and responsible vulnerability disclosure](./Security%20Engineering%20%26%20Authentication/Core-Security-Principles.md#2-secure-sdlc-security-reviews-and-responsible-vulnerability-disclosure) **`P1`**
 
-  - [ ] Security requirements vs. security controls vs. residual risk **`P0`**
+  - [ ] [Security requirements vs. security controls vs. residual risk](./Security%20Engineering%20%26%20Authentication/Core-Security-Principles.md#3-security-requirements-vs-security-controls-vs-residual-risk) **`P0`**
 
-  - [ ] Threat modeling (STRIDE), trust boundaries, and attack surfaces **`P1`**
+  - [ ] [Threat modeling (STRIDE), trust boundaries, and attack surfaces](./Security%20Engineering%20%26%20Authentication/Core-Security-Principles.md#4-threat-modeling-stride-trust-boundaries-and-attack-surfaces) **`P1`**
 
-- [ ] **Cryptography and Data Protection** **`P0`**
+- [ ] [**Cryptography and Data Protection**](./Security%20Engineering%20%26%20Authentication/Cryptography-and-Data-Protection.md) **`P0`**
 
-  - [ ] Data classification, minimization, retention, and deletion **`P1`**
+  - [ ] [Data classification, minimization, retention, and deletion](./Security%20Engineering%20%26%20Authentication/Cryptography-and-Data-Protection.md#1-data-classification-minimization-retention-and-deletion) **`P1`**
 
-  - [ ] Encryption at rest vs. in transit and envelope encryption **`P0`**
+  - [ ] [Encryption at rest vs. in transit and envelope encryption](./Security%20Engineering%20%26%20Authentication/Cryptography-and-Data-Protection.md#2-encryption-at-rest-vs-in-transit-and-envelope-encryption) **`P0`**
 
-  - [ ] Hashing, password hashing (Argon2/bcrypt), salts, and pepper **`P0`**
+  - [ ] [Hashing, password hashing (Argon2/bcrypt), salts, and pepper](./Security%20Engineering%20%26%20Authentication/Cryptography-and-Data-Protection.md#3-hashing-password-hashing-argon2bcrypt-salts-and-pepper) **`P0`**
 
-  - [ ] HMAC, digital signatures, and authenticated encryption **`P0`**
+  - [ ] [HMAC, digital signatures, and authenticated encryption](./Security%20Engineering%20%26%20Authentication/Cryptography-and-Data-Protection.md#4-hmac-digital-signatures-and-authenticated-encryption) **`P0`**
 
-  - [ ] KMS, secrets managers, certificate rotation, and key lifecycles **`P1`**
+  - [ ] [KMS, secrets managers, certificate rotation, and key lifecycles](./Security%20Engineering%20%26%20Authentication/Cryptography-and-Data-Protection.md#5-kms-secrets-managers-certificate-rotation-and-key-lifecycles) **`P1`**
 
-  - [ ] Symmetric vs. asymmetric encryption; key-exchange basics **`P0`**
+  - [ ] [Symmetric vs. asymmetric encryption; key-exchange basics](./Security%20Engineering%20%26%20Authentication/Cryptography-and-Data-Protection.md#6-symmetric-vs-asymmetric-encryption-key-exchange-basics) **`P0`**
 
-  - [ ] TLS handshake, certificates, certificate authorities, and mTLS **`P1`**
+  - [ ] [TLS handshake, certificates, certificate authorities, and mTLS](./Security%20Engineering%20%26%20Authentication/Cryptography-and-Data-Protection.md#7-tls-handshake-certificates-certificate-authorities-and-mtls) **`P1`**
 
-- [ ] **Infrastructure, Cloud, and Supply-Chain Security** **`P1`**
+- [ ] [**Infrastructure, Cloud, and Supply-Chain Security**](./Security%20Engineering%20%26%20Authentication/Infrastructure-Cloud-and-Supply-Chain-Security.md) **`P1`**
 
-  - [ ] Container/Kubernetes security contexts, RBAC, and network policies **`P0`**
+  - [ ] [Container/Kubernetes security contexts, RBAC, and network policies](./Security%20Engineering%20%26%20Authentication/Infrastructure-Cloud-and-Supply-Chain-Security.md#1-containerkubernetes-security-contexts-rbac-and-network-policies) **`P0`**
 
-  - [ ] Dependency vulnerabilities, SBOMs, and software supply-chain attacks **`P1`**
+  - [ ] [Dependency vulnerabilities, SBOMs, and software supply-chain attacks](./Security%20Engineering%20%26%20Authentication/Infrastructure-Cloud-and-Supply-Chain-Security.md#2-dependency-vulnerabilities-sboms-and-software-supply-chain-attacks) **`P1`**
 
-  - [ ] IAM least privilege and privilege escalation risks **`P0`**
+  - [ ] [IAM least privilege and privilege escalation risks](./Security%20Engineering%20%26%20Authentication/Infrastructure-Cloud-and-Supply-Chain-Security.md#3-iam-least-privilege-and-privilege-escalation-risks) **`P0`**
 
-  - [ ] Network segmentation, zero-trust architecture, and private access **`P1`**
+  - [ ] [Network segmentation, zero-trust architecture, and private access](./Security%20Engineering%20%26%20Authentication/Infrastructure-Cloud-and-Supply-Chain-Security.md#4-network-segmentation-zero-trust-architecture-and-private-access) **`P1`**
 
-  - [ ] SAST vs. DAST vs. SCA; CI security gates **`P1`**
+  - [ ] [SAST vs. DAST vs. SCA; CI security gates](./Security%20Engineering%20%26%20Authentication/Infrastructure-Cloud-and-Supply-Chain-Security.md#5-sast-vs-dast-vs-sca-ci-security-gates) **`P1`**
 
-  - [ ] Secrets leakage prevention and incident credential rotation **`P1`**
+  - [ ] [Secrets leakage prevention and incident credential rotation](./Security%20Engineering%20%26%20Authentication/Infrastructure-Cloud-and-Supply-Chain-Security.md#6-secrets-leakage-prevention-and-incident-credential-rotation) **`P1`**
 
-- [ ] **LLM and Agent Security** **`P0`**
+- [ ] [**LLM and Agent Security**](./Security%20Engineering%20%26%20Authentication/LLM-and-Agent-Security.md) **`P0`**
 
-  - [ ] Auditability and rollback of agent-triggered side effects **`P1`**
+  - [ ] [Auditability and rollback of agent-triggered side effects](./Security%20Engineering%20%26%20Authentication/LLM-and-Agent-Security.md#1-auditability-and-rollback-of-agent-triggered-side-effects) **`P1`**
 
-  - [ ] Output validation, sandboxing, and safe execution environments **`P1`**
+  - [ ] [Output validation, sandboxing, and safe execution environments](./Security%20Engineering%20%26%20Authentication/LLM-and-Agent-Security.md#2-output-validation-sandboxing-and-safe-execution-environments) **`P1`**
 
-  - [ ] Prompt injection vs. instruction-following; untrusted retrieved content **`P0`**
+  - [ ] [Prompt injection vs. instruction-following; untrusted retrieved content](./Security%20Engineering%20%26%20Authentication/LLM-and-Agent-Security.md#3-prompt-injection-vs-instruction-following-untrusted-retrieved-content) **`P0`**
 
-  - [ ] RAG authorization filtering, document-level access controls **`P0`**
+  - [ ] [RAG authorization filtering, document-level access controls](./Security%20Engineering%20%26%20Authentication/LLM-and-Agent-Security.md#4-rag-authorization-filtering-document-level-access-controls) **`P0`**
 
-  - [ ] Secrets/PII exfiltration threats through tools and model responses **`P1`**
+  - [ ] [Secrets/PII exfiltration threats through tools and model responses](./Security%20Engineering%20%26%20Authentication/LLM-and-Agent-Security.md#5-secretspii-exfiltration-threats-through-tools-and-model-responses) **`P1`**
 
-  - [ ] Tool permission boundaries, allowlists, and human approval for writes **`P1`**
+  - [ ] [Tool permission boundaries, allowlists, and human approval for writes](./Security%20Engineering%20%26%20Authentication/LLM-and-Agent-Security.md#6-tool-permission-boundaries-allowlists-and-human-approval-for-writes) **`P1`**
 
-- [ ] **Security Operations and Design Interviews** **`P1`**
+- [ ] [**Security Operations and Design Interviews**](./Security%20Engineering%20%26%20Authentication/Security-Operations-and-Design-Interviews.md) **`P1`**
 
-  - [ ] Centralized security logging and tamper-evident audit trails **`P0`**
+  - [ ] [Centralized security logging and tamper-evident audit trails](./Security%20Engineering%20%26%20Authentication/Security-Operations-and-Design-Interviews.md#1-centralized-security-logging-and-tamper-evident-audit-trails) **`P0`**
 
-  - [ ] Design secure multi-tenant data access and tenant isolation **`P1`**
+  - [ ] [Design secure multi-tenant data access and tenant isolation](./Security%20Engineering%20%26%20Authentication/Security-Operations-and-Design-Interviews.md#2-design-secure-multi-tenant-data-access-and-tenant-isolation) **`P1`**
 
-  - [ ] Explain trade-offs between usability, latency, and security **`P0`**
+  - [ ] [Explain trade-offs between usability, latency, and security](./Security%20Engineering%20%26%20Authentication/Security-Operations-and-Design-Interviews.md#3-explain-trade-offs-between-usability-latency-and-security) **`P0`**
 
-  - [ ] Incident lifecycle: detection, containment, eradication, recovery **`P1`**
+  - [ ] [Incident lifecycle: detection, containment, eradication, recovery](./Security%20Engineering%20%26%20Authentication/Security-Operations-and-Design-Interviews.md#4-incident-lifecycle-detection-containment-eradication-recovery) **`P1`**
 
-  - [ ] Model replay attacks, confused deputy issues, and privilege boundaries **`P1`**
+  - [ ] [Model replay attacks, confused deputy issues, and privilege boundaries](./Security%20Engineering%20%26%20Authentication/Security-Operations-and-Design-Interviews.md#5-model-replay-attacks-confused-deputy-issues-and-privilege-boundaries) **`P1`**
 
 </details>
 
