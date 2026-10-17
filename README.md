@@ -804,115 +804,115 @@ Progress bars and counts are generated from checklist states when you commit cha
 <details>
 <summary><strong>View topics and checklist</strong></summary>
 
-- [ ] **API, Persistence, and Concurrency Design** **`P0`**
+- [ ] [**API, Persistence, and Concurrency Design**](./Low-Level%20Design%20%26%20Object-Oriented%20Design/API-Persistence-and-Concurrency-Design.md) **`P0`**
 
-  - [ ] Data access layering, repositories, and transaction boundaries **`P0`**
+  - [ ] [Data access layering, repositories, and transaction boundaries](./Low-Level%20Design%20%26%20Object-Oriented%20Design/API-Persistence-and-Concurrency-Design.md#1-data-access-layering-repositories-and-transaction-boundaries) **`P0`**
 
-  - [ ] Idempotent operations and safe retries in low-level APIs **`P0`**
+  - [ ] [Idempotent operations and safe retries in low-level APIs](./Low-Level%20Design%20%26%20Object-Oriented%20Design/API-Persistence-and-Concurrency-Design.md#2-idempotent-operations-and-safe-retries-in-low-level-apis) **`P0`**
 
-  - [ ] Interface-first design and stable public contracts **`P0`**
+  - [ ] [Interface-first design and stable public contracts](./Low-Level%20Design%20%26%20Object-Oriented%20Design/API-Persistence-and-Concurrency-Design.md#3-interface-first-design-and-stable-public-contracts) **`P0`**
 
-  - [ ] Testability: dependency injection, mocks, and interface contracts **`P0`**
+  - [ ] [Testability: dependency injection, mocks, and interface contracts](./Low-Level%20Design%20%26%20Object-Oriented%20Design/API-Persistence-and-Concurrency-Design.md#4-testability-dependency-injection-mocks-and-interface-contracts) **`P0`**
 
-  - [ ] Thread safety, synchronization, immutability, and race prevention **`P0`**
+  - [ ] [Thread safety, synchronization, immutability, and race prevention](./Low-Level%20Design%20%26%20Object-Oriented%20Design/API-Persistence-and-Concurrency-Design.md#5-thread-safety-synchronization-immutability-and-race-prevention) **`P0`**
 
-  - [ ] Validation, domain errors, exceptions, and failure handling **`P0`**
+  - [ ] [Validation, domain errors, exceptions, and failure handling](./Low-Level%20Design%20%26%20Object-Oriented%20Design/API-Persistence-and-Concurrency-Design.md#6-validation-domain-errors-exceptions-and-failure-handling) **`P0`**
 
-- [ ] **Classic Low-Level Design Interview Problems** **`P1`**
+- [ ] [**Classic Low-Level Design Interview Problems**](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md) **`P1`**
 
-  - [ ] Design a cache with LRU/LFU eviction **`P0`**
+  - [ ] [Design a cache with LRU/LFU eviction](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#1-design-a-cache-with-lrulfu-eviction) **`P0`**
 
-  - [ ] Design a chess or tic-tac-toe engine (rules, turns, extensibility) **`P1`**
+  - [ ] [Design a chess or tic-tac-toe engine (rules, turns, extensibility)](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#2-design-a-chess-or-tic-tac-toe-engine-rules-turns-extensibility) **`P1`**
 
-  - [ ] Design a file system / in-memory directory tree **`P0`**
+  - [ ] [Design a file system / in-memory directory tree](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#3-design-a-file-system--in-memory-directory-tree) **`P0`**
 
-  - [ ] Design a library management system (loans, reservations, fines) **`P1`**
+  - [ ] [Design a library management system (loans, reservations, fines)](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#4-design-a-library-management-system-loans-reservations-fines) **`P1`**
 
-  - [ ] Design a logging framework (appenders, levels, concurrency) **`P0`**
+  - [ ] [Design a logging framework (appenders, levels, concurrency)](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#5-design-a-logging-framework-appenders-levels-concurrency) **`P0`**
 
-  - [ ] Design a movie ticket booking system (seat locking, expiry) **`P1`**
+  - [ ] [Design a movie ticket booking system (seat locking, expiry)](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#6-design-a-movie-ticket-booking-system-seat-locking-expiry) **`P1`**
 
-  - [ ] Design a notification framework with channels and retries **`P0`**
+  - [ ] [Design a notification framework with channels and retries](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#7-design-a-notification-framework-with-channels-and-retries) **`P0`**
 
-  - [ ] Design a parking lot (spots, pricing, tickets, concurrency) **`P0`**
+  - [ ] [Design a parking lot (spots, pricing, tickets, concurrency)](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#8-design-a-parking-lot-spots-pricing-tickets-concurrency) **`P0`**
 
-  - [ ] Design a rate limiter (strategy interfaces, pluggable algorithms) **`P0`**
+  - [ ] [Design a rate limiter (strategy interfaces, pluggable algorithms)](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#9-design-a-rate-limiter-strategy-interfaces-pluggable-algorithms) **`P0`**
 
-  - [ ] Design a splitwise-style expense sharing system **`P1`**
+  - [ ] [Design a splitwise-style expense sharing system](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#10-design-a-splitwise-style-expense-sharing-system) **`P1`**
 
-  - [ ] Design a vending machine (inventory, payment, state transitions) **`P1`**
+  - [ ] [Design a vending machine (inventory, payment, state transitions)](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#11-design-a-vending-machine-inventory-payment-state-transitions) **`P1`**
 
-  - [ ] Design an elevator system (scheduling, requests, states) **`P1`**
+  - [ ] [Design an elevator system (scheduling, requests, states)](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Classic-LLD-Problems.md#12-design-an-elevator-system-scheduling-requests-states) **`P1`**
 
-- [ ] **Design Patterns in Practice** **`P0`**
+- [ ] [**Design Patterns in Practice**](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md) **`P0`**
 
-  - [ ] Adapter / Facade for external integration **`P1`**
+  - [ ] [Adapter / Facade for external integration](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#1-adapter--facade-for-external-integration) **`P1`**
 
-  - [ ] Builder for complex object construction **`P1`**
+  - [ ] [Builder for complex object construction](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#2-builder-for-complex-object-construction) **`P1`**
 
-  - [ ] Command pattern for undo, queues, and operations **`P1`**
+  - [ ] [Command pattern for undo, queues, and operations](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#3-command-pattern-for-undo-queues-and-operations) **`P1`**
 
-  - [ ] Decorator / Proxy for behavior interception **`P1`**
+  - [ ] [Decorator / Proxy for behavior interception](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#4-decorator--proxy-for-behavior-interception) **`P1`**
 
-  - [ ] Dependency injection and inversion of control **`P1`**
+  - [ ] [Dependency injection and inversion of control](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#5-dependency-injection-and-inversion-of-control) **`P1`**
 
-  - [ ] Factory / Abstract Factory for object creation and extensibility **`P0`**
+  - [ ] [Factory / Abstract Factory for object creation and extensibility](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#6-factory--abstract-factory-for-object-creation-and-extensibility) **`P0`**
 
-  - [ ] Observer / Pub-Sub for state-change notifications **`P0`**
+  - [ ] [Observer / Pub-Sub for state-change notifications](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#7-observer--pub-sub-for-state-change-notifications) **`P0`**
 
-  - [ ] Recognize when **not** to introduce a design pattern **`P0`**
+  - [ ] [Recognize when not to introduce a design pattern](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#8-recognize-when-not-to-introduce-a-design-pattern) **`P0`**
 
-  - [ ] Repository / Unit of Work for persistence boundaries **`P1`**
+  - [ ] [Repository / Unit of Work for persistence boundaries](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#9-repository--unit-of-work-for-persistence-boundaries) **`P1`**
 
-  - [ ] State pattern for workflow transitions **`P1`**
+  - [ ] [State pattern for workflow transitions](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#10-state-pattern-for-workflow-transitions) **`P1`**
 
-  - [ ] Strategy for configurable behavior **`P0`**
+  - [ ] [Strategy for configurable behavior](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#11-strategy-for-configurable-behavior) **`P0`**
 
-- [ ] **Implementation and Review** **`P1`**
+- [ ] [**Implementation and Review**](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Implementation-and-Review.md) **`P1`**
 
-  - [ ] Demonstrate a requirements change without rewriting the design **`P0`**
+  - [ ] [Demonstrate a requirements change without rewriting the design](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Implementation-and-Review.md#1-demonstrate-a-requirements-change-without-rewriting-the-design) **`P0`**
 
-  - [ ] Discuss complexity, extensibility, and maintainability trade-offs **`P0`**
+  - [ ] [Discuss complexity, extensibility, and maintainability trade-offs](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Implementation-and-Review.md#2-discuss-complexity-extensibility-and-maintainability-trade-offs) **`P0`**
 
-  - [ ] Review edge cases, invariants, and failure behavior **`P0`**
+  - [ ] [Review edge cases, invariants, and failure behavior](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Implementation-and-Review.md#3-review-edge-cases-invariants-and-failure-behavior) **`P0`**
 
-  - [ ] Write compilable, testable code for a scoped LLD problem **`P1`**
+  - [ ] [Write compilable, testable code for a scoped LLD problem](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Implementation-and-Review.md#4-write-compilable-testable-code-for-a-scoped-lld-problem) **`P1`**
 
-- [ ] **Object-Oriented Design Fundamentals** **`P0`**
+- [ ] [**Object-Oriented Design Fundamentals**](./Low-Level%20Design%20%26%20Object-Oriented%20Design/OOD-Fundamentals.md) **`P0`**
 
-  - [ ] Classes, objects, interfaces, abstract classes, and composition **`P0`**
+  - [ ] [Classes, objects, interfaces, abstract classes, and composition](./Low-Level%20Design%20%26%20Object-Oriented%20Design/OOD-Fundamentals.md#1-classes-objects-interfaces-abstract-classes-and-composition) **`P0`**
 
-  - [ ] Cohesion, coupling, separation of concerns, and modularity **`P1`**
+  - [ ] [Cohesion, coupling, separation of concerns, and modularity](./Low-Level%20Design%20%26%20Object-Oriented%20Design/OOD-Fundamentals.md#2-cohesion-coupling-separation-of-concerns-and-modularity) **`P1`**
 
-  - [ ] DRY, KISS, YAGNI, and premature abstraction trade-offs **`P0`**
+  - [ ] [DRY, KISS, YAGNI, and premature abstraction trade-offs](./Low-Level%20Design%20%26%20Object-Oriented%20Design/OOD-Fundamentals.md#3-dry-kiss-yagni-and-premature-abstraction-trade-offs) **`P0`**
 
-  - [ ] Encapsulation, abstraction, inheritance, and polymorphism in design **`P0`**
+  - [ ] [Encapsulation, abstraction, inheritance, and polymorphism in design](./Low-Level%20Design%20%26%20Object-Oriented%20Design/OOD-Fundamentals.md#4-encapsulation-abstraction-inheritance-and-polymorphism-in-design) **`P0`**
 
-  - [ ] Favor composition over inheritance; identify misuse of hierarchies **`P0`**
+  - [ ] [Favor composition over inheritance; identify misuse of hierarchies](./Low-Level%20Design%20%26%20Object-Oriented%20Design/OOD-Fundamentals.md#5-favor-composition-over-inheritance-identify-misuse-of-hierarchies) **`P0`**
 
-  - [ ] SOLID principles applied to practical classes and services **`P0`**
+  - [ ] [SOLID principles applied to practical classes and services](./Low-Level%20Design%20%26%20Object-Oriented%20Design/OOD-Fundamentals.md#6-solid-principles-applied-to-practical-classes-and-services) **`P0`**
 
-- [ ] **Requirements and Domain Modeling** **`P0`**
+- [ ] [**Requirements and Domain Modeling**](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Requirements-and-Domain-Modeling.md) **`P0`**
 
-  - [ ] Clarify functional/non-functional requirements and scope **`P0`**
+  - [ ] [Clarify functional/non-functional requirements and scope](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Requirements-and-Domain-Modeling.md#1-clarify-functionalnon-functional-requirements-and-scope) **`P0`**
 
-  - [ ] Define extension points without overengineering **`P1`**
+  - [ ] [Define extension points without overengineering](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Requirements-and-Domain-Modeling.md#5-define-extension-points-without-overengineering) **`P1`**
 
-  - [ ] Identify entities, value objects, aggregates, and invariants **`P1`**
+  - [ ] [Identify entities, value objects, aggregates, and invariants](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Requirements-and-Domain-Modeling.md#3-identify-entities-value-objects-aggregates-and-invariants) **`P1`**
 
-  - [ ] Model relationships, ownership, object lifecycles, and state transitions **`P1`**
+  - [ ] [Model relationships, ownership, object lifecycles, and state transitions](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Requirements-and-Domain-Modeling.md#4-model-relationships-ownership-object-lifecycles-and-state-transitions) **`P1`**
 
-  - [ ] Translate use cases into classes, interfaces, and interactions **`P0`**
+  - [ ] [Translate use cases into classes, interfaces, and interactions](./Low-Level%20Design%20%26%20Object-Oriented%20Design/Requirements-and-Domain-Modeling.md#2-translate-use-cases-into-classes-interfaces-and-interactions) **`P0`**
 
-- [ ] **UML and Communication** **`P1`**
+- [ ] [**UML and Communication**](./Low-Level%20Design%20%26%20Object-Oriented%20Design/UML-and-Communication.md) **`P1`**
 
-  - [ ] Class diagrams: associations, aggregation, composition, inheritance **`P0`**
+  - [ ] [Class diagrams: associations, aggregation, composition, inheritance](./Low-Level%20Design%20%26%20Object-Oriented%20Design/UML-and-Communication.md#1-class-diagrams-associations-aggregation-composition-inheritance) **`P0`**
 
-  - [ ] Explain trade-offs while iterating the model with an interviewer **`P1`**
+  - [ ] [Explain trade-offs while iterating the model with an interviewer](./Low-Level%20Design%20%26%20Object-Oriented%20Design/UML-and-Communication.md#2-explain-trade-offs-while-iterating-the-model-with-an-interviewer) **`P1`**
 
-  - [ ] Sequence diagrams: method calls, boundaries, and async events **`P0`**
+  - [ ] [Sequence diagrams: method calls, boundaries, and async events](./Low-Level%20Design%20%26%20Object-Oriented%20Design/UML-and-Communication.md#3-sequence-diagrams-method-calls-boundaries-and-async-events) **`P0`**
 
-  - [ ] State machine diagrams: transitions, guards, and terminal states **`P1`**
+  - [ ] [State machine diagrams: transitions, guards, and terminal states](./Low-Level%20Design%20%26%20Object-Oriented%20Design/UML-and-Communication.md#4-state-machine-diagrams-transitions-guards-and-terminal-states) **`P1`**
 
 </details>
 
