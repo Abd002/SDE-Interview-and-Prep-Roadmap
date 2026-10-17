@@ -384,125 +384,125 @@ Progress bars and counts are generated from checklist states when you commit cha
 <details>
 <summary><strong>View topics and checklist</strong></summary>
 
-- [ ] **AWS Compute and Application Hosting** **`P1`**
+- [ ] [**AWS Compute and Application Hosting**](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Compute-and-Application-Hosting.md) **`P1`**
 
-  - [ ] API Gateway and service integration patterns **`P0`**
+  - [ ] [API Gateway and service integration patterns](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Compute-and-Application-Hosting.md#1-api-gateway-and-service-integration-patterns) **`P0`**
 
-  - [ ] AWS Lambda: triggers, cold starts, concurrency, and idempotency **`P0`**
+  - [ ] [AWS Lambda: triggers, cold starts, concurrency, and idempotency](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Compute-and-Application-Hosting.md#2-aws-lambda-triggers-cold-starts-concurrency-and-idempotency) **`P0`**
 
-  - [ ] EC2: instance families, AMIs, security groups, and auto scaling groups **`P1`**
+  - [ ] [EC2: instance families, AMIs, security groups, and auto scaling groups](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Compute-and-Application-Hosting.md#3-ec2-instance-families-amis-security-groups-and-auto-scaling-groups) **`P1`**
 
-  - [ ] ECS/Fargate vs. EKS vs. EC2 vs. Lambda deployment decisions **`P0`**
+  - [ ] [ECS/Fargate vs. EKS vs. EC2 vs. Lambda deployment decisions](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Compute-and-Application-Hosting.md#4-ecsfargate-vs-eks-vs-ec2-vs-lambda-deployment-decisions) **`P0`**
 
-  - [ ] Elastic Load Balancing (ALB/NLB) and health checks **`P0`**
+  - [ ] [Elastic Load Balancing (ALB/NLB) and health checks](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Compute-and-Application-Hosting.md#5-elastic-load-balancing-albnlb-and-health-checks) **`P0`**
 
-- [ ] **AWS Storage and Databases** **`P0`**
+- [ ] [**AWS Storage and Databases**](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Storage-and-Databases.md) **`P0`**
 
-  - [ ] DynamoDB: partition/sort keys, GSIs, hot partitions, capacity modes **`P0`**
+  - [ ] [DynamoDB: partition/sort keys, GSIs, hot partitions, capacity modes](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Storage-and-Databases.md#1-dynamodb-partitionsort-keys-gsis-hot-partitions-capacity-modes) **`P0`**
 
-  - [ ] EBS vs. EFS vs. S3; durability and consistency trade-offs **`P0`**
+  - [ ] [EBS vs. EFS vs. S3; durability and consistency trade-offs](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Storage-and-Databases.md#2-ebs-vs-efs-vs-s3-durability-and-consistency-trade-offs) **`P0`**
 
-  - [ ] ElastiCache/Redis: cache invalidation, eviction, and replication **`P0`**
+  - [ ] [ElastiCache/Redis: cache invalidation, eviction, and replication](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Storage-and-Databases.md#3-elasticacheredis-cache-invalidation-eviction-and-replication) **`P0`**
 
-  - [ ] RDS/Aurora: backups, replicas, failover, and connection pooling **`P1`**
+  - [ ] [RDS/Aurora: backups, replicas, failover, and connection pooling](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Storage-and-Databases.md#4-rdsaurora-backups-replicas-failover-and-connection-pooling) **`P1`**
 
-  - [ ] S3: object versioning, encryption, lifecycle policies, and presigned URLs **`P0`**
+  - [ ] [S3: object versioning, encryption, lifecycle policies, and presigned URLs](./Cloud%2C%20DevOps%20%26%20Infrastructure/AWS-Storage-and-Databases.md#5-s3-object-versioning-encryption-lifecycle-policies-and-presigned-urls) **`P0`**
 
-- [ ] **CI/CD and Release Engineering** **`P1`**
+- [ ] [**CI/CD and Release Engineering**](./Cloud%2C%20DevOps%20%26%20Infrastructure/CI-CD-and-Release-Engineering.md) **`P1`**
 
-  - [ ] Artifact provenance, dependency scanning, and supply-chain security **`P2`**
+  - [ ] [Artifact provenance, dependency scanning, and supply-chain security](./Cloud%2C%20DevOps%20%26%20Infrastructure/CI-CD-and-Release-Engineering.md#1-artifact-provenance-dependency-scanning-and-supply-chain-security) **`P2`**
 
-  - [ ] Blue-green, canary, rolling, and feature-flag releases **`P1`**
+  - [ ] [Blue-green, canary, rolling, and feature-flag releases](./Cloud%2C%20DevOps%20%26%20Infrastructure/CI-CD-and-Release-Engineering.md#2-blue-green-canary-rolling-and-feature-flag-releases) **`P1`**
 
-  - [ ] Build/test/package/deploy pipelines and quality gates **`P1`**
+  - [ ] [Build/test/package/deploy pipelines and quality gates](./Cloud%2C%20DevOps%20%26%20Infrastructure/CI-CD-and-Release-Engineering.md#3-buildtestpackagedeploy-pipelines-and-quality-gates) **`P1`**
 
-  - [ ] GitHub Actions workflow syntax, runners, permissions, and artifacts **`P1`**
+  - [ ] [GitHub Actions workflow syntax, runners, permissions, and artifacts](./Cloud%2C%20DevOps%20%26%20Infrastructure/CI-CD-and-Release-Engineering.md#4-github-actions-workflow-syntax-runners-permissions-and-artifacts) **`P1`**
 
-  - [ ] Rollbacks, database migrations, and backward compatibility **`P1`**
+  - [ ] [Rollbacks, database migrations, and backward compatibility](./Cloud%2C%20DevOps%20%26%20Infrastructure/CI-CD-and-Release-Engineering.md#5-rollbacks-database-migrations-and-backward-compatibility) **`P1`**
 
-- [ ] **Cloud Computing Fundamentals** **`P1`**
+- [ ] [**Cloud Computing Fundamentals**](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Computing-Fundamentals.md) **`P1`**
 
-  - [ ] High availability vs. disaster recovery; RTO and RPO **`P1`**
+  - [ ] [High availability vs. disaster recovery; RTO and RPO](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Computing-Fundamentals.md#1-high-availability-vs-disaster-recovery-rto-and-rpo) **`P1`**
 
-  - [ ] Horizontal vs. vertical scaling; stateless vs. stateful services **`P1`**
+  - [ ] [Horizontal vs. vertical scaling; stateless vs. stateful services](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Computing-Fundamentals.md#2-horizontal-vs-vertical-scaling-stateless-vs-stateful-services) **`P1`**
 
-  - [ ] IaaS vs. PaaS vs. SaaS; shared responsibility model **`P1`**
+  - [ ] [IaaS vs. PaaS vs. SaaS; shared responsibility model](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Computing-Fundamentals.md#3-iaas-vs-paas-vs-saas-shared-responsibility-model) **`P1`**
 
-  - [ ] Public, private, hybrid, and multi-cloud trade-offs **`P2`**
+  - [ ] [Public, private, hybrid, and multi-cloud trade-offs](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Computing-Fundamentals.md#4-public-private-hybrid-and-multi-cloud-trade-offs) **`P2`**
 
-  - [ ] Regions, availability zones, fault domains, and global services **`P1`**
+  - [ ] [Regions, availability zones, fault domains, and global services](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Computing-Fundamentals.md#5-regions-availability-zones-fault-domains-and-global-services) **`P1`**
 
-- [ ] **Cloud Cost, Capacity, and Operations** **`P1`**
+- [ ] [**Cloud Cost, Capacity, and Operations**](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Cost-Capacity-and-Operations.md) **`P1`**
 
-  - [ ] Capacity planning using throughput, utilization, and p95 latency **`P0`**
+  - [ ] [Capacity planning using throughput, utilization, and p95 latency](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Cost-Capacity-and-Operations.md#1-capacity-planning-using-throughput-utilization-and-p95-latency) **`P0`**
 
-  - [ ] Cost allocation, tagging, budgets, and cost observability **`P1`**
+  - [ ] [Cost allocation, tagging, budgets, and cost observability](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Cost-Capacity-and-Operations.md#2-cost-allocation-tagging-budgets-and-cost-observability) **`P1`**
 
-  - [ ] Multi-region architecture, backup/restore drills, and runbooks **`P0`**
+  - [ ] [Multi-region architecture, backup/restore drills, and runbooks](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Cost-Capacity-and-Operations.md#3-multi-region-architecture-backuprestore-drills-and-runbooks) **`P0`**
 
-  - [ ] Operational trade-offs: managed services vs. self-hosting **`P1`**
+  - [ ] [Operational trade-offs: managed services vs. self-hosting](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Cost-Capacity-and-Operations.md#4-operational-trade-offs-managed-services-vs-self-hosting) **`P1`**
 
-  - [ ] Reserved capacity vs. on-demand vs. spot instances **`P1`**
+  - [ ] [Reserved capacity vs. on-demand vs. spot instances](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Cost-Capacity-and-Operations.md#5-reserved-capacity-vs-on-demand-vs-spot-instances) **`P1`**
 
-- [ ] **Cloud Messaging and Eventing** **`P1`**
+- [ ] [**Cloud Messaging and Eventing**](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Messaging-and-Eventing.md) **`P1`**
 
-  - [ ] EventBridge event buses, rules, and event routing **`P1`**
+  - [ ] [EventBridge event buses, rules, and event routing](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Messaging-and-Eventing.md#1-eventbridge-event-buses-rules-and-event-routing) **`P1`**
 
-  - [ ] Kinesis/Kafka trade-offs for streaming workloads **`P1`**
+  - [ ] [Kinesis/Kafka trade-offs for streaming workloads](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Messaging-and-Eventing.md#2-kinesiskafka-trade-offs-for-streaming-workloads) **`P1`**
 
-  - [ ] Retries, poison messages, deduplication, and backpressure **`P0`**
+  - [ ] [Retries, poison messages, deduplication, and backpressure](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Messaging-and-Eventing.md#3-retries-poison-messages-deduplication-and-backpressure) **`P0`**
 
-  - [ ] SNS pub/sub, subscription filters, and fan-out **`P1`**
+  - [ ] [SNS pub/sub, subscription filters, and fan-out](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Messaging-and-Eventing.md#4-sns-pubsub-subscription-filters-and-fan-out) **`P1`**
 
-  - [ ] SQS standard vs. FIFO; visibility timeout; dead-letter queues **`P0`**
+  - [ ] [SQS standard vs. FIFO; visibility timeout; dead-letter queues](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Messaging-and-Eventing.md#5-sqs-standard-vs-fifo-visibility-timeout-dead-letter-queues) **`P0`**
 
-- [ ] **Cloud Networking and Identity** **`P1`**
+- [ ] [**Cloud Networking and Identity**](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Networking-and-Identity.md) **`P1`**
 
-  - [ ] Cloud DNS, TLS termination, CDN, and WAF integration **`P0`**
+  - [ ] [Cloud DNS, TLS termination, CDN, and WAF integration](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Networking-and-Identity.md#1-cloud-dns-tls-termination-cdn-and-waf-integration) **`P0`**
 
-  - [ ] IAM roles/policies, least privilege, and temporary credentials **`P0`**
+  - [ ] [IAM roles/policies, least privilege, and temporary credentials](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Networking-and-Identity.md#2-iam-rolespolicies-least-privilege-and-temporary-credentials) **`P0`**
 
-  - [ ] Private endpoints, peering, transit gateways, and hybrid connectivity **`P1`**
+  - [ ] [Private endpoints, peering, transit gateways, and hybrid connectivity](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Networking-and-Identity.md#3-private-endpoints-peering-transit-gateways-and-hybrid-connectivity) **`P1`**
 
-  - [ ] Security groups vs. network ACLs **`P1`**
+  - [ ] [Security groups vs. network ACLs](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Networking-and-Identity.md#4-security-groups-vs-network-acls) **`P1`**
 
-  - [ ] VPC, public/private subnets, route tables, NAT and internet gateways **`P1`**
+  - [ ] [VPC, public/private subnets, route tables, NAT and internet gateways](./Cloud%2C%20DevOps%20%26%20Infrastructure/Cloud-Networking-and-Identity.md#5-vpc-publicprivate-subnets-route-tables-nat-and-internet-gateways) **`P1`**
 
-- [ ] **Containers and Docker** **`P0`**
+- [ ] [**Containers and Docker**](./Cloud%2C%20DevOps%20%26%20Infrastructure/Containers-and-Docker.md) **`P0`**
 
-  - [ ] Build reproducibility, caching, and image size optimization **`P1`**
+  - [ ] [Build reproducibility, caching, and image size optimization](./Cloud%2C%20DevOps%20%26%20Infrastructure/Containers-and-Docker.md#1-build-reproducibility-caching-and-image-size-optimization) **`P1`**
 
-  - [ ] Container networking, volumes, resource limits, and isolation **`P1`**
+  - [ ] [Container networking, volumes, resource limits, and isolation](./Cloud%2C%20DevOps%20%26%20Infrastructure/Containers-and-Docker.md#2-container-networking-volumes-resource-limits-and-isolation) **`P1`**
 
-  - [ ] Image scanning, non-root containers, pinned dependencies **`P1`**
+  - [ ] [Image scanning, non-root containers, pinned dependencies](./Cloud%2C%20DevOps%20%26%20Infrastructure/Containers-and-Docker.md#3-image-scanning-non-root-containers-pinned-dependencies) **`P1`**
 
-  - [ ] Images, layers, registries, Dockerfiles, and multi-stage builds **`P0`**
+  - [ ] [Images, layers, registries, Dockerfiles, and multi-stage builds](./Cloud%2C%20DevOps%20%26%20Infrastructure/Containers-and-Docker.md#4-images-layers-registries-dockerfiles-and-multi-stage-builds) **`P0`**
 
-- [ ] **Infrastructure as Code (IaC)** **`P1`**
+- [ ] [**Infrastructure as Code (IaC)**](./Cloud%2C%20DevOps%20%26%20Infrastructure/Infrastructure-as-Code.md) **`P1`**
 
-  - [ ] CloudFormation/CDK vs. Terraform: trade-offs **`P0`**
+  - [ ] [CloudFormation/CDK vs. Terraform: trade-offs](./Cloud%2C%20DevOps%20%26%20Infrastructure/Infrastructure-as-Code.md#1-cloudformationcdk-vs-terraform-trade-offs) **`P0`**
 
-  - [ ] Environment parity and reproducible provisioning **`P1`**
+  - [ ] [Environment parity and reproducible provisioning](./Cloud%2C%20DevOps%20%26%20Infrastructure/Infrastructure-as-Code.md#2-environment-parity-and-reproducible-provisioning) **`P1`**
 
-  - [ ] Managing secrets and sensitive outputs in IaC **`P1`**
+  - [ ] [Managing secrets and sensitive outputs in IaC](./Cloud%2C%20DevOps%20%26%20Infrastructure/Infrastructure-as-Code.md#3-managing-secrets-and-sensitive-outputs-in-iac) **`P1`**
 
-  - [ ] Remote state, locking, drift detection, and lifecycle management **`P1`**
+  - [ ] [Remote state, locking, drift detection, and lifecycle management](./Cloud%2C%20DevOps%20%26%20Infrastructure/Infrastructure-as-Code.md#4-remote-state-locking-drift-detection-and-lifecycle-management) **`P1`**
 
-  - [ ] Terraform providers, resources, modules, plans, and state **`P2`**
+  - [ ] [Terraform providers, resources, modules, plans, and state](./Cloud%2C%20DevOps%20%26%20Infrastructure/Infrastructure-as-Code.md#5-terraform-providers-resources-modules-plans-and-state) **`P2`**
 
-- [ ] **Kubernetes Fundamentals and Operations** **`P0`**
+- [ ] [**Kubernetes Fundamentals and Operations**](./Cloud%2C%20DevOps%20%26%20Infrastructure/Kubernetes-Fundamentals-and-Operations.md) **`P0`**
 
-  - [ ] ConfigMaps, Secrets, namespaces, RBAC, and service accounts **`P1`**
+  - [ ] [ConfigMaps, Secrets, namespaces, RBAC, and service accounts](./Cloud%2C%20DevOps%20%26%20Infrastructure/Kubernetes-Fundamentals-and-Operations.md#1-configmaps-secrets-namespaces-rbac-and-service-accounts) **`P1`**
 
-  - [ ] Persistent volumes, statefulsets, and disruption budgets **`P1`**
+  - [ ] [Persistent volumes, statefulsets, and disruption budgets](./Cloud%2C%20DevOps%20%26%20Infrastructure/Kubernetes-Fundamentals-and-Operations.md#2-persistent-volumes-statefulsets-and-disruption-budgets) **`P1`**
 
-  - [ ] Pods, deployments, replicasets, services, and ingress **`P1`**
+  - [ ] [Pods, deployments, replicasets, services, and ingress](./Cloud%2C%20DevOps%20%26%20Infrastructure/Kubernetes-Fundamentals-and-Operations.md#3-pods-deployments-replicasets-services-and-ingress) **`P1`**
 
-  - [ ] Readiness/liveness/startup probes and rolling deployments **`P1`**
+  - [ ] [Readiness/liveness/startup probes and rolling deployments](./Cloud%2C%20DevOps%20%26%20Infrastructure/Kubernetes-Fundamentals-and-Operations.md#4-readinesslivenessstartup-probes-and-rolling-deployments) **`P1`**
 
-  - [ ] Requests/limits, HPA, cluster autoscaler, and scheduling **`P1`**
+  - [ ] [Requests/limits, HPA, cluster autoscaler, and scheduling](./Cloud%2C%20DevOps%20%26%20Infrastructure/Kubernetes-Fundamentals-and-Operations.md#5-requestslimits-hpa-cluster-autoscaler-and-scheduling) **`P1`**
 
-  - [ ] Troubleshooting CrashLoopBackOff, pending pods, and service discovery **`P0`**
+  - [ ] [Troubleshooting CrashLoopBackOff, pending pods, and service discovery](./Cloud%2C%20DevOps%20%26%20Infrastructure/Kubernetes-Fundamentals-and-Operations.md#6-troubleshooting-crashloopbackoff-pending-pods-and-service-discovery) **`P0`**
 
 </details>
 
