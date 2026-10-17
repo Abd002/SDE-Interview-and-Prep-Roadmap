@@ -1588,109 +1588,109 @@ Progress bars and counts are generated from checklist states when you commit cha
 <details>
 <summary><strong>View topics and checklist</strong></summary>
 
-- [ ] **Backend and Distributed-System Testing** **`P1`**
+- [ ] [**Backend and Distributed-System Testing**](./Testing%2C%20Reliability%20%26%20Observability/Backend-and-Distributed-System-Testing.md) **`P1`**
 
-  - [ ] API contract tests, schema compatibility, and consumer-driven contracts **`P0`**
+  - [ ] [API contract tests, schema compatibility, and consumer-driven contracts](./Testing%2C%20Reliability%20%26%20Observability/Backend-and-Distributed-System-Testing.md#1-api-contract-tests-schema-compatibility-and-consumer-driven-contracts) **`P0`**
 
-  - [ ] Concurrency tests, race conditions, and fault injection **`P0`**
+  - [ ] [Concurrency tests, race conditions, and fault injection](./Testing%2C%20Reliability%20%26%20Observability/Backend-and-Distributed-System-Testing.md#2-concurrency-tests-race-conditions-and-fault-injection) **`P0`**
 
-  - [ ] Database integration tests, transactions, and migration tests **`P0`**
+  - [ ] [Database integration tests, transactions, and migration tests](./Testing%2C%20Reliability%20%26%20Observability/Backend-and-Distributed-System-Testing.md#3-database-integration-tests-transactions-and-migration-tests) **`P0`**
 
-  - [ ] Idempotency tests and at-least-once delivery failure cases **`P0`**
+  - [ ] [Idempotency tests and at-least-once delivery failure cases](./Testing%2C%20Reliability%20%26%20Observability/Backend-and-Distributed-System-Testing.md#4-idempotency-tests-and-at-least-once-delivery-failure-cases) **`P0`**
 
-  - [ ] Message queue/event handler tests: ordering, duplication, retry, DLQ **`P0`**
+  - [ ] [Message queue/event handler tests: ordering, duplication, retry, DLQ](./Testing%2C%20Reliability%20%26%20Observability/Backend-and-Distributed-System-Testing.md#5-message-queueevent-handler-tests-ordering-duplication-retry-dlq) **`P0`**
 
-  - [ ] Property-based tests, fuzz testing, and boundary-value analysis **`P1`**
+  - [ ] [Property-based tests, fuzz testing, and boundary-value analysis](./Testing%2C%20Reliability%20%26%20Observability/Backend-and-Distributed-System-Testing.md#6-property-based-tests-fuzz-testing-and-boundary-value-analysis) **`P1`**
 
-  - [ ] Testcontainers, ephemeral environments, and service virtualization **`P1`**
+  - [ ] [Testcontainers, ephemeral environments, and service virtualization](./Testing%2C%20Reliability%20%26%20Observability/Backend-and-Distributed-System-Testing.md#7-testcontainers-ephemeral-environments-and-service-virtualization) **`P1`**
 
-- [ ] **LLM and Agent Evaluation & Reliability** **`P0`**
+- [ ] [**LLM and Agent Evaluation & Reliability**](./Testing%2C%20Reliability%20%26%20Observability/LLM-and-Agent-Evaluation.md) **`P0`**
 
-  - [ ] Agent failure recovery, human handoff, and safety regression tests **`P0`**
+  - [ ] [Agent failure recovery, human handoff, and safety regression tests](./Testing%2C%20Reliability%20%26%20Observability/LLM-and-Agent-Evaluation.md#1-agent-failure-recovery-human-handoff-and-safety-regression-tests) **`P0`**
 
-  - [ ] Cost, token usage, latency, and failure-budget dashboards **`P0`**
+  - [ ] [Cost, token usage, latency, and failure-budget dashboards](./Testing%2C%20Reliability%20%26%20Observability/LLM-and-Agent-Evaluation.md#2-cost-token-usage-latency-and-failure-budget-dashboards) **`P0`**
 
-  - [ ] Golden datasets, regression suites, and offline/online evaluation **`P0`**
+  - [ ] [Golden datasets, regression suites, and offline/online evaluation](./Testing%2C%20Reliability%20%26%20Observability/LLM-and-Agent-Evaluation.md#3-golden-datasets-regression-suites-and-offlineonline-evaluation) **`P0`**
 
-  - [ ] Hallucination, grounding, task-success, and retrieval metrics **`P0`**
+  - [ ] [Hallucination, grounding, task-success, and retrieval metrics](./Testing%2C%20Reliability%20%26%20Observability/LLM-and-Agent-Evaluation.md#4-hallucination-grounding-task-success-and-retrieval-metrics) **`P0`**
 
-  - [ ] Judge-model calibration, human review, and inter-rater agreement **`P1`**
+  - [ ] [Judge-model calibration, human review, and inter-rater agreement](./Testing%2C%20Reliability%20%26%20Observability/LLM-and-Agent-Evaluation.md#5-judge-model-calibration-human-review-and-inter-rater-agreement) **`P1`**
 
-  - [ ] Tool-call tracing, execution-step replay, and state checkpoint tests **`P0`**
+  - [ ] [Tool-call tracing, execution-step replay, and state checkpoint tests](./Testing%2C%20Reliability%20%26%20Observability/LLM-and-Agent-Evaluation.md#6-tool-call-tracing-execution-step-replay-and-state-checkpoint-tests) **`P0`**
 
-- [ ] **Logging, Metrics, and Tracing** **`P0`**
+- [ ] [**Logging, Metrics, and Tracing**](./Testing%2C%20Reliability%20%26%20Observability/Logging-Metrics-and-Tracing.md) **`P0`**
 
-  - [ ] Alert quality: actionable alerts, thresholds, burn-rate alerts **`P1`**
+  - [ ] [Alert quality: actionable alerts, thresholds, burn-rate alerts](./Testing%2C%20Reliability%20%26%20Observability/Logging-Metrics-and-Tracing.md#1-alert-quality-actionable-alerts-thresholds-burn-rate-alerts) **`P1`**
 
-  - [ ] Distributed tracing, spans, context propagation, and sampling **`P0`**
+  - [ ] [Distributed tracing, spans, context propagation, and sampling](./Testing%2C%20Reliability%20%26%20Observability/Logging-Metrics-and-Tracing.md#2-distributed-tracing-spans-context-propagation-and-sampling) **`P0`**
 
-  - [ ] Logs/metrics/traces correlation for root-cause analysis **`P0`**
+  - [ ] [Logs/metrics/traces correlation for root-cause analysis](./Testing%2C%20Reliability%20%26%20Observability/Logging-Metrics-and-Tracing.md#3-logsmetricstraces-correlation-for-root-cause-analysis) **`P0`**
 
-  - [ ] Metrics cardinality, aggregation, dashboards, and retention **`P0`**
+  - [ ] [Metrics cardinality, aggregation, dashboards, and retention](./Testing%2C%20Reliability%20%26%20Observability/Logging-Metrics-and-Tracing.md#4-metrics-cardinality-aggregation-dashboards-and-retention) **`P0`**
 
-  - [ ] OpenTelemetry instrumentation and collectors **`P1`**
+  - [ ] [OpenTelemetry instrumentation and collectors](./Testing%2C%20Reliability%20%26%20Observability/Logging-Metrics-and-Tracing.md#5-opentelemetry-instrumentation-and-collectors) **`P1`**
 
-  - [ ] RED (rate, errors, duration) and USE (utilization, saturation, errors) **`P1`**
+  - [ ] [RED (rate, errors, duration) and USE (utilization, saturation, errors)](./Testing%2C%20Reliability%20%26%20Observability/Logging-Metrics-and-Tracing.md#6-red-rate-errors-duration-and-use-utilization-saturation-errors) **`P1`**
 
-  - [ ] Structured logging, severity levels, and correlation IDs **`P0`**
+  - [ ] [Structured logging, severity levels, and correlation IDs](./Testing%2C%20Reliability%20%26%20Observability/Logging-Metrics-and-Tracing.md#7-structured-logging-severity-levels-and-correlation-ids) **`P0`**
 
-- [ ] **Performance and Scalability Testing** **`P0`**
+- [ ] [**Performance and Scalability Testing**](./Testing%2C%20Reliability%20%26%20Observability/Performance-and-Scalability-Testing.md) **`P0`**
 
-  - [ ] Capacity baselines and regression performance testing **`P1`**
+  - [ ] [Capacity baselines and regression performance testing](./Testing%2C%20Reliability%20%26%20Observability/Performance-and-Scalability-Testing.md#1-capacity-baselines-and-regression-performance-testing) **`P1`**
 
-  - [ ] Load vs. stress vs. spike vs. soak testing **`P1`**
+  - [ ] [Load vs. stress vs. spike vs. soak testing](./Testing%2C%20Reliability%20%26%20Observability/Performance-and-Scalability-Testing.md#2-load-vs-stress-vs-spike-vs-soak-testing) **`P1`**
 
-  - [ ] Profiling CPU, memory, I/O, and database queries **`P1`**
+  - [ ] [Profiling CPU, memory, I/O, and database queries](./Testing%2C%20Reliability%20%26%20Observability/Performance-and-Scalability-Testing.md#3-profiling-cpu-memory-io-and-database-queries) **`P1`**
 
-  - [ ] Throughput, latency distributions (p50/p95/p99), and error rates **`P0`**
+  - [ ] [Throughput, latency distributions (p50/p95/p99), and error rates](./Testing%2C%20Reliability%20%26%20Observability/Performance-and-Scalability-Testing.md#4-throughput-latency-distributions-p50p95p99-and-error-rates) **`P0`**
 
-  - [ ] Workload modeling, realistic traffic, and bottleneck diagnosis **`P1`**
+  - [ ] [Workload modeling, realistic traffic, and bottleneck diagnosis](./Testing%2C%20Reliability%20%26%20Observability/Performance-and-Scalability-Testing.md#5-workload-modeling-realistic-traffic-and-bottleneck-diagnosis) **`P1`**
 
-- [ ] **Production Incidents and Operational Excellence** **`P1`**
+- [ ] [**Production Incidents and Operational Excellence**](./Testing%2C%20Reliability%20%26%20Observability/Production-Incidents-and-Operational-Excellence.md) **`P1`**
 
-  - [ ] Blameless postmortems with contributing factors and follow-ups **`P1`**
+  - [ ] [Blameless postmortems with contributing factors and follow-ups](./Testing%2C%20Reliability%20%26%20Observability/Production-Incidents-and-Operational-Excellence.md#1-blameless-postmortems-with-contributing-factors-and-follow-ups) **`P1`**
 
-  - [ ] Change management, feature flags, safe rollouts, and rollback **`P1`**
+  - [ ] [Change management, feature flags, safe rollouts, and rollback](./Testing%2C%20Reliability%20%26%20Observability/Production-Incidents-and-Operational-Excellence.md#2-change-management-feature-flags-safe-rollouts-and-rollback) **`P1`**
 
-  - [ ] Incident severity, triage, mitigation, and communication **`P1`**
+  - [ ] [Incident severity, triage, mitigation, and communication](./Testing%2C%20Reliability%20%26%20Observability/Production-Incidents-and-Operational-Excellence.md#3-incident-severity-triage-mitigation-and-communication) **`P1`**
 
-  - [ ] On-call handoffs, runbooks, escalation, and ownership **`P1`**
+  - [ ] [On-call handoffs, runbooks, escalation, and ownership](./Testing%2C%20Reliability%20%26%20Observability/Production-Incidents-and-Operational-Excellence.md#4-on-call-handoffs-runbooks-escalation-and-ownership) **`P1`**
 
-  - [ ] Reliability-related architectural trade-offs **`P1`**
+  - [ ] [Reliability-related architectural trade-offs](./Testing%2C%20Reliability%20%26%20Observability/Production-Incidents-and-Operational-Excellence.md#5-reliability-related-architectural-trade-offs) **`P1`**
 
-  - [ ] Root-cause analysis: timelines, hypotheses, and evidence **`P1`**
+  - [ ] [Root-cause analysis: timelines, hypotheses, and evidence](./Testing%2C%20Reliability%20%26%20Observability/Production-Incidents-and-Operational-Excellence.md#6-root-cause-analysis-timelines-hypotheses-and-evidence) **`P1`**
 
-- [ ] **Reliability Engineering (SRE)** **`P1`**
+- [ ] [**Reliability Engineering (SRE)**](./Testing%2C%20Reliability%20%26%20Observability/Reliability-Engineering-SRE.md) **`P1`**
 
-  - [ ] Availability math and the implications of dependency chains **`P1`**
+  - [ ] [Availability math and the implications of dependency chains](./Testing%2C%20Reliability%20%26%20Observability/Reliability-Engineering-SRE.md#1-availability-math-and-the-implications-of-dependency-chains) **`P1`**
 
-  - [ ] Capacity and saturation monitoring **`P1`**
+  - [ ] [Capacity and saturation monitoring](./Testing%2C%20Reliability%20%26%20Observability/Reliability-Engineering-SRE.md#2-capacity-and-saturation-monitoring) **`P1`**
 
-  - [ ] Chaos engineering and game-day exercises **`P1`**
+  - [ ] [Chaos engineering and game-day exercises](./Testing%2C%20Reliability%20%26%20Observability/Reliability-Engineering-SRE.md#3-chaos-engineering-and-game-day-exercises) **`P1`**
 
-  - [ ] Disaster recovery drills, backups, and restore verification **`P0`**
+  - [ ] [Disaster recovery drills, backups, and restore verification](./Testing%2C%20Reliability%20%26%20Observability/Reliability-Engineering-SRE.md#4-disaster-recovery-drills-backups-and-restore-verification) **`P0`**
 
-  - [ ] Fault tolerance, redundancy, graceful degradation, and bulkheads **`P0`**
+  - [ ] [Fault tolerance, redundancy, graceful degradation, and bulkheads](./Testing%2C%20Reliability%20%26%20Observability/Reliability-Engineering-SRE.md#5-fault-tolerance-redundancy-graceful-degradation-and-bulkheads) **`P0`**
 
-  - [ ] Retry policies, exponential backoff, jitter, and circuit breakers **`P0`**
+  - [ ] [Retry policies, exponential backoff, jitter, and circuit breakers](./Testing%2C%20Reliability%20%26%20Observability/Reliability-Engineering-SRE.md#6-retry-policies-exponential-backoff-jitter-and-circuit-breakers) **`P0`**
 
-  - [ ] SLIs, SLOs, SLAs, and error budgets **`P0`**
+  - [ ] [SLIs, SLOs, SLAs, and error budgets](./Testing%2C%20Reliability%20%26%20Observability/Reliability-Engineering-SRE.md#7-slis-slos-slas-and-error-budgets) **`P0`**
 
-  - [ ] Timeouts, cancellation, rate limiting, and backpressure **`P1`**
+  - [ ] [Timeouts, cancellation, rate limiting, and backpressure](./Testing%2C%20Reliability%20%26%20Observability/Reliability-Engineering-SRE.md#8-timeouts-cancellation-rate-limiting-and-backpressure) **`P1`**
 
-- [ ] **Software Testing Foundations** **`P1`**
+- [ ] [**Software Testing Foundations**](./Testing%2C%20Reliability%20%26%20Observability/Testing-Foundations.md) **`P1`**
 
-  - [ ] Functional vs. non-functional testing **`P1`**
+  - [ ] [Functional vs. non-functional testing](./Testing%2C%20Reliability%20%26%20Observability/Testing-Foundations.md#1-functional-vs-non-functional-testing) **`P1`**
 
-  - [ ] Mocks, stubs, fakes, spies, and contract boundaries **`P0`**
+  - [ ] [Mocks, stubs, fakes, spies, and contract boundaries](./Testing%2C%20Reliability%20%26%20Observability/Testing-Foundations.md#2-mocks-stubs-fakes-spies-and-contract-boundaries) **`P0`**
 
-  - [ ] Test coverage metrics and their limitations **`P0`**
+  - [ ] [Test coverage metrics and their limitations](./Testing%2C%20Reliability%20%26%20Observability/Testing-Foundations.md#3-test-coverage-metrics-and-their-limitations) **`P0`**
 
-  - [ ] Test isolation, deterministic fixtures, and repeatable environments **`P1`**
+  - [ ] [Test isolation, deterministic fixtures, and repeatable environments](./Testing%2C%20Reliability%20%26%20Observability/Testing-Foundations.md#4-test-isolation-deterministic-fixtures-and-repeatable-environments) **`P1`**
 
-  - [ ] Testing pyramid vs. testing trophy; risk-based test selection **`P1`**
+  - [ ] [Testing pyramid vs. testing trophy; risk-based test selection](./Testing%2C%20Reliability%20%26%20Observability/Testing-Foundations.md#5-testing-pyramid-vs-testing-trophy-risk-based-test-selection) **`P1`**
 
-  - [ ] Unit, integration, end-to-end (E2E), and acceptance tests **`P1`**
+  - [ ] [Unit, integration, end-to-end (E2E), and acceptance tests](./Testing%2C%20Reliability%20%26%20Observability/Testing-Foundations.md#6-unit-integration-end-to-end-e2e-and-acceptance-tests) **`P1`**
 
 </details>
 
