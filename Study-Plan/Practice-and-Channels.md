@@ -8,7 +8,9 @@
 
 **Contents**
 1. [Practice exams and interview questions](#1-practice-exams-and-interview-questions)
-2. [YouTube channels](#2-youtube-channels)
+2. [Interview questions for the tracks still ahead](#2-interview-questions-for-the-tracks-still-ahead)
+3. [Where each one sits in the study plan](#3-where-each-one-sits-in-the-study-plan)
+4. [YouTube channels](#4-youtube-channels)
 
 ---
 
@@ -66,7 +68,78 @@
 
 ---
 
-## 2. YouTube channels
+## 2. Interview questions for the tracks still ahead
+
+Use each bank when its track comes up in the plan (section 3 has the exact steps). Answer out loud first, then check.
+
+| Track | Where to practice |
+|---|---|
+| Databases + SQL (deeper) | [GfG SQL interview questions](https://www.geeksforgeeks.org/sql/sql-interview-questions/) · devops-exercises [SQL](https://github.com/bregman-arie/devops-exercises/blob/master/README.md#sql) and [Databases](https://github.com/bregman-arie/devops-exercises/blob/master/topics/databases/README.md) |
+| Operating systems | [GfG OS interview questions](https://www.geeksforgeeks.org/operating-systems/operating-systems-interview-questions/) · devops-exercises [OS](https://github.com/bregman-arie/devops-exercises/blob/master/README.md#operating-system) and [Linux](https://github.com/bregman-arie/devops-exercises/blob/master/topics/linux/README.md) · [Berkeley CS162 exams](https://hkn.eecs.berkeley.edu/exams/course/cs/162) |
+| Networking | [GfG networking interview questions](https://www.geeksforgeeks.org/computer-networks/networking-interview-questions/) · devops-exercises [Network](https://github.com/bregman-arie/devops-exercises/blob/master/README.md#network) and [DNS](https://github.com/bregman-arie/devops-exercises/blob/master/topics/dns/README.md) · [Berkeley CS168 exams](https://hkn.eecs.berkeley.edu/exams/course/cs/168) |
+| Git | [Learn Git Branching](https://learngitbranching.js.org/) (interactive levels) · devops-exercises [Git](https://github.com/bregman-arie/devops-exercises/blob/master/topics/git/README.md) |
+| C++ and languages | [learncpp](https://www.learncpp.com/) chapter quizzes · [CppQuiz](https://cppquiz.org/) · [GfG C++ questions](https://www.geeksforgeeks.org/cpp/cpp-interview-questions/) · [Refactoring.Guru patterns](https://refactoring.guru/design-patterns) |
+| Rust (flagship) | [Rustlings](https://rustlings.rust-lang.org/) · [Exercism Rust](https://exercism.org/tracks/rust) |
+| Architecture | The repo's [76-question Microservices reference](../System%20Design/Microservices.md) · [ByteByteGo System Design 101](https://github.com/ByteByteGoHq/system-design-101) |
+| System design | [Hello Interview problem breakdowns](https://www.hellointerview.com/learn/system-design/problem-breakdowns/overview) · [System Design Primer](https://github.com/donnemartin/system-design-primer) · devops-exercises [System Design](https://github.com/bregman-arie/devops-exercises/blob/master/README.md#system-design) |
+| Low-level design | [awesome-low-level-design](https://github.com/ashishps1/awesome-low-level-design) problems |
+| Testing and reliability | devops-exercises [Testing](https://github.com/bregman-arie/devops-exercises/blob/master/README.md#testing), [Observability](https://github.com/bregman-arie/devops-exercises/blob/master/topics/observability/README.md), [Chaos engineering](https://github.com/bregman-arie/devops-exercises/blob/master/topics/chaos_engineering/README.md) · [Google SRE Workbook](https://sre.google/workbook/table-of-contents/) |
+| Security | [PortSwigger Web Security Academy labs](https://portswigger.net/web-security/all-labs) · [OWASP Top 10](https://owasp.org/www-project-top-ten/) · devops-exercises [Security](https://github.com/bregman-arie/devops-exercises/blob/master/topics/security/README.md) |
+| Cloud and DevOps | [AWS Cloud Practitioner official practice question set](https://explore.skillbuilder.aws/learn/course/external/view/elearning/14637/aws-certified-cloud-practitioner-official-practice-question-set-clf-c02-english) (free) · [Killercoda](https://killercoda.com/) Kubernetes scenarios · devops-exercises [AWS](https://github.com/bregman-arie/devops-exercises/blob/master/topics/aws/README.md), [Containers](https://github.com/bregman-arie/devops-exercises/blob/master/topics/containers/README.md), [Kubernetes](https://github.com/bregman-arie/devops-exercises/blob/master/topics/kubernetes/README.md) |
+| AI and LLM engineering | [ML Interviews Book](https://huyenchip.com/ml-interviews-book/) (Chip Huyen) · the repo's [agentic system design mocks](../Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md) |
+| Behavioral | [Tech Interview Handbook behavioral questions](https://www.techinterviewhandbook.org/behavioral-interview-questions/) |
+
+---
+
+## 3. Where each one sits in the study plan
+
+The decimal steps in the [study plan](README.md) and in Notion run in this order. Each is placed right after the topic it tests.
+
+| Step | What |
+|---|---|
+| 29.1 | CMU Fall 2024 HW2, timed, then self-grade |
+| 29.2 | CMU Fall 2024 HW3 Q1–Q2 (hashing) |
+| 29.3 | CS186 Spring 2026 Midterm 1: SQL, disks/files, buffer questions |
+| 29.4 | SQL drills: LeetCode SQL 50, DataLemur, PostgreSQL Exercises |
+| 29.5 | OSTEP simulators: scheduling, paging, locks |
+| 29.6 | MIT 6.5840 Quiz 1 (2024): Raft + linearizability |
+| 29.7 | Cambridge Concurrent and Distributed Systems papers |
+| 29.8 | CppQuiz + LeetCode Concurrency |
+| 29.9 | **Knowledge check round 2** |
+| 31.1 | Databases + SQL interview questions |
+| 36.1 | OS interview questions + a CS162 midterm |
+| 37.1 | Rustlings |
+| 39.1 | **Knowledge check round 3** |
+| 53.1 | CS186 Midterm 1, the rest: B+ trees, sorting/hashing, joins |
+| 61.1 | **Knowledge check round 4** |
+| 68.1 | CMU Fall 2024 HW3 Q3–Q5 |
+| 69.1 | Networking interview questions + a CS168 exam |
+| 76.1 | **Knowledge check round 5** |
+| 86.1 | Learn Git Branching + Git questions |
+| 93.1 | CS186 Midterm 2: query optimization, transactions, recovery |
+| 96.1 | **Knowledge check round 6** |
+| 98.1 | CMU Fall 2024 HW4 |
+| 101.1 | CS186 Final (2PC, Paxos, NoSQL) + MIT Quiz 2 (2023) Dynamo questions |
+| 104.1 | **Knowledge check round 7** |
+| 120.1 | C++ and languages questions + design patterns out loud |
+| 121.1 | CMU Fall 2024 HW5 + HW6 |
+| 121.2 | **Knowledge check round 8** |
+| 129.1 | Architecture questions |
+| 132.1 | System design mocks: 3 Hello Interview problems, timed |
+| 134.1 | **Weekly self-exam** (ongoing) |
+| 138.1 | **Knowledge check round 9** |
+| 145.1 | LLD problems, timed |
+| 152.1 | Testing and reliability questions + an SLO exercise |
+| 159.1 | PortSwigger labs + OWASP Top 10 |
+| 169.1 | AWS practice exam + Kubernetes scenarios |
+| 183.1 | AI interview questions + agentic design mocks |
+| 184.1 | **Knowledge check round 10** |
+
+**Knowledge check rounds:** ask Claude "make knowledge check round N from my Done steps". You answer with no notes, and the score goes into [Knowledge-Check.md](../Career-Roadmap/Knowledge-Check.md) and [Progress-Summary.md](../Career-Roadmap/Progress-Summary.md) §4. Each round puts extra weight on what you missed before.
+
+---
+
+## 4. YouTube channels
 
 **If you follow only five:** Fireship, ByteByteGo, Core Dumped, CMU Database Group and Jon Gjengset.
 

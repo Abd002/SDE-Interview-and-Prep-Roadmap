@@ -9,8 +9,16 @@
 🎯 **[Practice-and-Channels.md](Practice-and-Channels.md)**: practice exams and interview questions for the finished steps (with solutions), plus YouTube channels for every topic.
 
 ## How it works
-- **No dates.** The plan is **184 numbered steps**. Do the lowest unfinished step, tick it, then move to the next. It is written for limited, changing free time (during military service), so the pace is open and only the order matters.
+- **No dates.** The plan is **221 steps**: 184 whole-numbered steps plus 37 decimal ones (29.1, 39.1 …). Do the lowest unfinished step, tick it, then move to the next. It is written for limited, changing free time (during military service), so the pace is open and only the order matters.
 - **Friday** (the one day off) is for the long steps: 2–4h project chunks, virtual contests and flagship coding.
+- **Practice and self-exams (the decimal steps).** Each one sits right after the topic it tests:
+  - real past exams with solutions: other semesters of CMU 15-445, Berkeley CS186 midterms and finals, MIT 6.5840 quizzes;
+  - interview-question practice for every track: SQL, OS, networking, Git, C++, Rust, architecture, system design, LLD, testing, security, cloud, AI;
+  - a **knowledge check round** at the end of every phase (rounds 2–10), recorded in [Knowledge-Check.md](../Career-Roadmap/Knowledge-Check.md);
+  - from Phase 7 on, a **weekly 30-minute self-exam** (step 134.1).
+
+  Every link is in [Practice-and-Channels.md](Practice-and-Channels.md).
+- **Every Friday, start with 20 minutes of revision:** one [revision map](Revision-Maps/README.md), or 10 questions from finished topics.
 - **Real deadlines are the only exceptions:**
   - Knight-Hennessy (optional), by 6 Oct;
   - booking IELTS, by 15 Oct;
@@ -23,13 +31,13 @@
 | Phase | Steps | Main checkpoint |
 |---|---|---|
 | 1 · Setup + SQL + P0 | 1–19 | P0 passes on Gradescope; HW1 |
-| 2 · Storage + HW2 | 20–29 | HW2; IELTS booked |
+| 2 · Storage + HW2 | 20–29.9 | HW2; IELTS booked; first practice exams (29.1–29.8) and knowledge check round 2 (29.9) |
 | 3 · P1 Buffer Pool | 30–61 | P1 passes on Gradescope; DAAD submitted; flagship repo created |
 | 4 · Indexes + execution | 62–76 | HW3 |
 | 5 · P2 B+Tree + concurrency | 77–96 | Raft leader election running in simulation |
 | 6 · Distributed DBs + wrap-up | 97–104 | HW4; all 24 lectures; P2 passes; flagship milestone M0 done |
-| 7 · Next | 105–138 | CMU P3/P4 + HW5–6, alternating with every guide of **Programming Languages and Concepts** (106–120, incl. design patterns), **System Architecture** (122–129) and the rest of **System Design** (130–132); then contests, mock interviews and the final sweep. Alternates with flagship milestones M1–M8. |
-| 8 · Engineering depth + AI | 139–184 | One step per new guide: **Low-Level Design** (139–145), **Testing, Reliability & Observability** (146–152), **Security** (153–159), **Cloud, DevOps & Infrastructure** (160–169) and **Agentic AI & LLM engineering** (170–183, ending with timed system-design mocks and a hands-on agent project); then a checklist sweep (184). |
+| 7 · Next | 105–138.1 | CMU P3/P4 + HW5–6, alternating with every guide of **Programming Languages and Concepts** (106–120, incl. design patterns), **System Architecture** (122–129) and the rest of **System Design** (130–132); then contests, mock interviews and the final sweep. Alternates with flagship milestones M1–M8. |
+| 8 · Engineering depth + AI | 139–184.1 | One step per new guide: **Low-Level Design** (139–145), **Testing, Reliability & Observability** (146–152), **Security** (153–159), **Cloud, DevOps & Infrastructure** (160–169) and **Agentic AI & LLM engineering** (170–183, ending with timed system-design mocks and a hands-on agent project); then a checklist sweep (184). |
 
 The plan mixes these tracks:
 - **CMU 15-445/645 Fall 2025:** lectures, homeworks 1–4, projects 0–2;
