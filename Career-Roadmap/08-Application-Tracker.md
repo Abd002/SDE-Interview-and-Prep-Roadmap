@@ -8,7 +8,7 @@
 
 ## Table of Contents
 - [A. Hard deadlines (scholarships and graduate programmes)](#a-hard-deadlines-scholarships-and-graduate-programmes)
-- [B. Rolling job applications — P1](#b-rolling-job-applications--p1)
+- [B. Rolling job applications — P1](#b-rolling-job-applications--p1) (starts with the [current shortlist](#current-shortlist-study-plan-step-29-checked-18-oct-2026))
 - [C. Backup and parallel (Egypt, remote and startups)](#c-backup-and-parallel-egypt-remote-and-startups)
 - [D. Summary counters](#d-summary-counters)
 - [E. Notion tracker (all 553 companies)](#e-notion-tracker-all-553-companies)
@@ -39,26 +39,44 @@ Sorted by date.
 
 ## B. Rolling job applications — P1
 
+### Current shortlist (study plan step 29, checked 18 Oct 2026)
+
+Five open roles at five different P1 companies, each checked on the company's own job board on 18 Oct 2026. Apply in this order; re-open the link first in case it has closed.
+
+| # | Company | Role (live posting) | Where | Why it fits | CV |
+|---|---|---|---|---|---|
+| 1 | **Canonical** | [Graduate Software Engineer, Open Source and Linux](https://job-boards.greenhouse.io/canonical/jobs/8249005) · alternates: [Junior Ubuntu Software Engineer](https://job-boards.greenhouse.io/canonical/jobs/6707669), [Junior Linux Kernel Engineer](https://job-boards.greenhouse.io/canonical/jobs/5370815) | Home based, worldwide | Asks for code in Rust or C/C++, Linux experience, personal projects; your GSoC work on the Linux printing stack (OpenPrinting, libcups) | [Systems/Rust](CV/cv-systems-rust.pdf) |
+| 2 | **Cloudflare** | [Systems Engineer, Network Protocols & Distributed Systems](https://boards.greenhouse.io/cloudflare/jobs/8187404) | London · Lisbon (hybrid) | Migrating NGINX to a Rust proxy; asks for "solid systems programming experience (Rust, C, or similar)"; no years required | [Systems/Rust](CV/cv-systems-rust.pdf) |
+| 3 | **Igalia** | [JavaScript Engine Developer](https://www.igalia.com/jobs/javascript_engine_developer) | Remote | "No strict requirements"; V8/JSC/SpiderMonkey work in C/C++; your Boa (JS engine in Rust) PR is direct evidence | [Systems/Rust](CV/cv-systems-rust.pdf) |
+| 4 | **NXP** | [Junior Embedded Software Engineer, Secure IoT Firmware](https://nxp.wd3.myworkdayjobs.com/careers/job/Gratkorn/Junior-Embedded-Software-Engineer---Secure-IoT-Firmware--m-f-d-_R-10066519) | Gratkorn, Austria | Junior; strong C, 32-bit MCUs, testing; nice-to-have Zephyr/FreeRTOS and secure boot (your dual-bank bootloader) | [Embedded](CV/cv-embedded.pdf) |
+| 5 | **Amazon (AWS)** | [Software Development Engineer, Database Migration Service](https://www.amazon.jobs/en/jobs/10580042/software-development-engineer-dms-database-migration-service) | Dublin, Ireland | Entry-level qualifications (no minimum years); databases team, matches your CMU 15-445 work | [General SWE](CV/cv-general-swe.pdf) |
+
+**Backups if one closes:** Collabora [Embedded Linux Consultant Engineer](https://jobs.lever.co/collabora/1d10fee4-5504-4abb-a623-276c926aad03) (remote) · Canonical [C, Golang Software Engineer on dqlite (Raft for SQLite)](https://job-boards.greenhouse.io/canonical/jobs/4124053) (EMEA, asks for distributed-systems experience).
+
+**Skipped on purpose:** NXP Brno and Novi Sad roles require an existing Czech/Serbian work permit; Red Hat's current Brno openings are internships for students; Cloudflare's Egress and Network Automation roles ask for 3+ years.
+
+### All P1 targets
+
 Grouped by track (see [07 §3](07-Strategy-and-Roadmap.md#3-the-recommended-strategy-three-parallel-lanes)).
 
 | # | Company | Track | Where | Role to apply for | Sponsorship | Status | Applied on | Referral / contact | Next step | Details |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 1 | **Canonical** | 1a Open source | Remote | Graduate / Junior Ubuntu Software Engineer | N/A (remote) | Not started | | GSoC mentors (Ubuntu printing) | Written application | [02](02-International-Companies.md#-united-kingdom) |
+| 1 | **Canonical** | 1a Open source | Remote | Graduate / Junior Ubuntu Software Engineer | N/A (remote) | **Preparing** | | GSoC mentors (Ubuntu printing) | Shortlisted 18 Oct: [Graduate Software Engineer, Open Source and Linux](https://job-boards.greenhouse.io/canonical/jobs/8249005) | [02](02-International-Companies.md#-united-kingdom) |
 | 2 | **Red Hat** | 1a Open source | Brno / remote (Egypt listed) | Software Engineer / Associate | ❔ / N/A | Not started | | OpenPrinting contacts | Search "CUPS", "desktop" | [02](02-International-Companies.md#-central--southern-europe-czechia-poland-spain-portugal) |
 | 3 | **Collabora** | 1a Open source | Remote/Anywhere | Open Source Software Developer (Multimedia/Kernel) | N/A (remote) | Not started | | | Apply | [04](04-Remote-From-Egypt.md#1-employers) |
-| 4 | **Igalia** | 1a Open source | Remote | JS Engine Developer / Build-Your-Own | N/A (remote) | Not started | | | Pitch Boa + Rust | [04](04-Remote-From-Egypt.md#1-employers) |
+| 4 | **Igalia** | 1a Open source | Remote | JS Engine Developer / Build-Your-Own | N/A (remote) | **Preparing** | | | Shortlisted 18 Oct: [JavaScript Engine Developer](https://www.igalia.com/jobs/javascript_engine_developer); pitch Boa + Rust | [04](04-Remote-From-Egypt.md#1-employers) |
 | 5 | **System76** | 1a Rust / desktop | Denver / remote | Software Engineer (Rust, COSMIC) | ❔ | Not started | | **GSoC mentors (System76)** | Ask for a referral | [02](02-International-Companies.md#-north-america) |
 | 6 | **JetBrains** | 1a Developer tools | Amsterdam / Munich / Prague | Software Developer (RustRover / tooling) | ✅ | Not started | | | Apply | [02](02-International-Companies.md#-netherlands) |
-| 7 | **Cloudflare** | 1a Systems / Rust | London / Lisbon | Systems Engineer | 🟡 | Not started | | | Apply | [02](02-International-Companies.md#-united-kingdom) |
+| 7 | **Cloudflare** | 1a Systems / Rust | London / Lisbon | Systems Engineer | 🟡 | **Preparing** | | | Shortlisted 18 Oct: [Systems Engineer, Network Protocols & Distributed Systems](https://boards.greenhouse.io/cloudflare/jobs/8187404) (London or Lisbon) | [02](02-International-Companies.md#-united-kingdom) |
 | 8 | **Ferrous Systems** | 1a Rust | Germany (remote) | Rust Engineer | ❔ | Not started | | | Watch their job posts | [02](02-International-Companies.md#-germany) |
 | 9 | **Nordic Semiconductor** | 1b Embedded (Zephyr) | Trondheim / Oslo | Embedded Software Engineer | ✅ | Not started | | Zephyr community | Cite the Zephyr PR | [02](02-International-Companies.md#-nordics-sweden-norway) |
-| 10 | **NXP** | 1b Embedded | Eindhoven | Embedded Software Engineer | 🟡 | Not started | | Zephyr community | Apply | [02](02-International-Companies.md#-netherlands) |
+| 10 | **NXP** | 1b Embedded | Eindhoven | Embedded Software Engineer | 🟡 | **Preparing** | | Zephyr community | Shortlisted 18 Oct: [Junior Embedded Software Engineer, Secure IoT Firmware](https://nxp.wd3.myworkdayjobs.com/careers/job/Gratkorn/Junior-Embedded-Software-Engineer---Secure-IoT-Firmware--m-f-d-_R-10066519) (Gratkorn, Austria) | [02](02-International-Companies.md#-netherlands) |
 | 11 | **TomTom** | 1b Embedded / C++ | Amsterdam / Eindhoven | Software Engineer C++ | ✅ | Not started | | | Apply | [02](02-International-Companies.md#-netherlands) |
 | 12 | **ASML** | 1b C++ | Veldhoven | Young Software Professionals programme | ✅ | Not started | | | Apply | [02](02-International-Companies.md#-netherlands) |
 | 13 | **Arm** | 1b Systems | Cambridge | Graduate Software Engineer | ✅ (check salary vs threshold) | Not started | | | Apply | [02](02-International-Companies.md#-united-kingdom) |
 | 14 | **Google** | 1c Big Tech | Zurich / Dublin / Munich / Warsaw | Software Engineer L3 | ✅ | Not started | | Egyptian alumni | Referral + apply | [02](02-International-Companies.md#-big-tech-multi-country--apply-to-the-euukcanada-offices-first) |
 | 15 | **Microsoft** | 1c Big Tech | Dublin / Prague / Munich | Software Engineer | ✅ | Not started | | | Apply | [02](02-International-Companies.md#-big-tech-multi-country--apply-to-the-euukcanada-offices-first) |
-| 16 | **Amazon / AWS** | 1c Big Tech | Dublin / Berlin | SDE I | ✅ | Not started | | | Write STAR stories first | [02](02-International-Companies.md#-big-tech-multi-country--apply-to-the-euukcanada-offices-first) |
+| 16 | **Amazon / AWS** | 1c Big Tech | Dublin / Berlin | SDE I | ✅ | **Preparing** | | | Shortlisted 18 Oct: [SDE, Database Migration Service](https://www.amazon.jobs/en/jobs/10580042/software-development-engineer-dms-database-migration-service) (Dublin); write STAR stories first | [02](02-International-Companies.md#-big-tech-multi-country--apply-to-the-euukcanada-offices-first) |
 | 17 | **Bloomberg** | 1c Fintech | London | Software Engineer (graduate) | ✅ (UK register) | Not started | | | Apply | [02](02-International-Companies.md#-big-tech-multi-country--apply-to-the-euukcanada-offices-first) |
 | 18 | **Optiver** | 1c Trading | Amsterdam | Graduate Software Engineer | ✅ | Not started | | | **Motivation letter** + HackerRank | [02](02-International-Companies.md#-netherlands) |
 | 19 | **Booking.com** | 1c Product | Amsterdam | Software Engineer | 🟡 | Not started | | | Apply | [02](02-International-Companies.md#-netherlands) |
