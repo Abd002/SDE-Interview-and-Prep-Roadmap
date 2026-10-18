@@ -117,6 +117,18 @@ Part-time/remote during military service; still part-time now.
   - COSMIC printers (Google Summer of Code);
   - the graduation project (FOTA/bootloader);
   - IoT TCP/UDP framework (RPi 4 + QEMU + Yocto);
+  - **Kernel Monitor** ([github.com/Abd002/kernel-monitor](https://github.com/Abd002/kernel-monitor), uploaded Dec 2024). Checked against the code on 18 Oct 2026:
+    - **What it does:** a Linux kernel module in C registers the character device `/dev/kernel_tasks`. On `open()` it walks every process with `for_each_process` under `rcu_read_lock()` and writes each task's name, PID, TGID, parent PID, UIDs/GIDs, VM size, thread count, voluntary and involuntary context switches, and utime/stime into a buffer. `read()` copies that buffer to user space with `copy_to_user`.
+    - **User-space side:** a C program with a pthread re-reads the device every 2 s and prints the data. It is cross-compiled with `arm-none-linux-gnueabihf-gcc`.
+    - **Target:** runs on QEMU `vexpress-a9` (ARM) with a custom kernel (`zImage`, device tree) and a BusyBox ext4 root filesystem.
+    - **Do not claim** "CPU usage %", "memory statistics" or "visualization/GUI". The README lists them as goals, but the code doesn't implement them; it outputs text only.
+    - **Before an interview, know its weak spots:**
+      - `module_exit` doesn't call `cdev_del`/`unregister_chrdev`.
+      - `cdev_add` gets the major number instead of `MKDEV(major, 0)`.
+      - `buffer_len` can pass 16 KB (`snprintf` returns the length it wanted to write).
+      - There is no lock when two processes open the device at once.
+      - `main.cpp` has an operator-precedence bug in `(bytesRead = read(...) > 0)`.
+      - An interviewer may open the repo, so either fix these or be ready to explain how you would.
   - seat heater (FreeRTOS, Tiva C);
   - AUTOSAR PORT/GPIO drivers;
   - traffic light (Verilog FPGA);
