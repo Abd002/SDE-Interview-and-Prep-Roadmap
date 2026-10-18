@@ -6,6 +6,8 @@
 
 🗺️ **[Revision-Maps](Revision-Maps/README.md)**: diagrams for quick revision of the finished steps (all DBMS layers from L01–L07, DDIA ch. 5 and ch. 9).
 
+🎯 **[Practice-and-Channels.md](Practice-and-Channels.md)**: practice exams and interview questions for the finished steps (with solutions), plus YouTube channels for every topic.
+
 ## How it works
 - **No dates.** The plan is **184 numbered steps**. Do the lowest unfinished step, tick it, then move to the next. It is written for limited, changing free time (during military service), so the pace is open and only the order matters.
 - **Friday** (the one day off) is for the long steps: 2–4h project chunks, virtual contests and flagship coding.
