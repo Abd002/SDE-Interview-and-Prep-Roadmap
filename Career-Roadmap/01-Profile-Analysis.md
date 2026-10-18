@@ -56,7 +56,7 @@ Every row points to a source a recruiter can check.
 | **Upstream Rust contributions** | **cups-rs**: PRs #18–#22 merged (port to libcups3). **Rust Clippy**: fixed a `ref_as_ptr` false positive. **Boa** (a JavaScript engine written in Rust): optimized `JsStr::code_points`. | CV, GSoC report |
 | **Upstream RTOS contribution** | **Zephyr RTOS**: added `IP_MULTICAST_LOOP` support across 6 network modules (issue #86977). His first open-source contribution, merged in March 2025. | CV |
 | **Open PRs under review** | `cosmic-settings` #2182 and `cosmic-settings-daemon` #188 | GSoC report |
-| **Embedded Linux** | Orange Digital Center (ODC) internship (Dec 2023 – Jan 2024): Yocto, Buildroot, wrote a kernel module, device trees. Personal project: an IoT C++ TCP/UDP framework on a Raspberry Pi 4 and QEMU, built with Yocto. | CV |
+| **Embedded Linux** | Orange Digital Center (ODC) internship (Dec 2024 – Jan 2025): Yocto, Buildroot, wrote a kernel module, device trees. Personal project: an IoT C++ TCP/UDP framework on a Raspberry Pi 4 and QEMU, built with Yocto. | CV |
 | **General software** | OS simulator (Java). Full-stack course project (Node/Express/MongoDB). Sports-management and inventory systems (C#). Python function solver. | [GitHub pinned repos](https://github.com/Abd002) |
 | **Algorithms** | Codeforces Expert, 4-time ECPC finalist, and this SDE interview-prep repository | [GitHub profile](https://github.com/Abd002) |
 | **Other** | IEEE student branch Treasurer (budget of more than $10k) | CV |

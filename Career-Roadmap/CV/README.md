@@ -73,7 +73,7 @@ The CVs were run through the **[OpenResume](https://github.com/xitanggg/open-res
 |---|---|
 | Name, email, LinkedIn URL, Summary | ✅ found |
 | Sections | ✅ Summary, Experience, Open Source Projects, Projects, Technical Skills, Achievements, Education all found |
-| Jobs | ✅ 3 jobs with the right dates. **Google Summer of Code Contributor**, May–Oct 2026: this parser leaves the title field empty and puts the title in the company field, because "Contributor" isn't in its list of job words (see item 3 below) · **Embedded Software Engineer** at EKSON, Aug 2025 – Present · **Embedded Linux Systems Intern** at Orange Digital Center, Dec 2023 – Jan 2024 |
+| Jobs | ✅ 3 jobs with the right dates. **Google Summer of Code Contributor**, May–Oct 2026: this parser leaves the title field empty and puts the title in the company field, because "Contributor" isn't in its list of job words (see item 3 below) · **Embedded Software Engineer** at EKSON, Aug 2025 – Present · **Embedded Linux Systems Intern** at Orange Digital Center, Dec 2024 – Jan 2025 |
 | Education | ✅ Minia University · Bachelor of Science (B.Sc.), Computer and Systems Engineering · 2020 – 2025 |
 | Phone and city | ⚠️ This parser only knows US formats, so it drops "+20" and "Cairo, Egypt". Commercial ATS (Workday, Greenhouse, Textkernel-based ones) read international numbers. Type your phone and city into the job site's form fields anyway. |
 

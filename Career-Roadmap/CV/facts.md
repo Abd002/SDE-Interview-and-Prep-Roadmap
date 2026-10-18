@@ -73,7 +73,7 @@ Part-time/remote during military service; still part-time now.
 - **In review (not merged):** cosmic-settings #2182 and cosmic-settings-daemon #188.
 - **Testing:** real HP printers (PageWide, LaserJet; DesignJet 800 through a Printer Application). CI runs `ippeveprinter` on several architectures.
 
-### Orange Digital Center (ODC): Embedded Linux Systems Intern · Dec 2023 – Jan 2024
+### Orange Digital Center (ODC): Embedded Linux Systems Intern · Dec 2024 – Jan 2025
 - Built Linux images with **Yocto and Buildroot**.
 - **Wrote a kernel module / device driver.**
 - Worked with device trees, root file systems and flashing hardware.
@@ -117,7 +117,7 @@ Part-time/remote during military service; still part-time now.
   - COSMIC printers (Google Summer of Code);
   - the graduation project (FOTA/bootloader);
   - IoT TCP/UDP framework (RPi 4 + QEMU + Yocto);
-  - **Kernel Monitor** ([github.com/Abd002/kernel-monitor](https://github.com/Abd002/kernel-monitor), uploaded Dec 2024). Checked against the code on 18 Oct 2026:
+  - **Kernel Monitor** ([github.com/Abd002/kernel-monitor](https://github.com/Abd002/kernel-monitor), the ODC internship kernel module, uploaded Dec 2024). Checked against the code on 18 Oct 2026:
     - **What it does:** a Linux kernel module in C registers the character device `/dev/kernel_tasks`. On `open()` it walks every process with `for_each_process` under `rcu_read_lock()` and writes each task's name, PID, TGID, parent PID, UIDs/GIDs, VM size, thread count, voluntary and involuntary context switches, and utime/stime into a buffer. `read()` copies that buffer to user space with `copy_to_user`.
     - **User-space side:** a C program with a pthread re-reads the device every 2 s and prints the data. It is cross-compiled with `arm-none-linux-gnueabihf-gcc`.
     - **Target:** runs on QEMU `vexpress-a9` (ARM) with a custom kernel (`zImage`, device tree) and a BusyBox ext4 root filesystem.

@@ -40,7 +40,7 @@ You said the hard part is talking about yourself. These rules make it easier.
 | **Numbers** | ~40% lower CPU/latency (PyQt5 app, measured) · 5 Rust crates · 7 merged PRs · 6 Zephyr networking modules · Codeforces Expert · 4× ECPC finalist (2021–2024) · 84.6% with Honors |
 | **First open-source PR** | Zephyr RTOS, **March 2025**: `IP_MULTICAST_LOOP` socket option (issue #86977). A "good first issue". |
 | **Other open source** | Boa (JavaScript engine in Rust), Rust Clippy: both merged, Dec 2025. |
-| **Internship** | Orange Digital Center, Dec 2023 – Jan 2024: Yocto, Buildroot, wrote a kernel module. |
+| **Internship** | Orange Digital Center, Dec 2024 – Jan 2025: Yocto, Buildroot, wrote a kernel module. |
 | **Graduation project** | STM32 vehicle (team). My part: firmware update over UART + dual-bank bootloader with rollback. CAN failed first: my lesson story. |
 | **Never say** | "C++/Qt app" (it's **PyQt5**) · Deloitte · Winter of Code · lp/lpstat · a PID loop rate number · "Zephyr 2024" |
 

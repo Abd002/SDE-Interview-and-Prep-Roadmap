@@ -135,7 +135,7 @@ Software for 3-DoF and 6-DoF pneumatic motion simulators for training and gaming
 - **Title:** Embedded Linux Systems Intern
 - **Company:** Orange Digital Center Egypt (the company page you already picked)
 - **Employment type:** Internship
-- **Dates:** Dec 2023 – Jan 2024
+- **Dates:** Dec 2024 – Jan 2025
 - **Description:**
 ```
 • Built Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing.
