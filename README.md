@@ -118,15 +118,15 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] [Privacy-aware memory retention and data minimization](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md#6-privacy-aware-memory-retention-and-data-minimization) **`P1`**
   - [ ] [Session isolation and user/tenant scoping](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md#7-session-isolation-and-usertenant-scoping) **`P1`**
   - [ ] [Working memory, episodic memory, semantic memory, and user preferences](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md#8-working-memory-episodic-memory-semantic-memory-and-user-preferences) **`P1`**
-- [ ] **Multi-Agent Systems** **`P1`**
-  - [ ] Agent-to-agent communication and typed message contracts **`P0`**
-  - [ ] Avoiding unnecessary agent proliferation and coordination overhead **`P1`**
-  - [ ] Conflicting answers, arbitration, and consensus limits **`P1`**
-  - [ ] Handoffs, delegation, and task ownership **`P1`**
-  - [ ] Parallel agents, race conditions, and result aggregation **`P0`**
-  - [ ] Shared state vs. agent-specific state **`P1`**
-  - [ ] Single-agent vs. multi-agent trade-offs **`P1`**
-  - [ ] Supervisor/worker and coordinator/specialist patterns **`P1`**
+- [ ] [**Multi-Agent Systems**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Multi-Agent-Systems.md) **`P1`**
+  - [ ] [Agent-to-agent communication and typed message contracts](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Multi-Agent-Systems.md#1-agent-to-agent-communication-and-typed-message-contracts) **`P0`**
+  - [ ] [Avoiding unnecessary agent proliferation and coordination overhead](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Multi-Agent-Systems.md#2-avoiding-unnecessary-agent-proliferation-and-coordination-overhead) **`P1`**
+  - [ ] [Conflicting answers, arbitration, and consensus limits](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Multi-Agent-Systems.md#3-conflicting-answers-arbitration-and-consensus-limits) **`P1`**
+  - [ ] [Handoffs, delegation, and task ownership](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Multi-Agent-Systems.md#4-handoffs-delegation-and-task-ownership) **`P1`**
+  - [ ] [Parallel agents, race conditions, and result aggregation](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Multi-Agent-Systems.md#5-parallel-agents-race-conditions-and-result-aggregation) **`P0`**
+  - [ ] [Shared state vs. agent-specific state](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Multi-Agent-Systems.md#6-shared-state-vs-agent-specific-state) **`P1`**
+  - [ ] [Single-agent vs. multi-agent trade-offs](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Multi-Agent-Systems.md#7-single-agent-vs-multi-agent-trade-offs) **`P1`**
+  - [ ] [Supervisor/worker and coordinator/specialist patterns](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Multi-Agent-Systems.md#8-supervisorworker-and-coordinatorspecialist-patterns) **`P1`**
 - [ ] [**Production Reliability and Observability**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md) **`P1`**
   - [ ] [Cache strategies: prompt, response, embedding, and retrieval caching](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#1-cache-strategies-prompt-response-embedding-and-retrieval-caching) **`P0`**
   - [ ] [Circuit breakers, dead-letter queues, and recovery workflows](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#2-circuit-breakers-dead-letter-queues-and-recovery-workflows) **`P0`**
