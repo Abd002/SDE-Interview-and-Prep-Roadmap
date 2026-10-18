@@ -1,0 +1,68 @@
+% Tailored copy for nxp (18 Oct 2026). Built from cv-embedded.tex; only facts from ../../facts.md.
+% Build: cd applications/nxp && TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex (twice).
+% Embedded version: Nordic, NXP, Arm, TomTom, Bosch, Continental,
+% Valeo and other automotive / firmware employers.
+% Every fact comes from facts.md. Build: pdflatex cv-embedded.tex (twice). Needs the lato package.
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Embedded Software Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Embedded Software Engineer \enspace|\enspace C, 32-bit MCUs, Zephyr RTOS}
+
+\section*{Summary}
+Embedded software engineer writing C firmware for 32-bit microcontrollers (ESP32-S3, ARM Cortex-M STM32 and TM4C). Owns the Zephyr RTOS firmware for EKSON's pneumatic motion simulators; built a dual-bank STM32 bootloader with CRC/signature check and rollback (graduation project); merged a Zephyr networking contribution. Also works in modern C++, Rust and Python.
+
+\section*{Experience}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Software for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
+\begin{itemize}
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS for more deterministic timing, devicetree-based drivers and easier porting to other boards.
+  \item Implemented closed-loop PID control of the pneumatic valves, with feedback from an MPU6050 IMU over I2C (calibration and a Mahony filter for orientation), plus safety stops and a watchdog.
+  \item Developed the PyQt5 desktop app that controls the simulator over a UART protocol; cut its CPU usage and latency by about 40\% (measured) using asyncio to wait for ESP32 and server messages concurrently, off the UI thread.
+  \item Engineered remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST, then flashes new firmware with esptool; GitHub Actions CI.
+\end{itemize}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Open-source project: Printers page for COSMIC Settings, in Rust \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\begin{itemize}
+  \item Built the \textbf{Printers page for COSMIC Settings} (printer status, supply levels, print queues, adding printers) as 5 Rust crates, with the CUPS/IPP/DNS-SD backend isolated behind a varlink IPC service (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item Wrote Rust-to-C FFI bindings (libcups3 DNS-SD) and fixed crashes in libcups' Avahi code; \textbf{7 PRs accepted upstream}.
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
+\begin{itemize}
+  \item Created custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.
+\end{itemize}
+
+\section*{Open Source Projects}
+\begin{itemize}
+  \item \textbf{Zephyr RTOS} (Mar 2025): implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules, reviewed and merged upstream (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{issue \#86977}).
+  \item \textbf{OpenPrinting libcups and cups-rs} (2026): fixed DNS-SD crashes in libcups (C); ported cups-rs to libcups3 with CI (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}).
+  \item \textbf{Rust ecosystem} (Dec 2025): Boa JavaScript engine string optimization (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}) and a Rust Clippy lint fix (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}), both landed upstream.
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{AUTOSAR-Based V2X Vehicle} (graduation project, STM32): implemented the firmware update path (an ESP32/RPi gateway sends the image over UART) and a dual-bank bootloader with CRC check and rollback. \cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}
+  \item \textbf{Seat Heater Control System} (Tiva C, FreeRTOS): real-time controller with temperature monitoring, heater-level control and UART diagnostics, using tasks, mutexes and event flags. \cvlink{https://github.com/Abd002/SeatHeaterControlSystem}{GitHub}
+  \item \textbf{IoT Device Communication System} (C++, Raspberry Pi 4, QEMU, Yocto): TCP unicast and UDP multicast framework between a Pi server and emulated clients. \cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}
+  \item \textbf{AUTOSAR PORT and GPIO drivers} (C, TM4C): MCAL drivers developed and tested against the AUTOSAR specification.
+  \item \textbf{Traffic Light Controller} (Verilog, Spartan-3E FPGA): FSM with debounce and delay modules. \cvlink{https://github.com/Abd002/Traffic-Light-Controller}{GitHub}
+  \item \textbf{Door Locker Security System} (C, two MCUs): password lock with keypad, LCD, I2C EEPROM and DC motor; UART between the MCUs. \cvlink{https://github.com/Abd002/Door-Locker-Security-Systems}{GitHub}
+\end{itemize}
+
+\section*{Technical Skills}
+\cvskill{Languages}{C, Modern C++, Rust, Python (asyncio, PyQt5), Java, Bash, Verilog}
+\cvskill{RTOS \& firmware}{Zephyr (devicetree, west), FreeRTOS, ESP-IDF, OSEK/VDX (Trampoline), 32-bit ARM Cortex-M (STM32, TM4C), ESP32-S3, AVR, AUTOSAR, bootloaders with image verification (CRC/signature), FOTA, PID control}
+\cvskill{Embedded Linux}{Linux, Yocto, Buildroot, kernel modules, device drivers, device trees, QEMU, Raspberry Pi}
+\cvskill{Protocols \& tools}{UART, I2C, SPI, CAN, TCP/UDP, REST; Git, GitHub Actions CI, CMake, Make, debugging}
+\cvskill{Testing}{unit and integration (end-to-end) testing, pytest, Python scripting for build and test automation in CI}
+
+\section*{Education}
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors.
+  \item Activities: Codeforces Expert; 4-time ECPC finalist (2021--2024); Treasurer, IEEE Student Branch.
+\end{itemize}
+
+\end{document}

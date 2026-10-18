@@ -1,0 +1,70 @@
+% Tailored copy for amazon (18 Oct 2026). Built from cv-general-swe.tex; only facts from ../../facts.md.
+% Build: cd applications/amazon && TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex (twice).
+% General SWE version: Big Tech, trading, SaaS, backend.
+% Every fact comes from facts.md. Build: pdflatex cv-general-swe.tex (twice). Needs the lato package.
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Software Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Software Engineer \enspace|\enspace C++, Rust, Python, Linux}
+
+\section*{Summary}
+Software engineer in modern C++, Rust, C and Python, strong in algorithms (Codeforces Expert). Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting): built the Printers page for COSMIC Settings, with 7 PRs merged upstream. At EKSON, builds the simulators' firmware, app and REST backend (MongoDB).
+
+\section*{Technical Skills}
+\cvskill{Languages}{Rust, Modern C++, C, Python (asyncio), JavaScript (Node.js), SQL, Java, C\#, Bash}
+\cvskill{Computer science}{Data structures and algorithms, operating systems, concurrency and multithreading, async/event-driven design, memory management, networking (TCP/UDP, IPC)}
+\cvskill{Systems \& Linux}{Linux (Ubuntu/Debian), FFI, IPC (varlink), CUPS/IPP, DNS-SD/mDNS, kernel modules and device drivers, Zephyr RTOS, FreeRTOS, Yocto, Buildroot}
+\cvskill{Backend \& tools}{Node.js, Express, REST APIs, MongoDB (NoSQL), PyQt5; Git (version control), GitHub Actions CI, CMake, testing, debugging and troubleshooting, code review}
+
+\section*{Experience}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Open-source project: Printers page for COSMIC Settings, in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\begin{itemize}
+  \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app with the same UI: printers grouped by device, status and supply levels, print queues, live updates, and an Add Printer flow for legacy printers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item Designed it as 5 Rust crates and ran the C FFI backend as a varlink IPC service in the settings daemon, so a native crash cannot take down Settings.
+  \item \textbf{7 PRs accepted upstream}: ported cups-rs to libcups3 with CUPS 2 and 3 builds and CI, added DNS-SD bindings, and fixed crashes and a leaked client in libcups (C).
+\end{itemize}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Software for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
+\begin{itemize}
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.
+  \item Developed the PyQt5 control app; used asyncio to wait for ESP32 and server messages concurrently, cutting CPU use and latency by about 40\% (measured).
+  \item Engineered remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST to relay commands and flash new firmware with esptool; GitHub Actions CI.
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
+\begin{itemize}
+  \item Created custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.
+\end{itemize}
+
+\section*{Open Source Projects}
+\cventry{Contributor (all merged) --- Zephyr RTOS, Boa JavaScript engine (Rust), Rust Clippy}{Mar 2025 -- Dec 2025}
+\begin{itemize}
+  \item Zephyr RTOS: added the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 in 6 networking modules (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}).
+  \item Boa: optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}).
+  \item Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}).
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{IoT Device Communication System} (C++, Raspberry Pi 4, QEMU, Yocto): object-oriented framework for TCP unicast and UDP multicast between a server and emulated clients. \cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}
+  \item \textbf{Operating System Simulator} (Java): CLI simulating scheduling, memory management, system calls and locks. \cvlink{https://github.com/Abd002/os-simulator}{GitHub}
+  \item \textbf{Inventory Management System} (C\#, WinForms, SQL): stock, orders and deliveries app with role-based access control and reports. \cvlink{https://github.com/Abd002/Inventory-Management-System}{GitHub}
+  \item \textbf{Team projects:} Sarh Al-Tafawuq, a production web platform (\cvlink{https://sarh-al-tafawuq-platform.vercel.app/}{live}); Nafaqati, a Flutter Android expense tracker (\cvlink{https://play.google.com/store/apps/details?id=com.mariam.nafaqati}{Google Play}).
+\end{itemize}
+
+\section*{Achievements}
+\begin{itemize}
+  \item Codeforces Expert (handle \_Khalifa); 4-time ECPC finalist, 2021--2024 (Egyptian Collegiate Programming Contest).
+  \item Treasurer, IEEE Student Branch, Minia University: managed a budget of more than \$10k.
+\end{itemize}
+
+\section*{Education}
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; implemented the firmware update path and a dual-bank bootloader with rollback.
+\end{itemize}
+
+\end{document}

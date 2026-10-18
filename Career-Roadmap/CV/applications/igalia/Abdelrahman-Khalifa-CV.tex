@@ -1,0 +1,68 @@
+% Tailored copy for igalia (18 Oct 2026). Built from cv-systems-rust.tex; only facts from ../../facts.md.
+% Build: cd applications/igalia && TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex (twice).
+% Systems / Rust / open source version: Canonical, Red Hat, Collabora,
+% JetBrains, Cloudflare, Igalia, System76, Ferrous Systems.
+% Every fact comes from facts.md. Build: pdflatex cv-systems-rust.tex (twice). Needs the lato package.
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Systems Software Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Systems Software Engineer \enspace|\enspace Rust, C++, C, Open Source}
+
+\section*{Summary}
+Systems software engineer working in Rust, modern C++ and C, with merged contributions to Boa (a JavaScript engine in Rust), Rust Clippy and Zephyr RTOS. Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting): built the Printers page for COSMIC Settings and landed 7 PRs upstream in cups-rs and libcups. Comfortable working remotely with maintainers through upstream code review.
+
+\section*{Experience}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Open-source project: Printers page for COSMIC Settings, in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026} \enspace|\enspace \cvlink{https://github.com/Abd002/cosmic-printers}{github.com/Abd002/cosmic-printers}}
+\begin{itemize}
+  \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app sharing the same UI: printers grouped by device, status and supply levels, print queue control, test pages, live updates, and an Add Printer flow that sets up legacy printers through Printer Applications (PAPPL) instead of PPD drivers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item Designed the stack as 5 Rust crates: \texttt{printers-core} (types, grouping queues into physical devices), \texttt{printers-client} (async varlink client), \texttt{printers-server} (CUPS/IPP), \texttt{printers-ui} (iced) and \texttt{printers-app}.
+  \item Ran the backend as a varlink IPC service in \texttt{cosmic-settings-daemon} (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}, in review), so the C FFI code never loads in the Settings process; the standalone app falls back to running it in-process.
+  \item Tested on real HP printers and Printer Applications (Ghostscript, Gutenprint, HPLIP); CI checks formatting, Clippy and tests on several architectures and runs CUPS, Avahi and \texttt{ippeveprinter}.
+\end{itemize}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Software for 3-DoF and 6-DoF pneumatic motion simulators}
+\begin{itemize}
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.
+  \item Developed the PyQt5 desktop control app, cutting CPU usage and latency by about 40\% (measured) using asyncio to wait for ESP32 and server messages concurrently; added remote control and firmware updates through a Node.js/MongoDB backend.
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
+\begin{itemize}
+  \item Created custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.
+\end{itemize}
+
+\section*{Open Source Projects}
+\cventry{Upstream contributions (all accepted) --- OpenPrinting cups-rs (Rust) and libcups (C)}{2026}
+\begin{itemize}
+  \item cups-rs: ported to libcups3 with CUPS 2 and CUPS 3 builds and CI; added IPP management operations, Printer Application support, connections by IP/port, \texttt{lpoptions} support and FFI bindings for the libcups3 DNS-SD API (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}).
+  \item libcups: fixed crashes in \texttt{cupsDNSSDDelete()} and a leaked client in the Avahi DNS-SD code (\cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}).
+\end{itemize}
+\cventry{Contributor (all merged) --- Boa JavaScript engine (Rust), Rust Clippy, Zephyr RTOS}{Mar 2025 -- Dec 2025}
+\begin{itemize}
+  \item Zephyr RTOS: added the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 in 6 networking modules (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}).
+  \item Boa: optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}).
+  \item Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}).
+\end{itemize}
+
+\section*{Technical Skills}
+\cvskill{Languages}{Rust, C, Modern C++, Python (asyncio), Bash, JavaScript (Node.js)}
+\cvskill{Systems \& Linux}{Linux (Ubuntu/Debian), operating systems, FFI and bindings, IPC (varlink, D-Bus; zbus, zlink), concurrency (async/event-driven, multithreading), memory management, networking (TCP/UDP), CUPS/IPP, DNS-SD/mDNS (Avahi), kernel modules and device drivers}
+\cvskill{Tooling}{Cargo, Clippy, rustfmt, Git/GitHub, GitHub Actions CI, CMake, Make, Yocto, Buildroot, QEMU, testing, debugging, performance optimization, code review}
+\cvskill{Desktop \& embedded}{iced, libcosmic, PyQt5; Zephyr, FreeRTOS, ARM Cortex-M (STM32), ESP32}
+
+\section*{Achievements}
+\begin{itemize}
+  \item Codeforces Expert (handle \_Khalifa); 4-time ECPC finalist, 2021--2024 (Egyptian Collegiate Programming Contest).
+  \item Treasurer, IEEE Student Branch, Minia University: managed a budget of more than \$10k.
+\end{itemize}
+
+\section*{Education}
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; implemented the firmware update path and a dual-bank bootloader with rollback.
+\end{itemize}
+
+\end{document}

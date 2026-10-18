@@ -9,17 +9,17 @@
 \cvheader{Abdelrahman Khalifa}{Software Engineer \enspace|\enspace Rust, C, C++, Linux, Embedded}
 
 \section*{Summary}
-Software engineer working in Rust, C and modern C++ on Linux and embedded systems. At EKSON, builds the Zephyr firmware, PyQt5 desktop app and Node.js backend of its motion simulators; built the Printers page for COSMIC Settings as a Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting), with 7 PRs merged upstream in cups-rs and libcups, plus merged contributions to Zephyr RTOS, Boa and Rust Clippy. Codeforces Expert and 4-time ECPC finalist.
+Software engineer working in Rust, C and modern C++ on Linux and embedded systems. At EKSON, builds the Zephyr firmware, PyQt5 desktop app and Node.js backend of its motion simulators; built the Printers page for COSMIC Settings as a Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting), with 7 PRs merged upstream in cups-rs and libcups, plus accepted contributions to Zephyr RTOS, Boa and Rust Clippy. Codeforces Expert and 4-time ECPC finalist.
 
 \section*{Experience}
 \cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
 \cvsub{Open-source project: Printers page for COSMIC Settings, in Rust; passed the final evaluation, still maintaining it; mentored by OpenPrinting and System76 \enspace|\enspace \cvlink{https://summerofcode.withgoogle.com/programs/2026/projects/iYwK7khC}{Google Summer of Code project page} \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026} \enspace|\enspace \cvlink{https://github.com/Abd002/cosmic-printers}{github.com/Abd002/cosmic-printers}}
 \begin{itemize}
   \item Built the \textbf{Printers page for COSMIC Settings} and a standalone printers app that share the same UI: printers grouped by device, state and supply levels, print queue control (pause, resume, cancel, move jobs), default printer and options, test pages and live updates (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
-  \item Built the Add Printer flow: legacy and specialty printers are set up through Printer Applications (PAPPL) instead of PPD drivers, following the CUPS 3 architecture.
+  \item Implemented the Add Printer flow: legacy and specialty printers are set up through Printer Applications (PAPPL) instead of PPD drivers, following the CUPS 3 architecture.
   \item Designed the stack as 5 Rust crates: \texttt{printers-core} (types, grouping queues into physical devices), \texttt{printers-client} (async varlink client), \texttt{printers-server} (CUPS, IPP, DNS-SD and Printer Application backend), \texttt{printers-ui} (iced/libcosmic) and \texttt{printers-app}.
   \item Exposed the backend over varlink IPC from \texttt{cosmic-settings-daemon} (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}, in review), so the C FFI code never loads in the Settings process; the standalone app can run the server in-process.
-  \item Ported cups-rs to libcups3 with CUPS 2 and CUPS 3 builds and CI; wrote FFI bindings for the libcups3 DNS-SD API; fixed crashes and a leaked client in libcups' Avahi DNS-SD code (C). \textbf{7 PRs merged upstream.}
+  \item Ported cups-rs to libcups3 with CUPS 2 and CUPS 3 builds and CI; wrote FFI bindings for the libcups3 DNS-SD API; fixed crashes and a leaked client in libcups' Avahi DNS-SD code (C). \textbf{7 PRs accepted upstream.}
   \item Tested on real HP printers and Printer Applications (Ghostscript, Gutenprint, HPLIP, LPrint); CI checks formatting, Clippy and tests on several architectures and runs CUPS, Avahi and \texttt{ippeveprinter} to test discovery.
 \end{itemize}
 \cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
@@ -28,13 +28,13 @@ Software engineer working in Rust, C and modern C++ on Linux and embedded system
   \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS for more deterministic timing, devicetree-based drivers and easier porting to other boards.
   \item Implemented closed-loop PID control of the pneumatic valves, with feedback from an MPU6050 IMU over I2C (calibration and a Mahony filter for orientation), safety stops and a watchdog; UART protocol to the PC.
   \item Built the PyQt5 desktop control app; cut its CPU usage and latency by about 40\% (measured) by using asyncio to wait for ESP32 serial and server messages concurrently, with processing in background threads, off the UI thread.
-  \item Built remote operation: a web app and a Node.js/Express + MongoDB backend that the desktop app polls over REST, relaying commands to the simulator over UART.
-  \item Built firmware updates: new firmware uploaded on the web is downloaded by the desktop app and flashed to the ESP32-S3 with esptool; GitHub Actions CI for builds and tests.
-  \item Built a Unity proof of concept that streams game motion to the simulator.
+  \item Engineered remote operation: a web app and a Node.js/Express + MongoDB backend that the desktop app polls over REST, relaying commands to the simulator over UART.
+  \item Added firmware updates: new firmware uploaded on the web is downloaded by the desktop app and flashed to the ESP32-S3 with esptool; GitHub Actions CI for builds and tests.
+  \item Developed a Unity proof of concept that streams game motion to the simulator.
 \end{itemize}
 \cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2023 -- Jan 2024}
 \begin{itemize}
-  \item Built Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.
+  \item Created custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.
 \end{itemize}
 
 \section*{Technical Skills}
@@ -46,11 +46,11 @@ Software engineer working in Rust, C and modern C++ on Linux and embedded system
 
 \section*{Open Source Projects}
 \begin{itemize}
-  \item \textbf{OpenPrinting cups-rs} (2026): IPP management operations, Printer Application support, CUPS 2 and CUPS 3 builds and CI, connections by IP/port, DNS-SD discovery, \texttt{lpoptions} support (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}, merged).
-  \item \textbf{OpenPrinting libcups} (2026): fixed crashes in \texttt{cupsDNSSDDelete()} when Avahi fails to initialize, and a leaked client in the Avahi DNS-SD code (\cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}, merged).
+  \item \textbf{OpenPrinting cups-rs} (2026): IPP management operations, Printer Application support, CUPS 2 and CUPS 3 builds and CI, connections by IP/port, DNS-SD discovery, \texttt{lpoptions} support (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}).
+  \item \textbf{OpenPrinting libcups} (2026): fixed crashes in \texttt{cupsDNSSDDelete()} when Avahi fails to initialize, and a leaked client in the Avahi DNS-SD code (\cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}).
   \item \textbf{COSMIC} (2026): Printers page and Add Printer flow in Settings (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}) and a varlink printers server in the settings daemon (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}), in review.
-  \item \textbf{Boa, a JavaScript engine in Rust} (Dec 2025): optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion; with tests (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}, merged).
-  \item \textbf{Rust Clippy} (Dec 2025): fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}, merged).
+  \item \textbf{Boa, a JavaScript engine in Rust} (Dec 2025): optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion; with tests (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}, landed upstream).
+  \item \textbf{Rust Clippy} (Dec 2025): fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}, accepted).
   \item \textbf{Zephyr RTOS} (Mar 2025, first open-source contribution): implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules, reviewed by the networking maintainers and merged upstream (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{issue \#86977}, \cvlink{https://github.com/zephyrproject-rtos/zephyr/pull/87167}{PR \#87167}, \cvlink{https://github.com/zephyrproject-rtos/zephyr/commit/b11703623c02f5afa4a5b0b7abdce3e324d7d470}{commit b117036}).
 \end{itemize}
 

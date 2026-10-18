@@ -2,7 +2,7 @@
 
 These implement [07 §5.1](../07-Strategy-and-Roadmap.md#51-three-cv-versions): one master CV plus three one-page versions. Each version reorders the same true facts; nothing is invented.
 
-**Updated:** 2026-10-11.
+**Updated:** 2026-10-18.
 
 **Every fact comes from [facts.md](facts.md)**, the record built from an interview on 11 Oct 2026. If a fact changes, update facts.md first, then the CVs and [LinkedIn.md](LinkedIn.md). To prepare for interviews, read **[Interview-Talking-Guide.md](Interview-Talking-Guide.md)**.
 
@@ -21,6 +21,20 @@ LinkedIn was compared from its "Save to PDF" export (2 Oct 2026). That fixed the
 | **Systems / Rust / open source** | [cv-systems-rust.pdf](cv-systems-rust.pdf) | [.docx](cv-systems-rust.docx) | [.tex](cv-systems-rust.tex) | Systems Software Engineer \| Rust, C, Linux | Summary → Experience → Open Source Projects → Skills → Achievements → Education | Canonical, Red Hat, Collabora, Igalia, System76, JetBrains, Cloudflare, Ferrous Systems |
 | **Embedded** | [cv-embedded.pdf](cv-embedded.pdf) | [.docx](cv-embedded.docx) | [.tex](cv-embedded.tex) | Embedded Software Engineer \| C, Zephyr RTOS, Embedded Linux | Summary → Experience → Open Source Projects → Projects → Skills → Education | Nordic, NXP, Arm, TomTom, Bosch, Valeo, automotive |
 | **Master (2 pages)** | [master-cv.pdf](master-cv.pdf) | [.docx](master-cv.docx) | [.tex](master-cv.tex) | Software Engineer \| Rust, C, C++, Linux, Embedded | Summary → Experience → Skills → Open Source Projects → Projects → Achievements → Courses → Education | Keep as the source. Use for master's applications after adding an academic section. |
+
+**Tailored copies for the current shortlist (18 Oct 2026):** [applications/](applications/) has one copy per company. Each one is a base version with a new title line, summary and skills, matched to that ad. All of them are 1 page and pass the ATS checks below. Send that copy, not the base version.
+
+| Company and role | Built from | What changed for this ad | Ad keywords matched |
+|---|---|---|---|
+| [Canonical](applications/canonical/Abdelrahman-Khalifa-CV.pdf): Graduate Software Engineer | Systems/Rust | Title "Linux, Open Source, Rust, C"; summary adds Python, Ubuntu/Debian, B.Sc. with Honors, Codeforces Expert and ECPC (the ad asks for an exceptional academic record); adds Java; adds firmware and bootloaders | 15 of 23 |
+| [Cloudflare](applications/cloudflare/Abdelrahman-Khalifa-CV.pdf): Systems Engineer, Network Protocols | Systems/Rust | Title "Rust, C, Networking, Linux"; summary leads with the protocol work (IPP over HTTP, DNS-SD, the Zephyr IPv4 multicast option); new Networking skills line | 6 of 13 (base: 5) |
+| [Igalia](applications/igalia/Abdelrahman-Khalifa-CV.pdf): JavaScript Engine Developer | Systems/Rust | Title "Rust, C++, C, Open Source"; summary leads with Boa (a JavaScript engine) and Clippy; Boa listed first | 6 of 12 |
+| [NXP](applications/nxp/Abdelrahman-Khalifa-CV.pdf): Junior Embedded SW Engineer, Secure IoT Firmware | Embedded | Title "C, 32-bit MCUs, Zephyr RTOS"; summary: 32-bit MCUs, the bootloader with CRC/signature check and rollback; new Testing line (unit and integration tests, pytest, Python scripts for build and test automation in CI); adds Java | 17 of 22 (base: 12) |
+| [Amazon](applications/amazon/Abdelrahman-Khalifa-CV.pdf): SDE – 2027 (Dublin) | General SWE | Title "C++, Rust, Python, Linux"; summary leads with algorithms; skills name NoSQL (MongoDB), version control, debugging and troubleshooting | 10 of 17 (base: 7) |
+
+The words still missing are things not in [facts.md](facts.md), such as Go, AWS/cloud, cryptography and V8, so they were not added. **Amazon** lists "experience using AI-assisted development tools" as a basic qualification. Add it to the Amazon copy only if you have really used such tools (for example Copilot or Claude Code), and be ready to talk about it.
+
+To build a copy: `cd applications/<company> && TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex` (run it twice). For Word: `python3 tex2docx.py applications/<company>/Abdelrahman-Khalifa-CV.tex`.
 
 **PDF or Word?** Send the **PDF** by default. Use the **.docx** only when the job site asks for Word, or only accepts .doc/.docx. Both have the same text.
 
@@ -85,7 +99,8 @@ These rules are built into `cv-style.sty`:
 | Contact details as text | Email, phone and the full LinkedIn, GitHub and Codeforces URLs are written out, not hidden behind icons | ✅ |
 | Dates | `Mon YYYY – Mon YYYY` or `Present` on the same line as the title and company | ✅ |
 | No first-person words | No "I" or "my" in any CV | ✅ |
-| Spelling | Spell checker: only technical terms flagged | ✅ |
+| Spelling | Spell checker (and Enhancv, 18 Oct 2026): only technical terms are flagged, such as Zephyr, Clippy, varlink, devicetree and asyncio. Keep them spelled exactly as they are, because ATS keyword search matches them letter for letter | ✅ |
+| Repeated words | Enhancv flagged "merged" 5 times. Now it is used at most twice per CV; the rest say "accepted", "landed upstream" or name the PR status once in the entry title | ✅ |
 | Links | Every link was opened; all the repos, upstream PRs, the Zephyr issue and the Google Summer of Code report exist. COSMIC PRs #2182 and #188 are open and ready for review (since 26 Sep 2026), so the CVs say "in review". | ✅ |
 | Length | One page for each version; two for the master (PDF and Word). **Send only the 1-page versions** (the program's tips: 1 page for recent graduates); the master is the source | ✅ |
 
