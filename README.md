@@ -76,19 +76,19 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] Design an incident-response assistant with read-only diagnostics **`P1`**
   - [ ] Explain failure modes, state recovery, evaluation, and monitoring **`P0`**
   - [ ] Explain how you would enforce approvals on write/side-effect tools **`P1`**
-- [ ] **Evaluation and Testing** **`P0`**
-  - [ ] Agent trajectory tests: tool selection, ordering, and stop behavior **`P1`**
-  - [ ] Defining success criteria before building an agent **`P1`**
-  - [ ] End-to-end tests for complete multi-step agent workflows **`P1`**
-  - [ ] Golden datasets and representative real-world test cases **`P1`**
-  - [ ] Human review, pairwise comparisons, and error taxonomy **`P1`**
-  - [ ] Integration tests with mocked external tools and APIs **`P0`**
-  - [ ] LLM-as-judge: rubrics, calibration, bias, and limitations **`P0`**
-  - [ ] Measures: task success, groundedness, tool correctness, cost, and latency **`P0`**
-  - [ ] Offline evaluation vs. online experiments and A/B testing **`P0`**
-  - [ ] Regression tests after prompt, tool, model, or retrieval changes **`P0`**
-  - [ ] Robustness testing: invalid inputs, ambiguous tasks, and tool outages **`P1`**
-  - [ ] Unit testing tools, nodes, validators, and deterministic logic **`P0`**
+- [ ] [**Evaluation and Testing**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md) **`P0`**
+  - [ ] [Agent trajectory tests: tool selection, ordering, and stop behavior](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#1-agent-trajectory-tests-tool-selection-ordering-and-stop-behavior) **`P1`**
+  - [ ] [Defining success criteria before building an agent](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#2-defining-success-criteria-before-building-an-agent) **`P1`**
+  - [ ] [End-to-end tests for complete multi-step agent workflows](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#3-end-to-end-tests-for-complete-multi-step-agent-workflows) **`P1`**
+  - [ ] [Golden datasets and representative real-world test cases](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#4-golden-datasets-and-representative-real-world-test-cases) **`P1`**
+  - [ ] [Human review, pairwise comparisons, and error taxonomy](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#5-human-review-pairwise-comparisons-and-error-taxonomy) **`P1`**
+  - [ ] [Integration tests with mocked external tools and APIs](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#6-integration-tests-with-mocked-external-tools-and-apis) **`P0`**
+  - [ ] [LLM-as-judge: rubrics, calibration, bias, and limitations](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#7-llm-as-judge-rubrics-calibration-bias-and-limitations) **`P0`**
+  - [ ] [Measures: task success, groundedness, tool correctness, cost, and latency](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#8-measures-task-success-groundedness-tool-correctness-cost-and-latency) **`P0`**
+  - [ ] [Offline evaluation vs. online experiments and A/B testing](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#9-offline-evaluation-vs-online-experiments-and-ab-testing) **`P0`**
+  - [ ] [Regression tests after prompt, tool, model, or retrieval changes](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#10-regression-tests-after-prompt-tool-model-or-retrieval-changes) **`P0`**
+  - [ ] [Robustness testing: invalid inputs, ambiguous tasks, and tool outages](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#11-robustness-testing-invalid-inputs-ambiguous-tasks-and-tool-outages) **`P1`**
+  - [ ] [Unit testing tools, nodes, validators, and deterministic logic](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#12-unit-testing-tools-nodes-validators-and-deterministic-logic) **`P0`**
 - [ ] **Hands-On Interview Readiness** **`P1`**
   - [ ] Add persistent state and resume execution after process restart **`P0`**
   - [ ] Add retries, timeouts, human approval, and safe fallback behavior **`P0`**
