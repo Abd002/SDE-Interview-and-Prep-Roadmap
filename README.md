@@ -109,15 +109,15 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] [Prompting vs. RAG vs. fine-tuning: decision criteria and trade-offs](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#6-prompting-vs-rag-vs-fine-tuning-decision-criteria-and-trade-offs) **`P0`**
   - [ ] [Tokens, tokenization, context windows, and output limits](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#7-tokens-tokenization-context-windows-and-output-limits) **`P1`**
   - [ ] [Transformers, attention, embeddings, and autoregressive generation](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#8-transformers-attention-embeddings-and-autoregressive-generation) **`P0`**
-- [ ] **Memory, State, and Context Management** **`P1`**
-  - [ ] Context compaction, summaries, and memory retrieval **`P0`**
-  - [ ] Conversation state and checkpointing **`P1`**
-  - [ ] Memory persistence: in-memory, databases, and durable checkpoint stores **`P1`**
-  - [ ] Memory relevance, aging, deletion, and conflict resolution **`P1`**
-  - [ ] Multi-replica deployments and shared state consistency **`P1`**
-  - [ ] Privacy-aware memory retention and data minimization **`P1`**
-  - [ ] Session isolation and user/tenant scoping **`P1`**
-  - [ ] Working memory, episodic memory, semantic memory, and user preferences **`P1`**
+- [ ] [**Memory, State, and Context Management**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md) **`P1`**
+  - [ ] [Context compaction, summaries, and memory retrieval](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md#1-context-compaction-summaries-and-memory-retrieval) **`P0`**
+  - [ ] [Conversation state and checkpointing](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md#2-conversation-state-and-checkpointing) **`P1`**
+  - [ ] [Memory persistence: in-memory, databases, and durable checkpoint stores](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md#3-memory-persistence-in-memory-databases-and-durable-checkpoint-stores) **`P1`**
+  - [ ] [Memory relevance, aging, deletion, and conflict resolution](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md#4-memory-relevance-aging-deletion-and-conflict-resolution) **`P1`**
+  - [ ] [Multi-replica deployments and shared state consistency](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md#5-multi-replica-deployments-and-shared-state-consistency) **`P1`**
+  - [ ] [Privacy-aware memory retention and data minimization](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md#6-privacy-aware-memory-retention-and-data-minimization) **`P1`**
+  - [ ] [Session isolation and user/tenant scoping](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md#7-session-isolation-and-usertenant-scoping) **`P1`**
+  - [ ] [Working memory, episodic memory, semantic memory, and user preferences](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Memory-State-and-Context-Management.md#8-working-memory-episodic-memory-semantic-memory-and-user-preferences) **`P1`**
 - [ ] **Multi-Agent Systems** **`P1`**
   - [ ] Agent-to-agent communication and typed message contracts **`P0`**
   - [ ] Avoiding unnecessary agent proliferation and coordination overhead **`P1`**
