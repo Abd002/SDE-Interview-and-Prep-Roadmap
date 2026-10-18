@@ -64,18 +64,18 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] [LangSmith: traces, datasets, evaluations, and debugging](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#8-langsmith-traces-datasets-evaluations-and-debugging) **`P0`**
   - [ ] [Stateless service architecture vs. stateful agent execution](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#9-stateless-service-architecture-vs-stateful-agent-execution) **`P1`**
   - [ ] [Workflow orchestration vs. agent orchestration](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#10-workflow-orchestration-vs-agent-orchestration) **`P1`**
-- [ ] **Agentic System Design Interview Practice** **`P0`**
-  - [ ] Calculate throughput, per-request token cost, and p95 latency **`P0`**
-  - [ ] Compare a deterministic pipeline with an autonomous agent for the same task **`P1`**
-  - [ ] Design a code-review / bug-triage agent with repository tools **`P1`**
-  - [ ] Design a CSV/Excel validation agent with rules and external data checks **`P1`**
-  - [ ] Design a customer-support agent with search and human handoff **`P1`**
-  - [ ] Design a document research agent that produces cited answers **`P1`**
-  - [ ] Design a job-search agent that finds, evaluates, and ranks openings **`P0`**
-  - [ ] Design a multi-agent research workflow with parallel specialists **`P1`**
-  - [ ] Design an incident-response assistant with read-only diagnostics **`P1`**
-  - [ ] Explain failure modes, state recovery, evaluation, and monitoring **`P0`**
-  - [ ] Explain how you would enforce approvals on write/side-effect tools **`P1`**
+- [ ] [**Agentic System Design Interview Practice**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md) **`P0`**
+  - [ ] [Calculate throughput, per-request token cost, and p95 latency](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md#1-calculate-throughput-per-request-token-cost-and-p95-latency) **`P0`**
+  - [ ] [Compare a deterministic pipeline with an autonomous agent for the same task](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md#2-compare-a-deterministic-pipeline-with-an-autonomous-agent-for-the-same-task) **`P1`**
+  - [ ] [Design a code-review / bug-triage agent with repository tools](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md#3-design-a-code-review--bug-triage-agent-with-repository-tools) **`P1`**
+  - [ ] [Design a CSV/Excel validation agent with rules and external data checks](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md#4-design-a-csvexcel-validation-agent-with-rules-and-external-data-checks) **`P1`**
+  - [ ] [Design a customer-support agent with search and human handoff](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md#5-design-a-customer-support-agent-with-search-and-human-handoff) **`P1`**
+  - [ ] [Design a document research agent that produces cited answers](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md#6-design-a-document-research-agent-that-produces-cited-answers) **`P1`**
+  - [ ] [Design a job-search agent that finds, evaluates, and ranks openings](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md#7-design-a-job-search-agent-that-finds-evaluates-and-ranks-openings) **`P0`**
+  - [ ] [Design a multi-agent research workflow with parallel specialists](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md#8-design-a-multi-agent-research-workflow-with-parallel-specialists) **`P1`**
+  - [ ] [Design an incident-response assistant with read-only diagnostics](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md#9-design-an-incident-response-assistant-with-read-only-diagnostics) **`P1`**
+  - [ ] [Explain failure modes, state recovery, evaluation, and monitoring](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md#10-explain-failure-modes-state-recovery-evaluation-and-monitoring) **`P0`**
+  - [ ] [Explain how you would enforce approvals on write/side-effect tools](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md#11-explain-how-you-would-enforce-approvals-on-writeside-effect-tools) **`P1`**
 - [ ] [**Evaluation and Testing**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md) **`P0`**
   - [ ] [Agent trajectory tests: tool selection, ordering, and stop behavior](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#1-agent-trajectory-tests-tool-selection-ordering-and-stop-behavior) **`P1`**
   - [ ] [Defining success criteria before building an agent](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#2-defining-success-criteria-before-building-an-agent) **`P1`**
