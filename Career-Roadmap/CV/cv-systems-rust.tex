@@ -35,7 +35,7 @@ Systems software engineer working in Rust, C and modern C++ on Linux. Google Sum
 \section*{Open Source Projects}
 \cventry{Upstream contributions (all accepted) --- OpenPrinting cups-rs (Rust) and libcups (C)}{2026}
 \begin{itemize}
-  \item cups-rs: ported to libcups3 with CUPS 2 and CUPS 3 builds and CI; added IPP management operations, Printer Application support, connections by IP/port, \texttt{lpoptions} support and FFI bindings for the libcups3 DNS-SD API (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}).
+  \item cups-rs: ported to libcups3 with CUPS 2 and CUPS 3 builds and CI; added IPP management operations, Printer Application support, IP/port connections, \texttt{lpoptions} and FFI bindings for the libcups3 DNS-SD API (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}).
   \item libcups: fixed crashes in \texttt{cupsDNSSDDelete()} and a leaked client in the Avahi DNS-SD code (\cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}).
 \end{itemize}
 \cventry{Contributor (all merged) --- Zephyr RTOS, Boa JavaScript engine (Rust), Rust Clippy}{Mar 2025 -- Dec 2025}
@@ -45,22 +45,23 @@ Systems software engineer working in Rust, C and modern C++ on Linux. Google Sum
   \item Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}).
 \end{itemize}
 
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{IoT Device Communication System} (C++, Raspberry Pi 4, QEMU, Yocto): TCP unicast and UDP multicast framework between a Pi server and emulated clients. \cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}
+  \item \textbf{Operating System Simulator} (Java): CLI simulating scheduling, memory management, system calls and locks. \cvlink{https://github.com/Abd002/os-simulator}{GitHub}
+\end{itemize}
+
 \section*{Technical Skills}
 \cvskill{Languages}{Rust, C, Modern C++, Python (asyncio), Bash, JavaScript (Node.js)}
 \cvskill{Systems \& Linux}{Linux (Ubuntu/Debian), operating systems, FFI and bindings, IPC (varlink, D-Bus; zbus, zlink), concurrency (async/event-driven, multithreading), memory management, networking (TCP/UDP), CUPS/IPP, DNS-SD/mDNS (Avahi), kernel modules and device drivers}
 \cvskill{Tooling}{Cargo, Clippy, rustfmt, Git/GitHub, GitHub Actions CI, CMake, Make, Yocto, Buildroot, QEMU, testing, debugging, performance optimization, code review}
 \cvskill{Desktop \& embedded}{iced, libcosmic, PyQt5; Zephyr, FreeRTOS, ARM Cortex-M (STM32), ESP32}
 
-\section*{Achievements}
-\begin{itemize}
-  \item Codeforces Expert (handle \_Khalifa); 4-time ECPC finalist, 2021--2024 (Egyptian Collegiate Programming Contest).
-  \item Treasurer, IEEE Student Branch, Minia University: managed a budget of more than \$10k.
-\end{itemize}
-
 \section*{Education}
 \cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
 \begin{itemize}
-  \item Grade: Very Good with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; implemented the firmware update path and a dual-bank bootloader with rollback.
+  \item Grade: Very Good with Honors. Graduation project: AUTOSAR V2X vehicle on STM32 with a dual-bank bootloader.
+  \item Activities: Codeforces Expert; 4-time ECPC finalist (2021--2024); Treasurer, IEEE Student Branch.
 \end{itemize}
 
 \end{document}

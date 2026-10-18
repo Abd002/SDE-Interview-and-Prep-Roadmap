@@ -18,7 +18,7 @@ LinkedIn was compared from its "Save to PDF" export (2 Oct 2026). That fixed the
 | Version | PDF | Word | Source | Title line | Section order | Send to |
 |---|---|---|---|---|---|---|
 | **General SWE** | [cv-general-swe.pdf](cv-general-swe.pdf) | [.docx](cv-general-swe.docx) | [.tex](cv-general-swe.tex) | Software Engineer \| Rust, C++, Linux | Summary → Skills → Experience → Open Source Projects → Projects → Achievements → Education | Big Tech, trading firms, SaaS |
-| **Systems / Rust / open source** | [cv-systems-rust.pdf](cv-systems-rust.pdf) | [.docx](cv-systems-rust.docx) | [.tex](cv-systems-rust.tex) | Systems Software Engineer \| Rust, C, Linux | Summary → Experience → Open Source Projects → Skills → Achievements → Education | Canonical, Red Hat, Collabora, Igalia, System76, JetBrains, Cloudflare, Ferrous Systems |
+| **Systems / Rust / open source** | [cv-systems-rust.pdf](cv-systems-rust.pdf) | [.docx](cv-systems-rust.docx) | [.tex](cv-systems-rust.tex) | Systems Software Engineer \| Rust, C, Linux | Summary → Experience → Open Source Projects → Projects → Skills → Education (with activities) | Canonical, Red Hat, Collabora, Igalia, System76, JetBrains, Cloudflare, Ferrous Systems |
 | **Embedded** | [cv-embedded.pdf](cv-embedded.pdf) | [.docx](cv-embedded.docx) | [.tex](cv-embedded.tex) | Embedded Software Engineer \| C, Zephyr RTOS, Embedded Linux | Summary → Experience → Open Source Projects → Projects → Skills → Education | Nordic, NXP, Arm, TomTom, Bosch, Valeo, automotive |
 | **Master (2 pages)** | [master-cv.pdf](master-cv.pdf) | [.docx](master-cv.docx) | [.tex](master-cv.tex) | Software Engineer \| Rust, C, C++, Linux, Embedded | Summary → Experience → Skills → Open Source Projects → Projects → Achievements → Courses → Education | Keep as the source. Use for master's applications after adding an academic section. |
 
@@ -26,11 +26,13 @@ LinkedIn was compared from its "Save to PDF" export (2 Oct 2026). That fixed the
 
 | Company and role | Built from | What changed for this ad | Ad keywords matched |
 |---|---|---|---|
-| [Canonical](applications/canonical/Abdelrahman-Khalifa-CV.pdf): Graduate Software Engineer | Systems/Rust | Title "Linux, Open Source, Rust, C"; summary adds Python, Ubuntu/Debian, B.Sc. with Honors, Codeforces Expert and ECPC (the ad asks for an exceptional academic record); adds Java; adds firmware and bootloaders | 15 of 23 |
+| [Canonical](applications/canonical/Abdelrahman-Khalifa-CV.pdf): Graduate Software Engineer | Systems/Rust | Title "Linux, Open Source, Rust, C"; summary adds Python, Ubuntu/Debian, B.Sc. with Honors, Codeforces Expert and ECPC (the ad asks for an exceptional academic record); adds Java; adds firmware and bootloaders | 16 of 23 |
 | [Cloudflare](applications/cloudflare/Abdelrahman-Khalifa-CV.pdf): Systems Engineer, Network Protocols | Systems/Rust | Title "Rust, C, Networking, Linux"; summary leads with the protocol work (IPP over HTTP, DNS-SD, the Zephyr IPv4 multicast option); new Networking skills line | 6 of 13 (base: 5) |
 | [Igalia](applications/igalia/Abdelrahman-Khalifa-CV.pdf): JavaScript Engine Developer | Systems/Rust | Title "Rust, C++, C, Open Source"; summary leads with Boa (a JavaScript engine) and Clippy; Boa listed first | 6 of 12 |
 | [NXP](applications/nxp/Abdelrahman-Khalifa-CV.pdf): Junior Embedded SW Engineer, Secure IoT Firmware | Embedded | Title "C, 32-bit MCUs, Zephyr RTOS"; summary: 32-bit MCUs, the bootloader with CRC/signature check and rollback; new Testing line (unit and integration tests, pytest, Python scripts for build and test automation in CI); adds Java | 17 of 22 (base: 12) |
 | [Amazon](applications/amazon/Abdelrahman-Khalifa-CV.pdf): SDE – 2027 (Dublin) | General SWE | Title "C++, Rust, Python, Linux"; summary leads with algorithms; skills name NoSQL (MongoDB), version control, debugging and troubleshooting | 10 of 17 (base: 7) |
+
+**Every version now has a Projects section** (added to Systems/Rust and its Canonical, Cloudflare and Igalia copies on 18 Oct 2026): the IoT TCP/UDP framework and the OS simulator. Canonical's ad asks for "personal projects beyond the curriculum", and other recruiters look for them too. Achievements moved into Education as an Activities line to keep 1 page.
 
 The words still missing are things not in [facts.md](facts.md), such as Go, AWS/cloud, cryptography and V8, so they were not added. **Amazon** lists "experience using AI-assisted development tools" as a basic qualification. Add it to the Amazon copy only if you have really used such tools (for example Copilot or Claude Code), and be ready to talk about it.
 
