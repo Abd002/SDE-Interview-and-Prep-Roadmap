@@ -377,7 +377,7 @@ Before books go on the library shelves you remove duplicate copies, tear out the
 | **Index** | chunk, embed, upsert by stable chunk IDs; delete chunks of removed docs ([section 12](#12-vector-databases-and-indexing--update--deletion-strategies)) |
 
 - **Incremental:** change detection by modified time / content hash; event-driven (webhooks, queues) for freshness.
-- **Quality checks:** empty or garbled text rates, parse failures, chunk length distribution; DLQ for failures ([data pipelines](../Data%20Engineering%20%26%20Analytics/Data-Pipelines-and-Processing.md)).
+- **Quality checks:** empty or garbled text rates, parse failures, chunk length distribution; dead-letter queue for failures ([DLQs](./Production-Reliability-and-Observability.md#2-circuit-breakers-dead-letter-queues-and-recovery-workflows)).
 - **Security:** scan for PII/secrets, carry ACLs end-to-end, treat documents as potentially containing injections.
 
 #### Modern C++ example — clean, deduplicate by normalized content hash, attach metadata, and skip unchanged documents

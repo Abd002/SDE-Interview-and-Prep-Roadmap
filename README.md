@@ -89,17 +89,17 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] [Regression tests after prompt, tool, model, or retrieval changes](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#10-regression-tests-after-prompt-tool-model-or-retrieval-changes) **`P0`**
   - [ ] [Robustness testing: invalid inputs, ambiguous tasks, and tool outages](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#11-robustness-testing-invalid-inputs-ambiguous-tasks-and-tool-outages) **`P1`**
   - [ ] [Unit testing tools, nodes, validators, and deterministic logic](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Evaluation-and-Testing.md#12-unit-testing-tools-nodes-validators-and-deterministic-logic) **`P0`**
-- [ ] **Hands-On Interview Readiness** **`P1`**
-  - [ ] Add persistent state and resume execution after process restart **`P0`**
-  - [ ] Add retries, timeouts, human approval, and safe fallback behavior **`P0`**
-  - [ ] Build a RAG pipeline with citations and retrieval evaluation **`P0`**
-  - [ ] Build an agent with at least two tools and schema-validated outputs **`P1`**
-  - [ ] Create a small evaluation dataset and measure task success **`P0`**
-  - [ ] Demonstrate a cost/latency optimization with before-and-after metrics **`P0`**
-  - [ ] Explain one end-to-end project: architecture, trade-offs, impact, and lessons **`P1`**
-  - [ ] Practice whiteboarding an agentic architecture in 30–45 minutes **`P1`**
-  - [ ] Prepare answers for: "Why agents instead of workflows?" and "When should an agent stop?" **`P1`**
-  - [ ] Trace and debug an incorrect tool-selection decision **`P0`**
+- [ ] [**Hands-On Interview Readiness**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Hands-On-Interview-Readiness.md) **`P1`**
+  - [ ] [Add persistent state and resume execution after process restart](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Hands-On-Interview-Readiness.md#1-add-persistent-state-and-resume-execution-after-process-restart) **`P0`**
+  - [ ] [Add retries, timeouts, human approval, and safe fallback behavior](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Hands-On-Interview-Readiness.md#2-add-retries-timeouts-human-approval-and-safe-fallback-behavior) **`P0`**
+  - [ ] [Build a RAG pipeline with citations and retrieval evaluation](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Hands-On-Interview-Readiness.md#3-build-a-rag-pipeline-with-citations-and-retrieval-evaluation) **`P0`**
+  - [ ] [Build an agent with at least two tools and schema-validated outputs](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Hands-On-Interview-Readiness.md#4-build-an-agent-with-at-least-two-tools-and-schema-validated-outputs) **`P1`**
+  - [ ] [Create a small evaluation dataset and measure task success](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Hands-On-Interview-Readiness.md#5-create-a-small-evaluation-dataset-and-measure-task-success) **`P0`**
+  - [ ] [Demonstrate a cost/latency optimization with before-and-after metrics](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Hands-On-Interview-Readiness.md#6-demonstrate-a-costlatency-optimization-with-before-and-after-metrics) **`P0`**
+  - [ ] [Explain one end-to-end project: architecture, trade-offs, impact, and lessons](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Hands-On-Interview-Readiness.md#7-explain-one-end-to-end-project-architecture-trade-offs-impact-and-lessons) **`P1`**
+  - [ ] [Practice whiteboarding an agentic architecture in 30–45 minutes](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Hands-On-Interview-Readiness.md#8-practice-whiteboarding-an-agentic-architecture-in-3045-minutes) **`P1`**
+  - [ ] [Prepare answers for: "Why agents instead of workflows?" and "When should an agent stop?"](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Hands-On-Interview-Readiness.md#9-prepare-answers-for-why-agents-instead-of-workflows-and-when-should-an-agent-stop) **`P1`**
+  - [ ] [Trace and debug an incorrect tool-selection decision](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Hands-On-Interview-Readiness.md#10-trace-and-debug-an-incorrect-tool-selection-decision) **`P0`**
 - [ ] [**LLM and Generative AI Fundamentals**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md) **`P0`**
   - [ ] [Closed-weight vs. open-weight models; hosted APIs vs. self-hosting](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#1-closed-weight-vs-open-weight-models-hosted-apis-vs-self-hosting) **`P0`**
   - [ ] [Hallucinations, uncertainty, grounding, and model limitations](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#2-hallucinations-uncertainty-grounding-and-model-limitations) **`P1`**
