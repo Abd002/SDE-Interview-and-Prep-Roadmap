@@ -149,20 +149,20 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] [Structured output with JSON Schema and type validation](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#6-structured-output-with-json-schema-and-type-validation) **`P1`**
   - [ ] [System, developer, user, and tool messages; instruction priority](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#7-system-developer-user-and-tool-messages-instruction-priority) **`P1`**
   - [ ] [Zero-shot, few-shot, role prompting, and task decomposition](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#8-zero-shot-few-shot-role-prompting-and-task-decomposition) **`P1`**
-- [ ] **Retrieval-Augmented Generation (RAG)** **`P0`**
-  - [ ] Answer evaluation: faithfulness, factual correctness, and relevance **`P0`**
-  - [ ] Chunking approaches: fixed-size, semantic, hierarchical, and overlap **`P1`**
-  - [ ] Dense vs. sparse retrieval (BM25) and hybrid search **`P0`**
-  - [ ] Embeddings: similarity metrics, dimension, and model selection **`P0`**
-  - [ ] Grounded responses, source citations, and abstention when evidence is missing **`P1`**
-  - [ ] Ingestion pipelines: parsing, cleaning, deduplication, and metadata **`P1`**
-  - [ ] Multi-tenant retrieval, ACL-aware filtering, and data freshness **`P0`**
-  - [ ] Query rewriting, expansion, routing, and decomposition **`P1`**
-  - [ ] RAG vs. long-context prompting vs. fine-tuning: when to use which **`P0`**
-  - [ ] Reranking, contextual compression, and top-k selection **`P1`**
-  - [ ] Retrieval evaluation: recall\@k, precision\@k, MRR, and nDCG **`P0`**
-  - [ ] Vector databases and indexing / update / deletion strategies **`P0`**
-  - [ ] Vector indexes: approximate nearest neighbors, HNSW, and IVF **`P0`**
+- [ ] [**Retrieval-Augmented Generation (RAG)**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md) **`P0`**
+  - [ ] [Answer evaluation: faithfulness, factual correctness, and relevance](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#1-answer-evaluation-faithfulness-factual-correctness-and-relevance) **`P0`**
+  - [ ] [Chunking approaches: fixed-size, semantic, hierarchical, and overlap](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#2-chunking-approaches-fixed-size-semantic-hierarchical-and-overlap) **`P1`**
+  - [ ] [Dense vs. sparse retrieval (BM25) and hybrid search](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#3-dense-vs-sparse-retrieval-bm25-and-hybrid-search) **`P0`**
+  - [ ] [Embeddings: similarity metrics, dimension, and model selection](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#4-embeddings-similarity-metrics-dimension-and-model-selection) **`P0`**
+  - [ ] [Grounded responses, source citations, and abstention when evidence is missing](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#5-grounded-responses-source-citations-and-abstention-when-evidence-is-missing) **`P1`**
+  - [ ] [Ingestion pipelines: parsing, cleaning, deduplication, and metadata](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#6-ingestion-pipelines-parsing-cleaning-deduplication-and-metadata) **`P1`**
+  - [ ] [Multi-tenant retrieval, ACL-aware filtering, and data freshness](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#7-multi-tenant-retrieval-acl-aware-filtering-and-data-freshness) **`P0`**
+  - [ ] [Query rewriting, expansion, routing, and decomposition](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#8-query-rewriting-expansion-routing-and-decomposition) **`P1`**
+  - [ ] [RAG vs. long-context prompting vs. fine-tuning: when to use which](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#9-rag-vs-long-context-prompting-vs-fine-tuning-when-to-use-which) **`P0`**
+  - [ ] [Reranking, contextual compression, and top-k selection](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#10-reranking-contextual-compression-and-top-k-selection) **`P1`**
+  - [ ] [Retrieval evaluation: recall\@k, precision\@k, MRR, and nDCG](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#11-retrieval-evaluation-recallk-precisionk-mrr-and-ndcg) **`P0`**
+  - [ ] [Vector databases and indexing / update / deletion strategies](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#12-vector-databases-and-indexing--update--deletion-strategies) **`P0`**
+  - [ ] [Vector indexes: approximate nearest neighbors, HNSW, and IVF](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#13-vector-indexes-approximate-nearest-neighbors-hnsw-and-ivf) **`P0`**
 - [ ] **Security, Privacy, and Safety** **`P1`**
   - [ ] Data exfiltration threats and unsafe tool execution **`P1`**
   - [ ] Defense in depth; why instructions alone are not security boundaries **`P1`**
