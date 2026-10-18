@@ -163,17 +163,17 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] [Retrieval evaluation: recall\@k, precision\@k, MRR, and nDCG](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#11-retrieval-evaluation-recallk-precisionk-mrr-and-ndcg) **`P0`**
   - [ ] [Vector databases and indexing / update / deletion strategies](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#12-vector-databases-and-indexing--update--deletion-strategies) **`P0`**
   - [ ] [Vector indexes: approximate nearest neighbors, HNSW, and IVF](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Retrieval-Augmented-Generation.md#13-vector-indexes-approximate-nearest-neighbors-hnsw-and-ivf) **`P0`**
-- [ ] **Security, Privacy, and Safety** **`P1`**
-  - [ ] Data exfiltration threats and unsafe tool execution **`P1`**
-  - [ ] Defense in depth; why instructions alone are not security boundaries **`P1`**
-  - [ ] Least-privilege agent identities and scoped credentials **`P1`**
-  - [ ] Output validation and policy enforcement before external actions **`P1`**
-  - [ ] PII detection, redaction, encryption, and retention policies **`P0`**
-  - [ ] Prompt injection: direct and indirect attacks via retrieved content/tools **`P0`**
-  - [ ] Responsible AI: bias, misuse, human oversight, and transparency **`P1`**
-  - [ ] Sandboxing code execution and restricting network/file access **`P0`**
-  - [ ] Tenant isolation and permission-aware retrieval **`P0`**
-  - [ ] Tool allowlists, confirmation for destructive actions, and audit trails **`P1`**
+- [ ] [**Security, Privacy, and Safety**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Security-Privacy-and-Safety.md) **`P1`**
+  - [ ] [Data exfiltration threats and unsafe tool execution](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Security-Privacy-and-Safety.md#1-data-exfiltration-threats-and-unsafe-tool-execution) **`P1`**
+  - [ ] [Defense in depth; why instructions alone are not security boundaries](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Security-Privacy-and-Safety.md#2-defense-in-depth-why-instructions-alone-are-not-security-boundaries) **`P1`**
+  - [ ] [Least-privilege agent identities and scoped credentials](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Security-Privacy-and-Safety.md#3-least-privilege-agent-identities-and-scoped-credentials) **`P1`**
+  - [ ] [Output validation and policy enforcement before external actions](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Security-Privacy-and-Safety.md#4-output-validation-and-policy-enforcement-before-external-actions) **`P1`**
+  - [ ] [PII detection, redaction, encryption, and retention policies](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Security-Privacy-and-Safety.md#5-pii-detection-redaction-encryption-and-retention-policies) **`P0`**
+  - [ ] [Prompt injection: direct and indirect attacks via retrieved content/tools](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Security-Privacy-and-Safety.md#6-prompt-injection-direct-and-indirect-attacks-via-retrieved-contenttools) **`P0`**
+  - [ ] [Responsible AI: bias, misuse, human oversight, and transparency](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Security-Privacy-and-Safety.md#7-responsible-ai-bias-misuse-human-oversight-and-transparency) **`P1`**
+  - [ ] [Sandboxing code execution and restricting network/file access](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Security-Privacy-and-Safety.md#8-sandboxing-code-execution-and-restricting-networkfile-access) **`P0`**
+  - [ ] [Tenant isolation and permission-aware retrieval](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Security-Privacy-and-Safety.md#9-tenant-isolation-and-permission-aware-retrieval) **`P0`**
+  - [ ] [Tool allowlists, confirmation for destructive actions, and audit trails](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Security-Privacy-and-Safety.md#10-tool-allowlists-confirmation-for-destructive-actions-and-audit-trails) **`P1`**
 - [ ] [**Tool Use, Integrations, and Protocols**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md) **`P1`**
   - [ ] [API authentication, authorization, least privilege, and secret handling](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#1-api-authentication-authorization-least-privilege-and-secret-handling) **`P0`**
   - [ ] [Approval gates for irreversible or high-impact actions](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#2-approval-gates-for-irreversible-or-high-impact-actions) **`P1`**
