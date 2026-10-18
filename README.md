@@ -127,19 +127,19 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] Shared state vs. agent-specific state **`P1`**
   - [ ] Single-agent vs. multi-agent trade-offs **`P1`**
   - [ ] Supervisor/worker and coordinator/specialist patterns **`P1`**
-- [ ] **Production Reliability and Observability** **`P1`**
-  - [ ] Cache strategies: prompt, response, embedding, and retrieval caching **`P0`**
-  - [ ] Circuit breakers, dead-letter queues, and recovery workflows **`P0`**
-  - [ ] Cost optimization: smaller models, batching, caching, and routing **`P1`**
-  - [ ] End-to-end distributed traces for prompts, model calls, and tools **`P0`**
-  - [ ] Logs, metrics, dashboards, and actionable alerting **`P0`**
-  - [ ] Model and prompt versioning, release controls, and rollback **`P1`**
-  - [ ] Provider outages, failover models, and graceful degradation **`P1`**
-  - [ ] Request queuing, concurrency limits, and backpressure **`P0`**
-  - [ ] Retry storms, duplicate side effects, and idempotency keys **`P0`**
-  - [ ] SLA/SLO design and incident investigation **`P0`**
-  - [ ] Streaming responses, cancellation, and timeout handling **`P1`**
-  - [ ] Token usage, per-step cost, and latency budgets **`P0`**
+- [ ] [**Production Reliability and Observability**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md) **`P1`**
+  - [ ] [Cache strategies: prompt, response, embedding, and retrieval caching](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#1-cache-strategies-prompt-response-embedding-and-retrieval-caching) **`P0`**
+  - [ ] [Circuit breakers, dead-letter queues, and recovery workflows](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#2-circuit-breakers-dead-letter-queues-and-recovery-workflows) **`P0`**
+  - [ ] [Cost optimization: smaller models, batching, caching, and routing](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#3-cost-optimization-smaller-models-batching-caching-and-routing) **`P1`**
+  - [ ] [End-to-end distributed traces for prompts, model calls, and tools](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#4-end-to-end-distributed-traces-for-prompts-model-calls-and-tools) **`P0`**
+  - [ ] [Logs, metrics, dashboards, and actionable alerting](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#5-logs-metrics-dashboards-and-actionable-alerting) **`P0`**
+  - [ ] [Model and prompt versioning, release controls, and rollback](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#6-model-and-prompt-versioning-release-controls-and-rollback) **`P1`**
+  - [ ] [Provider outages, failover models, and graceful degradation](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#7-provider-outages-failover-models-and-graceful-degradation) **`P1`**
+  - [ ] [Request queuing, concurrency limits, and backpressure](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#8-request-queuing-concurrency-limits-and-backpressure) **`P0`**
+  - [ ] [Retry storms, duplicate side effects, and idempotency keys](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#9-retry-storms-duplicate-side-effects-and-idempotency-keys) **`P0`**
+  - [ ] [SLA/SLO design and incident investigation](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#10-slaslo-design-and-incident-investigation) **`P0`**
+  - [ ] [Streaming responses, cancellation, and timeout handling](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#11-streaming-responses-cancellation-and-timeout-handling) **`P1`**
+  - [ ] [Token usage, per-step cost, and latency budgets](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Production-Reliability-and-Observability.md#12-token-usage-per-step-cost-and-latency-budgets) **`P0`**
 - [ ] [**Prompt Engineering and Structured Outputs**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md) **`P1`**
   - [ ] [Function/tool calling: schema design, argument validation, and error handling](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#1-functiontool-calling-schema-design-argument-validation-and-error-handling) **`P0`**
   - [ ] [Handling malformed outputs, refusals, and partial completions](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#2-handling-malformed-outputs-refusals-and-partial-completions) **`P1`**
