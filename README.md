@@ -53,17 +53,17 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] [Short-term context vs. persistent long-term memory](<./Agentic AI, LLM Engineering, and AI System Design/Agent Fundamentals and Decision-Making/Short-term context vs. persistent long-term memory.md>) **`P1`**
   - [ ] [Stop conditions, turn budgets, iteration limits, and fallback paths](<./Agentic AI, LLM Engineering, and AI System Design/Agent Fundamentals and Decision-Making/Stop conditions, turn budgets, iteration limits, and fallback paths.md>) **`P1`**
 
-- [ ] **Agentic Frameworks and Orchestration** **`P1`**
-  - [ ] Compare LangGraph, AutoGen, CrewAI, and SDK-native agent approaches **`P2`**
-  - [ ] Conditional branching, map-reduce, parallel fan-out, and fan-in **`P1`**
-  - [ ] Durable execution and recovering from mid-workflow failures **`P0`**
-  - [ ] LangChain: models, tools, retrievers, and integrations **`P0`**
-  - [ ] LangGraph: checkpointing, persistence, interrupts, and resumability **`P0`**
-  - [ ] LangGraph: retries, error recovery, and human approval flows **`P0`**
-  - [ ] LangGraph: state graphs, nodes, edges, routing, and reducers **`P0`**
-  - [ ] LangSmith: traces, datasets, evaluations, and debugging **`P0`**
-  - [ ] Stateless service architecture vs. stateful agent execution **`P1`**
-  - [ ] Workflow orchestration vs. agent orchestration **`P1`**
+- [ ] [**Agentic Frameworks and Orchestration**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md) **`P1`**
+  - [ ] [Compare LangGraph, AutoGen, CrewAI, and SDK-native agent approaches](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#1-compare-langgraph-autogen-crewai-and-sdk-native-agent-approaches) **`P2`**
+  - [ ] [Conditional branching, map-reduce, parallel fan-out, and fan-in](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#2-conditional-branching-map-reduce-parallel-fan-out-and-fan-in) **`P1`**
+  - [ ] [Durable execution and recovering from mid-workflow failures](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#3-durable-execution-and-recovering-from-mid-workflow-failures) **`P0`**
+  - [ ] [LangChain: models, tools, retrievers, and integrations](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#4-langchain-models-tools-retrievers-and-integrations) **`P0`**
+  - [ ] [LangGraph: checkpointing, persistence, interrupts, and resumability](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#5-langgraph-checkpointing-persistence-interrupts-and-resumability) **`P0`**
+  - [ ] [LangGraph: retries, error recovery, and human approval flows](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#6-langgraph-retries-error-recovery-and-human-approval-flows) **`P0`**
+  - [ ] [LangGraph: state graphs, nodes, edges, routing, and reducers](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#7-langgraph-state-graphs-nodes-edges-routing-and-reducers) **`P0`**
+  - [ ] [LangSmith: traces, datasets, evaluations, and debugging](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#8-langsmith-traces-datasets-evaluations-and-debugging) **`P0`**
+  - [ ] [Stateless service architecture vs. stateful agent execution](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#9-stateless-service-architecture-vs-stateful-agent-execution) **`P1`**
+  - [ ] [Workflow orchestration vs. agent orchestration](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-Frameworks-and-Orchestration.md#10-workflow-orchestration-vs-agent-orchestration) **`P1`**
 - [ ] **Agentic System Design Interview Practice** **`P0`**
   - [ ] Calculate throughput, per-request token cost, and p95 latency **`P0`**
   - [ ] Compare a deterministic pipeline with an autonomous agent for the same task **`P1`**
