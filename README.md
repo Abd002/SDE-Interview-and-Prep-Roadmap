@@ -100,15 +100,15 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] Practice whiteboarding an agentic architecture in 30–45 minutes **`P1`**
   - [ ] Prepare answers for: "Why agents instead of workflows?" and "When should an agent stop?" **`P1`**
   - [ ] Trace and debug an incorrect tool-selection decision **`P0`**
-- [ ] **LLM and Generative AI Fundamentals** **`P0`**
-  - [ ] Closed-weight vs. open-weight models; hosted APIs vs. self-hosting **`P0`**
-  - [ ] Hallucinations, uncertainty, grounding, and model limitations **`P1`**
-  - [ ] Inference parameters: temperature, top-p, seed, and stop sequences **`P1`**
-  - [ ] Model selection: capability, latency, context, cost, privacy, and deployment **`P0`**
-  - [ ] Pretraining vs. instruction tuning vs. fine-tuning vs. alignment **`P2`**
-  - [ ] Prompting vs. RAG vs. fine-tuning: decision criteria and trade-offs **`P0`**
-  - [ ] Tokens, tokenization, context windows, and output limits **`P1`**
-  - [ ] Transformers, attention, embeddings, and autoregressive generation **`P0`**
+- [ ] [**LLM and Generative AI Fundamentals**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md) **`P0`**
+  - [ ] [Closed-weight vs. open-weight models; hosted APIs vs. self-hosting](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#1-closed-weight-vs-open-weight-models-hosted-apis-vs-self-hosting) **`P0`**
+  - [ ] [Hallucinations, uncertainty, grounding, and model limitations](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#2-hallucinations-uncertainty-grounding-and-model-limitations) **`P1`**
+  - [ ] [Inference parameters: temperature, top-p, seed, and stop sequences](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#3-inference-parameters-temperature-top-p-seed-and-stop-sequences) **`P1`**
+  - [ ] [Model selection: capability, latency, context, cost, privacy, and deployment](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#4-model-selection-capability-latency-context-cost-privacy-and-deployment) **`P0`**
+  - [ ] [Pretraining vs. instruction tuning vs. fine-tuning vs. alignment](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#5-pretraining-vs-instruction-tuning-vs-fine-tuning-vs-alignment) **`P2`**
+  - [ ] [Prompting vs. RAG vs. fine-tuning: decision criteria and trade-offs](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#6-prompting-vs-rag-vs-fine-tuning-decision-criteria-and-trade-offs) **`P0`**
+  - [ ] [Tokens, tokenization, context windows, and output limits](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#7-tokens-tokenization-context-windows-and-output-limits) **`P1`**
+  - [ ] [Transformers, attention, embeddings, and autoregressive generation](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/LLM-and-Generative-AI-Fundamentals.md#8-transformers-attention-embeddings-and-autoregressive-generation) **`P0`**
 - [ ] **Memory, State, and Context Management** **`P1`**
   - [ ] Context compaction, summaries, and memory retrieval **`P0`**
   - [ ] Conversation state and checkpointing **`P1`**
