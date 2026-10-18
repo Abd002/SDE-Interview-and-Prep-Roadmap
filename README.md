@@ -140,15 +140,15 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] SLA/SLO design and incident investigation **`P0`**
   - [ ] Streaming responses, cancellation, and timeout handling **`P1`**
   - [ ] Token usage, per-step cost, and latency budgets **`P0`**
-- [ ] **Prompt Engineering and Structured Outputs** **`P1`**
-  - [ ] Function/tool calling: schema design, argument validation, and error handling **`P0`**
-  - [ ] Handling malformed outputs, refusals, and partial completions **`P1`**
-  - [ ] Injection-resistant prompt design and explicit trust boundaries **`P1`**
-  - [ ] Managing long context, truncation, summarization, and irrelevant context **`P1`**
-  - [ ] Prompt templates, versioning, regression testing, and reproducibility **`P1`**
-  - [ ] Structured output with JSON Schema and type validation **`P1`**
-  - [ ] System, developer, user, and tool messages; instruction priority **`P1`**
-  - [ ] Zero-shot, few-shot, role prompting, and task decomposition **`P1`**
+- [ ] [**Prompt Engineering and Structured Outputs**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md) **`P1`**
+  - [ ] [Function/tool calling: schema design, argument validation, and error handling](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#1-functiontool-calling-schema-design-argument-validation-and-error-handling) **`P0`**
+  - [ ] [Handling malformed outputs, refusals, and partial completions](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#2-handling-malformed-outputs-refusals-and-partial-completions) **`P1`**
+  - [ ] [Injection-resistant prompt design and explicit trust boundaries](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#3-injection-resistant-prompt-design-and-explicit-trust-boundaries) **`P1`**
+  - [ ] [Managing long context, truncation, summarization, and irrelevant context](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#4-managing-long-context-truncation-summarization-and-irrelevant-context) **`P1`**
+  - [ ] [Prompt templates, versioning, regression testing, and reproducibility](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#5-prompt-templates-versioning-regression-testing-and-reproducibility) **`P1`**
+  - [ ] [Structured output with JSON Schema and type validation](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#6-structured-output-with-json-schema-and-type-validation) **`P1`**
+  - [ ] [System, developer, user, and tool messages; instruction priority](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#7-system-developer-user-and-tool-messages-instruction-priority) **`P1`**
+  - [ ] [Zero-shot, few-shot, role prompting, and task decomposition](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Prompt-Engineering-and-Structured-Outputs.md#8-zero-shot-few-shot-role-prompting-and-task-decomposition) **`P1`**
 - [ ] **Retrieval-Augmented Generation (RAG)** **`P0`**
   - [ ] Answer evaluation: faithfulness, factual correctness, and relevance **`P0`**
   - [ ] Chunking approaches: fixed-size, semantic, hierarchical, and overlap **`P1`**
