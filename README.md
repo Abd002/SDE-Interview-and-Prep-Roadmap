@@ -174,17 +174,17 @@ Progress bars and counts are generated from checklist states when you commit cha
   - [ ] Sandboxing code execution and restricting network/file access **`P0`**
   - [ ] Tenant isolation and permission-aware retrieval **`P0`**
   - [ ] Tool allowlists, confirmation for destructive actions, and audit trails **`P1`**
-- [ ] **Tool Use, Integrations, and Protocols** **`P1`**
-  - [ ] API authentication, authorization, least privilege, and secret handling **`P0`**
-  - [ ] Approval gates for irreversible or high-impact actions **`P1`**
-  - [ ] External search, database queries, code execution, and file tools **`P1`**
-  - [ ] Idempotent operations, retries, backoff, timeouts, and rate limits **`P0`**
-  - [ ] Model Context Protocol (MCP): clients, servers, tools, and resources **`P1`**
-  - [ ] Parallel tool execution vs. sequential dependencies **`P1`**
-  - [ ] Tool argument schemas and input/output contracts **`P0`**
-  - [ ] Tool call audit logs and replay/debugging **`P0`**
-  - [ ] Tool registry/discovery and selecting the right tool for a task **`P1`**
-  - [ ] Tool result validation, sanitization, and handling untrusted content **`P1`**
+- [ ] [**Tool Use, Integrations, and Protocols**](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md) **`P1`**
+  - [ ] [API authentication, authorization, least privilege, and secret handling](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#1-api-authentication-authorization-least-privilege-and-secret-handling) **`P0`**
+  - [ ] [Approval gates for irreversible or high-impact actions](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#2-approval-gates-for-irreversible-or-high-impact-actions) **`P1`**
+  - [ ] [External search, database queries, code execution, and file tools](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#3-external-search-database-queries-code-execution-and-file-tools) **`P1`**
+  - [ ] [Idempotent operations, retries, backoff, timeouts, and rate limits](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#4-idempotent-operations-retries-backoff-timeouts-and-rate-limits) **`P0`**
+  - [ ] [Model Context Protocol (MCP): clients, servers, tools, and resources](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#5-model-context-protocol-mcp-clients-servers-tools-and-resources) **`P1`**
+  - [ ] [Parallel tool execution vs. sequential dependencies](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#6-parallel-tool-execution-vs-sequential-dependencies) **`P1`**
+  - [ ] [Tool argument schemas and input/output contracts](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#7-tool-argument-schemas-and-inputoutput-contracts) **`P0`**
+  - [ ] [Tool call audit logs and replay/debugging](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#8-tool-call-audit-logs-and-replaydebugging) **`P0`**
+  - [ ] [Tool registry/discovery and selecting the right tool for a task](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#9-tool-registrydiscovery-and-selecting-the-right-tool-for-a-task) **`P1`**
+  - [ ] [Tool result validation, sanitization, and handling untrusted content](./Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Tool-Use-Integrations-and-Protocols.md#10-tool-result-validation-sanitization-and-handling-untrusted-content) **`P1`**
 
 </details>
 
