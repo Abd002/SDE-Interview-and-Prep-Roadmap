@@ -35,6 +35,7 @@ A research database and application tracker for **Abdelrahman Khalifa** ([GitHub
 | [06 — Salaries and Visas](06-Salaries-and-Visas.md) | 2026 salary benchmarks by city and 2026 visa rules for 🇩🇪 🇳🇱 🇬🇧 🇮🇪 🇺🇸 🇨🇦 🇸🇪 🇨🇭 🇵🇱 🇦🇪 🇸🇦 🇯🇵 🇰🇷 | — |
 | [07 — Strategy and Roadmap](07-Strategy-and-Roadmap.md) | Pathway comparison, country ranking, gap → project plan, application strategy, month-by-month roadmap | — |
 | [08 — Application Tracker](08-Application-Tracker.md) | Consolidated P1 targets with status columns, plus the link to the Notion tracker | — |
+| [09 — Hiring Process and Outreach](09-Hiring-Process-and-Outreach.md) | The hiring process and timeline for the 5 shortlisted roles (Canonical, Cloudflare, Igalia, NXP, Amazon), what candidates report, how to prepare, who to contact, what to ask, message templates and follow-up rules | **5 companies** |
 | [Notion tracker](https://app.notion.com/p/65cf33df29f64fcdb0191c3a6522bb30) (private) | Every company from 02–04 with lists, about / careers / LinkedIn links, recruiter and engineer search links, and application status; built by [tools/build_notion_tracker.py](tools/build_notion_tracker.py) | **553 companies** |
 | [CV/](CV/) | LaTeX master CV and the three one-page versions from 07 §5.1 (General SWE, Systems/Rust, Embedded), with PDFs and ATS check results | **4 CVs** |
 | [Progress Summary](Progress-Summary.md) | What he is doing now and what he knows, from the Done steps in Notion; 30- and 60-second scripts | — |

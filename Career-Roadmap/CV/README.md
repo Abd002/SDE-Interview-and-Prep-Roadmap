@@ -40,6 +40,19 @@ The words still missing are things not in [facts.md](facts.md), such as Go, AWS/
 
 To build a copy: `cd applications/<company> && TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex` (run it twice). For Word: `python3 tex2docx.py applications/<company>/Abdelrahman-Khalifa-CV.tex`.
 
+### Second template: Jake's Resume
+
+**Added 19 Oct 2026, alongside the current copies; nothing was overwritten.** Each company folder now has a `jakes-template/` subfolder with the same CV in a second look: [Canonical](applications/canonical/jakes-template/Abdelrahman-Khalifa-CV.pdf) · [Cloudflare](applications/cloudflare/jakes-template/Abdelrahman-Khalifa-CV.pdf) · [Igalia](applications/igalia/jakes-template/Abdelrahman-Khalifa-CV.pdf) · [NXP](applications/nxp/jakes-template/Abdelrahman-Khalifa-CV.pdf) · [Amazon](applications/amazon/jakes-template/Abdelrahman-Khalifa-CV.pdf). Each has a PDF, a .docx and a .tex.
+
+- **Why this template:** LinkedIn and Reddit can't be read from this environment, and engineers at these companies rarely publish their CVs. So instead of copying someone's CV, this uses the template that new-grad software hires and r/cscareerquestions / r/EngineeringResumes recommend most: [Jake's Resume](https://github.com/jakegut/resume) (LaTeX, one page, MIT licence).
+- **What's different:** the Computer Modern font, **Education first**, **no Summary**, the company in bold with the dates on the right, and the job title in italics below. The facts are exactly the same as the tailored copy in the folder above.
+- **Built with:** [jake-style.sty](jake-style.sty). It defines the same commands as cv-style.sty, so any CV can switch look by changing one `\usepackage` line.
+- **Two changes from the original template, for ATS parsers:**
+  1. Dates use `\hfill` on the same text line, not a table column. With the table version, the OpenResume parser dropped a job (EKSON or ODC).
+  2. Section headings are real uppercase text, not small caps. Small caps made "Open Source Projects" parse as a job.
+- **Checks:** all five copies are 1 page, with no Type 3 fonts or ligatures, all contact details, and all sections. OpenResume reads all 3 jobs, their dates and education correctly. One difference from the main CVs: plain-text extraction puts each date on its own line (right-aligned dates always do this). Most ATS handle that, but the main CVs are safer.
+- **Which to send:** **the main tailored copy by default.** It keeps the Summary with the ad's keywords, and its dates sit next to the company for every parser. Use the Jake's version when you want Education first (for example, Canonical asks about academic results) or when a person, not an ATS, will read it (referrals, email). A template doesn't decide the outcome; the content and a referral do.
+
 **PDF or Word?** Send the **PDF** by default. Use the **.docx** only when the job site asks for Word, or only accepts .doc/.docx. Both have the same text.
 
 The shared look is in [cv-style.sty](cv-style.sty). Change it once and every version follows.

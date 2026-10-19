@@ -41,7 +41,7 @@ Sorted by date.
 
 ### Current shortlist (study plan step 29, checked 18 Oct 2026)
 
-Five open roles at five different P1 companies, each checked on the company's own job board on 18 Oct 2026. Apply in this order; re-open the link first in case it has closed. Send the tailored copy in the CV column (one per company, in [CV/applications/](CV/applications/)), named `Abdelrahman-Khalifa-CV.pdf`.
+Five open roles at five different P1 companies, each checked on the company's own job board on 18 Oct 2026. Apply in this order; re-open the link first in case it has closed. **The process, timeline and who to contact for each of the five are in [09 — Hiring Process and Outreach](09-Hiring-Process-and-Outreach.md).** Send the tailored copy in the CV column (one per company, in [CV/applications/](CV/applications/)), named `Abdelrahman-Khalifa-CV.pdf`.
 
 | # | Company | Role (live posting) | Where | Why it fits | CV |
 |---|---|---|---|---|---|
