@@ -2684,7 +2684,7 @@ func (s OrderStatus) String() string {
 
 </details>
 
-<details><summary><b>csharp</b> (21 files)</summary>
+<details><summary><b>csharp</b> (20 files)</summary>
 
 
 **Enums/OrderStatus.cs**
@@ -3445,22 +3445,6 @@ class SearchByProximityStrategy : IRestaurantSearchStrategy
             .ToList();
     }
 }
-```
-
-
-**fooddeliveryservice.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

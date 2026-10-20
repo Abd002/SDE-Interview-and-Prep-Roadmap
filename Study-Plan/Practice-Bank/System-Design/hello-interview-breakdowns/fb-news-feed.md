@@ -134,7 +134,7 @@ Ok, we now have some API's, let's work on building the high-level design behind 
 
 In our first requirement, we need to create posts and have them accessible by their ID. We're going to start very basic here and build up complexity as we go.
 
-To start, and since we know this is going to scale, we'll put a [horizontally scaled service behind an API gateway/load balancer](/learn/system-design/core-concepts/api-design). We can skip the caching aspect since we'll get to that later. By having the API gateway and load balancer, we can scale up our service with more traffic by adding additional hosts. Since each host is *stateless* as it's only writing to the database (and we're not dealing with reads yet), this is really easy to scale by just adding more hosts!
+To start, and since we know this is going to scale, we'll put a [horizontally scaled service behind an API gateway/load balancer](https://www.hellointerview.com/learn/system-design/core-concepts/api-design). We can skip the caching aspect since we'll get to that later. By having the API gateway and load balancer, we can scale up our service with more traffic by adding additional hosts. Since each host is *stateless* as it's only writing to the database (and we're not dealing with reads yet), this is really easy to scale by just adding more hosts!
 
 Users hit our API gateway with a new post request, this gets passed to one of the post service endpoints which creates an insert event that is sent to our database. Easy.
 
@@ -182,7 +182,7 @@ We'll start by adding a feed service to do this work. It's going to be read-heav
 
 News feed generation is quintessentially read-intensive - users check their feeds constantly but post rarely. This makes **scaling reads** essential through pre-computing feeds for active users, caching recent posts from followed users, and smart pagination. The key is that users typically only read the first few items, so aggressive caching of recent content delivers massive performance gains.
 
-[Learn This Pattern](/learn/system-design/patterns/scaling-reads)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-reads)
 
 Finding all the posts from a given user is tricky with the existing Posts table: while we have an index on our follow table to quickly look up all the users a user is following, we don't have an index on our post table to quickly look up all the posts from a set of users. We can solve this by adding a GSI to the Post table with the creatorID as the partition key and the post's creation timestamp createdAt as the sort key. This will allow us to quickly pull all the posts from a set of users in chronological order.
 
@@ -420,4 +420,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: Tinder](/learn/system-design/problem-breakdowns/tinder)
+[Next: Tinder](https://www.hellointerview.com/learn/system-design/problem-breakdowns/tinder)

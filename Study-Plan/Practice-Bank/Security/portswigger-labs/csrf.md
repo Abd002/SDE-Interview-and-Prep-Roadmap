@@ -27,7 +27,7 @@ You cannot register an email address that is already taken by another user. If y
 
    `Referer: https://arbitrary-incorrect-domain.net?YOUR-LAB-ID.web-security-academy.net`
 4. Send the request and observe that it is now accepted. The website seems to accept any Referer header as long as it contains the expected domain somewhere in the string.
-5. Create a CSRF proof of concept exploit as described in the solution to the [CSRF vulnerability with no defenses](/web-security/csrf/lab-no-defenses) lab and host it on the exploit server. Edit the JavaScript so that the third argument of the `history.pushState()` function includes a query string with your lab instance URL as follows:
+5. Create a CSRF proof of concept exploit as described in the solution to the [CSRF vulnerability with no defenses](https://portswigger.net/web-security/csrf/lab-no-defenses) lab and host it on the exploit server. Edit the JavaScript so that the third argument of the `history.pushState()` function includes a query string with your lab instance URL as follows:
 
    `history.pushState("", "", "/?YOUR-LAB-ID.web-security-academy.net")`
 
@@ -76,7 +76,7 @@ You cannot register an email address that is already taken by another user. If y
 1. Open Burp's browser and log in to your account. Submit the "Update email" form, and find the resulting request in your Proxy history.
 2. Send the request to Burp Repeater and observe that if you change the domain in the Referer HTTP header then the request is rejected.
 3. Delete the Referer header entirely and observe that the request is now accepted.
-4. Create and host a proof of concept exploit as described in the solution to the [CSRF vulnerability with no defenses](/web-security/csrf/lab-no-defenses) lab. Include the following HTML to suppress the Referer header:
+4. Create and host a proof of concept exploit as described in the solution to the [CSRF vulnerability with no defenses](https://portswigger.net/web-security/csrf/lab-no-defenses) lab. Include the following HTML to suppress the Referer header:
 
    `<meta name="referrer" content="no-referrer">`
 5. Change the email address in your exploit so that it doesn't match your own.
@@ -246,7 +246,7 @@ This lab's live chat feature is vulnerable to cross-site WebSocket hijacking (CS
 
 To do this, use the provided exploit server to perform a CSWSH attack that exfiltrates the victim's chat history to the default Burp Collaborator server. The chat history contains the login credentials in plain text.
 
-If you haven't done so already, we recommend completing our topic on [WebSocket vulnerabilities](/web-security/websockets) before attempting this lab.
+If you haven't done so already, we recommend completing our topic on [WebSocket vulnerabilities](https://portswigger.net/web-security/websockets) before attempting this lab.
 
 <details><summary>Hint</summary>
 
@@ -366,7 +366,7 @@ You cannot register an email address that is already taken by another user. If y
 4. Create a URL that uses this vulnerability to inject a fake `csrf` cookie into the victim's browser:
 
    `/?search=test%0d%0aSet-Cookie:%20csrf=fake%3b%20SameSite=None`
-5. Create and host a proof of concept exploit as described in the solution to the [CSRF vulnerability with no defenses](/web-security/csrf/lab-no-defenses) lab, ensuring that your CSRF token is set to "fake". The exploit should be created from the email change request.
+5. Create and host a proof of concept exploit as described in the solution to the [CSRF vulnerability with no defenses](https://portswigger.net/web-security/csrf/lab-no-defenses) lab, ensuring that your CSRF token is set to "fake". The exploit should be created from the email change request.
 6. Remove the auto-submit `<script>` block and instead add the following code to inject the cookie and submit the form:
 
    `<img src="https://YOUR-LAB-ID.web-security-academy.net/?search=test%0d%0aSet-Cookie:%20csrf=fake%3b%20SameSite=None" onerror="document.forms[0].submit();"/>`
@@ -413,7 +413,7 @@ You cannot register an email address that is already taken by another user. If y
 2. Make a note of the value of the CSRF token, then drop the request.
 3. Open a private/incognito browser window, log in to your other account, and send the update email request into Burp Repeater.
 4. Observe that if you swap the CSRF token with the value from the other account, then the request is accepted.
-5. Create and host a proof of concept exploit as described in the solution to the [CSRF vulnerability with no defenses](/web-security/csrf/lab-no-defenses) lab. Note that the CSRF tokens are single-use, so you'll need to include a fresh one.
+5. Create and host a proof of concept exploit as described in the solution to the [CSRF vulnerability with no defenses](https://portswigger.net/web-security/csrf/lab-no-defenses) lab. Note that the CSRF tokens are single-use, so you'll need to include a fresh one.
 6. Change the email address in your exploit so that it doesn't match your own.
 7. Store the exploit, then click "Deliver to victim" to solve the lab.
 
@@ -466,7 +466,7 @@ You cannot register an email address that is already taken by another user. If y
 7. Create a URL that uses this vulnerability to inject your `csrfKey` cookie into the victim's browser:
 
    `/?search=test%0d%0aSet-Cookie:%20csrfKey=YOUR-KEY%3b%20SameSite=None`
-8. Create and host a proof of concept exploit as described in the solution to the [CSRF vulnerability with no defenses](/web-security/csrf/lab-no-defenses) lab, ensuring that you include your CSRF token. The exploit should be created from the email change request.
+8. Create and host a proof of concept exploit as described in the solution to the [CSRF vulnerability with no defenses](https://portswigger.net/web-security/csrf/lab-no-defenses) lab, ensuring that you include your CSRF token. The exploit should be created from the email change request.
 9. Remove the auto-submit `<script>` block, and instead add the following code to inject the cookie:
 
    `<img src="https://YOUR-LAB-ID.web-security-academy.net/?search=test%0d%0aSet-Cookie:%20csrfKey=YOUR-KEY%3b%20SameSite=None" onerror="document.forms[0].submit()">`

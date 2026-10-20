@@ -54,7 +54,18 @@ def fetch_image(url, img_dir, rel):
     return f'{rel}/{name}'
 
 
+def absolutize_links(soup, base_url):
+    """Site-relative links (/learn/..., ../files/...) point back to the original site."""
+    for a in soup.find_all('a', href=True):
+        href = a['href'].strip()
+        if href.startswith('javascript:'):
+            a.unwrap()
+        elif not re.match(r'(https?:|mailto:|#)', href):
+            a['href'] = urllib.request.urljoin(base_url, href)
+
+
 def localise_images(soup, base_url, img_dir, rel):
+    absolutize_links(soup, base_url)
     for img in soup.find_all('img'):
         src = img.get('data-src') or img.get('data-lazy-src') or img.get('src') or ''
         if not src or src.startswith('data:'):
@@ -186,6 +197,7 @@ def pgexercises():
             seen.append(cur)
             url = cat_url + cur
             soup = BeautifulSoup(get(url, os.path.join(WEB, 'pgex', c, cur)), 'html.parser')
+            absolutize_links(soup, url)
             title = soup.select_one('section#typography h1 span').get_text(strip=True)
             qdiv = soup.select_one('section#typography div.span8')
             qtext = to_md(qdiv).replace('### Question', '').strip()
@@ -203,8 +215,11 @@ def pgexercises():
                 w.append(f'<details><summary>Official answer and discussion</summary>\n\n```sql\n{ans.get_text().strip()}\n```\n\n{to_md(disc) if disc else ""}\n</details>\n')
             nxt = None
             for a in soup.find_all('a', href=True):
-                if a.get_text(strip=True) == 'Next Exercise' and re.match(r'^[a-z0-9]+\.html$', a['href']):
-                    nxt = a['href']
+                href = a['href']
+                if href.startswith(cat_url):
+                    href = href[len(cat_url):]
+                if a.get_text(strip=True) == 'Next Exercise' and re.match(r'^[a-z0-9]+\.html$', href):
+                    nxt = href
                     break
             cur = nxt
         open(os.path.join(out, f'{c}.md'), 'w').write('\n'.join(w))

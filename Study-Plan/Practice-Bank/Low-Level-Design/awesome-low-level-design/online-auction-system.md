@@ -1975,7 +1975,7 @@ func NewUser(id, username, email string) *User {
 
 </details>
 
-<details><summary><b>csharp</b> (9 files)</summary>
+<details><summary><b>csharp</b> (8 files)</summary>
 
 
 **AuctionService.cs**
@@ -2453,22 +2453,6 @@ This system allows for the creation and management of auctions, user participati
 6. The AuctionSystem class uses concurrent data structures (ConcurrentHashMap and CopyOnWriteArrayList) to handle concurrent access to auction listings and ensure thread safety.
 7. The AuctionSystem class provides methods for registering users, creating auction listings, searching auction listings, and placing bids.
 8. The **AuctionSystemDemo** class serves as the entry point of the application and demonstrates the usage of the online auction system.
-```
-
-
-**onlineauctionsystem.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

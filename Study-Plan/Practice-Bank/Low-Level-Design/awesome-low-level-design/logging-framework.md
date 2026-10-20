@@ -1662,7 +1662,7 @@ func Run() {
 
 </details>
 
-<details><summary><b>csharp</b> (13 files)</summary>
+<details><summary><b>csharp</b> (12 files)</summary>
 
 
 **Appenders/ConsoleAppender.cs**
@@ -2192,22 +2192,6 @@ class LogMessage
 5. The **LoggerConfig** class holds the configuration settings for the logger, including the log level and the selected log appender.
 6. The **Logger** class is a singleton that provides the main logging functionality. It allows setting the configuration, logging messages at different levels, and provides convenience methods for each log level.
 7. The **LoggingExample** class demonstrates the usage of the logging framework, showcasing different log levels, changing the configuration, and logging from multiple threads.
-```
-
-
-**loggingframework.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

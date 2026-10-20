@@ -36,7 +36,7 @@
 
 ## Official solutions from the repository
 
-<details><summary><b>java</b> (16 files)</summary>
+<details><summary><b>java</b> (15 files)</summary>
 
 
 **Elevator.java**
@@ -366,133 +366,6 @@ See `ElevatorSystemDemo.java` for a sample usage and simulation of the elevator 
 - **Add features:** Such as maintenance mode, emergency stop, or floor elevatorDisplay.
 
 ---
-```
-
-
-**diagrams/elevatorsystem-class-diagram-light.puml**
-
-```puml
-@startuml
-
-top to bottom direction
-skinparam linetype ortho
-
-skinparam backgroundColor transparent
-skinparam wrapWidth 550
-skinparam roundCorner 15
-skinparam defaultFontSize 20
-skinparam defaultFontColor black
-skinparam ArrowColor black
-skinparam Padding 2
-skinparam dpi 100
-skinparam nodesep 80
-skinparam ranksep 100
-
-skinparam class {
-  BackgroundColor #00d084
-  BorderColor black
-  ArrowColor white
-  FontSize 25
-  BorderThickness 2
-  ArrowThickness 3
-}
-
-'enum Direction << enumeration >> {
-'  + UP
-'  + IDLE
-'  + DOWN
-'}
-'class Display {
-'  + update(Elevator): void
-'}
-'class Elevator {
-'  - id: int
-'  - currentFloor: AtomicInteger
-'  - observers: List<ElevatorObserver>
-'  - state: ElevatorState
-'  - isRunning: boolean
-'  - upRequests: TreeSet<Integer>
-'  - downRequests: TreeSet<Integer>
-'  + addObserver(ElevatorObserver): void
-'  + stopElevator(): void
-'  + getDirection(): Direction
-'  + isRunning(): boolean
-'  + setCurrentFloor(int): void
-'  + notifyObservers(): void
-'  + setState(ElevatorState): void
-'  + addRequest(Request): void
-'  + move(): void
-'  + run(): void
-'}
-'interface ElevatorObserver << interface >> {
-'  + update(Elevator): void
-'}
-'interface ElevatorSelectionStrategy << interface >> {
-'  + selectElevator(List<Elevator>, Request): Optional<Elevator>
-'}
-'interface ElevatorState << interface >> {
-'  + addRequest(Elevator, Request): void
-'  + getDirection(): Direction
-'  + move(Elevator): void
-'}
-'class ElevatorSystem {
-'  - selectionStrategy: ElevatorSelectionStrategy
-'  - instance: ElevatorSystem
-'  - executorService: ExecutorService
-'  - elevators: Map<Integer, Elevator>
-'  + start(): void
-'  + shutdown(): void
-'  + selectFloor(int, int): void
-'  + getInstance(int): ElevatorSystem
-'  + requestElevator(int, Direction): void
-'}
-'class IdleState {
-'  + addRequest(Elevator, Request): void
-'  + getDirection(): Direction
-'  + move(Elevator): void
-'}
-'class MovingDownState {
-'  + addRequest(Elevator, Request): void
-'  + getDirection(): Direction
-'  + move(Elevator): void
-'}
-'class MovingUpState {
-'  + addRequest(Elevator, Request): void
-'  + getDirection(): Direction
-'  + move(Elevator): void
-'}
-'class NearestElevatorStrategy {
-'  + selectElevator(List<Elevator>, Request): Optional<Elevator>
-'  - isSuitable(Elevator, Request): boolean
-'}
-'class Request {
-'  - direction: Direction
-'  - source: RequestSource
-'  - targetFloor: int
-'}
-'enum RequestSource << enumeration >> {
-'  + INTERNAL
-'  + EXTERNAL
-'}
-'
-'class ElevatorSystemDemo #00bfff {
-'    + main(String)
-'}
-'
-'ElevatorObserver          ^-[dashed]- Display
-'Elevator                  *-[plain]right-> ElevatorObserver
-'Elevator                  *-[plain]--> ElevatorState
-'ElevatorSystem            *-[plain]-> Elevator
-'ElevatorSystem            *-[plain]-> ElevatorSelectionStrategy
-'ElevatorSystem            -[plain]right-> Request
-'ElevatorState             ^-[dashed]- IdleState
-'ElevatorState             ^-[dashed]- MovingDownState
-'ElevatorState             ^-[dashed]- MovingUpState
-'ElevatorSelectionStrategy ^-[dashed]- NearestElevatorStrategy
-'Request                   *-[plain]-> Direction
-'Request                   *-[plain]-> RequestSource
-'ElevatorSystemDemo        -[plain]right-> ElevatorSystem
-@enduml
 ```
 
 
@@ -1894,7 +1767,7 @@ func NewRequest(sourceFloor, destinationFloor int) *Request {
 
 </details>
 
-<details><summary><b>csharp</b> (16 files)</summary>
+<details><summary><b>csharp</b> (15 files)</summary>
 
 
 **ElevatorSystem.cs**
@@ -2487,22 +2360,6 @@ class NearestElevatorStrategy : IElevatorSelectionStrategy
         return false;
     }
 }
-```
-
-
-**elevatorsystem.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

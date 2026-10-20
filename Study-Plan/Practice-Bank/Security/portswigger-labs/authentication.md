@@ -60,7 +60,7 @@ As the verification code will reset while you're running your attack, you may ne
 
 <details><summary>Hint</summary>
 
-You will need to use Burp macros in conjunction with Burp Intruder to solve this lab. For more information about macros, please refer to the [Burp Suite documentation](/burp/documentation/desktop/settings/sessions). Users proficient in Python might prefer to use the [Turbo Intruder](https://portswigger.net/bappstore/9abaa233088242e8be252cd4ff534988) extension, which is available from the BApp store.
+You will need to use Burp macros in conjunction with Burp Intruder to solve this lab. For more information about macros, please refer to the [Burp Suite documentation](https://portswigger.net/burp/documentation/desktop/settings/sessions). Users proficient in Python might prefer to use the [Turbo Intruder](https://portswigger.net/bappstore/9abaa233088242e8be252cd4ff534988) extension, which is available from the BApp store.
 
 </details>
 
@@ -144,12 +144,12 @@ To solve the lab, brute-force Carlos's cookie to gain access to his **My account
 
 - Your credentials: `wiener:peter`
 - Victim's username: `carlos`
-- [Candidate passwords](/web-security/authentication/auth-lab-passwords)
+- [Candidate passwords](https://portswigger.net/web-security/authentication/auth-lab-passwords)
 
 <details><summary>Official solution</summary>
 
 1. With Burp running, log in to your own account with the **Stay logged in** option selected. Notice that this sets a `stay-logged-in` cookie.
-2. Examine this cookie in the [Inspector](/burp/documentation/desktop/tools/inspector) panel and notice that it is Base64-encoded. Its decoded value is `wiener:51dc30ddc473d43a6011e9ebba6ca770`. Study the length and character set of this string and notice that it could be an MD5 hash. Given that the plaintext is your username, you can make an educated guess that this may be a hash of your password. Hash your password using MD5 to confirm that this is the case. We now know that the cookie is constructed as follows:
+2. Examine this cookie in the [Inspector](https://portswigger.net/burp/documentation/desktop/tools/inspector) panel and notice that it is Base64-encoded. Its decoded value is `wiener:51dc30ddc473d43a6011e9ebba6ca770`. Study the length and character set of this string and notice that it could be an MD5 hash. Given that the plaintext is your username, you can make an educated guess that this may be a hash of your password. Hash your password using MD5 to confirm that this is the case. We now know that the cookie is constructed as follows:
 
    `base64(username+':'+md5HashOfPassword)`
 3. Log out of your account.
@@ -163,7 +163,7 @@ To solve the lab, brute-force Carlos's cookie to gain access to his **My account
    account** page in an authenticated state, we can use the presence or absence of this button to determine whether we've successfully brute-forced the cookie. In the  **Settings** side panel, add a grep match rule to flag any responses containing the string `Update email`. Start the attack.
 8. Notice that the generated payload was used to successfully load your own account page. This confirms that the payload processing rules work as expected and you were able to construct a valid cookie for your own account.
 9. Make the following adjustments and then repeat this attack:
-   - Remove your own password from the payload list and add the list of [candidate passwords](/web-security/authentication/auth-lab-passwords) instead.
+   - Remove your own password from the payload list and add the list of [candidate passwords](https://portswigger.net/web-security/authentication/auth-lab-passwords) instead.
    - Change the `id` parameter in the request URL to `carlos` instead of `wiener`.
    - Change the **Add prefix** rule to add `carlos:` instead of `wiener:`.
 10. When the attack is finished, the lab will be solved. Notice that only one request returned a response containing `Update email`. The payload from this request is the valid `stay-logged-in` cookie for Carlos's account.
@@ -229,7 +229,7 @@ This lab's password change functionality makes it vulnerable to brute-force atta
 
 - Your credentials: `wiener:peter`
 - Victim's username: `carlos`
-- [Candidate passwords](/web-security/authentication/auth-lab-passwords)
+- [Candidate passwords](https://portswigger.net/web-security/authentication/auth-lab-passwords)
 
 <details><summary>Official solution</summary>
 
@@ -337,7 +337,7 @@ https://www.youtube.com/watch?v=o1n6EIY-hPw
 This lab is vulnerable due to a logic flaw in its brute-force protection. To solve the lab, brute-force Carlos's password, then access his account page.
 
 - Victim's username: `carlos`
-- [Candidate passwords](/web-security/authentication/auth-lab-passwords)
+- [Candidate passwords](https://portswigger.net/web-security/authentication/auth-lab-passwords)
 
 <details><summary>Official solution</summary>
 
@@ -378,7 +378,7 @@ This lab is vulnerable due to a logic flaw in its password brute-force protectio
 
 - Your credentials: `wiener:peter`
 - Victim's username: `carlos`
-- [Candidate passwords](/web-security/authentication/auth-lab-passwords)
+- [Candidate passwords](https://portswigger.net/web-security/authentication/auth-lab-passwords)
 
 <details><summary>Hint</summary>
 
@@ -415,8 +415,8 @@ https://www.youtube.com/watch?v=qXt5yqGa8ZA
 
 This lab is vulnerable to username enumeration. It uses account locking, but this contains a logic flaw. To solve the lab, enumerate a valid username, brute-force this user's password, then access their account page.
 
-- [Candidate usernames](/web-security/authentication/auth-lab-usernames)
-- [Candidate passwords](/web-security/authentication/auth-lab-passwords)
+- [Candidate usernames](https://portswigger.net/web-security/authentication/auth-lab-usernames)
+- [Candidate passwords](https://portswigger.net/web-security/authentication/auth-lab-passwords)
 
 <details><summary>Official solution</summary>
 
@@ -452,8 +452,8 @@ https://www.youtube.com/watch?v=BoA-ms_h3HY
 
 This lab is vulnerable to username enumeration and password brute-force attacks. It has an account with a predictable username and password, which can be found in the following wordlists:
 
-- [Candidate usernames](/web-security/authentication/auth-lab-usernames)
-- [Candidate passwords](/web-security/authentication/auth-lab-passwords)
+- [Candidate usernames](https://portswigger.net/web-security/authentication/auth-lab-usernames)
+- [Candidate passwords](https://portswigger.net/web-security/authentication/auth-lab-passwords)
 
 To solve the lab, enumerate a valid username, brute-force this user's password, then access their account page.
 
@@ -499,8 +499,8 @@ https://www.youtube.com/watch?v=-bzZ9Ky8GmU
 This lab is vulnerable to username enumeration using its response times. To solve the lab, enumerate a valid username, brute-force this user's password, then access their account page.
 
 - Your credentials: `wiener:peter`
-- [Candidate usernames](/web-security/authentication/auth-lab-usernames)
-- [Candidate passwords](/web-security/authentication/auth-lab-passwords)
+- [Candidate usernames](https://portswigger.net/web-security/authentication/auth-lab-usernames)
+- [Candidate passwords](https://portswigger.net/web-security/authentication/auth-lab-passwords)
 
 <details><summary>Hint</summary>
 
@@ -549,8 +549,8 @@ https://www.youtube.com/watch?v=RO5Wo5jjbWE
 
 This lab is subtly vulnerable to username enumeration and password brute-force attacks. It has an account with a predictable username and password, which can be found in the following wordlists:
 
-- [Candidate usernames](/web-security/authentication/auth-lab-usernames)
-- [Candidate passwords](/web-security/authentication/auth-lab-passwords)
+- [Candidate usernames](https://portswigger.net/web-security/authentication/auth-lab-usernames)
+- [Candidate passwords](https://portswigger.net/web-security/authentication/auth-lab-passwords)
 
 To solve the lab, enumerate a valid username, brute-force this user's password, then access their account page.
 

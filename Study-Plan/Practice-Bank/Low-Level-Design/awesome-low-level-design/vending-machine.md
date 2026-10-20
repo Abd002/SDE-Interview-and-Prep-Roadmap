@@ -40,7 +40,7 @@
 
 ## Official solutions from the repository
 
-<details><summary><b>java</b> (12 files)</summary>
+<details><summary><b>java</b> (11 files)</summary>
 
 
 **README.md**
@@ -277,121 +277,6 @@ public class VendingMachineDemo {
         vendingMachine.dispense();
     }
 }
-```
-
-
-**diagrams/vendingmachine-class-diagram-light.puml**
-
-```puml
-@startuml
-
-top to bottom direction
-skinparam linetype ortho
-
-skinparam backgroundColor transparent
-skinparam wrapWidth 500
-skinparam roundCorner 15
-skinparam defaultFontSize 20
-skinparam defaultFontColor black
-skinparam ArrowColor black
-skinparam Padding 2
-skinparam dpi 100
-skinparam nodesep 120
-skinparam ranksep 120
-
-skinparam class {
-  BackgroundColor #00d084
-  BorderColor black
-  ArrowColor black
-  FontSize 25
-  BorderThickness 2
-  ArrowThickness 2
-}
-
-enum Coin << enumeration >> {
-  + PENNY
-  + NICKEL
-  + QUARTER
-  + DIME
-}
-class DispensingState {
-  + selectItem(String): void
-  + insertCoin(Coin): void
-  + dispense(): void
-  + refund(): void
-}
-class HasMoneyState {
-  + selectItem(String): void
-  + insertCoin(Coin): void
-  + dispense(): void
-  + refund(): void
-}
-class IdleState {
-  + selectItem(String): void
-  + insertCoin(Coin): void
-  + dispense(): void
-  + refund(): void
-}
-class Inventory {
-  - stockMap: Map<String, Integer>
-  - itemMap: Map<String, Item>
-  + addItem(String, Item, int): void
-  + reduceStock(String): void
-  + getItem(String): Item
-  + isAvailable(String): boolean
-}
-class Item {
-  - price: int
-  - code: String
-  - name: String
-}
-class ItemSelectedState {
-  + selectItem(String): void
-  + insertCoin(Coin): void
-  + dispense(): void
-  + refund(): void
-}
-abstract class VendingMachineState {
-  ~ machine: VendingMachine
-  + selectItem(String): void
-  + dispense(): void
-  + insertCoin(Coin): void
-  + refund(): void
-}
-class VendingMachine {
-  - INSTANCE: VendingMachine
-  - currentState: State
-  - inventory: Inventory
-  - balance: int
-  - selectedItemCode: String
-  + getInstance(): VendingMachine
-  + insertCoin(Coin): void
-  + reset(): void
-  + getSelectedItem(): Item
-  + addItem(String, String, int, int): Item
-  + selectItem(String): void
-  + dispenseItem(): void
-  + dispense(): void
-  + refundBalance(): void
-  + addBalance(int): void
-  + setSelectedItemCode(String): void
-}
-
-class VendingMachineDemo #00bfff {
-    + main(String)
-}
-
-VendingMachineState               ^-[plain]- DispensingState
-VendingMachineState               ^-[plain]- HasMoneyState
-VendingMachineState               ^-[plain]- IdleState
-Inventory                         *-[plain]left-> Item
-VendingMachineState               ^-[plain]- ItemSelectedState
-VendingMachineState               *-[plain]-> VendingMachine
-VendingMachine                    *-[plain]-> Inventory
-VendingMachine                    *-[plain]--> VendingMachineState
-VendingMachine                    *-[plain]right-> Coin
-VendingMachineDemo                *-[plain]right-> VendingMachine
-@enduml
 ```
 
 
@@ -1776,7 +1661,7 @@ func Run() {
 
 </details>
 
-<details><summary><b>csharp</b> (12 files)</summary>
+<details><summary><b>csharp</b> (11 files)</summary>
 
 
 **Enum/Coin.cs**
@@ -2190,22 +2075,6 @@ public class VendingMachineDemo
         vendingMachine.Dispense();
     }
 }
-```
-
-
-**vendingmachine.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

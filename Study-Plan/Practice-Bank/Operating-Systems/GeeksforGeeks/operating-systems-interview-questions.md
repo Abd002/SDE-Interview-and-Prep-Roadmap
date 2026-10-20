@@ -24,9 +24,9 @@ Process Table
 
 A process passes through different states during its execution, depending on whether it is waiting for the CPU, executing, or waiting for an event. These states help the operating system schedule and manage processes efficiently.
 
-- ****Ready:**** The process is waiting for CPU allocation.
-- ****Running:**** The process is currently executing on the CPU.
-- ****Waiting (Blocked):**** The process is waiting for an event, such as I/O completion or user input.
+- **Ready:** The process is waiting for CPU allocation.
+- **Running:** The process is currently executing on the CPU.
+- **Waiting (Blocked):** The process is waiting for an event, such as I/O completion or user input.
 
 ![bb](images/8d5059787767.webp)
 
@@ -46,14 +46,14 @@ Threads
 
 ### 4. What are the differences between process and thread?
 
-****Process****
+**Process**
 
 - A process is an independent program under execution managed by the operating system.
 - A process has its own address space, including code, data, stack, and heap.
 - Processes communicate using Inter-Process Communication (IPC) methods, which are generally slower.
 - Context switching is heavy because the complete process state must be saved and restored.
 
-****Thread****
+**Thread**
 
 - A thread is the smallest unit of CPU scheduling that runs within a process.
 - A thread shares code, data, and heap with other threads of the same process, but has its own stack and registers.
@@ -128,7 +128,7 @@ Working structure of demand paging
 
 ### 11. What is a Kernel?
 
-A [****kernel****](https://www.geeksforgeeks.org/operating-systems/kernel-in-operating-system/) is the core component of an operating system that manages communication between software and hardware. It controls system resources such as the CPU, memory, and input/output devices, ensuring that programs run efficiently and securely.
+A [**kernel**](https://www.geeksforgeeks.org/operating-systems/kernel-in-operating-system/) is the core component of an operating system that manages communication between software and hardware. It controls system resources such as the CPU, memory, and input/output devices, ensuring that programs run efficiently and securely.
 
 - Manages CPU, memory, and I/O devices.
 - Acts as a bridge between applications and hardware.
@@ -173,14 +173,14 @@ Time sharing
 
 ### 15. How do message-passing and shared-memory IPC differ?
 
-****Message passing****
+**Message passing**
 
 - Uses pipes, sockets, message queues
 - OS involved in every communication
 - Safer and easier to program
 - Slower due to kernel overhead
 
-****Shared memory****
+**Shared memory**
 
 - Processes access the same memory region
 - Very fast communication
@@ -197,7 +197,7 @@ Time sharing
 
 ### 17. Briefly explain FCFS.
 
-[****FCFS (First Come, First Served****](https://www.geeksforgeeks.org/dsa/first-come-first-serve-cpu-scheduling-non-preemptive/)****)**** is a non-preemptive CPU scheduling algorithm in which the process that arrives first in the ready queue is executed first. Once a process gets the CPU, it continues executing until it finishes or enters the waiting state.
+[**FCFS (First Come, First Served**](https://www.geeksforgeeks.org/dsa/first-come-first-serve-cpu-scheduling-non-preemptive/)**)** is a non-preemptive CPU scheduling algorithm in which the process that arrives first in the ready queue is executed first. Once a process gets the CPU, it continues executing until it finishes or enters the waiting state.
 
 - Processes are executed in the order of their arrival.
 - It is a non-preemptive scheduling algorithm.
@@ -218,13 +218,13 @@ A [round-robin scheduling algorithm](https://www.geeksforgeeks.org/operating-sys
 
 A redundant array of independent disks is a set of several physical disk drives that the operating system sees as a single logical unit. It played a significant role in narrowing the gap between increasingly fast processors and slow disk drives. RAID has different levels:
 
-- ****RAID 0:**** Data striping for improved performance; no fault tolerance.
-- ****RAID 1:**** Disk mirroring for high data reliability.
-- ****RAID 2:**** Bit-level striping with Hamming code for error correction.
-- ****RAID 3:**** Byte-level striping with a dedicated parity disk.
-- ****RAID 4:**** Block-level striping with a dedicated parity disk.
-- ****RAID 5:**** Block-level striping with distributed parity.
-- ****RAID 6:**** Similar to RAID 5 but uses double distributed parity for higher fault tolerance.
+- **RAID 0:** Data striping for improved performance; no fault tolerance.
+- **RAID 1:** Disk mirroring for high data reliability.
+- **RAID 2:** Bit-level striping with Hamming code for error correction.
+- **RAID 3:** Byte-level striping with a dedicated parity disk.
+- **RAID 4:** Block-level striping with a dedicated parity disk.
+- **RAID 5:** Block-level striping with distributed parity.
+- **RAID 6:** Similar to RAID 5 but uses double distributed parity for higher fault tolerance.
 
 ### 20. What is Banker's Algorithm?
 
@@ -238,14 +238,14 @@ A redundant array of independent disks is a set of several physical disk drives 
 
 ### 21. State the main difference between logical and physical address space?
 
-****Logical Address****
+**Logical Address**
 
 - A logical address is generated by the CPU.
 - Logical address space is the set of all logical addresses generated by the CPU for a program.
 - Users can see and use logical addresses while running a program.
 - The logical address is used to access memory, and it is later translated into a physical address.
 
-****Physical Address****
+**Physical Address**
 
 - A physical address is the actual address in main memory (RAM).
 - Physical address space is the set of all actual memory locations corresponding to logical addresses.
@@ -276,7 +276,7 @@ Key Points:
 
 [Fragmentation](https://www.geeksforgeeks.org/operating-systems/what-is-fragmentation-in-operating-system/) is a condition in which memory becomes divided into small, scattered free blocks after repeated allocation and deallocation of memory. These small blocks may be insufficient to satisfy new memory requests, resulting in inefficient memory utilization.
 
-****Types of Fragmentation:****
+**Types of Fragmentation:**
 
 - Internal Fragmentation: Wasted space inside an allocated memory block.
 - External Fragmentation: Free memory is scattered into small non-contiguous blocks.
@@ -315,10 +315,10 @@ Swapping
 
 The following are the classic synchronization problems used to illustrate process synchronization concepts in operating systems:
 
-- ****Bounded-Buffer (Producer–Consumer) Problem:**** Ensures producers and consumers access a shared buffer without conflicts.
-- ****Readers–Writers Problem:**** Manages access to shared data, allowing multiple readers or one writer at a time.
-- ****Dining Philosophers Problem:**** Demonstrates resource allocation and deadlock when multiple processes compete for shared resources.
-- ****Sleeping Barber Problem:**** Models process synchronization between a service provider and multiple waiting customers.
+- **Bounded-Buffer (Producer–Consumer) Problem:** Ensures producers and consumers access a shared buffer without conflicts.
+- **Readers–Writers Problem:** Manages access to shared data, allowing multiple readers or one writer at a time.
+- **Dining Philosophers Problem:** Demonstrates resource allocation and deadlock when multiple processes compete for shared resources.
+- **Sleeping Barber Problem:** Models process synchronization between a service provider and multiple waiting customers.
 
 ### 28. What is the Direct Access Method?
 
@@ -408,7 +408,7 @@ In preemptive multitasking, the operating system can interrupt a running process
 
 A pipe is an inter-process communication (IPC) mechanism that allows one process to send data directly to another. It provides a one-way communication channel between related processes.
 
-****Uses of a Pipe:****
+**Uses of a Pipe:**
 
 - Transfers data from one process to another.
 - Supports one-way communication.
@@ -428,7 +428,7 @@ Semaphores are synchronization tools used to coordinate access to shared resourc
 
 A bootstrap program, also known as a bootloader, is the first program that runs when a computer is powered on. It initializes the hardware, performs basic system checks, and loads the operating system into main memory.
 
-****Functions of a Bootstrap Program:****
+**Functions of a Bootstrap Program:**
 
 - Initializes hardware components.
 - Performs startup checks (POST).
@@ -447,16 +447,16 @@ Inter-Process Communication (IPC) is a mechanism that enables processes to commu
 
 Operating systems provide several IPC mechanisms for communication and synchronization between processes.
 
-- ****Pipes (Same Process)****: This allows a flow of data in one direction only. Analogous to simplex systems (Keyboard). Data from the output is usually buffered until the input process receives it which must have a common origin.
-- ****Named Pipes (Different Processes)****: This is a pipe with a specific name it can be used in processes that don’t have a shared common process origin. E.g. FIFO where the details written to a pipe are first named.
-- ****Message Queuing****: This allows messages to be passed between processes using either a single queue or several message queues. This is managed by the system kernel these messages are coordinated using an API.
-- ****Semaphores****: This is used in solving problems associated with synchronization and avoiding race conditions. These are integer values that are greater than or equal to 0.
-- ****Shared Memory****: This allows the interchange of data through a defined area of memory. Semaphore values have to be obtained before data can get access to shared memory.
-- ****Sockets****: This method is mostly used to communicate over a network between a client and a server. It allows for a standard connection which is computer and OS independent
+- **Pipes (Same Process)**: This allows a flow of data in one direction only. Analogous to simplex systems (Keyboard). Data from the output is usually buffered until the input process receives it which must have a common origin.
+- **Named Pipes (Different Processes)**: This is a pipe with a specific name it can be used in processes that don’t have a shared common process origin. E.g. FIFO where the details written to a pipe are first named.
+- **Message Queuing**: This allows messages to be passed between processes using either a single queue or several message queues. This is managed by the system kernel these messages are coordinated using an API.
+- **Semaphores**: This is used in solving problems associated with synchronization and avoiding race conditions. These are integer values that are greater than or equal to 0.
+- **Shared Memory**: This allows the interchange of data through a defined area of memory. Semaphore values have to be obtained before data can get access to shared memory.
+- **Sockets**: This method is mostly used to communicate over a network between a client and a server. It allows for a standard connection which is computer and OS independent
 
 ### 42. What is the difference between Preemptive and Non-Preemptive Scheduling?
 
-****Preemptive Scheduling****
+**Preemptive Scheduling**
 
 - The operating system can interrupt a running process and give the CPU to another process.
 - It is suitable for time-sharing and interactive systems.
@@ -464,7 +464,7 @@ Operating systems provide several IPC mechanisms for communication and synchroni
 - Context switching happens more frequently, so scheduling overhead is higher.
 - Examples: Round Robin (RR), Shortest Remaining Time First (SRTF), and Preemptive Priority Scheduling.
 
-****Non-Preemptive Scheduling****
+**Non-Preemptive Scheduling**
 
 - A process keeps the CPU until it finishes execution or becomes blocked.
 - It is suitable for batch processing systems.
@@ -474,14 +474,14 @@ Operating systems provide several IPC mechanisms for communication and synchroni
 
 ### 43. What is the difference between cooperative multitasking and preemptive multitasking?
 
-****Cooperative multitasking:**** Process gives up CPU voluntarily.
+**Cooperative multitasking:** Process gives up CPU voluntarily.
 
 - Simpler OS design
 - Fewer context switches
 - Better cache performance
 - One faulty process can freeze the system
 
-****Preemptive multitasking:**** OS can interrupt a process and give CPU to another.
+**Preemptive multitasking:** OS can interrupt a process and give CPU to another.
 
 - Better responsiveness
 - Fair CPU sharing
@@ -510,12 +510,12 @@ Key Points:
 
 Starvation occurs when a process waits indefinitely for CPU or other resources because higher-priority processes keep getting served. Aging is a scheduling technique used to prevent starvation by gradually increasing the priority of waiting processes. [( Starvation and Aging in Operating System )](https://www.geeksforgeeks.org/operating-systems/starvation-and-aging-in-operating-systems/)
 
-****Starvation:****
+**Starvation:**
 
 - A process waits indefinitely for resources.
 - Caused by continuous preference to higher-priority processes.
 
-****Aging:****
+**Aging:**
 
 - Gradually increases the priority of waiting processes.
 - Prevents starvation and ensures fairness.
@@ -542,14 +542,14 @@ A [Monolithic Kernel](https://www.geeksforgeeks.org/operating-systems/monolithic
 
 ### 49. What is the difference between an Operating System and a Kernel?
 
-****Operating System (OS)****
+**Operating System (OS)**
 
 - An operating system is the complete system software that manages the computer.
 - It provides a user interface and system services for users and applications.
 - It includes the kernel, system utilities, libraries, and application support.
 - Examples: Windows, Linux, and macOS.
 
-****Kernel****
+**Kernel**
 
 - The kernel is the core component of the operating system.
 - It directly manages CPU, memory, devices, and processes.
@@ -585,14 +585,14 @@ Key Points:
 
 ### 53. What are Trap and Trapdoor?
 
-****Trap****
+**Trap**
 
 - A trap is a software-generated interrupt.
 - It occurs due to an exception, error, or system call
 - It transfers control from the running program to the operating system.
 - It is used for handling exceptions and system calls and is managed by the operating system.
 
-****Trapdoor (Backdoor)****
+**Trapdoor (Backdoor)**
 
 - A trapdoor is a hidden or undocumented entry point in a program.
 - It is used to bypass normal authentication or security checks.
@@ -601,7 +601,7 @@ Key Points:
 
 ### 54. Write the difference between a Program and a Process.
 
-****Program****
+**Program**
 
 - A program is a set of instructions stored on disk.
 - It is a passive entity and does not execute by itself.
@@ -609,7 +609,7 @@ Key Points:
 - It does not require CPU, memory, or I/O resources until execution starts.
 - One program can create multiple processes when it runs multiple times.
 
-****Process****
+**Process**
 
 - A process is a program that is currently executing.
 - It is an active entity.
@@ -666,14 +666,14 @@ A [critical section](https://www.geeksforgeeks.org/operating-systems/critical-se
 
 ### 60. Write a difference between a user-level thread and a kernel-level thread?
 
-****User-Level Thread****
+**User-Level Thread**
 
 - User-level threads are created and managed by the user or a thread library.
 - The operating system does not recognize these threads directly.
 - Context switching is faster because it happens in user space.
 - If one user-level thread performs a blocking operation, the entire process may become blocked.
 
-****Kernel-Level Thread****
+**Kernel-Level Thread**
 
 - Kernel-level threads are created and managed by the operating system.
 - The operating system recognizes and schedules these threads directly.
@@ -682,14 +682,14 @@ A [critical section](https://www.geeksforgeeks.org/operating-systems/critical-se
 
 ### 61. Difference between Multithreading and Multitasking?
 
-****Multi-threading****
+**Multi-threading**
 
 - In multi-threading, multiple threads of the same program run at the same time.
 - The CPU switches between threads of a single process.
 - It is a lightweight mechanism because threads share memory and resources.
 - It is mainly a feature of a process used to perform multiple tasks inside one application.
 
-****Multi-tasking****
+**Multi-tasking**
 
 - In multi-tasking, multiple programs or processes run concurrently.
 - The CPU switches between different tasks or processes.
@@ -700,7 +700,7 @@ A [critical section](https://www.geeksforgeeks.org/operating-systems/critical-se
 
 Although [semaphores](https://www.geeksforgeeks.org/operating-systems/semaphores-in-process-synchronization/) are effective synchronization mechanisms, improper use can lead to several issues that affect system performance and correctness.
 
-****Drawbacks:****
+**Drawbacks:**
 
 - Can cause priority inversion, where a high-priority process waits for a lower-priority one.
 - Incorrect use of `wait()` and `signal()` may lead to programming errors.
@@ -733,9 +733,9 @@ Bounded waiting is a condition that guarantees every process requesting entry in
 
 ### 66. What are the solutions to the Critical Section Problem?
 
-1. ****Software Solutions:**** Use software techniques such as Peterson’s Algorithm to control access to shared resources.
-2. ****Hardware Solutions:**** Use special hardware instructions like Test-and-Set or Compare-and-Swap for synchronization.
-3. ****Semaphores:**** Use wait() and signal() operations to synchronize processes or threads and manage shared resources.
+1. **Software Solutions:** Use software techniques such as Peterson’s Algorithm to control access to shared resources.
+2. **Hardware Solutions:** Use special hardware instructions like Test-and-Set or Compare-and-Swap for synchronization.
+3. **Semaphores:** Use wait() and signal() operations to synchronize processes or threads and manage shared resources.
 
 ### 67. What is Concurrency?
 
@@ -751,7 +751,7 @@ A barrier is a synchronization point where all threads or processes must arrive 
 
 A deadlock-like situation occurs if one thread never reaches the barrier, for example because it crashes, enters an infinite loop, or gets blocked indefinitely. All other threads wait forever at the barrier, so the whole program stops making progress.
 
-****Example:**** In parallel matrix multiplication, every thread computes part of the matrix and waits at a barrier before combining results. If one thread fails before reaching the barrier, all remaining threads wait forever.
+**Example:** In parallel matrix multiplication, every thread computes part of the matrix and waits at a barrier before combining results. If one thread fails before reaching the barrier, all remaining threads wait forever.
 
 ### 69. Write the drawbacks of Concurrency.
 
@@ -767,16 +767,16 @@ While concurrency improves performance, it also introduces several challenges in
 
 A [deadlock](https://www.geeksforgeeks.org/operating-systems/introduction-of-deadlock-in-operating-system/) can occur only if all four Coffman conditions are satisfied simultaneously.
 
-1. ****Mutual Exclusion:**** At least one resource can be used by only one process at a time.
-2. ****Hold and Wait:**** A process holds one resource while waiting for another.
-3. ****No Preemption:**** Resources cannot be forcibly taken away from a process.
-4. ****Circular Wait:**** A circular chain of processes exists, where each process waits for a resource held by the next process.
+1. **Mutual Exclusion:** At least one resource can be used by only one process at a time.
+2. **Hold and Wait:** A process holds one resource while waiting for another.
+3. **No Preemption:** Resources cannot be forcibly taken away from a process.
+4. **Circular Wait:** A circular chain of processes exists, where each process waits for a resource held by the next process.
 
 ### 71. What are the issues related to concurrency?
 
-- ****Non-atomic****: Operations that are non-atomic but interruptible by multiple processes can cause problems.
+- **Non-atomic**: Operations that are non-atomic but interruptible by multiple processes can cause problems.
 - [Race conditions](https://www.geeksforgeeks.org/operating-systems/race-condition-vulnerability/): A race condition occurs of the outcome depends on which of several processes gets to a point first.
-- ****Blocking****: Processes can block waiting for resources. A process could be blocked for a long period of time waiting for input from a terminal. If the process is required to periodically update some data, this would be very undesirable.
+- **Blocking**: Processes can block waiting for resources. A process could be blocked for a long period of time waiting for input from a terminal. If the process is required to periodically update some data, this would be very undesirable.
 - [Starvation](https://www.geeksforgeeks.org/operating-systems/starvation-and-aging-in-operating-systems/): It occurs when a process does not obtain service to progress.
 - [Deadlock](https://www.geeksforgeeks.org/operating-systems/introduction-of-deadlock-in-operating-system/): It occurs when two processes are blocked and hence neither can proceed to execute
 
@@ -803,9 +803,9 @@ Components of a RAG:
 
 A [deadlock](https://www.geeksforgeeks.org/operating-systems/introduction-of-deadlock-in-operating-system/) is a situation in which two or more processes are permanently blocked because each process is waiting for a resource held by another process. As a result, none of the processes can continue execution.
 
-****Example:**** Two processes each hold one resource and wait indefinitely for the resource held by the other.
+**Example:** Two processes each hold one resource and wait indefinitely for the resource held by the other.
 
-****Key Points:****
+**Key Points:**
 
 - Processes wait indefinitely for one another.
 - Occurs due to improper resource allocation.
@@ -818,11 +818,11 @@ A [deadlock](https://www.geeksforgeeks.org/operating-systems/introduction-of-dea
 
 Memory management is one of the primary functions of an operating system. It manages the allocation, protection, and organization of memory so that multiple processes can execute efficiently and safely.
 
-1. ****Relocation:**** The operating system can move a process from one memory location to another during execution without affecting its operation.
-2. ****Protection:**** It prevents one process from accessing or modifying the memory allocated to another process, ensuring system security and stability.
-3. ****Sharing**** Memory management allows multiple processes to share the same memory region when appropriate, improving resource utilization and enabling inter-process communication.
-4. ****Logical Organization:**** It organizes programs into logical modules or segments, making programs easier to manage, develop, and maintain.
-5. ****Physical Organization:**** It manages the efficient allocation and deallocation of physical memory (RAM) and secondary storage, ensuring optimal memory utilization.
+1. **Relocation:** The operating system can move a process from one memory location to another during execution without affecting its operation.
+2. **Protection:** It prevents one process from accessing or modifying the memory allocated to another process, ensuring system security and stability.
+3. **Sharing** Memory management allows multiple processes to share the same memory region when appropriate, improving resource utilization and enabling inter-process communication.
+4. **Logical Organization:** It organizes programs into logical modules or segments, making programs easier to manage, develop, and maintain.
+5. **Physical Organization:** It manages the efficient allocation and deallocation of physical memory (RAM) and secondary storage, ensuring optimal memory utilization.
 
 ### 76. How does the OS ensure atomicity when multiple processes request the same I/O device?
 
@@ -835,7 +835,7 @@ Methods used:
 - Device-driver synchronization
 - Interrupt-based completion handling
 
-****Example:**** Two processes printing together are queued and printed one after another.
+**Example:** Two processes printing together are queued and printed one after another.
 
 ### 77. How does the OS ensure data consistency in a multi-user environment with simultaneous I/O requests?
 
@@ -858,9 +858,9 @@ For example, if two users edit the same file simultaneously, the OS can lock the
 
 Address binding is classified into the following three types:
 
-- ****Compile-time Address Binding:**** Physical addresses are determined during compilation. The program must be recompiled if the memory location changes.
-- ****Load-time Address Binding:**** Physical addresses are assigned when the program is loaded into memory. The program can be loaded at different memory locations.
-- ****Execution-time Address Binding:**** Physical addresses are generated during program execution, allowing a process to be moved between memory locations while it is running.
+- **Compile-time Address Binding:** Physical addresses are determined during compilation. The program must be recompiled if the memory location changes.
+- **Load-time Address Binding:** Physical addresses are assigned when the program is loaded into memory. The program can be loaded at different memory locations.
+- **Execution-time Address Binding:** Physical addresses are generated during program execution, allowing a process to be moved between memory locations while it is running.
 
 ### 80. What is locality of reference and why is it important in memory management?
 
@@ -868,8 +868,8 @@ Locality of reference means that a program tends to access the same memory locat
 
 There are two main types:
 
-- ****Temporal locality:**** Recently used data is likely to be used again soon.
-- ****Spatial locality:**** Memory locations near a recently accessed location are likely to be accessed next.
+- **Temporal locality:** Recently used data is likely to be used again soon.
+- **Spatial locality:** Memory locations near a recently accessed location are likely to be accessed next.
 
 This concept is very important because caches, TLBs, and virtual memory systems are designed assuming locality. When locality is good, the required data is often already in cache or memory, which reduces page faults and improves execution speed. Programs with poor locality usually experience more cache misses and slower performance.
 
@@ -877,7 +877,7 @@ This concept is very important because caches, TLBs, and virtual memory systems 
 
 [Dynamic allocation algorithms](https://www.geeksforgeeks.org/c/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/) allocate memory during program execution, making memory management more flexible and efficient.
 
-****Advantages:****
+**Advantages:**
 
 - Memory is allocated only when required.
 - Supports dynamic data structures such as linked lists and trees.
@@ -887,14 +887,14 @@ This concept is very important because caches, TLBs, and virtual memory systems 
 
 ### 82. Write a difference between internal fragmentation and external fragmentation?
 
-****Internal Fragmentation****
+**Internal Fragmentation**
 
 - Internal fragmentation occurs when memory is divided into fixed-size partitions or blocks.
 - A process may not use the entire allocated block, so some memory remains unused inside the partition.
 - The unused space is the difference between the allocated memory and the memory actually required by the process.
 - It is common in systems that use fixed partition memory allocation.
 
-****External Fragmentation****
+**External Fragmentation**
 
 - External fragmentation occurs when memory is allocated in variable-size partitions.
 - After processes are loaded and removed, free memory becomes scattered into small non-contiguous blocks.
@@ -907,7 +907,7 @@ A conventional page table stores one entry for every virtual page of a process. 
 
 An inverted page table stores one entry for each physical frame in the system instead of each virtual page. Each entry records which process and which virtual page currently occupy that frame.
 
-****Main differences:****
+**Main differences:**
 
 - Conventional page table: larger memory usage, faster direct indexing.
 - Inverted page table: smaller memory usage, but address translation is more complex and often uses hashing.
@@ -940,7 +940,7 @@ A [hashed page table](https://www.geeksforgeeks.org/operating-systems/hashed-pag
 
 ### 86. Write a difference between paging and segmentation?
 
-****Paging****
+**Paging**
 
 - In paging, a program is divided into fixed-size pages and memory is divided into frames of the same size.
 - The operating system and hardware are responsible for managing pages and frames.
@@ -948,7 +948,7 @@ A [hashed page table](https://www.geeksforgeeks.org/operating-systems/hashed-pag
 - A page table is maintained to store the mapping between pages and memory frames.
 - Paging is generally faster, but it can lead to internal fragmentation.
 
-****Segmentation****
+**Segmentation**
 
 - In segmentation, a program is divided into variable-size segments such as code, data, and stack.
 - The segment sizes are based on the logical structure of the program and are visible to the programmer.
@@ -958,7 +958,7 @@ A [hashed page table](https://www.geeksforgeeks.org/operating-systems/hashed-pag
 
 ### 87. Write a definition of  Associative Memory and  Cache Memory?
 
-****Associative Memory****
+**Associative Memory**
 
 - Associative memory is a memory that is accessed by its content instead of an address.
 - It can search all stored words simultaneously and quickly find the required data.
@@ -966,7 +966,7 @@ A [hashed page table](https://www.geeksforgeeks.org/operating-systems/hashed-pag
 - Its important feature is the matching logic circuit that compares input data with stored data.
 - It reduces the time needed to locate an item stored in memory.
 
-****Cache Memory****
+**Cache Memory**
 
 - Cache memory is a small and very fast memory placed between the CPU and main memory.
 - Data is accessed using its memory address.
@@ -978,14 +978,14 @@ A [hashed page table](https://www.geeksforgeeks.org/operating-systems/hashed-pag
 
 [Locality of Reference](https://www.geeksforgeeks.org/computer-organization-architecture/locality-of-reference-and-cache-operation-in-cache-memory/) is the tendency of a program to repeatedly access the same memory locations or nearby memory locations within a short period. Operating systems use this principle to improve the performance of cache memory and virtual memory.
 
-****Types of Locality:****
+**Types of Locality:**
 
-- ****Temporal Locality:**** Recently accessed data is likely to be accessed again.
-- ****Spatial Locality:**** Memory locations near a recently accessed location are likely to be accessed soon.
+- **Temporal Locality:** Recently accessed data is likely to be accessed again.
+- **Spatial Locality:** Memory locations near a recently accessed location are likely to be accessed soon.
 
 ![main_memory](images/08a1d80e0e09.webp)
 
-****Applications:****
+**Applications:**
 
 - Improves cache hit ratio.
 - Reduces memory access time.
@@ -995,7 +995,7 @@ A [hashed page table](https://www.geeksforgeeks.org/operating-systems/hashed-pag
 
 [Virtual memory](https://www.geeksforgeeks.org/operating-systems/virtual-memory-in-operating-system/) extends the available memory by using secondary storage as an extension of RAM. It allows the operating system to execute large programs efficiently, even when physical memory is limited.
 
-****Advantages:****
+**Advantages:**
 
 - Supports a higher degree of multiprogramming.
 - Allows programs larger than physical memory to execute.
@@ -1007,17 +1007,17 @@ A [hashed page table](https://www.geeksforgeeks.org/operating-systems/hashed-pag
 
 ### 90. How is performance calculated in Virtual Memory?
 
-The performance of a virtual memory system mainly depends on the ****page fault rate****. A lower page fault rate results in better performance because accessing RAM is much faster than accessing secondary storage.
+The performance of a virtual memory system mainly depends on the **page fault rate**. A lower page fault rate results in better performance because accessing RAM is much faster than accessing secondary storage.
 
-The ****Effective Access Time (EAT)**** is calculated as:
+The **Effective Access Time (EAT)** is calculated as:
 
-> ****EAT = (1 − p) × Memory Access Time + p × Page Fault Time****
+> **EAT = (1 − p) × Memory Access Time + p × Page Fault Time**
 
 where:
 
-- ****p**** = Probability of a page fault
-- ****Memory Access Time**** = Time required to access RAM
-- ****Page Fault Time**** = Time required to service a page fault
+- **p** = Probability of a page fault
+- **Memory Access Time** = Time required to access RAM
+- **Page Fault Time** = Time required to service a page fault
 
 A higher page fault rate increases the Effective Access Time, reducing system performance.
 
@@ -1025,7 +1025,7 @@ A higher page fault rate increases the Effective Access Time, reducing system pe
 
 A [file system](https://www.geeksforgeeks.org/operating-systems/file-systems-in-operating-system/) is the method used by an operating system to organize, store, retrieve, and manage files on secondary storage devices. It provides a logical structure for storing data and maintains information about files and directories.
 
-****Functions of a File System:****
+**Functions of a File System:**
 
 - Organizes files and directories.
 - Manages storage allocation.
@@ -1040,7 +1040,7 @@ Block devices transfer data in fixed-size blocks and support random access. Exam
 
 Character devices transfer data as a stream of characters and usually support sequential access only. Examples are keyboards, mice, and serial ports. The OS uses character device drivers and interrupt-driven I/O with little or no buffering.
 
-****Main difference:**** Block devices are optimized for storage access, while character devices are optimized for real-time stream-oriented input/output.
+**Main difference:** Block devices are optimized for storage access, while character devices are optimized for real-time stream-oriented input/output.
 
 ### 93. Write the names of different operations on a File.
 
@@ -1060,10 +1060,10 @@ The operating system provides several operations to manage files efficiently.
 
 A Bit Vector (Bitmap) is a free-space management technique in which each disk block is represented by a single bit. The operating system uses the bitmap to determine whether a disk block is free or allocated.
 
-- ****0**** → Allocated block
-- ****1**** → Free block
+- **0** → Allocated block
+- **1** → Free block
 
-****Advantages:****
+**Advantages:**
 
 - Easy to implement.
 - Efficient for locating free disk blocks.
@@ -1073,7 +1073,7 @@ A Bit Vector (Bitmap) is a free-space management technique in which each disk bl
 
 The [File Allocation Table (FAT)](https://www.geeksforgeeks.org/operating-systems/fat-full-form/) is a disk data structure used by the operating system to keep track of file locations on a storage device. It stores information about the clusters occupied by each file, allowing the OS to locate and access files efficiently.
 
-****Features:****
+**Features:**
 
 - Maps files to disk clusters.
 - Keeps track of free and allocated clusters.
@@ -1083,7 +1083,7 @@ The [File Allocation Table (FAT)](https://www.geeksforgeeks.org/operating-system
 
 [Rotational latency](https://www.geeksforgeeks.org/operating-systems/rotational-latency/) is the time required for the desired disk sector to rotate under the read/write head after the disk arm has reached the correct track. It is one of the components of disk access time.
 
-****Factors Affecting Rotational Latency:****
+**Factors Affecting Rotational Latency:**
 
 - Disk rotational speed (RPM).
 - Position of the required sector.
@@ -1094,7 +1094,7 @@ Lower rotational latency improves disk performance.
 
 [Seek time](https://www.geeksforgeeks.org/operating-systems/seek-time-in-os/) is the time required for the disk arm to move the read/write head to the track where the requested data is stored. It is usually the largest component of disk access time.
 
-****Key Points:****
+**Key Points:**
 
 - Depends on the distance the disk arm travels.
 - Lower seek time results in faster data access.
@@ -1104,7 +1104,7 @@ Lower rotational latency improves disk performance.
 
 [Belady's Anomaly](https://www.geeksforgeeks.org/operating-systems/beladys-anomaly-in-page-replacement-algorithms/) is a phenomenon in which increasing the number of page frames results in more page faults, instead of fewer. This unusual behavior occurs with the FIFO (First-In, First-Out) page replacement algorithm but does not occur with stack algorithms such as LRU or Optimal.
 
-****Key Points:****
+**Key Points:**
 
 - Occurs mainly in the FIFO page replacement algorithm.
 - More page frames can unexpectedly increase page faults.
@@ -1114,7 +1114,7 @@ Lower rotational latency improves disk performance.
 
 A non-recursive mutex cannot be locked multiple times by the same thread. If the thread attempts to lock it again before unlocking it, the thread waits indefinitely for itself to release the mutex, resulting in a deadlock.
 
-****Key Points:****
+**Key Points:**
 
 - The same thread cannot lock the mutex twice.
 - The thread blocks while waiting for the mutex it already owns.
@@ -1124,7 +1124,7 @@ A non-recursive mutex cannot be locked multiple times by the same thread. If the
 
 A [multiprocessor system](https://www.geeksforgeeks.org/computer-organization-architecture/introduction-of-multiprocessor-and-multicomputer/) consists of two or more processors that work together to execute tasks. It improves system performance by allowing multiple processes or threads to run simultaneously.
 
-****Advantages:****
+**Advantages:**
 
 - Improves overall system performance.
 - Increases throughput by executing multiple tasks in parallel.
@@ -1145,15 +1145,15 @@ Types of Real-Time Systems:
 
 Once a deadlock has occurred, the operating system can recover using one of the following techniques:
 
-1. ****Process Termination:**** Terminate one or more deadlocked processes until the deadlock is removed.
-2. ****Resource Preemption:**** Temporarily take resources from selected processes and allocate them to others.
-3. ****Victim Selection:**** Choose the process whose termination or resource preemption results in the lowest system cost.
+1. **Process Termination:** Terminate one or more deadlocked processes until the deadlock is removed.
+2. **Resource Preemption:** Temporarily take resources from selected processes and allocate them to others.
+3. **Victim Selection:** Choose the process whose termination or resource preemption results in the lowest system cost.
 
 ### 103. What factors determine whether a Deadlock Detection Algorithm should be used?
 
 The decision to use a [deadlock detection algorithm](https://www.geeksforgeeks.org/operating-systems/deadlock-detection-algorithm-in-operating-system/) depends on the likelihood of deadlocks and the cost of recovering from them.
 
-****Factors Considered:****
+**Factors Considered:**
 
 - Frequency with which deadlocks are expected to occur.
 - Number of processes that may be affected.
@@ -1164,6 +1164,6 @@ The decision to use a [deadlock detection algorithm](https://www.geeksforgeeks.o
 
 To do well in interviews, you need to understand core concepts, memory management, Synchronization, I/O and Disk management.
 
-****1. Core Concepts:**** [Kernel](https://www.geeksforgeeks.org/operating-systems/kernel-in-operating-system/), [System Call](https://www.geeksforgeeks.org/operating-systems/introduction-of-system-call/), [Process](https://www.geeksforgeeks.org/operating-systems/introduction-of-process-management/), [Threads](https://www.geeksforgeeks.org/operating-systems/thread-in-operating-system/), [CPU Scheduling](https://www.geeksforgeeks.org/operating-systems/cpu-scheduling-in-operating-systems/), [Paging](https://www.geeksforgeeks.org/operating-systems/paging-in-operating-system/), [Segmentation](https://www.geeksforgeeks.org/operating-systems/segmentation-in-operating-system/), [Page Replacement Algorithms](https://www.geeksforgeeks.org/operating-systems/page-replacement-algorithms-in-operating-systems/), [Virtual Memory](https://www.geeksforgeeks.org/operating-systems/virtual-memory-in-operating-system/), [Disk Scheduling](https://www.geeksforgeeks.org/operating-systems/disk-scheduling-algorithms/).
+**1. Core Concepts:** [Kernel](https://www.geeksforgeeks.org/operating-systems/kernel-in-operating-system/), [System Call](https://www.geeksforgeeks.org/operating-systems/introduction-of-system-call/), [Process](https://www.geeksforgeeks.org/operating-systems/introduction-of-process-management/), [Threads](https://www.geeksforgeeks.org/operating-systems/thread-in-operating-system/), [CPU Scheduling](https://www.geeksforgeeks.org/operating-systems/cpu-scheduling-in-operating-systems/), [Paging](https://www.geeksforgeeks.org/operating-systems/paging-in-operating-system/), [Segmentation](https://www.geeksforgeeks.org/operating-systems/segmentation-in-operating-system/), [Page Replacement Algorithms](https://www.geeksforgeeks.org/operating-systems/page-replacement-algorithms-in-operating-systems/), [Virtual Memory](https://www.geeksforgeeks.org/operating-systems/virtual-memory-in-operating-system/), [Disk Scheduling](https://www.geeksforgeeks.org/operating-systems/disk-scheduling-algorithms/).
 
-****2. Advanced Topics:**** [Inter Process Communication](https://www.geeksforgeeks.org/operating-systems/inter-process-communication-ipc/), [Process Synchronization](https://www.geeksforgeeks.org/operating-systems/introduction-of-process-synchronization/), [Semaphores](https://www.geeksforgeeks.org/operating-systems/semaphores-in-process-synchronization/), [IPC Problems](https://www.geeksforgeeks.org/operating-systems/classical-ipc-problems/), [Deadlock](https://www.geeksforgeeks.org/operating-systems/introduction-of-deadlock-in-operating-system/), [Multithreading](https://www.geeksforgeeks.org/operating-systems/multithreading-in-operating-system/), [File systems](https://www.geeksforgeeks.org/operating-systems/file-systems-in-operating-system/).
+**2. Advanced Topics:** [Inter Process Communication](https://www.geeksforgeeks.org/operating-systems/inter-process-communication-ipc/), [Process Synchronization](https://www.geeksforgeeks.org/operating-systems/introduction-of-process-synchronization/), [Semaphores](https://www.geeksforgeeks.org/operating-systems/semaphores-in-process-synchronization/), [IPC Problems](https://www.geeksforgeeks.org/operating-systems/classical-ipc-problems/), [Deadlock](https://www.geeksforgeeks.org/operating-systems/introduction-of-deadlock-in-operating-system/), [Multithreading](https://www.geeksforgeeks.org/operating-systems/multithreading-in-operating-system/), [File systems](https://www.geeksforgeeks.org/operating-systems/file-systems-in-operating-system/).

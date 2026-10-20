@@ -53,7 +53,7 @@ Name:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_               
 &emsp;**a) \[3  points\]** Your cousin, who is studying at a Bay Area university often noted for its sports<br>
 &emsp;&emsp;programs, claims to have learned “Lance’s Axioms” for reasoning about Functional<br>
 &emsp;&emsp;Dependencies.   He claims that one such axiom, is<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reversitivity: if   “A  B” then “B  A”<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reversitivity: if   “A  B” then “B  A”<br>
 Give an example relation instance that proves that Reversitivity is invalid.  (for simplicity, use<br>
 integers and/or single letters as your attribute values)
 
@@ -66,7 +66,7 @@ integers and/or single letters as your attribute values)
 
 &emsp;**b) \[4 points\]** After viewing your counterexample for part (a),  your cousin launches into a review<br>
 &emsp;&emsp;of the final scores of the “Big Game” over the past decade.  He then claims that there is another<br>
-&emsp;&emsp;axiom:       Kindatransitivity: if   “A  C”  and “AB  C” then “B  C”<br>
+&emsp;&emsp;axiom:       Kindatransitivity: if   “A  C”  and “AB  C” then “B  C”<br>
 &emsp;&emsp;Give an example relation instance that proves that Kindatransitivity is invalid.
 
 
@@ -78,13 +78,13 @@ integers and/or single letters as your attribute values)
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;• not necessary to show two tuples with same A value
 
 &emsp;**c) \[5 points\]** It turns out however, that your cousin almost got it right.  In fact, there is a rule as<br>
-&emsp;&emsp;follows:         Pseudotransitivity: if   “A  B”  and “BC  D” then “AC  D”<br>
+&emsp;&emsp;follows:         Pseudotransitivity: if   “A  B”  and “BC  D” then “AC  D”<br>
 &emsp;&emsp;Using Armstrong’s Axioms (not Lance’s) show that Pseudotransitivity is in fact valid (Be sure<br>
 &emsp;to indicate which axiom you are using in each step).<br>
-&emsp;&emsp;&emsp;• A  B given;<br>
-&emsp;&emsp;&emsp;• BC  D given<br>
-&emsp;&emsp;&emsp;• AC  BC  Augmentation of 1 with C<br>
-&emsp;&emsp;&emsp;• AC  D  Transitivity of 3 and 2
+&emsp;&emsp;&emsp;• A  B given;<br>
+&emsp;&emsp;&emsp;• BC  D given<br>
+&emsp;&emsp;&emsp;• AC  BC  Augmentation of 1 with C<br>
+&emsp;&emsp;&emsp;• AC  D  Transitivity of 3 and 2
 
 CS 186 Midterm     October 10, 2002        Page 2 of 13
 
@@ -106,9 +106,9 @@ Name:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_               
 
 &emsp;**e) \[6 points\]**  Consider the relation schema **R = ABCDE** and the following functional<br>
 &emsp;&emsp;dependencies on R:<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**A**  **D**<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**BC**  **E**<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**D**  **AB**
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**A**  **D**<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**BC**  **E**<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**D**  **AB**
 
 &emsp;&emsp;**R** has two candidate keys.  What are they (circle your answer)?
 
@@ -129,23 +129,23 @@ Name:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_               
 ### **Question 2 – Normalization \[7 parts,  15 points total\]**
 
 &emsp;Consider the relation schema **S = ABCD** and the following functional dependencies on **S**:<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**A**  **BCD**<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**B**  **C**<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**CD**  **A**<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**A**  **BCD**<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**B**  **C**<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**CD**  **A**<br>
 For each of the following short questions, be sure to briefly explain your answer.<br>
 &emsp;**a) \[3 points\]**  **S** is not in BCNF, but is it in 3NF?  Explain your answer.<br>
-&emsp;&emsp;&emsp;Yes, because CD and A are candidate keys.  B  C is okay because C is part of a<br>
+&emsp;&emsp;&emsp;Yes, because CD and A are candidate keys.  B  C is okay because C is part of a<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;candidate key (CD).
 
 &emsp;**b) \[2 points\]** Consider the decomposition of **S** into **S1** = ABC and **S2** = BCD.  Is this a valid<br>
 &emsp;&emsp;decomposition into BCNF?  Explain.<br>
-No, because B  C and B is not a candidate key (for either S1 and S2)
+No, because B  C and B is not a candidate key (for either S1 and S2)
 
 &emsp;**c) \[2 points\]** Is the decomposition of **S** into **S1** and **S2** lossless? Why or why not?<br>
 No, because BC is the intersection and  BC is not a key for either S1 and S2
 
 &emsp;**d) \[2 points\]** Is the decomposition of **S** into **S1** and **S2** dependency preserving? Why or why not?<br>
-No, because CDA (or AC)  are lost
+No, because CDA (or AC)  are lost
 
 &emsp;**e) \[2 points\]** Consider the decomposition of **S** into **S3** = ABD and **S4** = BC.  Is this a valid<br>
 &emsp;&emsp;decomposition into BCNF?  Explain.<br>
@@ -155,7 +155,7 @@ Yes, A is a key for ABD and B is a key for BC (also all 2 attr relns are in BCNF
 Yes, Intersection is B and it is a key for BC
 
 &emsp;**g) \[2 points\]** Is the decomposition of **S** into **S3** and **S4** dependency preserving? Why or why not?<br>
-No, because CDA (or AC)  are lost ;
+No, because CDA (or AC)  are lost ;
 
 CS 186 Midterm     October 10, 2002        Page 4 of 13
 
@@ -184,7 +184,7 @@ Express the following queries in the indicated query language.  Feel free to use
 relational algebra operators, such as division:<br>
 &emsp;**a) \[4 points\] (Relational Algebra):** List the player name and salary of each player who is on a<br>
 &emsp;&emsp;team that has beaten the “Wombats”.<br>
-&emsp;σpnamesalaryPlayersawayTmG,((((∏   ∏   )   <br>
+&emsp;σpnamesalaryPlayersawayTmG,((((∏   ∏   )<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;=∧\<HomeTmWombatsHomePts''   AwayPts<br>
 &emsp;σHomeTmG((∏   ))))<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;=∧\<AwayTmWombatsAwayPts'   HomePts

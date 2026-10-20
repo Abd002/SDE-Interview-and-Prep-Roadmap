@@ -2646,7 +2646,7 @@ const (
 
 </details>
 
-<details><summary><b>csharp</b> (24 files)</summary>
+<details><summary><b>csharp</b> (23 files)</summary>
 
 
 **Enums/DriverStatus.cs**
@@ -3467,22 +3467,6 @@ class VehicleBasedPricingStrategy : IPricingStrategy
         return BASE_FARE + ratePerKm[rideType] * pickup.DistanceTo(dropoff);
     }
 }
-```
-
-
-**ridesharingservice.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

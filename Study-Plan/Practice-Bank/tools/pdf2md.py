@@ -44,6 +44,7 @@ LIGATURES = {'\u200b': '', '\ufeff': '', '\ufb00': 'ff', '\ufb01': 'fi', '\ufb02
 def esc(t):
     for a, b in LIGATURES.items():
         t = t.replace(a, b)
+    t = re.sub(r'[\x00-\x08\x0b-\x1f\x7f]', '', t)  # control characters some PDFs carry
     t = MD_SPECIAL.sub(r'\\\1', t)
     return t
 

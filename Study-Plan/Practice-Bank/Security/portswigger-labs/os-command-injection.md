@@ -20,7 +20,7 @@ To prevent the Academy platform being used to attack third parties, our firewall
 <details><summary>Official solution</summary>
 
 1. Use Burp Suite Professional to intercept and modify the request that submits feedback.
-2. Go to the [Collaborator](/burp/documentation/desktop/tools/collaborator) tab.
+2. Go to the [Collaborator](https://portswigger.net/burp/documentation/desktop/tools/collaborator) tab.
 3. Click "Copy to clipboard" to copy a unique Burp Collaborator payload to your clipboard.
 4. Modify the `email` parameter, changing it to something like the following, but insert your Burp Collaborator subdomain where indicated:
 
@@ -68,7 +68,7 @@ To prevent the Academy platform being used to attack third parties, our firewall
 
 #### Note
 
-The solution described here is sufficient simply to trigger a DNS lookup and so solve the lab. In a real-world situation, you would use [Burp Collaborator](/burp/documentation/desktop/tools/collaborator) to verify that your payload had indeed triggered a DNS lookup. See the lab on [blind OS command injection with out-of-band data exfiltration](/web-security/os-command-injection/lab-blind-out-of-band-data-exfiltration) for an example of this.
+The solution described here is sufficient simply to trigger a DNS lookup and so solve the lab. In a real-world situation, you would use [Burp Collaborator](https://portswigger.net/burp/documentation/desktop/tools/collaborator) to verify that your payload had indeed triggered a DNS lookup. See the lab on [blind OS command injection with out-of-band data exfiltration](https://portswigger.net/web-security/os-command-injection/lab-blind-out-of-band-data-exfiltration) for an example of this.
 
 </details>
 

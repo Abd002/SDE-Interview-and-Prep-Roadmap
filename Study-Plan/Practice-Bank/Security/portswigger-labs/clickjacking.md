@@ -229,7 +229,7 @@ The victim will be using Chrome so test your exploit on that browser.
 
 [Open the lab](https://portswigger.net/web-security/clickjacking/lab-prefilled-form-input)
 
-This lab extends the basic clickjacking example in [Lab: Basic clickjacking with CSRF token protection](/web-security/clickjacking/lab-basic-csrf-protected). The goal of the lab is to change the email address of the user by prepopulating a form using a URL parameter and enticing the user to inadvertently click on an "Update email" button.
+This lab extends the basic clickjacking example in [Lab: Basic clickjacking with CSRF token protection](https://portswigger.net/web-security/clickjacking/lab-basic-csrf-protected). The goal of the lab is to change the email address of the user by prepopulating a form using a URL parameter and enticing the user to inadvertently click on an "Update email" button.
 
 To solve the lab, craft some HTML that frames the account page and fools the user into updating their email address by clicking on a "Click me" decoy. The lab is solved when the email address is changed.
 

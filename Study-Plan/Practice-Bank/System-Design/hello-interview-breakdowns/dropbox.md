@@ -211,7 +211,7 @@ Users should be able to upload a file from any device
 
 The direct upload approach using presigned URLs is a classic example of handling large file transfers efficiently. This pattern of bypassing application servers for data transfer, using signed URLs for security, and implementing chunked uploads for reliability appears across many distributed systems that handle substantial file uploads and downloads.
 
-[Learn This Pattern](/learn/system-design/patterns/large-blobs)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/large-blobs)
 
 ### 2) Users should be able to download a file from any device
 
@@ -602,4 +602,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: Local Delivery Service](/learn/system-design/problem-breakdowns/gopuff)
+[Next: Local Delivery Service](https://www.hellointerview.com/learn/system-design/problem-breakdowns/gopuff)

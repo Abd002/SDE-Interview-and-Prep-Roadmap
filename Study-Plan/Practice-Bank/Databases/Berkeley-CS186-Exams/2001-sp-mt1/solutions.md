@@ -105,7 +105,7 @@ b)<br>
 = 1,000 + 5,000 + ( 999 \* 4,001 )<br>
 = 6000 + 4,001,000 – 4,001 = **4,002,999**<br>
 c)<br>
-\[ CONTENTS \] +   \[CONTENTS\] / 1,000    \* \[ CARTS \]<br>
+\[ CONTENTS \] +   \[CONTENTS\] / 1,000    \* \[ CARTS \]<br>
 &emsp;&emsp;= 5,000 + 5 \* 1,000 = 10,000<br>
 d)<br>
 1\. Hash Join, since √\[CARTS \] fits in memory ( 2 passes )<br>

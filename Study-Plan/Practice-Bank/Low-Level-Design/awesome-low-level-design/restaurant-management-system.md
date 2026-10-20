@@ -2799,7 +2799,7 @@ func NewStaff(id int, name, role, contactNumber string) *Staff {
 
 </details>
 
-<details><summary><b>csharp</b> (29 files)</summary>
+<details><summary><b>csharp</b> (28 files)</summary>
 
 
 **Commands/ICommand.cs**
@@ -3550,22 +3550,6 @@ class ServedState : IOrderItemState
 
     public string GetStatus() => "SERVED";
 }
-```
-
-
-**restaurantmanagementsystem.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

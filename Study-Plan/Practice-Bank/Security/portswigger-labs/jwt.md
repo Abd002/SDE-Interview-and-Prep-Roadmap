@@ -15,9 +15,9 @@ You can log in to your own account using the following credentials: `wiener:pete
 
 #### Tip
 
-We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
+We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
 
-We have also provided a simplified version of the `jwt_forgery.py` tool to help you. For details on how to use this, see [Deriving public keys from existing tokens](/web-security/jwt/algorithm-confusion#deriving-public-keys-from-existing-tokens).
+We have also provided a simplified version of the `jwt_forgery.py` tool to help you. For details on how to use this, see [Deriving public keys from existing tokens](https://portswigger.net/web-security/jwt/algorithm-confusion#deriving-public-keys-from-existing-tokens).
 
 <details><summary>Hint</summary>
 
@@ -104,7 +104,7 @@ You can log in to your own account using the following credentials: `wiener:pete
 
 #### Tip
 
-We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
+We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
 
 <details><summary>Hint</summary>
 
@@ -175,7 +175,7 @@ You can log in to your own account using the following credentials: `wiener:pete
 
 #### Tip
 
-We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
+We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
 
 <details><summary>Official solution</summary>
 
@@ -224,7 +224,7 @@ You can log in to your own account using the following credentials: `wiener:pete
 
 #### Tip
 
-We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
+We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
 
 <details><summary>Official solution</summary>
 
@@ -303,7 +303,7 @@ You can log in to your own account using the following credentials: `wiener:pete
 
 #### Tip
 
-We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
+We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
 
 <details><summary>Official solution</summary>
 
@@ -359,7 +359,7 @@ You can log in to your own account using the following credentials: `wiener:pete
 
 #### Tip
 
-We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
+We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
 
 <details><summary>Official solution</summary>
 
@@ -421,7 +421,7 @@ You can log in to your own account using the following credentials: `wiener:pete
 
 #### Tip
 
-We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
+We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
 
 <details><summary>Official solution</summary>
 
@@ -468,9 +468,9 @@ You can log in to your own account using the following credentials: `wiener:pete
 
 #### Tip
 
-We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
+We recommend familiarizing yourself with [how to work with JWTs in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/vulnerabilities/session-management/jwts) before attempting this lab.
 
-We also recommend using hashcat to brute-force the secret key. For details on how to do this, see [Brute forcing secret keys using hashcat](/web-security/jwt#brute-forcing-secret-keys-using-hashcat).
+We also recommend using hashcat to brute-force the secret key. For details on how to do this, see [Brute forcing secret keys using hashcat](https://portswigger.net/web-security/jwt#brute-forcing-secret-keys-using-hashcat).
 
 <details><summary>Official solution</summary>
 

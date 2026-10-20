@@ -3058,7 +3058,7 @@ func (u *User) AddOrder(order Order) {
 
 </details>
 
-<details><summary><b>csharp</b> (31 files)</summary>
+<details><summary><b>csharp</b> (30 files)</summary>
 
 
 **Decorators/GiftWrapDecorator.cs**
@@ -3964,22 +3964,6 @@ class UPIPaymentStrategy : IPaymentStrategy
         return true;
     }
 }
-```
-
-
-**onlineshoppingservice.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

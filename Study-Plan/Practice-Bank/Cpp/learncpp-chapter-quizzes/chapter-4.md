@@ -141,15 +141,15 @@ Enter +, -, *, or /: *
 6.2 * 5 is 31
 ```
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: Write three functions: one to get a double value, one to get the arithmetic symbol, and one to calculate and print the answer.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: Use if-statements and `operator==` to compare the user input to the desired arithmetic symbol.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: Consider using an early return (covered in lesson [4.10 -- Introduction to if statements](https://www.learncpp.com/cpp-tutorial/introduction-to-if-statements/)) if the user doesn’t pass in a supported operation.
 

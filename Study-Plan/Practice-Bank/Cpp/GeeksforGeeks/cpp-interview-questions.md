@@ -16,11 +16,11 @@ C++ is a general-purpose, object-oriented programming language developed by Bjar
 
 Advantages of C++
 
-- ****High Performance:**** C++ is close to the hardware, making it fast and efficient for system-level and performance-critical applications.
-- ****Object-Oriented:**** Supports core OOP concepts such as encapsulation, inheritance, and polymorphism, enabling modular and reusable code.
-- ****Portability****: Programs can run on multiple platforms with minimal code changes.
-- ****Memory Control:**** Provides direct memory management through pointers, allowing fine-grained control over system resources.
-- ****Rich Standard Library (STL):**** Includes a powerful Standard Template Library with efficient data structures, algorithms, and utility classes for faster development.
+- **High Performance:** C++ is close to the hardware, making it fast and efficient for system-level and performance-critical applications.
+- **Object-Oriented:** Supports core OOP concepts such as encapsulation, inheritance, and polymorphism, enabling modular and reusable code.
+- **Portability**: Programs can run on multiple platforms with minimal code changes.
+- **Memory Control:** Provides direct memory management through pointers, allowing fine-grained control over system resources.
+- **Rich Standard Library (STL):** Includes a powerful Standard Template Library with efficient data structures, algorithms, and utility classes for faster development.
 
 ### 2. What are the different data types present in C++?
 
@@ -33,16 +33,16 @@ Advantages of C++
 
 Data Types
 
-### ****3. Define token in C++****
+### **3. Define token in C++**
 
 A [token](https://www.geeksforgeeks.org/c/tokens-in-c/) is the smallest meaningful unit of a C++ program that the compiler recognizes during compilation. Every C++ program is made up of different types of tokens.
 
-- ****Keywords -**** Reserved words with predefined meanings, such as int, if, and return.
-- ****Identifiers -**** User-defined names used for variables, functions, classes, etc.
-- ****Constants -**** Fixed values that do not change during program execution.
-- ****String Literals -**** Sequences of characters enclosed in double quotes.
-- ****Operators -**** Symbols that perform operations on operands, such as +, -, \*, and =.
-- ****Special Symbols -**** Characters with specific meanings, such as (), {}, [], ;, and #.
+- **Keywords -** Reserved words with predefined meanings, such as int, if, and return.
+- **Identifiers -** User-defined names used for variables, functions, classes, etc.
+- **Constants -** Fixed values that do not change during program execution.
+- **String Literals -** Sequences of characters enclosed in double quotes.
+- **Operators -** Symbols that perform operations on operands, such as +, -, \*, and =.
+- **Special Symbols -** Characters with specific meanings, such as (), {}, [], ;, and #.
 
 ### 4. Define 'std'?
 
@@ -53,7 +53,7 @@ std is the standard namespace in C++ that contains identifiers provided by the C
 - The scope resolution operator (::) is used to access its members (for example, std::cout).
 - using namespace std; allows these members to be used without writing the std:: prefix repeatedly.
 
-****Syntax:****
+**Syntax:**
 
 > int GFG = 10;  
 > // reference variable  
@@ -68,7 +68,7 @@ A [namespace](https://www.geeksforgeeks.org/cpp/namespace-in-c/) is a declarativ
 - Improves code organization and readability.
 - Accessed using the scope resolution operator (::).
 
-### ****6. What is the difference between C and C++?****
+### **6. What is the difference between C and C++?**
 
 [C and C++](https://www.geeksforgeeks.org/cpp/difference-between-c-and-c/) are closely related programming languages, but C++ extends C by adding object-oriented programming features and several advanced capabilities.
 
@@ -153,12 +153,12 @@ Hello, World!
 
 A [class](https://www.geeksforgeeks.org/cpp/c-classes-and-objects/) is a user-defined data type that defines the properties (data members) and behaviors (member functions) of an object. An [object](https://www.geeksforgeeks.org/cpp/c-classes-and-objects/) is an instance of a class used to access its data members and member functions.
 
-- ****Class:**** Acts as a blueprint for creating objects.
-- ****Object:**** Represents an instance of a class with its own state and behavior.
+- **Class:** Acts as a blueprint for creating objects.
+- **Object:** Represents an instance of a class with its own state and behavior.
 
 ![class](images/c871a21aee9c.webp)
 
-****Example:**** The following program creates a Student class and an object to access its members.
+**Example:** The following program creates a Student class and an object to access its members.
 
 C++
 
@@ -193,7 +193,7 @@ int main() {
 Name: Rahul
 ```
 
-****Explanation****
+**Explanation**
 
 - Student is a class that defines a data member (name) and a member function (display\_name()).
 - s is an object of the Student class.
@@ -243,18 +243,18 @@ In C++, both [struct and class](https://www.geeksforgeeks.org/cpp/structure-vs-c
 | Can contain data members, member functions, constructors, and destructors. | Can contain data members, member functions, constructors, and destructors. |
 | Objects can be created on the stack or heap. | Objects can be created on the stack or heap. |
 
-### ****13. What are the various OOPs concepts in C++?****
+### **13. What are the various OOPs concepts in C++?**
 
 The main [Object-Oriented Programming](https://www.geeksforgeeks.org/cpp/object-oriented-programming-in-cpp/) (OOP) concepts in C++ are:
 
 ![object_oriented_programming](images/8d9dcf24d085.webp)
 
-- ****Class:**** A user-defined data type that acts as a blueprint for creating objects.
-- ****Object:**** An instance of a class used to access its data members and member functions.
-- ****Encapsulation:**** Bundling data and the functions that operate on it into a single unit.
-- ****Abstraction:**** Hiding implementation details and exposing only the essential features.
-- ****Inheritance:**** Allows a class to acquire the properties and behaviors of another class.
-- ****Polymorphism:**** Enables the same interface or function to exhibit different behaviors depending on the object.
+- **Class:** A user-defined data type that acts as a blueprint for creating objects.
+- **Object:** An instance of a class used to access its data members and member functions.
+- **Encapsulation:** Bundling data and the functions that operate on it into a single unit.
+- **Abstraction:** Hiding implementation details and exposing only the essential features.
+- **Inheritance:** Allows a class to acquire the properties and behaviors of another class.
+- **Polymorphism:** Enables the same interface or function to exhibit different behaviors depending on the object.
 
 ### 14. What is the Difference Between an Array and a Linked List?
 
@@ -276,7 +276,7 @@ A [Storage class](https://www.geeksforgeeks.org/cpp/storage-classes-in-c-with-ex
 - It determines where a variable can be accessed and how long it remains in memory.
 - Common storage classes in C++ are auto, register (deprecated), static, extern, and mutable.
 
-****Syntax:****
+**Syntax:**
 
 > storage\_class var\_data\_type var\_name;
 
@@ -288,7 +288,7 @@ Define storage
 
 The following table highlights the major [difference between virtual functions and pure virtual functions](https://www.geeksforgeeks.org/cpp/difference-between-virtual-function-and-pure-virtual-function-in-c/)
 
-| ****Virtual Function**** | ****Pure Virtual Function**** |
+| **Virtual Function** | **Pure Virtual Function** |
 | --- | --- |
 | A virtual function has a definition in the base class and can be overridden in derived classes. | A pure virtual function is declared using `= 0` and is intended to be overridden by derived classes. |
 | Declared using the `virtual` keyword. | Declared using the `virtual` keyword followed by `= 0`. |
@@ -296,14 +296,14 @@ The following table highlights the major [difference between virtual functions a
 | Overriding the function in the derived class is optional. | Overriding the function in a derived class is mandatory (unless the derived class is also abstract). |
 | Used to provide a default implementation that derived classes may customize. | Used to define an interface that derived classes must implement. |
 
-### ****17. What is Function Overriding in C++?****
+### **17. What is Function Overriding in C++?**
 
 [Function Overriding](https://www.geeksforgeeks.org/cpp/function-overloading-vs-function-overriding-in-cpp/) occurs when a derived class provides its own implementation of a virtual function defined in the base class using the same function name, parameter list, and return type. It is an example of runtime polymorphism.
 
 - The function in the derived class must have the same signature as the base class function.
 - The function to be overridden should be declared virtual in the base class.
 
-****Example:**** The following program demonstrates function overriding.
+**Example:** The following program demonstrates function overriding.
 
 C++
 
@@ -340,7 +340,7 @@ int main() {
 Derived Class
 ```
 
-****Explanation****
+**Explanation**
 
 - `display()` is declared as a virtual function in the base class and overridden in the derived class.
 - Since the function is called through a base class pointer, the derived class version is executed at runtime.
@@ -363,7 +363,7 @@ Different classes inheriting from Animal Class
 - Protects data by restricting direct access to it.
 - Allows controlled access through public member functions (getters and setters).
 
-> ****Example:**** A bank account hides its balance from direct access. Users cannot modify the balance directly; instead, they use public functions such as deposit(), withdraw(), and getBalance() to access or update it in a controlled manner.
+> **Example:** A bank account hides its balance from direct access. Users cannot modify the balance directly; instead, they use public functions such as deposit(), withdraw(), and getBalance() to access or update it in a controlled manner.
 
 ![Encapsulation](images/bf3cdd17e0a1.webp)
 
@@ -373,10 +373,10 @@ Encapsulation
 
 [Polymorphism](https://www.geeksforgeeks.org/cpp/cpp-polymorphism/) is an OOP concept that allows the same interface (function or operator) to perform different actions depending on the object or context.
 
-- ****Compile-time polymorphism:**** Achieved through function overloading and operator overloading.
-- ****Run-time polymorphism:**** Achieved through function overriding using virtual functions.
+- **Compile-time polymorphism:** Achieved through function overloading and operator overloading.
+- **Run-time polymorphism:** Achieved through function overriding using virtual functions.
 
-> ****Example:**** A Shape class can have a draw() function. The Circle and Rectangle classes override draw() to display different outputs. When draw() is called through a base class pointer, the appropriate derived class implementation is executed at runtime.
+> **Example:** A Shape class can have a draw() function. The Circle and Rectangle classes override draw() to display different outputs. When draw() is called through a base class pointer, the appropriate derived class implementation is executed at runtime.
 
 ![polymorphism](images/701e7f993913.webp)
 
@@ -384,12 +384,12 @@ Encapsulation
 
 C++ supports two types of [polymorphism](https://www.geeksforgeeks.org/cpp/cpp-polymorphism/):
 
-****1. Compile-Time Polymorphism (Static Polymorphism)****
+**1. Compile-Time Polymorphism (Static Polymorphism)**
 
 Compile-time polymorphism is resolved by the compiler during compilation. The function or operator to execute is determined before the program runs, making it faster than runtime polymorphism. It is achieved using:
 
-- ****Function Overloading:**** Multiple functions have the same name but different parameter lists.
-- ****Operator Overloading:**** Operators are redefined to work with user-defined data types.
+- **Function Overloading:** Multiple functions have the same name but different parameter lists.
+- **Operator Overloading:** Operators are redefined to work with user-defined data types.
 
 C++
 
@@ -444,13 +444,13 @@ int main() {
 6 + i8
 ```
 
-****Explanation:**** The add() function demonstrates function overloading, while the + operator demonstrates operator overloading. Both are examples of compile-time polymorphism.
+**Explanation:** The add() function demonstrates function overloading, while the + operator demonstrates operator overloading. Both are examples of compile-time polymorphism.
 
-****2. Run-Time Polymorphism (Dynamic Polymorphism)****
+**2. Run-Time Polymorphism (Dynamic Polymorphism)**
 
 Runtime polymorphism is resolved while the program is executing. The function to call is determined based on the actual object at runtime. It is achieved using:
 
-- ****Function Overriding:**** Allows a derived class to redefine a virtual function of the base class using the same function signature.
+- **Function Overriding:** Allows a derived class to redefine a virtual function of the base class using the same function signature.
 
 C++
 
@@ -490,7 +490,7 @@ int main() {
 Dog barks
 ```
 
-****Explanation:**** The base class pointer points to a derived class object. Since sound() is a virtual function, the overridden function in Dog is called at runtime, demonstrating runtime polymorphism.
+**Explanation:** The base class pointer points to a derived class object. Since sound() is a virtual function, the overridden function in Dog is called at runtime, demonstrating runtime polymorphism.
 
 ### 22. Explain the differences between Compile-Time Polymorphism and Run-Time Polymorphism.
 
@@ -550,7 +550,7 @@ Drawing Circle
 
 A [constructor](https://www.geeksforgeeks.org/cpp/constructors-c/) is a special type of member function of a class, whose name is the same as that of the class by whom it is invoked and initializes value to the object of a class There are 3 types of constructors:
 
-****1. Default constructor:**** It is the most basic type of constructor which accepts no arguments or parameters. Even if it is not called the compiler calls it automatically when an object is created.
+**1. Default constructor:** It is the most basic type of constructor which accepts no arguments or parameters. Even if it is not called the compiler calls it automatically when an object is created.
 
 C++
 
@@ -563,7 +563,7 @@ public:
 };
 ``` ````
 
-****2. Parameterized constructor:**** It is a type of constructor which accepts arguments or parameters. It has to be called explicitly by passing values in the arguments as these arguments help initialize an object when it is created. It also has the same name as that of the class
+**2. Parameterized constructor:** It is a type of constructor which accepts arguments or parameters. It has to be called explicitly by passing values in the arguments as these arguments help initialize an object when it is created. It also has the same name as that of the class
 
 C++
 
@@ -576,7 +576,7 @@ public:
 };
 ``` ````
 
-****3. Copy Constructor:**** A copy constructor is a member function that initializes an object using another object of the same class. Also, the Copy constructor takes a reference to an object of the same class as an argument.
+**3. Copy Constructor:** A copy constructor is a member function that initializes an object using another object of the same class. Also, the Copy constructor takes a reference to an object of the same class as an argument.
 
 C++
 
@@ -597,7 +597,7 @@ public:
 - Used to perform cleanup tasks such as freeing memory or closing files.
 - Has the same name as the class, prefixed with ~, and takes no parameters or return value.
 
-****Syntax:****
+**Syntax:**
 
 > ~constructor\_name();
 
@@ -761,7 +761,7 @@ delete ptr;      // Deallocate single object
 int* arr = new int[100];
 delete[] arr;    // Deallocate array
 ``` ````
-> ****Note:**** Memory allocated with new must be released using delete, and memory allocated with new[] must be released using delete[].
+> **Note:** Memory allocated with new must be released using delete, and memory allocated with new[] must be released using delete[].
 
 ### 34. How is `delete[]` different from `delete` in C++?
 
@@ -772,7 +772,7 @@ delete[] arr;    // Deallocate array
 | Calls the destructor for each element of the array. | Calls the destructor only once for the single object. |
 | Syntax: `delete[] ptr;` | Syntax: `delete ptr;` |
 
-****Example:****
+**Example:**
 
 C++
 
@@ -790,9 +790,9 @@ int main() {
     return 0;
 }
 ``` ````
-> ****Note:**** Using delete for memory allocated with new[], or delete[] for memory allocated with new, results in undefined behavior.
+> **Note:** Using delete for memory allocated with new[], or delete[] for memory allocated with new, results in undefined behavior.
 
-### ****35. What is the difference between shallow copy and deep copy?****
+### **35. What is the difference between shallow copy and deep copy?**
 
 Following are the primary differences between the [shallow copy VS deep copy](https://www.geeksforgeeks.org/blogs/difference-between-shallow-and-deep-copy-of-a-class/):
 
@@ -808,13 +808,13 @@ Following are the primary differences between the [shallow copy VS deep copy](ht
 
 ### 36. What are the static data members and static member functions?
 
-****Static Data Members:**** A [static data member](https://) belongs to the class rather than individual objects. Only one copy of the member is shared by all objects of the class.
+**Static Data Members:** A [static data member](https://) belongs to the class rather than individual objects. Only one copy of the member is shared by all objects of the class.
 
 - Shared by all objects of the class.
 - Declared using the static keyword.
 - Must be defined outside the class.
 
-****Syntax****
+**Syntax**
 
 > static Data\_Type Data\_Member; 
 
@@ -824,7 +824,7 @@ A [static member function](https://www.geeksforgeeks.org/cpp/static-member-funct
 - Can directly access only static data members and other static member functions.
 - Does not have access to the this pointer.
 
-****Syntax****
+**Syntax**
 
 > classname::function name(parameter);
 
@@ -873,7 +873,7 @@ Both [const](https://www.geeksforgeeks.org/cpp/const-keyword-in-cpp/) and #[defi
 - const follows C++ scope and type-checking rules, while #define has no type or scope checking.
 - const constants can be inspected during debugging, but macros are usually not visible after preprocessing.
 
-### ****38. What is virtual inheritance?****
+### **38. What is virtual inheritance?**
 
 Virtual inheritance is a technique used in multiple inheritance to ensure that only one copy of a common base class is inherited, preventing duplicate base class instances (the diamond problem).
 
@@ -912,7 +912,7 @@ int main() {
 Person
 ```
 
-****Explanation****
+**Explanation**
 
 - Student and Employee virtually inherit from Person.
 - TeachingAssistant inherits from both Student and Employee.
@@ -1029,13 +1029,13 @@ No, a class cannot have multiple [destructor](https://www.geeksforgeeks.org/cpp/
 - They do not have a return type, so overloading is not possible.
 - Since an object is destroyed in only one way, C++ allows only a single destructor for each class.
 
-****Syntax:****
+**Syntax:**
 
 > ~ClassName();
 
 Defining more than one destructor in the same class results in a compilation error.
 
-### 42. What is the difference between ****F****unction ****O****verloading and ****O****perator ****O****verloading?
+### 42. What is the difference between **F**unction **O**verloading and **O**perator **O**verloading?
 
 Both [function overloading](https://www.geeksforgeeks.org/cpp/function-overloading-c/) and [operator overloading](https://www.geeksforgeeks.org/cpp/operator-overloading-cpp/) are forms of compile-time polymorphism in C++, but they are used for different purposes.
 
@@ -1046,14 +1046,14 @@ Both [function overloading](https://www.geeksforgeeks.org/cpp/function-overloadi
 | The compiler selects the appropriate function based on the number or type of arguments. | The compiler invokes the overloaded operator function when the operator is used. |
 | Used to perform similar operations on different types of data. | Used to provide intuitive behavior for objects of a class. |
 
-### ****43. Discuss the difference between prefix and postfix?****
+### **43. Discuss the difference between prefix and postfix?**
 
 The following table summarizes the key [difference between prefix and postfix](https://www.geeksforgeeks.org/cpp/increment-and-decrement-operator-overloading-in-c/) increment/decrement operators:
 
-| ****Prefix (******`++i`** ****/**** **`--i`******)**** | ****Postfix (******`i++`** ****/**** **`i--`******)**** |
+| **Prefix (****`++i`** **/** **`--i`****)** | **Postfix (****`i++`** **/** **`i--`****)** |
 | --- | --- |
 | The operator is applied before the operand is evaluated. | The operand is evaluated before the operator is applied. |
-| Returns the updated value. | Returns the ****original**** value, then updates it. |
+| Returns the updated value. | Returns the **original** value, then updates it. |
 | Slightly more efficient for user-defined iterators and objects since it avoids creating a temporary copy. | May create a temporary copy before updating (for user-defined types). |
 | Associativity is right-to-left. | Associativity is left-to-right. |
 
@@ -1072,11 +1072,11 @@ Common uses of the scope resolution operator:
 
 The access restriction specified to the class members (whether it is member function or data member) is known as [access modifiers/specifiers.](https://www.geeksforgeeks.org/cpp/access-modifiers-in-c/)
 
-****Access Modifiers are of 3 types:****
+**Access Modifiers are of 3 types:**
 
-- ****Private -**** It can neither be accessed nor be viewed from outside the class
-- ****Protected -**** It can be accessed if and only if the accessor is the derived class
-- ****Public -**** It can be accessed or be viewed from outside the class
+- **Private -** It can neither be accessed nor be viewed from outside the class
+- **Protected -** It can be accessed if and only if the accessor is the derived class
+- **Public -** It can be accessed or be viewed from outside the class
 
 ### 46. What are friend classes and friend functions in C++?
 
@@ -1170,7 +1170,7 @@ int main() {
 120
 ```
 
-### ****49. What is STL?****
+### **49. What is STL?**
 
 The [Standard Template Library](https://www.geeksforgeeks.org/cpp/the-c-standard-template-library-stl/) (STL) is a collection of generic template classes and functions that provides ready-to-use data structures and algorithms. It helps developers write efficient, reusable, and type-independent code.
 
@@ -1186,39 +1186,39 @@ C++ STL
 
 STL containers are predefined data structures in C++ that store collections of data in various ways. They are categorized into three types:
 
-****1. Sequence Containers****: Maintain the order of insertion.
+**1. Sequence Containers**: Maintain the order of insertion.
 
 - vector: Dynamic array
 - list: Doubly linked list
 - deque: Double-ended queue
 
-****Example****:
+**Example**:
 
 > vector<int> v = {1, 2, 3};
 
-****2. Associative Containers****: Store elements using keys (ordered).
+**2. Associative Containers**: Store elements using keys (ordered).
 
 - set, multiset: Store unique values
 - map, multimap: Store key-value pairs
 
-****Example****:
+**Example**:
 
 > map<string, int> age;  
 > age["Alice"] = 25;
 
-****3. Unordered Associative Containers****: Use hash tables instead of trees.
+**3. Unordered Associative Containers**: Use hash tables instead of trees.
 
 - unordered\_set, unordered\_map
 
-****Example****:
+**Example**:
 
 > unordered\_map<string, int> scores;
 
-****4. Container Adapters****: Built on other containers with restricted interface
+**4. Container Adapters**: Built on other containers with restricted interface
 
-- ****stack:**** based on last-in-first-out (LIFO).
-- ****queue:****based on first-in-first-out (FIFO).
-- ****priority\_queue:****implemented using min or max heap
+- **stack:** based on last-in-first-out (LIFO).
+- **queue:**based on first-in-first-out (FIFO).
+- **priority\_queue:**implemented using min or max heap
 
 Containers save time and effort by providing built-in operations like insertion, deletion, and search with optimal complexity.
 
@@ -1268,7 +1268,7 @@ int main() {
 2
 ```
 
-****Explanation:**** The lambda expression [](int x) { return x % 2 == 0; } is passed directly to count\_if(), which counts the number of even elements in the vector without requiring a separate function.
+**Explanation:** The lambda expression [](int x) { return x % 2 == 0; } is passed directly to count\_if(), which counts the number of even elements in the vector without requiring a separate function.
 
 ### 53. What happens if you insert a duplicate key in std::set or std::map? How do you detect insertion success?
 
@@ -1351,7 +1351,7 @@ An [overflow error](https://www.geeksforgeeks.org/dsa/check-for-integer-overflow
 - Integer overflow is a common example of overflow errors.
 - Overflow can lead to unexpected results or undefined behavior.
 
-****Example:****
+**Example:**
 
 > int x = 2147483647; // INT\_MAX
 >
@@ -1471,7 +1471,7 @@ C++ provides the [throw keyword](https://www.geeksforgeeks.org/cpp/how-to-throw-
 | Can throw built-in or user-defined exception objects. | Has no equivalent keyword in modern C++. |
 | Example: throw std::runtime\_error("Error"); | Example (Java): void func() throws IOException |
 
-> ****Note:**** Earlier versions of C++ supported dynamic exception specifications (e.g., void func() throw(Type);), but they were deprecated in C++11 and removed in C++17. Modern C++ uses noexcept to specify that a function is not expected to throw exceptions.
+> **Note:** Earlier versions of C++ supported dynamic exception specifications (e.g., void func() throw(Type);), but they were deprecated in C++11 and removed in C++17. Modern C++ uses noexcept to specify that a function is not expected to throw exceptions.
 
 ### 62. What is the use of noexcept in C++ exception handling?
 

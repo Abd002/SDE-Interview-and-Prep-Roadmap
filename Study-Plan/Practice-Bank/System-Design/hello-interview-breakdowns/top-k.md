@@ -70,7 +70,7 @@ One key question is how the top K calculation is actually carried out. Views fro
 
 Another question for us to answer is whether we'll tolerate approximation in results. For large-scale systems, it's common to trade off some precision for performance. Approximate systems can often be more efficient, but are more complex. We're going to start by assuming our system should be precise and tell our interviewer we'll come back to this later in the deep dives if we have time (we cover it in our deep dives below).
 
-[Data Structures for Big Data](/learn/system-design/deep-dives/data-structures-for-big-data) is a great resource for understanding various approximation techniques that can be used to scale to massive data sizes.
+[Data Structures for Big Data](https://www.hellointerview.com/learn/system-design/deep-dives/data-structures-for-big-data) is a great resource for understanding various approximation techniques that can be used to scale to massive data sizes.
 
 Next, we need to think about the expectations of our clients. What should be the latency they'll expect on calls to our system? Let's get ambitious here and aim for our system to respond within 10's of milliseconds. If we can carefully precompute results, serving them out of a cache is entirely possible and should allow us to achieve this latency.
 
@@ -144,7 +144,7 @@ For keeping track of our all-time top K videos, we need to establish some counte
 
 Rather than building a system which accepts a "view" API call, we're going to assume there exists a Kafka stream of view events from which we can consume. Basically: some other system in YouTube is responsible for showing videos to users and when they do they record it to this topic.
 
-This is a reasonable assumption for this system and allows us to skip a lot of boilerplate elements that we might otherwise need to add to our diagram, so we can spend more time on the good stuff! We'll assume this ViewEvent topic is partitioned by video ID and we'll start with a simple consumer service which pulls these view events and updates a [Postgres database](/learn/system-design/deep-dives/postgres) with the results.
+This is a reasonable assumption for this system and allows us to skip a lot of boilerplate elements that we might otherwise need to add to our diagram, so we can spend more time on the good stuff! We'll assume this ViewEvent topic is partitioned by video ID and we'll start with a simple consumer service which pulls these view events and updates a [Postgres database](https://www.hellointerview.com/learn/system-design/deep-dives/postgres) with the results.
 
 So:
 
@@ -219,7 +219,7 @@ But remember: our non-functional requirements grant us a 1 minute grace period f
 
 Caching and precomputation are some of the most common strategies for scaling reads, but it's helpful to understand the full toolbox when approaching new system design problems.
 
-[Learn This Pattern](/learn/system-design/patterns/scaling-reads)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-reads)
 
 ### 
 
@@ -269,7 +269,7 @@ The calculation for our throughput is simple:
 70B views/day / (100k seconds/day) = 700k tps
 ```
 
-Woo, that's a lot. While [modern RDMSs can handle an impressive 10k+ writes per second per node under the right circumstances](/learn/system-design/deep-dives/numbers-to-know#databases), we're still well beyond that.
+Woo, that's a lot. While [modern RDMSs can handle an impressive 10k+ writes per second per node under the right circumstances](https://www.hellointerview.com/learn/system-design/deep-dives/numbers-to-know#databases), we're still well beyond that.
 
 While we're here, it's probably useful for us to figure out how much storage we're going to need:
 
@@ -298,7 +298,7 @@ To handle the write throughput, let's start with the big hammer: sharding. Recal
 
 Sharding, partitioning, and batching are your first line of defense when it comes to scaling writes. The Scaling Writes pattern describes repeatable strategies you can use across problems where write volume is high.
 
-[Learn This Pattern](/learn/system-design/patterns/scaling-writes)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-writes)
 
 We can scale our view consumers horizontally by spinning up multiple instances to read from each partition of the ViewEvent topic. We'll shard our database by the same scheme, so that each shard has a partial view of only a subset of videos. Each View consumer will be writing to its own shard of the database.
 
@@ -323,7 +323,7 @@ Even with sharding, having 70 database instances is a bit wasteful for this simp
 
 One insight we can use is that a lot of our views are happening on a small number of videos. While we may have 3.6B videos, in any given minute a lot of those views are going to be on a small number of popular Mr. Beast and Taylor Swift videos. Instead of making a write to the database for each view, we can batch up the writes for each video and flush these batches periodically to the database.
 
-A great option for doing this is [Flink](/learn/system-design/deep-dives/flink). Flink is a stream processing framework that gives us a bunch of convenient tools for handling batching and aggregation in streaming applications. Flink handles checkpoint and recovery for us, so we don't have to worry about losing data or struggling with itchy problems like event delays.
+A great option for doing this is [Flink](https://www.hellointerview.com/learn/system-design/deep-dives/flink). Flink is a stream processing framework that gives us a bunch of convenient tools for handling batching and aggregation in streaming applications. Flink handles checkpoint and recovery for us, so we don't have to worry about losing data or struggling with itchy problems like event delays.
 
 For this Flink application, we'll use BoundedOutOfOrdernessWatermarkStrategy to handle late events: basically we'll tell Flink that we're ok waiting up to some time (probably 30 seconds here, < 1 minute) for late events to arrive. We'll also use a tumbling window of 1 hour to aggregate the views for each video.
 
@@ -536,7 +536,7 @@ But most of the top-K results aren't going to come down to small differences of 
 
 To do this, we'll use a data structure/approach called Count-Min Sketch (CMS). CMS allows us to estimate the number of times an items has been added to the "sketch", the underlying data structure, with substantially less memory required than the hundred-gigabyte full hash table we'd need to maintain otherwise (think: hundreds of megabytes). To do this, CMS uses a set of hash functions to map items to a 2d array of counters. It *forgets* the actual items, but remembers how many times they've been seen by virtue of their hash.
 
-Count-Min sketch is described in more detail, together with some intuition, in the [Data Structures for Big Data](/learn/system-design/deep-dives/data-structures-for-big-data) deep dive.
+Count-Min sketch is described in more detail, together with some intuition, in the [Data Structures for Big Data](https://www.hellointerview.com/learn/system-design/deep-dives/data-structures-for-big-data) deep dive.
 
 A traditional CMS supports two operations: add and estimate
 
@@ -712,4 +712,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: Uber](/learn/system-design/problem-breakdowns/uber)
+[Next: Uber](https://www.hellointerview.com/learn/system-design/problem-breakdowns/uber)

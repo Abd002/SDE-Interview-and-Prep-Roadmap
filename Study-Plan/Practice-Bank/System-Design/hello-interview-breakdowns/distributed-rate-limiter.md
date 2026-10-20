@@ -258,7 +258,7 @@ If we store the buckets in memory within each gateway instance, we're back to th
 
 For example, if Alice makes 50 requests that go to Gateway A and 50 requests that go to Gateway B, each gateway thinks Alice has only made 50 requests and allows them all. But globally, Alice has made 100 requests and should be rate limited. Our algorithm becomes useless without centralized state.
 
-We can use something like [Redis](/learn/system-design/deep-dives/redis). Redis is a fast, in-memory data store that all our gateway instances can access. Redis can become our central source of truth for all token bucket state. When any gateway needs to check or update a user's rate limit, it talks to Redis.
+We can use something like [Redis](https://www.hellointerview.com/learn/system-design/deep-dives/redis). Redis is a fast, in-memory data store that all our gateway instances can access. Redis can become our central source of truth for all token bucket state. When any gateway needs to check or update a user's rate limit, it talks to Redis.
 
 Here's exactly how the Token Bucket algorithm works with Redis:
 
@@ -288,7 +288,7 @@ The solution is to move the entire read-calculate-update logic into a single ato
 
 Race conditions in distributed counters are a classic **dealing with contention** challenge. Multiple threads or processes trying to update the same resource simultaneously can lead to lost updates, even when individual operations are atomic. The solution is expanding the atomic boundary to include the entire read-modify-write sequence.
 
-[Learn This Pattern](/learn/system-design/patterns/dealing-with-contention)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/dealing-with-contention)
 
 Why Redis works perfectly for this:
 
@@ -359,11 +359,11 @@ At 1M requests/second, we need to distribute the Redis load across multiple inst
 
 Rate limiters demonstrate classic **scaling writes** challenges with millions of counter updates per second. Each rate limit check requires atomic read-modify-write operations to update token buckets or request counters across distributed Redis shards.
 
-[Learn This Pattern](/learn/system-design/patterns/scaling-writes)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-writes)
 
 The sharding strategy depends on our rate limiting rules. Remember we identified multiple client types earlier - user IDs for authenticated users, IP addresses for anonymous users, and API keys for developer access. We need to shard consistently so that all of a client's requests always hit the same Redis instance. If user "alice" sometimes hits Redis shard 1 and sometimes hits shard 2, her rate limiting state gets split and becomes useless.
 
-We need a distribution algorithm like [consistent hashing](/learn/system-design/core-concepts/consistent-hashing) to solve this. For authenticated users, we hash their user ID to determine which Redis shard stores their rate limit data. For anonymous users, we hash their IP address. For API key requests, we hash the API key. This ensures each client's rate limiting state lives on exactly one shard, while distributing the load evenly across all shards.
+We need a distribution algorithm like [consistent hashing](https://www.hellointerview.com/learn/system-design/core-concepts/consistent-hashing) to solve this. For authenticated users, we hash their user ID to determine which Redis shard stores their rate limit data. For anonymous users, we hash their IP address. For API key requests, we hash the API key. This ensures each client's rate limiting state lives on exactly one shard, while distributing the load evenly across all shards.
 
 ![](images/a8b2a3b2b87c.svg)
 
@@ -429,13 +429,13 @@ Other optimizations worth mentioning briefly but we won't dive into: local cachi
 
 ### 4) How do we handle hot keys (viral content scenarios)?
 
-Hot keys are often mentioned in system design discussions, and we do cover techniques for handling them in our [scaling reads pattern](/learn/system-design/patterns/scaling-reads). For rate limiting, hot keys can arise from both abusive traffic and legitimate high-volume clients.
+Hot keys are often mentioned in system design discussions, and we do cover techniques for handling them in our [scaling reads pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-reads). For rate limiting, hot keys can arise from both abusive traffic and legitimate high-volume clients.
 
 ###### Pattern: Scaling Reads
 
 While rate limiters primarily handle writes (counter updates), hot key scenarios create extreme **scaling reads** pressure when thousands of requests from the same IP or user hit rate limit checks simultaneously, overwhelming individual Redis shards.
 
-[Learn This Pattern](/learn/system-design/patterns/scaling-reads)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-reads)
 
 Think about what it would take to create a hot key in our rate limiter. A single user or IP would need to generate enough requests to overwhelm a Redis shard - we're talking tens of thousands of requests per second from one source. While this often indicates abuse (DDoS attacks, misconfigured bots), it can also come from legitimate high-volume clients like analytics systems, data pipelines, or mobile apps with aggressive refresh patterns.
 
@@ -478,7 +478,7 @@ The main downside is update delay. There's always a window between when you chan
 
 ###### Approach
 
-Use a push-based system where configuration changes are immediately sent to all API gateways. This is exactly what [ZooKeeper](/learn/system-design/deep-dives/zookeeper) was designed for - distributed configuration management with real-time notifications. ZooKeeper maintains configuration data and notifies all connected clients (your API gateways) immediately when any configuration changes. Other options include Redis pub/sub or custom configuration services that maintain persistent connections to gateways.
+Use a push-based system where configuration changes are immediately sent to all API gateways. This is exactly what [ZooKeeper](https://www.hellointerview.com/learn/system-design/deep-dives/zookeeper) was designed for - distributed configuration management with real-time notifications. ZooKeeper maintains configuration data and notifies all connected clients (your API gateways) immediately when any configuration changes. Other options include Redis pub/sub or custom configuration services that maintain persistent connections to gateways.
 
 When an operator changes a rate limit rule, the configuration service immediately notifies all connected gateways, which update their rules within seconds.
 
@@ -520,4 +520,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: YouTube](/learn/system-design/problem-breakdowns/youtube)
+[Next: YouTube](https://www.hellointerview.com/learn/system-design/problem-breakdowns/youtube)

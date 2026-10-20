@@ -17,7 +17,7 @@ To solve this lab, you'll need to know:
 - How API documentation may be useful to an attacker.
 - How to discover API documentation.
 
-These points are covered in our [API Testing](/web-security/api-testing) Academy topic.
+These points are covered in our [API Testing](https://portswigger.net/web-security/api-testing) Academy topic.
 
 <details><summary>Official solution</summary>
 
@@ -61,7 +61,7 @@ To solve this lab, you'll need to know:
 - How to identify hidden parameters.
 - How to exploit mass assignment vulnerabilities.
 
-These points are covered in our [API Testing](/web-security/api-testing) Academy topic.
+These points are covered in our [API Testing](https://portswigger.net/web-security/api-testing) Academy topic.
 
 <details><summary>Official solution</summary>
 
@@ -121,7 +121,7 @@ To solve this lab, you'll need to know:
 - How HTTP methods are used by RESTful APIs.
 - How changing the HTTP method can reveal additional functionality.
 
-These points are covered in our [API Testing](/web-security/api-testing) Academy topic.
+These points are covered in our [API Testing](https://portswigger.net/web-security/api-testing) Academy topic.
 
 <details><summary>Official solution</summary>
 
@@ -172,7 +172,7 @@ To solve this lab, you'll need to know:
 - How to use URL query syntax to attempt to change a server-side request.
 - How to use error messages to build an understanding of how a server-side API processes user input.
 
-These points are covered in our [API Testing](/web-security/api-testing) Academy topic.
+These points are covered in our [API Testing](https://portswigger.net/web-security/api-testing) Academy topic.
 
 <details><summary>Official solution</summary>
 
@@ -260,7 +260,7 @@ To solve this lab, you'll need to know:
 - How to use path traversal sequences to attempt to change a server-side request.
 - How to discover API documentation.
 
-These points are covered in our [API Testing](/web-security/api-testing) Academy topic.
+These points are covered in our [API Testing](https://portswigger.net/web-security/api-testing) Academy topic.
 
 <details><summary>Official solution</summary>
 

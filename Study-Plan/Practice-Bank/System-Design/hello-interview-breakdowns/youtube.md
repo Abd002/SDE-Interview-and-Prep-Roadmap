@@ -137,7 +137,7 @@ One of the main requirements of YouTube is to allow users to upload videos that 
 
 For the video metadata, we are assuming an upload rate of ~1M videos/day. This means, over the course of the year, we'll have ~365M records in the database representing videos. As a result, we should consider storing video metadata in a database that can be horizontally partitioned, such as Cassandra. Cassandra offers high availability and enables us to choose a partition key for our data. We can partition on the videoId, since we aren't really worried about bulk-accessing videos in this design, just querying individual videos.
 
-When designing a data storage solution that needs to scale, it's worthwhile to think about partitioning. Some systems necessitate careful partitioning such that data can be read from a single or a handful of nodes. Other systems require consistency within some scoped domain, necessitating a relational DB (with ACID guarantees) [sharded](/learn/system-design/core-concepts/sharding) by a key that represents that domain, e.g. Ticketmaster might shard by concert ID to ensure consistency of ticket purchases. However, there's some systems that don't require careful partitioning at all; for this system, we can shard by videoId because we'd only ever do a point look-up by videoId.
+When designing a data storage solution that needs to scale, it's worthwhile to think about partitioning. Some systems necessitate careful partitioning such that data can be read from a single or a handful of nodes. Other systems require consistency within some scoped domain, necessitating a relational DB (with ACID guarantees) [sharded](https://www.hellointerview.com/learn/system-design/core-concepts/sharding) by a key that represents that domain, e.g. Ticketmaster might shard by concert ID to ensure consistency of ticket purchases. However, there's some systems that don't require careful partitioning at all; for this system, we can shard by videoId because we'd only ever do a point look-up by videoId.
 
 For storing video data, we can see some overlap with this problem and the [Dropbox interview question](https://www.hellointerview.com/learn/system-design/problem-breakdowns/dropbox#1-users-should-be-able-to-upload-a-file-from-any-device). The TL;DR is that it's most efficient to upload data directly to a blob store like S3 via a presigned URL with [multi-part upload](https://www.hellointerview.com/learn/system-design/problem-breakdowns/dropbox#1-how-can-you-support-large-files). Feel free to read our write-up on Dropbox for an analysis of that part of the system.
 
@@ -145,7 +145,7 @@ For storing video data, we can see some overlap with this problem and the [Dropb
 
 YouTube video uploads showcase the **large blobs pattern** perfectly. Multi-gigabyte video files bypass application servers entirely using presigned URLs for direct S3 uploads, with resumable chunked transfers and CDN distribution. This same pattern applies to any system handling large files like photo storage, document sharing, or backup services.
 
-[Learn This Pattern](/learn/system-design/patterns/large-blobs)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/large-blobs)
 
 The design decision to upload directly to S3 means we have to change our POST /upload API to a POST /presigned\_url API. The server will create a presigned URL to enable the client to upload directly to S3. The request payload will just be the video metadata, vs. the metadata and the video file.
 
@@ -280,7 +280,7 @@ This series of operations can be thought of as a "graph" of work to be done. Eac
 
 For this DAG of work, the most expensive computation to be performed is the video segment transcoding. Ideally, this work is done with extreme parallelism and on many different computers (and cores), given the CPU-bound nature of converting a video from one codec to another.
 
-Additionally, for actually orchestrating the work of this DAG, an orchestrator system can be used to handle building the graph of work to be done and assigning worker nodes work at the right time. We can assume we're using an existing technology to do this, such as [Temporal](/learn/system-design/deep-dives/temporal), which supports [media-processing workflows](https://temporal.io/blog/media-processing-workflows).
+Additionally, for actually orchestrating the work of this DAG, an orchestrator system can be used to handle building the graph of work to be done and assigning worker nodes work at the right time. We can assume we're using an existing technology to do this, such as [Temporal](https://www.hellointerview.com/learn/system-design/deep-dives/temporal), which supports [media-processing workflows](https://temporal.io/blog/media-processing-workflows).
 
 Finally, for any temporary data produced in this pipeline (segments, audio files, etc), S3 can be used to avoid passing files between workers. URLs can be passed around to reference said files.
 
@@ -333,7 +333,7 @@ To address the "hot" video problem, we can consider tuning Cassandra to replicat
 
 Video platforms like YouTube demonstrate classic **scaling reads** challenges with billions of video views daily. Popular videos create read hotspots requiring aggressive caching of metadata, CDN distribution for video content, and read replicas for database scaling. The read-to-write ratio is extreme - viral videos might be watched millions of times but uploaded only once.
 
-[Learn This Pattern](/learn/system-design/patterns/scaling-reads)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-reads)
 
 To address the streaming issues for users who might be far away from data centers with S3, we can consider employing CDNs. CDNs could cache popular video files (both segments *and* manifest files) and would be geographically proximate to many users via a network of edge servers. This would mean that video data would have to travel a significantly shorter distance to reach users, reducing slowness / buffering. Also, if all the data (manifest files and segments) was in the CDN, then the service would never need to interact with the backend at all to continue streaming a video.
 
@@ -401,4 +401,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: FB Live Comments](/learn/system-design/problem-breakdowns/fb-live-comments)
+[Next: FB Live Comments](https://www.hellointerview.com/learn/system-design/problem-breakdowns/fb-live-comments)

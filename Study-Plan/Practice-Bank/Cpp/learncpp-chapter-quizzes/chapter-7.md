@@ -156,7 +156,7 @@ int main()
 ### Question #3
 Write a function `int accumulate(int x)`. This function should return the sum of all of the values of `x` that have been passed to this function.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: Use a static local variable to store the sum.
 

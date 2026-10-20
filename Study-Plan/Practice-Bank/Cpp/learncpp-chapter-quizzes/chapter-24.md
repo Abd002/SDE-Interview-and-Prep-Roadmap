@@ -1249,7 +1249,7 @@ You died at level 2 and with 10 gold.
 Too bad you can't take it with you!
 ```
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: Add a Potion class that has a type and size member variable, along with a member function that returns its name and a static member function the creates a random Potion, similar to the getRandomMonster() function.  
 In the Player class, add a drinkPotion() member function the applies the potion’s effect.

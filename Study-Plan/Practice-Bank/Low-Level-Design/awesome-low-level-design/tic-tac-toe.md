@@ -1919,7 +1919,7 @@ func Run() {
 
 </details>
 
-<details><summary><b>csharp</b> (22 files)</summary>
+<details><summary><b>csharp</b> (21 files)</summary>
 
 
 **Enums/GameStatus.cs**
@@ -2595,22 +2595,6 @@ class TicTacToeSystem
         scoreboard.PrintScores();
     }
 }
-```
-
-
-**tictactoe.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

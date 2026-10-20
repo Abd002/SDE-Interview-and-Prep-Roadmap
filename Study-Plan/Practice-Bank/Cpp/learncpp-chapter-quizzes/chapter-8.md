@@ -295,7 +295,7 @@ The for-loop in the above solution is suboptimal for two reasons:
 
 For the latter, we have two options: calculate `std::sqrt(x)` prior to the loop, then test our loop variable against that value. Alternately, we can optimize `std::sqrt(x)` out of the comparison entirely by squaring both sides of the comparison (h/t to reader JJag for suggesting this) (see the hint if you need additional help with this). We’ll use this latter option in the quiz solution.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: Given two variables `a >= 0` and `b >= 0`, we can square both sides of the comparison `a <= sqrt(b)` and the comparison will still hold. This gives us `a * a <= sqrt(b) * sqrt(b)`, which is equivalent to `a * a <= b`.
 

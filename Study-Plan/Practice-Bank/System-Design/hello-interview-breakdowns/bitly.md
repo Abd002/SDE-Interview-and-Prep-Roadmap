@@ -300,7 +300,7 @@ When dealing with a large database of shortened URLs, finding the right match qu
 
 URL shorteners showcase the extreme read-to-write ratio that makes **scaling reads** critical. With potentially millions of clicks per shortened URL, aggressive caching strategies become essential.
 
-[Learn This Pattern](/learn/system-design/patterns/scaling-reads)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-reads)
 
 ### 
 
@@ -446,4 +446,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: Dropbox](/learn/system-design/problem-breakdowns/dropbox)
+[Next: Dropbox](https://www.hellointerview.com/learn/system-design/problem-breakdowns/dropbox)

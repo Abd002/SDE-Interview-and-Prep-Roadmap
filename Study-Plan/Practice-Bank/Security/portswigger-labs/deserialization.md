@@ -52,7 +52,7 @@ To solve the lab, gain access to the source code and use it to construct a gadge
 
 You can log in to your own account using the following credentials: `wiener:peter`
 
-Note that solving this lab requires basic familiarity with another topic that we've covered on the [Web Security Academy](/web-security).
+Note that solving this lab requires basic familiarity with another topic that we've covered on the [Web Security Academy](https://portswigger.net/web-security).
 
 <details><summary>Hint</summary>
 

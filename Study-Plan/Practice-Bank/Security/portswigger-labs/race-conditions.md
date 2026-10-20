@@ -77,14 +77,14 @@ baseball
 
 1. From the proxy history, find a `POST /login` request containing an unsuccessful login attempt for your own account.
 2. Send this request to Burp Repeater.
-3. In Repeater, add the new tab to a group. For details on how to do this, see [Creating a new tab group](/burp/documentation/desktop/tools/repeater/groups#creating-a-new-tab-group).
+3. In Repeater, add the new tab to a group. For details on how to do this, see [Creating a new tab group](https://portswigger.net/burp/documentation/desktop/tools/repeater/groups#creating-a-new-tab-group).
 4. Right-click the grouped tab, then select **Duplicate tab**. Create 19 duplicate tabs. The new tabs are automatically added to the group.
-5. Send the group of requests in sequence, using separate connections to reduce the chance of interference. For details on how to do this, see [Sending requests in sequence](/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-sequence).
+5. Send the group of requests in sequence, using separate connections to reduce the chance of interference. For details on how to do this, see [Sending requests in sequence](https://portswigger.net/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-sequence).
 6. Observe that after two more failed login attempts, you're temporarily locked out as expected.
 
 ## Probe for clues
 
-1. Send the group of requests again, but this time in parallel. For details on how to do this, see [Sending requests in parallel](/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-parallel)
+1. Send the group of requests again, but this time in parallel. For details on how to do this, see [Sending requests in parallel](https://portswigger.net/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-parallel)
 2. Study the responses. Notice that although you have triggered the account lock, more than three requests received the normal `Invalid username and password` response.
 3. Infer that if you're quick enough, you're able to submit more than three login attempts before the account lock is triggered.
 
@@ -169,8 +169,8 @@ Solving this lab requires Burp Suite 2023.9 or higher.
 
    - The token is of a consistent length. This suggests that it's either a randomly generated string with a fixed number of characters, or could be a hash of some unknown data, which may be predictable.
    - The fact that the token is different each time indicates that, if it is in fact a hash digest, it must contain some kind of internal state, such as an RNG, a counter, or a timestamp.
-6. Duplicate the Repeater tab and add both tabs to a new group. For details on how to do this, see [Creating a new tab group](/burp/documentation/desktop/tools/repeater/groups#creating-a-new-tab-group)
-7. Send the pair of reset requests in parallel a few times. For details on how to do this, see [Sending requests in parallel](/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-parallel).
+6. Duplicate the Repeater tab and add both tabs to a new group. For details on how to do this, see [Creating a new tab group](https://portswigger.net/burp/documentation/desktop/tools/repeater/groups#creating-a-new-tab-group)
+7. Send the pair of reset requests in parallel a few times. For details on how to do this, see [Sending requests in parallel](https://portswigger.net/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-parallel).
 8. Observe that there is still a significant delay between each response and that you still get a different token in each confirmation email. Infer that your requests are still being processed in sequence rather than concurrently.
 
 ## Bypass the per-session locking restriction
@@ -292,15 +292,15 @@ Solving this lab requires Burp Suite 2023.9 or higher.
 
 1. Make sure there is no discount code currently applied to your cart.
 2. Send the request for applying the discount code (`POST /cart/coupon`) to Repeater.
-3. In Repeater, add the new tab to a group. For details on how to do this, see [Creating a new tab group](/burp/documentation/desktop/tools/repeater/groups#creating-a-new-tab-group).
+3. In Repeater, add the new tab to a group. For details on how to do this, see [Creating a new tab group](https://portswigger.net/burp/documentation/desktop/tools/repeater/groups#creating-a-new-tab-group).
 4. Right-click the grouped tab, then select **Duplicate tab**. Create 19 duplicate tabs. The new tabs are automatically added to the group.
-5. Send the group of requests in sequence, using separate connections to reduce the chance of interference. For details on how to do this, see [Sending requests in sequence](/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-sequence).
+5. Send the group of requests in sequence, using separate connections to reduce the chance of interference. For details on how to do this, see [Sending requests in sequence](https://portswigger.net/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-sequence).
 6. Observe that the first response confirms that the discount was successfully applied, but the rest of the responses consistently reject the code with the same **Coupon already applied** message.
 
 ## Probing for clues
 
 1. Remove the discount code from your cart.
-2. In Repeater, send the group of requests again, but this time in parallel, effectively applying the discount code multiple times at once. For details on how to do this, see [Sending requests in parallel](/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-parallel).
+2. In Repeater, send the group of requests again, but this time in parallel, effectively applying the discount code multiple times at once. For details on how to do this, see [Sending requests in parallel](https://portswigger.net/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-parallel).
 3. Study the responses and observe that multiple requests received a response indicating that the code was successfully applied. If not, remove the code from your cart and repeat the attack.
 4. In the browser, refresh your cart and confirm that the 20% reduction has been applied more than once, resulting in a significantly cheaper order.
 
@@ -366,8 +366,8 @@ When experimenting, we recommend purchasing the gift card as you can later redee
 ## Benchmark the behavior
 
 1. Send both the `POST /cart` and `POST /cart/checkout` request to Burp Repeater.
-2. In Repeater, add the two tabs to a new group. For details on how to do this, see [Creating a new tab group](/burp/documentation/desktop/tools/repeater/groups#creating-a-new-tab-group)
-3. Send the two requests in sequence over a single connection a few times. Notice from the response times that the first request consistently takes significantly longer than the second one. For details on how to do this, see [Sending requests in sequence](/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-sequence).
+2. In Repeater, add the two tabs to a new group. For details on how to do this, see [Creating a new tab group](https://portswigger.net/burp/documentation/desktop/tools/repeater/groups#creating-a-new-tab-group)
+3. Send the two requests in sequence over a single connection a few times. Notice from the response times that the first request consistently takes significantly longer than the second one. For details on how to do this, see [Sending requests in sequence](https://portswigger.net/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-sequence).
 4. Add a `GET` request for the homepage to the start of your tab group.
 5. Send all three requests in sequence over a single connection. Observe that the first request still takes longer, but by "warming" the connection in this way, the second and third requests are now completed within a much smaller window.
 6. Deduce that this delay is caused by the back-end network architecture rather than the respective processing time of the each endpoint. Therefore, it is not likely to interfere with your attack.
@@ -380,7 +380,7 @@ When experimenting, we recommend purchasing the gift card as you can later redee
 ## Prove the concept
 
 1. Remove the jacket from your cart and add another gift card.
-2. In Repeater, try sending the requests again, but this time in parallel. For details on how to do this, see [Sending requests in parallel](/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-parallel).
+2. In Repeater, try sending the requests again, but this time in parallel. For details on how to do this, see [Sending requests in parallel](https://portswigger.net/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-parallel).
 3. Look at the response to the `POST /cart/checkout` request:
 
    - If you received the same "insufficient funds" response, remove the jacket from your cart and repeat the attack. This may take several attempts.
@@ -466,7 +466,7 @@ You may need to experiment with different ways of lining up the race window to s
    Content-Length: 0`
 4. Add both requests to a new tab group.
 5. Try sending both requests sequentially and in parallel several times, making sure to change the username in the registration request each time to avoid hitting the separate `Account already exists with this name` code path. For details on how to do this, see
-   [Sending grouped HTTP requests](/burp/documentation/desktop/tools/repeater/send-group).
+   [Sending grouped HTTP requests](https://portswigger.net/burp/documentation/desktop/tools/repeater/send-group).
 6. Notice that the confirmation response consistently arrives much quicker than the response to the registration request.
 
 ## Prove the concept
@@ -564,15 +564,15 @@ Solving this lab requires Burp Suite 2023.9 or higher.
 ## Benchmark the behavior
 
 1. Send the `POST /my-account/change-email` request to Repeater.
-2. In Repeater, add the new tab to a group. For details on how to do this, see [Creating a new tab group](/burp/documentation/desktop/tools/repeater/groups#creating-a-new-tab-group).
+2. In Repeater, add the new tab to a group. For details on how to do this, see [Creating a new tab group](https://portswigger.net/burp/documentation/desktop/tools/repeater/groups#creating-a-new-tab-group).
 3. Right-click the grouped tab, then select **Duplicate tab**. Create 19 duplicate tabs. The new tabs are automatically added to the group.
 4. In each tab, modify the first part of the email address so that it is unique to each request, for example, `test1@exploit-<YOUR-EXPLOIT-SERVER-ID>.exploit-server.net, test2@..., test3@...` and so on.
-5. Send the group of requests in sequence over separate connections. For details on how to do this, see [Sending requests in sequence](/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-sequence).
+5. Send the group of requests in sequence over separate connections. For details on how to do this, see [Sending requests in sequence](https://portswigger.net/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-sequence).
 6. Go back to the email client and observe that you have received a single confirmation email for each of the email change requests.
 
 ## Probe for clues
 
-1. In Repeater, send the group of requests again, but this time in parallel, effectively attempting to change the pending email address to multiple different values at the same time. For details on how to do this, see [Sending requests in parallel](/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-parallel).
+1. In Repeater, send the group of requests again, but this time in parallel, effectively attempting to change the pending email address to multiple different values at the same time. For details on how to do this, see [Sending requests in parallel](https://portswigger.net/burp/documentation/desktop/tools/repeater/send-group#sending-requests-in-parallel).
 2. Go to the email client and study the new set of confirmation emails you've received. Notice that, this time, the recipient address doesn't always match the pending new email address.
 3. Consider that there may be a race window between when the website:
 

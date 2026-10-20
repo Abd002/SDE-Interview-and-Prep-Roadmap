@@ -11,7 +11,7 @@ The user management functions for this lab are powered by a GraphQL endpoint. Th
 
 To solve the lab, sign in as the administrator and delete the username `carlos`.
 
-Learn more about [Working with GraphQL in Burp Suite](/burp/documentation/desktop/testing-workflow/working-with-graphql).
+Learn more about [Working with GraphQL in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/working-with-graphql).
 
 <details><summary>Official solution</summary>
 
@@ -53,9 +53,9 @@ https://www.youtube.com/watch?v=-GV8GvjmTxk
 
 The user login mechanism for this lab is powered by a GraphQL API. The API endpoint has a rate limiter that returns an error if it receives too many requests from the same origin in a short space of time.
 
-To solve the lab, brute force the login mechanism to sign in as `carlos`. Use the list of [authentication lab passwords](/web-security/authentication/auth-lab-passwords) as your password source.
+To solve the lab, brute force the login mechanism to sign in as `carlos`. Use the list of [authentication lab passwords](https://portswigger.net/web-security/authentication/auth-lab-passwords) as your password source.
 
-Learn more about [Working with GraphQL in Burp Suite](/burp/documentation/desktop/testing-workflow/working-with-graphql).
+Learn more about [Working with GraphQL in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/working-with-graphql).
 
 <details><summary>Tip</summary>
 
@@ -139,7 +139,7 @@ To solve the lab, craft some HTML that uses a CSRF attack to change the viewer's
 
 You can log in to your own account using the following credentials: `wiener:peter`.
 
-Learn more about [Working with GraphQL in Burp Suite](/burp/documentation/desktop/testing-workflow/working-with-graphql).
+Learn more about [Working with GraphQL in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/working-with-graphql).
 
 <details><summary>Official solution</summary>
 
@@ -185,7 +185,7 @@ The user management functions for this lab are powered by a hidden GraphQL endpo
 
 To solve the lab, find the hidden endpoint and delete `carlos`.
 
-Learn more about [Working with GraphQL in Burp Suite](/burp/documentation/desktop/testing-workflow/working-with-graphql).
+Learn more about [Working with GraphQL in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/working-with-graphql).
 
 <details><summary>Official solution</summary>
 
@@ -262,7 +262,7 @@ https://www.youtube.com/watch?v=aklfELQQtsc
 
 The blog page for this lab contains a hidden blog post that has a secret password. To solve the lab, find the hidden blog post and enter the password.
 
-Learn more about [Working with GraphQL in Burp Suite](/burp/documentation/desktop/testing-workflow/working-with-graphql).
+Learn more about [Working with GraphQL in Burp Suite](https://portswigger.net/burp/documentation/desktop/testing-workflow/working-with-graphql).
 
 <details><summary>Official solution</summary>
 

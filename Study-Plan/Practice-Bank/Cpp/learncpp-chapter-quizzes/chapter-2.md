@@ -49,11 +49,11 @@ Write a single-file program (named main.cpp) that reads two separate integers fr
 
 - A function named “readNumber” should be used to get (and return) a single integer from the user.- A function named “writeAnswer” should be used to output the answer. This function should take a single parameter and have no return value.- A main() function should be used to glue the above functions together.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: You do not need to write a separate function to do the adding (just use operator+ directly).
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: You will need to call readNumber() twice.
 

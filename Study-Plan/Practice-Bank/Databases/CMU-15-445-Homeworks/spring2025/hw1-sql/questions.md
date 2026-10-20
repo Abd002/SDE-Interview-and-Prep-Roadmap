@@ -823,7 +823,7 @@ Each submission will be graded based on whether the SQL queries fetch the expect
 
 ## Late Policy
 
-See the [late policy](../syllabus.html#late-policy) in the syllabus.
+See the [late policy](https://15445.courses.cs.cmu.edu/spring2025/syllabus.html#late-policy) in the syllabus.
 
 ## Submission
 

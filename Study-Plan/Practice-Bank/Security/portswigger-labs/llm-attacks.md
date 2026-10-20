@@ -13,8 +13,8 @@ This lab handles LLM output insecurely, leaving it vulnerable to XSS. The user `
 
 To solve this lab, you'll need to know:
 
-- How to probe for XSS and create XSS payloads. For more information, see our [Cross-site scripting (XSS)](/web-security/cross-site-scripting) topic.
-- How to execute indirect prompt injection attacks. For more information, see our [Web LLM attacks Academy topic](/web-security/llm-attacks).
+- How to probe for XSS and create XSS payloads. For more information, see our [Cross-site scripting (XSS)](https://portswigger.net/web-security/cross-site-scripting) topic.
+- How to execute indirect prompt injection attacks. For more information, see our [Web LLM attacks Academy topic](https://portswigger.net/web-security/llm-attacks).
 
 <details><summary>Official solution</summary>
 
@@ -83,7 +83,7 @@ To solve this lab, you'll need to know:
 - How LLM APIs work.
 - How to map LLM API attack surface.
 
-For more information, see our [Web LLM attacks Academy topic](/web-security/llm-attacks).
+For more information, see our [Web LLM attacks Academy topic](https://portswigger.net/web-security/llm-attacks).
 
 <details><summary>Official solution</summary>
 
@@ -118,8 +118,8 @@ This lab contains an OS command injection vulnerability that can be exploited vi
 
 To solve this lab, you'll need to know:
 
-- How to map LLM API attack surface. For more information, see our see our [Web LLM attacks Academy topic](/web-security/llm-attacks).
-- How to exploit OS command injection vulnerabilities. For more information, see our [OS command injection](/web-security/os-command-injection) topic.
+- How to map LLM API attack surface. For more information, see our see our [Web LLM attacks Academy topic](https://portswigger.net/web-security/llm-attacks).
+- How to exploit OS command injection vulnerabilities. For more information, see our [OS command injection](https://portswigger.net/web-security/os-command-injection) topic.
 
 <details><summary>Official solution</summary>
 
@@ -173,7 +173,7 @@ To solve this lab, you need to know:
 - How to map LLM API attack surface.
 - How to execute indirect prompt injection attacks.
 
-For more information, see our [Web LLM attacks Academy topic](/web-security/llm-attacks).
+For more information, see our [Web LLM attacks Academy topic](https://portswigger.net/web-security/llm-attacks).
 
 <details><summary>Official solution</summary>
 

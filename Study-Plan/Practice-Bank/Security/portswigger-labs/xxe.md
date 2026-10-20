@@ -106,7 +106,7 @@ To prevent the Academy platform being used to attack third parties, our firewall
 
 <details><summary>Official solution</summary>
 
-1. Using Burp Suite Professional, go to the [Collaborator](/burp/documentation/desktop/tools/collaborator) tab.
+1. Using Burp Suite Professional, go to the [Collaborator](https://portswigger.net/burp/documentation/desktop/tools/collaborator) tab.
 2. Click "Copy to clipboard" to copy a unique Burp Collaborator payload to your clipboard.
 3. Place the Burp Collaborator payload into a malicious DTD file:
 

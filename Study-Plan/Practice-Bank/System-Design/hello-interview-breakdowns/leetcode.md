@@ -253,7 +253,7 @@ While Serverless (lambda) functions are a great option, I am going to proceed wi
 
 Code execution in LeetCode can take several seconds as containers run user code against hundreds of test cases. This demonstrates the **long-running tasks pattern**, where APIs immediately return job IDs while background workers handle time-consuming operations like video transcoding, report generation, or data processing, preventing timeouts and enabling systems to scale.
 
-[Learn This Pattern](/learn/system-design/patterns/long-running-tasks)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/long-running-tasks)
 
 ![](images/1b1fb735b1ed.svg)
 
@@ -527,4 +527,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: WhatsApp](/learn/system-design/problem-breakdowns/whatsapp)
+[Next: WhatsApp](https://www.hellointerview.com/learn/system-design/problem-breakdowns/whatsapp)

@@ -2387,7 +2387,7 @@ func (u *User) GetName() string {
 
 </details>
 
-<details><summary><b>csharp</b> (21 files)</summary>
+<details><summary><b>csharp</b> (20 files)</summary>
 
 
 **Enums/TaskPriority.cs**
@@ -3096,22 +3096,6 @@ public class TaskManagementSystemDemo
         taskManagementSystem.DeleteTask(task2.GetId());
     }
 }
-```
-
-
-**taskmanagementsystem.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

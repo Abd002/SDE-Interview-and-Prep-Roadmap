@@ -3092,7 +3092,7 @@ func NewUser(id, name, email string) *User {
 
 </details>
 
-<details><summary><b>csharp</b> (26 files)</summary>
+<details><summary><b>csharp</b> (25 files)</summary>
 
 
 **BookingManager.cs**
@@ -3975,22 +3975,6 @@ class WeekendPricingStrategy : IPricingStrategy
         return basePrice * WEEKEND_SURCHARGE;
     }
 }
-```
-
-
-**movieticketbookingsystem.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

@@ -388,7 +388,7 @@ def handle_swipe(from_user, to_user, direction):
         create_match(from_user, to_user)
 ```
 
-By using Redis's atomic operations via Lua scripts, we can ensure that swipe recording and match checking happen as a single operation. This gives us the consistency we need while maintaining low latency due to Redis's in-memory nature. The system scales horizontally as we can add more Redis nodes, with [consistent hashing](/learn/system-design/deep-dives/consistent-hashing) ensuring related swipes stay together.
+By using Redis's atomic operations via Lua scripts, we can ensure that swipe recording and match checking happen as a single operation. This gives us the consistency we need while maintaining low latency due to Redis's in-memory nature. The system scales horizontally as we can add more Redis nodes, with [consistent hashing](https://www.hellointerview.com/learn/system-design/deep-dives/consistent-hashing) ensuring related swipes stay together.
 
 ![](images/287e4cd0b88b.svg)
 
@@ -422,7 +422,7 @@ This certainly won't meet our non-functional requirement of low latency stack ge
 
 ##### Approach
 
-One method to achieve low latency is by utilizing indexed databases for real-time querying. By creating indexes on the fields most commonly used in feed generation—such as user preferences, age range, and especially geospatial data like location—we can significantly speed up query response times. Implementing a [geospatial index](/learn/system-design/deep-dives/proximity-search) allows the system to efficiently retrieve users within a specific geographic area.
+One method to achieve low latency is by utilizing indexed databases for real-time querying. By creating indexes on the fields most commonly used in feed generation—such as user preferences, age range, and especially geospatial data like location—we can significantly speed up query response times. Implementing a [geospatial index](https://www.hellointerview.com/learn/system-design/deep-dives/proximity-search) allows the system to efficiently retrieve users within a specific geographic area.
 
 To handle the scale and performance requirements of an application like Tinder, a search-optimized database such as Elasticsearch or OpenSearch can be employed. These databases are designed for fast, full-text search and complex querying, making them suitable for handling large volumes of data with minimal latency.
 
@@ -543,7 +543,7 @@ This solution is still subjected to the problems created by users with extensive
 
 this approach skews somewhat "over-engineered", but is a legit usecase for a bloom filter to support feed building for users with large swipe histories.
 
-We might consider building on top of our previous approach even more. For users with large swipe histories, we might consider storing a [bloom filter](/learn/system-design/deep-dives/data-structures-for-big-data#bloom-filter). If a user exceeds a swipe history of a certain size (a size that would make storage in a cache unwieldy or "contains" checks slow during a query), we can build and cache a bloom filter for that user and use it in the filtering process.
+We might consider building on top of our previous approach even more. For users with large swipe histories, we might consider storing a [bloom filter](https://www.hellointerview.com/learn/system-design/deep-dives/data-structures-for-big-data#bloom-filter). If a user exceeds a swipe history of a certain size (a size that would make storage in a cache unwieldy or "contains" checks slow during a query), we can build and cache a bloom filter for that user and use it in the filtering process.
 
 A bloom filter would sometimes yield false positives for swipes, meaning we'd sometimes assume a user swiped on a profile that they didn't swipe on. However, the bloom filter would *never* generate false negatives, meaning we'd never say a user hadn't swiped on a profile they actually *did* swipe on. This means we'd successfully avoid re-showing profiles, but there might be a small number of profiles that we might never show the user, due to false positives. Bloom filters have tunable error percentages that are usually tied to how much space they take up, so this is something that could be tuned to promote low false positives, reasonable space consumption, and fast filtering of profiles during feed building.
 
@@ -609,4 +609,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: LeetCode](/learn/system-design/problem-breakdowns/leetcode)
+[Next: LeetCode](https://www.hellointerview.com/learn/system-design/problem-breakdowns/leetcode)

@@ -70,14 +70,14 @@ Requirements
 
 For this question, which is less of a user-facing product and more focused on data processing, we're going to follow the delivery framework outlined [here](https://www.hellointerview.com/learn/system-design/in-a-hurry/delivery), focusing on the system interface and the data flow.
 
-### [System Interface](/learn/system-design/in-a-hurry/delivery#api-or-system-interface-5-minutes)
+### [System Interface](https://www.hellointerview.com/learn/system-design/in-a-hurry/delivery#api-or-system-interface-5-minutes)
 
 For data processing questions like this one, it helps to start by defining the system's interface. This includes clearly outline what data the system receives and what it outputs, establishing a clear boundary of the system's functionality. The inputs and outputs of this system are very simple, but it's important to get these right!
 
 1. **Input**: Ad click data from users.
 2. **Output**: Ad click metrics for advertisers.
 
-### [Data Flow](/learn/system-design/in-a-hurry/delivery#optional-data-flow-5-minutes)
+### [Data Flow](https://www.hellointerview.com/learn/system-design/in-a-hurry/delivery#optional-data-flow-5-minutes)
 
 The data flow is the sequential series of steps we'll cover in order to get from the inputs to our system to the outputs. Clarifying this flow early will help to align with our interviewer before the high-level design. For the ad click aggregator:
 
@@ -173,7 +173,7 @@ The schema for our analytics database could look something like this:
 
 When an advertiser wants to query metrics, we simply query this analytics database for the metrics that they need. This allows us to provide low latency queries since we did the expensive aggregation work in advance.
 
-To pull this off, we'll need an event database that is optimized for lots of writes. [Cassandra](/learn/system-design/deep-dives/cassandra) is a good choice here. It uses a storage structure based on [LSM trees](https://en.wikipedia.org/wiki/Log-structured_merge-tree). It first writes to an append-only commit log on disk for durability, then to an in-memory sorted structure called a memtable. Memtables are periodically flushed to disk as SSTables. These SSTables, while optimized for reads of specific rows, are not optimized for range queries or aggregations which is why we need to do the batch processing to pre-aggregate.
+To pull this off, we'll need an event database that is optimized for lots of writes. [Cassandra](https://www.hellointerview.com/learn/system-design/deep-dives/cassandra) is a good choice here. It uses a storage structure based on [LSM trees](https://en.wikipedia.org/wiki/Log-structured_merge-tree). It first writes to an append-only commit log on disk for durability, then to an in-memory sorted structure called a memtable. Memtables are periodically flushed to disk as SSTables. These SSTables, while optimized for reads of specific rows, are not optimized for range queries or aggregations which is why we need to do the batch processing to pre-aggregate.
 
 In order to do the batch processing, we can use a tool like [Apache Spark](https://spark.apache.org/). Spark is a distributed computing engine that is optimized for these types of workflows and can handle the large volume of data that we will be processing.
 
@@ -185,7 +185,7 @@ Using map-reduce, Spark will read the raw events in parallel chunks, aggregate t
 
 For an analytics database, we want a technology that is optimized for reads and aggregations. Online Analytical Processing (OLAP) databases like Redshift, Snowflake, or BigQuery are all good choices here. OLAP databases use columnar storage formats that make aggregation queries (COUNT, SUM, AVG over millions of rows) extremely fast compared to row-based databases. They are optimized for these types of queries and can handle the large volume of data that we will be storing.
 
-You might wonder why we're not using a [time series database](/learn/system-design/deep-dives/time-series-databases) (TSDB) like InfluxDB or TimescaleDB here. TSDBs are great when your primary access pattern is "give me the values of metric X over time range Y" with relatively low cardinality. Our system has millions of ad IDs, and advertisers will eventually want to slice data by multiple dimensions (device type, geography, campaign, etc.). OLAP databases handle this high-cardinality, multi-dimensional querying much better. That said, if your interviewer's requirements are limited to simple time-range queries over a single metric, a TSDB is a perfectly reasonable choice to propose. Just be ready to discuss the trade-offs.
+You might wonder why we're not using a [time series database](https://www.hellointerview.com/learn/system-design/deep-dives/time-series-databases) (TSDB) like InfluxDB or TimescaleDB here. TSDBs are great when your primary access pattern is "give me the values of metric X over time range Y" with relatively low cardinality. Our system has millions of ad IDs, and advertisers will eventually want to slice data by multiple dimensions (device type, geography, campaign, etc.). OLAP databases handle this high-cardinality, multi-dimensional querying much better. That said, if your interviewer's requirements are limited to simple time-range queries over a single metric, a TSDB is a perfectly reasonable choice to propose. Just be ready to discuss the trade-offs.
 
 ![](images/befde9fab1a1.svg)
 
@@ -213,7 +213,7 @@ When a click comes in our click processing service will immediately write the ev
 
 You might be wondering why we need a dedicated stream processor like Flink. Can't we just use regular Kafka consumers that keep a running count in memory and flush to the database every minute? You could, and for a mid-level interview that's a reasonable answer. But Flink gives us several things that are painful to build yourself. It handles windowed aggregations with event-time semantics (so out-of-order events land in the correct minute bucket), watermarks that know when it's safe to close a window, exactly-once processing guarantees, and built-in fault tolerance with state recovery. Rolling your own version of all that on top of raw Kafka consumers is doable but error-prone.
 
-This works by keeping a running count of click totals in memory and updating them as new events come in. We use event time (when the click actually occurred) rather than processing time (when Flink received the event) to ensure accurate aggregations even when events arrive out of order. [Flink](/learn/system-design/deep-dives/flink) uses watermarks to track event time progress and handle late-arriving events. When we reach the end of a time window, we can flush the aggregated data to our OLAP database.
+This works by keeping a running count of click totals in memory and updating them as new events come in. We use event time (when the click actually occurred) rather than processing time (when Flink received the event) to ensure accurate aggregations even when events arrive out of order. [Flink](https://www.hellointerview.com/learn/system-design/deep-dives/flink) uses watermarks to track event time progress and handle late-arriving events. When we reach the end of a time window, we can flush the aggregated data to our OLAP database.
 
 ![](images/88c72586bcf0.svg)
 
@@ -236,7 +236,7 @@ Even better, Flink has flush intervals that can be configured, so we can aggrega
 
 Ad click aggregation is a textbook scaling writes problem. We're ingesting 10k clicks per second at peak, which dwarfs the read load from advertisers querying metrics. The entire architecture (stream buffering with Kafka/Kinesis, pre-aggregation in Flink, and partitioning by AdId) is driven by the need to handle high write throughput without losing data.
 
-[Learn This Pattern](/learn/system-design/patterns/scaling-writes)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-writes)
 
 ## [Potential Deep Dives](https://www.hellointerview.com/learn/system-design/in-a-hurry/delivery#deep-dives-10-minutes)
 
@@ -245,7 +245,7 @@ Ad click aggregation is a textbook scaling writes problem. We're ingesting 10k c
 Let's walk through each bottleneck the system could face from the moment a click is captured and how we can overcome it:
 
 1. **Click Processor Service**: We can easily scale this service horizontally by adding more instances. Most modern cloud providers like AWS, Azure, and GCP provide managed services that automatically scale services based on CPU or memory usage. We'll need a load balancer in front of the service to distribute the load across instances.
-2. **Stream**: Both Kafka and Kinesis are distributed and can handle a large number of events per second but need to be properly configured. Kinesis, for example, has a limit of 1MB/s or 1000 records/s per shard, so we'll need to add some [sharding](/learn/system-design/core-concepts/sharding). Sharding by AdId is a natural choice, this way, the stream processor can read from multiple shards in parallel since they will be independent of each other (all events for a given AdId will be in the same shard).
+2. **Stream**: Both Kafka and Kinesis are distributed and can handle a large number of events per second but need to be properly configured. Kinesis, for example, has a limit of 1MB/s or 1000 records/s per shard, so we'll need to add some [sharding](https://www.hellointerview.com/learn/system-design/core-concepts/sharding). Sharding by AdId is a natural choice, this way, the stream processor can read from multiple shards in parallel since they will be independent of each other (all events for a given AdId will be in the same shard).
 3. **Stream Processor**: The stream processor, like Flink, can also be scaled horizontally by adding more tasks or jobs. We'll have a separate Flink job reading from each shard doing the aggregation for the AdIds in that shard.
 4. **OLAP Database**: Managed OLAP warehouses like Snowflake or BigQuery handle scaling automatically—you don't control data placement directly. For self-managed solutions like ClickHouse, you can shard by AdvertiserId so all data for a given advertiser lives on the same node, making queries for that advertiser's ads faster. This is in anticipation of advertisers querying for all of their active ads in a single view. Of course, it's important to monitor query performance to ensure it's meeting SLAs.
 
@@ -405,4 +405,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: FB Post Search](/learn/system-design/problem-breakdowns/fb-post-search)
+[Next: FB Post Search](https://www.hellointerview.com/learn/system-design/problem-breakdowns/fb-post-search)

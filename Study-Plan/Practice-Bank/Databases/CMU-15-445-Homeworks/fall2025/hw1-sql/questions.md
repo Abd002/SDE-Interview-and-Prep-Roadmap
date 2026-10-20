@@ -114,7 +114,7 @@ The `-j` flag lets you compress all the SQL queries in the zip file without path
 
    
 - 
-   Download the [database dump file](../files/lahman-cmudb2025.db.gz):
+   Download the [database dump file](https://15445.courses.cs.cmu.edu/fall2025/files/lahman-cmudb2025.db.gz):
    
 ```
 $ wget https://15445.courses.cs.cmu.edu/fall2025/files/lahman-cmudb2025.db.gz
@@ -440,7 +440,7 @@ D select count(*) from appearances;
 ```
 
 The following figure illustrates the schema of these tables:
-[](img/schema2025.png)
+[](https://15445.courses.cs.cmu.edu/fall2025/homework1/img/schema2025.png)
 
 ### Construct the SQL Queries
 
@@ -651,7 +651,7 @@ Each submission will be graded based on whether the SQL queries fetch the expect
 
 ## Late Policy
 
-See the [late policy](../syllabus.html#late-policy) in the syllabus.
+See the [late policy](https://15445.courses.cs.cmu.edu/fall2025/syllabus.html#late-policy) in the syllabus.
 
 ## Submission
 

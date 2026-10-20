@@ -152,7 +152,7 @@ Uber Simple Fare Estimation
 The core components necessary to fulfill fare estimation are:
 
 1. **Rider Client**: The primary touchpoint for users is the Rider Client, available on iOS and Android. This client interfaces with the system's backend services to provide a seamless user experience.
-2. **API Gateway**: Acting as the entry point for client requests, the API Gateway routes requests to the appropriate microservices. It also manages cross-cutting concerns such as authentication and [rate limiting](/learn/system-design/problem-breakdowns/distributed-rate-limiter).
+2. **API Gateway**: Acting as the entry point for client requests, the API Gateway routes requests to the appropriate microservices. It also manages cross-cutting concerns such as authentication and [rate limiting](https://www.hellointerview.com/learn/system-design/problem-breakdowns/distributed-rate-limiter).
 3. **Ride Service**: This microservice is tasked with managing ride state, starting with calculating fare estimates. It interacts with third-party mapping APIs to determine the distance and travel time between locations and applies the company's pricing model to generate a fare estimate. For the sake of this interview, we abstract this complexity away.
 4. **Third Party Mapping API**: We use a third-party service (like Google Maps) to provide mapping and routing functionality. It is used by the Ride Service to calculate the distance and travel time between locations.
 5. **Database:** The database is, so far, responsible for storing Fare entities. In this case, it creates a fare with information about the price, eta, etc.
@@ -227,7 +227,7 @@ Let's walk through the sequence of events that occur when a driver accepts a rid
 
 Interviewer looking for a push notification to drivers? Our realtime updates pattern breakdown walks through the options from long-polling to SSE to Websockets.
 
-[Learn This Pattern](/learn/system-design/patterns/realtime-updates)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/realtime-updates)
 
 ## [Potential Deep Dives](https://www.hellointerview.com/learn/system-design/in-a-hurry/delivery#deep-dives-10-minutes)
 
@@ -240,7 +240,7 @@ The degree to which a candidate should proactively lead the deep dives is a func
 Managing the high volume of location updates from drivers and performing efficient proximity searches to match them with nearby ride requests is a difficult task, and our current high-level design most definitely does not handle this well. There are two main problems with our current design that we need to solve:
 
 1. **High Frequency of Writes**: Given we have around 10 million drivers, sending locations roughly every 5 seconds, that's about 2 million updates a second! Whether we choose something like DynamoDB or PostgreSQL (both great choices for the rest of the system), either one would either fall over under the write load, or need to be scaled up so much that it becomes prohibitively expensive for most companies.
-2. **Query Efficiency**: Without any optimizations, to query a table based on lat/long we would need to perform a full table scan, calculating the distance between each driver's location and the rider's location. This would be extremely inefficient, especially with millions of drivers. Even with indexing on lat/long columns, traditional B-tree indexes are not well-suited for multi-dimensional data like geographical coordinates, leading to suboptimal query performance for [proximity searches](/learn/system-design/deep-dives/proximity-search). This is essentially a non-starter.
+2. **Query Efficiency**: Without any optimizations, to query a table based on lat/long we would need to perform a full table scan, calculating the distance between each driver's location and the rider's location. This would be extremely inefficient, especially with millions of drivers. Even with indexing on lat/long columns, traditional B-tree indexes are not well-suited for multi-dimensional data like geographical coordinates, leading to suboptimal query performance for [proximity searches](https://www.hellointerview.com/learn/system-design/deep-dives/proximity-search). This is essentially a non-starter.
 
 For DynamoDB in particular, 2M writes a second of ~~100 bytes at on-demand pricing (~~$1.25 per million WRUs) would cost you over $200k a day. Learn more about DynamoDB and its limitations [here](https://www.hellointerview.com/learn/system-design/deep-dives/dynamodb)
 
@@ -313,7 +313,7 @@ Don't neglect the client when thinking about your design. Many candidates get in
 
 ### 3) How do we prevent multiple ride requests from being sent to the same driver simultaneously?
 
-We defined consistency in ride matching as a key non-functional requirement. This means that we only request one driver at a time for a given ride request AND that each driver only receives one ride request at a time. That driver would then have 10 seconds to accept or deny the request before we move on to the next driver if necessary. If you've solved [Ticketmaster](/learn/system-design/problem-breakdowns/ticketmaster) before, you know this problem well -- as it's almost exactly the same as ensuring that a ticket is only sold once while being reserved for a specific amount of time at checkout.
+We defined consistency in ride matching as a key non-functional requirement. This means that we only request one driver at a time for a given ride request AND that each driver only receives one ride request at a time. That driver would then have 10 seconds to accept or deny the request before we move on to the next driver if necessary. If you've solved [Ticketmaster](https://www.hellointerview.com/learn/system-design/problem-breakdowns/ticketmaster) before, you know this problem well -- as it's almost exactly the same as ensuring that a ticket is only sold once while being reserved for a specific amount of time at checkout.
 
 ### 
 
@@ -394,9 +394,9 @@ Our system works great when the drivers either accept or deny the ride request, 
 
 ###### Pattern: Multi-step Processes
 
-Human-in-the-loop processes are a big signal of when to use the Multi-Step Processes pattern. In fact, Uber is the original author of the open source project Cadence which gave birth to the leading durable execution framework [Temporal](/learn/system-design/deep-dives/temporal), built specifically for use-cases like this one.
+Human-in-the-loop processes are a big signal of when to use the Multi-Step Processes pattern. In fact, Uber is the original author of the open source project Cadence which gave birth to the leading durable execution framework [Temporal](https://www.hellointerview.com/learn/system-design/deep-dives/temporal), built specifically for use-cases like this one.
 
-[Learn This Pattern](/learn/system-design/patterns/multi-step-processes)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/multi-step-processes)
 
 ### 
 
@@ -418,7 +418,7 @@ Additionally, this approach requires careful coordination between the delay queu
 
 ###### Approach
 
-A more robust solution is to use a durable execution framework like [Temporal](/learn/system-design/deep-dives/temporal) or AWS Step Functions. These systems provide built-in support for timeouts, retries, and state management in a way that survives service crashes and restarts.
+A more robust solution is to use a durable execution framework like [Temporal](https://www.hellointerview.com/learn/system-design/deep-dives/temporal) or AWS Step Functions. These systems provide built-in support for timeouts, retries, and state management in a way that survives service crashes and restarts.
 
 With durable execution, the entire ride matching workflow is modeled as a durable workflow that can handle complex business logic, including driver timeouts, retries, and fallback mechanisms. The workflow maintains its state persistently, so even if the service crashes, the workflow can be resumed from where it left off.
 
@@ -458,7 +458,7 @@ A better approach is to scale horizontally by adding more servers. We can do thi
 
 ###### Challenges
 
-The main challenge with this approach is the complexity of sharding and managing multiple servers. We need to ensure that data is distributed evenly across shards and that the system can handle failures and rebalancing. We can address this by using [consistent hashing](/learn/system-design/core-concepts/consistent-hashing) to distribute data across shards and by implementing a replication strategy to ensure that data is replicated across multiple servers. This allows us to scale the system horizontally while maintaining fault tolerance and high availability.
+The main challenge with this approach is the complexity of sharding and managing multiple servers. We need to ensure that data is distributed evenly across shards and that the system can handle failures and rebalancing. We can address this by using [consistent hashing](https://www.hellointerview.com/learn/system-design/core-concepts/consistent-hashing) to distribute data across shards and by implementing a replication strategy to ensure that data is replicated across multiple servers. This allows us to scale the system horizontally while maintaining fault tolerance and high availability.
 
 ### Final Design
 
@@ -486,7 +486,7 @@ Ok, that was a lot. You may be thinking, "how much of that is actually required 
 
 **Depth of Expertise**: As a senior candidate, expectations shift towards more in-depth knowledge — about 60% breadth and 40% depth. This means you should be able to go into technical details in areas where you have hands-on experience. It's crucial that you demonstrate a deep understanding of key concepts and technologies relevant to the task at hand.
 
-**Advanced System Design**: You should be familiar with advanced system design principles. For example, knowing how to use a search-optimized data store like [Elasticsearch](/learn/system-design/deep-dives/elasticsearch) for event searching is essential. You're also expected to understand the use of a distributed cache or similar for locking drivers and to discuss detailed scaling strategies (it's ok if this took some probing/hints from the interviewer), including sharding and replication. Your ability to navigate these advanced topics with confidence and clarity is key.
+**Advanced System Design**: You should be familiar with advanced system design principles. For example, knowing how to use a search-optimized data store like [Elasticsearch](https://www.hellointerview.com/learn/system-design/deep-dives/elasticsearch) for event searching is essential. You're also expected to understand the use of a distributed cache or similar for locking drivers and to discuss detailed scaling strategies (it's ok if this took some probing/hints from the interviewer), including sharding and replication. Your ability to navigate these advanced topics with confidence and clarity is key.
 
 **Articulating Architectural Decisions**: You should be able to clearly articulate the pros and cons of different architectural choices, especially how they impact scalability, performance, and maintainability. You justify your decisions and explain the trade-offs involved in your design choices.
 
@@ -516,4 +516,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: Web Crawler](/learn/system-design/problem-breakdowns/web-crawler)
+[Next: Web Crawler](https://www.hellointerview.com/learn/system-design/problem-breakdowns/web-crawler)

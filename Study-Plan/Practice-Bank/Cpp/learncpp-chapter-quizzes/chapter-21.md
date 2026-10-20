@@ -687,15 +687,15 @@ int main()
 
 Recommendation: This one will be a bit tricky. Do this one in three steps. First, solve for the cases where the double parameter is representable directly (variables `a` through `c` above). Then, update your code to handle the cases where the double parameter has a rounding error (variables `d` & `e`). Variables `f` and `g` should be handled by the overflow handling we added in the prior step.
 
-For all cases: [Show Hint](javascript:void(0))
+For all cases: Show Hint
 
 Hint: You can move a digit from the right of the decimal to the left of the decimal by multiplying by 10. Multiply by 100 to move two places.
 
-For variables `a` through `c`: [Show Hint](javascript:void(0))
+For variables `a` through `c`: Show Hint
 
 Hint: You can get the non-fractional part of a double by static casting the double to an integer. To get the fractional part, you can subtract out the base part.
 
-For variables `d` & `e`: [Show Hint](javascript:void(0))
+For variables `d` & `e`: Show Hint
 
 Hint: You can round a number (on the left of the decimal) by using the `std::round()` function (included in header `<cmath>`), and take the floor of the number (towards zero) using `std::trunc()`.
 
@@ -829,11 +829,11 @@ int main()
 }
 ```
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: Add your two `FixedPoint2` together by leveraging the double cast, adding the results, and converting back to a `FixedPoint2`. This elegantly handles overflowing decimals.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: For `operator>>`, use your double constructor to create an anonymous object of type `FixedPoint2`, and assign it to your `FixedPoint2` function parameter.
 

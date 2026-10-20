@@ -130,7 +130,7 @@ Enter the age of David Jenkins: 44
 David Jenkins (age 44) is older than John Bacon (age 37).
 ```
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: Input the person’s name using `std::getline()`
 

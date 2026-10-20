@@ -10,7 +10,7 @@
 To solve the lab, find the API key for the user `carlos`. You can log in to your own account using the following credentials: `wiener:peter`.
 
 We have provided a list of possible delimiter characters to help you solve the lab: [Web cache deception lab
-delimiter list](/web-security/web-cache-deception/wcd-lab-delimiter-list).
+delimiter list](https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list).
 
 #### Required knowledge
 
@@ -21,7 +21,7 @@ To solve this lab, you'll need to know:
 - How to identify discrepancies in how the cache and origin server interpret characters as delimiters.
 - How to exploit normalization by the cache server.
 
-These points are covered in our [Web cache deception](/web-security/web-cache-deception) Academy topic.
+These points are covered in our [Web cache deception](https://portswigger.net/web-security/web-cache-deception) Academy topic.
 
 <details><summary>Official solution</summary>
 
@@ -88,7 +88,7 @@ These points are covered in our [Web cache deception](/web-security/web-cache-de
 To solve the lab, change the email address for the user `administrator`. You can log in to your own account using the following credentials: `wiener:peter`.
 
 We have provided a list of possible delimiter characters to help you solve the lab: [Web cache deception lab
-delimiter list](/web-security/web-cache-deception/wcd-lab-delimiter-list).
+delimiter list](https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list).
 
 #### Required knowledge
 
@@ -96,9 +96,9 @@ To solve this lab, you'll need to know:
 
 - How to identify exact-match file name cache rules.
 - How to exploit exact-match file name cache rules using delimiter and normalization discrepancies.
-- How to construct a CSRF attack. For more information, see the [Cross-site request forgery](/web-security/csrf) Academy topic.
+- How to construct a CSRF attack. For more information, see the [Cross-site request forgery](https://portswigger.net/web-security/csrf) Academy topic.
 
-These points are covered in our [Web cache deception](/web-security/web-cache-deception) Academy topic.
+These points are covered in our [Web cache deception](https://portswigger.net/web-security/web-cache-deception) Academy topic.
 
 <details><summary>Official solution</summary>
 
@@ -165,7 +165,7 @@ These points are covered in our [Web cache deception](/web-security/web-cache-de
 To solve the lab, find the API key for the user `carlos`. You can log in to your own account using the following credentials: `wiener:peter`.
 
 We have provided a list of possible delimiter characters to help you solve the lab: [Web cache deception lab
-delimiter list](/web-security/web-cache-deception/wcd-lab-delimiter-list).
+delimiter list](https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list).
 
 #### Required knowledge
 
@@ -175,7 +175,7 @@ To solve this lab, you'll need to know:
 - How to identify static directory cache rules.
 - How to exploit normalization by the origin server.
 
-These points are covered in our [Web cache deception](/web-security/web-cache-deception) Academy topic.
+These points are covered in our [Web cache deception](https://portswigger.net/web-security/web-cache-deception) Academy topic.
 
 <details><summary>Official solution</summary>
 
@@ -232,7 +232,7 @@ These points are covered in our [Web cache deception](/web-security/web-cache-de
 To solve the lab, find the API key for the user `carlos`. You can log in to your own account using the following credentials: `wiener:peter`.
 
 We have provided a list of possible delimiter characters to help you solve the lab: [Web cache deception lab
-delimiter list](/web-security/web-cache-deception/wcd-lab-delimiter-list).
+delimiter list](https://portswigger.net/web-security/web-cache-deception/wcd-lab-delimiter-list).
 
 #### Required knowledge
 
@@ -241,7 +241,7 @@ To solve this lab, you'll need to know:
 - How to identify discrepancies in how the cache and origin server interpret characters as delimiters.
 - How delimiter discrepancies can be used to exploit a static directory cache rule.
 
-These points are covered in our [Web cache deception](/web-security/web-cache-deception) Academy topic.
+These points are covered in our [Web cache deception](https://portswigger.net/web-security/web-cache-deception) Academy topic.
 
 <details><summary>Official solution</summary>
 
@@ -301,7 +301,7 @@ To solve this lab, you'll need to know:
 - How regex endpoints map URL paths to resources.
 - How to detect and exploit discrepancies in the way the cache and origin server map URL paths.
 
-These points are covered in our [Web cache deception](/web-security/web-cache-deception) Academy topic.
+These points are covered in our [Web cache deception](https://portswigger.net/web-security/web-cache-deception) Academy topic.
 
 <details><summary>Official solution</summary>
 

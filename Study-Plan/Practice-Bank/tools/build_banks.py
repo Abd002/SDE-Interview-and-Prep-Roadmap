@@ -184,7 +184,9 @@ def lld():
             key = name.replace('-', '').replace('_', '').lower()
             cands = [d for r in roots for d in glob.glob(os.path.join(r, '*')) if os.path.isdir(d) and os.path.basename(d).replace('-', '').replace('_', '').lower() == key]
             for d in cands:
-                files = sorted(f for f in glob.glob(os.path.join(d, '**', '*'), recursive=True) if os.path.isfile(f))
+                code_ext = ('.java', '.py', '.cpp', '.cc', '.h', '.hpp', '.go', '.cs', '.ts', '.js', '.rs', '.kt', '.md', '.txt')
+                files = sorted(f for f in glob.glob(os.path.join(d, '**', '*'), recursive=True)
+                               if os.path.isfile(f) and f.lower().endswith(code_ext))
                 if files:
                     sol.append((lang, d, files))
         w = [header(f'Low-level design problem: {name.replace("-", " ")}', gh + f'problems/{name}.md', lic), body, '\n---\n\n## Official solutions from the repository\n']
@@ -236,7 +238,7 @@ def rustlings():
         readme = os.path.join(repo, 'exercises', topic, 'README.md')
         w = [header(f'Rustlings: {topic}', f'{url}/tree/main/exercises/{topic}', lic)]
         if os.path.exists(readme):
-            w.append(open(readme).read() + '\n')
+            w.append(copy_images(open(readme).read(), os.path.dirname(readme), out, url + '/blob/main/') + '\n')
         for _, rel, ex, sol in items:
             name = os.path.splitext(os.path.basename(rel))[0]
             w.append(f'## {name}\n\n```rust\n{open(ex).read().rstrip()}\n```\n')
@@ -335,7 +337,7 @@ def ostep():
                 qtext = ('## Homework questions from the book chapter\n\n> From the chapter PDF <https://pages.cs.wisc.edu/~remzi/OSTEP/' + name +
                          '.pdf>. Answer each one with the simulator, then add `-c` to see the official answer.\n\n```text\n' + hw + '\n```\n\n' + answers + '## The simulator (README from the homework repository)\n\n')
         for f in glob.glob(os.path.join(d, '*')):
-            if os.path.isfile(f) and not f.endswith('.md'):
+            if os.path.isfile(f) and os.path.basename(f) != 'README.md':
                 shutil.copy(f, dst)
         open(os.path.join(dst, 'README.md'), 'w').write(header(f'OSTEP homework: {name}', f'{url}/tree/master/{name}', lic,
             'The simulators in this folder are the answer key: run any command from the questions again with `-c` and the simulator prints the official answer.') + qtext + body)
@@ -402,6 +404,9 @@ def tih():
             continue
         body = re.sub(r'^---.*?---\n', '', open(src).read(), flags=re.S)
         body = re.sub(r'(?m)^import .*$', '', body)
+        body = body.replace('](/img/', '](../static/img/').replace('src="/img/', 'src="../static/img/')
+        body = copy_images(body, repo, out, 'https://github.com/yangshun/tech-interview-handbook/blob/main/apps/website/contents/')
+        body = re.sub(r'\]\((/[^)\s]+)\)', lambda m: '](https://www.techinterviewhandbook.org' + m.group(1) + ')', body)
         open(os.path.join(out, f + '.md'), 'w').write(header(f'Tech Interview Handbook: {f.replace("-", " ")}', url + f + '/', lic) + body)
         idx.append(f'| [{f.replace("-", " ")}]({f}.md) |')
     open(os.path.join(out, 'README.md'), 'w').write('\n'.join(idx) + '\n')

@@ -114,7 +114,7 @@ Example Responses:
 
 After the interview, the interviewer will compile their feedback and give a hire/no-hire recommendation as well as the candidate’s seniority. The hire/no-hire decision is given as a spectrum, ranging from low confidence to high confidence. This is illustrated below:
 
-![The spectrum of the no-hire to hire interviewing decision overlayed on the interviewer's confidence](/img/interview-hire-spectrum.jpg)
+![The spectrum of the no-hire to hire interviewing decision overlayed on the interviewer's confidence](images/tech-interview-handbook_apps_website_static_img_interview-hire-spectrum.jpg)
 
 The recommendation is compiled from the signals the interviewer collected on the eight focus areas. Typically, this looks like the following:
 

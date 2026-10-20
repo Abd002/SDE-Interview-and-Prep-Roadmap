@@ -640,11 +640,11 @@ int main()
 
 h/t to reader surrealcereal for this idea.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: You can’t initialize the vector using a std::initializer\_list, since this requires elements to be copied.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: std::unique\_ptr::get() returns a pointer to the managed element.
 

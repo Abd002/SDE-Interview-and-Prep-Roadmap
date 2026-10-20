@@ -160,7 +160,7 @@ When initializing a `std::vector` with element values, we should use list initia
 
 e) A `std::vector` with 12 int elements, initialized to the default values.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: Think about whether CTAD is usable in this case.
 
@@ -779,15 +779,15 @@ In this step, we will not tell the user whether the letter they guessed is in th
 
 The tricky part of this step is deciding how to store information on which letters the user has guessed. There are several different viable ways to do this. A hint: there are a fixed number of letters, and you’re going to be doing this a lot.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: It’s easier and faster to use a `bool` for each letter than it is to keep a list of letters and have to search that list to determine whether a letter exists.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: It is okay to use `std::vector<bool>` here since we won’t be using any of the other functionality of the standard library.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: You can convert a letter into an array index via `(letter % 32)-1`. This works with both lower case and upper case letters.
 

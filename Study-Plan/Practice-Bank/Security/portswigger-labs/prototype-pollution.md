@@ -15,7 +15,7 @@ To solve the lab:
 2. Identify a gadget property that allows you to execute arbitrary JavaScript.
 3. Combine these to call `alert()`.
 
-You can solve this lab manually in your browser, or use [DOM Invader](/burp/documentation/desktop/tools/dom-invader) to help you.
+You can solve this lab manually in your browser, or use [DOM Invader](https://portswigger.net/burp/documentation/desktop/tools/dom-invader) to help you.
 
 This lab is based on real-world vulnerabilities discovered by PortSwigger Research. For more details, check out [Widespread prototype pollution gadgets](https://portswigger.net/research/widespread-prototype-pollution-gadgets) by [Gareth Heyes](https://portswigger.net/research/gareth-heyes).
 
@@ -54,7 +54,7 @@ This lab is based on real-world vulnerabilities discovered by PortSwigger Resear
 <details><summary>DOM Invader solution</summary>
 
 1. Load the lab in Burp's built-in browser.
-2. [Enable DOM Invader](/burp/documentation/desktop/tools/dom-invader/enabling) and [enable the prototype pollution option](/burp/documentation/desktop/tools/dom-invader/prototype-pollution#enabling-prototype-pollution).
+2. [Enable DOM Invader](https://portswigger.net/burp/documentation/desktop/tools/dom-invader/enabling) and [enable the prototype pollution option](https://portswigger.net/burp/documentation/desktop/tools/dom-invader/prototype-pollution#enabling-prototype-pollution).
 3. Open the browser DevTools panel, go to the **DOM Invader** tab, then reload the page.
 4. Observe that DOM Invader has identified two prototype pollution vectors in the `search` property i.e. the query string.
 5. Click **Scan for gadgets**. A new tab opens in which DOM Invader begins scanning for gadgets using the selected source.
@@ -77,7 +77,7 @@ https://www.youtube.com/watch?v=M1UcU62ri7o
 
 [Open the lab](https://portswigger.net/web-security/prototype-pollution/client-side/lab-prototype-pollution-client-side-prototype-pollution-in-third-party-libraries)
 
-This lab is vulnerable to DOM XSS via client-side prototype pollution. This is due to a gadget in a third-party library, which is easy to miss due to the minified source code. Although it's technically possible to solve this lab manually, we recommend using [DOM Invader](/burp/documentation/desktop/tools/dom-invader/prototype-pollution) as this will save you a considerable amount of time and effort.
+This lab is vulnerable to DOM XSS via client-side prototype pollution. This is due to a gadget in a third-party library, which is easy to miss due to the minified source code. Although it's technically possible to solve this lab manually, we recommend using [DOM Invader](https://portswigger.net/burp/documentation/desktop/tools/dom-invader/prototype-pollution) as this will save you a considerable amount of time and effort.
 
 To solve the lab:
 
@@ -89,7 +89,7 @@ This lab is based on real-world vulnerabilities discovered by PortSwigger Resear
 <details><summary>Official solution</summary>
 
 1. Load the lab in Burp's built-in browser.
-2. [Enable DOM Invader](/burp/documentation/desktop/tools/dom-invader/enabling) and [enable the prototype pollution option](/burp/documentation/desktop/tools/dom-invader/prototype-pollution#enabling-prototype-pollution).
+2. [Enable DOM Invader](https://portswigger.net/burp/documentation/desktop/tools/dom-invader/enabling) and [enable the prototype pollution option](https://portswigger.net/burp/documentation/desktop/tools/dom-invader/prototype-pollution#enabling-prototype-pollution).
 3. Open the browser DevTools panel, go to the **DOM Invader** tab, then reload the page.
 4. Observe that DOM Invader has identified two prototype pollution vectors in the `hash` property i.e. the URL fragment string.
 5. Click **Scan for gadgets**. A new tab opens in which DOM Invader begins scanning for gadgets using the selected source.
@@ -190,11 +190,11 @@ This lab is vulnerable to DOM XSS via client-side prototype pollution. To solve 
 2. Identify a gadget property that allows you to execute arbitrary JavaScript.
 3. Combine these to call `alert()`.
 
-You can solve this lab manually in your browser, or use [DOM Invader](/burp/documentation/desktop/tools/dom-invader) to help you.
+You can solve this lab manually in your browser, or use [DOM Invader](https://portswigger.net/burp/documentation/desktop/tools/dom-invader) to help you.
 
 <details><summary>Hint</summary>
 
-Pay attention to the [XSS context](/web-security/cross-site-scripting/contexts). You need to adjust your payload slightly to ensure that the JavaScript syntax remains valid following your injection.
+Pay attention to the [XSS context](https://portswigger.net/web-security/cross-site-scripting/contexts). You need to adjust your payload slightly to ensure that the JavaScript syntax remains valid following your injection.
 
 </details>
 
@@ -241,7 +241,7 @@ Pay attention to the [XSS context](/web-security/cross-site-scripting/contexts).
 <details><summary>DOM Invader solution</summary>
 
 1. Load the lab in Burp's built-in browser.
-2. [Enable DOM Invader](/burp/documentation/desktop/tools/dom-invader/enabling) and [enable the prototype pollution option](/burp/documentation/desktop/tools/dom-invader/prototype-pollution#enabling-prototype-pollution).
+2. [Enable DOM Invader](https://portswigger.net/burp/documentation/desktop/tools/dom-invader/enabling) and [enable the prototype pollution option](https://portswigger.net/burp/documentation/desktop/tools/dom-invader/prototype-pollution#enabling-prototype-pollution).
 3. Open the browser DevTools panel and go to the **DOM Invader** tab and reload the page.
 4. Observe that DOM Invader has identified a prototype pollution vector in the `search` property i.e. the query string.
 5. Click **Scan for gadgets**. A new tab opens in which DOM Invader begins scanning for gadgets using the selected source.
@@ -273,7 +273,7 @@ This lab is vulnerable to DOM XSS via client-side prototype pollution. To solve 
 2. Identify a gadget property that allows you to execute arbitrary JavaScript.
 3. Combine these to call `alert()`.
 
-You can solve this lab manually in your browser, or use [DOM Invader](/burp/documentation/desktop/tools/dom-invader) to help you.
+You can solve this lab manually in your browser, or use [DOM Invader](https://portswigger.net/burp/documentation/desktop/tools/dom-invader) to help you.
 
 <details><summary>Manual solution</summary>
 
@@ -309,7 +309,7 @@ You can solve this lab manually in your browser, or use [DOM Invader](/burp/docu
 <details><summary>DOM Invader solution</summary>
 
 1. Open the lab in Burp's built-in browser.
-2. [Enable DOM Invader](/burp/documentation/desktop/tools/dom-invader/enabling) and [enable the prototype pollution option](/burp/documentation/desktop/tools/dom-invader/prototype-pollution#enabling-prototype-pollution).
+2. [Enable DOM Invader](https://portswigger.net/burp/documentation/desktop/tools/dom-invader/enabling) and [enable the prototype pollution option](https://portswigger.net/burp/documentation/desktop/tools/dom-invader/prototype-pollution#enabling-prototype-pollution).
 3. Open the browser DevTools panel, go to the **DOM Invader** tab, then reload the page.
 4. Observe that DOM Invader has identified two prototype pollution vectors in the `search` property i.e. the query string.
 5. Click **Scan for gadgets**. A new tab opens in which DOM Invader begins scanning for gadgets using the selected source.
@@ -413,7 +413,7 @@ When testing for server-side prototype pollution, it's possible to break applica
 
 #### Note
 
-There are a variety of techniques for non-destructively probing for prototype pollution. We'll use the [status code override](/web-security/prototype-pollution/server-side#status-code-override) technique for this example, but you can also solve the lab using the [charset override](/web-security/prototype-pollution/server-side#charset-override) or the [json spaces override](/web-security/prototype-pollution/server-side#json-spaces-override) techniques.
+There are a variety of techniques for non-destructively probing for prototype pollution. We'll use the [status code override](https://portswigger.net/web-security/prototype-pollution/server-side#status-code-override) technique for this example, but you can also solve the lab using the [charset override](https://portswigger.net/web-security/prototype-pollution/server-side#charset-override) or the [json spaces override](https://portswigger.net/web-security/prototype-pollution/server-side#json-spaces-override) techniques.
 
 ##### Study the address change feature
 

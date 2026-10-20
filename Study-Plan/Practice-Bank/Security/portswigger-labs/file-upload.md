@@ -204,7 +204,7 @@ https://www.youtube.com/watch?v=GnUfp6z_Vu4
 
 [Open the lab](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-path-traversal)
 
-This lab contains a vulnerable image upload function. The server is configured to prevent execution of user-supplied files, but this restriction can be bypassed by exploiting a [secondary vulnerability](/web-security/file-path-traversal).
+This lab contains a vulnerable image upload function. The server is configured to prevent execution of user-supplied files, but this restriction can be bypassed by exploiting a [secondary vulnerability](https://portswigger.net/web-security/file-path-traversal).
 
 To solve the lab, upload a basic PHP web shell and use it to exfiltrate the contents of the file `/home/carlos/secret`. Submit this secret using the button provided in the lab banner.
 

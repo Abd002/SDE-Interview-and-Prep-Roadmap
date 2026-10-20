@@ -258,7 +258,7 @@ Here is our selection for today:
 3) invisibility costs 50
 ```
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: We show a method for iterating through an enumeration using a range-based for-loop in lesson [17.6 -- std::array and enumerations](https://www.learncpp.com/cpp-tutorial/stdarray-and-enumerations/).
 
@@ -426,7 +426,7 @@ Make sure you test for the following cases:
 
 We cover invalid input handling in lesson [9.5 -- std::cin and handling invalid input](https://www.learncpp.com/cpp-tutorial/stdcin-and-handling-invalid-input/).
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: The user can enter either a number or ‘q’, so extract the user’s input to type `char`.
 
@@ -439,7 +439,7 @@ int charNumToInt(char c)
 }
 ```
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: Write a function to handle user input. It should return the `Potion::Type` the user selected. If the user quit instead, the function can return `Potion::max_potions`. You will need to static\_cast the user’s input to a `Potion::Type`.
 

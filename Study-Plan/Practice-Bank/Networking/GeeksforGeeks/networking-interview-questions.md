@@ -22,10 +22,10 @@
 
 A computer network is a collection of interconnected devices that share data and resources. Based on the area they cover, networks are classified into different types. The main types are PAN, LAN, MAN, and WAN.
 
-- ****PAN (Personal Area Network):**** Covers a small area around a person.
-- ****LAN (Local Area Network):**** Connects devices within a home, school, or office.
-- ****MAN (Metropolitan Area Network):**** Connects multiple LANs across a city.
-- ****WAN (Wide Area Network):**** Connects networks over large geographical areas, such as the Internet.
+- **PAN (Personal Area Network):** Covers a small area around a person.
+- **LAN (Local Area Network):** Connects devices within a home, school, or office.
+- **MAN (Metropolitan Area Network):** Connects multiple LANs across a city.
+- **WAN (Wide Area Network):** Connects networks over large geographical areas, such as the Internet.
 
 ![different_types_of_networks](images/9fe67b3994af.webp)
 
@@ -43,13 +43,13 @@ A computer network is a collection of interconnected devices that share data and
 
 ### 5. What is a network topology? Explain its types.
 
-A [****network topology****](https://www.geeksforgeeks.org/computer-networks/types-of-network-topology/) is the physical or logical arrangement of devices in a computer network. It defines how devices are connected and how data is transmitted between them. A proper network topology improves communication, performance, and reliability..
+A [**network topology**](https://www.geeksforgeeks.org/computer-networks/types-of-network-topology/) is the physical or logical arrangement of devices in a computer network. It defines how devices are connected and how data is transmitted between them. A proper network topology improves communication, performance, and reliability..
 
-- ****Bus Topology:**** All devices are connected to a single shared cable (backbone).
-- ****Star Topology:**** All devices are connected to a central hub or switch.
-- ****Ring Topology:**** Devices are connected in a circular loop, where data travels from one device to the next.
-- ****Mesh Topology:**** Every device is connected to one or more other devices, providing multiple communication paths.
-- ****Tree Topology:**** A hierarchical topology that combines multiple star networks connected through a central backbone.
+- **Bus Topology:** All devices are connected to a single shared cable (backbone).
+- **Star Topology:** All devices are connected to a central hub or switch.
+- **Ring Topology:** Devices are connected in a circular loop, where data travels from one device to the next.
+- **Mesh Topology:** Every device is connected to one or more other devices, providing multiple communication paths.
+- **Tree Topology:** A hierarchical topology that combines multiple star networks connected through a central backbone.
 
 ### 6. Explain the OSI model, its seven layers, the devices used at each layer, and how it differs from the TCP/IP model.
 
@@ -71,7 +71,7 @@ As a data packet moves through the OSI model, it passes through all seven layers
 
 ### 8. What is a VPN ? Explain its types.
 
-A [****VPN (Virtual Private Network)****](https://www.geeksforgeeks.org/computer-networks/what-is-vpn-how-it-works-types-of-vpn/) creates a secure and encrypted connection over the Internet, allowing users to safely access a private network. It protects data during transmission and enables secure communication between users or networks. VPNs are commonly used for remote access and secure networking.
+A [**VPN (Virtual Private Network)**](https://www.geeksforgeeks.org/computer-networks/what-is-vpn-how-it-works-types-of-vpn/) creates a secure and encrypted connection over the Internet, allowing users to safely access a private network. It protects data during transmission and enables secure communication between users or networks. VPNs are commonly used for remote access and secure networking.
 
 - Provides a secure and encrypted connection over the Internet.
 - Protects data and enables safe remote access.
@@ -81,17 +81,17 @@ A [****VPN (Virtual Private Network)****](https://www.geeksforgeeks.org/computer
 
 ### Types of VPN
 
-****1. Remote Access VPN****
+**1. Remote Access VPN**
 
 - Connects individual users to a private network over the Internet.
 - Commonly used by employees working remotely.
 
-****2. Site-to-Site VPN****
+**2. Site-to-Site VPN**
 
 - Connects two or more private networks over the Internet.
 - It is of two types:
-  1. ****Intranet VPN:**** Connects branches of the same organization.
-  2. ****Extranet VPN:**** Connects an organization with partners or customers.
+  1. **Intranet VPN:** Connects branches of the same organization.
+  2. **Extranet VPN:** Connects an organization with partners or customers.
 
 ### 9. Explain the TCP three-way handshake and why TCP uses three handshakes instead of two.
 
@@ -103,7 +103,7 @@ The TCP three-way handshake is the process used to establish a reliable connecti
 
 ![TCP 3-Way Handshake Process - GeeksforGeeks](images/3abe1fba68db.png)
 
-****Why does TCP use Three Handshakes instead of two?****
+**Why does TCP use Three Handshakes instead of two?**
 
 The third ACK confirms that the client has received the server's response.
 
@@ -122,9 +122,9 @@ TCP connection termination uses a four-way handshake because each direction of c
 
 TCP sequence numbers identify the position of each byte of data sent by the sender, while acknowledgment numbers indicate the next byte the receiver expects. Together, they ensure reliable and ordered data transmission. They also help detect missing and duplicate packets.
 
-- ****Sequence Number:**** Identifies the position of each byte in the transmitted data.
-- ****Acknowledgment Number:**** Indicates the next byte expected by the receiver.
-- ****Prevents Duplicate Packets:**** TCP discards packets with sequence numbers that have already been received, ensuring reliable and ordered communication.
+- **Sequence Number:** Identifies the position of each byte in the transmitted data.
+- **Acknowledgment Number:** Indicates the next byte expected by the receiver.
+- **Prevents Duplicate Packets:** TCP discards packets with sequence numbers that have already been received, ensuring reliable and ordered communication.
 
 ### 12. Explain ARP.
 
@@ -141,8 +141,8 @@ Example: If a PC wants to sen d o data to 192.168.1.5, ARP finds the MAC address
 
 A MAC address is a hardware address assigned to a network interface card, while an IP address is a logical address used for communication across networks.
 
-- ****MAC address:**** Physical identifier, works at the Data Link layer, usually fixed.
-- ****IP address:**** Logical identifier, works at the Network layer, can change.
+- **MAC address:** Physical identifier, works at the Data Link layer, usually fixed.
+- **IP address:** Logical identifier, works at the Network layer, can change.
 
 The MAC address identifies a device on a local network, while the IP address identifies its location in a network.
 
@@ -150,25 +150,25 @@ The MAC address identifies a device on a local network, while the IP address ide
 
 TCP retransmission is the process of resending lost packets to ensure reliable data delivery. A packet is retransmitted either when the Retransmission Timeout (RTO) expires or when Fast Retransmit detects packet loss through duplicate ACKs. Fast Recovery helps maintain network performance by avoiding a complete restart of congestion control.
 
-- ****Retransmission Timeout (RTO):**** Retransmits a packet if an acknowledgment is not received within the calculated timeout period.
-- ****Fast Retransmit:**** Retransmits a lost packet immediately after receiving three duplicate ACKs, without waiting for the RTO.
-- ****Fast Recovery:**** Continues data transmission after packet loss without restarting from Slow Start, improving performance.
+- **Retransmission Timeout (RTO):** Retransmits a packet if an acknowledgment is not received within the calculated timeout period.
+- **Fast Retransmit:** Retransmits a lost packet immediately after receiving three duplicate ACKs, without waiting for the RTO.
+- **Fast Recovery:** Continues data transmission after packet loss without restarting from Slow Start, improving performance.
 
 ### 13. What is the difference between the congestion window (cwnd) and the receive window (rwnd)?
 
 The congestion window (cwnd) and receive window (rwnd) control the amount of data a sender can transmit. The cwnd is managed by the sender based on network congestion, while the rwnd is managed by the receiver based on available buffer space. The sender transmits data up to the smaller of the two values.
 
-- ****Congestion Window (cwnd):**** Controlled by the sender to avoid network congestion.
-- ****Receive Window (rwnd):**** Advertised by the receiver based on available buffer space.
-- ****Data Sent = min(cwnd, rwnd):**** The sender can transmit only up to the smaller of these two windows.
+- **Congestion Window (cwnd):** Controlled by the sender to avoid network congestion.
+- **Receive Window (rwnd):** Advertised by the receiver based on available buffer space.
+- **Data Sent = min(cwnd, rwnd):** The sender can transmit only up to the smaller of these two windows.
 
 ### 14. Explain TCP congestion control, including Slow Start, Congestion Avoidance, and AIMD.
 
 [TCP congestion control](https://www.geeksforgeeks.org/computer-networks/tcp-congestion-control/) prevents network congestion by adjusting the amount of data sent over the network. It begins with Slow Start, switches to Congestion Avoidance as the network stabilizes, and uses AIMD (Additive Increase Multiplicative Decrease) to respond to congestion. This improves network efficiency and reliability.
 
-- ****Slow Start:**** Increases the congestion window (****cwnd****) exponentially to quickly utilize available bandwidth.
-- ****Congestion Avoidance:**** Increases ****cwnd**** linearly after reaching the threshold to avoid congestion.
-- ****AIMD:**** Gradually increases ****cwnd**** during normal operation and reduces it significantly when packet loss is detected.
+- **Slow Start:** Increases the congestion window (**cwnd**) exponentially to quickly utilize available bandwidth.
+- **Congestion Avoidance:** Increases **cwnd** linearly after reaching the threshold to avoid congestion.
+- **AIMD:** Gradually increases **cwnd** during normal operation and reduces it significantly when packet loss is detected.
 
 ### 15. What is Explicit Congestion Notification (ECN)? How does it improve network performance?
 
@@ -177,15 +177,15 @@ Explicit Congestion Notification (ECN) is a TCP congestion control mechanism tha
 - ECN marks packets instead of dropping them when congestion begins.
 - The sender reduces its transmission rate after receiving the congestion notification.
 
-****Advantages:**** Improves throughput, reduces retransmissions, and lowers network latency.
+**Advantages:** Improves throughput, reduces retransmissions, and lowers network latency.
 
 ### 16. Compare Tahoe, Reno, New Reno, and Cubic TCP
 
 TCP Tahoe, Reno, New Reno, and Cubic are congestion control algorithms used to improve network performance. Each algorithm differs in how it detects packet loss and recovers from congestion. Newer algorithms provide faster recovery and better utilization of network bandwidth.
 
-- ****Tahoe:**** Uses Slow Start and Fast Retransmit, but always restarts from Slow Start after packet loss.
-- ****Reno & New Reno:**** Recover faster using Fast Recovery.
-- ****Cubic:**** Uses a cubic window growth function for better performance in high-speed and long-distance networks.
+- **Tahoe:** Uses Slow Start and Fast Retransmit, but always restarts from Slow Start after packet loss.
+- **Reno & New Reno:** Recover faster using Fast Recovery.
+- **Cubic:** Uses a cubic window growth function for better performance in high-speed and long-distance networks.
 
 ### 17. How does TCP distinguish between packet loss caused by congestion and wireless transmission errors?
 
@@ -199,9 +199,9 @@ Traditional TCP assumes that all packet losses are caused by network congestion 
 
 Stop-and-Wait, Go-Back-N, and Selective Repeat are Automatic Repeat reQuest (ARQ) protocols used to ensure reliable data transmission. They differ in how they send data frames and handle packet loss. Selective Repeat is the most efficient because it retransmits only the lost frames.
 
-- ****Stop-and-Wait:**** Simple but less efficient.
-- ****Go-Back-N:**** Improves efficiency by allowing multiple outstanding frames.
-- ****Selective Repeat:**** Most efficient because it retransmits only lost frames.
+- **Stop-and-Wait:** Simple but less efficient.
+- **Go-Back-N:** Improves efficiency by allowing multiple outstanding frames.
+- **Selective Repeat:** Most efficient because it retransmits only lost frames.
 
 ### 19. Why must the Selective Repeat window size be at most half the sequence number space?
 
@@ -215,17 +215,17 @@ Selective Repeat ARQ, both the sender and receiver maintain separate windows for
 
 The Bandwidth-Delay Product (BDP) is the amount of data that can be in transit before an acknowledgment is received. It is calculated as Bandwidth × Round-Trip Time (RTT). Pipelining improves performance by allowing multiple packets to be transmitted without waiting for acknowledgments.
 
-- ****BDP = Bandwidth × RTT.****
+- **BDP = Bandwidth × RTT.**
 - A higher BDP allows more data to be in transit.
-- ****Pipelining**** improves bandwidth utilization and reduces idle time.
+- **Pipelining** improves bandwidth utilization and reduces idle time.
 
 ### 21. Compare Distance Vector and Link-State Routing Protocols
 
 Distance Vector and Link-State are routing protocols used to determine the best path for data transmission. Distance Vector shares routing information with neighboring routers, while Link-State maintains a complete network map. Link-State protocols converge faster and are better suited for large networks.
 
-- ****Distance Vector:**** Simple but slower convergence.
-- ****Link-State:**** Faster and more scalable.
-- ****Examples:**** RIP (Distance Vector), OSPF (Link-State).
+- **Distance Vector:** Simple but slower convergence.
+- **Link-State:** Faster and more scalable.
+- **Examples:** RIP (Distance Vector), OSPF (Link-State).
 
 ### 22. Why Does RIP Suffer from the Count-to-Infinity Problem, and How Do Split Horizon and Route Poisoning Solve It?
 
@@ -273,20 +273,20 @@ These mechanisms improve network stability by suppressing unstable routes.
 
 CIDR (Classless Inter-Domain Routing) combines multiple network prefixes into a single route to reduce routing table size. Equal-Cost Multi-Path (ECMP) distributes traffic across multiple paths with equal routing cost. Together, they improve scalability, bandwidth utilization, and reliability.
 
-- ****CIDR:**** Reduces routing table size through route aggregation.
-- ****ECMP:**** Balances traffic across multiple equal-cost paths.
+- **CIDR:** Reduces routing table size through route aggregation.
+- **ECMP:** Balances traffic across multiple equal-cost paths.
 - Improves scalability, performance, and reliability.
 
 ### 27. Differentiate Between Interior Gateway Protocols (IGPs) and Exterior Gateway Protocols (EGPs)
 
-****IGP (Interior Gateway Protocol)****
+**IGP (Interior Gateway Protocol)**
 
 - Used for routing within a single Autonomous System (AS).
 - Mainly used for internal routing inside an organization or network.
 - Provides faster route calculation and convergence.
 - Examples: RIP, OSPF, EIGRP, IS-IS.
 
-****EGP (Exterior Gateway Protocol)****
+**EGP (Exterior Gateway Protocol)**
 
 - Used for routing between different Autonomous Systems (ASs).
 - Mainly used for Internet or inter-domain routing.
@@ -322,7 +322,7 @@ A default gateway is the router that forwards packets from a local network to ot
 - Traffic destined for other networks is sent to the gateway.
 - The gateway decides the next hop and forwards the packet.
 
-****Example:**** A PC with IP 192.168.1.10 and gateway 192.168.1.1 sends Internet traffic to 192.168.1.1
+**Example:** A PC with IP 192.168.1.10 and gateway 192.168.1.1 sends Internet traffic to 192.168.1.1
 
 ### 31. Explain NAT and its limitations.
 
@@ -336,10 +336,10 @@ DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses an
 
 The address assignment process is called DORA:
 
-- ****Discover:**** Client broadcasts a request for an IP address.
-- ****Offer:**** DHCP server offers an available IP address.
-- ****Request:**** Client requests the offered address.
-- ****Acknowledge:**** Server confirms the allocation.
+- **Discover:** Client broadcasts a request for an IP address.
+- **Offer:** DHCP server offers an available IP address.
+- **Request:** Client requests the offered address.
+- **Acknowledge:** Server confirms the allocation.
 
 After this process, the client receives an IP address, subnet mask, gateway, and DNS settings.
 
@@ -371,14 +371,14 @@ Neighbor Discovery Protocol (NDP) is an IPv6 protocol that replaces ARP used in 
 
 ### 36. Compare CIDR and VLSM
 
-****CIDR****
+**CIDR**
 
 - CIDR combines multiple networks into a single route.
 - It helps in reducing the size of routing tables.
 - It is mainly used for route aggregation or route summarization.
 - CIDR improves routing efficiency in large networks and on the Internet.
 
-****VLSM****
+**VLSM**
 
 - VLSM divides a network into subnets of different sizes.
 - It provides better utilization of IP addresses.
@@ -461,7 +461,7 @@ VLAN tagging is defined by the IEEE 802.1Q standard and adds a VLAN identifier t
 - Simplifies installation and reduces wiring cost.
 - Standard Ethernet cables can provide both network connectivity and power.
 
-****Example:**** An IP camera can receive power and network connection through one Cat6 cable.
+**Example:** An IP camera can receive power and network connection through one Cat6 cable.
 
 ### 44. Why Is DNS Hierarchical Instead of Centralized?
 
@@ -502,21 +502,21 @@ HTTPS uses TLS (Transport Layer Security) to encrypt communication between the c
 
 ### 48. Compare HTTP/1.1, HTTP/2, and HTTP/3
 
-****HTTP/1.1****
+**HTTP/1.1**
 
 - Uses the TCP protocol for communication.
 - Requests are processed mostly in a sequential manner.
 - It is slower compared to newer versions.
 - Head-of-line blocking can reduce performance when many requests are sent.
 
-****HTTP/2****
+**HTTP/2**
 
 - Also uses the TCP protocol.
 - Supports multiplexing, so multiple requests can travel over one connection.
 - It is faster than HTTP/1.1.
 - It improves bandwidth usage and reduces page loading time.
 
-****HTTP/3****
+**HTTP/3**
 
 - Uses QUIC over UDP instead of TCP.
 - Supports multiplexing through QUIC with independent streams.
@@ -533,14 +533,14 @@ ICMP (Internet Control Message Protocol) is a Network Layer protocol used for er
 
 ### 50. Compare Packet Switching and Circuit Switching
 
-****Circuit Switching****
+**Circuit Switching**
 
 - A dedicated communication path is established before data transfer starts.
 - Bandwidth remains fixed and reserved for the entire connection.
 - It provides continuous and predictable communication during the session.
 - Network resources may remain unused when no data is being sent, so it is less efficient.
 
-****Packet Switching****
+**Packet Switching**
 
 - Data is divided into small packets that travel independently through the network.
 - Network bandwidth is shared dynamically among many users.
@@ -609,9 +609,9 @@ Total network latency includes propagation delay, transmission delay, processing
 
 ### 57. Differentiate between Bluetooth, Wi-Fi, and ZigBee.
 
-- ****Bluetooth:**** A short-range, low-power wireless technology used to connect personal devices like headphones, keyboards, and smartphones.
-- ****Wi-Fi:**** A high-speed wireless networking technology used to provide internet access and connect devices over a local network.
-- ****ZigBee:**** A low-power, low-data-rate wireless technology designed for IoT devices, sensor networks, and home automation.
+- **Bluetooth:** A short-range, low-power wireless technology used to connect personal devices like headphones, keyboards, and smartphones.
+- **Wi-Fi:** A high-speed wireless networking technology used to provide internet access and connect devices over a local network.
+- **ZigBee:** A low-power, low-data-rate wireless technology designed for IoT devices, sensor networks, and home automation.
 
 ### 58. What are Symmetric and Asymmetric Encryption?
 
@@ -670,14 +670,14 @@ Jitter is the variation in the delay of data packets during transmission. High j
 
 ### 65. Differentiate Between TCP and UDP
 
-****TCP****
+**TCP**
 
 - TCP is a connection-oriented protocol, so a connection is established before data transfer.
 - It provides reliable communication with error checking, acknowledgments, and retransmission.
 - TCP is generally slower because of connection setup and reliability mechanisms.
 - It is commonly used for web browsing, email, FTP, and file transfer applications.
 
-****UDP****
+**UDP**
 
 - UDP is a connectionless protocol, so data is sent without establishing a connection.
 - It provides unreliable communication and does not guarantee delivery or ordering.
@@ -710,12 +710,12 @@ The [TCP Sliding Window](https://www.geeksforgeeks.org/computer-networks/sliding
 
 Nagle’s algorithm reduces network congestion by combining many small TCP packets into fewer larger packets before sending them.
 
-****Advantages:****
+**Advantages:**
 
 - Reduces the number of packets.
 - Improves bandwidth efficiency.
 
-****Disadvantages:****
+**Disadvantages:**
 
 - Adds delay while waiting for acknowledgments.
 - Can reduce performance in interactive applications such as online gaming, VoIP, and real-time communication.
@@ -724,14 +724,14 @@ Nagle’s algorithm is useful for applications sending many small messages but m
 
 ### 69. Differentiate Between Flow Control and Congestion Control
 
-****Flow Control****
+**Flow Control**
 
 - Flow control is used to protect the receiver from getting too much data.
 - It controls the data rate according to the receiver’s buffer capacity.
 - It mainly uses the receive window (rwnd) value.
 - It prevents receiver buffer overflow during communication.
 
-****Congestion Control****
+**Congestion Control**
 
 - Congestion control is used to protect the network from becoming overloaded.
 - It controls the sending rate according to the network traffic condition.

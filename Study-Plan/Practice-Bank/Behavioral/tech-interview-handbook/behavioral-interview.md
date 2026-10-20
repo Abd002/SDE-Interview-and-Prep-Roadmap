@@ -97,7 +97,7 @@ Construct a STAR(R) story for each project as an exercise in storytelling. Pay s
 
 Despite our advice that preparing for specific questions has limited value, there are three questions that are very very common and it’s worth preparing in advance:
 
-- Tell me about yourself: this question opens almost any interview. See our advice at in [Preparing a self introduction](./self-introduction.md) and a further dive [here](https://thebehavioral.substack.com/p/death-taxes-and-tmay).
+- Tell me about yourself: this question opens almost any interview. See our advice at in [Preparing a self introduction](https://github.com/yangshun/tech-interview-handbook/blob/main/apps/website/contents/apps/website/contents/self-introduction.md) and a further dive [here](https://thebehavioral.substack.com/p/death-taxes-and-tmay).
 - Tell me about your favorite project/most impactful project/etc.: pick a project at the intersection of impact, scope, and your personal involvement.
 - Tell me about time when you resolved a conflict: this is the most common soft skill question. Check out a series of posts on choosing and structuring a response starting [here](https://thebehavioral.substack.com/p/conflict-stories-1-of-5-workplace).
 
@@ -105,7 +105,7 @@ While most people might be inclined toward memorization, it's much better to pen
 
 ### 4. Practice other questions by yourself or with AI
 
-Even though trying to anticipate questions beyond the Big Three is challenging, you can get a lot of value out of practicing your story telling skills on sample questions. You may refer to [my list of 30 questions](./behavioral-interview-questions.md) which were collated across top tech companies for this. Also, going through this process will help you identify if there are significant gaps in your story catalog centered around specific signal areas. For example, perhaps you need more stories around past mistakes or leadership moments.
+Even though trying to anticipate questions beyond the Big Three is challenging, you can get a lot of value out of practicing your story telling skills on sample questions. You may refer to [my list of 30 questions](https://github.com/yangshun/tech-interview-handbook/blob/main/apps/website/contents/apps/website/contents/behavioral-interview-questions.md) which were collated across top tech companies for this. Also, going through this process will help you identify if there are significant gaps in your story catalog centered around specific signal areas. For example, perhaps you need more stories around past mistakes or leadership moments.
 
 This is a natural place to use chatbots: prompt an LLM to ask you these questions and give you feedback on your responses. Also encourage the AI to ask you follow up questions.
 

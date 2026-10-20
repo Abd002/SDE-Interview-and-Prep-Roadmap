@@ -189,7 +189,7 @@ Some candidates might see the problem here and think that they can solve this vi
 
 ##### Approach
 
-This is a canonical use case for an [Inverted Index](/learn/system-design/deep-dives/elasticsearch#inverted-index). You can read more about [inverted indices](/learn/system-design/deep-dives/elasticsearch#inverted-index) in the linked Deep Dive for Elasticsearch, but the most important idea behind an inverted index is that we can create a dictionary which maps keywords to the documents that contain them. In this case, we'll create a map from keywords to posts!
+This is a canonical use case for an [Inverted Index](https://www.hellointerview.com/learn/system-design/deep-dives/elasticsearch#inverted-index). You can read more about [inverted indices](https://www.hellointerview.com/learn/system-design/deep-dives/elasticsearch#inverted-index) in the linked Deep Dive for Elasticsearch, but the most important idea behind an inverted index is that we can create a dictionary which maps keywords to the documents that contain them. In this case, we'll create a map from keywords to posts!
 
 ![](images/1c2c9b583c24.svg)
 
@@ -243,7 +243,7 @@ A different approach would be to have two separate indexes: one sorted by the cr
 
 For the creation index keys, we can use a standard Redis list. We're always going to appending to this list and our queries will only be taking from the last elements.
 
-For the likes index, each key can use a [Redis sorted set](/learn/system-design/deep-dives/redis#redis-for-leaderboards). The sorted set allows us to keep a list of items ordered by a score in the same way that a priority queue or sorted list might work, with the same time complexity of insertions and queries.
+For the likes index, each key can use a [Redis sorted set](https://www.hellointerview.com/learn/system-design/deep-dives/redis#redis-for-leaderboards). The sorted set allows us to keep a list of items ordered by a score in the same way that a priority queue or sorted list might work, with the same time complexity of insertions and queries.
 
 When a new post is created, we'll add it to both indexes for every keyword it contains. When a like event happens, we'll update the score in our sorted set for the likes index.
 
@@ -276,7 +276,7 @@ Caching sticks out here as the obvious tool for us! Any time we can tolerate sta
 
 Caching is a powerful tool to use for systems where we need to scale reads. Read our breakdown on this pattern for more strategies when you're designing a system for heavy read traffic.
 
-[Learn This Pattern](/learn/system-design/patterns/scaling-reads)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-reads)
 
 ### 
 
@@ -370,7 +370,7 @@ Scaling Ingestion
 
 Scaling writes is a frequent deep-dive question across interviews. It's good to have a toolkit to use for handling these scenarios. In our Scaling Writes pattern breakdown, we walk you through the options for handling these scenarios.
 
-[Learn This Pattern](/learn/system-design/patterns/scaling-writes)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-writes)
 
 #### Like Event
 
@@ -404,7 +404,7 @@ But this isn't without a tradeoff! This would mean our index is *inherently stal
 
 If we want to retrieve N posts for a given query, we grab the top N\*2 posts from the Like index. For each post in that list, we query the Like Service for the up-to-date like count. Then we sort using that fresh like count before returning to the user.
 
-In this case our storage is an approximation but our end result is precise - it has the most recent data. This style of [two-stage architecture, where we have an approximately correct service that is backed by a more expensive re-ranking](/learn/ml-system-design/patterns/recommendation-systems#the-two-stage-architecture) is very common in information retrieval and recommendation systems.
+In this case our storage is an approximation but our end result is precise - it has the most recent data. This style of [two-stage architecture, where we have an approximately correct service that is backed by a more expensive re-ranking](https://www.hellointerview.com/learn/ml-system-design/patterns/recommendation-systems#the-two-stage-architecture) is very common in information retrieval and recommendation systems.
 
 ![](images/02cc8d45c3e0.svg)
 
@@ -471,4 +471,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: Yelp](/learn/system-design/problem-breakdowns/yelp)
+[Next: Yelp](https://www.hellointerview.com/learn/system-design/problem-breakdowns/yelp)

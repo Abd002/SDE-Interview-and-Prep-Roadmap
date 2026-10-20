@@ -86,7 +86,7 @@ For data processing system design questions like this one, it helps to start by 
 1. **Input**: Seed URLs to start crawling from.
 2. **Output**: Text data extracted from web pages.
 
-### [Data Flow](/learn/system-design/in-a-hurry/delivery#optional-data-flow-5-minutes)
+### [Data Flow](https://www.hellointerview.com/learn/system-design/in-a-hurry/delivery#optional-data-flow-5-minutes)
 
 The data flow is the sequential series of steps we'll cover in order to get from the inputs to our system to the outputs. Clarifying this flow early will help to align with our interviewer before the high-level design. For our crawler, we need to perform a sequence of steps before the page can be crawled:
 
@@ -411,4 +411,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: Ad Click Aggregator](/learn/system-design/problem-breakdowns/ad-click-aggregator)
+[Next: Ad Click Aggregator](https://www.hellointerview.com/learn/system-design/problem-breakdowns/ad-click-aggregator)

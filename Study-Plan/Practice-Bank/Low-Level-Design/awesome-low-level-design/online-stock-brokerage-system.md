@@ -2993,7 +2993,7 @@ func NewUser(userID, name, email string) *User {
 
 </details>
 
-<details><summary><b>csharp</b> (26 files)</summary>
+<details><summary><b>csharp</b> (25 files)</summary>
 
 
 **Commands/BuyStockCommand.cs**
@@ -3876,22 +3876,6 @@ class MarketOrderStrategy : IExecutionStrategy
         return true; // Market orders can always execute
     }
 }
-```
-
-
-**onlinestockbrokeragesystem.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

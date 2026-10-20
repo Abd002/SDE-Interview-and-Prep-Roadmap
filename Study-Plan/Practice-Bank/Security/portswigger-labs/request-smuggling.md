@@ -34,7 +34,7 @@ To solve the lab, perform a request smuggling attack that causes the victim's br
 
 <details><summary>Hint</summary>
 
-- Solving this lab requires a technique that we covered in the earlier [HTTP request smuggling materials](/web-security/request-smuggling/exploiting#using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect)
+- Solving this lab requires a technique that we covered in the earlier [HTTP request smuggling materials](https://portswigger.net/web-security/request-smuggling/exploiting#using-http-request-smuggling-to-turn-an-on-site-redirect-into-an-open-redirect)
 - You need to poison the connection immediately before the victim's browser attempts to import a JavaScript resource. Otherwise, it will fetch your payload from the exploit server but not execute it. You may need to repeat the attack several times before you get the timing right.
 
 </details>
@@ -97,7 +97,7 @@ This lab is vulnerable to request smuggling because the front-end server downgra
 
 To solve the lab, use an HTTP/2-exclusive request smuggling vector to gain access to another user's account. The victim accesses the home page every 15 seconds.
 
-If you're not familiar with Burp's exclusive features for HTTP/2 testing, please refer to [the documentation](/burp/documentation/desktop/http2) for details on how to use them.
+If you're not familiar with Burp's exclusive features for HTTP/2 testing, please refer to [the documentation](https://portswigger.net/burp/documentation/desktop/http2) for details on how to use them.
 
 <details><summary>Hint</summary>
 
@@ -107,7 +107,7 @@ To inject newlines into HTTP/2 headers, use the Inspector to drill down into the
 
 <details><summary>Hint</summary>
 
-We covered some ways you can capture other users' requests via request smuggling in a [previous lab](/web-security/request-smuggling/exploiting#capturing-other-users-requests).
+We covered some ways you can capture other users' requests via request smuggling in a [previous lab](https://portswigger.net/web-security/request-smuggling/exploiting#capturing-other-users-requests).
 
 </details>
 
@@ -167,7 +167,7 @@ https://www.youtube.com/watch?v=W3BGHKyf8RY
 
 This lab is vulnerable to request smuggling because the front-end server downgrades HTTP/2 requests and fails to adequately sanitize incoming headers.
 
-To solve the lab, delete the user `carlos` by using [response queue poisoning](/web-security/request-smuggling/advanced/response-queue-poisoning) to break into the admin panel at `/admin`. An admin user will log in approximately every 10 seconds.
+To solve the lab, delete the user `carlos` by using [response queue poisoning](https://portswigger.net/web-security/request-smuggling/advanced/response-queue-poisoning) to break into the admin panel at `/admin`. An admin user will log in approximately every 10 seconds.
 
 The connection to the back-end is reset every 10 requests, so don't worry if you get it into a bad state - just send a few normal requests to get a fresh connection.
 
@@ -216,11 +216,11 @@ To inject newlines into HTTP/2 headers, use the Inspector to drill down into the
 
 This lab is vulnerable to request smuggling because the front-end server downgrades HTTP/2 requests and fails to adequately sanitize incoming header names. To solve the lab, access the admin panel at `/admin` as the `administrator` user and delete the user `carlos`.
 
-The front-end server doesn't reuse the connection to the back-end, so isn't vulnerable to classic request smuggling attacks. However, it is still vulnerable to [request tunnelling](/web-security/request-smuggling/advanced/request-tunnelling).
+The front-end server doesn't reuse the connection to the back-end, so isn't vulnerable to classic request smuggling attacks. However, it is still vulnerable to [request tunnelling](https://portswigger.net/web-security/request-smuggling/advanced/request-tunnelling).
 
 <details><summary>Hint</summary>
 
-The front-end server appends a series of [client authentication headers](/web-security/request-smuggling/exploiting#bypassing-client-authentication) to incoming requests. You need to find a way of leaking these.
+The front-end server appends a series of [client authentication headers](https://portswigger.net/web-security/request-smuggling/exploiting#bypassing-client-authentication) to incoming requests. You need to find a way of leaking these.
 
 </details>
 
@@ -263,7 +263,7 @@ The front-end server appends a series of [client authentication headers](/web-se
    X-SSL-CLIENT-CN: null
    X-FRONTEND-KEY: YOUR-UNIQUE-KEY`
 
-   Notice that these appear to be headers used for [client authentication](/web-security/request-smuggling/exploiting#bypassing-client-authentication).
+   Notice that these appear to be headers used for [client authentication](https://portswigger.net/web-security/request-smuggling/exploiting#bypassing-client-authentication).
 8. Change the request method to `HEAD` and edit your malicious header so that it smuggles a request for the admin panel. Include the three client authentication headers, making sure to update their values as follows:
 
    **Name**
@@ -304,7 +304,7 @@ This lab is vulnerable to request smuggling because the front-end server downgra
 
 To solve the lab, poison the cache in such a way that when the victim visits the home page, their browser executes `alert(1)`. A victim user will visit the home page every 15 seconds.
 
-The front-end server doesn't reuse the connection to the back-end, so isn't vulnerable to classic request smuggling attacks. However, it is still vulnerable to [request tunnelling](/web-security/request-smuggling/advanced/request-tunnelling).
+The front-end server doesn't reuse the connection to the back-end, so isn't vulnerable to classic request smuggling attacks. However, it is still vulnerable to [request tunnelling](https://portswigger.net/web-security/request-smuggling/advanced/request-tunnelling).
 
 <details><summary>Official solution</summary>
 
@@ -503,7 +503,7 @@ To solve the lab:
 
 <details><summary>Hint</summary>
 
-This lab is a client-side variation of a technique we covered in a [previous request smuggling lab](/web-security/request-smuggling/exploiting#capturing-other-users-requests).
+This lab is a client-side variation of a technique we covered in a [previous request smuggling lab](https://portswigger.net/web-security/request-smuggling/exploiting#capturing-other-users-requests).
 
 </details>
 

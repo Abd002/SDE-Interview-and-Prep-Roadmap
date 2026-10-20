@@ -15,7 +15,7 @@ To solve the lab, use a WebSocket message to trigger an `alert()` popup in the s
 
 <details><summary>Hint</summary>
 
-- If you're struggling to bypass the XSS filter, try out our [XSS labs](/web-security/cross-site-scripting).
+- If you're struggling to bypass the XSS filter, try out our [XSS labs](https://portswigger.net/web-security/cross-site-scripting).
 - Sometimes you can bypass IP-based restrictions using HTTP headers like `X-Forwarded-For`.
 
 </details>

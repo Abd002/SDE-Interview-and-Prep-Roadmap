@@ -179,11 +179,11 @@ Action: c forks d
                                a
                                └── c
                                    └── d
-Action: d forks e
+Action: c forks e
                                a
                                └── c
-                                   └── d
-                                       └── e
+                                   ├── d
+                                   └── e
 ```
 
 </details>
@@ -253,13 +253,13 @@ Action: a forks b
 Action: b EXITS
 Action: a forks c
 Action: a forks d
-Action: d forks e
+Action: c forks e
 
                         Final Process Tree:
                                a
                                ├── c
+                               │   └── e
                                └── d
-                                   └── e
 ```
 
 </details>

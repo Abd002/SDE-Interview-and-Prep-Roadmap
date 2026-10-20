@@ -269,7 +269,7 @@ This is pretty sizeable number of queries per second. We clearly need to think a
 
 Local delivery services like Gopuff demonstrate classic **scaling reads** patterns where inventory queries vastly outnumber actual purchases. With 20k queries/second for availability checks but only occasional inventory updates, aggressive caching with short TTLs becomes critical.
 
-[Learn This Pattern](/learn/system-design/patterns/scaling-reads)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/scaling-reads)
 
 ### 
 
@@ -341,4 +341,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: Ticketmaster](/learn/system-design/problem-breakdowns/ticketmaster)
+[Next: Ticketmaster](https://www.hellointerview.com/learn/system-design/problem-breakdowns/ticketmaster)

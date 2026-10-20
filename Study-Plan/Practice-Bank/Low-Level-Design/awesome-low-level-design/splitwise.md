@@ -2141,7 +2141,7 @@ func NewUser(id, name, email string) *User {
 
 </details>
 
-<details><summary><b>csharp</b> (14 files)</summary>
+<details><summary><b>csharp</b> (13 files)</summary>
 
 
 **Models/BalanceSheet.cs**
@@ -2763,22 +2763,6 @@ abstract class SplitStrategy
 {
     public abstract List<Split> CalculateSplits(double totalAmount, User paidBy, List<User> participants, List<double> splitValues);
 }
-```
-
-
-**splitwise.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

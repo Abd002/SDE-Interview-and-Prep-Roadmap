@@ -66,7 +66,7 @@ You have a single apple.
 
 This function should use the conditional operator.
 
-[Show Hint](javascript:void(0))
+Show Hint
 
 Hint: It’s okay to return a C-style string literal from a function as a `std::string_view`.
 

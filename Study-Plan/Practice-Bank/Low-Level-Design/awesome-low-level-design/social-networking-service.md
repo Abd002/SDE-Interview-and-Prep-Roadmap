@@ -2105,7 +2105,7 @@ func (u *User) GetPosts() []*Post {
 
 </details>
 
-<details><summary><b>csharp</b> (17 files)</summary>
+<details><summary><b>csharp</b> (16 files)</summary>
 
 
 **Models/Comment.cs**
@@ -2613,22 +2613,6 @@ interface INewsFeedGenerationStrategy
 {
     List<Post> GenerateFeed(User user);
 }
-```
-
-
-**socialnetworkingservice.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

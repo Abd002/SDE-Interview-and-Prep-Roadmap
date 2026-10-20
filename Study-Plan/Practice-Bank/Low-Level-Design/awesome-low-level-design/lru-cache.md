@@ -904,7 +904,7 @@ func Run() {
 
 </details>
 
-<details><summary><b>csharp</b> (6 files)</summary>
+<details><summary><b>csharp</b> (5 files)</summary>
 
 
 **DoublyLinkedList.cs**
@@ -1086,22 +1086,6 @@ class Node<K, V>
 5. The addToHead, removeNode, moveToHead, and removeTail methods are helper methods to manipulate the doubly linked list.
 6. The synchronized keyword is used on the get and put methods to ensure thread safety, allowing concurrent access from multiple threads.
 7. The **LRUCacheDemo** class demonstrates the usage of the LRU cache by creating an instance of LRUCache with a capacity of 3, performing various put and get operations, and printing the results.
-```
-
-
-**lrucache.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

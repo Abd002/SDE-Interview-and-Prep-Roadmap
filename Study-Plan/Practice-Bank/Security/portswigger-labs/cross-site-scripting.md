@@ -407,7 +407,7 @@ Your solution must not require any user interaction. Manually causing `print()` 
 3. Open Burp's browser and use the search function in the lab. Send the resulting request to Burp Intruder.
 4. In Burp Intruder, replace the value of the search term with: `<>`
 5. Place the cursor between the angle brackets and click **Add §** to create a payload position. The value of the search term should now look like: `<§§>`
-6. Visit the [XSS cheat sheet](/web-security/cross-site-scripting/cheat-sheet) and click **Copy
+6. Visit the [XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet) and click **Copy
    tags to clipboard**.
 7. In the **Payloads** side panel, under **Payload configuration**, click **Paste** to paste the list of tags into the payloads list. Click  **Start attack**.
 8. When the attack is finished, review the results. Note that most payloads caused a `400` response, but the `body` payload caused a `200` response.
@@ -415,7 +415,7 @@ Your solution must not require any user interaction. Manually causing `print()` 
 
    `<body%20=1>`
 10. Place the cursor before the `=` character and click **Add §** to create a payload position. The value of the search term should now look like: `<body%20§§=1>`
-11. Visit the [XSS cheat sheet](/web-security/cross-site-scripting/cheat-sheet) and click
+11. Visit the [XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet) and click
     **Copy events to clipboard**.
 12. In the **Payloads** side panel, under **Payload configuration**, click **Clear** to remove the previous payloads. Then click **Paste** to paste the list of attributes into the payloads list. Click  **Start attack**.
 13. When the attack is finished, review the results. Note that most payloads caused a `400` response, but the `onresize` payload caused a `200` response.
@@ -649,7 +649,7 @@ To solve the lab, perform a cross-site scripting attack that calls the `alert()`
 3. Open Burp's browser and use the search function in the lab. Send the resulting request to Burp Intruder.
 4. In the request template, replace the value of the search term with: `<>`
 5. Place the cursor between the angle brackets and click **Add §** to create a payload position. The value of the search term should now be: `<§§>`
-6. Visit the [XSS cheat sheet](/web-security/cross-site-scripting/cheat-sheet) and click **Copy tags to clipboard**.
+6. Visit the [XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet) and click **Copy tags to clipboard**.
 7. In Burp Intruder, in the **Payloads** side panel, click **Paste** to paste the list of tags into the payloads list. Click  **Start attack**.
 8. When the attack is finished, review the results. Observe that all payloads caused a `400` response, except for the ones using the `<svg>`, `<animatetransform>`, `<title>`, and `<image>` tags, which received a `200` response.
 9. Go back to the **Intruder** tab and replace your search term with:
@@ -658,7 +658,7 @@ To solve the lab, perform a cross-site scripting attack that calls the `alert()`
 10. Place the cursor before the `=` character and click **Add §** to create a payload position. The value of the search term should now be:
 
     `<svg><animatetransform%20§§=1>`
-11. Visit the [XSS cheat sheet](/web-security/cross-site-scripting/cheat-sheet) and click **Copy events to clipboard**.
+11. Visit the [XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet) and click **Copy events to clipboard**.
 12. In Burp Intruder, in the **Payloads** side panel, click **Clear** to remove the previous payloads. Then click
     **Paste** to paste the list of attributes into the payloads list. Click  **Start attack**.
 13. When the attack is finished, review the results. Note that all payloads caused a `400` response, except for the `onbegin` payload, which caused a
@@ -979,7 +979,7 @@ Some users will notice that there is an alternative solution to this lab that do
 
 <details><summary>Official solution</summary>
 
-1. Using Burp Suite Professional, go to the [Collaborator](/burp/documentation/desktop/tools/collaborator) tab.
+1. Using Burp Suite Professional, go to the [Collaborator](https://portswigger.net/burp/documentation/desktop/tools/collaborator) tab.
 2. Click "Copy to clipboard" to copy a unique Burp Collaborator payload to your clipboard.
 3. Submit the following payload in a blog comment, inserting your Burp Collaborator subdomain where indicated:
 
@@ -997,7 +997,7 @@ Some users will notice that there is an alternative solution to this lab that do
 
 #### Alternative solution
 
-Alternatively, you could adapt the attack to make the victim post their credentials within a blog comment by [exploiting the XSS to perform CSRF](/web-security/cross-site-scripting/exploiting/lab-perform-csrf). However, this is far less subtle because it exposes the username and password publicly, and also discloses evidence that the attack was performed.
+Alternatively, you could adapt the attack to make the victim post their credentials within a blog comment by [exploiting the XSS to perform CSRF](https://portswigger.net/web-security/cross-site-scripting/exploiting/lab-perform-csrf). However, this is far less subtle because it exposes the username and password publicly, and also discloses evidence that the attack was performed.
 
 </details>
 
@@ -1080,7 +1080,7 @@ Some users will notice that there is an alternative solution to this lab that do
 
 <details><summary>Official solution</summary>
 
-1. Using Burp Suite Professional, go to the [Collaborator](/burp/documentation/desktop/tools/collaborator) tab.
+1. Using Burp Suite Professional, go to the [Collaborator](https://portswigger.net/burp/documentation/desktop/tools/collaborator) tab.
 2. Click "Copy to clipboard" to copy a unique Burp Collaborator payload to your clipboard.
 3. Submit the following payload in a blog comment, inserting your Burp Collaborator subdomain where indicated:
 
@@ -1099,7 +1099,7 @@ Some users will notice that there is an alternative solution to this lab that do
 
 #### Alternative solution
 
-Alternatively, you could adapt the attack to make the victim post their session cookie within a blog comment by [exploiting the XSS to perform CSRF](/web-security/cross-site-scripting/exploiting/lab-perform-csrf). However, this is far less subtle because it exposes the cookie publicly, and also discloses evidence that the attack was performed.
+Alternatively, you could adapt the attack to make the victim post their session cookie within a blog comment by [exploiting the XSS to perform CSRF](https://portswigger.net/web-security/cross-site-scripting/exploiting/lab-perform-csrf). However, this is far less subtle because it exposes the cookie publicly, and also discloses evidence that the attack was performed.
 
 </details>
 

@@ -42,7 +42,7 @@ A composite primary key uses two or more columns together to uniquely identify e
 - [WHERE](https://www.geeksforgeeks.org/sql/sql-where-clause/) filters individual rows before grouping or aggregation, so it can’t use aggregate functions like SUM or COUNT; it’s best for narrowing raw data early (e.g., a date range or status).
 - [HAVING](https://www.geeksforgeeks.org/sql/sql-having-clause-with-examples/) filters the resulting groups after GROUP BY, so it’s meant for conditions on aggregates (e.g., groups with totals above a threshold).
 
-****Example:****
+**Example:**
 
 ```
 SELECT customer_id, COUNT(*) AS orders_2025  
@@ -74,12 +74,12 @@ A [CTE (Common Table Expression)](https://www.geeksforgeeks.org/sql/cte-in-sql/)
 
 [Normalization](https://www.geeksforgeeks.org/dbms/introduction-of-database-normalization/) organizes relational data to minimize redundancy and prevent update/insert/delete anomalies by splitting tables based on dependencies while preserving meaning.
 
-- ****1NF:**** Each column contains atomic values, and there are no repeating groups.
-- ****2NF:**** Meets 1NF and removes partial dependencies on a composite primary key.
-- ****3NF:**** Meets 2NF and removes transitive dependencies.
-- ****BCNF:**** Every determinant must be a candidate key.
-- ****4NF:**** Removes multi-valued dependencies.
-- ****5NF (PJNF):**** Removes join dependencies to avoid data redundancy.
+- **1NF:** Each column contains atomic values, and there are no repeating groups.
+- **2NF:** Meets 1NF and removes partial dependencies on a composite primary key.
+- **3NF:** Meets 2NF and removes transitive dependencies.
+- **BCNF:** Every determinant must be a candidate key.
+- **4NF:** Removes multi-valued dependencies.
+- **5NF (PJNF):** Removes join dependencies to avoid data redundancy.
 
 ### 12. What is the difference between UNION and UNION ALL?
 
@@ -91,7 +91,7 @@ A [CTE (Common Table Expression)](https://www.geeksforgeeks.org/sql/cte-in-sql/)
 
 ### 13. How do clustered and non‑clustered indexes differ ?
 
-| ****Clustered Index**** | ****Non-Clustered Index**** |
+| **Clustered Index** | **Non-Clustered Index** |
 | --- | --- |
 | Stores table rows in the physical order of the index key. | Stores index data separately from the table with pointers to rows. |
 | Only one clustered index is allowed per table. | Multiple non-clustered indexes can be created on a table. |
@@ -109,7 +109,7 @@ Pattern matching in SQL is performed using the [LIKE operator](https://www.geeks
 
 A running total is calculated using the SUM() [window function](https://www.geeksforgeeks.org/sql/window-functions-in-sql/) with the OVER() clause. It adds each row's value to the cumulative total while keeping individual rows.
 
-****Example:****
+**Example:**
 
 ```
 SELECT  
@@ -129,7 +129,7 @@ This query calculates the cumulative sales total for each product in chronologic
 
 A [correlated subquery](https://www.geeksforgeeks.org/sql/sql-correlated-subqueries/) is a subquery that references columns from the outer query. It is executed once for each row processed by the outer query.
 
-****Example:**** Find employees whose salary is greater than the average salary of their department.
+**Example:** Find employees whose salary is greater than the average salary of their department.
 
 ```
 SELECT e.employee_id, e.name, e.salary, e.department_id  
@@ -141,20 +141,20 @@ WHERE e.salary > (
 );
 ```
 
-****Output:**** Returns employees whose salary is higher than the average salary of their department.
+**Output:** Returns employees whose salary is higher than the average salary of their department.
 
-### ****17. What are EXISTS and NOT EXISTS and how do they differ from IN?****
+### **17. What are EXISTS and NOT EXISTS and how do they differ from IN?**
 
 - [EXISTS](https://www.geeksforgeeks.org/sql/sql-exists/) returns TRUE if the subquery returns at least one row.
 - NOT EXISTS returns TRUE if the subquery returns no rows.
 - [IN](https://www.geeksforgeeks.org/sql/sql-between-in-operator/) checks whether a value exists in a list or the result of a subquery.
 
-****Difference:****
+**Difference:**
 
 - EXISTS and NOT EXISTS stop searching as soon as a matching row is found and work well with correlated subqueries.
 - IN compares a value against all values returned by the subquery and is best suited for small result sets.
 
-****Example:****
+**Example:**
 
 ```
 SELECT CustomerID  
@@ -166,13 +166,13 @@ WHERE EXISTS (
 );
 ```
 
-****Output:**** Returns customers who have placed at least one order.
+**Output:** Returns customers who have placed at least one order.
 
-### ****18. Explain anti-joins.****
+### **18. Explain anti-joins.**
 
 An anti-join returns rows from one table that do not have matching rows in another table. It is commonly implemented using NOT EXISTS or a LEFT JOIN with IS NULL.
 
-****Example:**** Find customers who have not placed any orders.
+**Example:** Find customers who have not placed any orders.
 
 ```
 SELECT c.CustomerID, c.CustomerName  
@@ -184,7 +184,7 @@ WHERE NOT EXISTS (
 );
 ```
 
-****Output:**** Returns customers who have not placed any orders.
+**Output:** Returns customers who have not placed any orders.
 
 ### 19. Explain the difference between RANK(), DENSE\_RANK() and ROW\_NUMBER()
 
@@ -236,16 +236,16 @@ To optimize a [slow query,](https://www.geeksforgeeks.org/sql/best-practices-for
 - Rewrite queries if needed (JOIN, UNION ALL)
 - Use pagination, caching or partitioning for large data
 
-### ****25. Explain database partitioning.****
+### **25. Explain database partitioning.**
 
 Database partitioning is the process of dividing a large table into smaller, manageable partitions while treating it as a single logical table. It improves query performance, simplifies maintenance and enhances scalability.
 
 Types:
 
-- ****Horizontal Partitioning****: Splits rows into different partitions.
-- ****Vertical Partitioning:**** Splits columns into separate tables.
+- **Horizontal Partitioning**: Splits rows into different partitions.
+- **Vertical Partitioning:** Splits columns into separate tables.
 
-### ****26. What strategies can protect a web application from SQL injection?****
+### **26. What strategies can protect a web application from SQL injection?**
 
 [SQL injection](https://www.geeksforgeeks.org/sql/sql-injection/) can be prevented by following these best practices:
 
@@ -259,10 +259,10 @@ Types:
 
 [SQL commands](https://www.geeksforgeeks.org/sql/basic-sql-commands/) are broadly classified into:
 
-- ****DDL (Data Definition Language):**** CREATE, ALTER, DROP, TRUNCATE.
-- ****DML (Data Manipulation Language):**** SELECT, INSERT, UPDATE, DELETE.
-- ****DCL (Data Control Language):**** GRANT, REVOKE.
-- ****TCL (Transaction Control Language):**** COMMIT, ROLLBACK, SAVEPOINT.
+- **DDL (Data Definition Language):** CREATE, ALTER, DROP, TRUNCATE.
+- **DML (Data Manipulation Language):** SELECT, INSERT, UPDATE, DELETE.
+- **DCL (Data Control Language):** GRANT, REVOKE.
+- **TCL (Transaction Control Language):** COMMIT, ROLLBACK, SAVEPOINT.
 
 ### 28. What is the purpose of the DEFAULT constraint?
 
@@ -274,12 +274,12 @@ The [DEFAULT constraint](https://www.geeksforgeeks.org/sql/sql-default-constrain
 
 ### 30. What are the different operators available in SQL?
 
-- ****Arithmetic Operators:**** +, -, \*, /, %
-- ****Comparison Operators:**** =, !=, <>, >, <, >=, <=
-- ****Logical Operators:**** AND, OR, NOT
-- ****Set Operators:**** UNION, INTERSECT, EXCEPT
-- ****Special Operators:**** BETWEEN, IN, LIKE, IS NULL
-- ****Concatenation Operators:****`||` (Oracle, PostgreSQL) or `+` (SQL Server) to combine strings.
+- **Arithmetic Operators:** +, -, \*, /, %
+- **Comparison Operators:** =, !=, <>, >, <, >=, <=
+- **Logical Operators:** AND, OR, NOT
+- **Set Operators:** UNION, INTERSECT, EXCEPT
+- **Special Operators:** BETWEEN, IN, LIKE, IS NULL
+- **Concatenation Operators:**`||` (Oracle, PostgreSQL) or `+` (SQL Server) to combine strings.
 
 ### 31. What is a SELF JOIN and when is it used?
 
@@ -293,9 +293,9 @@ LEFT JOIN Employees m
 ON e.ManagerID = m.EmployeeID;
 ```
 
-****Output:**** Returns each employee along with their manager's name.
+**Output:** Returns each employee along with their manager's name.
 
-### ****32. What is the purpose of the GROUP BY clause?****
+### **32. What is the purpose of the GROUP BY clause?**
 
 The [GROUP BY](https://www.geeksforgeeks.org/sql/sql-group-by/) clause is used to arrange identical data into groups. It is typically used with aggregate functions (such as COUNT, SUM, AVG) to perform calculations on each group rather than on the entire dataset.
 
@@ -313,10 +313,10 @@ The [GROUP BY](https://www.geeksforgeeks.org/sql/sql-group-by/) clause is used t
 
 [Indexes](https://www.geeksforgeeks.org/sql/sql-indexes/) are database objects that improve query performance by allowing faster retrieval of rows. They function like a book’s index, making it quicker to find specific data without scanning the entire table. However, indexes require additional storage and can slightly slow down data modification operations. Types of Indexes:
 
-- ****Clustered Index:**** Sorts and stores data rows in order of the key (only one per table).
-- ****Non-Clustered Index:**** Separate structure with pointers to data rows (can be many per table).
-- ****Unique Index:**** Ensures no duplicate values.
-- ****Composite Index:**** Index on multiple columns.
+- **Clustered Index:** Sorts and stores data rows in order of the key (only one per table).
+- **Non-Clustered Index:** Separate structure with pointers to data rows (can be many per table).
+- **Unique Index:** Ensures no duplicate values.
+- **Composite Index:** Index on multiple columns.
 
 ### 35. What is the difference between DELETE and TRUNCATE commands?
 
@@ -339,12 +339,12 @@ The [GROUP BY](https://www.geeksforgeeks.org/sql/sql-group-by/) clause is used t
 
 Common constraints include:
 
-- ****NOT NULL:**** Ensures a column cannot have NULL values.
-- ****UNIQUE:**** Ensures all values in a column are distinct.
-- ****PRIMARY KEY:**** Uniquely identifies each row in a table.
-- ****FOREIGN KEY:**** Ensures referential integrity by linking to a primary key in another table.
-- ****CHECK:**** Ensures that all values in a column satisfy a specific condition.
-- ****DEFAULT:**** Sets a default value for a column when no value is specified.
+- **NOT NULL:** Ensures a column cannot have NULL values.
+- **UNIQUE:** Ensures all values in a column are distinct.
+- **PRIMARY KEY:** Uniquely identifies each row in a table.
+- **FOREIGN KEY:** Ensures referential integrity by linking to a primary key in another table.
+- **CHECK:** Ensures that all values in a column satisfy a specific condition.
+- **DEFAULT:** Sets a default value for a column when no value is specified.
 
 ### 38. What is a cursor in SQL?
 
@@ -352,17 +352,17 @@ A [cursor](https://www.geeksforgeeks.org/sql/what-is-cursor-in-sql/) is a databa
 
 Types of Cursors (SQL Server):
 
-- ****STATIC:**** Snapshot of result set, does not reflect changes.
-- ****DYNAMIC:**** Reflects all changes made while the cursor is open.
-- ****FORWARD\_ONLY:**** Can only move forward through the result set.
-- ****KEYSET:**** Uses a key to fetch rows; changes to non-key columns are visible.
+- **STATIC:** Snapshot of result set, does not reflect changes.
+- **DYNAMIC:** Reflects all changes made while the cursor is open.
+- **FORWARD\_ONLY:** Can only move forward through the result set.
+- **KEYSET:** Uses a key to fetch rows; changes to non-key columns are visible.
 
 ### 39. What is a trigger in SQL?
 
 A [trigger](https://www.geeksforgeeks.org/sql/sql-trigger-student-database/) is a set of SQL statements that automatically execute in response to certain events on a table, such as INSERT, UPDATE or DELETE. Triggers help maintain data consistency, enforce business rules and implement complex integrity constraints.
 
-- ****Types:**** BEFORE or AFTER triggers (depending on DB).
-- ****Uses:**** Enforce business rules, maintain audit logs, check data consistency.
+- **Types:** BEFORE or AFTER triggers (depending on DB).
+- **Uses:** Enforce business rules, maintain audit logs, check data consistency.
 
 ### 40. What is the purpose of the SQL SELECT statement?
 
@@ -407,18 +407,18 @@ The [ALTER](https://www.geeksforgeeks.org/sql/sql-alter-add-drop-modify/) comman
 
 Data integrity refers to the accuracy, consistency and reliability of the data stored in the database. SQL databases maintain data integrity through several mechanisms:
 
-- ****Constraints:**** Ensuring that certain conditions are always met. For example, NOT NULL ensures a column cannot have missing values, FOREIGN KEY ensures a valid relationship between tables and UNIQUE ensures no duplicate values.
-- ****Transactions:**** Ensuring that a series of operations either all succeed or all fail, preserving data consistency.
-- ****Triggers:**** Automatically enforcing rules or validations before or after changes to data.
-- ****Normalization:**** Organizing data into multiple related tables to minimize redundancy and prevent anomalies.
-- ****Cascading actions:**** Foreign keys can enforce integrity with ON DELETE CASCADE and ON UPDATE CASCADE, automatically updating or removing related rows.
+- **Constraints:** Ensuring that certain conditions are always met. For example, NOT NULL ensures a column cannot have missing values, FOREIGN KEY ensures a valid relationship between tables and UNIQUE ensures no duplicate values.
+- **Transactions:** Ensuring that a series of operations either all succeed or all fail, preserving data consistency.
+- **Triggers:** Automatically enforcing rules or validations before or after changes to data.
+- **Normalization:** Organizing data into multiple related tables to minimize redundancy and prevent anomalies.
+- **Cascading actions:** Foreign keys can enforce integrity with ON DELETE CASCADE and ON UPDATE CASCADE, automatically updating or removing related rows.
 - These measures collectively ensure that the data remains reliable and meaningful over time.
 
 ### 48. How does the CASE statement work in SQL?
 
 The [CASE](https://www.geeksforgeeks.org/sql/sql-case-statement/) statement is SQL’s way of implementing conditional logic in queries. It evaluates conditions and returns a value based on the first condition that evaluates to true. If no condition is met, it can return a default value using the ELSE clause.
 
-****Example:****
+**Example:**
 
 ```
 SELECT ID,    
@@ -434,7 +434,7 @@ FROM Employees;
 
 The [COALESCE function](https://www.geeksforgeeks.org/sql/use-of-coalesce-function-in-sql-server/) returns the first non-NULL value from a list of expressions. It’s commonly used to provide default values or handle missing data gracefully.
 
-****Example:****
+**Example:**
 
 ```
 SELECT COALESCE(NULL, NULL, 'Default Value') AS Result;
@@ -442,14 +442,14 @@ SELECT COALESCE(NULL, NULL, 'Default Value') AS Result;
 
 ### 50. What are the differences between SQL’s COUNT() and SUM() functions?
 
-| ****COUNT()**** | ****SUM()**** |
+| **COUNT()** | **SUM()** |
 | --- | --- |
 | Counts number of rows or non-NULL values | Adds all numeric values in a column |
 | **`Query:`** SELECT COUNT(\*) FROM Orders;<br> | **`Query:`** SELECT SUM(TotalAmount) FROM Orders; |
 
 ### 51. What is the difference between the NVL and NVL2 functions?
 
-| ****NVL()**** | ****NVL2()**** |
+| **NVL()** | **NVL2()** |
 | --- | --- |
 | Replaces NULL with a given value | Returns one value if NOT NULL, another if NULL |
 | Takes 2 arguments | Takes 3 arguments |
@@ -459,16 +459,16 @@ SELECT COALESCE(NULL, NULL, 'Default Value') AS Result;
 
 [Scalar functions](https://www.geeksforgeeks.org/sql/sql-functions-aggregate-scalar-functions/) operate on individual values and return a single value as a result. They are often used for formatting or converting data. Common examples include:
 
-- ****LEN():**** Returns the length of a string.
-- ****ROUND():**** Rounds a numeric value.
-- ****CONVERT():**** Converts a value from one data type to another.
+- **LEN():** Returns the length of a string.
+- **ROUND():** Rounds a numeric value.
+- **CONVERT():** Converts a value from one data type to another.
 
 ### 53. What happens if you use COUNT() on NULLs?
 
 - COUNT(column) ignores NULL values and only counts non-NULL entries.
 - COUNT(\*) counts all rows, including those with NULL values in columns.
 
-****Example:****
+**Example:**
 
 ```
 SELECT Name, ROW_NUMBER() OVER (ORDER BY Salary DESC) AS RowNum    
@@ -479,7 +479,7 @@ FROM Employees;
 
 Window functions perform calculations across a group of related rows while keeping each row separate. They are used for tasks like running totals, rankings and moving averages.
 
-#### ****Example:**** Calculating a running total
+#### **Example:** Calculating a running total
 
 ```
 SELECT Name, Salary,   
@@ -489,7 +489,7 @@ FROM Employees;
 
 ### 55. What is the difference between an index and a key in SQL?
 
-| ****Index**** | ****Key**** |
+| **Index** | **Key** |
 | --- | --- |
 | Used to improve data retrieval speed | Used to enforce data integrity and relationships |
 | Physical database object | Logical concept |
@@ -500,7 +500,7 @@ FROM Employees;
 
 Indexing helps the database quickly find data without scanning the whole table, reducing time and improving query performance.
 
-****Example:****
+**Example:**
 
 ```
 CREATE INDEX idx_lastname ON Employees(LastName);  
@@ -511,12 +511,12 @@ The index on LastName lets the database quickly find all rows matching ‘Smith�
 
 ### 57. What are the trade-offs of using indexes in SQL databases?
 
-****Advantages****
+**Advantages**
 
 - Faster query performance, especially for SELECT queries with [WHERE](https://www.geeksforgeeks.org/sql/sql-where-clause/) clauses, JOIN conditions or ORDER BY clauses.
 - Improved sorting and filtering efficiency.
 
-****Disadvantages:****
+**Disadvantages:**
 
 - Increased storage space for the index structures.
 - Additional overhead for write operations (INSERT, UPDATE, DELETE), as indexes must be updated whenever the underlying data changes.
@@ -525,22 +525,22 @@ The index on LastName lets the database quickly find all rows matching ‘Smith�
 
 [Temporary tables](https://www.geeksforgeeks.org/sql/what-is-temporary-table-in-sql/) are tables that exist only for the duration of a session or a transaction. They are useful for storing intermediate results, simplifying complex queries, or performing operations on subsets of data without modifying the main tables.
 
-### ****59. What is a materialized view and how does it differ from a standard view?****
+### **59. What is a materialized view and how does it differ from a standard view?**
 
-****Standard View:****
+**Standard View:**
 
 - A virtual table defined by a query.
 - Does not store data; the underlying query is executed each time the view is referenced.
 - A standard view shows real-time data.
 
-****Materialized View:****
+**Materialized View:**
 
 - A physical table that stores the result of the query.
 - Data is precomputed and stored, making reads faster.
 - Requires periodic refreshes to keep data up to date.
 - materialized view is used to store aggregated sales data, updated nightly, for fast reporting.
 
-****In Oracle/Postgres, you use:****
+**In Oracle/Postgres, you use:**
 
 ```
 REFRESH MATERIALIZED VIEW my_view;
@@ -552,7 +552,7 @@ REFRESH MATERIALIZED VIEW my_view;
 
 A [sequence](https://www.geeksforgeeks.org/sql/sql-sequences/) is a database object that generates a series of unique numeric values. It’s often used to produce unique identifiers for primary keys or other columns requiring sequential values.
 
-****Example:****
+**Example:**
 
 ```
 CREATE SEQUENCE seq_emp_id START WITH 1 INCREMENT BY 1;  
@@ -564,7 +564,7 @@ SELECT NEXT VALUE FOR seq_emp_id; -- Returns 2
 
 The [EXCEPT operator](https://www.geeksforgeeks.org/sql/sql-except-clause/) is used to return rows from one query’s result set that are not present in another query’s result set. It effectively performs a set difference, showing only the data that is unique to the first query.
 
-****Example:****
+**Example:**
 
 ```
 SELECT ProductID FROM ProductsSold  
@@ -572,12 +572,12 @@ EXCEPT
 SELECT ProductID FROM ProductsReturned;
 ```
 
-****Use Case:****
+**Use Case:**
 
 - To find discrepancies between datasets.
 - To verify that certain data exists in one dataset but not in another.
 
-****Performance Considerations:****
+**Performance Considerations:**
 
 - EXCEPT works best when the datasets involved have appropriate indexing and when the result sets are relatively small.
 - Large datasets without indexes may cause slower performance because the database has to compare each row.
@@ -586,29 +586,29 @@ SELECT ProductID FROM ProductsReturned;
 
 Constraints enforce rules that the data must follow, preventing invalid or inconsistent data from being entered:
 
-- ****NOT NULL:**** Ensures that a column cannot contain NULL values.
-- ****UNIQUE:**** Ensures that all values in a column are distinct.
-- ****PRIMARY KEY:**** Combines NOT NULL and UNIQUE, guaranteeing that each row is uniquely identifiable.
-- ****FOREIGN KEY:**** Ensures referential integrity by requiring values in one table to match primary key values in another.
-- ****CHECK:**** Validates that values meet specific criteria (e.g., CHECK (Salary > 0)).
+- **NOT NULL:** Ensures that a column cannot contain NULL values.
+- **UNIQUE:** Ensures that all values in a column are distinct.
+- **PRIMARY KEY:** Combines NOT NULL and UNIQUE, guaranteeing that each row is uniquely identifiable.
+- **FOREIGN KEY:** Ensures referential integrity by requiring values in one table to match primary key values in another.
+- **CHECK:** Validates that values meet specific criteria (e.g., CHECK (Salary > 0)).
 
 By automatically enforcing these rules, constraints maintain data reliability and consistency.
 
 ### 63. What is the difference between a local and a global temporary table?
 
-****Local Temporary Table:****
+**Local Temporary Table:**
 
 - Prefixed with # (e.g., #TempTable).
 - Exists only within the session that created it.
 - Automatically dropped when the session ends.
 
-****Global Temporary Table:****
+**Global Temporary Table:**
 
 - Prefixed with ## (e.g., ##GlobalTempTable).
 - Visible to all sessions.
 - Dropped only when all sessions referencing it are closed.
 
-****Example:****
+**Example:**
 
 ```
 CREATE TABLE #LocalTemp (ID INT);  
@@ -624,7 +624,7 @@ The MERGE statement combines multiple operations INSERT, UPDATE and DELETE into 
 - Deleting rows from the target table based on conditions
 - In SQL Server, MERGE can cause concurrency issues (race conditions or deadlocks).
 
-****Example:****
+**Example:**
 
 ```
 MERGE INTO TargetTable T    
@@ -638,7 +638,7 @@ WHEN NOT MATCHED THEN
 
 ### 65. How can you handle duplicates in a query without using DISTINCT?
 
-****GROUP BY:**** Aggregate rows to eliminate duplicates
+**GROUP BY:** Aggregate rows to eliminate duplicates
 
 ```
 SELECT Column1, MAX(Column2)    
@@ -646,7 +646,7 @@ FROM TableName
 GROUP BY Column1;
 ```
 
-****ROW\_NUMBER():**** Assign a unique number to each row and filter by that
+**ROW\_NUMBER():** Assign a unique number to each row and filter by that
 
 ```
 WITH CTE AS (  
@@ -670,21 +670,21 @@ ACID ensures database transactions are reliable and maintain data integrity.
 
 - Atomicity: A transaction is completed entirely or not at all. If one operation fails, all changes are rolled back.  
   Example: A bank transfer fails if either debit or credit is unsuccessful.
-- ****Consistency:**** Ensures the database remains valid by following all rules and constraints.  
+- **Consistency:** Ensures the database remains valid by following all rules and constraints.  
   Example: Inventory quantity cannot become negative.
-- ****Isolation:**** Multiple transactions execute independently without affecting each other.  
+- **Isolation:** Multiple transactions execute independently without affecting each other.  
   Example: Two users cannot book the same seat simultaneously.
-- ****Durability:**** Once a transaction is committed, its changes are permanently saved, even after a system failure.  
+- **Durability:** Once a transaction is committed, its changes are permanently saved, even after a system failure.  
   Example: A confirmed order remains stored after a server restart.
 
 ### 67. What are the differences between isolation levels in SQL?
 
 Isolation levels control how transactions interact to maintain data consistency.
 
-- ****Read Uncommitted:**** Allows reading uncommitted data, which may cause dirty reads.
-- ****Read Committed:**** Reads only committed data, preventing dirty reads.
-- ****Repeatable Read:**** Ensures the same data remains unchanged during a transaction, preventing dirty and non-repeatable reads.
-- ****Serializable:**** Provides the highest isolation level, preventing dirty reads, non-repeatable reads, and phantom reads, but may reduce performance due to increased locking.
+- **Read Uncommitted:** Allows reading uncommitted data, which may cause dirty reads.
+- **Read Committed:** Reads only committed data, preventing dirty reads.
+- **Repeatable Read:** Ensures the same data remains unchanged during a transaction, preventing dirty and non-repeatable reads.
+- **Serializable:** Provides the highest isolation level, preventing dirty reads, non-repeatable reads, and phantom reads, but may reduce performance due to increased locking.
 
 ### 68. What is the purpose of the WITH (NOLOCK) hint in SQL Server?
 
@@ -692,7 +692,7 @@ Isolation levels control how transactions interact to maintain data consistency.
 - It can improve performance by reducing contention for locks, especially on large tables that are frequently updated.
 - Results may be inconsistent or unreliable, as the data read might change or be rolled back.
 
-****Example:****
+**Example:**
 
 ```
 SELECT *    
@@ -705,22 +705,22 @@ This query fetches data from the `Orders` table without waiting for other transa
 
 A deadlock occurs when two or more transactions wait indefinitely for each other to release resources.
 
-- ****Deadlock Detection & Retry:**** The database detects the deadlock, aborts one transaction and retries it later.
-- ****Reduce Lock Contention:**** Use indexes, optimize queries and keep transactions short.
-- ****Choose Appropriate Isolation Levels:**** Select suitable isolation levels to balance consistency and locking.
-- ****Consistent Resource Ordering:**** Access resources in the same order across transactions to avoid circular waits.
+- **Deadlock Detection & Retry:** The database detects the deadlock, aborts one transaction and retries it later.
+- **Reduce Lock Contention:** Use indexes, optimize queries and keep transactions short.
+- **Choose Appropriate Isolation Levels:** Select suitable isolation levels to balance consistency and locking.
+- **Consistent Resource Ordering:** Access resources in the same order across transactions to avoid circular waits.
 
 ### 70. What is a database snapshot and how is it used?
 
 Database Snapshot is a read-only copy of a database at a specific point in time.
 
-****Uses:****
+**Uses:**
 
 - Reporting on a consistent dataset.
 - Point-in-time recovery.
 - Testing without affecting the original database.
 
-****Example:****
+**Example:**
 
 ```
 CREATE DATABASE MySnapshot ON  
@@ -733,7 +733,7 @@ AS SNAPSHOT OF MyDatabase;
 
 ### 71. What are the differences between OLTP and OLAP systems?
 
-| ****OLTP (Online Transaction Processing)**** | ****OLAP (Online Analytical Processing)**** |
+| **OLTP (Online Transaction Processing)** | **OLAP (Online Analytical Processing)** |
 | --- | --- |
 | Handles simple, frequent transactions | Handles complex queries and data analysis |
 | Optimized for fast read and write operations | Optimized for read-heavy workloads and aggregation |
@@ -742,12 +742,12 @@ AS SNAPSHOT OF MyDatabase;
 
 ### 72. What is a live lock and how does it differ from a deadlock?
 
-****Live Lock****
+**Live Lock**
 
 - Occurs when two or more transactions keep responding to each other’s changes, but no progress is made.
 - Unlike a deadlock, the transactions are not blocked; they are actively running, but they cannot complete.
 
-****Deadlock****
+**Deadlock**
 
 - A deadlock occurs when two or more transactions are waiting on each other’s resources indefinitely, blocking all progress.
 - No progress can be made unless one of the transactions is terminated
@@ -756,12 +756,12 @@ AS SNAPSHOT OF MyDatabase;
 
 [Dynamic SQL](https://www.geeksforgeeks.org/sql/dynamic-sql/) is SQL code created and executed at runtime using variables or user input.
 
-****Advantages:****
+**Advantages:**
 
 - Builds flexible queries dynamically.
 - Useful for dynamic filtering, sorting, and table selection.
 
-****Risks:****
+**Risks:**
 
 - Vulnerable to SQL injection if inputs are not validated.
 - Harder to debug and maintain.
@@ -769,7 +769,7 @@ AS SNAPSHOT OF MyDatabase;
 
 ### 74. What is the difference between horizontal and vertical partitioning?
 
-| ****Horizontal Partitioning**** | ****Vertical Partitioning**** |
+| **Horizontal Partitioning** | **Vertical Partitioning** |
 | --- | --- |
 | Divides rows of a table based on column values | Divides columns of a table into separate parts |
 | Data is split row-wise (same columns, different rows) | Data is split column-wise (different columns) |
@@ -778,15 +778,15 @@ AS SNAPSHOT OF MyDatabase;
 
 ### 75. What are the considerations for indexing very large tables?
 
-- ****Index Frequently Used Columns:**** Create indexes on columns used in WHERE, JOIN and ORDER BY clauses. Avoid indexing every column.
-- ****Choose the Right Index Type:**** Use clustered indexes for primary keys and range queries, and non-clustered indexes for filtering and sorting.
-- ****Use Partitioned Indexes:**** Create local indexes for partitioned tables to improve performance.
-- ****Maintain Indexes:**** Rebuild fragmented indexes and perform maintenance during off-peak hours.
-- ****Monitor Performance:**** Analyze execution plans and remove unused indexes to reduce maintenance overhead.
+- **Index Frequently Used Columns:** Create indexes on columns used in WHERE, JOIN and ORDER BY clauses. Avoid indexing every column.
+- **Choose the Right Index Type:** Use clustered indexes for primary keys and range queries, and non-clustered indexes for filtering and sorting.
+- **Use Partitioned Indexes:** Create local indexes for partitioned tables to improve performance.
+- **Maintain Indexes:** Rebuild fragmented indexes and perform maintenance during off-peak hours.
+- **Monitor Performance:** Analyze execution plans and remove unused indexes to reduce maintenance overhead.
 
 ### 76. What is the difference between database sharding and partitioning?
 
-| ****Sharding**** | ****Partitioning**** |
+| **Sharding** | **Partitioning** |
 | --- | --- |
 | Splits database into multiple independent databases | Splits a table into parts within the same database |
 | Used for horizontal scaling across servers | Used for better performance and data management |
@@ -795,32 +795,32 @@ AS SNAPSHOT OF MyDatabase;
 
 ### 77. What are the best practices for writing optimized SQL queries?
 
-- ****Write Simple Queries:**** Keep SQL queries clear and avoid unnecessary complexity.
-- ****Filter Data Early:**** Use `WHERE` clauses to reduce the amount of data processed.
-- ****Avoid**** **`SELECT *`******:**** Retrieve only the required columns.
-- ****Use Indexes Effectively:**** Index frequently used columns in `WHERE`, `JOIN` and `ORDER BY` clauses.
-- ****Analyze Execution Plans:**** Identify and fix slow query operations.
-- ****Optimize Joins & Aggregations:**** Use appropriate joins and efficient `GROUP BY` operations.
-- ****Monitor Performance:**** Regularly review and tune queries as data grows.
+- **Write Simple Queries:** Keep SQL queries clear and avoid unnecessary complexity.
+- **Filter Data Early:** Use `WHERE` clauses to reduce the amount of data processed.
+- **Avoid** **`SELECT *`****:** Retrieve only the required columns.
+- **Use Indexes Effectively:** Index frequently used columns in `WHERE`, `JOIN` and `ORDER BY` clauses.
+- **Analyze Execution Plans:** Identify and fix slow query operations.
+- **Optimize Joins & Aggregations:** Use appropriate joins and efficient `GROUP BY` operations.
+- **Monitor Performance:** Regularly review and tune queries as data grows.
 
 ### 78. How can you monitor query performance in a production database?
 
-- ****Use Execution Plans:**** Identify bottlenecks and optimize query performance.
-- ****Analyze Wait Statistics:**** Detect delays caused by locks, I/O or CPU usage.
-- ****Use Monitoring Tools:**** Use tools like EXPLAIN, Query Store and Performance Schema to analyze queries.
-- ****Track Performance Metrics:**** Monitor query time, CPU usage and I/O to detect issues early.
-- ****Continuously Tune Queries:**** Optimize queries and update indexes as data and workloads grow.
+- **Use Execution Plans:** Identify bottlenecks and optimize query performance.
+- **Analyze Wait Statistics:** Detect delays caused by locks, I/O or CPU usage.
+- **Use Monitoring Tools:** Use tools like EXPLAIN, Query Store and Performance Schema to analyze queries.
+- **Track Performance Metrics:** Monitor query time, CPU usage and I/O to detect issues early.
+- **Continuously Tune Queries:** Optimize queries and update indexes as data and workloads grow.
 
 ### 79. What are the trade-offs of using indexing versus denormalization?
 
-| ****Indexing**** | ****Denormalization**** |
+| **Indexing** | **Denormalization** |
 | --- | --- |
 | Improves query performance by speeding up data retrieval. | Improves read performance by reducing joins. |
 | Does not duplicate data. | Introduces data redundancy. |
 | Slows insert, update, and delete operations. | Makes updates more complex due to redundant data. |
 | Requires additional storage for indexes. | Requires additional storage for duplicated data. |
 
-### ****80. How does SQL handle recursive queries?****
+### **80. How does SQL handle recursive queries?**
 
 SQL uses recursive CTEs to retrieve hierarchical or tree-structured data.
 
@@ -840,7 +840,7 @@ WITH RecursiveCTE (ID, ParentID, Depth) AS (
 SELECT * FROM RecursiveCTE;
 ```
 
-### ****81. What are the differences between transactional and analytical queries?****
+### **81. What are the differences between transactional and analytical queries?**
 
 | Transactional Queries | Analytical Queries |
 | --- | --- |
@@ -849,19 +849,19 @@ SELECT * FROM RecursiveCTE;
 | Mainly used in OLTP systems for routine operations. | Mainly used in OLAP systems for analysis and reporting. |
 | Help maintain data integrity in regular operations. | Help in decision-making by providing insights from data. |
 
-### ****82. How can you ensure data consistency across distributed databases?****
+### **82. How can you ensure data consistency across distributed databases?**
 
-- ****Distributed Transactions:**** Ensure all databases commit or roll back together (e.g., 2PC).
-- ****Eventual Consistency:**** Allow data to become consistent over time.
-- ****Conflict Resolution:**** Use timestamps or versioning to resolve conflicts.
-- ****Data Replication:**** Keep data synchronized across databases.
-- ****Audits & Validation:**** Regularly check and fix inconsistencies.
+- **Distributed Transactions:** Ensure all databases commit or roll back together (e.g., 2PC).
+- **Eventual Consistency:** Allow data to become consistent over time.
+- **Conflict Resolution:** Use timestamps or versioning to resolve conflicts.
+- **Data Replication:** Keep data synchronized across databases.
+- **Audits & Validation:** Regularly check and fix inconsistencies.
 
 ### 83. What is the purpose of the SQL PIVOT operator?
 
 The [PIVOT operator](https://www.geeksforgeeks.org/sql/pivot-and-unpivot-in-sql/) transforms rows into columns, making it easier to summarize or rearrange data for reporting.
 
-****Example:****
+**Example:**
 
 Converting a dataset that lists monthly sales into a format that displays each month as a separate column.
 
@@ -877,7 +877,7 @@ PIVOT (
 ) AS PivotTable;
 ```
 
-### ****84. What is a bitmap index and how does it differ from a B-tree index?****
+### **84. What is a bitmap index and how does it differ from a B-tree index?**
 
 | Bitmap Index | B-tree Index |
 | --- | --- |
@@ -886,20 +886,20 @@ PIVOT (
 | It is efficient for logical operations like AND, OR, NOT. | It is efficient for range-based queries. |
 | It is best for filtering and boolean conditions. | It is best for searching and sorting large datasets. |
 
-### ****85:**** Difference between blocking and deadlocking.
+### **85:** Difference between blocking and deadlocking.
 
-| ****Blocking**** | ****Deadlocking**** |
+| **Blocking** | **Deadlocking** |
 | --- | --- |
 | One transaction waits because another holds the lock | Two or more transactions wait for each other (circular wait) |
 | Resolves automatically after lock release | Needs detection and rollback to resolve |
 
 ### 86: Delete duplicate data from table only first data remains constant.
 
-****Managers :****
+**Managers :**
 
 ![Screenshot-2026-02-09-113921](images/79cf5144bb23.png)
 
-****Query:****
+**Query:**
 
 ```
 DELETE M1   
@@ -911,11 +911,11 @@ Where M2.Name = M1.Name AND M1.Id>M2.Id;
 
 ### 87 : Find the employee name using COALESCE() when First\_Name, Second\_Name, or Last\_Name may contain NULL values.
 
-****Employee Table:****
+**Employee Table:**
 
 ![Screenshot-2026-02-09-115018](images/2e91354c1a6b.png)
 
-****Query:****
+**Query:**
 
 ```
 SELECT ID, COALESCE(FName, SName, LName) as Name   
@@ -926,7 +926,7 @@ FROM employees;
 
 ### 88: Find employees hired in the last n months using the TIMESTAMPDIFF() function.
 
-****Query -****
+**Query -**
 
 ```
 Select *, TIMESTAMPDIFF (month, Hiredate, current_date()) as DiffMonth   
@@ -935,7 +935,7 @@ Where TIMESTAMPDIFF (month, Hiredate, current_date())
 Between 1 and 5 Order by Hiredate desc;
 ```
 
-****Output:****
+**Output:**
 
 ![Screenshot-2026-02-09-122141](images/56132754d6e5.png)
 

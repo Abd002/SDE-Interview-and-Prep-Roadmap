@@ -126,7 +126,7 @@ As the victim uses Chrome, we recommend also using Chrome (or Burp's built-in Ch
 
 <details><summary>Official solution</summary>
 
-1. Study the OAuth flow while proxying traffic through Burp. Using the same method as in the [previous lab](/web-security/oauth/lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect), identify that the `redirect_uri` is vulnerable to directory traversal. This enables you to redirect access tokens to arbitrary pages on the blog website.
+1. Study the OAuth flow while proxying traffic through Burp. Using the same method as in the [previous lab](https://portswigger.net/web-security/oauth/lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect), identify that the `redirect_uri` is vulnerable to directory traversal. This enables you to redirect access tokens to arbitrary pages on the blog website.
 2. Using Burp, audit the other pages on the blog website. Observe that the comment form is included as an `iframe` on each blog post. Look closer at the `/post/comment/comment-form` page in Burp and notice that it uses the `postMessage()` method to send the `window.location.href` property to its parent window. Crucially, it allows messages to be posted to any origin (`*`).
 3. From the proxy history, right-click on the `GET /auth?client_id=[...]` request and select "Copy URL". Go to the exploit server and create an `iframe` in which the `src` attribute is the URL you just copied. Use directory traversal to change the `redirect_uri` so that it points to the comment form. The result should look something like this:
 

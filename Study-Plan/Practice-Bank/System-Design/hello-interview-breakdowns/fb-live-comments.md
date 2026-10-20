@@ -222,7 +222,7 @@ There are two main ways we can implement this. Websockets and Server Sent Events
 
 Facebook Live Comments showcases the **real-time updates pattern** at massive scale. Whether it's broadcasting comments via Server-Sent Events, distributing updates through pub/sub systems, or coordinating across multiple servers, the same principles apply to any system requiring instant data delivery, from collaborative editing to live dashboards to gaming platforms.
 
-[Learn This Pattern](/learn/system-design/patterns/realtime-updates)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/realtime-updates)
 
 ### 
 
@@ -316,7 +316,7 @@ Since having a channel per live video would consume a lot resources (and may be 
 
 But there's still a problem. With round-robin load balancing, a server could end up with viewers subscribed to many different streams, forcing it to subscribe to many channels and replicating the inefficiency we tried to avoid.
 
-The solution is intelligent routing. A Layer 7 load balancer can use [consistent hashing](/learn/system-design/core-concepts/consistent-hashing) based on the liveVideoId to route viewers of the same video to the same server. By inspecting the request path or headers, NGINX or Envoy can ensure related viewers stay together. Alternatively, we can store a dynamic mapping of liveVideoId to server in a coordination service like [Zookeeper](/learn/system-design/deep-dives/zookeeper), giving us more flexibility at the cost of operational complexity.
+The solution is intelligent routing. A Layer 7 load balancer can use [consistent hashing](https://www.hellointerview.com/learn/system-design/core-concepts/consistent-hashing) based on the liveVideoId to route viewers of the same video to the same server. By inspecting the request path or headers, NGINX or Envoy can ensure related viewers stay together. Alternatively, we can store a dynamic mapping of liveVideoId to server in a coordination service like [Zookeeper](https://www.hellointerview.com/learn/system-design/deep-dives/zookeeper), giving us more flexibility at the cost of operational complexity.
 
 ###### Challenges
 
@@ -488,4 +488,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: YouTube Top K](/learn/system-design/problem-breakdowns/top-k)
+[Next: YouTube Top K](https://www.hellointerview.com/learn/system-design/problem-breakdowns/top-k)

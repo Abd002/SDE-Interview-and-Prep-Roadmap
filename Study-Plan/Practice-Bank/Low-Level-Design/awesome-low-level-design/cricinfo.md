@@ -3302,7 +3302,7 @@ func (s MatchStatus) String() string {
 
 </details>
 
-<details><summary><b>csharp</b> (31 files)</summary>
+<details><summary><b>csharp</b> (30 files)</summary>
 
 
 **CommentaryManager.cs**
@@ -4509,22 +4509,6 @@ class T20FormatStrategy : IMatchFormatStrategy
     public int GetTotalOvers() => 20;
     public string GetFormatName() => "T20";
 }
-```
-
-
-**cricinfo.csproj**
-
-```csproj
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
 ```
 
 </details>

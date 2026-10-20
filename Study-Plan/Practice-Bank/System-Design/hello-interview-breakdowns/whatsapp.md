@@ -91,13 +91,13 @@ We'll use this language to reason through the problem.
 
 ### [API or System Interface](https://www.hellointerview.com/learn/system-design/in-a-hurry/delivery#system-interface-2-minutes)
 
-Next, we'll want to think through the API of our system. Unlike a lot of other products where a REST API is probably appropriate, for a chat app, we're going to have high-frequency updates being both sent and received. This is a perfect use case for a [bi-directional socket connection](/learn/system-design/patterns/realtime-updates)!
+Next, we'll want to think through the API of our system. Unlike a lot of other products where a REST API is probably appropriate, for a chat app, we're going to have high-frequency updates being both sent and received. This is a perfect use case for a [bi-directional socket connection](https://www.hellointerview.com/learn/system-design/patterns/realtime-updates)!
 
 ###### Pattern: Real-time Updates
 
 WebSocket connections and real-time messaging demonstrate the broader **real-time updates pattern** used across many distributed systems. Whether it's chat messages, live dashboards, collaborative editing, or gaming, the same principles apply: persistent connections for low latency, pub/sub for scaling across servers, and careful state management for reliability.
 
-[Learn This Pattern](/learn/system-design/patterns/realtime-updates)
+[Learn This Pattern](https://www.hellointerview.com/learn/system-design/patterns/realtime-updates)
 
 For this interview, we'll use WebSockets (over TLS for security), although a custom protocol over a raw TLS-encrypted TCP connection would also work. The idea will be that users will open the app and connect to the server, opening this socket which will be used to send and receive commands which represent our API.
 
@@ -194,7 +194,7 @@ Now that we have a base to work with let's figure out how we can implement them 
 
 ### 1) Users should be able to start group chats with multiple participants (limit 100)
 
-For our first requirement, we need a way for a user to create a chat. We'll start with a simple service behind an L4 load balancer (we're using Websockets) which can write Chat metadata to a database. Let's use [DynamoDB](/learn/system-design/deep-dives/dynamodb) for fast key/value performance and scalability here, although we have lots of other options.
+For our first requirement, we need a way for a user to create a chat. We'll start with a simple service behind an L4 load balancer (we're using Websockets) which can write Chat metadata to a database. Let's use [DynamoDB](https://www.hellointerview.com/learn/system-design/deep-dives/dynamodb) for fast key/value performance and scalability here, although we have lots of other options.
 
 Can we use an L7 load balancer? In many cases, yes. There is wide support for Websockets in many modern L7 load balancers. But the important thing is that *we don't need any L7 capabilities for this service*. L7 load balancers shine when we want to, for instance, route traffic with specific paths or headers to different services. They are also helpful when we may want to spread HTTP requests across many servers even behind a single client connection. But neither of these apply here!
 
@@ -215,7 +215,7 @@ On the chat table, we'll usually just want to look up the details by the chat's 
 For the ChatParticipant table, we'll want to be able to (1) look up all participants for a given chat and (2) look up all chats for a given user.
 
 1. We can do this with a composite primary key where chatId is the partition key and participantId is the sort key. A Query on the chatId partition key will return all participants for a given chat.
-2. We'll need a [Global Secondary Index (GSI)](/learn/system-design/deep-dives/dynamodb#global-secondary-indexes) with participantId as the partition key and chatId as the sort key. This will allow us to efficiently query all chats for a given user. The GSI will automatically be kept in sync with the base table by DynamoDB.
+2. We'll need a [Global Secondary Index (GSI)](https://www.hellointerview.com/learn/system-design/deep-dives/dynamodb#global-secondary-indexes) with participantId as the partition key and chatId as the sort key. This will allow us to efficiently query all chats for a given user. The GSI will automatically be kept in sync with the base table by DynamoDB.
 
 Great! We got some chats. How about messages?
 
@@ -346,7 +346,7 @@ Adding more chat servers also introduces some new problems: now the sending and 
 
 Host Confusion
 
-The issue is one of of routing: we need to route messages to the right Chat Servers in order to deliver them. We have a few options here which are discussed in greatest depth in the [Realtime Updates lesson](/learn/system-design/patterns/realtime-updates).
+The issue is one of of routing: we need to route messages to the right Chat Servers in order to deliver them. We have a few options here which are discussed in greatest depth in the [Realtime Updates lesson](https://www.hellointerview.com/learn/system-design/patterns/realtime-updates).
 
 ### 
 
@@ -380,7 +380,7 @@ There are potential fixes that you might conceive, like creating "super topics" 
 
 Another approach for us to use is to always assign users to a specific Chat Server based on their user ID. If we do this correctly, we'll always know which Chat Server is responsible for a given user so, when we need to send them messages, we can do so directly.
 
-To do this we'll need to keep a central registry of how many Chat Servers we have, their addresses, and the which segments of a consistent hash space they own. We might use a service like [ZooKeeper](/learn/system-design/deep-dives/zookeeper) or Etcd to do this.
+To do this we'll need to keep a central registry of how many Chat Servers we have, their addresses, and the which segments of a consistent hash space they own. We might use a service like [ZooKeeper](https://www.hellointerview.com/learn/system-design/deep-dives/zookeeper) or Etcd to do this.
 
 When a request comes in, we'll connect them to the Chat Server they are assigned to based on their user id. When a new event is created, Chat Servers will connect directly with the Chat Server that "owns" that user id, then call an API which delivers a notification the connected user (if they're connected).
 
@@ -575,7 +575,7 @@ In practice, most production systems combine these strategies: heartbeats detect
 
 The simple answer is: **we don't**, or at least not directly.
 
-Out-of-order messages are a fact of life in distributed systems and engineering such that messages are processed in the exact order they were sent is actually a considerable amount of additional complexity. We'd need to have delays to ensure we have time for late messages to arrive and a re-ordering mechanism to handle them. You can see an example in our [Flink](/learn/system-design/deep-dives/flink) deep dive where Flink's Bounded Out-Of-Orderness Watermark Strategy effectively waits for late messages to arrive before processing them.
+Out-of-order messages are a fact of life in distributed systems and engineering such that messages are processed in the exact order they were sent is actually a considerable amount of additional complexity. We'd need to have delays to ensure we have time for late messages to arrive and a re-ordering mechanism to handle them. You can see an example in our [Flink](https://www.hellointerview.com/learn/system-design/deep-dives/flink) deep dive where Flink's Bounded Out-Of-Orderness Watermark Strategy effectively waits for late messages to arrive before processing them.
 
 But for apps like this, it's not how they work! Users would rather see new messages as quickly as possible than guarantee order. So what do we do?
 
@@ -611,7 +611,7 @@ First, when users connect to our Chat Servers, they are creating a new Websocket
 
 Second, if users are online *they can tell us*.
 
-So what can we do? We'll create a new table in DynamoDB which will keep track of the *last disconnect* for a given user. Whenever a user **disconnects** from a Chat Server, we'll update this value using the current timestamp. We can use DynamoDB's [conditional expressions](/learn/system-design/deep-dives/dynamodb#conditional-writes) (e.g., only update if the new timestamp is greater than the existing one) to ensure that two servers don't race each other and accidentally overwrite a more recent disconnect time.
+So what can we do? We'll create a new table in DynamoDB which will keep track of the *last disconnect* for a given user. Whenever a user **disconnects** from a Chat Server, we'll update this value using the current timestamp. We can use DynamoDB's [conditional expressions](https://www.hellointerview.com/learn/system-design/deep-dives/dynamodb#conditional-writes) (e.g., only update if the new timestamp is greater than the existing one) to ensure that two servers don't race each other and accidentally overwrite a more recent disconnect time.
 
 Next, we'll have a special request we send from a client who wants to request a "last seen" a given user.
 
@@ -703,4 +703,4 @@ Answer the question below to find your gaps.
 
 Mark as read
 
-[Next: Rate Limiter](/learn/system-design/problem-breakdowns/distributed-rate-limiter)
+[Next: Rate Limiter](https://www.hellointerview.com/learn/system-design/problem-breakdowns/distributed-rate-limiter)

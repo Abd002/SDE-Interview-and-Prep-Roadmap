@@ -135,7 +135,8 @@ def hw1_questions(src, out, title, source):
     body = re.sub(r'<li[^>]*>', '\n- ', body)
     body = re.sub(r'<code>(.*?)</code>', r'`\1`', body, flags=re.S)
     body = re.sub(r'<(strong|b)>(.*?)</\1>', r'**\2**', body, flags=re.S)
-    body = re.sub(r'<a [^>]*href="([^"]+)"[^>]*>(.*?)</a>', r'[\2](\1)', body, flags=re.S)
+    from urllib.parse import urljoin
+    body = re.sub(r'<a [^>]*href="([^"]+)"[^>]*>(.*?)</a>', lambda m: f'[{m.group(2)}]({urljoin(source, m.group(1))})', body, flags=re.S)
     body = re.sub(r'<br\s*/?>|</p>|<p[^>]*>', '\n\n', body)
     body = re.sub(r'<[^>]+>', '', body)
     body = html.unescape(body)

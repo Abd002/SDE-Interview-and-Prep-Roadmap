@@ -16,13 +16,13 @@ A user visits the home page roughly once a minute and their language is set to E
 This lab requires you to poison the cache with multiple malicious responses simultaneously and coordinate this with the victim's browsing behavior.
 
 1. With Burp running, load the website's home page.
-2. Use [Param Miner](/web-security/web-cache-poisoning#param-miner) to identify that the `X-Forwarded-Host` and `X-Original-URL` headers are supported.
+2. Use [Param Miner](https://portswigger.net/web-security/web-cache-poisoning#param-miner) to identify that the `X-Forwarded-Host` and `X-Original-URL` headers are supported.
 3. In Burp Repeater, experiment with the `X-Forwarded-Host` header and observe that it can be used to import an arbitrary JSON file instead of the `translations.json` file, which contains translations of UI texts.
 4. Notice that the website is vulnerable to DOM-XSS due to the way the `initTranslations()` function handles data from the JSON file for all languages except English.
 5. Go to the exploit server and edit the file name to match the path used by the vulnerable website:
 
    `/resources/json/translations.json`
-6. In the head, add the header `Access-Control-Allow-Origin: *` to enable [CORS](/web-security/cors/access-control-allow-origin).
+6. In the head, add the header `Access-Control-Allow-Origin: *` to enable [CORS](https://portswigger.net/web-security/cors/access-control-allow-origin).
 7. In the body, add malicious JSON that matches the structure used by the real translation file. Replace the value of one of the translations with a suitable XSS payload, for example:
 
    `{
@@ -85,7 +85,7 @@ Solving this lab requires multiple steps. First, you need to identify where the 
 
 1. With Burp running, load the website's home page.
 2. In Burp, go to "Proxy" > "HTTP history" and study the requests and responses that you generated. Find the `GET` request for the home page.
-3. With the [Param Miner](/web-security/web-cache-poisoning#param-miner) extension enabled, right-click on the request and select "Guess headers". After a while, Param Miner will report that there is a secret input in the form of the `X-Host` header.
+3. With the [Param Miner](https://portswigger.net/web-security/web-cache-poisoning#param-miner) extension enabled, right-click on the request and select "Guess headers". After a while, Param Miner will report that there is a secret input in the form of the `X-Host` header.
 4. Send the `GET` request to Burp Repeater and add a cache-buster query parameter.
 5. Add the `X-Host` header with an arbitrary hostname, such as `example.com`. Notice that the value of this header is used to dynamically generate an absolute URL for importing the JavaScript file stored at `/resources/js/tracking.js`.
 6. Go to the exploit server and change the file name to match the path used by the vulnerable response:
@@ -134,13 +134,13 @@ To solve the lab, poison the cache with a response that executes `alert(document
 
 1. With Burp running, open the website's home page.
 2. In Burp, go to "Proxy" > "HTTP history" and study the requests and responses that you generated. Find the `GET` request for the home page and send it to Burp Repeater.
-3. Use [Param Miner](/web-security/web-cache-poisoning#param-miner) to identify that the `X-Forwarded-Host` header is supported.
+3. Use [Param Miner](https://portswigger.net/web-security/web-cache-poisoning#param-miner) to identify that the `X-Forwarded-Host` header is supported.
 4. Add a cache buster to the request, as well as the `X-Forwarded-Host` header with an arbitrary hostname, such as `example.com`. Notice that this header overwrites the `data.host` variable, which is passed into the `initGeoLocate()` function.
-5. Study the `initGeoLocate()` function in `/resources/js/geolocate.js` and notice that it is vulnerable to [DOM-XSS](/web-security/cross-site-scripting/dom-based) due to the way it handles the incoming JSON data.
+5. Study the `initGeoLocate()` function in `/resources/js/geolocate.js` and notice that it is vulnerable to [DOM-XSS](https://portswigger.net/web-security/cross-site-scripting/dom-based) due to the way it handles the incoming JSON data.
 6. Go to the exploit server and change the file name to match the path used by the vulnerable response:
 
    `/resources/json/geolocate.json`
-7. In the head, add the header `Access-Control-Allow-Origin: *` to enable [CORS](/web-security/cors/access-control-allow-origin)
+7. In the head, add the header `Access-Control-Allow-Origin: *` to enable [CORS](https://portswigger.net/web-security/cors/access-control-allow-origin)
 8. In the body, add a malicious JSON object that matches the one used by the vulnerable website. However, replace the value with a suitable XSS payload, for example:
 
    `{
@@ -312,13 +312,13 @@ To solve the lab, combine the vulnerabilities to execute `alert(1)` in the victi
 
 <details><summary>Hint</summary>
 
-Solving this lab requires an understanding of several other web vulnerabilities. If you're still having trouble solving it after several hours, we recommend completing all other topics on the [Web Security Academy](/web-security) first.
+Solving this lab requires an understanding of several other web vulnerabilities. If you're still having trouble solving it after several hours, we recommend completing all other topics on the [Web Security Academy](https://portswigger.net/web-security) first.
 
 </details>
 
 <details><summary>Hint</summary>
 
-Remember that the injected origin header must be lowercase, to comply with the HTTP/2 specification. For more information on how Burp Suite supports HTTP/2-based testing, see [Working with HTTP/2 in Burp Suite](/burp/documentation/desktop/http2).
+Remember that the injected origin header must be lowercase, to comply with the HTTP/2 specification. For more information on how Burp Suite supports HTTP/2-based testing, see [Working with HTTP/2 in Burp Suite](https://portswigger.net/burp/documentation/desktop/http2).
 
 </details>
 
