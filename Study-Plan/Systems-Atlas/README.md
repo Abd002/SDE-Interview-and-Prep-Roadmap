@@ -1,6 +1,24 @@
 # Computer Systems Atlas
 
-**Open it here:** <https://claude.ai/artifact/QwnhLZycRbykzkrmJC9e7P>
+**Open it online:** <https://claude.ai/artifact/QwnhLZycRbykzkrmJC9e7P>
+
+## Run it on your computer
+
+You need Python 3 (no packages) and a browser.
+
+```bash
+git clone https://github.com/Abd002/SDE-Interview-and-Prep-Roadmap.git
+cd SDE-Interview-and-Prep-Roadmap/Study-Plan/Systems-Atlas
+python3 serve.py
+```
+
+Your browser opens <http://localhost:8000>. Stop it with `Ctrl+C`. Use another port with `python3 serve.py 9000`. On Windows, type `py serve.py` if `python3` isn't found.
+
+**Without Python:** double-click `index.html` in this folder. It works the same, because all scripts load from the folder itself.
+
+Notes:
+- Fonts come from Google Fonts. Offline, the page falls back to your system fonts and still works.
+- Study status (learning / understood / needs revision) is saved in your browser when you run it locally. In the online version it's also saved to your account.
 
 One zoomable map of how a computer system runs a database: from the client's SQL query, through query processing, storage, indexes, the buffer pool, transactions and recovery, down to the OS and the hardware, and out across machines with replication, consensus, distributed transactions, LSM storage and distributed execution.
 
@@ -26,6 +44,7 @@ One zoomable map of how a computer system runs a database: from the client's SQL
 
 | File | What it holds |
 |---|---|
+| `serve.py` | Local launcher: serves this folder and opens the atlas |
 | `index.html` | Page shell and styles |
 | `app.js` | Layout, drawing, zoom, panels, search, scenarios, comparisons |
 | `data/layers.js` | Data model, layers and subsystems |
@@ -33,4 +52,4 @@ One zoomable map of how a computer system runs a database: from the client's SQL
 | `data/edges.js` | Every link between concepts |
 | `data/scenarios.js`, `data/comparisons.js` | Scenario steps and comparison tables |
 
-To add a concept, add an `N({...})` entry in the right `nodes-*.js` file and its links with `E(from, to, type, label)` in `edges.js`. To run it locally, serve this folder (for example `python3 -m http.server`) and open `index.html`.
+To add a concept, add an `N({...})` entry in the right `nodes-*.js` file and its links with `E(from, to, type, label)` in `edges.js`. Refresh the browser to see the change.

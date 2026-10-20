@@ -754,7 +754,8 @@
       var name = it.n.toLowerCase();
       if (!toks.every(function (t) { return it.hay.indexOf(t) >= 0; })) return null;
       var s = 0;
-      if (name === q) s = 100; else if (name.indexOf(q) === 0) s = 80;
+      if (name === q) s = 100; else if (name.indexOf("(" + q + ")") >= 0 || (it.ab && (" " + it.ab + " ").indexOf(" " + q + " ") >= 0 && q.length <= 5 && it.ab.split(" ")[0] === q)) s = 90;
+      else if (name.indexOf(q) === 0) s = 80;
       else if ((" " + name).indexOf(" " + q) >= 0) s = 65;
       else if (name.indexOf(q) >= 0) s = 50;
       else if (it.ab && (" " + it.ab + " ").indexOf(" " + q + " ") >= 0) s = 58;
