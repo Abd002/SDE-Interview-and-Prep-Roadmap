@@ -1,0 +1,26 @@
+# ByteByteGo System Design 101: Is PassKey Shaping a Passwordless Future?
+
+> Copied from <https://github.com/ByteByteGoHq/system-design-101> (CC BY-NC-ND 4.0, by ByteByteGo). Questions and answers are the source's own; nothing was answered or rewritten here.
+
+
+![](images/0296-is-passkey-shaping-a-passwordless-future.webp)
+
+Google recently announced PassKey support for both Android and Chrome.
+
+Passkey, also backed by Apple and Microsoft, is claimed to be a significantly **safer replacement** for passwords.
+
+## How PassKeys Work
+
+*   **Step 1 - Create PassKeys**
+
+    The end-user needs to confirm the account information and present their credentials (face ID, touch ID, etc.).
+
+    A private key is generated based on the public key provided by the website. The private key is stored on the device.
+
+*   **Step 2 - Sign in with PassKeys on devices**
+
+    When the user tries to sign in to a website, they use the generated private key. Just select the account information and present the credentials to unlock the private key.
+
+Consequently, there is no risk of password leakage since no passwords are stored in the websites' databases.
+
+Passkeys are built on **industry standards**, and it works across different platforms and browsers - including Windows, macOS and iOS, and ChromeOS, with a **uniform user experience**.

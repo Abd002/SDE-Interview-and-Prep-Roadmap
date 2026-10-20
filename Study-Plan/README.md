@@ -8,6 +8,8 @@
 
 🎯 **[Practice-and-Channels.md](Practice-and-Channels.md)**: practice exams and interview questions for the finished steps (with solutions), plus YouTube channels for every topic.
 
+📦 **[Practice-Bank](Practice-Bank/README.md)**: every one of those exams, homeworks and question banks **copied into the repo with the sources' own solutions and figures**, sorted by step. No more hunting for PDFs or answer keys.
+
 ## How it works
 - **No dates.** The plan is **221 steps**: 184 whole-numbered steps plus 37 decimal ones (29.1, 39.1 …). Do the lowest unfinished step, tick it, then move to the next. It is written for limited, changing free time (during military service), so the pace is open and only the order matters.
 - **Friday** (the one day off) is for the long steps: 2–4h project chunks, virtual contests and flagship coding.
@@ -17,8 +19,8 @@
   - a **knowledge check round** at the end of every phase (rounds 2–10), recorded in [Knowledge-Check.md](../Career-Roadmap/Knowledge-Check.md);
   - from Phase 7 on, a **weekly 30-minute self-exam** (step 134.1).
 
-  Every link is in [Practice-and-Channels.md](Practice-and-Channels.md).
-- **Every Friday, start with 20 minutes of revision:** one [revision map](Revision-Maps/README.md), or 10 questions from finished topics.
+  The questions and official solutions for every one of them are in the [Practice Bank](Practice-Bank/README.md#1-by-study-plan-step); the original links are in [Practice-and-Channels.md](Practice-and-Channels.md).
+- **Every Friday, start with 20 minutes of revision:** one [revision map](Revision-Maps/README.md), or 10 questions from finished topics in the [Practice Bank](Practice-Bank/README.md#2-everything-by-topic).
 - **Real deadlines are the only exceptions:**
   - Knight-Hennessy (optional), by 6 Oct;
   - booking IELTS, by 15 Oct;

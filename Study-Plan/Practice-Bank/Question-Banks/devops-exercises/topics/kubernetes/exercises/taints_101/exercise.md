@@ -1,0 +1,17 @@
+# devops-exercises: kubernetes / exercises/taints_101/exercise.md
+
+> Copied from <https://github.com/bregman-arie/devops-exercises/blob/master/topics/kubernetes/exercises/taints_101/exercise.md> (CC BY-NC-ND 3.0, by Arie Bregman and contributors). Questions and answers are the source's own; nothing was answered or rewritten here.
+
+# Taints 101
+
+## Objectives
+
+1. Check if one of the nodes in the cluster has taints (doesn't matter which node)
+2. Create a taint on one of the nodes in your cluster with key of "app" and value of "web" and effect of "NoSchedule"
+   1. Explain what it does exactly
+   2. Verify it was applied
+3. Run a Pod that will be able to run on the node on which you applied the taint
+
+## Solution
+
+Click [here](https://github.com/bregman-arie/devops-exercises/blob/master/topics/kubernetes/exercises/taints_101/solution.md) to view the solution.
