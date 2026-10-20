@@ -71,6 +71,8 @@
   Your Codeforces Expert level is enough, so practise talking while you code.
 - **AI tools:** the ad asks for "experience using AI-assisted development tools". Add it to the CV only if it's true, and be ready for one concrete example.
 
+**Fast revision before the interview:** data structures and algorithms, behavioral (Leadership Principles), OOP and design patterns, system design basics, databases. Links for each track are in [Interview-Fast-Revision.md](../../../../Study-Plan/Interview-Fast-Revision.md#2-links-by-track); follow its routine (§1) from 7 days before.
+
 ## 4. People to contact
 
 **Start with people who already know your work** (your Google Summer of Code mentors):

@@ -53,6 +53,8 @@
 - **Mention your Zephyr PR.** NXP is a major Zephyr contributor.
 - **Visa:** Austria's Red-White-Red Card (see [06](../../../06-Salaries-and-Visas.md)).
 
+**Fast revision before the interview:** C and C++, operating systems, testing, security (secure boot), Linux. Links for each track are in [Interview-Fast-Revision.md](../../../../Study-Plan/Interview-Fast-Revision.md#2-links-by-track); follow its routine (§1) from 7 days before.
+
 ## 4. People to contact
 
 **Start with people who already know your work** (your Google Summer of Code mentors):

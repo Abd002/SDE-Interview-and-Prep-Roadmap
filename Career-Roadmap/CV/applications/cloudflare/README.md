@@ -61,6 +61,8 @@ Cloudflare publishes no stage-by-stage guide. These are reports from [Glassdoor]
 - **Practise Rust coding:** ownership, async/tokio, error handling. Write a small proxy or rate limiter in Rust before the loop. Look at [Pingora](https://github.com/cloudflare/pingora), Cloudflare's open-source Rust proxy framework.
 - **Behavioural story:** your cosmic-printers design, where the C FFI code runs in a separate varlink service so a crash can't take down Settings. That is the same reliability thinking FL2 uses.
 
+**Fast revision before the interview:** networking, distributed systems, system design, Rust, operating systems, behavioral. Links for each track are in [Interview-Fast-Revision.md](../../../../Study-Plan/Interview-Fast-Revision.md#2-links-by-track); follow its routine (§1) from 7 days before.
+
 ## 4. People to contact
 
 **Start with people who already know your work** (your Google Summer of Code mentors):

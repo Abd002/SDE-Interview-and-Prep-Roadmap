@@ -56,6 +56,8 @@
   - test262.
 - **They will ask about remote work.** Have an answer about async communication, time zones, and how you worked with your Google Summer of Code mentors.
 
+**Fast revision before the interview:** C and C++ (plus the CppQuiz plan), Rust, data structures and algorithms, Git. Links for each track are in [Interview-Fast-Revision.md](../../../../Study-Plan/Interview-Fast-Revision.md#2-links-by-track); follow its routine (§1) from 7 days before.
+
 ## 4. People to contact
 
 **Start with people who already know your work** (your Google Summer of Code mentors):

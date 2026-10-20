@@ -49,6 +49,8 @@ Everything for one application now lives in that company's folder: the role, the
 | NXP | [CV/applications/nxp/](CV/applications/nxp/README.md) | Junior Embedded Software Engineer, Secure IoT Firmware |
 | Amazon | [CV/applications/amazon/](CV/applications/amazon/README.md) | Software Development Engineer – 2027 (Dublin) |
 
+**Before any interview:** read the tracks for that company in [Interview-Fast-Revision.md](../Study-Plan/Interview-Fast-Revision.md#3-which-tracks-for-each-company).
+
 This page keeps what the five share: the timeline above, the mentors and open-source contacts below, the message templates and the follow-up rules.
 
 ---

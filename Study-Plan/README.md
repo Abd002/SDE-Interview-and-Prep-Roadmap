@@ -8,6 +8,8 @@
 
 🎯 **[Practice-and-Channels.md](Practice-and-Channels.md)**: practice exams and interview questions for the finished steps (with solutions), plus YouTube channels for every topic.
 
+⚡ **[Interview-Fast-Revision.md](Interview-Fast-Revision.md)**: short question-and-answer pages for every track (GeeksforGeeks, Devinterview, roadmap.sh and others) to read the day before an interview, a revision routine, and which tracks each company needs.
+
 📦 **[Practice-Bank](Practice-Bank/README.md)**: every one of those exams, homeworks and question banks **copied into the repo with the sources' own solutions and figures**, sorted by step. No more hunting for PDFs or answer keys.
 
 ## How it works

@@ -6,6 +6,8 @@
 
 **Checked:** every link opened on 18 Oct 2026. LeetCode and Codeforces block automated checks, but both are live.
 
+**⚡ Interview tomorrow?** Use [Interview-Fast-Revision.md](Interview-Fast-Revision.md) instead: short Q&A pages for every track, read in an evening.
+
 **📦 All of it is now in the repo:** the [Practice Bank](Practice-Bank/README.md) has every exam, homework and question bank below copied in one place, with the sources' own solutions and figures (19 Oct 2026). Use the links below only for what the bank couldn't copy (its §3 lists those).
 
 **Contents**

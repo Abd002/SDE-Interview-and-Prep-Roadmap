@@ -5,6 +5,8 @@
 - **Nothing here was answered or rewritten:** every answer comes from the source itself. Each file says where it came from.
 - Where a source publishes no answers, the file says so, and it was left unanswered.
 
+**Hard vs fast:** this bank is the hard material (real exams, worked solutions). For quick question-and-answer pages to read before an interview, use [Interview-Fast-Revision.md](../Interview-Fast-Revision.md).
+
 **Collected:** 19 Oct 2026. **Size:** about 4,000 files, 175 MB.
 
 **How each exam folder looks**
@@ -44,7 +46,7 @@ The decimal steps from the [study plan](../README.md) and Notion, with where the
 | 29.5 | OSTEP simulators: scheduling, paging, locks | [cpu-sched](Operating-Systems/OSTEP-Homework/cpu-sched/README.md) · [cpu-sched-mlfq](Operating-Systems/OSTEP-Homework/cpu-sched-mlfq/README.md) · [vm-paging](Operating-Systems/OSTEP-Homework/vm-paging/README.md) · [vm-beyondphys-policy](Operating-Systems/OSTEP-Homework/vm-beyondphys-policy/README.md) · [threads-locks](Operating-Systems/OSTEP-Homework/threads-locks/README.md) |
 | 29.6 | MIT 6.5840 Quiz 1 (2024): Raft + linearizability | [questions](Distributed-Systems/MIT-6.5840-Quizzes/2024-quiz1/questions.md) · [solutions](Distributed-Systems/MIT-6.5840-Quizzes/2024-quiz1/solutions.md) |
 | 29.7 | Cambridge Concurrent and Distributed Systems | [42 questions, 2010–2026](Distributed-Systems/Cambridge-Concurrent-and-Distributed-Systems/README.md) (no public solutions, see §3) |
-| 29.8 | CppQuiz + LeetCode Concurrency | Neither could be copied (§3). In their place: [learncpp chapter quizzes with solutions](Cpp/learncpp-chapter-quizzes/README.md) and [Rustlings threads](Rust/rustlings/20_threads.md) |
+| 29.8 | CppQuiz + LeetCode Concurrency | [CppQuiz study plan](Cpp/CppQuiz-Study-Plan.md). Neither site could be copied (§3). Also: [learncpp chapter quizzes with solutions](Cpp/learncpp-chapter-quizzes/README.md) and [Rustlings threads](Rust/rustlings/20_threads.md) |
 | 29.9 | Knowledge check round 2 | Made by Claude from your Done steps (not a source to copy) |
 | 31.1 | Databases + SQL interview questions | [GfG SQL](Databases/GeeksforGeeks/sql-interview-questions.md) · devops-exercises [SQL](Question-Banks/devops-exercises/SQL.md), [Databases](Question-Banks/devops-exercises/topics/databases/README.md), [Mongo](Question-Banks/devops-exercises/Mongo.md) |
 | 36.1 | OS interview questions + a CS162 midterm | [GfG OS](Operating-Systems/GeeksforGeeks/operating-systems-interview-questions.md) · devops-exercises [OS](Question-Banks/devops-exercises/Operating-System.md), [Linux](Question-Banks/devops-exercises/topics/linux/README.md) · [CS162 exams](Operating-Systems/Berkeley-CS162-Exams/README.md) |
@@ -88,6 +90,7 @@ The decimal steps from the [study plan](../README.md) and Notion, with where the
 | Networking | [GfG networking](Networking/GeeksforGeeks/networking-interview-questions.md) | 73 interview questions | Under each question |
 | C++ | [learncpp chapter quizzes](Cpp/learncpp-chapter-quizzes/README.md) | 26 chapter summaries, 183 quiz questions | Official solution under each |
 | C++ | [GfG C++](Cpp/GeeksforGeeks/cpp-interview-questions.md) | 77 interview questions | Under each question |
+| C++ | [CppQuiz study plan](Cpp/CppQuiz-Study-Plan.md) | How to master every [CppQuiz](https://cppquiz.org/) question: the 12 rule areas, the per-question loop, a schedule | Answers stay on the site |
 | Rust | [Rustlings](Rust/rustlings/README.md) | 95 exercises | Official hint and solution for each |
 | Git | [Learn Git Branching](Git/learn-git-branching/README.md) | 36 levels with their lessons | Official hint and solution for each |
 | Mixed (OS, networking, Linux, Git, cloud, security, testing…) | [devops-exercises](Question-Banks/devops-exercises/README.md) | 2,082 questions in 28 topics | Answers for 1,822; the source leaves 260 unanswered |
@@ -108,7 +111,7 @@ The decimal steps from the [study plan](../README.md) and Notion, with where the
 | Berkeley CS186 exams, Fall 2017 to Spring 2026 | Google Drive files that need a Google sign-in (they redirect to a login page) | Open them from <https://cs186berkeley.net/resources/> in a browser. The newest copies here are from 2018. |
 | CMU 15-445 practice midterms/finals | Only on the CMU VPN | The homeworks here cover the same topics |
 | Cambridge solution notes | Only for University of Cambridge users (Raven login) | Check against the lecture notes and the [DDIA ch. 9 map](../Revision-Maps/DDIA-Ch9-Consistency-and-Consensus.md) |
-| CppQuiz | Answers appear only after 3 tries on the site; faking tries would corrupt its answer statistics | Play at <https://cppquiz.org/> |
+| CppQuiz | Answers appear only after 3 tries on the site; faking tries would corrupt its answer statistics | Play at <https://cppquiz.org/> using the [CppQuiz study plan](Cpp/CppQuiz-Study-Plan.md) |
 | LeetCode (SQL 50, Concurrency) | Blocks automated access (403); problems and editorials are copyrighted and partly paid | <https://leetcode.com/studyplan/top-sql-50/> · <https://leetcode.com/problemset/concurrency/> |
 | DataLemur, StrataScratch | Interactive; solutions need an account | Use the links in [Practice and Channels](../Practice-and-Channels.md) |
 | Hello Interview premium breakdowns (15) | Paid content | Listed in [its README](System-Design/hello-interview-breakdowns/README.md) |

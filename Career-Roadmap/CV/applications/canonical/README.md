@@ -78,6 +78,8 @@ Sources: [Blind](https://www.teamblind.com/post/canonical-hiring-process-post-wr
   - networking commands;
   - how a kernel module works (your kernel-monitor).
 
+**Fast revision before the interview:** Linux, operating systems, C and C++, Rust, Git, networking basics, behavioral. Links for each track are in [Interview-Fast-Revision.md](../../../../Study-Plan/Interview-Fast-Revision.md#2-links-by-track); follow its routine (§1) from 7 days before.
+
 ## 4. People to contact
 
 **Start with people who already know your work** (your Google Summer of Code mentors):
