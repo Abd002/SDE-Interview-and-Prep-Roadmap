@@ -1,5 +1,7 @@
 # Practice Bank: every review question with its official solution, in one place
 
+> **Optional reference, not part of the study plan.** The practice steps were removed from the plan and Notion on 20 Oct 2026; this material stays here in case you want it later.
+
 **What this is:** all the exams, homeworks, quizzes and interview-question banks from the [study plan](../README.md) and [Practice and Channels](../Practice-and-Channels.md), copied here with **the sources' own solutions** and **their figures**.
 - You no longer have to hunt for PDFs, answer keys or VPN-only pages.
 - **Nothing here was answered or rewritten:** every answer comes from the source itself. Each file says where it came from.
@@ -26,50 +28,9 @@
 For the question banks, every answer sits in a collapsible block under its question: try first, then click.
 
 **Contents**
-1. [By study plan step](#1-by-study-plan-step)
 2. [Everything, by topic](#2-everything-by-topic)
 3. [What could not be copied, and why](#3-what-could-not-be-copied-and-why)
 4. [Rebuilding the bank](#4-rebuilding-the-bank)
-
----
-
-## 1. By study plan step
-
-The decimal steps from the [study plan](../README.md) and Notion, with where their material now is.
-
-| Step | What | Where it is now |
-|---|---|---|
-| 29.1 | CMU Fall 2024 HW2, timed, then self-grade | [questions](Databases/CMU-15-445-Homeworks/fall2024/hw2/questions.md) · [solutions](Databases/CMU-15-445-Homeworks/fall2024/hw2/solutions.md) |
-| 29.2 | CMU Fall 2024 HW3 Q1–Q2 (hashing) | [questions](Databases/CMU-15-445-Homeworks/fall2024/hw3/questions.md) · [solutions](Databases/CMU-15-445-Homeworks/fall2024/hw3/solutions.md) |
-| 29.3 | CS186 Midterm 1: SQL, disks/files, buffers | The Spring 2026 exam needs a Berkeley Google sign-in (§3), so use the newest copies here: [Fall 2018 MT1](Databases/Berkeley-CS186-Exams/2018-fa-mt1/questions.md) ([solutions](Databases/Berkeley-CS186-Exams/2018-fa-mt1/solutions.md)) and [Spring 2018 MT1](Databases/Berkeley-CS186-Exams/2018-sp-mt1/questions.md) ([solutions](Databases/Berkeley-CS186-Exams/2018-sp-mt1/solutions.md)). [All CS186 exams](Databases/Berkeley-CS186-Exams/README.md) |
-| 29.4 | SQL drills | [PostgreSQL Exercises, 71 with answers](Databases/pgexercises/README.md) · [CMU HW1 SQL, all semesters](Databases/CMU-15-445-Homeworks/README.md) · [GfG SQL questions](Databases/GeeksforGeeks/sql-interview-questions.md) |
-| 29.5 | OSTEP simulators: scheduling, paging, locks | [cpu-sched](Operating-Systems/OSTEP-Homework/cpu-sched/README.md) · [cpu-sched-mlfq](Operating-Systems/OSTEP-Homework/cpu-sched-mlfq/README.md) · [vm-paging](Operating-Systems/OSTEP-Homework/vm-paging/README.md) · [vm-beyondphys-policy](Operating-Systems/OSTEP-Homework/vm-beyondphys-policy/README.md) · [threads-locks](Operating-Systems/OSTEP-Homework/threads-locks/README.md) |
-| 29.6 | MIT 6.5840 Quiz 1 (2024): Raft + linearizability | [questions](Distributed-Systems/MIT-6.5840-Quizzes/2024-quiz1/questions.md) · [solutions](Distributed-Systems/MIT-6.5840-Quizzes/2024-quiz1/solutions.md) |
-| 29.7 | Cambridge Concurrent and Distributed Systems | [42 questions, 2010–2026](Distributed-Systems/Cambridge-Concurrent-and-Distributed-Systems/README.md) (no public solutions, see §3) |
-| 29.8 | CppQuiz + LeetCode Concurrency | [CppQuiz study plan](Cpp/CppQuiz-Study-Plan.md). Neither site could be copied (§3). Also: [learncpp chapter quizzes with solutions](Cpp/learncpp-chapter-quizzes/README.md) and [Rustlings threads](Rust/rustlings/20_threads.md) |
-| 29.9 | Knowledge check round 2 | Made by Claude from your Done steps (not a source to copy) |
-| 31.1 | Databases + SQL interview questions | [GfG SQL](Databases/GeeksforGeeks/sql-interview-questions.md) · devops-exercises [SQL](Question-Banks/devops-exercises/SQL.md), [Databases](Question-Banks/devops-exercises/topics/databases/README.md), [Mongo](Question-Banks/devops-exercises/Mongo.md) |
-| 36.1 | OS interview questions + a CS162 midterm | [GfG OS](Operating-Systems/GeeksforGeeks/operating-systems-interview-questions.md) · devops-exercises [OS](Question-Banks/devops-exercises/Operating-System.md), [Linux](Question-Banks/devops-exercises/topics/linux/README.md) · [CS162 exams](Operating-Systems/Berkeley-CS162-Exams/README.md) |
-| 37.1 | Rustlings | [All 95 exercises with official solutions](Rust/rustlings/README.md) |
-| 53.1 | CS186 Midterm 1, the rest: B+ trees, sorting/hashing, joins | Midterm 1 sets in [CS186 exams](Databases/Berkeley-CS186-Exams/README.md) |
-| 68.1 | CMU Fall 2024 HW3 Q3–Q5 | [questions](Databases/CMU-15-445-Homeworks/fall2024/hw3/questions.md) · [solutions](Databases/CMU-15-445-Homeworks/fall2024/hw3/solutions.md) |
-| 69.1 | Networking interview questions + a CS168 exam | [GfG networking](Networking/GeeksforGeeks/networking-interview-questions.md) · devops-exercises [Network](Question-Banks/devops-exercises/Network.md), [HTTP](Question-Banks/devops-exercises/HTTP.md), [DNS](Question-Banks/devops-exercises/topics/dns/README.md) · [CS168 worksheets](Networking/Berkeley-CS168-Worksheets/README.md) (CS168 publishes no past exams) |
-| 86.1 | Learn Git Branching + Git questions | [All 36 levels with official solutions](Git/learn-git-branching/README.md) · devops-exercises [Git](Question-Banks/devops-exercises/topics/git/README.md) |
-| 93.1 | CS186 Midterm 2: optimization, transactions, recovery | Midterm 2 sets in [CS186 exams](Databases/Berkeley-CS186-Exams/README.md) |
-| 98.1 | CMU Fall 2024 HW4 | [questions](Databases/CMU-15-445-Homeworks/fall2024/hw4/questions.md) · [solutions](Databases/CMU-15-445-Homeworks/fall2024/hw4/solutions.md) |
-| 101.1 | CS186 Final + MIT Quiz 2 (2023) Dynamo | Finals in [CS186 exams](Databases/Berkeley-CS186-Exams/README.md) · MIT 2023 Quiz 2 [questions](Distributed-Systems/MIT-6.5840-Quizzes/2023-quiz2/questions.md) · [solutions](Distributed-Systems/MIT-6.5840-Quizzes/2023-quiz2/solutions.md) |
-| 104.1 | Knowledge check round 7 | Made by Claude |
-| 120.1 | C++ and languages questions + design patterns | [GfG C++](Cpp/GeeksforGeeks/cpp-interview-questions.md) · [learncpp quizzes](Cpp/learncpp-chapter-quizzes/README.md) |
-| 121.1 | CMU Fall 2024 HW5 + HW6 | HW5 [questions](Databases/CMU-15-445-Homeworks/fall2024/hw5/questions.md) · [solutions](Databases/CMU-15-445-Homeworks/fall2024/hw5/solutions.md); HW6 [questions](Databases/CMU-15-445-Homeworks/fall2024/hw6/questions.md) · [solutions](Databases/CMU-15-445-Homeworks/fall2024/hw6/solutions.md) |
-| 129.1 | Architecture questions | The repo's [76-question Microservices reference](../../System%20Design/Microservices.md) · [ByteByteGo System Design 101, 400 guides with diagrams](System-Design/bytebytego-system-design-101/README.md) · devops-exercises [System Design](Question-Banks/devops-exercises/System-Design.md) |
-| 132.1 | System design mocks: 3 problems, timed | [Hello Interview breakdowns (16 free, worked answers)](System-Design/hello-interview-breakdowns/README.md) · [System Design Primer questions with solutions](System-Design/system-design-primer/README.md) |
-| 134.1 | Weekly self-exam | Pick any set in this bank |
-| 145.1 | LLD problems, timed | [33 problems with official solutions in 5–6 languages](Low-Level-Design/awesome-low-level-design/README.md) · [Primer OOD solutions](System-Design/system-design-primer/README.md) |
-| 152.1 | Testing and reliability + an SLO exercise | devops-exercises [Testing](Question-Banks/devops-exercises/Testing.md), [Observability](Question-Banks/devops-exercises/topics/observability/README.md), [Chaos engineering](Question-Banks/devops-exercises/topics/chaos_engineering/README.md), [SRE](Question-Banks/devops-exercises/topics/sre/README.md) |
-| 159.1 | PortSwigger labs + OWASP Top 10 | [All 268 labs with official solutions](Security/portswigger-labs/README.md) · devops-exercises [Security](Question-Banks/devops-exercises/topics/security/README.md) |
-| 169.1 | AWS practice exam + Kubernetes | devops-exercises [AWS](Question-Banks/devops-exercises/topics/aws/README.md), [Kubernetes](Question-Banks/devops-exercises/topics/kubernetes/README.md), [Containers](Question-Banks/devops-exercises/topics/containers/README.md), [Terraform](Question-Banks/devops-exercises/topics/terraform/README.md) (the AWS official practice set needs a login, §3) |
-| 183.1 | AI interview questions + agentic mocks | [ML Interviews Book, 318 questions](AI-and-ML/ml-interviews-book/README.md) (questions only; the book has no answers) · the repo's [agentic system design mocks](../../Agentic%20AI%2C%20LLM%20Engineering%2C%20and%20AI%20System%20Design/Agentic-System-Design-Interview-Practice.md) |
-| Interviews | Behavioral | [Tech Interview Handbook behavioral questions and rubrics](Behavioral/tech-interview-handbook/README.md) |
 
 ---
 

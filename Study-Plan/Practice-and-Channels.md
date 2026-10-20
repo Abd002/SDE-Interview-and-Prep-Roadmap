@@ -1,5 +1,7 @@
 # Practice exams and YouTube channels
 
+> **Not part of the study plan** (the practice steps were removed on 20 Oct 2026). Use these only if you have spare time.
+
 **What it's for:**
 - **Practice:** train on real exams and interview-style questions for the steps already finished.
 - **Channels:** follow the tech you're studying on YouTube.
@@ -13,8 +15,7 @@
 **Contents**
 1. [Practice exams and interview questions](#1-practice-exams-and-interview-questions)
 2. [Interview questions for the tracks still ahead](#2-interview-questions-for-the-tracks-still-ahead)
-3. [Where each one sits in the study plan](#3-where-each-one-sits-in-the-study-plan)
-4. [YouTube channels](#4-youtube-channels)
+3. [YouTube channels](#3-youtube-channels)
 
 ---
 
@@ -95,55 +96,7 @@ Use each bank when its track comes up in the plan (section 3 has the exact steps
 
 ---
 
-## 3. Where each one sits in the study plan
-
-The last column links straight to the copy in the [Practice Bank](Practice-Bank/README.md#1-by-study-plan-step). The decimal steps in the [study plan](README.md) and in Notion run in this order. Each is placed right after the topic it tests.
-
-| Step | What | In the Practice Bank (questions + official solutions) |
-|---|---|---|
-| 29.1 | CMU Fall 2024 HW2, timed, then self-grade | [F24 HW2](Practice-Bank/Databases/CMU-15-445-Homeworks/fall2024/hw2/questions.md) |
-| 29.2 | CMU Fall 2024 HW3 Q1–Q2 (hashing) | [F24 HW3](Practice-Bank/Databases/CMU-15-445-Homeworks/fall2024/hw3/questions.md) |
-| 29.3 | CS186 Spring 2026 Midterm 1: SQL, disks/files, buffer questions | [CS186 MT1 (2018)](Practice-Bank/Databases/Berkeley-CS186-Exams/2018-fa-mt1/questions.md) |
-| 29.4 | SQL drills: LeetCode SQL 50, DataLemur, PostgreSQL Exercises | [pgexercises](Practice-Bank/Databases/pgexercises/README.md) · [CMU HW1 SQL](Practice-Bank/Databases/CMU-15-445-Homeworks/README.md) |
-| 29.5 | OSTEP simulators: scheduling, paging, locks | [OSTEP homework](Practice-Bank/Operating-Systems/OSTEP-Homework/README.md) |
-| 29.6 | MIT 6.5840 Quiz 1 (2024): Raft + linearizability | [2024 Quiz 1](Practice-Bank/Distributed-Systems/MIT-6.5840-Quizzes/2024-quiz1/questions.md) |
-| 29.7 | Cambridge Concurrent and Distributed Systems papers | [Cambridge questions](Practice-Bank/Distributed-Systems/Cambridge-Concurrent-and-Distributed-Systems/README.md) |
-| 29.8 | CppQuiz + LeetCode Concurrency | [learncpp quizzes](Practice-Bank/Cpp/learncpp-chapter-quizzes/README.md) (CppQuiz/LeetCode not copyable) |
-| 29.9 | **Knowledge check round 2** | — |
-| 31.1 | Databases + SQL interview questions | [GfG SQL](Practice-Bank/Databases/GeeksforGeeks/sql-interview-questions.md) · [devops SQL](Practice-Bank/Question-Banks/devops-exercises/SQL.md) |
-| 36.1 | OS interview questions + a CS162 midterm | [GfG OS](Practice-Bank/Operating-Systems/GeeksforGeeks/operating-systems-interview-questions.md) · [CS162 exams](Practice-Bank/Operating-Systems/Berkeley-CS162-Exams/README.md) |
-| 37.1 | Rustlings | [Rustlings](Practice-Bank/Rust/rustlings/README.md) |
-| 39.1 | **Knowledge check round 3** | — |
-| 53.1 | CS186 Midterm 1, the rest: B+ trees, sorting/hashing, joins | [CS186 exams](Practice-Bank/Databases/Berkeley-CS186-Exams/README.md) |
-| 61.1 | **Knowledge check round 4** | — |
-| 68.1 | CMU Fall 2024 HW3 Q3–Q5 | [F24 HW3](Practice-Bank/Databases/CMU-15-445-Homeworks/fall2024/hw3/questions.md) |
-| 69.1 | Networking interview questions + a CS168 exam | [GfG networking](Practice-Bank/Networking/GeeksforGeeks/networking-interview-questions.md) · [CS168 worksheets](Practice-Bank/Networking/Berkeley-CS168-Worksheets/README.md) |
-| 76.1 | **Knowledge check round 5** | — |
-| 86.1 | Learn Git Branching + Git questions | [Learn Git Branching](Practice-Bank/Git/learn-git-branching/README.md) |
-| 93.1 | CS186 Midterm 2: query optimization, transactions, recovery | [CS186 exams](Practice-Bank/Databases/Berkeley-CS186-Exams/README.md) |
-| 96.1 | **Knowledge check round 6** | — |
-| 98.1 | CMU Fall 2024 HW4 | [F24 HW4](Practice-Bank/Databases/CMU-15-445-Homeworks/fall2024/hw4/questions.md) |
-| 101.1 | CS186 Final (2PC, Paxos, NoSQL) + MIT Quiz 2 (2023) Dynamo questions | [CS186 finals](Practice-Bank/Databases/Berkeley-CS186-Exams/README.md) · [MIT 2023 Q2](Practice-Bank/Distributed-Systems/MIT-6.5840-Quizzes/2023-quiz2/questions.md) |
-| 104.1 | **Knowledge check round 7** | — |
-| 120.1 | C++ and languages questions + design patterns out loud | [GfG C++](Practice-Bank/Cpp/GeeksforGeeks/cpp-interview-questions.md) · [learncpp](Practice-Bank/Cpp/learncpp-chapter-quizzes/README.md) |
-| 121.1 | CMU Fall 2024 HW5 + HW6 | [F24 HW5](Practice-Bank/Databases/CMU-15-445-Homeworks/fall2024/hw5/questions.md) · [HW6](Practice-Bank/Databases/CMU-15-445-Homeworks/fall2024/hw6/questions.md) |
-| 121.2 | **Knowledge check round 8** | — |
-| 129.1 | Architecture questions | [ByteByteGo 101](Practice-Bank/System-Design/bytebytego-system-design-101/README.md) |
-| 132.1 | System design mocks: 3 Hello Interview problems, timed | [Hello Interview](Practice-Bank/System-Design/hello-interview-breakdowns/README.md) · [Primer](Practice-Bank/System-Design/system-design-primer/README.md) |
-| 134.1 | **Weekly self-exam** (ongoing) | [Whole bank](Practice-Bank/README.md) |
-| 138.1 | **Knowledge check round 9** | — |
-| 145.1 | LLD problems, timed | [LLD problems](Practice-Bank/Low-Level-Design/awesome-low-level-design/README.md) |
-| 152.1 | Testing and reliability questions + an SLO exercise | [devops Testing](Practice-Bank/Question-Banks/devops-exercises/Testing.md) |
-| 159.1 | PortSwigger labs + OWASP Top 10 | [PortSwigger labs](Practice-Bank/Security/portswigger-labs/README.md) |
-| 169.1 | AWS practice exam + Kubernetes scenarios | [devops AWS](Practice-Bank/Question-Banks/devops-exercises/topics/aws/README.md) · [Kubernetes](Practice-Bank/Question-Banks/devops-exercises/topics/kubernetes/README.md) |
-| 183.1 | AI interview questions + agentic design mocks | [ML Interviews Book](Practice-Bank/AI-and-ML/ml-interviews-book/README.md) |
-| 184.1 | **Knowledge check round 10** | — |
-
-**Knowledge check rounds:** ask Claude "make knowledge check round N from my Done steps". You answer with no notes, and the score goes into [Knowledge-Check.md](../Career-Roadmap/Knowledge-Check.md) and [Progress-Summary.md](../Career-Roadmap/Progress-Summary.md) §4. Each round puts extra weight on what you missed before.
-
----
-
-## 4. YouTube channels
+## 3. YouTube channels
 
 **If you follow only five:** Fireship, ByteByteGo, Core Dumped, CMU Database Group and Jon Gjengset.
 

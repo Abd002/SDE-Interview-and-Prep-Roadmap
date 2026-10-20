@@ -53,11 +53,8 @@ Also know the modern features: structured bindings, `if constexpr`, `constexpr`/
 | B. Training mode | CppQuiz *training mode*: 10 random questions a day, using the loop in §2 | Until you've seen every published question (about 6–8 weeks at 10 a day) |
 | C. Book | [C++ Brain Teasers](https://pragprog.com/titles/akbrain/c-brain-teasers/) by Anders Schau Knatten, the author of CppQuiz: 25 puzzles with long explanations of initialization, overload resolution and conversions | 1 puzzle a day |
 | D. Fixed quizzes | Do full 10-question quizzes in one sitting. The target is 9/10 or better with no hints, three times in a row | Weekly |
-| E. Review | Redo every logged miss on its review day | Ongoing (weekly self-exam, step 134.1) |
+| E. Review | Redo every logged miss on its review day | Ongoing |
 
-**Where it sits in the study plan:**
-- **Step 29.8:** start phase A and 20 training questions.
-- **Step 120.1:** phases B–C at full speed.
-- **After that:** phase D and E inside the weekly self-exam.
+**Not part of the study plan:** this is optional, for when you have spare time (the practice steps were removed from the plan on 20 Oct 2026).
 
 **Talks for weak areas:** CppCon's *Back to Basics* track has one talk per area in §1 (initialization, move semantics, templates, lambdas, overload resolution). Search the [CppCon channel](https://www.youtube.com/@CppCon) for "Back to Basics" plus the area. The [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) explain how to write code that avoids most of these traps.
