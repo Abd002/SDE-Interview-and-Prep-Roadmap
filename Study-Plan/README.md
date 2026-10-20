@@ -6,6 +6,8 @@
 
 🗺️ **[Revision-Maps](Revision-Maps/README.md)**: diagrams for quick revision of the finished steps (all DBMS layers from L01–L07, DDIA ch. 5 and ch. 9).
 
+🧭 **[Computer Systems Atlas](https://claude.ai/artifact/QwnhLZycRbykzkrmJC9e7P)** ([source](Systems-Atlas/README.md)): one zoomable, clickable map of how DBMS internals, the OS and distributed systems fit together, with where each concept lives (RAM, disk, kernel, network), comparisons and 8 end-to-end scenarios.
+
 🎯 **[Practice-and-Channels.md](Practice-and-Channels.md)**: optional practice sites and YouTube channels for every topic (not part of the plan).
 
 ⚡ **[Interview-Fast-Revision.md](Interview-Fast-Revision.md)**: short question-and-answer pages for every track, to read the day before an interview (not part of the plan).
