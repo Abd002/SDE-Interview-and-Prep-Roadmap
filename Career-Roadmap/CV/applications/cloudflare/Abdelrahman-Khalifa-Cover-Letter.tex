@@ -1,0 +1,35 @@
+% Cover letter for Cloudflare, Systems Engineer, Network Protocols & Distributed Systems (job 8187404).
+% Every fact comes from ../../facts.md. Build: TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-Cover-Letter.tex (twice).
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Cover Letter - Cloudflare},pdfauthor={Abdelrahman Khalifa}}
+\setlength{\parskip}{7pt}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Systems Engineer \enspace|\enspace Rust, C, Networking, Linux}
+
+\vspace{6pt}
+31 October 2026
+
+Hiring Team, Cloudflare\\
+Systems Engineer, Network Protocols \& Distributed Systems (London or Lisbon)
+
+Dear Hiring Team,
+
+I am applying for the Systems Engineer, Network Protocols \& Distributed Systems role. The work it describes (moving core proxy infrastructure from NGINX to Rust, and measuring protocol performance on real traffic) is the kind of systems programming I have been doing in open source, and the area I want to go deeper in.
+
+As a Google Summer of Code 2026 contributor with The Linux Foundation's OpenPrinting project, I built the Printers page for the COSMIC desktop in Rust. Its backend speaks IPP, an HTTP-based protocol, to CUPS, and discovers printers over DNS-SD/mDNS. That backend reaches C libraries through FFI, so I ran it as a separate varlink service inside \texttt{cosmic-settings-daemon}: a crash in native code can never take down the Settings app. To make it work, I got 7 pull requests merged upstream. I ported the cups-rs bindings to libcups3 with CI for CUPS 2 and 3, added IPP management and DNS-SD bindings, and fixed crashes and a leaked client in libcups' Avahi code, in C. I passed the final evaluation and still maintain the project.
+
+My first open-source contribution was to the Zephyr RTOS networking stack: I implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across six modules, which the maintainers reviewed and merged. I have also had changes merged in Rust Clippy and in Boa, a JavaScript engine in Rust, where I added a fast path for Latin1 strings.
+
+I care about measuring before claiming. At EKSON, where I own the software for pneumatic motion simulators, I cut the desktop control app's CPU usage and latency by about 40\%, measured, by using \texttt{asyncio} to wait for serial and network messages concurrently. I also wrote the ESP32-S3 firmware and moved it to Zephyr RTOS.
+
+I am now studying distributed systems in depth: the Raft paper, \emph{Designing Data-Intensive Applications} and CMU's database systems course. Next I am building a Raft-replicated key-value store in Rust. I would be glad to bring this to Cloudflare's protocols team, and I am ready to relocate to London or Lisbon.
+
+Thank you for your time and consideration.
+
+Sincerely,\\
+Abdelrahman Khalifa
+
+\end{document}

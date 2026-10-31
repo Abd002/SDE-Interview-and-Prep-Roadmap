@@ -22,6 +22,7 @@
 | [Abdelrahman-Khalifa-CV.tex](Abdelrahman-Khalifa-CV.tex) | Its LaTeX source |
 | [jakes-template/Abdelrahman-Khalifa-CV.pdf](jakes-template/Abdelrahman-Khalifa-CV.pdf) | The same facts in the original [Jake's Resume](https://github.com/jakegut/resume) template (see [CV/README](../../README.md#second-template-jakes-resume)) |
 | [job-ad.md](job-ad.md) | The job ad text as it was on 18–19 Oct 2026 |
+| [Abdelrahman-Khalifa-Cover-Letter.pdf](Abdelrahman-Khalifa-Cover-Letter.pdf) | Cover letter, 1 page, same header as the CV (source: `.tex`). For a paste box, use [the .txt copy](Abdelrahman-Khalifa-Cover-Letter.txt) |
 
 **What the tailored CV changes for this ad:** Title "Rust, C, Networking, Linux"; summary leads with the protocol work (IPP over HTTP, DNS-SD, the Zephyr IPv4 multicast option); new Networking skills line. Ad keywords matched: **6 of 13 (base: 5)**.
 
