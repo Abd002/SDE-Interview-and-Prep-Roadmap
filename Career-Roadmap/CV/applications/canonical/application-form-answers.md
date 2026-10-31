@@ -83,4 +83,4 @@ Notes only; any changes stay in your own words.
 
 ## Status
 
-Fill in after submitting: **Applied on:** — · then update [README](README.md), [08 — Application Tracker](../../../08-Application-Tracker.md) and the Notion row.
+**Applied on:** 31 Oct 2026 · updated in the [README](README.md), [08 — Application Tracker](../../../08-Application-Tracker.md) and the Notion row.

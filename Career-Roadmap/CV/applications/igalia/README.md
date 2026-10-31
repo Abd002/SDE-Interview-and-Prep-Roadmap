@@ -9,8 +9,10 @@
 | **Role** | [JavaScript Engine Developer](https://www.igalia.com/jobs/javascript_engine_developer) |
 | **Where** | Remote |
 | **Why it fits** | "No strict requirements"; V8/JSC/SpiderMonkey work in C/C++; your Boa (JS engine in Rust) PR is direct evidence |
-| **Status** | Preparing (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b4181e18016ec6227aca0f9)) |
-| **Applied on** | — |
+| **Status** | **Applied** (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b4181e18016ec6227aca0f9)) |
+| **Applied on** | 31 Oct 2026 |
+| **Track it** | Igalia replies by email; you ticked the copy of your application, so keep that email |
+| **Follow up** | 21 Nov 2026, if there is no reply (3 weeks, see [09 §5](../../../09-Hiring-Process-and-Outreach.md#5-follow-up-rules)) |
 | **Saved job ad** | [job-ad.md](job-ad.md), in case the posting closes |
 
 ## 2. Files in this folder
@@ -85,9 +87,9 @@
 
 ## 5. Checklist
 
-- [ ] Re-open the job link and check it is still open.
+- [x] Re-open the job link and check it is still open.
 - [ ] Message 1–2 people from §4 (mentors first) **before** applying.
-- [ ] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf); check every auto-filled form field.
-- [ ] Fill in **Applied on** above, in 08 and in Notion; set Status to Applied.
+- [x] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf); check every auto-filled form field.
+- [x] Fill in **Applied on** above, in 08 and in Notion; set Status to Applied.
 - [ ] Prepare with §3 while you wait.
 - [ ] Follow up once if there is no reply (see 09 §5).
