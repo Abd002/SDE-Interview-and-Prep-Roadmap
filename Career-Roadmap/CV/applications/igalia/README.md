@@ -22,6 +22,7 @@
 | [Abdelrahman-Khalifa-CV.tex](Abdelrahman-Khalifa-CV.tex) | Its LaTeX source |
 | [jakes-template/Abdelrahman-Khalifa-CV.pdf](jakes-template/Abdelrahman-Khalifa-CV.pdf) | The same facts in the original [Jake's Resume](https://github.com/jakegut/resume) template (see [CV/README](../../README.md#second-template-jakes-resume)) |
 | [job-ad.md](job-ad.md) | The job ad text as it was on 18–19 Oct 2026 |
+| [application-form.md](application-form.md) | **Cover letter and every form field**, ready to paste (31 Oct 2026) |
 
 **What the tailored CV changes for this ad:** Title "Rust, C++, C, Open Source"; summary leads with Boa (a JavaScript engine) and Clippy; Boa listed first. Ad keywords matched: **6 of 12**.
 
