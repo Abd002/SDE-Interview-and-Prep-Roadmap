@@ -22,6 +22,7 @@
 | [Abdelrahman-Khalifa-CV.tex](Abdelrahman-Khalifa-CV.tex) | Its LaTeX source |
 | [jakes-template/Abdelrahman-Khalifa-CV.pdf](jakes-template/Abdelrahman-Khalifa-CV.pdf) | The same facts in the original [Jake's Resume](https://github.com/jakegut/resume) template (see [CV/README](../../README.md#second-template-jakes-resume)) |
 | [job-ad.md](job-ad.md) | The job ad text as it was on 18–19 Oct 2026 |
+| [application-form-answers.md](application-form-answers.md) | Your answers on the application form (31 Oct 2026), with a fact check |
 
 **What the tailored CV changes for this ad:** Title "Linux, Open Source, Rust, C"; summary adds Python, Ubuntu/Debian, B.Sc. with Honors, Codeforces Expert and ECPC (the ad asks for an exceptional academic record); adds Java; adds firmware and bootloaders. Ad keywords matched: **16 of 23**.
 

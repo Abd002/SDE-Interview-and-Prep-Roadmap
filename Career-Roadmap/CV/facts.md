@@ -15,6 +15,7 @@ Every CV, LinkedIn text and interview answer must match this file. It was built 
 | Military service | **Completed** (Egypt). During service he kept working at EKSON part-time/remote. |
 | English | Full professional proficiency, as he set it on LinkedIn (IELTS not taken yet) |
 | Languages, self-rated | **Rust, modern C++, C: strong** · Python: good |
+| Linux distribution he uses | **CachyOS** (Arch-based); said on the Canonical form, 31 Oct 2026 |
 
 ## Experience
 
@@ -99,6 +100,7 @@ Part-time/remote during military service; still part-time now.
 **Zephyr "Technical Contributor":** a real certification/badge. Keep it on LinkedIn.
 
 ## Education
+- **High school: Thanaweya Amma** (Egyptian General Secondary Education Certificate). **Mathematics 119/120** (pure and applied), **Arabic 79/80** (from the Canonical form, 31 Oct 2026; the overall total isn't recorded yet).
 - **B.Sc. Computer and Systems Engineering, Minia University.** 2020 – 2025, **Very Good (84.6%) with Honors**.
 - **Graduation project:** AUTOSAR-based V2X / software-defined vehicle prototype, team project, **STM32**.
   - **His part: FOTA and the bootloader.**
@@ -112,6 +114,7 @@ Part-time/remote during military service; still part-time now.
 - **Codeforces Expert** (max rating 1600–1899), handle _Khalifa.
 - **4-time ECPC finalist, 2021–2024** (Egyptian Collegiate Programming Contest).
 - **IEEE student branch Treasurer:** managed a budget of more than $10k.
+- **ICPC community mentor:** taught problem solving in C++ to 20+ colleagues in his local ICPC community (from the Canonical form, 31 Oct 2026).
 - **Removed:** the Deloitte mentorship (not to be listed).
 
 ## Projects to keep
