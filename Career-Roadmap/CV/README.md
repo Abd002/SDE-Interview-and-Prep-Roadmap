@@ -47,19 +47,20 @@ To build a copy: `cd applications/<company> && TEXINPUTS=../..: pdflatex Abdelra
 - **It matches the original template:**
   - the same preamble and commands (`\resumeSubheading`, `\resumeProjectHeading`, `\resumeItem`);
   - letter paper, 11pt, the Computer Modern look, small-caps section titles with a rule;
-  - the same sections in the same order: Education → Experience → Projects → Technical Skills;
   - the job title in bold with dates on the right, the company in italics with the location on the right.
-  - Open-source contributions go in Projects, and achievements go under Education, because the template has no other sections.
+- **Sections (changed 31 Oct 2026):** the same order as the main copies: Summary → Experience → OSS Projects → Projects → Technical Skills → Education (achievements go under Education).
+  - Open source has its own section instead of sharing Projects.
+  - It's titled "OSS Projects" because OpenResume only treats a non-bold title as a section when it has at most 2 words and a keyword such as "project". As "Open Source" it merged the section into Experience and lost 2 of the 3 jobs.
 - **One invisible change:** `\usepackage[T1]{fontenc}` + `lmodern`, which looks the same as the default font. Without it, the OpenResume parser read only **1 of 3 jobs** (it finds job titles by "Bold" in the font name, and the default bold font is called `CMBX10`), and `IP_MULTICAST_LOOP` extracted as `IP MULTICAST LOOP`.
 - **Shorter than the main copy:** to fit 11pt on one page, [tools/build_jake_cvs.sh](tools/build_jake_cvs.sh) drops or shortens a few of the weakest bullets for each company (listed in that script). The main copy keeps everything.
 - **Built by:** [tools/make_jake_cv.py](tools/make_jake_cv.py), which reads the tailored `.tex` and fills the Jake template, so the facts always match. To rebuild all five: `tools/build_jake_cvs.sh`.
 - **PDF only:** for a Word file, use the main copy's `.docx`, which has the same facts.
 - **Checks:**
-  - all five are 1 page, with Type 1 fonts only, no ligature glyphs, all contact details and all four sections;
-  - OpenResume reads all 3 jobs with their dates, the education and 4 projects;
+  - all five are 1 page, with Type 1 fonts only, no ligature glyphs, all contact details and all six sections;
+  - OpenResume reads all 6 sections and all 3 jobs with their dates, plus the education (checked 31 Oct 2026);
   - plain-text extraction puts each right-aligned date on its own line, as with any Jake's resume, so the main copies stay the safer choice for ATS;
-  - the template has no Summary and no Codeforces link in the header, so a few ad keywords from the main copy's summary are missing.
-- **Which to send:** **the main tailored copy by default.** Use the Jake's version when a person, not software, will read it (referrals, emails), or when you want Education first. A template doesn't decide the outcome; the content and a referral do.
+  - the header has no Codeforces link, unlike the main copy.
+- **Which to send:** **the main tailored copy by default.** Use the Jake's version when a person, not software, will read it (referrals, emails). A template doesn't decide the outcome; the content and a referral do.
 
 **PDF or Word?** Send the **PDF** by default. Use the **.docx** only when the job site asks for Word, or only accepts .doc/.docx. Both have the same text.
 

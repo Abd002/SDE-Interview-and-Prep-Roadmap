@@ -123,18 +123,11 @@
     \href{https://github.com/Abd002}{\underline{github.com/Abd002}}
 \end{center}
 
-%-----------EDUCATION-----------
-\section{Education}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Minia University}{Minia, Egypt}
-      {Bachelor of Science (B.Sc.), Computer and Systems Engineering}{2020 -- 2025}
-      \resumeItemListStart
-        \resumeItem{Grade: Very Good with Honors. Graduation project: AUTOSAR V2X vehicle on STM32 with a dual-bank bootloader.}
-        \resumeItem{Codeforces Expert (handle \_Khalifa); 4-time ECPC finalist, 2021--2024 (Egyptian Collegiate Programming Contest).}
-        \resumeItem{Treasurer, IEEE Student Branch, Minia University: managed a budget of more than \$10k.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
+%-----------SUMMARY-----------
+\section{Summary}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{Software engineer in modern C++, Rust, C and Python, strong in algorithms (Codeforces Expert). Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting): built the Printers page for COSMIC Settings, with 7 PRs merged upstream.}}
+ \end{itemize}
 
 %-----------EXPERIENCE-----------
 \section{Experience}
@@ -144,9 +137,9 @@
       {Google Summer of Code Contributor}{May 2026 -- Oct 2026}
       {The Linux Foundation (OpenPrinting)}{Remote}
       \resumeItemListStart
-        \resumeItem{Built the \textbf{Printers page for COSMIC Settings} and a standalone app with the same UI: printers grouped by device, status and supply levels, print queues, live updates, and an Add Printer flow for legacy printers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).}
+        \resumeItem{Built the \textbf{Printers page for COSMIC Settings} and a standalone app for printer status, supply levels, print queues and adding printers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).}
         \resumeItem{Designed it as 5 Rust crates and ran the C FFI backend as a varlink IPC service in the settings daemon, so a native crash cannot take down Settings.}
-        \resumeItem{\textbf{7 PRs accepted upstream}: ported cups-rs to libcups3 with CUPS 2 and 3 builds and CI, added DNS-SD bindings, and fixed crashes and a leaked client in libcups (C).}
+        \resumeItem{\textbf{7 PRs merged upstream}: ported cups-rs to libcups3 with CI, added DNS-SD bindings, and fixed crashes and a leaked client in libcups (C).}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -154,21 +147,21 @@
       {EKSON}{Egypt}
       \resumeItemListStart
         \resumeItem{Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.}
-        \resumeItem{Developed the PyQt5 control app; used asyncio to wait for ESP32 and server messages concurrently, cutting CPU use and latency by about 40\% (measured).}
-        \resumeItem{Engineered remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST to relay commands and flash new firmware with esptool; GitHub Actions CI.}
+        \resumeItem{Cut CPU use and latency of the PyQt5 control app by about 40\% (measured) using asyncio.}
+        \resumeItem{Engineered remote operation and firmware updates: a Node.js/Express + MongoDB backend polled over REST, with esptool flashing; GitHub Actions CI.}
       \resumeItemListEnd
 
     \resumeSubheading
       {Embedded Linux Systems Intern}{Dec 2024 -- Jan 2025}
       {Orange Digital Center (ODC)}{Egypt}
       \resumeItemListStart
-        \resumeItem{Created custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.}
+        \resumeItem{Built custom Linux images with Yocto and Buildroot and a Linux kernel module; scored 100\% in the final evaluation.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
 
-%-----------PROJECTS-----------
-\section{Projects}
+%-----------OPEN SOURCE-----------
+\section{OSS Projects}
     \resumeSubHeadingListStart
       \resumeProjectHeading
           {\textbf{Zephyr RTOS, Boa JavaScript engine (Rust), Rust Clippy} $|$ \emph{Contributor (all merged)}}{Mar 2025 -- Dec 2025}
@@ -177,6 +170,11 @@
             \resumeItem{Boa: optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}).}
             \resumeItem{Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}).}
           \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
       \resumeProjectHeading
           {\textbf{IoT Device Communication System} $|$ \emph{C++, Raspberry Pi 4, QEMU, Yocto}}{\cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}}
           \resumeItemListStart
@@ -187,11 +185,6 @@
           \resumeItemListStart
             \resumeItem{CLI simulating scheduling, memory management, system calls and locks.}
           \resumeItemListEnd
-      \resumeProjectHeading
-          {\textbf{Inventory Management System} $|$ \emph{C\#, WinForms, SQL}}{\cvlink{https://github.com/Abd002/Inventory-Management-System}{GitHub}}
-          \resumeItemListStart
-            \resumeItem{Stock, orders and deliveries app with role-based access control and reports.}
-          \resumeItemListEnd
     \resumeSubHeadingListEnd
 
 %
@@ -200,10 +193,23 @@
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
      \textbf{Languages}{: Rust, Modern C++, C, Python (asyncio), JavaScript (Node.js), SQL, Java, C\#, Bash} \\
-     \textbf{Computer science}{: Data structures and algorithms, operating systems, concurrency and multithreading, async/event-driven design, memory management, networking (TCP/UDP, IPC)} \\
-     \textbf{Backend \& tools}{: Node.js, Express, REST APIs, MongoDB (NoSQL), PyQt5; Git (version control), GitHub Actions CI, CMake, testing, debugging and troubleshooting, code review}
+     \textbf{Computer science}{: Data structures and algorithms, operating systems, concurrency, memory management, networking (TCP/UDP)} \\
+     \textbf{Backend \& tools}{: Node.js, Express, REST APIs, MongoDB (NoSQL), PyQt5; Git, GitHub Actions CI, CMake, testing, debugging, code review}
     }}
  \end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Minia University}{Minia, Egypt}
+      {Bachelor of Science (B.Sc.), Computer and Systems Engineering}{2020 -- 2025}
+      \resumeItemListStart
+        \resumeItem{Grade: Very Good with Honors.}
+        \resumeItem{Codeforces Expert (handle \_Khalifa); 4-time ECPC finalist, 2021--2024.}
+        \resumeItem{Treasurer, IEEE Student Branch, Minia University: managed a budget of more than \$10k.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
 
 
 %-------------------------------------------

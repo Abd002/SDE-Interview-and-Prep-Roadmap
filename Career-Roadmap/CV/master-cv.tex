@@ -19,7 +19,7 @@ Software engineer working in Rust, C and modern C++ on Linux and embedded system
   \item Implemented the Add Printer flow: legacy and specialty printers are set up through Printer Applications (PAPPL) instead of PPD drivers, following the CUPS 3 architecture.
   \item Designed the stack as 5 Rust crates: \texttt{printers-core} (types, grouping queues into physical devices), \texttt{printers-client} (async varlink client), \texttt{printers-server} (CUPS, IPP, DNS-SD and Printer Application backend), \texttt{printers-ui} (iced/libcosmic) and \texttt{printers-app}.
   \item Exposed the backend over varlink IPC from \texttt{cosmic-settings-daemon} (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}, in review), so the C FFI code never loads in the Settings process; the standalone app can run the server in-process.
-  \item Ported cups-rs to libcups3 with CUPS 2 and CUPS 3 builds and CI; wrote FFI bindings for the libcups3 DNS-SD API; fixed crashes and a leaked client in libcups' Avahi DNS-SD code (C). \textbf{7 PRs accepted upstream.}
+  \item Got \textbf{7 PRs merged upstream} in OpenPrinting. cups-rs (Rust): ported it to libcups3 with CUPS 2 and CUPS 3 builds and CI; added IPP management operations, Printer Application support, IP/port connections, \texttt{lpoptions} and FFI bindings for the libcups3 DNS-SD API (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}). libcups (C): fixed crashes in \texttt{cupsDNSSDDelete()} when Avahi fails to initialize, and a leaked client in the Avahi DNS-SD code (\cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}).
   \item Tested on real HP printers and Printer Applications (Ghostscript, Gutenprint, HPLIP, LPrint); CI checks formatting, Clippy and tests on several architectures and runs CUPS, Avahi and \texttt{ippeveprinter} to test discovery.
 \end{itemize}
 \cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
@@ -37,18 +37,8 @@ Software engineer working in Rust, C and modern C++ on Linux and embedded system
   \item Created custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.
 \end{itemize}
 
-\section*{Technical Skills}
-\cvskill{Languages}{Rust, C, Modern C++, Python (asyncio), Java, C\#, SQL, JavaScript, Bash, Verilog/VHDL, MATLAB}
-\cvskill{Systems \& Linux}{Linux (Ubuntu/Debian), operating systems, FFI, IPC (varlink, D-Bus; zbus, zlink), async/event-driven design, multithreading, memory management, CUPS/IPP, DNS-SD/mDNS (Avahi), kernel modules and device drivers}
-\cvskill{Embedded}{Zephyr (devicetree, west), FreeRTOS, ESP-IDF, OSEK/VDX (Trampoline), ARM Cortex-M (STM32, TM4C), ESP32-S3, AVR, AUTOSAR, bootloaders, FOTA, PID control, Yocto, Buildroot, QEMU; UART, SPI, I2C, CAN}
-\cvskill{Tools \& practices}{Git/GitHub, Cargo, Clippy, CMake, Make, GitHub Actions CI, esptool, unit and end-to-end testing (pytest, pytest-qt), debugging, code review, Xilinx FPGA tools, PCB design}
-\cvskill{Web, desktop \& ML}{React, Node.js, Express, MongoDB, REST APIs, ASP.NET Core, Flask; iced, libcosmic, PyQt5, WinForms; TensorFlow, PyTorch}
-
 \section*{Open Source Projects}
 \begin{itemize}
-  \item \textbf{OpenPrinting cups-rs} (2026): IPP management operations, Printer Application support, CUPS 2 and CUPS 3 builds and CI, connections by IP/port, DNS-SD discovery, \texttt{lpoptions} support (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}).
-  \item \textbf{OpenPrinting libcups} (2026): fixed crashes in \texttt{cupsDNSSDDelete()} when Avahi fails to initialize, and a leaked client in the Avahi DNS-SD code (\cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}).
-  \item \textbf{COSMIC} (2026): Printers page and Add Printer flow in Settings (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}) and a varlink printers server in the settings daemon (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}), in review.
   \item \textbf{Boa, a JavaScript engine in Rust} (Dec 2025): optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion; with tests (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}, landed upstream).
   \item \textbf{Rust Clippy} (Dec 2025): fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}, accepted).
   \item \textbf{Zephyr RTOS} (Mar 2025, first open-source contribution): implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules, reviewed by the networking maintainers and merged upstream (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{issue \#86977}, \cvlink{https://github.com/zephyrproject-rtos/zephyr/pull/87167}{PR \#87167}, \cvlink{https://github.com/zephyrproject-rtos/zephyr/commit/b11703623c02f5afa4a5b0b7abdce3e324d7d470}{commit b117036}).
@@ -71,6 +61,13 @@ Software engineer working in Rust, C and modern C++ on Linux and embedded system
   \item \textbf{Team projects:} Sarh Al-Tafawuq, a production web platform (\cvlink{https://sarh-al-tafawuq-platform.vercel.app/}{live}); Nafaqati, a Flutter Android expense tracker with on-device SMS import, charts and offline storage (\cvlink{https://play.google.com/store/apps/details?id=com.mariam.nafaqati}{Google Play}).
   \item \textbf{Other projects:} Children Safety web app (Flask, geolocation; \cvlink{https://github.com/Abd002/Cs50}{GitHub}), desktop chess in C\# (\cvlink{https://github.com/Abd002/ChessOOP}{GitHub}), face-mask detection with a CNN, and a smart-garage IoT system deployed with Yocto on Intel Galileo.
 \end{itemize}
+
+\section*{Technical Skills}
+\cvskill{Languages}{Rust, C, Modern C++, Python (asyncio), Java, C\#, SQL, JavaScript, Bash, Verilog/VHDL, MATLAB}
+\cvskill{Systems \& Linux}{Linux (Ubuntu/Debian), operating systems, FFI, IPC (varlink, D-Bus; zbus, zlink), async/event-driven design, multithreading, memory management, CUPS/IPP, DNS-SD/mDNS (Avahi), kernel modules and device drivers}
+\cvskill{Embedded}{Zephyr (devicetree, west), FreeRTOS, ESP-IDF, OSEK/VDX (Trampoline), ARM Cortex-M (STM32, TM4C), ESP32-S3, AVR, AUTOSAR, bootloaders, FOTA, PID control, Yocto, Buildroot, QEMU; UART, SPI, I2C, CAN}
+\cvskill{Tools \& practices}{Git/GitHub, Cargo, Clippy, CMake, Make, GitHub Actions CI, esptool, unit and end-to-end testing (pytest, pytest-qt), debugging, code review, Xilinx FPGA tools, PCB design}
+\cvskill{Web, desktop \& ML}{React, Node.js, Express, MongoDB, REST APIs, ASP.NET Core, Flask; iced, libcosmic, PyQt5, WinForms; TensorFlow, PyTorch}
 
 \section*{Achievements}
 \begin{itemize}

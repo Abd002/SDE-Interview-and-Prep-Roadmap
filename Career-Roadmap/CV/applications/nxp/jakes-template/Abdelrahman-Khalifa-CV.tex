@@ -123,17 +123,11 @@
     \href{https://github.com/Abd002}{\underline{github.com/Abd002}}
 \end{center}
 
-%-----------EDUCATION-----------
-\section{Education}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Minia University}{Minia, Egypt}
-      {Bachelor of Science (B.Sc.), Computer and Systems Engineering}{2020 -- 2025}
-      \resumeItemListStart
-        \resumeItem{Grade: Very Good with Honors.}
-        \resumeItem{Activities: Codeforces Expert; 4-time ECPC finalist (2021--2024); Treasurer, IEEE Student Branch.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
+%-----------SUMMARY-----------
+\section{Summary}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{Embedded software engineer writing C firmware for 32-bit microcontrollers (ESP32-S3, ARM Cortex-M STM32 and TM4C). Owns the Zephyr RTOS firmware for EKSON's pneumatic motion simulators; built a dual-bank STM32 bootloader with CRC/signature check and rollback (graduation project).}}
+ \end{itemize}
 
 %-----------EXPERIENCE-----------
 \section{Experience}
@@ -143,28 +137,38 @@
       {Embedded Software Engineer}{Aug 2025 -- Present}
       {EKSON}{Egypt}
       \resumeItemListStart
-        \resumeItem{Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS for more deterministic timing, devicetree-based drivers and easier porting to other boards.}
-        \resumeItem{Implemented closed-loop PID control of the pneumatic valves, with feedback from an MPU6050 IMU over I2C (calibration and a Mahony filter for orientation), plus safety stops and a watchdog.}
-        \resumeItem{Developed the PyQt5 desktop app that controls the simulator over a UART protocol; cut its CPU usage and latency by about 40\% (measured) using asyncio to wait for ESP32 and server messages concurrently, off the UI thread.}
-        \resumeItem{Engineered remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST, then flashes new firmware with esptool; GitHub Actions CI.}
+        \resumeItem{Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS.}
+        \resumeItem{Implemented closed-loop PID control of the pneumatic valves, with feedback from an MPU6050 IMU over I2C, plus safety stops and a watchdog.}
+        \resumeItem{Cut CPU usage and latency of the PyQt5 desktop app by about 40\% (measured) with asyncio.}
+        \resumeItem{Built remote operation and firmware updates (Node.js/MongoDB backend, esptool) with GitHub Actions CI.}
       \resumeItemListEnd
 
     \resumeSubheading
       {Google Summer of Code Contributor}{May 2026 -- Oct 2026}
       {The Linux Foundation (OpenPrinting)}{Remote}
       \resumeItemListStart
-        \resumeItem{Built the \textbf{Printers page for COSMIC Settings} (printer status, supply levels, print queues, adding printers) as 5 Rust crates, with the CUPS/IPP/DNS-SD backend isolated behind a varlink IPC service (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).}
-        \resumeItem{Wrote Rust-to-C FFI bindings (libcups3 DNS-SD) and fixed crashes in libcups' Avahi code; 7 PRs accepted upstream.}
+        \resumeItem{Built the \textbf{Printers page for COSMIC Settings} as 5 Rust crates, with the CUPS/IPP/DNS-SD backend isolated behind a varlink IPC service (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).}
+        \resumeItem{Wrote Rust-to-C FFI bindings (libcups3 DNS-SD), ported cups-rs to libcups3 with CI, and fixed crashes in libcups' Avahi code; 7 PRs merged upstream (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}, \cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}).}
       \resumeItemListEnd
 
     \resumeSubheading
       {Embedded Linux Systems Intern}{Dec 2024 -- Jan 2025}
       {Orange Digital Center (ODC)}{Egypt}
       \resumeItemListStart
-        \resumeItem{Created custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.}
+        \resumeItem{Built Linux images with Yocto and Buildroot and a kernel module; scored 100\% in the final evaluation.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
+
+%-----------OPEN SOURCE-----------
+\section{OSS Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Zephyr RTOS}}{Mar 2025}
+          \resumeItemListStart
+            \resumeItem{Implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules, merged upstream (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{issue \#86977}).}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
 
 %-----------PROJECTS-----------
 \section{Projects}
@@ -175,19 +179,9 @@
             \resumeItem{Implemented the firmware update path (an ESP32/RPi gateway sends the image over UART) and a dual-bank bootloader with CRC check and rollback.}
           \resumeItemListEnd
       \resumeProjectHeading
-          {\textbf{Seat Heater Control System} $|$ \emph{Tiva C, FreeRTOS}}{\cvlink{https://github.com/Abd002/SeatHeaterControlSystem}{GitHub}}
-          \resumeItemListStart
-            \resumeItem{Real-time temperature and heater control with UART diagnostics, using tasks, mutexes and event flags.}
-          \resumeItemListEnd
-      \resumeProjectHeading
-          {\textbf{IoT Device Communication System} $|$ \emph{C++, Yocto}}{\cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}}
-          \resumeItemListStart
-            \resumeItem{TCP and UDP multicast between a Pi and QEMU clients.}
-          \resumeItemListEnd
-      \resumeProjectHeading
           {\textbf{Kernel Monitor} $|$ \emph{C, Linux, ARM, QEMU}}{\cvlink{https://github.com/Abd002/kernel-monitor}{GitHub}}
           \resumeItemListStart
-            \resumeItem{Character device driver that walks the process list under RCU and exports per-task IDs, memory, threads, context switches and CPU time to user space; run on QEMU.}
+            \resumeItem{Character device driver that exports per-task memory, threads, context switches and CPU time to user space using RCU.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
@@ -203,6 +197,18 @@
      \textbf{Testing}{: unit and integration (end-to-end) testing, pytest, Python scripting for build and test automation in CI}
     }}
  \end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Minia University}{Minia, Egypt}
+      {Bachelor of Science (B.Sc.), Computer and Systems Engineering}{2020 -- 2025}
+      \resumeItemListStart
+        \resumeItem{Grade: Very Good with Honors.}
+        \resumeItem{Activities: Codeforces Expert; 4-time ECPC finalist (2021--2024); Treasurer, IEEE Student Branch.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
 
 
 %-------------------------------------------

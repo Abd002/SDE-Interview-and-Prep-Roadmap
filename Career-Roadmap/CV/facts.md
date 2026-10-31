@@ -89,6 +89,8 @@ Part-time/remote during military service; still part-time now.
 | **libcups** (OpenPrinting, C) | 2026 | #164, #165 merged | Google Summer of Code |
 | **COSMIC** settings + daemon | 2026 | **In review** | #2182, #188 |
 
+**Where these go in a CV:** cups-rs, libcups and COSMIC were Google Summer of Code work, so they appear only inside the GSoC entry under Experience, never again under Open Source (decided 31 Oct 2026). The Open Source section lists only Zephyr, Boa and Rust Clippy.
+
 **Removed from all documents:**
 - the "Winter of Code 2026" label;
 - the lp/lpstat PRs (not merged);

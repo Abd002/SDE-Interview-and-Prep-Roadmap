@@ -4,8 +4,9 @@
 Reads a CV written with cv-style.sty macros (\\cvjob, \\cventry, \\cvskill,
 \\section*{...}) and writes the same facts into the original Jake's Resume
 template (github.com/jakegut/resume, MIT): same preamble, same commands
-(\\resumeSubheading, \\resumeProjectHeading, \\resumeItem), same section order
-(Education, Experience, Projects, Technical Skills), letter paper, 11pt.
+(\\resumeSubheading, \\resumeProjectHeading, \\resumeItem), letter paper, 11pt.
+Sections follow the tailored CV's order: Summary, Experience, Open Source,
+Projects, Technical Skills, Education (achievements go under Education).
 
 Usage: make_jake_cv.py SRC.tex OUT.tex [--max-projects N] [--drop TEXT]...
 
@@ -218,16 +219,11 @@ def main():
     secs = sections(body)
     w = [PREAMBLE]
 
-    # Education (plus achievements, which the template has no section for)
-    w.append('\n%-----------EDUCATION-----------\n\\section{Education}\n  \\resumeSubHeadingListStart\n')
-    for (title, org, dates), blk in entries(secs['Education'], 'cvjob', 3):
-        w.append(f'    \\resumeSubheading\n      {{{org}}}{{{LOCATION.get(org, "")}}}\n      {{{title}}}{{{dates}}}\n')
-        its = items(blk) + items(secs.get('Achievements', ''))
-        if its:
-            w.append('      \\resumeItemListStart\n')
-            w += [f'        \\resumeItem{{{x}}}\n' for x in its]
-            w.append('      \\resumeItemListEnd\n')
-    w.append('  \\resumeSubHeadingListEnd\n')
+    # Summary
+    summ = re.sub(r'\s+', ' ', secs.get('Summary', '')).strip()
+    if summ:
+        w.append('\n%-----------SUMMARY-----------\n\\section{Summary}\n'
+                 ' \\begin{itemize}[leftmargin=0.15in, label={}]\n    \\small{\\item{' + summ + '}}\n \\end{itemize}\n')
 
     # Experience
     w.append('\n%-----------EXPERIENCE-----------\n\\section{Experience}\n  \\resumeSubHeadingListStart\n')
@@ -238,17 +234,33 @@ def main():
         w.append('      \\resumeItemListEnd\n')
     w.append('\n  \\resumeSubHeadingListEnd\n')
 
-    # Projects: open-source contributions first, then personal projects
-    w.append('\n%-----------PROJECTS-----------\n\\section{Projects}\n    \\resumeSubHeadingListStart\n')
-    for (title, dates), blk in entries(secs.get('Open Source Projects', ''), 'cventry', 2):
-        kind, _, what = title.partition(' --- ')
-        w.append(f'      \\resumeProjectHeading\n          {{\\textbf{{{what}}} $|$ \\emph{{{kind}}}}}{{{dates}}}\n')
-        w.append('          \\resumeItemListStart\n')
-        w += [f'            \\resumeItem{{{x}}}\n' for x in items(blk)]
-        w.append('          \\resumeItemListEnd\n')
+    # Open Source: \cventry blocks, or plain "\textbf{Name} (date): text" bullets
+    oss = secs.get('Open Source Projects', '')
+    if oss.strip():
+        w.append('\n%-----------OPEN SOURCE-----------\n\\section{OSS Projects}\n    \\resumeSubHeadingListStart\n')
+        blocks = entries(oss, 'cventry', 2)
+        for (title, dates), blk in blocks:
+            kind, _, what = title.partition(' --- ')
+            w.append(f'      \\resumeProjectHeading\n          {{\\textbf{{{what}}} $|$ \\emph{{{kind}}}}}{{{dates}}}\n')
+            w.append('          \\resumeItemListStart\n')
+            w += [f'            \\resumeItem{{{x}}}\n' for x in items(blk)]
+            w.append('          \\resumeItemListEnd\n')
+        if not blocks:
+            for it in items(oss):
+                m = re.match(r'\\textbf\{(.*?)\}\s*\((.*?)\):\s*(.*)', it, re.S)
+                name, when, desc = (m.group(1), m.group(2), m.group(3).strip()) if m else ('', '', it)
+                w.append(f'      \\resumeProjectHeading\n          {{\\textbf{{{name}}}}}{{{when}}}\n')
+                w.append('          \\resumeItemListStart\n')
+                w.append(f'            \\resumeItem{{{desc[0].upper() + desc[1:]}}}\n')
+                w.append('          \\resumeItemListEnd\n')
+        w.append('    \\resumeSubHeadingListEnd\n')
+
+    # Projects
     projs = items(secs.get('Projects', ''))
     if max_proj is not None:
         projs = projs[:max_proj]
+    if projs:
+        w.append('\n%-----------PROJECTS-----------\n\\section{Projects}\n    \\resumeSubHeadingListStart\n')
     for p in projs:
         m = re.match(r'\\textbf\{(.*?)\}\s*\((.*?)\):\s*(.*)', p, re.S)
         if m:
@@ -264,7 +276,8 @@ def main():
         w.append('          \\resumeItemListStart\n')
         w.append(f'            \\resumeItem{{{desc[0].upper() + desc[1:]}}}\n')
         w.append('          \\resumeItemListEnd\n')
-    w.append('    \\resumeSubHeadingListEnd\n')
+    if projs:
+        w.append('    \\resumeSubHeadingListEnd\n')
 
     # Technical Skills
     w.append('\n%\n%-----------PROGRAMMING SKILLS-----------\n\\section{Technical Skills}\n'
@@ -274,7 +287,19 @@ def main():
     for k, (label, val) in enumerate(skills):
         end = ' \\\\' if k + 1 < len(skills) else ''
         w.append(f'     \\textbf{{{label}}}{{: {val}}}{end}\n')
-    w.append('    }}\n \\end{itemize}\n\n\n%-------------------------------------------\n\\end{document}\n')
+    w.append('    }}\n \\end{itemize}\n')
+
+    # Education (plus achievements, which the template has no section for)
+    w.append('\n%-----------EDUCATION-----------\n\\section{Education}\n  \\resumeSubHeadingListStart\n')
+    for (title, org, dates), blk in entries(secs['Education'], 'cvjob', 3):
+        w.append(f'    \\resumeSubheading\n      {{{org}}}{{{LOCATION.get(org, "")}}}\n      {{{title}}}{{{dates}}}\n')
+        its = items(blk) + items(secs.get('Achievements', ''))
+        if its:
+            w.append('      \\resumeItemListStart\n')
+            w += [f'        \\resumeItem{{{x}}}\n' for x in its]
+            w.append('      \\resumeItemListEnd\n')
+    w.append('  \\resumeSubHeadingListEnd\n')
+    w.append('\n\n%-------------------------------------------\n\\end{document}\n')
     open(out, 'w').write(''.join(w))
 
 

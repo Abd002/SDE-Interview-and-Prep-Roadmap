@@ -123,17 +123,11 @@
     \href{https://github.com/Abd002}{\underline{github.com/Abd002}}
 \end{center}
 
-%-----------EDUCATION-----------
-\section{Education}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Minia University}{Minia, Egypt}
-      {Bachelor of Science (B.Sc.), Computer and Systems Engineering}{2020 -- 2025}
-      \resumeItemListStart
-        \resumeItem{Grade: Very Good with Honors. Graduation project: AUTOSAR V2X vehicle on STM32 with a dual-bank bootloader.}
-        \resumeItem{Activities: Codeforces Expert; 4-time ECPC finalist (2021--2024); Treasurer, IEEE Student Branch.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
+%-----------SUMMARY-----------
+\section{Summary}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{Systems software engineer working in Rust, modern C++ and C, with merged contributions to Boa (a JavaScript engine in Rust), Rust Clippy and Zephyr RTOS. Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting): built the Printers page for COSMIC Settings and landed 7 PRs upstream in cups-rs and libcups. Comfortable working remotely with maintainers through upstream code review.}}
+ \end{itemize}
 
 %-----------EXPERIENCE-----------
 \section{Experience}
@@ -144,8 +138,8 @@
       {The Linux Foundation (OpenPrinting)}{Remote}
       \resumeItemListStart
         \resumeItem{Built the \textbf{Printers page for COSMIC Settings} and a standalone app: printers grouped by device, supply levels, print queues, live updates and an Add Printer flow for legacy printers via PAPPL (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).}
-        \resumeItem{Designed the stack as 5 Rust crates: \texttt{printers-core} (types, grouping queues into physical devices), \texttt{printers-client} (async varlink client), \texttt{printers-server} (CUPS/IPP), \texttt{printers-ui} (iced) and \texttt{printers-app}.}
-        \resumeItem{Ran the backend as a varlink IPC service in \texttt{cosmic-settings-daemon} (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}, in review), so the C FFI code never loads in the Settings process; the standalone app falls back to running it in-process.}
+        \resumeItem{Ran the backend as a varlink IPC service in \texttt{cosmic-settings-daemon} (\cvlink{https://github.com/pop-os/cosmic-settings-daemon/pull/188}{cosmic-settings-daemon \#188}, in review), so the C FFI code never loads in the Settings process.}
+        \resumeItem{Got \textbf{7 PRs merged upstream} in OpenPrinting. cups-rs (Rust): ported to libcups3 with CI, IPP management, Printer Application support and DNS-SD FFI bindings (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}). libcups (C): fixed DNS-SD crashes and a leaked client (\cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}).}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -153,7 +147,7 @@
       {EKSON}{Egypt}
       \resumeItemListStart
         \resumeItem{Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.}
-        \resumeItem{Developed the PyQt5 desktop control app, cutting CPU usage and latency by about 40\% (measured) using asyncio to wait for ESP32 and server messages concurrently; added remote control and firmware updates through a Node.js/MongoDB backend.}
+        \resumeItem{Developed the PyQt5 desktop control app, cutting CPU usage and latency by about 40\% (measured) using asyncio to wait for ESP32 and server messages concurrently.}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -165,15 +159,9 @@
 
   \resumeSubHeadingListEnd
 
-%-----------PROJECTS-----------
-\section{Projects}
+%-----------OPEN SOURCE-----------
+\section{OSS Projects}
     \resumeSubHeadingListStart
-      \resumeProjectHeading
-          {\textbf{OpenPrinting cups-rs (Rust) and libcups (C)} $|$ \emph{Upstream contributions (all accepted)}}{2026}
-          \resumeItemListStart
-            \resumeItem{cups-rs: ported to libcups3 (CUPS 2 and 3 builds, CI); added IPP management operations, Printer Application support and FFI bindings for the libcups3 DNS-SD API (\cvlink{https://github.com/OpenPrinting/cups-rs/pull/18}{PRs \#18--\#22}).}
-            \resumeItem{libcups: fixed crashes in \texttt{cupsDNSSDDelete()} and a leaked client in the Avahi DNS-SD code (\cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}).}
-          \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{Boa JavaScript engine (Rust), Rust Clippy, Zephyr RTOS} $|$ \emph{Contributor (all merged)}}{Mar 2025 -- Dec 2025}
           \resumeItemListStart
@@ -181,15 +169,15 @@
             \resumeItem{Boa: optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}).}
             \resumeItem{Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}).}
           \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
       \resumeProjectHeading
           {\textbf{Kernel Monitor} $|$ \emph{C, Linux, ARM, QEMU}}{\cvlink{https://github.com/Abd002/kernel-monitor}{GitHub}}
           \resumeItemListStart
             \resumeItem{Character device driver that walks the process list under RCU and exports per-task IDs, memory, threads, context switches and CPU time to user space; run on QEMU.}
-          \resumeItemListEnd
-      \resumeProjectHeading
-          {\textbf{IoT Device Communication System} $|$ \emph{C++, Yocto}}{\cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}}
-          \resumeItemListStart
-            \resumeItem{TCP and UDP multicast between a Pi and QEMU clients.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
@@ -199,10 +187,22 @@
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
      \textbf{Languages}{: Rust, C, Modern C++, Python (asyncio), Bash, JavaScript (Node.js)} \\
-     \textbf{Systems \& Linux}{: Linux (Ubuntu/Debian), operating systems, FFI and bindings, IPC (varlink, D-Bus; zbus, zlink), concurrency (async/event-driven, multithreading), memory management, networking (TCP/UDP), CUPS/IPP, DNS-SD/mDNS (Avahi), kernel modules and device drivers} \\
-     \textbf{Tooling}{: Cargo, Clippy, rustfmt, Git/GitHub, GitHub Actions CI, CMake, Make, Yocto, Buildroot, QEMU, testing, debugging, performance optimization, code review}
+     \textbf{Systems \& Linux}{: Linux (Ubuntu/Debian), operating systems, FFI and bindings, IPC (varlink, D-Bus; zbus, zlink), async and multithreaded code, memory management, networking (TCP/UDP), CUPS/IPP, DNS-SD/mDNS (Avahi), kernel modules and device drivers} \\
+     \textbf{Tooling}{: Cargo, Clippy, rustfmt, Git/GitHub, GitHub Actions CI, CMake, Make, Yocto, Buildroot, QEMU, debugging, code review}
     }}
  \end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Minia University}{Minia, Egypt}
+      {Bachelor of Science (B.Sc.), Computer and Systems Engineering}{2020 -- 2025}
+      \resumeItemListStart
+        \resumeItem{Grade: Very Good with Honors.}
+        \resumeItem{Activities: Codeforces Expert; 4-time ECPC finalist (2021--2024); Treasurer, IEEE Student Branch.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
 
 
 %-------------------------------------------
