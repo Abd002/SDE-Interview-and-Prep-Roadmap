@@ -39,7 +39,9 @@ Sorted by date.
 
 ## B. Rolling job applications — P1
 
-### Current shortlist (study plan step 29, checked 18 Oct 2026)
+### Current shortlist (study plan step 29, checked 18 Oct 2026, re-checked 31 Oct 2026)
+
+**Re-checked 31 Oct 2026 on each company's own job board: all five are still open.** Canonical (updated 5 Oct), Cloudflare (updated 30 Oct), Igalia (application form live), NXP (posted 16 days ago), Amazon (Apply button live).
 
 Five open roles at five different P1 companies, each checked on the company's own job board on 18 Oct 2026. Apply in this order; re-open the link first in case it has closed. **Each company has its own folder with everything for that application** (click the company name). The overview is in [09 — Hiring Process and Outreach](09-Hiring-Process-and-Outreach.md). Send the tailored copy in the CV column (one per company, in [CV/applications/](CV/applications/)), named `Abdelrahman-Khalifa-CV.pdf`.
 
@@ -50,6 +52,30 @@ Five open roles at five different P1 companies, each checked on the company's ow
 | 3 | **[Igalia](CV/applications/igalia/README.md)** | [JavaScript Engine Developer](https://www.igalia.com/jobs/javascript_engine_developer) | Remote | "No strict requirements"; V8/JSC/SpiderMonkey work in C/C++; your Boa (JS engine in Rust) PR is direct evidence | [Igalia copy](CV/applications/igalia/Abdelrahman-Khalifa-CV.pdf) |
 | 4 | **[NXP](CV/applications/nxp/README.md)** | [Junior Embedded Software Engineer, Secure IoT Firmware](https://nxp.wd3.myworkdayjobs.com/careers/job/Gratkorn/Junior-Embedded-Software-Engineer---Secure-IoT-Firmware--m-f-d-_R-10066519) | Gratkorn, Austria | Junior; strong C, 32-bit MCUs, testing; nice-to-have Zephyr/FreeRTOS and secure boot (your dual-bank bootloader) | [NXP copy](CV/applications/nxp/Abdelrahman-Khalifa-CV.pdf) |
 | 5 | **[Amazon](CV/applications/amazon/README.md)** | [Software Development Engineer – 2027, AUTA](https://www.amazon.jobs/en/jobs/10576783/software-development-engineer-2027-auta) | Dublin, Ireland | SDE I graduate role (2027 start): asks for one language (C++, Rust, Python…), data structures and algorithms, open-source contributions, version control, SQL/NoSQL, debugging. The earlier DMS pick turned out to be SDE II | [Amazon copy](CV/applications/amazon/Abdelrahman-Khalifa-CV.pdf) |
+
+**More open roles that fit you (found 31 Oct 2026).** Use the same company CV, or apply alongside the main pick:
+
+| Company | Role | Where | Why it fits | Note |
+|---|---|---|---|---|
+| Canonical | [Junior Ubuntu Software Engineer](https://job-boards.greenhouse.io/canonical/jobs/6707669) | Home based, worldwide | Junior; Rust, C/C++ or Go; Linux; open source | Same academic-record bar as the graduate role |
+| Canonical | [Junior Linux Kernel Engineer – Ubuntu](https://job-boards.greenhouse.io/canonical/jobs/5370815) | Home based, worldwide | Junior; C and/or Rust; kernel fundamentals (your kernel module, Kernel Monitor) | |
+| Canonical | [Linux Devices Software Engineer](https://job-boards.greenhouse.io/canonical/jobs/5140562) | Home based, worldwide | No years asked; Linux and embedded (Yocto, kernel); C, C++ or Rust | |
+| Canonical | [Ubuntu Core Software Engineer](https://job-boards.greenhouse.io/canonical/jobs/3182672) | Home based, EMEA | C or Go, Linux devices (Raspberry Pi), bootloaders on ARM | |
+| Canonical | [C, Golang Software Engineer – dqlite (Raft for SQLite)](https://job-boards.greenhouse.io/canonical/jobs/4124053) | Home based, EMEA | C, distributed systems, Raft; matches your Raft study and flagship project | Stretch: asks for distributed-systems experience |
+| Cloudflare | [Software Engineer, Cloudflare Network Interconnect](https://boards.greenhouse.io/cloudflare/jobs/8088751) | London · Lisbon · Austin | Rust, Go, C or C++; IP networking (your Zephyr multicast work, TCP/UDP project) | Hybrid; BGP knowledge is a bonus |
+| Cloudflare | [Systems Engineer, Browser Isolation](https://boards.greenhouse.io/cloudflare/jobs/8276155) | London · Lisbon (and US, Toronto) | C++ in Chromium, Rust and Go services; "well-scoped features with support from experienced teammates" | Lisbon pay: €54–75k |
+| Igalia | [Kernel Developer](https://www.igalia.com/jobs/kernel_developer) | Remote | Linux kernel in C; your kernel module and Kernel Monitor | Asks for prior kernel contributions, which you don't have yet; the JS engine role stays the better pick |
+| NXP | [Junior Software Engineer for Secure Embedded Systems](https://nxp.wd3.myworkdayjobs.com/careers/job/Gratkorn/Junior-Software-Engineer--Debugger-for-Secure-Embedded-Systems--m-f-d-_R-10064606) | Gratkorn, Austria | Junior; C/C++/Python, MCU architecture, gdb/OpenOCD; **Rust** and RISC-V are pluses | Same site as the main NXP pick |
+| NXP | [Junior Software Engineer for Graphics](https://nxp.wd3.myworkdayjobs.com/careers/job/Bucharest/Junior-Software-Engineer-for-Graphics_R-10066632) | Bucharest, Romania | C/C++ on embedded Linux, **FreeRTOS or Zephyr** (your EKSON firmware); Python | No work-permit requirement stated |
+| Amazon | [SDE – 2027](https://www.amazon.jobs/en/jobs/10590147/software-development-engineer-2027) | London | Same SDE I graduate programme as Dublin, posted 27 Oct | Also open: [Madrid](https://www.amazon.jobs/en/jobs/10590145/software-development-engineer-2027), [Berlin](https://www.amazon.jobs/en/jobs/10593539/software-development-engineer-2027), [Luxembourg](https://www.amazon.jobs/en/jobs/10593520/software-development-engineer-2027) |
+
+**Checked and not a fit (31 Oct 2026):**
+- **No engineering roles in Egypt:** Amazon's 68 Egypt postings are all operations, HR and sales, and NXP has nothing in Cairo.
+- **Need a local work permit:** NXP Brno and Novi Sad.
+- **Students only:** Cloudflare's 2027 internships ("currently pursuing a degree").
+- **Closed:** Igalia's Coding Experience for 2026.
+- **Need 2+ years:** Canonical Mir (C++/Rust).
+- **Need 3+ years:** Cloudflare Egress and SSL/TLS.
 
 **Backups if one closes:** Collabora [Embedded Linux Consultant Engineer](https://jobs.lever.co/collabora/1d10fee4-5504-4abb-a623-276c926aad03) (remote) · Canonical [C, Golang Software Engineer on dqlite (Raft for SQLite)](https://job-boards.greenhouse.io/canonical/jobs/4124053) (EMEA, asks for distributed-systems experience).
 
