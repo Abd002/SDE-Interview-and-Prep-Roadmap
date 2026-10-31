@@ -9,8 +9,10 @@
 | **Role** | [Junior Embedded Software Engineer, Secure IoT Firmware](https://nxp.wd3.myworkdayjobs.com/careers/job/Gratkorn/Junior-Embedded-Software-Engineer---Secure-IoT-Firmware--m-f-d-_R-10066519) |
 | **Where** | Gratkorn, Austria |
 | **Why it fits** | Junior; strong C, 32-bit MCUs, testing; nice-to-have Zephyr/FreeRTOS and secure boot (your dual-bank bootloader) |
-| **Status** | Preparing (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b4181eaa634eb142008680e)) |
-| **Applied on** | — |
+| **Status** | **Applied** (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b4181eaa634eb142008680e)) |
+| **Applied on** | 31 Oct 2026 |
+| **Track it** | [Workday Candidate Home](https://nxp.wd3.myworkdayjobs.com/en-US/careers/userHome) (sign in with the account you applied with) |
+| **Follow up** | 14 Nov 2026, if there is no reply (NXP: after 2 weeks, see [09 §5](../../../09-Hiring-Process-and-Outreach.md#5-follow-up-rules)) |
 | **Saved job ad** | [job-ad.md](job-ad.md), in case the posting closes |
 
 ## 2. Files in this folder
@@ -32,7 +34,7 @@
 | **NXP** | Workday → recruiter email → 15–30 min phone call → panel interviews (maybe a test) | 1–3 weeks | **~3–6 weeks**. NXP aims to reply **within 2 weeks of an interview** (official); Glassdoor's average is 19 days | C and embedded depth, secure boot, testing |
 
 #### The process (official, [NXP Getting Hired](https://www.nxp.com/company/about-nxp/careers/getting-hired:GETTING-HIRED))
-1. **Apply** in the job tool. Track your status in **Candidate Home** (Workday). NXP prefers a "job-specific resume", which is what the NXP copy is.
+1. **Apply** in the job tool. Track your status in **[Candidate Home](https://nxp.wd3.myworkdayjobs.com/en-US/careers/userHome)** (Workday). NXP prefers a "job-specific resume", which is what the NXP copy is.
 2. **Recruiter email.**
 3. **Phone interview:** 15–30 minutes, to confirm you meet the requirements.
 4. **Virtual or on-site interviews:** a series of meetings, possibly a **panel**.
@@ -80,9 +82,9 @@
 
 ## 5. Checklist
 
-- [ ] Re-open the job link and check it is still open.
+- [x] Re-open the job link and check it is still open.
 - [ ] Message 1–2 people from §4 (mentors first) **before** applying.
-- [ ] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf); check every auto-filled form field.
-- [ ] Fill in **Applied on** above, in 08 and in Notion; set Status to Applied.
+- [x] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf); check every auto-filled form field.
+- [x] Fill in **Applied on** above, in 08 and in Notion; set Status to Applied.
 - [ ] Prepare with §3 while you wait.
 - [ ] Follow up once if there is no reply (see 09 §5).
