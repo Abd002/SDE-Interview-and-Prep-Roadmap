@@ -1,0 +1,58 @@
+% Collabora: Embedded Linux Consultant Engineer (Remote/Anywhere), Lever 1d10fee4-5504-4abb-a623-276c926aad03.
+% Every fact comes from ../../facts.md. Build: TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex (twice).
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Embedded Linux Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Embedded Linux Engineer \enspace|\enspace Linux, Yocto, C, Rust, Open Source}
+
+\section*{Summary}
+Embedded software engineer who works upstream. Built custom Linux images with Yocto and Buildroot, wrote a Linux kernel module for ARM, and booted ARM boards in QEMU with U-Boot, device trees and BusyBox root file systems. Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting), with 11 PRs merged upstream in C and Rust, plus merged work in Zephyr RTOS, Boa and Rust Clippy. Owns the Zephyr firmware and firmware-update path for EKSON's motion simulators. Used to remote, review-driven work.
+
+\section*{Experience}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Open-source project: Printers page for COSMIC Settings (Linux desktop), in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\begin{itemize}
+  \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app for the Linux printing stack (CUPS, IPP, DNS-SD/Avahi, Printer Applications), worked remotely with mentors from OpenPrinting and System76 (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item Ran the C FFI backend as a separate varlink IPC service in \texttt{cosmic-settings-daemon}, so a crash in native code cannot take down the Settings app.
+  \item Got \textbf{11 PRs merged upstream} (\cvlink{https://github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged}{cups-rs}, \cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}): ported cups-rs to libcups3 with a GitHub Actions matrix across architectures and CUPS versions, added DNS-SD FFI bindings, and fixed crashes and a leaked client in libcups' Avahi code (C).
+\end{itemize}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Software for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
+\begin{itemize}
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS for devicetree-based drivers and easier porting; PID valve control with IMU feedback over I2C, safety stops and a watchdog.
+  \item Built remote operation and firmware updates: the desktop app polls a Node.js/MongoDB backend over REST and flashes new firmware with esptool; GitHub Actions CI. Cut the app's CPU use and latency by about 40\% (measured).
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2024 -- Jan 2025}
+\begin{itemize}
+  \item Created custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.
+\end{itemize}
+
+\section*{Open Source Projects}
+\begin{itemize}
+  \item \textbf{Zephyr RTOS} (Mar 2025): implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules, reviewed and merged (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{issue \#86977}).
+  \item \textbf{Rust ecosystem} (Dec 2025): Boa JavaScript engine string optimization (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}) and a Rust Clippy lint fix (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}), both merged.
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{Kernel Monitor} (C, Linux kernel, ARM): character device driver that walks the process list under RCU and exports per-task IDs, memory, threads, context switches and CPU time; cross-compiled for ARM and run on QEMU vexpress-a9 with a custom kernel, device tree and BusyBox ext4 root file system. \cvlink{https://github.com/Abd002/kernel-monitor}{GitHub}
+  \item \textbf{A/B firmware updates} (graduation project; STM32, ESP32): an ESP32 gateway sends the image over UART with UDS services; the STM32 bootloader verifies it with the hardware CRC unit and uses two banks with rollback. \cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}
+  \item \textbf{IoT Device Communication} (C++, Linux, QEMU): TCP client--server classes; ARM clients run on two QEMU boards booted with U-Boot over TFTP and a bridged TAP network. \cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}
+\end{itemize}
+
+\section*{Technical Skills}
+\cvskill{Embedded Linux}{Yocto, Buildroot, U-Boot, Linux kernel modules and drivers, device trees, BusyBox root file systems, QEMU (ARM), cross-compilation, Raspberry Pi}
+\cvskill{Languages}{C, Rust, Modern C++, Python, Bash}
+\cvskill{Firmware}{Zephyr (devicetree, west), FreeRTOS, ESP-IDF, ARM Cortex-M (STM32, TM4C), ESP32-S3, bootloaders, firmware updates}
+\cvskill{Linux \& tools}{Debian/Ubuntu, Arch (CachyOS), CUPS/IPP, DNS-SD/Avahi, varlink/D-Bus IPC; Git, GitHub Actions CI, CMake, Make, Cargo, upstream code review}
+
+\section*{Education}
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors. Codeforces Expert; 4-time ECPC finalist (2021--2024).
+\end{itemize}
+
+\end{document}

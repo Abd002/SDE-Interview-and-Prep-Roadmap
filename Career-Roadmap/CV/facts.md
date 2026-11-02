@@ -68,9 +68,11 @@ Part-time/remote during military service; still part-time now.
   - `printers-ui`: iced/libcosmic;
   - `printers-app`: the standalone app.
 - **Backend as a separate process:** runs inside **cosmic-settings-daemon** over **varlink** IPC, so a crash in the C/FFI code can't take down the Settings app. The standalone app falls back to running the server in-process.
-- **7 PRs merged upstream:**
-  - **cups-rs #18–#22:** port to libcups3, CUPS 2 + 3 builds and CI, IPP management, DNS-SD FFI bindings, lpoptions;
-  - **libcups #164, #165:** DNS-SD/Avahi crash fixes and a leaked client.
+- **11 PRs merged in OpenPrinting** (checked on GitHub, 2 Nov 2026; the old "7" counted only #18–#22 + libcups):
+  - **During GSoC (8):** cups-rs **#18–#22** (port to libcups3, CUPS 2 + 3 builds, IPP management and Printer Application support, IP/port connections, DNS-SD FFI bindings, lpoptions), cups-rs **#23** (CI: full matrix across architectures and CUPS versions; merged 31 Oct 2026), libcups **#164, #165** (DNS-SD/Avahi crash fixes and a leaked client).
+  - **Before GSoC (3):** cups-rs **#8** (re-export job helpers and FORMAT_* constants, merged 29 Jan 2026), **#9** (fix IPP request op handling; Destination attribute fetch API, merged 2 May 2026), **#16** (cargo fmt across the repo, merged 2 Sep 2026).
+  - **Closed, not merged:** cups-rs #11 (lp/lpstat), #12, #13, #17.
+  - CV wording: "11 PRs merged upstream in cups-rs and libcups". Link: github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged
 - **In review (not merged):** cosmic-settings #2182 and cosmic-settings-daemon #188.
 - **Testing:** real HP printers (PageWide, LaserJet; DesignJet 800 through a Printer Application). CI runs `ippeveprinter` on several architectures.
 
@@ -86,9 +88,11 @@ Part-time/remote during military service; still part-time now.
 | **Zephyr RTOS:** `IP_MULTICAST_LOOP` socket option for IPv4 in `net_context` (6 networking modules, 150+ lines). His **first open-source contribution**, a "good first issue". | **Mar 2025** | Merged, commit b117036; issue #86977, PR #87167 | github.com/zephyrproject-rtos/zephyr/issues/86977 |
 | **Boa** (JavaScript engine in Rust): `JsStr::code_points()` fast path for Latin1 strings, with tests | Dec 2025 | **Merged** | boa-dev/boa #4553 |
 | **Rust Clippy:** fixed `ref_as_ptr` false positives for non-temporary references in `let`/`const` | Dec 2025 | **Merged** | rust-lang/rust-clippy #16214 |
-| **cups-rs** (OpenPrinting) | 2026 | #18–#22 merged | Google Summer of Code |
+| **cups-rs** (OpenPrinting) | 2026 | 9 merged: #8, #9, #16, #18–#23 | Google Summer of Code (and just before it) |
 | **libcups** (OpenPrinting, C) | 2026 | #164, #165 merged | Google Summer of Code |
 | **COSMIC** settings + daemon | 2026 | **In review** | #2182, #188 |
+| **Turso** (Rust database, MVCC) | Dec 2025 | **Closed, not merged** | tursodatabase/turso #4202 "mvcc: bitpack RowVersion begin/end fields" (285+/185− in `core/mvcc`). **Never list it as a contribution.** You can mention it in a Turso/Supabase interview as "a PR I proposed". |
+| **TaskScheduler** (Arduino library) | Aug 2025 | **Closed, not merged** | arkhipenko/TaskScheduler #204 (C++20 volatile compound assignments). Don't list. |
 
 **Where these go in a CV:** cups-rs, libcups and COSMIC were Google Summer of Code work, so they appear only inside the GSoC entry under Experience, never again under Open Source (decided 31 Oct 2026). The Open Source section lists only Zephyr, Boa and Rust Clippy.
 
@@ -121,7 +125,8 @@ Part-time/remote during military service; still part-time now.
 - **Strongest:**
   - COSMIC printers (Google Summer of Code);
   - the graduation project (FOTA/bootloader);
-  - IoT TCP/UDP framework (RPi 4 + QEMU + Yocto);
+  - IoT TCP client-server (C++, QEMU ARM clients, Raspberry Pi server; **TCP only**, see the GitHub check below);
+  - CMU 15-445 BusTub Project 0 (thread-safe Count-Min Sketch, C++17);
   - **Kernel Monitor** ([github.com/Abd002/kernel-monitor](https://github.com/Abd002/kernel-monitor), the ODC internship kernel module, uploaded Dec 2024). Checked against the code on 18 Oct 2026:
     - **What it does:** a Linux kernel module in C registers the character device `/dev/kernel_tasks`. On `open()` it walks every process with `for_each_process` under `rcu_read_lock()` and writes each task's name, PID, TGID, parent PID, UIDs/GIDs, VM size, thread count, voluntary and involuntary context switches, and utime/stime into a buffer. `read()` copies that buffer to user space with `copy_to_user`.
     - **User-space side:** a C program with a pthread re-reads the device every 2 s and prints the data. It is cross-compiled with `arm-none-linux-gnueabihf-gcc`.
@@ -146,6 +151,27 @@ Part-time/remote during military service; still part-time now.
   - phonebook (MERN);
   - team apps: Sarh Al-Tafawuq, Nafaqati;
   - chess, children-safety app, face-mask CNN, smart garage.
+
+## GitHub check of every own repo (2 Nov 2026)
+Read from the repos themselves (clones of github.com/Abd002/*), not from READMEs alone.
+- **db-systems-journey** (Apr 2026): CMU 15-445 work.
+  - **BusTub Project 0** (C++17): a **thread-safe Count-Min Sketch**: a depth × width counter matrix, one `std::mutex` per row, `Insert`, `Count` (min over rows), `Merge`, `Clear`, move constructor/assignment and `TopK` over candidates.
+  - **Homework 1:** six SQL queries in DuckDB on the Lahman baseball database (joins, aggregation, upsert with `ON CONFLICT`).
+  - Only Project 0 is done; **don't claim** the buffer pool, B+ tree or later projects.
+- **Graduation-Project** (Dec 2024): STM32F4 bootloader in C (282 lines) plus a UDS layer (212 lines), and an ESP32 gateway (365 lines).
+  - **Bootloader:** UDS-style services over UART: 0x10 session control, 0x11 ECU reset, 0x22 read version, 0x14 clear DTCs, 0x34 request download, 0x36 transfer data, 0x37 transfer exit. It verifies the image with the STM32 hardware **CRC** unit, stores the firmware version in flash, and jumps to the application.
+  - **ESP32 gateway:** downloads the image from **Firebase Storage** into LittleFS, compares versions, then sends the image with UDS requests over UART.
+  - The public repo is an earlier snapshot: the dual-bank layout and rollback (his account) aren't in it. Say "dual-bank with rollback" only if you can explain it; the UDS and CRC parts are in the code.
+- **IoT-Comm-System-RPi4-QEMU** (Jan–Mar 2025): **only TCP is implemented.**
+  - The code is a small C++ `TCP` class (server/client, about 200 lines) plus a server and a client; the client is cross-compiled and run on two QEMU `vexpress-a9` instances booted with U-Boot over a bridged TAP network (TFTP), with the server on a Raspberry Pi or a PC.
+  - The UDP files are empty, and Yocto appears only in the README title. **Don't claim UDP multicast or Yocto for this project.** (The CVs sent to Canonical, Cloudflare, Igalia and NXP still say "UDP multicast"; implement it or be ready to correct it.)
+- **os-simulator** (Mar 2024, team of 3): Java CLI OS simulator (round-robin scheduling, memory, mutexes, system calls). **His part:** the Kernel, SystemCalls and Process package.
+- **SeatHeaterControlSystem** (Sep 2024): FreeRTOS on Tiva C, two seats. Event groups for button events, periodic 100 ms tasks, sensor-failure diagnostics logged to memory, UART display, and run-time measurements (CPU load, task execution time, lock time) with GPTM.
+- **Door-Locker-Security-Systems:** two ATmega32 at 8 MHz, layered architecture (HMI ECU and Control ECU) over UART.
+- **Traffic-Light-Controller:** Verilog FSM with debounce and delay modules.
+- **Inventory-Management-System:** C#, MVVM and Observer pattern, SQL Server with audit-log triggers using the session context.
+- **Rocket-Chess:** only bitboard helpers (about 50 lines). **Not CV material.**
+- **dotfiles:** fish, tmux, Neovim, starship, rofi on CachyOS + COSMIC.
 
 ## Target roles
 All four, in this order:

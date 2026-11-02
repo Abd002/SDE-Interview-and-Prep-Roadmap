@@ -2,10 +2,13 @@
 # Rebuild the Jake's Resume copy of every tailored CV (applications/<co>/jakes-template/).
 # The --drop lists remove the weakest bullets so the 11pt template fits one page;
 # the main tailored CVs keep everything.
+# Usage: tools/build_jake_cvs.sh [company...]   (no argument = rebuild all)
 set -e
 cd "$(dirname "$0")/.."
+ONLY=" $* "
 build() {
   co=$1; shift
+  [ "$ONLY" = "  " ] || [[ "$ONLY" == *" $co "* ]] || return 0
   out=applications/$co/jakes-template/Abdelrahman-Khalifa-CV.tex
   python3 tools/make_jake_cv.py applications/$co/Abdelrahman-Khalifa-CV.tex "$out" "$@"
   (cd applications/$co/jakes-template && for i in 1 2; do pdflatex -interaction=nonstopmode Abdelrahman-Khalifa-CV.tex >/dev/null; done
@@ -37,9 +40,8 @@ build nxp --sub '\textbf{7 PRs merged upstream}:::7 PRs merged upstream' --drop 
   --drop 'Rust ecosystem' \
   --sub ' Also works in modern C++, Rust and Python.:::' \
   --sub 'character device driver that walks the process list under RCU and exports per-task IDs, memory, threads, context switches and CPU time to user space; run on QEMU.:::character device driver that exports per-task memory, threads, context switches and CPU time to user space using RCU.'
-build amazon --drop 'Team projects' --drop 'Systems \& Linux' --drop 'Inventory Management System' \
+build amazon --drop 'Team projects' --drop 'Operating System Simulator' --drop 'Systems \& Linux' --drop 'Inventory Management System' \
   --sub 'Created custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.:::Built custom Linux images with Yocto and Buildroot and a Linux kernel module; scored 100\% in the final evaluation.' \
-  --sub "Grade: Very Good with Honors. Graduation project: AUTOSAR-based V2X vehicle on STM32; implemented the firmware update path and a dual-bank bootloader with rollback.:::Grade: Very Good with Honors." \
   --sub " At EKSON, builds the simulators' firmware, app and REST backend (MongoDB).:::" \
   --sub 'Developed the PyQt5 control app; used asyncio to wait for ESP32 and server messages concurrently, cutting CPU use and latency by about 40\% (measured).:::Cut CPU use and latency of the PyQt5 control app by about 40\% (measured) using asyncio.' \
   --sub 'ported cups-rs to libcups3 with CUPS 2 and 3 builds and CI, added DNS-SD bindings:::ported cups-rs to libcups3 with CI, added DNS-SD bindings' \
@@ -48,3 +50,20 @@ build amazon --drop 'Team projects' --drop 'Systems \& Linux' --drop 'Inventory 
   --sub ' (Egyptian Collegiate Programming Contest):::' \
   --sub 'Data structures and algorithms, operating systems, concurrency and multithreading, async/event-driven design, memory management, networking (TCP/UDP, IPC):::Data structures and algorithms, operating systems, concurrency, memory management, networking (TCP/UDP)' \
   --sub 'Git (version control), GitHub Actions CI, CMake, testing, debugging and troubleshooting, code review:::Git, GitHub Actions CI, CMake, testing, debugging, code review'
+build siemens --drop 'IoT Device Communication' --drop 'Operating System Simulator' --drop 'Linux \& tools' --drop 'Wrote the ESP32-S3 firmware' \
+  --sub ' (CMU 15-445: storage, buffer pool, storage models, hash tables; a thread-safe C++ project that passes the course autograder):::' \
+  --sub '; mentor in the local ICPC community, teaching problem solving in C++ to 20+ colleagues:::' \
+  --sub ' SQL analytics (joins, aggregation, upserts) in DuckDB.:::'
+build valeo --drop 'Door Locker Security System' --drop 'Developed the PyQt5 desktop app' --drop 'Engineered remote operation' \
+  --sub ' for more deterministic timing, devicetree-based drivers and easier porting to other boards:::' \
+  --sub ' (calibration and a Mahony filter for orientation):::' \
+  --sub 'Built custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; scored 100\% in the final evaluation.:::Built Linux images with Yocto and Buildroot and a kernel module; scored 100\% in the final evaluation.' \
+  --sub ', including crash fixes in libcups'"'"' C code and CI across architectures:::'
+build collabora --drop 'IoT Device Communication' --drop 'Rust ecosystem' --drop 'Zephyr (devicetree, west)' \
+  --sub ' and exports per-task IDs, memory, threads, context switches and CPU time; cross-compiled for ARM and run on::: and exports per-task memory, threads and CPU time; run on' \
+  --sub ' Cut the app'"'"'s CPU use and latency by about 40\% (measured).:::' \
+  --sub ' for devicetree-based drivers and easier porting; PID valve control with IMU feedback over I2C, safety stops and a watchdog.:::; PID valve control with IMU feedback, safety stops and a watchdog.' \
+  --sub ' Used to remote, review-driven work.:::' \
+  --sub 'Ran the C FFI backend as a separate varlink IPC service in \texttt{cosmic-settings-daemon}, so a crash in native code cannot take down the Settings app.:::' \
+  --sub '; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.:::; scored 100\% in the final evaluation.' \
+  --sub ', plus merged work in Zephyr RTOS, Boa and Rust Clippy:::, plus merged work in Zephyr RTOS'

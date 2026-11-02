@@ -1,0 +1,65 @@
+% Siemens Digital Industries Software, New Cairo: Software Engineer, Graph Lakehouse database engine (job 526909).
+% Every fact comes from ../../facts.md. Build: TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex (twice).
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Software Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Software Engineer \enspace|\enspace C++, Multithreading, Database Systems, Linux}
+
+\section*{Summary}
+Systems software engineer working in modern C++, Rust and C on Linux. Studying database internals through Carnegie Mellon's database systems course (CMU 15-445: storage, buffer pool, storage models, hash tables; a thread-safe C++ project that passes the course autograder) and distributed systems through the Raft paper and \emph{Designing Data-Intensive Applications}. Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting), with 11 PRs merged upstream. Codeforces Expert and 4-time ECPC finalist.
+
+\section*{Experience}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Open-source project: Printers page for COSMIC Settings, in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\begin{itemize}
+  \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app with the same UI: printer status and supply levels, print queues, live updates and an Add Printer flow (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item Designed it as 5 crates with an async client and ran the C FFI backend as a separate varlink IPC service, so a crash in native code cannot take down the Settings app.
+  \item Got \textbf{11 PRs merged upstream} (\cvlink{https://github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged}{cups-rs}, \cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}): ported cups-rs to libcups3 with a CI matrix across architectures and CUPS versions, added DNS-SD bindings, and fixed crashes and a leaked client in libcups (C).
+\end{itemize}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Software for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
+\begin{itemize}
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.
+  \item Cut the desktop control app's CPU usage and latency by about 40\% (measured) by waiting for ESP32 and server messages concurrently with asyncio, off the UI thread.
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2024 -- Jan 2025}
+\begin{itemize}
+  \item Created custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; scored 100\% in the final evaluation.
+\end{itemize}
+
+\section*{Open Source Projects}
+\cventry{Contributor (all merged) --- Zephyr RTOS, Boa JavaScript engine (Rust), Rust Clippy}{Mar 2025 -- Dec 2025}
+\begin{itemize}
+  \item Zephyr RTOS: added the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 in 6 networking modules (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}).
+  \item Boa: optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}); Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}).
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{Database Systems, CMU 15-445} (C++17): thread-safe Count-Min Sketch for the BusTub database: a depth $\times$ width counter matrix with one \texttt{std::mutex} per row so inserts on different rows run in parallel; count, merge, top-k and move semantics. SQL analytics (joins, aggregation, upserts) in DuckDB. \cvlink{https://github.com/Abd002/db-systems-journey}{GitHub}
+  \item \textbf{Kernel Monitor} (C, Linux, ARM, QEMU): character device driver that walks the process list under RCU and exports per-task IDs, memory, threads, context switches and CPU time; a pthread user-space reader polls it. \cvlink{https://github.com/Abd002/kernel-monitor}{GitHub}
+  \item \textbf{Operating System Simulator} (Java, team of 3): built the kernel, system calls and process model of a CLI OS with round-robin scheduling, memory management and mutexes. \cvlink{https://github.com/Abd002/os-simulator}{GitHub}
+  \item \textbf{IoT Device Communication} (C++, Linux, QEMU): TCP client--server classes; clients cross-compiled for ARM and run on two QEMU boards over a bridged network. \cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}
+\end{itemize}
+
+\section*{Technical Skills}
+\cvskill{Languages}{Modern C++ (C++17, STL), Rust, C, Python, SQL, Java, Bash}
+\cvskill{Computer science}{Data structures and algorithms, concurrency and multithreading (mutexes, RCU, async), operating systems, memory management, networking (TCP/UDP, IPC)}
+\cvskill{Databases \& distributed}{Database internals (storage and page layout, buffer pool, row/column storage and compression, hash tables), SQL, DuckDB, MongoDB; Raft, replication and consistency models}
+\cvskill{Linux \& tools}{Linux (Ubuntu/Debian, Arch), kernel modules, FFI, IPC (varlink); Git, CMake, Make, Cargo, GitHub Actions CI, testing, debugging, code review}
+
+\section*{Achievements}
+\begin{itemize}
+  \item Codeforces Expert (handle \_Khalifa); 4-time ECPC finalist, 2021--2024; mentor in the local ICPC community, teaching problem solving in C++ to 20+ colleagues.
+\end{itemize}
+
+\section*{Education}
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors. Treasurer, IEEE Student Branch (budget of more than \$10k).
+\end{itemize}
+
+\end{document}

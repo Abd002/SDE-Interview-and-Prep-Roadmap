@@ -1,0 +1,60 @@
+% Valeo Egypt, Cairo: Junior Software Engineer, LIGHT (REQ2026071105).
+% Every fact comes from ../../facts.md. Build: TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex (twice).
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Embedded Software Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Embedded Software Engineer \enspace|\enspace Automotive C, AUTOSAR, RTOS}
+
+\section*{Summary}
+Embedded software engineer with over a year of professional C firmware work on 32-bit microcontrollers: owns the Zephyr RTOS firmware for EKSON's pneumatic motion simulators. Automotive background from an AUTOSAR-based V2X graduation project on STM32 (UDS firmware updates and a bootloader with CRC check), AUTOSAR MCAL drivers and a FreeRTOS car seat-heater controller. Merged contributions to Zephyr RTOS and The Linux Foundation's OpenPrinting. Works in C, C++ and Python; based in Cairo.
+
+\section*{Experience}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Software for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
+\begin{itemize}
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS for more deterministic timing, devicetree-based drivers and easier porting to other boards.
+  \item Implemented closed-loop PID control of the pneumatic valves, with feedback from an MPU6050 IMU over I2C (calibration and a Mahony filter for orientation), plus safety stops and a watchdog.
+  \item Developed the PyQt5 desktop app that controls the simulator over a UART protocol; cut its CPU usage and latency by about 40\% (measured) using asyncio.
+  \item Engineered remote operation and firmware updates through a Node.js/MongoDB backend and esptool, with GitHub Actions CI.
+\end{itemize}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Open-source project: Printers page for COSMIC Settings, in Rust \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\begin{itemize}
+  \item Built the \textbf{Printers page for COSMIC Settings} as 5 Rust crates, with the C backend isolated behind a varlink IPC service (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item \textbf{11 PRs merged upstream} (\cvlink{https://github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged}{cups-rs}, \cvlink{https://github.com/OpenPrinting/libcups/pull/164}{\#164}, \cvlink{https://github.com/OpenPrinting/libcups/pull/165}{\#165}), including crash fixes in libcups' C code and CI across architectures.
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2024 -- Jan 2025}
+\begin{itemize}
+  \item Built custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; scored 100\% in the final evaluation.
+\end{itemize}
+
+\section*{Open Source Projects}
+\begin{itemize}
+  \item \textbf{Zephyr RTOS} (Mar 2025): implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules, reviewed and merged upstream (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{issue \#86977}).
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{AUTOSAR-Based V2X Vehicle} (graduation project, team; STM32, ESP32): owned the firmware update path. An ESP32 gateway downloads the image and sends it over UART with UDS services (session control, request download 0x34, transfer data 0x36, transfer exit 0x37, read version); the STM32 bootloader verifies it with the hardware CRC unit, keeps the version in flash and uses two banks with rollback. \cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}
+  \item \textbf{AUTOSAR PORT and GPIO drivers} (C, TM4C): MCAL drivers developed and tested against the AUTOSAR specification.
+  \item \textbf{Seat Heater Control System} (Tiva C, FreeRTOS): heater controller for two car seats with event groups, a mutex-protected UART display, sensor-failure diagnostics and run-time measurements (CPU load, task times). \cvlink{https://github.com/Abd002/SeatHeaterControlSystem}{GitHub}
+  \item \textbf{Door Locker Security System} (C, two ATmega32): layered HMI and control ECUs over UART; keypad, LCD, EEPROM and a PWM-driven DC motor. \cvlink{https://github.com/Abd002/Door-Locker-Security-Systems}{GitHub}
+\end{itemize}
+
+\section*{Technical Skills}
+\cvskill{Languages}{C, Modern C++, Python, Rust, Bash}
+\cvskill{Automotive \& RTOS}{AUTOSAR (MCAL), UDS diagnostics and flashing, bootloaders, FOTA, OSEK/VDX (Trampoline), FreeRTOS, Zephyr}
+\cvskill{Microcontrollers}{32-bit ARM Cortex-M (STM32, TM4C), ESP32-S3, AVR (ATmega32)}
+\cvskill{Protocols \& tools}{UART, I2C, SPI, CAN; Git, GitHub Actions CI, CMake, Make, unit and integration testing, debugging}
+
+\section*{Education}
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors.
+  \item Activities: Codeforces Expert; 4-time ECPC finalist (2021--2024); Treasurer, IEEE Student Branch.
+\end{itemize}
+
+\end{document}

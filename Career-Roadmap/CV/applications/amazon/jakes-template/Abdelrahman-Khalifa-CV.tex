@@ -126,7 +126,7 @@
 %-----------SUMMARY-----------
 \section{Summary}
  \begin{itemize}[leftmargin=0.15in, label={}]
-    \small{\item{Software engineer in modern C++, Rust, C and Python, strong in algorithms (Codeforces Expert). Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting): built the Printers page for COSMIC Settings, with 7 PRs merged upstream.}}
+    \small{\item{Software engineer in modern C++, Rust, C and Python, strong in algorithms (Codeforces Expert). Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting): built the Printers page for COSMIC Settings, with 11 PRs merged upstream.}}
  \end{itemize}
 
 %-----------EXPERIENCE-----------
@@ -139,7 +139,7 @@
       \resumeItemListStart
         \resumeItem{Built the \textbf{Printers page for COSMIC Settings} and a standalone app for printer status, supply levels, print queues and adding printers (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).}
         \resumeItem{Designed it as 5 Rust crates and ran the C FFI backend as a varlink IPC service in the settings daemon, so a native crash cannot take down Settings.}
-        \resumeItem{\textbf{7 PRs merged upstream}: ported cups-rs to libcups3 with CI, added DNS-SD bindings, and fixed crashes and a leaked client in libcups (C).}
+        \resumeItem{\textbf{11 PRs merged upstream} (\cvlink{https://github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged}{list}): ported cups-rs to libcups3 with CI, added DNS-SD bindings, and fixed crashes and a leaked client in libcups (C).}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -176,14 +176,14 @@
 \section{Projects}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\textbf{IoT Device Communication System} $|$ \emph{C++, Raspberry Pi 4, QEMU, Yocto}}{\cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}}
+          {\textbf{Database Systems, CMU 15-445} $|$ \emph{C++17}}{\cvlink{https://github.com/Abd002/db-systems-journey}{GitHub}}
           \resumeItemListStart
-            \resumeItem{Object-oriented framework for TCP unicast and UDP multicast between a server and emulated clients.}
+            \resumeItem{Thread-safe Count-Min Sketch for BusTub (per-row locks, merge, top-k); SQL in DuckDB.}
           \resumeItemListEnd
       \resumeProjectHeading
-          {\textbf{Operating System Simulator} $|$ \emph{Java}}{\cvlink{https://github.com/Abd002/os-simulator}{GitHub}}
+          {\textbf{Kernel Monitor} $|$ \emph{C, Linux, ARM}}{\cvlink{https://github.com/Abd002/kernel-monitor}{GitHub}}
           \resumeItemListStart
-            \resumeItem{CLI simulating scheduling, memory management, system calls and locks.}
+            \resumeItem{Character device driver exporting per-task memory, threads and CPU time (RCU).}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
