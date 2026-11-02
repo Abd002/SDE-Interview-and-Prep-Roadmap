@@ -9,10 +9,11 @@
 | **Role** | [Junior Embedded Software Engineer, Secure IoT Firmware](https://nxp.wd3.myworkdayjobs.com/careers/job/Gratkorn/Junior-Embedded-Software-Engineer---Secure-IoT-Firmware--m-f-d-_R-10066519) |
 | **Where** | Gratkorn, Austria |
 | **Why it fits** | Junior; strong C, 32-bit MCUs, testing; nice-to-have Zephyr/FreeRTOS and secure boot (your dual-bank bootloader) |
-| **Status** | **Applied** (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b4181eaa634eb142008680e)) |
+| **Status** | **Rejected** on 2 Nov 2026 (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b4181eaa634eb142008680e)) |
 | **Applied on** | 31 Oct 2026 |
 | **Track it** | [Workday Candidate Home](https://nxp.wd3.myworkdayjobs.com/en-US/careers/userHome) (sign in with the account you applied with) |
-| **Follow up** | 14 Nov 2026, if there is no reply (NXP: after 2 weeks, see [09 §5](../../../09-Hiring-Process-and-Outreach.md#5-follow-up-rules)) |
+| **Outcome** | Rejected by email on 2 Nov 2026, about two days after applying, with the standard "not selected" message. The ad never mentions visas, but a rejection this fast usually means an automatic screen: most likely the work-permit question (you need an Austrian Red-White-Red Card) for a junior role paid under the Austrian collective agreement. NXP keeps your file; you can re-apply to other NXP roles. |
+| **Lesson** | For Europe, apply only where the posting itself says relocation or visa support, or where the job is in Egypt or fully remote. See [08: Next 5](../../../08-Application-Tracker.md#next-5-no-relocation-risk-found-2-nov-2026). |
 | **Saved job ad** | [job-ad.md](job-ad.md), in case the posting closes |
 
 ## 2. Files in this folder
@@ -86,5 +87,5 @@
 - [ ] Message 1–2 people from §4 (mentors first) **before** applying.
 - [x] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf); check every auto-filled form field.
 - [x] Fill in **Applied on** above, in 08 and in Notion; set Status to Applied.
-- [ ] Prepare with §3 while you wait.
+- [x] Prepare with §3 while you wait. (Closed: rejected 2 Nov 2026.)
 - [ ] Follow up once if there is no reply (see 09 §5).
