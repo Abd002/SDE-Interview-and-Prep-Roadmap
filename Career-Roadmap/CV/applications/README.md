@@ -17,6 +17,8 @@ Each folder has everything for one application:
 | Siemens DISW | Software Engineer, Graph Lakehouse (database engine, C++) | New Cairo | [siemens/](siemens/README.md) |
 | Valeo | Junior Software Engineer, LIGHT (automotive embedded) | Cairo | [valeo/](valeo/README.md) |
 | Collabora | Embedded Linux Consultant Engineer | Remote, anywhere | [collabora/](collabora/README.md) |
+| MixRank | Junior Software Engineer — Remote, Egypt | Remote (Egypt) | [mixrank/](mixrank/README.md) |
+| noon | Software Development Engineer 1 (Backend), CAKE program | Cairo | [noon/](noon/README.md) |
 
 - **Sent CVs are frozen:** the copies for Canonical, Cloudflare, Igalia and NXP stay exactly as sent. The base CVs and the unsent copies were updated on 2 Nov 2026 after a check of every GitHub repo (see [facts.md](../facts.md#github-check-of-every-own-repo-2-nov-2026)).
 - **What the five share** (timeline overview, mentors, message templates, follow-up rules): [09 — Hiring Process and Outreach](../../09-Hiring-Process-and-Outreach.md).

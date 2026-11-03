@@ -67,3 +67,11 @@ build collabora --drop 'IoT Device Communication' --drop 'Rust ecosystem' --drop
   --sub 'Ran the C FFI backend as a separate varlink IPC service in \texttt{cosmic-settings-daemon}, so a crash in native code cannot take down the Settings app.:::' \
   --sub '; worked with device trees, root file systems and hardware flashing. Scored 100\% in the final evaluation.:::; scored 100\% in the final evaluation.' \
   --sub ', plus merged work in Zephyr RTOS, Boa and Rust Clippy:::, plus merged work in Zephyr RTOS'
+build mixrank --drop 'Wrote the ESP32-S3 firmware' --drop 'Kernel Monitor' --drop 'Designed it as 5 Rust crates' \
+  --sub ' Used to remote, asynchronous work and written communication.:::' \
+  --sub ', working remotely with mentors from OpenPrinting and System76:::'
+build noon --drop 'Function Solver and Plotter' --drop 'Wrote the ESP32-S3 firmware' --drop 'Mentor in the local ICPC community' \
+  --sub '; MVVM and the Observer pattern; database audit log built with SQL Server triggers that record the logged-in user through the session context.:::; audit log with SQL Server triggers that record the logged-in user.' \
+  --sub ' (Egyptian Collegiate Programming Contest):::' \
+  --sub ' Treasurer, IEEE Student Branch (budget of more than \$10k).:::' \
+  --sub ' Comfortable with SQL and data modeling, writing tests, and learning new stacks quickly.:::'

@@ -1,0 +1,65 @@
+% MixRank: Junior Software Engineer — Remote, Egypt (YC job 3wCgMB3).
+% Every fact comes from ../../facts.md. Build: TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex (twice).
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Software Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Software Engineer \enspace|\enspace Python, Rust, SQL, Linux}
+
+\section*{Summary}
+Software engineer who programs for fun as much as for work: 11 PRs merged upstream as a Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting), plus merged changes in Zephyr RTOS, Rust Clippy and the Boa JavaScript engine. Writes Python, Rust, C and C++; uses Linux every day. Teaching himself database internals through Carnegie Mellon's database course. Codeforces Expert. Used to remote, asynchronous work and written communication.
+
+\section*{Experience}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Remote open-source project: Printers page for COSMIC Settings, in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\begin{itemize}
+  \item Built the \textbf{Printers page for COSMIC Settings} and a standalone app with the same UI, working remotely with mentors from OpenPrinting and System76 (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item Designed it as 5 Rust crates with an async client, and ran the C FFI backend as a separate varlink IPC service so a crash in native code cannot take down Settings.
+  \item \textbf{11 PRs merged upstream} (\cvlink{https://github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged}{list}): ported cups-rs to libcups3 with a CI matrix across architectures and CUPS versions, added DNS-SD bindings, and fixed crashes and a leaked client in libcups (C).
+\end{itemize}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Software for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
+\begin{itemize}
+  \item Developed the Python (PyQt5) control app; used asyncio to wait for ESP32 and server messages concurrently, cutting CPU use and latency by about 40\% (measured).
+  \item Built remote operation and firmware updates: a Node.js/Express + MongoDB backend that the desktop app polls over REST to relay commands and flash new firmware; GitHub Actions CI.
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU feedback, safety stops and a UART protocol.
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2024 -- Jan 2025}
+\begin{itemize}
+  \item Built custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; scored 100\% in the final evaluation.
+\end{itemize}
+
+\section*{Open Source Projects}
+\cventry{Contributor (all merged) --- Zephyr RTOS, Boa JavaScript engine (Rust), Rust Clippy}{Mar 2025 -- Dec 2025}
+\begin{itemize}
+  \item Zephyr RTOS: added the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 in 6 networking modules (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}).
+  \item Boa: optimized \texttt{JsStr::code\_points()} for Latin1 strings, avoiding UTF-16 conversion (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}).
+  \item Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives for non-temporary references in \texttt{let}/\texttt{const} (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}).
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{Database Systems, CMU 15-445} (C++17, SQL): thread-safe Count-Min Sketch for the BusTub database (per-row locks, merge, top-k); SQL analytics in DuckDB (joins, aggregation, upserts). \cvlink{https://github.com/Abd002/db-systems-journey}{GitHub}
+  \item \textbf{Kernel Monitor} (C, Linux kernel): character device driver that exports per-task memory, threads, context switches and CPU time to user space using RCU. \cvlink{https://github.com/Abd002/kernel-monitor}{GitHub}
+  \item \textbf{Function Solver and Plotter} (Python, PySide2, SymPy, Matplotlib): solves and plots two functions with their intersections; input validation and end-to-end tests with pytest-qt. \cvlink{https://github.com/Abd002/py-func-solver}{GitHub}
+\end{itemize}
+
+\section*{Technical Skills}
+\cvskill{Languages}{Python (asyncio), Rust, C, Modern C++, SQL, JavaScript (Node.js), Bash}
+\cvskill{Data \& backend}{SQL (DuckDB, SQL Server), MongoDB, REST APIs, Express; database internals (storage, buffer pool, hash tables)}
+\cvskill{Linux \& tools}{Linux daily driver (Arch-based CachyOS), kernel modules, Git/GitHub, GitHub Actions CI, Cargo, CMake, pytest, debugging, code review}
+
+\section*{Achievements}
+\begin{itemize}
+  \item Codeforces Expert (handle \_Khalifa); 4-time ECPC finalist, 2021--2024; mentor in the local ICPC community.
+\end{itemize}
+
+\section*{Education}
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors.
+\end{itemize}
+
+\end{document}
