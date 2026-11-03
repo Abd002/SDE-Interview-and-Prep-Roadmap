@@ -19,7 +19,7 @@ Prepared 3 Nov 2026 from [facts.md](../../facts.md); rewritten the same day in a
 | Other website | https://codeforces.com/profile/_Khalifa |
 | Future opportunities (6 months) | Tick it |
 
-## Your final answers (3 Nov 2026)
+## Your final answers (submitted 3 Nov 2026, exactly as below)
 
 Saved exactly as you wrote them, so your interview answers can match. The drafts further down are kept only for reference.
 

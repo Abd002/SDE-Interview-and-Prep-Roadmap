@@ -11,8 +11,9 @@
 | **Level** | Not stated; no years asked. Third-party boards label it mid–senior, so it's a stretch, but Collabora values upstream work, which you have. |
 | **What the team builds** | Consulting on embedded Linux for customers: bootloaders, kernel and BSP, distributions (Yocto, Debian), image tooling, OTA updates, upstream contributions |
 | **Why it fits** | Yocto and Buildroot (ODC), a kernel module on ARM/QEMU, U-Boot and device trees, upstream merged work in C and Rust (OpenPrinting, Zephyr, Boa, Clippy). Nice-to-haves you meet: **Rust**, **A/B boot / atomic upgrades** (your dual-bank bootloader with rollback) |
-| **Status** | Not started (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b418165beb7ec67d5002d35)) |
-| **Applied on** | — |
+| **Status** | **Applied** (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b418165beb7ec67d5002d35)) |
+| **Applied on** | 3 Nov 2026, on Lever, with the answers in [application-form.md](application-form.md) (sent as written, no edits) |
+| **Follow up** | 17 Nov 2026: Collabora says applications are reviewed within 2 weeks. If there's no reply by then, send one short note (09 §5). |
 | **Saved job ad** | [job-ad.md](job-ad.md) |
 
 ## 2. Files in this folder
@@ -38,6 +39,9 @@
 
 ## 4. Gaps, and how to prepare
 
+**From your form:** the production-issue answer covers the technical side only. Be ready to describe how you kept your mentors and the libcups maintainers informed; they will ask about the customer side.
+
+
 | The ad asks for | Your honest answer |
 |---|---|
 | U-Boot, kernel, BSP | You've booted QEMU boards with U-Boot over TFTP and built a kernel module. Revise the boot flow (ROM → SPL → U-Boot → kernel + DTB → init) and how a BSP layer works in Yocto. |
@@ -50,9 +54,9 @@
 
 ## 5. Checklist
 
-- [ ] Re-open the job link and check it is still open.
+- [x] Re-open the job link and check it is still open.
 - [ ] Pin cosmic-printers, GSOC-2026 and kernel-monitor on your GitHub profile.
-- [ ] Apply on Lever with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf); add your GitHub link in the form.
-- [ ] Fill in **Applied on** above, in 08 and in Notion; set Status to Applied.
+- [x] Apply on Lever with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf); add your GitHub link in the form.
+- [x] Fill in **Applied on** above, in 08 and in Notion; set Status to Applied.
 - [ ] Revise the boot flow, Yocto layers and RAUC while you wait.
 - [ ] Follow up once after 3 weeks with no reply (09 §5); their own target for the first reply is 2 weeks.
