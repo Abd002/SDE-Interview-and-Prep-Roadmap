@@ -24,6 +24,7 @@
 | [Abdelrahman-Khalifa-CV.tex](Abdelrahman-Khalifa-CV.tex) | Its LaTeX source |
 | [jakes-template/Abdelrahman-Khalifa-CV.pdf](jakes-template/Abdelrahman-Khalifa-CV.pdf) | Same facts in the Jake's Resume template |
 | [job-ad.md](job-ad.md) | The ad text as it was on 2 Nov 2026 (includes Collabora's interview process) |
+| [application-form.md](application-form.md) | Answers for every field of the Lever form |
 
 **What the tailored CV changes:** Title "Embedded Linux Engineer | Linux, Yocto, C, Rust, Open Source". The summary leads with Yocto/Buildroot, the ARM kernel module, and U-Boot + device trees + BusyBox root file systems on QEMU (all in your repos), then upstream work. GSoC comes first, framed as the Linux printing stack and remote work with mentors. Projects: Kernel Monitor (full ARM/QEMU detail), **A/B firmware updates** (the dual-bank bootloader), and the QEMU/U-Boot networking setup. The new first skills line is "Embedded Linux".
 
