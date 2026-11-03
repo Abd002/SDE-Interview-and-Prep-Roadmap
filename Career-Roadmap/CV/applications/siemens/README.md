@@ -25,6 +25,7 @@
 | [Abdelrahman-Khalifa-CV.tex](Abdelrahman-Khalifa-CV.tex) | Its LaTeX source |
 | [jakes-template/Abdelrahman-Khalifa-CV.pdf](jakes-template/Abdelrahman-Khalifa-CV.pdf) | Same facts in the Jake's Resume template |
 | [job-ad.md](job-ad.md) | The ad text as it was on 2 Nov 2026 |
+| [application-form.md](application-form.md) | What to enter in the Siemens careers profile |
 
 **What the tailored CV changes:** Title "C++, Multithreading, Database Systems, Linux". The summary leads with C++ and the CMU database course. Projects lead with the **thread-safe Count-Min Sketch** (one mutex per row, so inserts on different rows run in parallel), then the kernel module (RCU) and the OS simulator. New skills line "Databases & distributed" lists only what you have studied (CMU L01–L07, Raft, DDIA ch. 5 and 9). Achievements add the ICPC mentoring in C++.
 
