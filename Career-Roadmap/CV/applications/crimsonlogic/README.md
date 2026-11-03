@@ -12,8 +12,10 @@
 | **The work** | **Operations, not development:** monitoring and maintaining Linux/Windows servers, deploying apps on Apache and Tomcat, logs and troubleshooting, patching and backups, documentation |
 | **Required** | Linux administration basics, networking basics (TCP/IP, DNS, DHCP, VLANs, routing, subnetting), Apache/Tomcat basics, SQL basics |
 | **Preferred** | CCNA, RHCSA, AWS/Azure, Bash/Python scripting |
-| **Status** | Not started |
-| **Applied on** | — |
+| **Status** | **Applied** |
+| **Applied on** | 3 Nov 2026 |
+| **Contact** | Sushit Babaji, HR Executive (LinkedIn): connection request with a note sent; full message (with the visa question and CV) once accepted |
+| **Follow up** | 10 Nov 2026 if Sushit hasn't replied (one short message, then stop); 24 Nov 2026 on the application itself |
 
 **Think before applying:** this is a sysadmin role. It's fine as a way into Oman, but it moves you away from software and embedded development, which is where your CV is strongest.
 
@@ -48,7 +50,7 @@
 
 ## 5. Checklist
 
-- [ ] Re-open the posting and check it is still open.
+- [x] Re-open the posting and check it is still open.
 - [ ] Ask whether they sponsor a work visa for Egyptian applicants.
-- [ ] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf).
-- [ ] Fill in **Applied on** above, in 08 and in Notion.
+- [x] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf).
+- [x] Fill in **Applied on** above, in 08 and in Notion.
