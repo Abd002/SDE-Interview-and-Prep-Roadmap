@@ -123,6 +123,19 @@ Checked on 3 Nov 2026 on each posting itself. Every one is in Egypt or remote an
 - **US only:** ParadeDB, Cedana, Workers IO.
 - **Closed:** Elsewedy Electric's firmware graduate role.
 
+### Oman check (3 Nov 2026)
+
+LinkedIn, last 30 days, searches for software engineer, embedded, firmware, C++, Python, Linux, backend, IoT, Rust and graduate roles in Oman. **Almost no software-development roles, and none in embedded or systems work like yours.** In the Gulf the employer sponsors the work visa, but Oman reserves many IT jobs for Omani nationals (Omanisation), and several postings say "Omani National only".
+
+| Role | Company | Where | Verdict |
+|---|---|---|---|
+| [Junior System Engineer](https://www.linkedin.com/jobs/view/4475189924) | CrimsonLogic | Muscat | Only partial fit: a **Linux sysadmin/infrastructure** contract (servers, Apache/Tomcat, monitoring), 0–2 years, fresh grads welcome. It doesn't say nationals only. Apply only if you want Oman specifically; it isn't a development job. |
+| [Fresh Graduate Engineer (Siemens Mobility, railway)](https://www.linkedin.com/jobs/view/4470015039) | Siemens | Sohar | Not a fit: asks for an **electrical or mechanical** degree; on-site installation and commissioning |
+| [Engineer](https://www.linkedin.com/jobs/view/4475279521) | Virtusa | Oman | Not a fit: listed as "Volunteer"; for 2026 B.Tech graduates; web and mobile stack |
+| [Systems / Hardware Engineer](https://www.linkedin.com/jobs/view/4485006494) | AI For Everyone | Muscat | Not a fit: part-time, vague posting |
+
+Everything else found was senior (SRE, IAM, ServiceNow, consulting) or reserved for Omani nationals.
+
 ### All P1 targets
 
 Grouped by track (see [07 §3](07-Strategy-and-Roadmap.md#3-the-recommended-strategy-three-parallel-lanes)).
