@@ -87,3 +87,7 @@ build hitachi-rail --drop 'Traffic Light Controller' --drop 'Door Locker Securit
   --sub ' Merged contributions to Zephyr RTOS and The Linux Foundation'"'"'s OpenPrinting.:::' \
   --sub 'Built custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; scored 100\% in the final evaluation.:::Built Linux images with Yocto and Buildroot and a kernel module; scored 100\% in the final evaluation.' \
   --sub ', reviewed and merged (:::, merged ('
+build crimsonlogic --drop 'Inventory Management System' --drop 'Wrote the ESP32-S3 firmware' --drop 'Developed the Python desktop app' --drop 'debugging and troubleshooting, technical documentation' --sub ' Open to relocating to Oman.:::' \
+  --sub ', as shown by 11 PRs merged upstream as a Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting):::' \
+  --sub '; worked with device trees, root file systems and flashing hardware. Scored 100\% in the final evaluation.:::; scored 100\% in the final evaluation.' \
+  --sub ', reviewed and merged (:::, merged ('

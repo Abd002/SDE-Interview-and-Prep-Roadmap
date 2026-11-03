@@ -129,7 +129,7 @@ LinkedIn, last 30 days, searches for software engineer, embedded, firmware, C++,
 
 | Role | Company | Where | Verdict |
 |---|---|---|---|
-| [Junior System Engineer](https://www.linkedin.com/jobs/view/4475189924) | CrimsonLogic | Muscat | Only partial fit: a **Linux sysadmin/infrastructure** contract (servers, Apache/Tomcat, monitoring), 0–2 years, fresh grads welcome. It doesn't say nationals only. Apply only if you want Oman specifically; it isn't a development job. |
+| [Junior System Engineer](https://www.linkedin.com/jobs/view/4475189924) | **[CrimsonLogic](CV/applications/crimsonlogic/README.md)** ([CV](CV/applications/crimsonlogic/Abdelrahman-Khalifa-CV.pdf)) | Muscat | Only partial fit: a **Linux sysadmin/infrastructure** contract (servers, Apache/Tomcat, monitoring), 0–2 years, fresh grads welcome. It doesn't say nationals only. Apply only if you want Oman specifically; it isn't a development job. |
 | [Fresh Graduate Engineer (Siemens Mobility, railway)](https://www.linkedin.com/jobs/view/4470015039) | Siemens | Sohar | Not a fit: asks for an **electrical or mechanical** degree; on-site installation and commissioning |
 | [Engineer](https://www.linkedin.com/jobs/view/4475279521) | Virtusa | Oman | Not a fit: listed as "Volunteer"; for 2026 B.Tech graduates; web and mobile stack |
 | [Systems / Hardware Engineer](https://www.linkedin.com/jobs/view/4485006494) | AI For Everyone | Muscat | Not a fit: part-time, vague posting |

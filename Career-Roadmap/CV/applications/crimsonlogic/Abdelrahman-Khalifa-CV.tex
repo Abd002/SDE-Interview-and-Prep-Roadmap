@@ -1,0 +1,59 @@
+% CrimsonLogic, Muscat (Oman): Junior System Engineer, Infrastructure team (LinkedIn 4475189924).
+% Every fact comes from ../../facts.md. Build: TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex (twice).
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Systems Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Systems Engineer \enspace|\enspace Linux, Networking, Scripting}
+
+\section*{Summary}
+Computer and Systems Engineering graduate who works on Linux every day: built custom Linux images with Yocto and Buildroot, wrote a Linux kernel module that reports per-process memory and CPU time, set up bridged virtual networks with TFTP boot for test machines, and automated environment setup and CI with Bash. Troubleshoots crashes down to the C code, as shown by 11 PRs merged upstream as a Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting). Open to relocating to Oman.
+
+\section*{Experience}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Software for 3-DoF and 6-DoF pneumatic motion simulators: firmware, backend, desktop app and CI}
+\begin{itemize}
+  \item Built the Node.js/Express + MongoDB REST backend for remote operation and firmware updates, and set up GitHub Actions CI.
+  \item Developed the Python desktop app that talks to the device over a serial link; found its bottleneck and cut CPU use and latency by about 40\% (measured) with asyncio.
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS, with safety stops and a watchdog.
+\end{itemize}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Open-source project: Printers page for COSMIC Settings (Linux desktop) \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\begin{itemize}
+  \item Worked with the Linux printing stack (the CUPS print server, IPP, Avahi/mDNS service discovery) and ran the backend as a separate system service in \texttt{cosmic-settings-daemon}, so a crash cannot take down the Settings app.
+  \item Built CI on Ubuntu runners (x86\_64 and aarch64) that compiles libcups3 from source, starts the CUPS and Avahi services and runs the tests against them.
+  \item Investigated and fixed crashes and a leaked client in libcups (C); \textbf{11 PRs merged upstream} (\cvlink{https://github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged}{list}).
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2024 -- Jan 2025}
+\begin{itemize}
+  \item Built custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; worked with device trees, root file systems and flashing hardware. Scored 100\% in the final evaluation.
+\end{itemize}
+
+\section*{Open Source Projects}
+\begin{itemize}
+  \item \textbf{Zephyr RTOS} (Mar 2025): implemented the \texttt{IP\_MULTICAST\_LOOP} socket option in its IPv4 networking stack, reviewed and merged (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}).
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{Virtual test network} (Linux, QEMU, C++): Linux bridge with TAP interfaces, IP forwarding and a TFTP server to network-boot two ARM virtual machines with U-Boot; static IP addressing and a TCP client--server between them and a Raspberry Pi. \cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}
+  \item \textbf{Kernel Monitor} (C, Linux kernel): character device that reports every process's memory, threads, context switches and CPU time; a user-space tool reads it every 2 seconds. \cvlink{https://github.com/Abd002/kernel-monitor}{GitHub}
+  \item \textbf{Environment setup automation} (Bash): idempotent script that installs packages, links configuration files with automatic backups and sets up tools; safe to re-run, with flags to skip steps. \cvlink{https://github.com/Abd002/dotfiles}{GitHub}
+  \item \textbf{Inventory Management System} (C\#, SQL Server): database with user access control and an audit log built with SQL triggers. \cvlink{https://github.com/Abd002/Inventory-Management-System}{GitHub}
+\end{itemize}
+
+\section*{Technical Skills}
+\cvskill{Linux}{Ubuntu/Debian, Arch-based (CachyOS); command line, package management, services, logs, kernel modules, Yocto, Buildroot, QEMU}
+\cvskill{Networking}{TCP/IP, sockets, IPv4 multicast, DNS-SD/mDNS, Linux bridges and TAP interfaces, IP forwarding, TFTP}
+\cvskill{Scripting \& data}{Bash, Python, SQL (SQL Server, DuckDB), MongoDB}
+\cvskill{Tools}{Git/GitHub, GitHub Actions CI, debugging and troubleshooting, technical documentation}
+
+\section*{Education}
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors (84.6\%). Codeforces Expert; 4-time ECPC finalist (2021--2024); Treasurer, IEEE Student Branch.
+\end{itemize}
+
+\end{document}

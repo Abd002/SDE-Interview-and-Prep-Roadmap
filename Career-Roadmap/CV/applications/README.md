@@ -22,6 +22,7 @@ Each folder has everything for one application:
 | Vodafone Egypt | Discover Graduate Program, IoT & Cloud 2027 | Egypt | [vodafone/](vodafone/README.md) |
 | Hitachi Rail | Embedded Application Developer | Cairo | [hitachi-rail/](hitachi-rail/README.md) |
 | Merck Group | Software Engineer II, Platform Engineering | Cairo | [merck/](merck/README.md) |
+| CrimsonLogic | Junior System Engineer (Linux infrastructure) | Muscat, Oman | [crimsonlogic/](crimsonlogic/README.md) |
 
 - **Sent CVs are frozen:** the copies for Canonical, Cloudflare, Igalia and NXP stay exactly as sent. The base CVs and the unsent copies were updated on 2 Nov 2026 after a check of every GitHub repo (see [facts.md](../facts.md#github-check-of-every-own-repo-2-nov-2026)).
 - **What the five share** (timeline overview, mentors, message templates, follow-up rules): [09 — Hiring Process and Outreach](../../09-Hiring-Process-and-Outreach.md).
