@@ -15,8 +15,10 @@
 | ⚠️ **Eligibility check** | The ad says: "as for males who completed their military service either in **2024 or 2025**". **Check the date your service ended.** If it ended in 2026, ask Vodafone's recruiters before applying, or you may be filtered out. |
 | **Nice to have (from the ad)** | IoT fundamentals (Cisco or Coursera), cloud basics (AWS/Azure/GCP), 2G–5G/NB-IoT/LPWAN basics, Python or SQL, Agile/Scrum |
 | **Why it fits** | You built a connected product end to end at EKSON (device firmware, cloud backend, firmware updates), an ESP32 gateway that downloads updates from the cloud, a Zephyr networking contribution, plus IEEE Treasurer and ICPC mentoring for the "extracurricular" part |
-| **Status** | Not started |
-| **Applied on** | — |
+| **Status** | **Applied** |
+| **Applied on** | 3 Nov 2026 |
+| **Track it** | [Vodafone careers: My applications](https://jobs.vodafone.com/careers/applications?domain=vodafone.com) (sign in with the account you applied with) |
+| **Follow up** | 24 Nov 2026, if there is no reply (3 weeks, [09 §5](../../../09-Hiring-Process-and-Outreach.md#5-follow-up-rules)) |
 
 ## 2. Files
 
@@ -42,7 +44,7 @@
 ## 4. Checklist
 
 - [ ] Confirm your military-service date fits the rule above.
-- [ ] Re-open the posting and check it is still open.
-- [ ] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf).
-- [ ] Fill in **Applied on** above, in 08 and in Notion.
+- [x] Re-open the posting and check it is still open.
+- [x] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf).
+- [x] Fill in **Applied on** above, in 08 and in Notion.
 - [ ] Follow up once after 3 weeks with no reply.
