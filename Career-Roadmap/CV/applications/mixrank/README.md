@@ -13,8 +13,9 @@
 | **What they use** | Python, PostgreSQL, Linux, Git day to day; also Rust, SQL, TypeScript and Nix. Their own distributed file system, web crawls, two data centres |
 | **What they look for** | People who program beyond their job (**open source, hobby projects, new languages**), self-starters, clear written communication for remote async work |
 | **Why it fits** | Your open-source record (11 OpenPrinting PRs, Zephyr, Clippy, Boa), Python at EKSON, Rust, daily Linux, the CMU database course and Codeforces Expert match what the ad says it values |
-| **Status** | Not started |
-| **Applied on** | — |
+| **Status** | **Applied** |
+| **Applied on** | 3 Nov 2026, on the YC job board, with the answer in [application-form.md](application-form.md) |
+| **Follow up** | 24 Nov 2026, if there is no reply (3 weeks, [09 §5](../../../09-Hiring-Process-and-Outreach.md#5-follow-up-rules)) |
 
 ## 2. Files
 
@@ -36,8 +37,8 @@
 
 ## 4. Checklist
 
-- [ ] Re-open the posting and check it is still open.
+- [x] Re-open the posting and check it is still open.
 - [ ] Pin your best repos on GitHub.
-- [ ] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf).
-- [ ] Fill in **Applied on** above, in 08 and in Notion.
+- [x] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf).
+- [x] Fill in **Applied on** above, in 08 and in Notion.
 - [ ] Follow up once after 3 weeks with no reply (09 §5).
