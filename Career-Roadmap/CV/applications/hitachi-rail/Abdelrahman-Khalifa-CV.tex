@@ -1,0 +1,59 @@
+% Hitachi Rail, Cairo: Embedded Application Developer (LinkedIn 4478918161).
+% Every fact comes from ../../facts.md. Build: TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex (twice).
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Embedded Software Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Embedded Software Engineer \enspace|\enspace C/C++, RTOS, Safety-Critical Systems}
+
+\section*{Summary}
+Embedded software engineer writing C firmware on an RTOS for real machines: owns the Zephyr RTOS firmware of EKSON's pneumatic motion simulators, with safety stops and a watchdog. Automotive background from an AUTOSAR-based V2X graduation project (bootloader with image verification and rollback), AUTOSAR drivers and a FreeRTOS controller with fault diagnostics. Merged contributions to Zephyr RTOS and The Linux Foundation's OpenPrinting. Works in C, C++ and Python; based in Cairo.
+
+\section*{Experience}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Software for 3-DoF and 6-DoF pneumatic motion simulators: firmware, desktop app, backend and CI}
+\begin{itemize}
+  \item Wrote the ESP32-S3 firmware in C and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS for more deterministic timing and devicetree-based drivers.
+  \item Implemented closed-loop PID control of the pneumatic valves with feedback from an MPU6050 IMU over I2C, plus safety functions: emergency stop, motion limits and a watchdog.
+  \item Developed the desktop control app (UART protocol to the device) and cut its CPU use and latency by about 40\% (measured) with asyncio; built firmware-update delivery and GitHub Actions CI.
+\end{itemize}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Open-source project: Printers page for COSMIC Settings, in Rust \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\begin{itemize}
+  \item Investigated and fixed crashes and a leaked client in libcups' C code, and isolated the native backend in a separate service so a crash cannot take down the app; \textbf{11 PRs merged upstream} (\cvlink{https://github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged}{list}).
+  \item Built CI that integration-tests the code against real CUPS and Avahi services on x86\_64 and aarch64.
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2024 -- Jan 2025}
+\begin{itemize}
+  \item Built custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; scored 100\% in the final evaluation.
+\end{itemize}
+
+\section*{Open Source Projects}
+\begin{itemize}
+  \item \textbf{Zephyr RTOS} (Mar 2025): implemented the \texttt{IP\_MULTICAST\_LOOP} socket option for IPv4 across 6 networking modules, reviewed and merged (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{issue \#86977}).
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{AUTOSAR-Based V2X Vehicle} (graduation project, team; STM32, ESP32): owned the firmware update path. The image is sent over UART with UDS services (request download, transfer data, transfer exit); the STM32 bootloader verifies it with the hardware CRC unit before jumping to it and keeps two banks with rollback. \cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}
+  \item \textbf{Seat Heater Control System} (Tiva C, FreeRTOS): two-seat real-time controller; event groups and periodic tasks, a mutex-protected shared UART display, sensor-failure detection logged to memory with a fault LED, and run-time measurement of CPU load and task execution times. \cvlink{https://github.com/Abd002/SeatHeaterControlSystem}{GitHub}
+  \item \textbf{AUTOSAR PORT and GPIO drivers} (C, TM4C): MCAL drivers developed and tested against the AUTOSAR specification.
+  \item \textbf{Door Locker Security System} (C, two ATmega32): layered HMI and control ECUs communicating over UART; password check, EEPROM, buzzer alarm and PWM-driven motor. \cvlink{https://github.com/Abd002/Door-Locker-Security-Systems}{GitHub}
+  \item \textbf{Traffic Light Controller} (Verilog, FPGA): finite state machine with debounced inputs and timing modules. \cvlink{https://github.com/Abd002/Traffic-Light-Controller}{GitHub}
+\end{itemize}
+
+\section*{Technical Skills}
+\cvskill{Languages}{C, Modern C++, Python, Rust, Bash, Verilog}
+\cvskill{Embedded \& RTOS}{Zephyr, FreeRTOS, OSEK/VDX (Trampoline), AUTOSAR (MCAL), bootloaders, UDS; ARM Cortex-M (STM32, TM4C), ESP32-S3, AVR}
+\cvskill{Interfaces}{UART, I2C, SPI, CAN; TCP/IP sockets}
+\cvskill{Testing \& tools}{unit and integration testing, CI (GitHub Actions), fault diagnostics, Git, CMake, Make, debugging, Linux}
+
+\section*{Education}
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors (84.6\%). Codeforces Expert; 4-time ECPC finalist (2021--2024).
+\end{itemize}
+
+\end{document}

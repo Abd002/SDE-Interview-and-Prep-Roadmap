@@ -171,7 +171,8 @@ Read from the repos themselves (clones of github.com/Abd002/*), not from READMEs
 - **Traffic-Light-Controller:** Verilog FSM with debounce and delay modules.
 - **Inventory-Management-System:** C#, MVVM and Observer pattern, SQL Server with audit-log triggers using the session context.
 - **Rocket-Chess:** only bitboard helpers (about 50 lines). **Not CV material.**
-- **dotfiles:** fish, tmux, Neovim, starship, rofi on CachyOS + COSMIC.
+- **dotfiles:** fish, tmux, Neovim, starship, rofi on CachyOS + COSMIC. `install.sh` (177 lines of Bash, `set -euo pipefail`) is **idempotent**: installs pacman packages, links configs and backs up existing files to a dated folder, installs COSMIC shortcuts, tmux plugins and Neovim plugins/LSPs/parsers, sets fish as the login shell; flags `--skip-packages`, `--skip-nvim`.
+- **cosmic-printers CI** (GitHub Actions, `.github/workflows/ci.yml`): a `cargo fmt` check, then a build-and-test matrix on **x86_64 and aarch64** runners that builds libcups3 from source, starts real **CUPS and Avahi** services and runs Clippy and the tests against them (setup in `ci/ci-setup.sh`).
 
 ## Target roles
 All four, in this order:

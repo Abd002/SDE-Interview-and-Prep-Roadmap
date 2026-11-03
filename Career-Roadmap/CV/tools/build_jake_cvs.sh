@@ -76,3 +76,14 @@ build noon --drop 'Function Solver and Plotter' --drop 'Wrote the ESP32-S3 firmw
   --sub ' Treasurer, IEEE Student Branch (budget of more than \$10k).:::' \
   --sub ' Comfortable with SQL and data modeling, writing tests, and learning new stacks quickly.:::'
 build vodafone --drop 'Seat Heater Control System'
+build merck --drop 'Inventory Management System' --drop 'Wrote the ESP32-S3 firmware' --drop 'Designed the project as 5 Rust crates' \
+  --sub ' Codeforces Expert.:::' \
+  --sub ', so used to code review, written design discussion and working with stakeholders in other organizations:::' \
+  --sub '; agreed API changes in writing with mentors from OpenPrinting and System76:::'
+build hitachi-rail --drop 'Traffic Light Controller' --drop 'Door Locker Security System' \
+  --sub ' Works in C, C++ and Python; based in Cairo.:::' \
+  --sub '; built firmware-update delivery and GitHub Actions CI:::' --drop 'Built CI that integration-tests' \
+  --sub ', and run-time measurement of CPU load and task execution times.:::.' \
+  --sub ' Merged contributions to Zephyr RTOS and The Linux Foundation'"'"'s OpenPrinting.:::' \
+  --sub 'Built custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; scored 100\% in the final evaluation.:::Built Linux images with Yocto and Buildroot and a kernel module; scored 100\% in the final evaluation.' \
+  --sub ', reviewed and merged (:::, merged ('

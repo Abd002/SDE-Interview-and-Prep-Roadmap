@@ -1,0 +1,65 @@
+% Merck Group, Cairo: Software Engineer II (Expert 2), Platform Engineering (LinkedIn 4475543187).
+% Every fact comes from ../../facts.md. Build: TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex (twice).
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - Software Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{Software Engineer \enspace|\enspace Python, CI/CD, Automation, Linux}
+
+\section*{Summary}
+Software engineer who likes building tools and automation for other engineers. Set up multi-architecture CI that tests against real services, built REST backends and firmware-update automation, and writes Python, Rust, C and SQL on Linux. Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting) with 11 PRs merged upstream, so used to code review, written design discussion and working with stakeholders in other organizations. Codeforces Expert.
+
+\section*{Experience}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Open-source project: Printers page for COSMIC Settings, in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\begin{itemize}
+  \item Built CI in GitHub Actions on x86\_64 and aarch64 runners: builds libcups3 from source, starts real CUPS and Avahi services and runs linting and tests against them; added a CI matrix across architectures and CUPS 2/3 to cups-rs.
+  \item Designed the project as 5 Rust crates with a stable API between the UI and a backend service (varlink IPC), so either side can change without breaking the other (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{cosmic-settings \#2182}, in review).
+  \item Got \textbf{11 PRs merged upstream} through maintainer code review (\cvlink{https://github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged}{list}), including crash fixes in libcups (C); agreed API changes in writing with mentors from OpenPrinting and System76.
+\end{itemize}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Software for 3-DoF and 6-DoF pneumatic motion simulators: backend, desktop app, firmware and CI}
+\begin{itemize}
+  \item Built a Node.js/Express + MongoDB REST API for remote operation, and automated firmware delivery: new builds uploaded in a web app are downloaded by the desktop app and flashed to devices with esptool; GitHub Actions CI.
+  \item Developed the Python (PyQt5) control app; used asyncio to wait for device and server messages concurrently, cutting CPU use and latency by about 40\% (measured).
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS.
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2024 -- Jan 2025}
+\begin{itemize}
+  \item Built custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; scored 100\% in the final evaluation.
+\end{itemize}
+
+\section*{Open Source Projects}
+\cventry{Contributor (all merged) --- Zephyr RTOS, Boa JavaScript engine (Rust), Rust Clippy}{Mar 2025 -- Dec 2025}
+\begin{itemize}
+  \item Rust Clippy: fixed \texttt{ref\_as\_ptr} false positives in a lint used by Rust developers everywhere (\cvlink{https://github.com/rust-lang/rust-clippy/pull/16214}{PR \#16214}); Boa: faster \texttt{JsStr::code\_points()} (\cvlink{https://github.com/boa-dev/boa/pull/4553}{PR \#4553}); Zephyr RTOS: \texttt{IP\_MULTICAST\_LOOP} socket option (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}).
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{Developer environment automation} (Bash): idempotent install script that sets up a full Linux dev environment (packages, configs, editor plugins and language servers); backs up existing files and can be re-run safely, with flags to skip slow steps. \cvlink{https://github.com/Abd002/dotfiles}{GitHub}
+  \item \textbf{Function Solver and Plotter} (Python, PySide2, SymPy, Matplotlib): input validation, error handling and end-to-end tests with pytest-qt. \cvlink{https://github.com/Abd002/py-func-solver}{GitHub}
+  \item \textbf{Database Systems, CMU 15-445} (C++17, SQL): thread-safe Count-Min Sketch for the BusTub database; SQL analytics in DuckDB (joins, aggregation, upserts). \cvlink{https://github.com/Abd002/db-systems-journey}{GitHub}
+  \item \textbf{Inventory Management System} (C\#, SQL Server): audit log implemented with SQL Server triggers that record the logged-in user through the session context. \cvlink{https://github.com/Abd002/Inventory-Management-System}{GitHub}
+\end{itemize}
+
+\section*{Technical Skills}
+\cvskill{Languages}{Python (asyncio), SQL, Bash, Rust, C, C++, JavaScript (Node.js)}
+\cvskill{CI/CD \& testing}{GitHub Actions (matrix and multi-architecture builds, service setup in CI), automated testing (pytest, Cargo tests, integration tests against real services), linting and formatting checks}
+\cvskill{APIs \& data}{REST API design, Express, MongoDB, SQL Server, DuckDB; IPC (varlink)}
+\cvskill{Engineering practice}{Git/GitHub, code review, Linux (Ubuntu, Arch), debugging, technical writing}
+
+\section*{Achievements}
+\begin{itemize}
+  \item Codeforces Expert; 4-time ECPC finalist, 2021--2024; mentor in the local ICPC community (20+ colleagues).
+\end{itemize}
+
+\section*{Education}
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors.
+\end{itemize}
+
+\end{document}
