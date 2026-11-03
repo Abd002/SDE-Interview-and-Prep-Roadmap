@@ -75,3 +75,4 @@ build noon --drop 'Function Solver and Plotter' --drop 'Wrote the ESP32-S3 firmw
   --sub ' (Egyptian Collegiate Programming Contest):::' \
   --sub ' Treasurer, IEEE Student Branch (budget of more than \$10k).:::' \
   --sub ' Comfortable with SQL and data modeling, writing tests, and learning new stacks quickly.:::'
+build vodafone --drop 'Seat Heater Control System'

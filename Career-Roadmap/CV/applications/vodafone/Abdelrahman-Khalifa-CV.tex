@@ -1,0 +1,62 @@
+% Vodafone Egypt: Discover Graduate Program, IoT & Cloud Solutions 2027 (LinkedIn 4478987797).
+% Every fact comes from ../../facts.md. Build: TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex (twice).
+\documentclass[10pt]{article}
+\usepackage{cv-style}
+\hypersetup{pdftitle={Abdelrahman Khalifa - IoT and Software Engineer - CV},pdfauthor={Abdelrahman Khalifa}}
+
+\begin{document}
+
+\cvheader{Abdelrahman Khalifa}{IoT \& Software Engineer \enspace|\enspace Connected Devices, Cloud Backends, Embedded}
+
+\section*{Summary}
+Computer and Systems Engineering graduate (Very Good with Honors) who has built a connected product end to end: device firmware, a cloud backend for remote operation and firmware updates, and the desktop app, for EKSON's motion simulators. Graduation project: a V2X vehicle prototype with an ESP32 gateway that pulls firmware updates from the cloud. Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting), working remotely with two organizations. IEEE Student Branch Treasurer, ICPC mentor and 4-time ECPC finalist.
+
+\section*{Experience}
+\cvjob{Embedded Software Engineer}{EKSON}{Aug 2025 -- Present}
+\cvsub{Connected 3-DoF and 6-DoF pneumatic motion simulators: device firmware, cloud backend, desktop app and CI}
+\begin{itemize}
+  \item Built remote operation and over-the-network firmware updates: a web app and a Node.js/Express + MongoDB REST backend store commands, session and telemetry data, and new firmware; the desktop app polls the API and flashes the device.
+  \item Wrote the ESP32-S3 firmware and migrated it from ESP-IDF/FreeRTOS to Zephyr RTOS: PID valve control with IMU sensor feedback over I2C, safety stops and a watchdog.
+  \item Developed the Python desktop app that talks to the device over UART; cut its CPU use and latency by about 40\% (measured) using asyncio. Set up GitHub Actions CI.
+\end{itemize}
+\cvjob{Google Summer of Code Contributor}{The Linux Foundation (OpenPrinting)}{May 2026 -- Oct 2026}
+\cvsub{Open-source project: Printers page for COSMIC Settings, in Rust; passed the final evaluation \enspace|\enspace \cvlink{https://github.com/Abd002/GSOC-2026}{github.com/Abd002/GSOC-2026}}
+\begin{itemize}
+  \item Delivered the Printers page for COSMIC Settings (\cvlink{https://github.com/pop-os/cosmic-settings/pull/2182}{\#2182}, in review), coordinating remotely with mentors from OpenPrinting and System76; printers are discovered on the network with DNS-SD/mDNS.
+  \item Got \textbf{11 PRs merged upstream} (\cvlink{https://github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged}{list}), including crash fixes in libcups (C) and CI across architectures.
+\end{itemize}
+\cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2024 -- Jan 2025}
+\begin{itemize}
+  \item Built custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; scored 100\% in the final evaluation.
+\end{itemize}
+
+\section*{Open Source Projects}
+\begin{itemize}
+  \item \textbf{Zephyr RTOS} (an IoT operating system, Mar 2025): added the \texttt{IP\_MULTICAST\_LOOP} socket option to its IPv4 networking stack, reviewed and merged (\cvlink{https://github.com/zephyrproject-rtos/zephyr/issues/86977}{\#86977}).
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}
+  \item \textbf{AUTOSAR-Based V2X Vehicle} (graduation project, team; STM32, ESP32): owned the firmware update path. An ESP32 gateway downloads the new image from Firebase cloud storage, checks the version and sends it to the STM32 over UART using UDS; the bootloader verifies it with a CRC check. \cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}
+  \item \textbf{IoT Device Communication} (C++, Linux, QEMU, Raspberry Pi): TCP client--server for sensor data; ARM clients on two emulated boards over a bridged network, with the server on a Raspberry Pi. \cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}
+  \item \textbf{Seat Heater Control System} (Tiva C, FreeRTOS): real-time controller for two car seats with sensor diagnostics and a UART display. \cvlink{https://github.com/Abd002/SeatHeaterControlSystem}{GitHub}
+\end{itemize}
+
+\section*{Technical Skills}
+\cvskill{IoT \& devices}{ESP32-S3, STM32, Raspberry Pi; Zephyr, FreeRTOS, embedded Linux (Yocto); sensors over I2C, SPI, UART}
+\cvskill{Networking \& cloud}{TCP/UDP sockets, IPv4 multicast, REST APIs, DNS-SD/mDNS; Node.js/Express, MongoDB, Firebase Storage, GitHub Actions CI}
+\cvskill{Languages \& data}{C, Python, C++, Rust, JavaScript, SQL}
+
+\section*{Leadership \& Achievements}
+\begin{itemize}
+  \item Treasurer, IEEE Student Branch, Minia University: managed a budget of more than \$10k.
+  \item Mentor in the local ICPC community: taught problem solving in C++ to 20+ colleagues. Codeforces Expert; 4-time ECPC finalist (2021--2024).
+\end{itemize}
+
+\section*{Education}
+\cvjob{Bachelor of Science (B.Sc.), Computer and Systems Engineering}{Minia University}{2020 -- 2025}
+\begin{itemize}
+  \item Grade: Very Good with Honors (84.6\%).
+\end{itemize}
+
+\end{document}
