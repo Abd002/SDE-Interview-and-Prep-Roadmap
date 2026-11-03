@@ -1,6 +1,6 @@
 # Collabora application form: Embedded Linux Consultant Engineer (Remote/Anywhere)
 
-Prepared 3 Nov 2026 from [facts.md](../../facts.md). The form doesn't forbid help with writing, but **read every answer and change anything that doesn't sound like you.** They will ask about each point in the interviews.
+Prepared 3 Nov 2026 from [facts.md](../../facts.md); rewritten the same day in a plainer, first-person voice. The form doesn't forbid help with writing, but **read every answer and change anything that doesn't sound like you.** They will ask about each point in the interviews.
 
 ## Basic fields
 
@@ -21,49 +21,53 @@ Prepared 3 Nov 2026 from [facts.md](../../facts.md). The form doesn't forbid hel
 
 ## Please tell us of your interest in Collabora
 
-> I want to work where the job is to make Linux work on real hardware and send the fixes upstream, and that is how Collabora works. My path has been heading here: I built Yocto and Buildroot images and wrote a kernel module for ARM during my Orange Digital Center internship, I write Zephyr firmware for motion simulators at EKSON, and as a Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting) I spent six months working upstream in C and Rust on the Linux printing stack, with 11 PRs merged in cups-rs and libcups.
+> I've been moving toward embedded Linux for a while. In my internship at Orange Digital Center I built Yocto and Buildroot images and wrote a kernel module for ARM, and at EKSON I write the Zephyr firmware for our motion simulators. This year I was a Google Summer of Code contributor with The Linux Foundation (OpenPrinting), working on the Linux printing stack in C and Rust, and I got 11 PRs merged in cups-rs and libcups.
 >
-> What I liked most in that work was the upstream part: finding a crash in libcups, fixing it in the right place, and getting it through review instead of working around it in my own code. Collabora's "upstream first" approach, and the mix of customer problems with open-source contributions, is the kind of work I want to grow in. I'm also interested in where Rust is going in embedded Linux, and Collabora is one of the places doing that work in the open.
+> The part I enjoyed most was working upstream. When I found a crash in libcups, I fixed it in libcups and went through review, instead of adding a workaround in my code. Collabora does this every day for its customers, and that's why I'm applying. I also use Rust a lot and I'd like to work on it in embedded Linux.
 
 ## Describe any technical leadership experience you have, formal or informal
 
-> - **Driving a technical decision (Google Summer of Code 2026):** I designed the architecture of the COSMIC Printers page. The Rust code calls libcups through FFI, and a crash in native code would take down the whole Settings app, so I proposed running the backend as a separate varlink service inside cosmic-settings-daemon. I discussed the design with my mentors from OpenPrinting and System76, and split the project into 5 crates so the Settings page and a standalone app share the same UI and client.
-> - **Representing the work upstream:** I ported cups-rs to libcups3, which meant agreeing on API changes with the maintainers, and I added a CI matrix across architectures and CUPS 2 and 3. When I found crashes in libcups' Avahi DNS-SD code, I reported and fixed them upstream (libcups #164, #165) rather than patching around them. I still maintain the project after the program ended.
-> - **Ownership:** at EKSON I own the software for the simulator product end to end: firmware, desktop app, backend and CI. I chose to migrate the firmware from ESP-IDF/FreeRTOS to Zephyr for more deterministic timing and portable, devicetree-based drivers.
-> - **Mentoring:** I mentor in my local ICPC community and have taught problem solving in C++ to more than 20 colleagues. At university I was Treasurer of the IEEE Student Branch, managing a budget of more than $10k.
+> In Google Summer of Code I designed how the COSMIC Printers page is built. My Rust code calls libcups through FFI, so if libcups crashed it would take the whole Settings app down. I suggested moving the backend into a separate varlink service in cosmic-settings-daemon, discussed it with my mentors from OpenPrinting and System76, and they agreed. I split the code into 5 crates so the Settings page and the standalone app share the same UI.
+>
+> I also ported cups-rs to libcups3 and talked with the maintainers about the API changes before writing them. I added CI that builds against CUPS 2 and 3 on several architectures. I still maintain the project now that the program is over.
+>
+> At EKSON I'm responsible for the simulator software: firmware, desktop app, backend and CI. I decided to move the firmware from ESP-IDF/FreeRTOS to Zephyr to get more deterministic timing and devicetree drivers.
+>
+> Outside work, I mentor in my local ICPC community and taught problem solving in C++ to more than 20 people. I was also Treasurer of the IEEE Student Branch at university.
 
 ## Please tell us about your Open Source contributions and provide links
 
-> - **OpenPrinting (The Linux Foundation), 2026:** 11 PRs merged.
->   - cups-rs (Rust bindings for CUPS, 9 PRs): port to libcups3, CI across architectures and CUPS versions, IPP management operations, Printer Application support, DNS-SD FFI bindings, lpoptions. https://github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged
->   - libcups (C): fixed crashes in cupsDNSSDDelete() when Avahi fails to initialize, and a leaked client in the Avahi code. https://github.com/OpenPrinting/libcups/pull/164 and https://github.com/OpenPrinting/libcups/pull/165
-> - **COSMIC desktop (System76), in review:** the Printers page for COSMIC Settings (https://github.com/pop-os/cosmic-settings/pull/2182) and its varlink backend service (https://github.com/pop-os/cosmic-settings-daemon/pull/188). Code: https://github.com/Abd002/cosmic-printers, report: https://github.com/Abd002/GSOC-2026
-> - **Zephyr RTOS, 2025:** implemented the IP_MULTICAST_LOOP socket option for IPv4 across the networking stack, merged. https://github.com/zephyrproject-rtos/zephyr/pull/87167
-> - **Boa (JavaScript engine in Rust), 2025:** fast path for Latin1 strings in JsStr::code_points(), merged. https://github.com/boa-dev/boa/pull/4553
-> - **Rust Clippy, 2025:** fixed ref_as_ptr false positives for non-temporary references, merged. https://github.com/rust-lang/rust-clippy/pull/16214
-> - **My own:** a Linux kernel character-device driver for ARM, tested on QEMU: https://github.com/Abd002/kernel-monitor
+> OpenPrinting (The Linux Foundation), 2026: 11 merged PRs.
+> - cups-rs, 9 PRs: port to libcups3, CI on several architectures and CUPS versions, IPP management, Printer Application support, DNS-SD bindings, lpoptions. https://github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged
+> - libcups (C): fixed crashes in cupsDNSSDDelete() when Avahi fails to start, and a leaked client. https://github.com/OpenPrinting/libcups/pull/164 https://github.com/OpenPrinting/libcups/pull/165
+>
+> COSMIC (System76), in review: Printers page in COSMIC Settings https://github.com/pop-os/cosmic-settings/pull/2182 and the backend service https://github.com/pop-os/cosmic-settings-daemon/pull/188. My code: https://github.com/Abd002/cosmic-printers and my report: https://github.com/Abd002/GSOC-2026
+>
+> Zephyr RTOS (2025): added the IP_MULTICAST_LOOP socket option for IPv4, merged. https://github.com/zephyrproject-rtos/zephyr/pull/87167
+>
+> Boa (2025): faster code_points() for Latin1 strings, merged. https://github.com/boa-dev/boa/pull/4553
+>
+> Rust Clippy (2025): fixed false positives in the ref_as_ptr lint, merged. https://github.com/rust-lang/rust-clippy/pull/16214
+>
+> My own project: a Linux kernel character device driver for ARM, tested on QEMU. https://github.com/Abd002/kernel-monitor
 
 ## Can you describe your experience in a consultancy environment?
 
-**Be honest here; you haven't worked in a consultancy.** Suggested answer:
+> I haven't worked in a consultancy yet. The closest thing is Google Summer of Code, where I worked remotely with two groups at the same time: OpenPrinting, who maintain CUPS and libcups, and System76, who own COSMIC. They didn't always want the same thing, so I had to explain the trade-offs in writing, agree on changes before coding, and send the work in small pieces that were easy to review. At EKSON I own the simulator software and turn what the people using the simulators need into firmware and app changes. Scoping projects and handling customer expectations is the part I still need to learn, and I'd like to learn it at Collabora.
 
-> I haven't worked in a consultancy yet, but most of my work has had the same shape: someone else's codebase, someone else's priorities, and me in the middle. During Google Summer of Code 2026 I worked remotely with two organizations at once, OpenPrinting (who maintain CUPS and libcups) and System76 (who own COSMIC), whose needs didn't always match. I had to explain trade-offs in writing, get agreement on API changes before writing code, and deliver in reviewable steps. At EKSON I own the simulator product's software and work with the people who use the simulators, turning what they need into firmware, app and backend changes. I'm used to asynchronous, written communication across time zones and to being accountable for a result rather than a task list. The consulting skills I want to grow at Collabora are scoping projects and managing customer expectations.
-
-> **Check before sending:** the sentence "work with the people who use the simulators" must be true for you. If you don't deal with EKSON's customers or operators, delete it.
+> **Check before sending:** keep "turn what the people using the simulators need into firmware and app changes" only if you really work with EKSON's customers or simulator operators. Otherwise delete it.
 
 ## Describe a situation where a customer had a critical production issue
 
-**Use a real story.** You haven't handled a paying customer's outage, so say so in one line, then tell the closest real one. The libcups crash is real and documented in your PRs:
+> I haven't had a paying customer with a production outage yet, so this is the closest real case I have.
+>
+> While building the COSMIC Printers page, I found that libcups could crash in cupsDNSSDDelete() when Avahi failed to start, and that the same code leaked a client. My Rust code calls libcups through FFI, so this crash would have closed the whole Settings app.
+>
+> I reproduced it, found the cause in libcups' Avahi code and fixed both problems upstream in C (libcups #164 and #165, both merged). I didn't want to just hide it in my bindings. Then I moved the CUPS backend out of the Settings process into a varlink service in cosmic-settings-daemon, so if native code crashes again, Settings stays open.
+>
+> While doing this I kept my mentors updated on what was broken, why, and what I planned to do, and I explained the bug clearly to the libcups maintainers in the PRs. What I took from it: tell people early what you know and what you don't, fix the real cause, and make sure the next failure can't take everything down.
 
-> I haven't yet handled a paying customer's production outage, so here is the closest real case.
->
-> While building the COSMIC Printers page, I found that libcups could crash inside cupsDNSSDDelete() when Avahi (the mDNS/DNS-SD daemon) failed to initialize, and that the same Avahi code leaked a client. My Rust code calls libcups through FFI, so a crash there would have taken the whole Settings app down with it, which is the worst kind of bug in a desktop.
->
-> **Technical side:** I reproduced the failure, traced it into libcups' Avahi DNS-SD code and fixed both problems upstream in C (libcups #164 and #165, both merged), rather than hiding the crash in my bindings. I also changed the architecture so this class of bug can't hurt users again: the whole CUPS/libcups backend now runs as a separate varlink service in cosmic-settings-daemon, so if native code crashes, the Settings app stays up.
->
-> **The people side:** I kept my mentors from OpenPrinting and System76 informed about the impact, the cause and my plan, and gave the libcups maintainers a clear explanation of the bug with the fix. The lesson I took: say what you know and what you don't as soon as possible, fix the root cause where it lives, and add a safeguard so the same kind of failure is contained next time.
-
-> **Check before sending:** edit the details to match exactly what happened. How did you find the crash? How did you reproduce it (for example by stopping avahi-daemon)? What did you tell your mentors, and when? An interviewer will ask you to go deeper, so every sentence must be something you can expand on. Delete anything that isn't true.
+> **Check before sending:** change any detail that doesn't match what really happened (how you found it, how you reproduced it, what you told your mentors). They will ask you to go deeper on this story.
 
 ## Remuneration ball-park
 
@@ -73,6 +77,6 @@ Collabora pays by country, and the form rejects answers without a number and a c
 
 Suggested answer for a junior–mid embedded Linux engineer based in Cairo:
 
-> USD 36,000–45,000 gross per year, as an employee or contractor, working remotely from Cairo, Egypt. I'm flexible depending on the overall package and the level you see me at.
+> USD 36,000 to 45,000 per year (gross), working remotely from Cairo, Egypt. I'm open to discussing it depending on the full package.
 
 **This is your decision.** Go lower (for example USD 30,000–40,000) if you'd rather not risk being filtered out on cost. Don't go below what you'd accept, because Collabora treats this as a guideline.
