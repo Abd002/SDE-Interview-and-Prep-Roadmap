@@ -11,8 +11,11 @@
 | **Level** | **0–1 years** in automotive embedded software |
 | **What the team builds** | Software for automotive lighting systems: requirements, design, integration on the test bench and in the vehicle, ASPICE processes |
 | **Why it fits** | C/C++ for microcontrollers, Python, UART/SPI/I2C, AUTOSAR a plus: your AUTOSAR graduation project (UDS bootloader), AUTOSAR MCAL drivers, FreeRTOS seat-heater controller and over a year of Zephyr firmware at EKSON |
-| **Status** | Not started (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b41810eaa6cde06fd3312cf)) |
-| **Applied on** | — |
+| **Status** | **Applied** (Workday shows "In Progress") (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b41810eaa6cde06fd3312cf)) |
+| **Applied on** | 3 Nov 2026 |
+| **Track it** | [Workday Candidate Home](https://valeo.wd3.myworkdayjobs.com/en-US/valeo_jobs/userHome) (sign in with the account you applied with) |
+| **Follow up** | 24 Nov 2026, if there is no reply (3 weeks, see [09 §5](../../../09-Hiring-Process-and-Outreach.md#5-follow-up-rules)) |
+| **What you submitted** | [application-form.md](application-form.md) |
 | **Saved job ad** | [job-ad.md](job-ad.md) |
 | **Fallback** | [Graduate In Training Program, Embedded Software](https://valeo.wd3.myworkdayjobs.com/valeo_jobs/job/Cairo/Job-Posting-Title-Graduate-In-Training-Program--GIT----Embedded-Software_REQ2026080868): a 6-month trainee programme for 2025/2026 graduates (MISRA-C, static analysis, component tests). Apply there too only if the junior role doesn't answer. |
 
@@ -42,9 +45,9 @@
 
 ## 4. Checklist
 
-- [ ] Re-open the job link and check it is still open.
+- [x] Re-open the job link and check it is still open.
 - [ ] Ask a Valeo Cairo engineer for a referral if you know one (LinkedIn search: "Valeo Egypt software engineer LIGHT").
-- [ ] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf) in Workday; check every auto-filled field.
-- [ ] Fill in **Applied on** above, in 08 and in Notion; set Status to Applied.
+- [x] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf) in Workday; check every auto-filled field.
+- [x] Fill in **Applied on** above, in 08 and in Notion; set Status to Applied.
 - [ ] Revise AUTOSAR layers, UDS and CAN basics while you wait.
 - [ ] Follow up once after 3 weeks with no reply (09 §5).
