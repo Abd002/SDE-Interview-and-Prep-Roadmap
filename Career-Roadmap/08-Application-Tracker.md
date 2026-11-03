@@ -105,6 +105,24 @@ NXP said no within two days, most likely because the job needed an Austrian work
 - **Doesn't say whether it sponsors:** Jane Street London.
 - **Trainee programme (6 months):** Valeo's [Graduate In Training Program, Embedded Software](https://valeo.wd3.myworkdayjobs.com/valeo_jobs/job/Cairo/Job-Posting-Title-Graduate-In-Training-Program--GIT----Embedded-Software_REQ2026080868). A fallback if the junior role doesn't reply.
 
+### More roles, no relocation risk (found 3 Nov 2026)
+
+Checked on 3 Nov 2026 on each posting itself. Every one is in Egypt or remote and open to Egypt, and none is at a company you've already applied to. Siemens is paused (your decision, 3 Nov).
+
+| # | Company | Role (live posting) | Where | Level | Why it fits | CV | Status |
+|---|---|---|---|---|---|---|---|
+| 1 | **MixRank** (YC, profitable, 65+ people in 20+ countries) | [Junior Software Engineer — Remote, Egypt](https://www.ycombinator.com/companies/mixrank/jobs/3wCgMB3-junior-software-engineer-remote-egypt) | Remote, **Egypt-specific posting** | "Any (new grads ok)"; USD 12k–24k | Python, PostgreSQL, Linux, Git; they also use **Rust** and care about databases, compilers and big data. Your Python (EKSON), Rust, Linux and CMU database work | [General SWE](CV/cv-general-swe.pdf) | Not started |
+| 2 | **noon** | [Software Development Engineer 1 (Backend), CAKE graduate program](https://www.linkedin.com/jobs/view/4476171196) | Cairo | Entry level; fresh graduates; 4-week training | Backend SDE track with database and system design training; strong DSA matters (Codeforces Expert, ECPC finalist) | [General SWE](CV/cv-general-swe.pdf) | Not started |
+| 3 | **Hitachi Rail** | [Embedded Application Developer](https://www.linkedin.com/jobs/view/4478918161) | Cairo | Entry level | C/C++ for safety-critical railway software (ETCS); RTOS and testing are pluses; training provided. Fits your embedded C, Zephyr and FreeRTOS work. Same team also hires a [Software Validation & Test Engineer](https://www.linkedin.com/jobs/view/4478903663) | [Valeo copy](CV/applications/valeo/Abdelrahman-Khalifa-CV.pdf) (C, RTOS, safety) | Not started |
+| 4 | **Supabase** | [Software Engineer – Turso](https://jobs.ashbyhq.com/supabase/7c5eb3fc-1087-4c1c-b3a2-a19fe01dd259) | Remote, global ("we hire globally") | No years stated; **stretch** | Rust database (SQLite rewrite, Postgres layer); wants database/kernel builders | [Systems-Rust](CV/cv-systems-rust.pdf) | Not started |
+| 5 | **Vodafone Egypt** | [Discover Graduate Program, IoT & Cloud Solutions 2027](https://www.linkedin.com/jobs/view/4478987797) | Egypt | 12-month graduate program | IoT and M2M projects; open to 2025/2026 graduates. **Check:** for men, military service must have ended in 2024 or 2025. More business-facing than the others | [Embedded](CV/cv-embedded.pdf) | Not started |
+| 6 | **Merck Group** | [Software Engineer II, Platform](https://www.linkedin.com/jobs/view/4475543187) | Cairo | Associate; asks **2–5 years** (you have about 1.3 + GSoC), a stretch | Python, Git, testing, APIs, CI/CD | [General SWE](CV/cv-general-swe.pdf) | Not started |
+
+**Checked and left out (3 Nov):**
+- **Too senior:** Synopsys Cairo (only product-manager roles open), Intellias (5–7 years), Orange Business SDN/NFV (3–6 years), Ericsson cloud (3–5 years), Wasmer (6+ years, CET only).
+- **US only:** ParadeDB, Cedana, Workers IO.
+- **Closed:** Elsewedy Electric's firmware graduate role.
+
 ### All P1 targets
 
 Grouped by track (see [07 §3](07-Strategy-and-Roadmap.md#3-the-recommended-strategy-three-parallel-lanes)).
