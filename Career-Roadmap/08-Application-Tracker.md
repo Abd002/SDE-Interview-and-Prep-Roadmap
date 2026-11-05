@@ -210,7 +210,8 @@ Money in parallel with the job search (5 Nov 2026). Exclusivity rules can clash:
 | # | Platform | Role | Pay | Status | Applied on | Next step | Details |
 |---|---|---|---|---|---|---|---|
 | 1 | **micro1** | Paid Photo Contributor (Egypt-based) | Per task | **Applied** | 5 Nov 2026 | Wait for their email | |
-| 2 | **Mercor** (via Cincinnatus LLC) | Open Source Maintainer / Core Contributor – Software Engineer | USD 150/hr listed, 30–40 h/week | CV ready | | Profile + CV, AI interview, ID check | [mercor/](CV/applications/mercor/README.md) |
+| 2 | **Mercor** (via Cincinnatus LLC) | Open Source Maintainer / Core Contributor – Software Engineer | USD 150/hr listed, 30–40 h/week | **Applied** | 5 Nov 2026 | Link LinkedIn on Mercor; wait for the AI interview invite and ID check. Listed as "Remote US, W2", so it may be US-only | [mercor/](CV/applications/mercor/README.md) |
+| 3 | **Mercor** | Software Engineer – Retail Investing Platforms (Paid Expert Interview) | USD 100–120/hr, one call | **Applied** | 5 Nov 2026 | Long shot: no fintech experience, answered honestly | |
 
 ---
 
