@@ -1,10 +1,10 @@
 # What I'm doing now, and what I know
 
-**Updated:** 20 Oct 2026.
+**Updated:** 5 Nov 2026.
 
 **What it's for:** read it before a call, an interview or a networking chat, so you can say clearly what you're working on and what you've learned.
 
-**Where it comes from:** the 27 steps marked **Done** in the Notion study plan ("Study Plan — Step by Step"). Every line in §3 was checked against the **main resource of its step** in the plan (the step's Link and Notes), linked under each heading. On 20 Oct 2026 the whole of §3 was re-checked line by line against the full CMU lecture notes L01–L07, the HW2 official solutions and every repo guide, and the concepts that had been left out were added. For DDIA, ch. 5 was checked against the free official excerpt. Ch. 9 has no free copy, so it was checked against the author's own lecture notes on the same topics. The "How well I know it" table (§4) is filled in from the [knowledge check](Knowledge-Check.md).
+**Where it comes from:** the 35 steps marked **Done** in the Notion study plan ("Study Plan — Step by Step"). Every line in §3 was checked against the **main resource of its step** in the plan (the step's Link and Notes), linked under each heading. On 20 Oct 2026 the whole of §3 was re-checked line by line against the full CMU lecture notes L01–L07, the HW2 official solutions and every repo guide, and the concepts that had been left out were added. For DDIA, ch. 5 was checked against the free official excerpt. Ch. 9 has no free copy, so it was checked against the author's own lecture notes on the same topics. On 5 Nov 2026 the 8 newly finished steps were added (§3.13–§3.17): deadlocks, DNS and HTTP were checked against the repo guides, the Tokio part against the official tutorial pages, and DDIA ch. 6 against the book's chapter structure (the free excerpt has only chapters 3, 5 and 8). The "How well I know it" table (§4) is filled in from the [knowledge check](Knowledge-Check.md).
 
 **Diagrams for quick revision:** [DBMS layers, L01–L07](../Study-Plan/Revision-Maps/DBMS-Layers-L01-L07.md) · [DDIA ch. 5, Replication](../Study-Plan/Revision-Maps/DDIA-Ch5-Replication.md) · [DDIA ch. 9, Consistency and Consensus](../Study-Plan/Revision-Maps/DDIA-Ch9-Consistency-and-Consensus.md).
 
@@ -17,9 +17,9 @@
 >
 > First, I'm taking Carnegie Mellon's **database systems course (CMU 15-445)** on my own. I've finished the first seven lectures (relational model, SQL, storage, the buffer pool, storage models and compression, hash tables), homework 1 in SQL, homework 2 on storage and compression, and **project 0**. That's a thread-safe **Count-Min Sketch** in C++, and it passes the course's autograder.
 >
-> Second, I'm preparing my next big project: a **distributed key-value store in Rust built on Raft**. I've read the whole Raft paper, and the replication and the consistency and consensus chapters of *Designing Data-Intensive Applications*.
+> Second, I'm preparing my next big project: a **distributed key-value store in Rust built on Raft**. I've read the whole Raft paper, and the replication, partitioning, and consistency and consensus chapters of *Designing Data-Intensive Applications*. I've also worked through the **Tokio** tutorial, the async runtime I'll build it on: tasks, shared state, channels, I/O, framing and `select!`.
 >
-> Third, I keep my problem solving sharp with **Codeforces virtual contests**, and I'm reviewing **OS fundamentals**: processes, threads, synchronization, scheduling, memory management and file systems.
+> Third, I keep my fundamentals sharp: **Codeforces virtual contests**, the whole **OS** track (processes, threads, synchronization, deadlocks, scheduling, memory management, file systems), and networking (**DNS** and **HTTP** so far).
 
 ### 60 seconds: add the "why"
 Use the 30-second answer, then add:
@@ -39,16 +39,18 @@ Use the 30-second answer, then add:
 | **CMU 15-445 lectures** | L01 Relational Model & Algebra · L02 Modern SQL · L03 Database Storage I · L04 Memory & Disk Management · L05 Database Storage II · L06 Storage Models & Compression · L07 Hash Tables | 1, 2, 8, 9, 15, 20, 25 |
 | **CMU homework** | HW1 SQL in DuckDB, Q1–Q6, compared with the official solutions · HW2 Storage (slotted pages vs log-structured, storage models, compression), finished and self-graded with the official solutions | 11, 16, 21, 26 |
 | **CMU project** | Setup (BusTub, CMake, clang, gdb, Gradescope) · **P0 C++ Primer: Count-Min Sketch**, passing on Gradescope, clang-tidy clean, no memory leaks | 3, 4, 10 |
-| **Operating systems** (repo guides) | Processes · Threads · Thread synchronization (mutexes, semaphores, monitors, atomics) · Scheduling algorithms · Memory management · File systems (journaling, NFS/SMB, encryption, HDFS/Ceph); the whole OS checklist is now done | 5, 17, 22, 27, 36 |
-| **Distributed systems** (flagship prep) | Raft paper §1–§5 + the raft.github.io visualization · Raft §6–§8 + the Students' Guide to Raft · DDIA ch. 9 part 1 (linearizability, ordering) · DDIA ch. 9 part 2 (consensus) + the Jepsen consistency-models map · DDIA ch. 5 (replication) | 6, 12, 18, 23, 28 |
+| **Operating systems** (repo guides) | Processes · Threads · Thread synchronization (mutexes, semaphores, monitors, atomics) · Scheduling algorithms · Memory management · **Deadlocks** (Coffman conditions, prevention, Banker's algorithm, wait-for graphs, recovery) · File systems (journaling, NFS/SMB, encryption, HDFS/Ceph); the whole OS checklist is done | 5, 17, 22, 27, 32, 36 |
+| **Networking** (repo guides) | **DNS** (hierarchy, record types, resolution, caching and TTL) · **HTTP** (requests and responses, methods, status codes, versions, HTTPS) | 55, 64 |
+| **Distributed systems** (flagship prep) | Raft paper §1–§5 + the raft.github.io visualization · Raft §6–§8 + the Students' Guide to Raft · DDIA ch. 9 part 1 (linearizability, ordering) · DDIA ch. 9 part 2 (consensus) + the Jepsen consistency-models map · DDIA ch. 5 (replication) · **DDIA ch. 6 (partitioning)** · **Tokio tutorial** part 1 (spawning, shared state) and part 2 (channels, I/O, framing, `select!`) | 6, 12, 18, 23, 28, 33, 37, 44 |
 | **Problem solving** | Codeforces Round 1074 (Div. 4), virtual: A–D | 13 |
-| **Career** | LinkedIn update (following CV/LinkedIn.md) · Knight-Hennessy go/no-go decision | 7, 14 |
+| **Career** | LinkedIn update (following CV/LinkedIn.md) · Knight-Hennessy go/no-go decision · Shortlisted 5 P1 companies · Sent the first application (then kept going: 9 sent by 5 Nov) | 7, 14, 29, 38 |
 
-**Not done yet:**
-- **Phase 1:** step 19 (DAAD documents + shortlist). Deadline **30 Oct**, so do it first.
-- **Phase 2:** step 24 (book IELTS). Its 15 Oct date has passed, so book it now.
-- **Phase 2:** step 29 (shortlist 5 P1 companies).
-- **Then phase 3:** P1 Buffer Pool Manager (steps 30–35, then 37 onwards; step 36, file systems, is already done).
+**Skipped on purpose (Ignored):** the four DAAD steps (19, 34, 46, 52; deadline 30 Oct passed), booking IELTS (24) and the repo's databases guide (31).
+
+**Next in the plan:**
+- **Phase 3:** step 30 (P1 Buffer Pool spec + the ARC algorithm on paper), 35 (ARC replacer), 39 (checkpoint review), then lectures L08–L09 (40–41).
+- **Deadline:** step 137, the ETH Zurich ESOP application, by **30 Nov**.
+- **In parallel:** the new Modern C++ track (steps 185–200), about 2 steps a week.
 
 ---
 
@@ -496,6 +498,83 @@ These are the concepts from the finished steps, one line each, the way you'd say
 | **C. Shifted MEX** | Shifting by x keeps the gaps between values, so the answer is the longest run of consecutive distinct values (sort and deduplicate). |
 | **D. OutOfMemoryError** | Simulate with lazy resets: track which indices changed since the last reset, and reset only those, instead of copying the whole array each time. |
 
+### 3.13 Deadlocks (repo guide)
+> **Source:** [Operating Systems/Deadlocks.md](../Operating%20Systems/Deadlocks.md)
+
+- **Deadlock:** a set of threads each waits for something another one in the set holds, so none can continue. Timing-dependent, so tests may never show it.
+- **Coffman conditions, all four needed:** mutual exclusion, hold-and-wait, no preemption, circular wait. Break any one and deadlock is impossible.
+- **Prevention in practice:**
+  - **Lock ordering** (breaks circular wait): give locks a global order, e.g. by address, and always take the lower one first.
+  - **Lock all at once** (breaks hold-and-wait): `std::scoped_lock lock(a.m, b.m);` uses a deadlock-avoidance algorithm, so the bank-transfer A→B / B→A case is safe.
+  - **Try-lock and back off** (breaks no-preemption): `try_lock`, and on failure release everything and retry.
+  - Don't call unknown code (callbacks, virtual functions) while holding a lock.
+- **Avoidance: the Banker's algorithm.** Each process declares its maximum need; `Need = Max − Allocation`. Grant a request only if the state stays **safe**: some order exists in which every process can get its maximum, finish and return its resources. **Unsafe means deadlock is possible, not certain.** O(n²·m), rarely used in real OSes because maximum needs are rarely known.
+- **Detection: the wait-for graph.** Edge A → B if A waits for something B holds. With single-instance resources a **cycle** means deadlock; find it with DFS in O(V+E) (a node met again while still on the current path). Databases (PostgreSQL, MySQL) do this and abort a victim transaction. With multiple instances a cycle isn't enough; use a Banker-style check.
+- **Recovery:** abort all, or abort one victim at a time, or preempt and roll back to a checkpoint. Choose the victim by cost (priority, work done, resources held) and count past aborts so the same one doesn't **starve**.
+- **Livelock:** threads keep reacting to each other but make no progress (both step aside the same way). Fix with **random** back-off.
+- **Starvation:** one thread never gets the resource. Fix with fair queues or **aging**.
+- **"Ostrich" approach:** ignore it and reboot if it happens; what desktop OSes do for general resources.
+
+### 3.14 DNS (repo guide)
+> **Source:** [Networking/DNS.md](../Networking/DNS.md)
+
+- **What it is:** a distributed, hierarchical phone book from names to records. Names are read right to left: root → TLD (`.com`) → domain → subdomain; each **zone** is served by its own authoritative name servers.
+- **Servers:** root servers (13 named identities, hundreds of machines via anycast) know the TLD servers; TLD servers know each domain's authoritative servers; authoritative servers hold the records.
+- **Transport:** UDP port 53, TCP 53 for large answers and zone transfers; privacy variants DoH (443) and DoT (853).
+- **Record types:** A (IPv4), AAAA (IPv6), CNAME (alias), MX (mail), NS (authoritative servers), TXT (verification, SPF/DKIM), SOA (zone info and timers), PTR (reverse lookup), SRV (service host and port). Every record has a **TTL**.
+- **Resolution, step by step:** browser cache → OS cache → `/etc/hosts` → the OS **stub resolver** sends a **recursive** query to a recursive resolver (ISP, 8.8.8.8, 1.1.1.1) → on a cache miss the resolver makes **iterative** queries: root (referral to `.com`) → TLD (referral to the domain's NS records plus **glue** IPs) → authoritative (the A record) → follows any **CNAME** by starting again → caches everything → replies.
+- **Root and TLD servers only give referrals**, never the final answer.
+- **CNAME rule:** a name with a CNAME can't have other records, so you can't CNAME the bare domain; providers offer ALIAS/ANAME instead.
+- **Caching and TTL:** caches in the browser, OS, router and resolver. Short TTL (30–300 s) = fast failover, more queries; long TTL = fewer lookups, slow changes. **Lower the TTL days before a migration.** "Doesn't exist" (NXDOMAIN) is cached too (**negative caching**, per the SOA).
+
+### 3.15 HTTP (repo guide)
+> **Source:** [Networking/HTTP.md](../Networking/HTTP.md)
+
+- **What it is:** a stateless request/response protocol, traditionally over TCP. Request: `METHOD /path HTTP/1.1`, headers, blank line, body. Response: `HTTP/1.1 CODE Reason`, headers, blank line, body. Lines end with `\r\n`. Sessions are built on top with cookies or tokens.
+- **URL parts:** scheme, host, port, path, query string, fragment (the fragment never leaves the browser). Common headers: `Host`, `Content-Type`, `Content-Length`, `Authorization`, `Cookie`/`Set-Cookie`, `Cache-Control`, `Accept`, `User-Agent`.
+- **Methods:** GET (read), HEAD (headers only), OPTIONS (allowed methods, CORS preflight), POST (create / trigger), PUT (create or **fully replace** at a known URL), PATCH (**partial** update), DELETE.
+- **Safe** (changes nothing): GET, HEAD, OPTIONS. **Idempotent** (same effect once or many times): GET, HEAD, OPTIONS, PUT, DELETE. POST is neither; PATCH isn't guaranteed idempotent. DELETE is idempotent even if the second call returns 404, because the server state is the same. Retried POSTs use an **idempotency key**.
+- **Mistakes to avoid:** GET that changes data (crawlers will "click" it), mixing PUT and PATCH, secrets in query strings (they end up in logs).
+- **Status codes:** 1xx info (100 Continue, 101 Switching Protocols) · 2xx success (200, 201 Created + `Location`, 202 Accepted, 204 No Content) · 3xx redirect (301 permanent, 302 temporary, 304 Not Modified via ETag/`If-None-Match`, 307/308 keep the method) · 4xx client (400, **401 not authenticated vs 403 not allowed**, 404, 405, 409 Conflict, 422, 429 Too Many Requests + `Retry-After`) · 5xx server (500, 502 Bad Gateway, 503 Unavailable, 504 Gateway Timeout).
+- **Retry rule:** don't blindly retry 4xx (except 408/429); retry 502/503/504 with exponential backoff, and only idempotent requests. Never return 200 with an error body, or 500 for bad input.
+- **Versions:** HTTP/1.0 one request per connection · 1.1 keep-alive, `Host`, chunked, but head-of-line blocking · 2 binary framing, multiplexing over one TCP connection, HPACK header compression · 3 on **QUIC over UDP**, no TCP head-of-line blocking, faster setup, built-in TLS 1.3, survives network changes.
+- **HTTPS = HTTP inside TLS:** encryption, integrity, and authentication through a CA-signed certificate.
+
+### 3.16 Partitioning (DDIA ch. 6)
+> **Source:** *DDIA* ch. 6, "Partitioning". There is no free copy (the free excerpt has chapters 3, 5 and 8), so this follows the chapter's own sections.
+
+- **Why:** a dataset or load too big for one machine is split into **partitions** (shards); each record belongs to exactly one. Partitioning combines with replication: each partition has copies on several nodes, and a node can lead some partitions and follow others.
+- **Goal:** spread data and queries evenly. Uneven = **skew**; a partition with too much load is a **hot spot**.
+- **By key range:** contiguous key ranges, like encyclopedia volumes; boundaries set by hand or automatically (Bigtable, HBase). Keys stay sorted, so **range scans are cheap**, but some access patterns create hot spots (a timestamp key sends all of today's writes to one partition; fix it by prefixing, e.g. sensor name + timestamp).
+- **By hash of key:** a good hash spreads keys evenly; each partition owns a range of hashes. You **lose efficient range queries**. Cassandra's compromise: a compound key where only the first column is hashed and the rest are sorted inside the partition.
+- **Very hot keys** (a celebrity): add a random suffix to spread writes over many keys; reads must then read all of them and combine.
+- **Secondary indexes:**
+  - **Document-partitioned (local):** each partition indexes only its own documents. Writes touch one partition; reads must **scatter/gather** across all partitions (MongoDB, Cassandra, Elasticsearch).
+  - **Term-partitioned (global):** the index itself is partitioned by the indexed term. Reads hit one index partition; writes may touch several and are usually updated **asynchronously** (DynamoDB global secondary indexes).
+- **Rebalancing** (moving load when nodes are added or removed): spread load fairly, keep serving during the move, move no more data than needed.
+  - **Not hash mod N:** changing N moves almost every key.
+  - **Fixed number of partitions:** create many more partitions than nodes and move whole partitions to a new node (Riak, Elasticsearch, Couchbase); the number is chosen up front.
+  - **Dynamic partitioning:** split a partition when it grows too big, merge when it shrinks (HBase); pre-split an empty database.
+  - **Proportional to nodes:** a fixed number of partitions per node; a new node splits some existing ones (Cassandra).
+  - **Automatic vs manual:** fully automatic rebalancing plus automatic failure detection can cause cascading failures, so keeping a human in the loop is safer.
+- **Request routing:** a client can contact any node (which forwards), a routing tier, or be partition-aware itself. Someone must know the partition-to-node map: a coordination service such as **ZooKeeper** (HBase, Kafka, SolrCloud), MongoDB's config servers, or a **gossip** protocol (Cassandra, Riak).
+- **Parallel query execution:** analytic (MPP) databases split one complex query into stages that run on many partitions at once.
+
+### 3.17 Async Rust with Tokio (tutorial parts 1–2)
+> **Source:** the official [Tokio tutorial](https://tokio.rs/tokio/tutorial): Hello Tokio, Spawning, Shared state, Channels, I/O, Framing, Select
+
+- **Async in Rust:** an `async fn` returns a **future**, and nothing runs until you `.await` it (**futures are lazy**). `.await` yields the thread so it can run other work. `#[tokio::main]` turns `async fn main` into a normal `main` that starts the runtime (scheduler, evented I/O, timers).
+- **Concurrency vs parallelism:** alternating between tasks vs running them at the same time. Tokio can run many tasks concurrently on one thread.
+- **Tasks:** `tokio::spawn(async move { … })` creates a lightweight green thread (one allocation, about 64 bytes) and returns a `JoinHandle`; awaiting it gives a `Result` (`Err` if the task panicked or was cancelled). Tasks may move between threads.
+- **`'static` bound:** a spawned task must own its data (use `async move`); share data with `Arc`. `'static` means "could live forever", not "leaks".
+- **`Send` bound:** everything held across an `.await` must be `Send`, because the task can resume on another thread.
+- **Shared state:** two strategies: a **mutex** for simple data, or a **dedicated task + message passing** for I/O resources. Use `std::sync::Mutex` (not Tokio's) when the lock is short and never held across `.await`. A `std` `MutexGuard` held across `.await` doesn't compile (not `Send`), and with a guard that is `Send` it can **deadlock**; wrap the mutex in a struct with non-async methods. `tokio::sync::Mutex` can be held across `.await` but costs more. Under contention: message passing, **mutex sharding** (N mutexes, key picks the shard), or restructuring. `Bytes`: a cheap reference-counted byte buffer (clone doesn't copy).
+- **Channels:** `mpsc` (many producers, one consumer, bounded: `send().await` sleeps when full), `oneshot` (one value, used to send a reply back), `broadcast` (every receiver sees every value), `watch` (only the latest value). Pattern: a manager task owns the resource (e.g. one connection), receives `Command`s with a `oneshot::Sender` for the answer. When all senders drop, `recv()` returns `None`.
+- **Backpressure:** unbounded queues eventually exhaust memory. Concurrency is introduced explicitly (`spawn`, `select!`, `join!`, channels), so bound it: limit open sockets and pick channel capacities.
+- **I/O:** `AsyncRead`/`AsyncWrite` used through `AsyncReadExt`/`AsyncWriteExt` (`read`, `read_to_end`, `write`, `write_all`); `read` returning `Ok(0)` means the peer closed. `io::copy`; `io::split` (Arc + Mutex inside) vs `TcpStream::split` (zero-cost, same task) and `into_split` (movable halves). Put buffers on the heap, because data living across `.await` is stored inside the task.
+- **Framing:** turn a byte stream into frames. A `read` can return part of a frame or several frames, so keep a read buffer (`BytesMut` with an automatic cursor via `Buf`/`BufMut`), parse in two steps (check a full frame is there, then parse), and treat EOF with leftover bytes as an error. Writes go through `BufWriter` to save syscalls, then `flush()`.
+- **`select!`:** wait on several async operations and take the first to finish; the other branches are **dropped, which is how cancellation works** in async Rust. Up to 64 branches; branches can use patterns, an `else` branch, preconditions (`, if !done`) and borrowed data; it picks branches in random order for fairness. To resume an operation across loop iterations, `tokio::pin!` it and `select!` on `&mut operation`. **`select!` runs all branches on one task**, while `spawn` creates separate tasks that may run in parallel.
+
 ---
 
 ## 4. How well I know it
@@ -513,6 +592,9 @@ From the [knowledge check](Knowledge-Check.md), round 1 on **13 Oct 2026**, with
 | Distributed: Raft, linearizability, consensus | **OK** (8/10, 1 skipped) | Raft and Jepsen parts all right. Gaps: Lamport timestamps, total order broadcast, 2PC |
 | Raft §6–§8, DDIA ch. 5 replication | Not tested yet | Finished after the exam |
 | Contest problems A–D | Not tested yet | Part 6 skipped |
+| OS: deadlocks | Not tested yet | Finished after the exam (§3.13) |
+| Networking: DNS, HTTP | Not tested yet | Finished after the exam (§3.14–§3.15) |
+| DDIA ch. 6 partitioning, Tokio | Not tested yet | Finished after the exam (§3.16–§3.17) |
 
 **Review before the next interview** (5 minutes each; the details are in [Knowledge-Check.md](Knowledge-Check.md#what-to-re-read-the-5-missed-concepts)):
 1. **Bloom filter:** "definitely not here" or "maybe here"; no false negatives, never a location. *L05 notes §3.*
