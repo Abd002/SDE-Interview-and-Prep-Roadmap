@@ -203,6 +203,15 @@ Grouped by track (see [07 §3](07-Strategy-and-Roadmap.md#3-the-recommended-stra
 | 19 | **Mixel-Egypt** | Live Egypt posting that fits C/C++/embedded/verification | Cairo | Digital Verification Development Engineer | Not started |  | Apply | [03](03-Egypt-Companies.md#-telecom-semiconductors-and-hardware) |
 | 20 | **SearchApi** | Remote role open to Egypt (see 04) | Remote | Browser / Kernel Engineer · Frontend Engineer & UI Designer | Not started |  | Apply | [04](04-Remote-From-Egypt.md#-foreign-startups-already-hiring-in-egypt) |
 
+### C2. Side income: contract and AI training work
+
+Money in parallel with the job search (5 Nov 2026). Exclusivity rules can clash: the Mercor role bans other AI training companies during the engagement.
+
+| # | Platform | Role | Pay | Status | Applied on | Next step | Details |
+|---|---|---|---|---|---|---|---|
+| 1 | **micro1** | Paid Photo Contributor (Egypt-based) | Per task | **Applied** | 5 Nov 2026 | Wait for their email | |
+| 2 | **Mercor** (via Cincinnatus LLC) | Open Source Maintainer / Core Contributor – Software Engineer | USD 150/hr listed, 30–40 h/week | CV ready | | Profile + CV, AI interview, ID check | [mercor/](CV/applications/mercor/README.md) |
+
 ---
 
 ## D. Summary counters

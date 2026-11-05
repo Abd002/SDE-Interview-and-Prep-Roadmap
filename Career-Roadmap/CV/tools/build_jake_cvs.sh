@@ -91,3 +91,7 @@ build crimsonlogic --drop 'Inventory Management System' --drop 'Wrote the ESP32-
   --sub ', as shown by 11 PRs merged upstream as a Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting):::' \
   --sub '; worked with device trees, root file systems and flashing hardware. Scored 100\% in the final evaluation.:::; scored 100\% in the final evaluation.' \
   --sub ', reviewed and merged (:::, merged ('
+build mercor --drop 'Tested on real HP printers' --drop 'Desktop \& embedded' --drop 'Designed the stack as 5 Rust crates' \
+  --sub '; added remote control and firmware updates through a Node.js/MongoDB backend:::' \
+  --sub ' Graduation project: AUTOSAR V2X vehicle on STM32 with a dual-bank bootloader.:::' \
+  --sub '; the standalone app falls back to running it in-process:::'
