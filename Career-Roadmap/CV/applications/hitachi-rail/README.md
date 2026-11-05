@@ -13,8 +13,10 @@
 | **Essential** | C/C++, embedded fundamentals, problem solving, good English |
 | **Desirable** | Embedded experience, RTOS, software testing methods, automotive/industrial background, basic railway knowledge |
 | **Same team also hires** | [Software Validation & Test Engineer](https://www.linkedin.com/jobs/view/4478903663): same CV works; apply only if the developer role doesn't answer |
-| **Status** | Not started |
-| **Applied on** | — |
+| **Status** | **Applied** |
+| **Applied on** | 5 Nov 2026 in Workday (salary given: EGP 20k–30k net/month); see [application-form.md](application-form.md) |
+| **Track it** | [Hitachi Workday Candidate Home](https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi/userHome) |
+| **Follow up** | 26 Nov 2026, if there is no reply (3 weeks) |
 
 ## 2. Files
 
@@ -45,7 +47,7 @@
 
 ## 5. Checklist
 
-- [ ] Re-open the posting and check it is still open.
-- [ ] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf).
-- [ ] Fill in **Applied on** above, in 08 and in Notion.
+- [x] Re-open the posting and check it is still open.
+- [x] Apply with [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf).
+- [x] Fill in **Applied on** above, in 08 and in Notion.
 - [ ] Follow up once after 3 weeks with no reply.
