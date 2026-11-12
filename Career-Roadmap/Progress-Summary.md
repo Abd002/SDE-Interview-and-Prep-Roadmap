@@ -1,10 +1,12 @@
-# What I'm doing now, and what I know
+# Who I am, what I've done, what I'm doing now, and what I know
 
-**Updated:** 5 Nov 2026.
+**Updated:** 12 Nov 2026.
 
-**What it's for:** read it before a call, an interview or a networking chat, so you can say clearly what you're working on and what you've learned.
+**What it's for:** read it before a call, an interview or a networking chat, so you can introduce yourself (your whole career, not only the current study), say what you're working on, and explain what you've learned.
 
-**Where it comes from:** the 35 steps marked **Done** in the Notion study plan ("Study Plan — Step by Step"). Every line in §3 was checked against the **main resource of its step** in the plan (the step's Link and Notes), linked under each heading. On 20 Oct 2026 the whole of §3 was re-checked line by line against the full CMU lecture notes L01–L07, the HW2 official solutions and every repo guide, and the concepts that had been left out were added. For DDIA, ch. 5 was checked against the free official excerpt. Ch. 9 has no free copy, so it was checked against the author's own lecture notes on the same topics. On 5 Nov 2026 the 8 newly finished steps were added (§3.13–§3.17): deadlocks, DNS and HTTP were checked against the repo guides, the Tokio part against the official tutorial pages, and DDIA ch. 6 against the book's chapter structure (the free excerpt has only chapters 3, 5 and 8). The "How well I know it" table (§4) is filled in from the [knowledge check](Knowledge-Check.md).
+**Career facts** come from [CV/facts.md](CV/facts.md), the single source of truth for every CV and interview answer.
+
+**Where it comes from:** the 40 steps marked **Done** in the Notion study plan ("Study Plan — Step by Step"). Every line in §3 was checked against the **main resource of its step** in the plan (the step's Link and Notes), linked under each heading. On 20 Oct 2026 the whole of §3 was re-checked line by line against the full CMU lecture notes L01–L07, the HW2 official solutions and every repo guide, and the concepts that had been left out were added. For DDIA, ch. 5 was checked against the free official excerpt. Ch. 9 has no free copy, so it was checked against the author's own lecture notes on the same topics. On 5 Nov 2026 the 8 newly finished steps were added (§3.13–§3.17): deadlocks, DNS and HTTP were checked against the repo guides, the Tokio part against the official tutorial pages, and DDIA ch. 6 against the book's chapter structure (the free excerpt has only chapters 3, 5 and 8). On 12 Nov 2026 the next 5 finished steps were added (§3.18–§3.22): the P1 Buffer Pool spec and ARC were checked against the official Fall 2025 project page, and routing, Git/Bitbucket, programming paradigms and OOP against the repo guides. The "How well I know it" table (§4) is filled in from the [knowledge check](Knowledge-Check.md).
 
 **Diagrams for quick revision:** [DBMS layers, L01–L07](../Study-Plan/Revision-Maps/DBMS-Layers-L01-L07.md) · [DDIA ch. 5, Replication](../Study-Plan/Revision-Maps/DDIA-Ch5-Replication.md) · [DDIA ch. 9, Consistency and Consensus](../Study-Plan/Revision-Maps/DDIA-Ch9-Consistency-and-Consensus.md).
 
@@ -12,43 +14,106 @@
 
 ## 1. Say it out loud
 
-### 30 seconds: "What are you doing these days?"
-> Right now I'm doing three things.
->
-> First, I'm taking Carnegie Mellon's **database systems course (CMU 15-445)** on my own. I've finished the first seven lectures (relational model, SQL, storage, the buffer pool, storage models and compression, hash tables), homework 1 in SQL, homework 2 on storage and compression, and **project 0**. That's a thread-safe **Count-Min Sketch** in C++, and it passes the course's autograder.
->
-> Second, I'm preparing my next big project: a **distributed key-value store in Rust built on Raft**. I've read the whole Raft paper, and the replication, partitioning, and consistency and consensus chapters of *Designing Data-Intensive Applications*. I've also worked through the **Tokio** tutorial, the async runtime I'll build it on: tasks, shared state, channels, I/O, framing and `select!`.
->
-> Third, I keep my fundamentals sharp: **Codeforces virtual contests**, the whole **OS** track (processes, threads, synchronization, deadlocks, scheduling, memory management, file systems), and networking (**DNS** and **HTTP** so far).
+Two different questions, two different answers:
+- **"Tell me about yourself"** → your **whole career**: who you are, what you've built, what you're doing now, what you want (§1.1).
+- **"What are you doing these days?"** → only the **current** work and study (§1.2).
 
-### 60 seconds: add the "why"
+The order for "tell me about yourself" is always **who I am → what I've built → what I'm doing now → what I want next**. Same text in the [Interview Talking Guide §2](CV/Interview-Talking-Guide.md#2-tell-me-about-yourself).
+
+### 1.1 "Tell me about yourself" (the whole career)
+
+#### 30 seconds (recruiter, phone screen, networking)
+> I'm Abdelrahman Khalifa, a computer and systems engineer from Minia University, Very Good with Honors, 2025. I work close to the system: **Rust, C and modern C++, on Linux and microcontrollers**.
+>
+> This year I was a **Google Summer of Code 2026 contributor with The Linux Foundation's OpenPrinting project**: I built the Printers page for the COSMIC desktop's Settings in Rust and got **11 pull requests merged** upstream in cups-rs and libcups. I'm also an **embedded software engineer at EKSON**, part-time, where I own the software of a motion simulator: the Zephyr firmware, the desktop app and the CI.
+>
+> I'm a **Codeforces Expert** and a **4-time ECPC finalist**. Now I'm going deeper into databases and distributed systems, and I'm looking for a **full-time systems or embedded role**.
+
+#### 60 seconds (start of a technical interview)
+> I'm a computer and systems engineer from Minia University, and I like working close to the system: Rust, C and modern C++, on Linux and microcontrollers.
+>
+> **My most recent work** was Google Summer of Code 2026 with The Linux Foundation's OpenPrinting project, May to October. I built the Printers page in COSMIC Settings: you see your printers, their ink and status, manage the print queue and add old printers through Printer Applications. Under it are five Rust crates, and the C library code runs in a separate process behind a varlink service, so a crash there can't take down Settings. Along the way I got 11 PRs merged upstream in cups-rs and libcups, including crash fixes in libcups's DNS-SD code. I passed the final evaluation and I still maintain the project.
+>
+> **At EKSON**, since August 2025, I work on pneumatic motion simulators. I wrote the ESP32-S3 firmware and moved it from FreeRTOS to Zephyr, with PID control, an IMU and safety stops. I built the PyQt5 control app and cut its CPU use and latency by about 40% with asyncio, and I added remote control and firmware updates through a Node.js backend.
+>
+> **Before that**, I did an Embedded Linux internship at Orange Digital Center (Yocto, Buildroot, a kernel module; 100% in the final evaluation), and my first open-source contribution, to Zephyr RTOS. I'm a Codeforces Expert and was an ECPC finalist four times.
+>
+> **Now** I'm studying CMU's database systems course and preparing a Raft-based key-value store in Rust, and I'm looking for a full-time systems or embedded role.
+
+#### 2 minutes ("walk me through your background")
+Tell it in order, one or two sentences per stage:
+
+1. **University and competitive programming (2020–2025).** "I studied Computer and Systems Engineering at Minia University and finished Very Good with Honors. Competitive programming got me into thinking about efficiency: I'm a Codeforces Expert, I reached the ECPC finals four years in a row, 2021 to 2024, and I taught problem solving in C++ to more than 20 people in my local ICPC community. I was also treasurer of our IEEE student branch, with a budget over 10,000 dollars."
+2. **Embedded projects at university.** "I built FreeRTOS projects on a Tiva C, such as a seat heater controller, and AUTOSAR-style drivers. My graduation project was an AUTOSAR-based V2X vehicle on STM32. My part was the bootloader and firmware updates: a gateway downloads the image and sends it over UART with UDS-style services, and the STM32 checks it with the hardware CRC before jumping to it. We tried CAN first and it failed; that taught me a lot."
+3. **Orange Digital Center (Dec 2024 – Jan 2025).** "An Embedded Linux internship: custom Linux images with Yocto and Buildroot, device trees, and a Linux kernel module, a character device that exports process data to user space on an ARM board in QEMU. I scored 100% in the final evaluation."
+4. **First open source (March 2025).** "My first contribution was to Zephyr RTOS: the `IP_MULTICAST_LOOP` socket option for IPv4, across six networking modules. Later, in December 2025, I got changes merged in Rust Clippy and in the Boa JavaScript engine."
+5. **EKSON (Aug 2025 – now, part-time, also during my military service).** "I own the software of the motion simulators: Zephyr firmware on the ESP32-S3 with PID control, the IMU and safety stops; the PyQt5 desktop app, where asyncio cut CPU use and latency by about 40%; remote control and firmware updates through a Node.js and MongoDB backend; and CI with GitHub Actions."
+6. **Google Summer of Code 2026 (May – Oct 2026).** "With The Linux Foundation's OpenPrinting project I built the Printers page for COSMIC Settings in Rust, five crates with the backend isolated behind varlink, and got 11 PRs merged in cups-rs and libcups. I passed the final evaluation and I still maintain it."
+7. **Now.** "I'm studying CMU 15-445 on my own (lectures 1 to 7, two homeworks and project 0 done, now the buffer pool project), reading Raft and *Designing Data-Intensive Applications* for my own Raft key-value store in Rust, and reviewing OS, networking and C++ fundamentals."
+8. **What I want.** "A full-time systems, Rust/Linux or embedded role in a team with senior engineers, where I can own a component and grow."
+
+**Military service:** completed (say it if an Egyptian employer asks).
+
+### 1.2 "What are you doing these days?" (only the current work)
+
+#### 30 seconds
+> Right now I'm doing three things, next to my part-time work at EKSON.
+>
+> First, I'm taking Carnegie Mellon's **database systems course (CMU 15-445)** on my own. I've finished the first seven lectures (relational model, SQL, storage, the buffer pool, storage models and compression, hash tables), homework 1 in SQL, homework 2 on storage and compression, and **project 0**, a thread-safe **Count-Min Sketch** in C++ that passes the course's autograder. Now I'm on **project 1, the buffer pool manager**: I've worked through its **ARC** replacement policy on paper and I'm starting the code.
+>
+> Second, I'm preparing my next big project: a **distributed key-value store in Rust built on Raft**. I've read the whole Raft paper, and the replication, partitioning, and consistency and consensus chapters of *Designing Data-Intensive Applications*. I've also worked through the **Tokio** tutorial, the async runtime I'll build it on.
+>
+> Third, I keep my fundamentals sharp: **Codeforces virtual contests**, the whole **OS** track, networking (**DNS, HTTP, routing**), **Git**, and programming paradigms and **OOP**. And I'm applying for full-time roles.
+
+#### 60 seconds: add the "why"
 Use the 30-second answer, then add:
 > I picked databases and distributed systems because they connect everything I already do: low-level C++ and Rust, concurrency, and systems that must not lose data. The course gives me the storage engine side: pages, buffer pools, indexes. The Raft project gives me the distributed side: replication, consensus and testing under failures. And everything I learn goes into the key-value store.
 
-### If they ask "what's the plan after that?"
-> - **CMU:** project 1 next, a buffer pool manager. Then indexes and B+Trees, query execution, concurrency control and recovery.
+#### If they ask "what's the plan after that?"
+> - **CMU:** finish project 1 (ARC replacer, disk scheduler, buffer pool manager). Then indexes and B+Trees, query execution, concurrency control and recovery.
 > - **Key-value store:** first a storage engine (write-ahead log + LSM tree), then Raft, then sharding.
-> - **Goal:** a finished, tested project I can show, and a systems/infrastructure role.
+> - **Goal:** a finished, tested project I can show, and a full-time systems/infrastructure role.
 
 ---
 
-## 2. What I finished (from Notion)
+## 2. What I've done
+
+### 2.1 Career so far (from [facts.md](CV/facts.md))
+
+| When | What | The one line to remember |
+|---|---|---|
+| 2020 – 2025 | **B.Sc. Computer and Systems Engineering**, Minia University | Very Good (84.6%) with Honors |
+| 2021 – 2024 | **Competitive programming** | Codeforces Expert (_Khalifa); 4-time ECPC finalist; taught C++ problem solving to 20+ people in the local ICPC community |
+| University | **IEEE student branch Treasurer** | Managed a budget of more than $10k |
+| University | **Embedded projects** | FreeRTOS seat heater (Tiva C), AUTOSAR PORT/GPIO drivers, door locker (2 × ATmega32 over UART), Verilog traffic light, IoT TCP client-server on QEMU ARM + Raspberry Pi |
+| 2024 – 2025 | **Graduation project:** AUTOSAR V2X vehicle on STM32 | His part: bootloader + firmware updates (UDS-style services over UART, hardware CRC check, version in flash); CAN failed, a real lesson |
+| Dec 2024 – Jan 2025 | **Orange Digital Center**, Embedded Linux Systems Intern | Yocto, Buildroot, device trees, a kernel module (Kernel Monitor); 100% in the final evaluation |
+| Mar 2025 | **First open-source contribution:** Zephyr RTOS | `IP_MULTICAST_LOOP` for IPv4 in 6 networking modules (merged) |
+| Aug 2025 – now | **EKSON**, Embedded Software Engineer (part-time; also during military service, now completed) | Owns the simulator software: Zephyr firmware on ESP32-S3 (PID, IMU, safety stop), PyQt5 app (~40% less CPU/latency with asyncio), Node.js/MongoDB remote control and firmware updates, CI |
+| Dec 2025 | **Rust Clippy** and **Boa** | One merged PR in each |
+| May – Oct 2026 | **Google Summer of Code 2026 contributor**, The Linux Foundation (OpenPrinting) | Printers page for COSMIC Settings in Rust (5 crates, varlink backend); **11 PRs merged** in cups-rs and libcups; passed the final evaluation; still maintaining it |
+| Oct 2026 – now | **Self-study + job search** | CMU 15-445, Raft/DDIA, OS and networking (§2.2); 10 job applications sent by 5 Nov (NXP said no), plus Mercor and micro1 for side income |
+
+### 2.2 What I finished in the study plan (from Notion)
 
 | Area | Done | Step |
 |---|---|---|
 | **CMU 15-445 lectures** | L01 Relational Model & Algebra · L02 Modern SQL · L03 Database Storage I · L04 Memory & Disk Management · L05 Database Storage II · L06 Storage Models & Compression · L07 Hash Tables | 1, 2, 8, 9, 15, 20, 25 |
 | **CMU homework** | HW1 SQL in DuckDB, Q1–Q6, compared with the official solutions · HW2 Storage (slotted pages vs log-structured, storage models, compression), finished and self-graded with the official solutions | 11, 16, 21, 26 |
 | **CMU project** | Setup (BusTub, CMake, clang, gdb, Gradescope) · **P0 C++ Primer: Count-Min Sketch**, passing on Gradescope, clang-tidy clean, no memory leaks | 3, 4, 10 |
+| **CMU project 1** | **P1 Buffer Pool Manager:** read the whole spec (ARC replacer, disk scheduler, buffer pool manager, page guards) and worked through the **ARC** algorithm on paper | 30 |
 | **Operating systems** (repo guides) | Processes · Threads · Thread synchronization (mutexes, semaphores, monitors, atomics) · Scheduling algorithms · Memory management · **Deadlocks** (Coffman conditions, prevention, Banker's algorithm, wait-for graphs, recovery) · File systems (journaling, NFS/SMB, encryption, HDFS/Ceph); the whole OS checklist is done | 5, 17, 22, 27, 32, 36 |
-| **Networking** (repo guides) | **DNS** (hierarchy, record types, resolution, caching and TTL) · **HTTP** (requests and responses, methods, status codes, versions, HTTPS) | 55, 64 |
+| **Networking** (repo guides) | **DNS** (hierarchy, record types, resolution, caching and TTL) · **HTTP** (requests and responses, methods, status codes, versions, HTTPS) · **Routing algorithms** (longest prefix match, Dijkstra/OSPF, Bellman-Ford/RIP, BGP) | 55, 64, 69 |
+| **Version control** (repo guides) | **Git** (three areas, objects and hashes, branches and HEAD, merge vs rebase, remotes, undoing changes, workflows) + the command reference + **Bitbucket** (PRs, merge checks, Pipelines, Jira) | 86 |
+| **Programming languages** (repo guides) | **Programming paradigms** (imperative, declarative, functional, OOP, procedural, event-driven, aspect-oriented) · **OOP** (encapsulation, inheritance, polymorphism, abstraction, composition vs inheritance, overriding vs overloading) | 106, 107 |
 | **Distributed systems** (flagship prep) | Raft paper §1–§5 + the raft.github.io visualization · Raft §6–§8 + the Students' Guide to Raft · DDIA ch. 9 part 1 (linearizability, ordering) · DDIA ch. 9 part 2 (consensus) + the Jepsen consistency-models map · DDIA ch. 5 (replication) · **DDIA ch. 6 (partitioning)** · **Tokio tutorial** part 1 (spawning, shared state) and part 2 (channels, I/O, framing, `select!`) | 6, 12, 18, 23, 28, 33, 37, 44 |
 | **Problem solving** | Codeforces Round 1074 (Div. 4), virtual: A–D | 13 |
-| **Career** | LinkedIn update (following CV/LinkedIn.md) · Knight-Hennessy go/no-go decision · Shortlisted 5 P1 companies · Sent the first application (then kept going: 9 sent by 5 Nov) | 7, 14, 29, 38 |
+| **Career** | LinkedIn update (following CV/LinkedIn.md) · Knight-Hennessy go/no-go decision · Shortlisted 5 P1 companies · Sent the first application (then kept going: 10 sent by 5 Nov) | 7, 14, 29, 38 |
 
-**Skipped on purpose (Ignored):** the four DAAD steps (19, 34, 46, 52; deadline 30 Oct passed), booking IELTS (24) and the repo's databases guide (31).
+**Skipped on purpose (Ignored):** the four DAAD steps (19, 34, 46, 52; deadline 30 Oct passed), booking IELTS (24), the repo's databases guide (31), contest PDF #2 (45) and the TCP/IP stack guide (50).
 
 **Next in the plan:**
-- **Phase 3:** step 30 (P1 Buffer Pool spec + the ARC algorithm on paper), 35 (ARC replacer), 39 (checkpoint review), then lectures L08–L09 (40–41).
+- **Phase 3:** step 35 (P1 Task #1, the ARC replacer in code), 39 (checkpoint review), then lectures L08–L09 (40–41).
 - **Deadline:** step 137, the ETH Zurich ESOP application, by **30 Nov**.
 - **In parallel:** the new Modern C++ track (steps 185–200), about 2 steps a week.
 
@@ -575,6 +640,73 @@ These are the concepts from the finished steps, one line each, the way you'd say
 - **Framing:** turn a byte stream into frames. A `read` can return part of a frame or several frames, so keep a read buffer (`BytesMut` with an automatic cursor via `Buf`/`BufMut`), parse in two steps (check a full frame is there, then parse), and treat EOF with leftover bytes as an error. Writes go through `BufWriter` to save syscalls, then `flush()`.
 - **`select!`:** wait on several async operations and take the first to finish; the other branches are **dropped, which is how cancellation works** in async Rust. Up to 64 branches; branches can use patterns, an `else` branch, preconditions (`, if !done`) and borrowed data; it picks branches in random order for fairness. To resume an operation across loop iterations, `tokio::pin!` it and `select!` on `&mut operation`. **`select!` runs all branches on one task**, while `spawn` creates separate tasks that may run in parallel.
 
+### 3.18 CMU project 1: Buffer Pool Manager and ARC (spec, on paper)
+> **Source:** [P1 Buffer Pool Manager, Fall 2025](https://15445.courses.cs.cmu.edu/fall2025/project1/) (the official spec). Code not written yet; this is what the spec asks for.
+
+- **The job:** the buffer pool moves 8 KB pages between disk and memory and acts as a cache. A **page** is 8 KB of logical data; a **frame** is a fixed 8 KB slot in memory that holds one page. The rest of the DBMS asks for a `page_id_t` and doesn't know whether it came from memory or disk.
+- **Three parts:** the **ARC replacer** (picks which frame to evict), the **disk scheduler** (a background worker thread reads requests from a shared queue/channel and calls `DiskManager::ReadPage/WritePage`; each request carries a `std::promise` the worker sets to `true` when done) and the **buffer pool manager** itself. Everything must be thread-safe with latches.
+- **ARC's four lists:** **MRU** (pages accessed exactly once recently), **MFU** (accessed more than once), and two **ghost lists**, MRU ghost and MFU ghost, that remember pages *recently evicted* (page IDs only, no frames). Plus an adaptive **MRU target size**, starting at 0.
+- **Five sizes not to mix up:** capacity (= number of frames); the four lists together (up to **2 × capacity** because of the ghosts); the evictable size (`curr_size_`); the MRU target; the MRU actual size.
+- **`RecordAccess`, four cases:**
+  1. **Hit in MRU or MFU** → move the page to the front of MFU.
+  2. **Hit in the MRU ghost** (a pseudo-hit: "a bigger MRU would have kept it") → raise the target by 1 if MRU-ghost ≥ MFU-ghost, else by MFU-ghost / MRU-ghost (rounded down), capped at capacity; move the page to the front of MFU.
+  3. **Hit in the MFU ghost** → lower the target the same way (by 1, or MRU-ghost / MFU-ghost), not below 0; move to the front of MFU.
+  4. **Miss everywhere** → if MRU + MRU-ghost = capacity, drop the last MRU-ghost entry; else if all four lists = 2 × capacity, drop the last MFU-ghost entry; then add the page to the front of MRU.
+- **`Evict`:** if MRU size < target, try MFU first; otherwise try MRU first. If nothing is evictable on that side, try the other; if nothing at all, return `std::nullopt`. The evicted page moves to its ghost list.
+- **Other methods:** `SetEvictable` (pin count reached 0 → evictable; changes `Size()`), `Remove` (only for deleted pages), `Size`.
+- **Buffer pool rules:** only **one copy of a page** in memory (two copies = lost updates); a **page table** (hash map page → frame); a **pin count** per frame (no eviction while > 0), kept in sync with `SetEvictable`; a **dirty flag**, written back before the frame is reused.
+- **Page guards:** `ReadPageGuard` / `WritePageGuard` are **RAII** objects with **move semantics**: they hold the page latch and the pin, and release both when dropped or destroyed.
+- **Performance:** a test checks `RecordAccess` speed (avoid linear scans of the lists: keep a map from frame/page to the list position). The optional leaderboard uses scan threads and Zipfian "get" threads; ideas: smarter replacer, prefetching, parallel I/O in the disk scheduler.
+
+### 3.19 Routing algorithms (repo guide)
+> **Source:** [Networking/Routing-Algorithms.md](../Networking/Routing-Algorithms.md)
+
+- **Routing vs forwarding:** routing *builds* the routing table (protocols, every few seconds or on changes); forwarding *uses* it for every packet, in hardware. An entry is `prefix → next hop, interface, cost`; `0.0.0.0/0` is the default route.
+- **Longest prefix match:** if several prefixes match, the most specific wins (`10.1.5.7` → the `/24`, not the `/16`). Real routers use a trie or TCAM.
+- **Shortest paths:** the network is a weighted graph (cost = hops, inverse bandwidth, latency…). A router only needs the **next hop** of each shortest path.
+- **Dijkstra / link-state (OSPF, IS-IS):** routers flood link-state advertisements, so everyone has the **full map**, then each runs Dijkstra from itself: a min-heap, finalize the closest node, relax its neighbors. **O((V+E) log V)**, needs **non-negative** weights; fast convergence, more memory and CPU. Skip stale heap entries.
+- **Bellman-Ford / distance-vector (RIP):** each router sends its distance vector to its neighbors and keeps, per destination, the minimum of link cost + neighbor's distance. Centralized version: relax all edges V−1 times, **O(V·E)**, handles negative weights and detects negative cycles. Light but slow to converge.
+- **Count-to-infinity:** after a link breaks, two routers can keep pointing at each other and count up. Fixes: a maximum (**RIP: 16 = infinity**, so at most 15 hops), **split horizon**, **poison reverse**.
+- **BGP:** between organizations (Autonomous Systems), a **path-vector** protocol: routes carry the full AS path, which prevents loops and allows **policy**, not just shortest cost.
+
+### 3.20 Git and Bitbucket (repo guides)
+> **Source:** [Git-Explained.md](../Version%20Control%20Systems/Git-Explained.md) · [Git.md](../Version%20Control%20Systems/Git.md) (command reference, GitHub, GitOps) · [Bitbucket.md](../Version%20Control%20Systems/Bitbucket.md)
+
+- **Distributed VCS:** every clone has the full history (Git, Mercurial), unlike centralized SVN/Perforce.
+- **Three areas:** working tree → `git add` → staging area (index) → `git commit` → repository (`.git`).
+- **Objects:** blob (file contents), tree (directory), commit (tree + parent(s) + author + message), tag. A commit is a **full snapshot**, named by its **hash** (SHA-1 or SHA-256), so history is a hash chain.
+- **Branches and HEAD:** a branch is a movable label on a commit; HEAD points at the current branch. **Detached HEAD** = HEAD points straight at a commit.
+- **Merge:** fast-forward (just move the label) or **three-way merge** from the merge base, which creates a commit with two parents; conflicts need a human.
+- **Rebase:** replays your commits on a new base with **new hashes** and a linear history; never rebase shared history.
+- **Remotes:** clone, fetch (download only), pull (fetch + merge/rebase), push; `origin/main` is a remote-tracking branch.
+- **Undo:** `restore` (files), `reset --soft/--mixed/--hard` (move a local branch back), `revert` (new inverse commit, safe for shared history), `commit --amend`, `stash`, **`reflog`** (recover lost commits), **`bisect`** (binary search for the commit that broke something).
+- **Workflows:** GitHub flow (short feature branches + PR + CI), trunk-based (integrate daily, feature flags), Git flow (`develop` + release/hotfix), forking (open source). Small atomic commits, imperative subject line, `.gitignore`, never commit secrets, tags + semantic versioning.
+- **GitOps:** Git as the single source of truth for declarative infrastructure; an agent (Argo CD, Flux) keeps the system equal to what's in Git, and rollback = revert.
+- **Bitbucket:** Atlassian's Git hosting. Workspace → project → repository; pull requests with **merge checks** (approvals, green builds, no open tasks) and **branch permissions**; **Pipelines** CI/CD in `bitbucket-pipelines.yml` (Docker steps, deployments, manual gates); **Jira** links through issue keys in branches, commits and PRs. Cloud vs Data Center (self-hosted).
+
+### 3.21 Programming paradigms (repo guide)
+> **Source:** [Programming-Paradigms.md](../Programming%20Languages%20and%20Concepts/Programming-Paradigms.md)
+
+- **Paradigm** = a style of structuring programs; C++ (and Rust) are multi-paradigm.
+- **Imperative:** step-by-step statements that change state; close to how the CPU works.
+- **Declarative:** say *what* you want and the engine decides *how* (SQL, HTML, regex, Makefiles, C++ ranges).
+- **Functional:** pure functions, immutability, higher-order functions, composition; easy to test and parallelize.
+- **Object-oriented:** objects bundle data + behavior; the four pillars (§3.22).
+- **Procedural:** imperative code organized into procedures, data kept separate from functions (C, Pascal).
+- **Event-driven:** an event loop dispatches events to handlers; handlers must not block (or the UI freezes); prefer futures/coroutines over callback hell. (My EKSON asyncio fix is this idea.)
+- **Aspect-oriented:** cross-cutting concerns (logging, auth, transactions) as aspects: advice, join points, pointcuts, weaving. In C++: wrappers/decorators and RAII.
+- **Imperative vs declarative vs functional:** how (mutable state) vs what (engine) vs what through composing pure functions over immutable data.
+
+### 3.22 Object-oriented programming (repo guide)
+> **Source:** [OOP.md](../Programming%20Languages%20and%20Concepts/OOP.md)
+
+- **Encapsulation:** hide data behind meaningful operations so the class protects its **invariants** (`deposit`/`withdraw`, not `setBalance`). Don't return non-const references to internals.
+- **Inheritance:** "is-a"; the base is constructed first and destroyed last; a polymorphic base needs a **`virtual` destructor**; multiple inheritance and the diamond problem (`virtual` inheritance); `final`.
+- **Polymorphism:** runtime (virtual functions, **vtable/vptr**, dynamic dispatch through pointers/references) vs compile-time (templates, concepts, overloading, zero runtime cost); `std::variant` + `std::visit` for a closed set. Pitfalls: **object slicing**, forgetting `override`, virtual calls inside constructors/destructors.
+- **Abstraction:** expose *what*, hide *how*; abstract classes with pure virtual functions (`= 0`) or concepts; depend on abstractions (Dependency Inversion). Encapsulation hides data; abstraction hides complexity.
+- **Composition vs inheritance:** has-a vs is-a; **favor composition** (loose coupling, swappable parts); inheritance only for true substitutable subtypes (Liskov). Fragile base class; Bird/Penguin example; Strategy and Decorator build on composition.
+- **Overloading vs overriding:** same name, different parameters, chosen at compile time vs same signature in a derived class, chosen at runtime. **Name hiding:** a derived `f` hides all base overloads of `f`; fix with `using Base::f;`.
+
 ---
 
 ## 4. How well I know it
@@ -595,6 +727,7 @@ From the [knowledge check](Knowledge-Check.md), round 1 on **13 Oct 2026**, with
 | OS: deadlocks | Not tested yet | Finished after the exam (§3.13) |
 | Networking: DNS, HTTP | Not tested yet | Finished after the exam (§3.14–§3.15) |
 | DDIA ch. 6 partitioning, Tokio | Not tested yet | Finished after the exam (§3.16–§3.17) |
+| P1 spec and ARC, routing, Git/Bitbucket, paradigms, OOP | Not tested yet | Finished after the exam (§3.18–§3.22) |
 
 **Review before the next interview** (5 minutes each; the details are in [Knowledge-Check.md](Knowledge-Check.md#what-to-re-read-the-5-missed-concepts)):
 1. **Bloom filter:** "definitely not here" or "maybe here"; no false negatives, never a location. *L05 notes §3.*

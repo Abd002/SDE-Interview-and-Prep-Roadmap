@@ -68,17 +68,19 @@ These come from the program's own "Tips for Resumes & Jobs", and they apply to t
 - **Apply early:** don't wait for the deadline.
 
 ## 3. About
-Limit: 2,600 characters. This text is about 1,500. **Press Enter twice between paragraphs**, so each one stands apart (in your current About they run together).
+Limit: 2,600 characters. This text is about 2,000. **Press Enter twice between paragraphs**, so each one stands apart (in your current About they run together).
 ```
 I'm a software engineer who works close to the system: Rust, C and modern C++ on Linux and embedded devices.
 
-As a Google Summer of Code 2026 Contributor with The Linux Foundation (OpenPrinting), I built the Printers page for COSMIC Settings in Rust, plus a standalone printers app with the same UI. Behind it are five crates: an async client, and a CUPS/IPP/DNS-SD backend that runs as a varlink service in the settings daemon, so a crash in C code can't take down Settings. Along the way I ported cups-rs to libcups3 and fixed DNS-SD crashes in libcups: 7 pull requests merged upstream. I still maintain the project.
+As a Google Summer of Code 2026 Contributor with The Linux Foundation (OpenPrinting), I built the Printers page for COSMIC Settings in Rust, plus a standalone printers app with the same UI. Behind it are five crates: an async client, and a CUPS/IPP/DNS-SD backend that runs as a varlink service in the settings daemon, so a crash in C code can't take down Settings. Along the way I ported cups-rs to libcups3 and fixed DNS-SD crashes in libcups: 11 pull requests merged upstream. I still maintain the project.
 
 At EKSON I work on 3-DoF and 6-DoF pneumatic motion simulators. I wrote the ESP32-S3 firmware and moved it from FreeRTOS to Zephyr RTOS, with PID valve control and IMU feedback. I also built the PyQt5 desktop app that drives the simulator (about 40% lower CPU use and latency after I used asyncio to wait for ESP32 and server messages at the same time, off the UI thread), plus remote control and firmware updates through a small Node.js backend.
 
+Before that I did an Embedded Linux internship at Orange Digital Center (Yocto, Buildroot, device trees and a Linux kernel module; 100% in the final evaluation). I studied Computer and Systems Engineering at Minia University (Very Good with Honors); my graduation project part was the bootloader and firmware updates for an STM32 vehicle prototype.
+
 My first open-source contribution was to Zephyr RTOS (IPv4 multicast loopback, merged). I've since contributed to the Boa JavaScript engine and Rust Clippy.
 
-Competitive programming keeps my problem solving sharp: Codeforces Expert and 4-time ECPC finalist.
+Competitive programming keeps my problem solving sharp: Codeforces Expert and 4-time ECPC finalist. Right now I'm working through CMU's database systems course and preparing a Raft-based key-value store in Rust.
 
 I'm looking for systems, Linux, embedded and backend software roles, remote or with relocation.
 
@@ -104,7 +106,7 @@ Printers page for COSMIC Settings, in Rust, mentored by Till Kamppeter, Mintu Go
 • Built the Printers page for COSMIC Settings and a standalone printers app with the same UI: printers grouped by device, status and supply levels, print queue control, test pages, live updates, and an Add Printer flow that sets up legacy printers through Printer Applications instead of PPD drivers (cosmic-settings #2182, in review).
 • Designed the stack as 5 Rust crates: shared types, an async varlink client, a CUPS/IPP/DNS-SD and Printer Application backend, a shared UI (iced/libcosmic) and a standalone app.
 • Ran the backend as a varlink IPC service in cosmic-settings-daemon, so a crash in native C code can't take down the Settings app.
-• Ported cups-rs to libcups3 (CUPS 2 and 3 builds with CI), wrote FFI bindings for the libcups3 DNS-SD API, and fixed crashes and a client leak in libcups: 7 PRs merged upstream.
+• Ported cups-rs to libcups3 (CUPS 2 and 3 builds with CI), wrote FFI bindings for the libcups3 DNS-SD API, and fixed crashes and a client leak in libcups: 11 PRs merged upstream.
 • Tested on real HP printers; CI checks formatting, Clippy and tests on several architectures with virtual IPP printers (ippeveprinter).
 
 Google Summer of Code final report: github.com/Abd002/GSOC-2026
@@ -169,7 +171,7 @@ Rust, C++, C, Python, asyncio, Linux, Embedded Systems, Zephyr RTOS, FreeRTOS, E
 ## 7. Honors & awards
 | Title | Issuer | Date | Description |
 |---|---|---|---|
-| Google Summer of Code 2026 Contributor | Google Summer of Code program | Oct 2026 | Google Summer of Code 2026 Contributor with The Linux Foundation (OpenPrinting): Printers page for COSMIC Settings in Rust; passed the final evaluation; 7 PRs merged upstream. |
+| Google Summer of Code 2026 Contributor | Google Summer of Code program | Oct 2026 | Google Summer of Code 2026 Contributor with The Linux Foundation (OpenPrinting): Printers page for COSMIC Settings in Rust; passed the final evaluation; 11 PRs merged upstream. |
 | Codeforces Expert | Codeforces | (your date) | Handle _Khalifa: codeforces.com/profile/_Khalifa |
 | 4-time ECPC Finalist | Egyptian Collegiate Programming Contest (ECPC) | 2021–2024 | Team finalist four years in a row. |
 

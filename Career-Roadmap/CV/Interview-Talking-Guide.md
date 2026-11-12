@@ -23,7 +23,7 @@ You said the hard part is talking about yourself. These rules make it easier.
    - *Result* (a number, or what changed).
    - Then stop and let them ask.
 3. **Short first, details on request.** Answer in 30–60 seconds, then say: *"I can go deeper into any part of that."* The interviewer picks the direction, so you never have to guess.
-4. **Facts are not bragging.** "7 PRs merged upstream" or "passed the final evaluation" are facts. Say them plainly, the same way you'd say the date.
+4. **Facts are not bragging.** "11 PRs merged upstream" or "passed the final evaluation" are facts. Say them plainly, the same way you'd say the date.
 5. **"I don't remember" is a good answer when it's true.** Example: *"I don't remember the exact loop rate. I'd check it in the code, but the idea was …"* Never guess a number.
 6. **Pause instead of filling.** A 2-second pause to think sounds confident. Say *"Good question, let me think for a second."*
 7. **Name the concept, then explain it in one line.** For example: *"I used a Mahony filter, which fuses the gyroscope and the accelerometer to get a stable orientation."* This shows you know the name and that you understand it.
@@ -35,7 +35,7 @@ You said the hard part is talking about yourself. These rules make it easier.
 | Item | Say this |
 |---|---|
 | **Who I am** | Software engineer: Rust, C, modern C++ on Linux and embedded. |
-| **Best thing** | Google Summer of Code 2026 with The Linux Foundation (OpenPrinting): **the Printers page in COSMIC Settings**, in Rust (PR #2182, in review). **7 PRs merged upstream** (cups-rs, libcups). Passed the final evaluation; I still maintain it. |
+| **Best thing** | Google Summer of Code 2026 with The Linux Foundation (OpenPrinting): **the Printers page in COSMIC Settings**, in Rust (PR #2182, in review). **11 PRs merged upstream** (cups-rs, libcups). Passed the final evaluation; I still maintain it. |
 | **Job** | **EKSON, Aug 2025 – now, part-time.** Builds the software for 3-DoF and 6-DoF pneumatic motion simulators. Firmware (ESP32-S3, Zephyr), desktop app (PyQt5), web backend (Node.js/Express + MongoDB), CI. |
 | **Numbers** | ~40% lower CPU/latency (PyQt5 app, measured) · 5 Rust crates · 7 merged PRs · 6 Zephyr networking modules · Codeforces Expert · 4× ECPC finalist (2021–2024) · 84.6% with Honors |
 | **First open-source PR** | Zephyr RTOS, **March 2025**: `IP_MULTICAST_LOOP` socket option (issue #86977). A "good first issue". |
@@ -48,25 +48,41 @@ You said the hard part is talking about yourself. These rules make it easier.
 
 ## 2. "Tell me about yourself"
 
-This is almost always the first question. The structure is: **now → before → why I'm here**.
+This is almost always the first question. The structure is: **who I am → what I've built → what I'm doing now → what I want next**. Cover the whole career, not only the current study.
 
-### 2.1 Thirty seconds (phone screen, recruiter)
-> I'm a software engineer working mostly in Rust, C and C++ on Linux and embedded systems. This summer I did Google Summer of Code with The Linux Foundation, where I built the Printers page for the COSMIC desktop's Settings app in Rust and got seven pull requests merged into the upstream CUPS libraries. I also work at EKSON, a motion-simulator startup, where I own the simulator's software: I wrote the firmware, the desktop app and the backend. I'm looking for a role where I can work on systems software full time.
+### 2.1 Thirty seconds (phone screen, recruiter, networking)
+> I'm Abdelrahman Khalifa, a computer and systems engineer from Minia University, Very Good with Honors, 2025. I work close to the system: **Rust, C and modern C++, on Linux and microcontrollers**.
+>
+> This year I was a **Google Summer of Code 2026 contributor with The Linux Foundation's OpenPrinting project**: I built the Printers page for the COSMIC desktop's Settings in Rust and got **11 pull requests merged** upstream in cups-rs and libcups. I'm also an **embedded software engineer at EKSON**, part-time, where I own the software of a motion simulator: the Zephyr firmware, the desktop app and the CI.
+>
+> I'm a **Codeforces Expert** and a **4-time ECPC finalist**. Now I'm going deeper into databases and distributed systems, and I'm looking for a **full-time systems or embedded role**.
 
 ### 2.2 Sixty seconds (start of a technical interview)
-> I'm a computer and systems engineer from Minia University, and I work close to the system: Rust, C and modern C++, on Linux and microcontrollers.
+> I'm a computer and systems engineer from Minia University, and I like working close to the system: Rust, C and modern C++, on Linux and microcontrollers.
 >
-> Right now I have two things. First, Google Summer of Code 2026 with The Linux Foundation's OpenPrinting project. I built the Printers page in COSMIC Settings: you can see your printers, their ink and status, manage the print queue, and add old printers. Under it are five Rust crates, and the C library code runs in a separate process behind a varlink service, so a crash there can't take down the Settings app. Along the way I got seven PRs merged upstream in cups-rs and libcups.
+> **My most recent work** was Google Summer of Code 2026 with The Linux Foundation's OpenPrinting project, May to October. I built the Printers page in COSMIC Settings: you see your printers, their ink and status, manage the print queue and add old printers through Printer Applications. Under it are five Rust crates, and the C library code runs in a separate process behind a varlink service, so a crash there can't take down Settings. Along the way I got 11 PRs merged upstream in cups-rs and libcups, including crash fixes in libcups's DNS-SD code. I passed the final evaluation and I still maintain the project.
 >
-> Second, at EKSON I work on pneumatic motion simulators. I wrote the ESP32 firmware and moved it from FreeRTOS to Zephyr, built the PyQt5 control app (I cut its CPU use and latency by about 40%), and built the web backend for remote control and firmware updates.
+> **At EKSON**, since August 2025, I work on pneumatic motion simulators. I wrote the ESP32-S3 firmware and moved it from FreeRTOS to Zephyr, with PID control, an IMU and safety stops. I built the PyQt5 control app and cut its CPU use and latency by about 40% with asyncio, and I added remote control and firmware updates through a Node.js backend.
 >
-> Outside that, I'm a Codeforces Expert and was an ECPC finalist four times. I'm now looking for a full-time systems or embedded role.
+> **Before that**, I did an Embedded Linux internship at Orange Digital Center (Yocto, Buildroot, a kernel module; 100% in the final evaluation), and my first open-source contribution, to Zephyr RTOS. I'm a Codeforces Expert and was an ECPC finalist four times.
+>
+> **Now** I'm studying CMU's database systems course and preparing a Raft-based key-value store in Rust, and I'm looking for a full-time systems or embedded role.
 
 ### 2.3 Two minutes (when they say "walk me through your background")
-Use the 60-second version, and add one sentence to each part:
-- **Start:** "I got into low-level work through competitive programming and embedded courses at university; my graduation project was the bootloader and firmware-update part of an STM32 vehicle prototype."
-- **Open source:** "My first open-source contribution was to Zephyr RTOS in March 2025, a networking socket option. That gave me the confidence to apply to GSoC."
-- **EKSON:** "Owning the simulator software taught me to think end to end: from the PID loop on the microcontroller to the database on the server."
+Tell it in order, one or two sentences per stage:
+
+1. **University and competitive programming (2020–2025).** "I studied Computer and Systems Engineering at Minia University and finished Very Good with Honors. Competitive programming got me into thinking about efficiency: I'm a Codeforces Expert, I reached the ECPC finals four years in a row, 2021 to 2024, and I taught problem solving in C++ to more than 20 people in my local ICPC community. I was also treasurer of our IEEE student branch, with a budget over 10,000 dollars."
+2. **Embedded projects at university.** "I built FreeRTOS projects on a Tiva C, such as a seat heater controller, and AUTOSAR-style drivers. My graduation project was an AUTOSAR-based V2X vehicle on STM32. My part was the bootloader and firmware updates: a gateway downloads the image and sends it over UART with UDS-style services, and the STM32 checks it with the hardware CRC before jumping to it. We tried CAN first and it failed; that taught me a lot."
+3. **Orange Digital Center (Dec 2024 – Jan 2025).** "An Embedded Linux internship: custom Linux images with Yocto and Buildroot, device trees, and a Linux kernel module, a character device that exports process data to user space on an ARM board in QEMU. I scored 100% in the final evaluation."
+4. **First open source (March 2025).** "My first contribution was to Zephyr RTOS: the `IP_MULTICAST_LOOP` socket option for IPv4, across six networking modules. Later, in December 2025, I got changes merged in Rust Clippy and in the Boa JavaScript engine."
+5. **EKSON (Aug 2025 – now, part-time, also during my military service).** "I own the software of the motion simulators: Zephyr firmware on the ESP32-S3 with PID control, the IMU and safety stops; the PyQt5 desktop app, where asyncio cut CPU use and latency by about 40%; remote control and firmware updates through a Node.js and MongoDB backend; and CI with GitHub Actions."
+6. **Google Summer of Code 2026 (May – Oct 2026).** "With The Linux Foundation's OpenPrinting project I built the Printers page for COSMIC Settings in Rust, five crates with the backend isolated behind varlink, and got 11 PRs merged in cups-rs and libcups. I passed the final evaluation and I still maintain it."
+7. **Now.** "I'm studying CMU 15-445 on my own (lectures 1 to 7, two homeworks and project 0 done, now the buffer pool project), reading Raft and *Designing Data-Intensive Applications* for my own Raft key-value store in Rust, and reviewing OS, networking and C++ fundamentals."
+8. **What I want.** "A full-time systems, Rust/Linux or embedded role in a team with senior engineers, where I can own a component and grow."
+
+**Military service:** completed (say it if an Egyptian employer asks).
+
+If they ask only **"what are you doing these days?"**, use the current-work answer in [Progress-Summary §1.2](../Progress-Summary.md#12-what-are-you-doing-these-days-only-the-current-work).
 
 ### 2.4 Change the first sentence to fit the role
 | Role | First sentence |
@@ -162,7 +178,7 @@ Use the 60-second version, and add one sentence to each part:
   - I split it into **5 crates**: `printers-core` (types; groups several queues into one physical printer), `printers-client` (async varlink client), `printers-server` (CUPS, IPP, DNS-SD, Printer Applications), `printers-ui` (iced/libcosmic) and `printers-app` (standalone app).
   - The server runs inside **cosmic-settings-daemon** and talks **varlink IPC**, so the C code never loads in the Settings GUI process. The standalone app falls back to running the server in-process.
   - To make this work upstream, I ported **cups-rs** to **libcups3** with CUPS 2 and 3 builds, added DNS-SD bindings, and fixed crashes in libcups.
-- **R:** Passed the GSoC final evaluation, **7 PRs merged** upstream; the COSMIC PRs (#2182, #188) are in review. I still maintain the project.
+- **R:** Passed the GSoC final evaluation, **11 PRs merged** upstream; the COSMIC PRs (#2182, #188) are in review. I still maintain the project.
 - **Lesson:** "Isolate code you don't control behind a process boundary."
 - **Working with mentors:** Till Kamppeter (OpenPrinting), Mintu Gogoi, Michael Murphy (System76), Titiksha Bansal. Design discussions and code review with them.
 
