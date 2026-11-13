@@ -15,7 +15,7 @@
 | ⚠️ **Eligibility check** | The ad says: "as for males who completed their military service either in **2024 or 2025**". **Check the date your service ended.** If it ended in 2026, ask Vodafone's recruiters before applying, or you may be filtered out. |
 | **Nice to have (from the ad)** | IoT fundamentals (Cisco or Coursera), cloud basics (AWS/Azure/GCP), 2G–5G/NB-IoT/LPWAN basics, Python or SQL, Agile/Scrum |
 | **Why it fits** | You built a connected product end to end at EKSON (device firmware, cloud backend, firmware updates), an ESP32 gateway that downloads updates from the cloud, a Zephyr networking contribution, plus IEEE Treasurer and ICPC mentoring for the "extracurricular" part |
-| **Status** | **Applied** |
+| **Status** | **Invited to the SOVA assessment** (13 Nov 2026): numerical test + recorded competency interview, **deadline Mon 16 Nov 2026, 12:00 PM**. Prep and the extension email: [assessment-prep.md](assessment-prep.md) |
 | **Applied on** | 3 Nov 2026 |
 | **Track it** | [Vodafone careers: My applications](https://jobs.vodafone.com/careers/applications?domain=vodafone.com) (sign in with the account you applied with) |
 | **Follow up** | 24 Nov 2026, if there is no reply (3 weeks, [09 §5](../../../09-Hiring-Process-and-Outreach.md#5-follow-up-rules)) |
@@ -29,6 +29,7 @@
 | [Abdelrahman-Khalifa-CV.tex](Abdelrahman-Khalifa-CV.tex) | LaTeX source |
 | [jakes-template/Abdelrahman-Khalifa-CV.pdf](jakes-template/Abdelrahman-Khalifa-CV.pdf) | Same facts in the Jake's Resume template |
 | [job-ad.md](job-ad.md) | The ad as it was on 3 Nov 2026 |
+| [assessment-prep.md](assessment-prep.md) | **The SOVA assessment:** what it includes, how to prepare, the extension email |
 
 **What the tailored CV changes:** Title "IoT & Software Engineer | Connected Devices, Cloud Backends, Embedded". The summary leads with building a connected product end to end. EKSON is framed as IoT: device, cloud backend, remote operation and firmware updates. The graduation project shows the ESP32 gateway pulling updates from Firebase cloud storage. New skills lines: "IoT & devices" and "Networking & cloud". A **Leadership & Achievements** section puts the IEEE budget and ICPC mentoring up front, since a graduate program values them.
 
