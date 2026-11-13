@@ -40,7 +40,9 @@ If the reason is something clear (an exam, travel, a family matter), say it in o
 ## 3. Part 1: numerical test (about 20 minutes)
 
 - **What it usually is:** data interpretation under time pressure: tables and charts, percentages, percentage change, ratios, averages, unit or currency conversion. The maths is school level; the hard part is **time** and **reading the chart correctly**.
-- **Practice:** SOVA has a candidate preparation hub on sovaassessment.com (the same site as the technical-help link in the email). Do any practice test there once, so the format isn't new. Then do 2–3 timed numerical reasoning practice sets.
+- **Practice (official, free, checked 13 Nov 2026):** the [Sova Candidate Preparation Hub](https://www.sovaassessment.com/candidate-preparation-hub) → **"Take a Practice Test"**. It has the same question types as the real thing: three kinds of ability questions (numerical among them), situational judgement and **video interview** questions. Your answers there don't count. Inside the real assessment, each part also starts with a practice question that doesn't count.
+- **What Sova says you need:** a pen, paper and a **calculator** for the ability questions; a quiet place; one sitting if possible; read every instruction fully.
+- **Then:** 2–3 timed numerical reasoning practice sets (tables, charts, percentages), so you get used to the speed.
 - **On the day:** keep a calculator, pen and paper next to you · read the units and the question twice (thousands? per month? which year?) · don't get stuck: skip, then come back if allowed · quiet room, phone charged, stable internet, notifications off.
 
 ## 4. Part 2: recorded competency interview (about 25 minutes)
@@ -48,6 +50,7 @@ If the reason is something clear (an exam, travel, a family matter), say it in o
 - **Format:** a question appears, you usually get a short time to think, then you record your answer within a time limit, often with **one attempt**. Aim for **1.5–2 minutes per answer**.
 - **Method:** **STAR**: Situation (1 sentence) → Task (1 sentence) → **Action** (most of the time; say "**I**", not "we") → Result (a number or a clear outcome) → one line on what you learned.
 - **Vodafone's behaviours:** they're in *CBI Guide.pdf*. Read it and link each story below to one of them. (Send me the PDF and I'll map them for you.)
+- **Phone check:** Sova says video recording **doesn't work on Huawei phones**; on Android use Chrome, on iPhone use Safari. Test your camera and mic before starting.
 - **Recording:** phone at eye level, horizontal and steady, light in front of you, plain background, quiet room. Look at the camera, not the screen. Dress as for a real interview.
 
 ### Questions to expect, and the story to use
@@ -71,4 +74,4 @@ These are graduate-program questions, so they're about **behaviour**, not code. 
 
 ## 5. One open question
 
-The job ad said male candidates must have finished military service in **2024 or 2025**. They invited you, so your CV passed, but if they ask, answer with your real date.
+The job ad said male candidates must have finished military service in **2024 or 2025**. **None of your CVs gives a date**; they don't mention military service at all, and [facts.md](../../facts.md) only says "Completed". You graduated in 2025 and worked at EKSON during your service (from Aug 2025), so check when it really ended. If it ended in **2026**, you may not meet that rule. Asking Sama now (one line in the extension email) is safer than being filtered out after the assessment. If they ask, give your real date.
