@@ -9,10 +9,10 @@
 | **Role** | [JavaScript Engine Developer](https://www.igalia.com/jobs/javascript_engine_developer) |
 | **Where** | Remote |
 | **Why it fits** | "No strict requirements"; V8/JSC/SpiderMonkey work in C/C++; your Boa (JS engine in Rust) PR is direct evidence |
-| **Status** | **Applied** (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b4181e18016ec6227aca0f9)) |
+| **Status** | **Rejected 7 Nov 2026.** Asumu Takikawa (Web Languages team): "We appreciated that you have experience working on Boa, but we are looking for someone with more experience in JavaScript language specification." (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b4181e18016ec6227aca0f9)) |
 | **Applied on** | 31 Oct 2026 |
 | **Track it** | Igalia replies by email; you ticked the copy of your application, so keep that email |
-| **Follow up** | 21 Nov 2026, if there is no reply (3 weeks, see [09 §5](../../../09-Hiring-Process-and-Outreach.md#5-follow-up-rules)) |
+| **Follow up** | None (rejected). Other Igalia roles open on 14 Nov 2026: [Kernel Developer](https://www.igalia.com/jobs/kernel_developer), [Multimedia Developer](https://www.igalia.com/jobs/multimedia_developer), [Graphics Developer](https://www.igalia.com/jobs/graphics_developer) |
 | **Saved job ad** | [job-ad.md](job-ad.md), in case the posting closes |
 
 ## 2. Files in this folder

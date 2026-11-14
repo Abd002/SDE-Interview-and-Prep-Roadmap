@@ -12,7 +12,7 @@
 | **The work** | **Operations, not development:** monitoring and maintaining Linux/Windows servers, deploying apps on Apache and Tomcat, logs and troubleshooting, patching and backups, documentation |
 | **Required** | Linux administration basics, networking basics (TCP/IP, DNS, DHCP, VLANs, routing, subnetting), Apache/Tomcat basics, SQL basics |
 | **Preferred** | CCNA, RHCSA, AWS/Azure, Bash/Python scripting |
-| **Status** | **Applied** |
+| **Status** | **Rejected by 14 Nov 2026** (LinkedIn update, no reason given) |
 | **Applied on** | 3 Nov 2026 |
 | **Contact** | Sushit Babaji, HR Executive (LinkedIn): connection request with a note sent; full message (with the visa question and CV) once accepted |
 | **Follow up** | 10 Nov 2026 if Sushit hasn't replied (one short message, then stop); 24 Nov 2026 on the application itself |
