@@ -95,3 +95,15 @@ build mercor --drop 'Tested on real HP printers' --drop 'Desktop \& embedded' --
   --sub '; added remote control and firmware updates through a Node.js/MongoDB backend:::' \
   --sub ' Graduation project: AUTOSAR V2X vehicle on STM32 with a dual-bank bootloader.:::' \
   --sub '; the standalone app falls back to running it in-process:::'
+VALEO2=(--drop 'Door Locker Security System' --drop 'Developed the PyQt5 desktop app' --drop 'Engineered remote operation'
+  --sub ' for more deterministic timing, devicetree-based drivers and easier porting to other boards:::'
+  --sub ' (calibration and a Mahony filter for orientation):::'
+  --sub 'Built custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; scored 100\% in the final evaluation.:::Built Linux images with Yocto and Buildroot and a kernel module; scored 100\% in the final evaluation.'
+  --sub ', including crash fixes in libcups'"'"' C code and CI across architectures:::')
+build valeo-git "${VALEO2[@]}" --drop 'AUTOSAR PORT and GPIO drivers' --drop 'Spoken languages'
+build valeo-brain "${VALEO2[@]}" --drop 'AUTOSAR PORT and GPIO drivers' --drop 'Spoken languages'
+build igalia-multimedia --drop 'Desktop \& embedded' --drop 'Kernel Monitor' --drop 'Tested on real HP printers' --drop 'Designed the stack as 5 Rust crates' --drop 'Ran the backend as a varlink IPC service' \
+  --sub 'concurrency (async/event-driven, multithreading), memory management, :::async and multithreaded code, memory management, ' \
+  --sub '; added remote control and firmware updates through a Node.js/MongoDB backend:::' \
+  --sub ' Graduation project: AUTOSAR V2X vehicle on STM32 with a dual-bank bootloader.:::' \
+  --sub '; the standalone app falls back to running it in-process:::'
