@@ -134,6 +134,25 @@ Checked on each company's own job board on 14–16 Nov 2026. CVs, ads and letter
 | 3 | **[Valeo](CV/applications/valeo-brain/README.md)** | [Junior Software Engineer, BRAIN](https://valeo.wd3.myworkdayjobs.com/valeo_jobs/job/Cairo/Junior-Software-Engineer--BRAIN_REQ2026079248) | Cairo | Junior R&D role (generic ad), 0–2 years | [Valeo BRAIN copy](CV/applications/valeo-brain/Abdelrahman-Khalifa-CV.pdf) | Ready, not sent |
 | — | Igalia | [Kernel Developer](https://www.igalia.com/jobs/kernel_developer) | Remote | Wants upstream kernel contributions; apply after one patch is accepted in mainline | — | Later |
 
+### 10 embedded roles (16 Nov 2026)
+
+Checked open on each company's own board (Workday, Greenhouse) or LinkedIn on 16 Nov 2026. Each folder has a tailored CV, a Word copy, a Jake's copy, the saved ad and a README with the fit, the gap and how to apply. Ordered by chance.
+
+**Valeo rule:** don't send more than 3 Valeo applications. Recommended: Software Engineer POWER, Integrator POWER and GIT ([valeo-git](CV/applications/valeo-git/README.md)). Keep Test Automation and BRAIN as backups.
+
+| # | Company | Role | Where | What they want | Chance | Folder | Status |
+|---|---|---|---|---|---|---|---|
+| 1 | **Valeo** | Software Engineer, POWER | Cairo | 0–2 years; embedded C drivers (ADC, PWM, SPI, CAN), control, AUTOSAR, MISRA | ★★★ | [valeo-power-sw/](CV/applications/valeo-power-sw/README.md) | Ready, not sent |
+| 2 | **Valeo** | Software Engineer - Integrator, POWER | Cairo | 1+ years; integration, CMake/Python builds, CI, Git, flashing and smoke tests | ★★★ | [valeo-power-integrator/](CV/applications/valeo-power-integrator/README.md) | Ready, not sent |
+| 3 | **Hitachi Rail** | Software Validation & Test Engineer | Cairo | Entry level with training; embedded testing, basic C/C++ | ★★★ | [hitachi-rail-validation/](CV/applications/hitachi-rail-validation/README.md) | Ready, not sent |
+| 4 | **KPEK** | Embedded System and IoT Engineer | Maadi | ESP32/STM32 smart-home firmware, RTOS, cloud, OTA; asks 2+ years | ★★★ | [kpek/](CV/applications/kpek/README.md) | Ready, not sent |
+| 5 | **Siemens EDA** | Software Development Engineer (6 openings) | New Cairo | C++, Python, sockets, multithreading; experience not required | ★★★ | [siemens-eda/](CV/applications/siemens-eda/README.md) | Ready, not sent |
+| 6 | **eInfochips (Arrow)** | Embedded Engineer / Senior | Maadi | RTOS firmware in C on Cortex-M, unit tests, static analysis | ★★ | [einfochips/](CV/applications/einfochips/README.md) | Ready, not sent |
+| 7 | **Valeo** | Software Engineer - Test Automation, POWER | Cairo | 1–2 years testing; Python, ECU-TEST, CANoe, CAN/UDS | ★★ | [valeo-power-test-automation/](CV/applications/valeo-power-test-automation/README.md) | Ready, not sent |
+| 8 | **Schneider Electric** | Systems Engineer (Junior Application Engineer) | New Heliopolis | Entry level; OOP + industrial automation (IEC 61499), AI, APIs | ★★ | [schneider-electric/](CV/applications/schneider-electric/README.md) | Ready, not sent |
+| 9 | **Canonical** | Linux Software Engineer - Ubuntu for Next-Gen Silicon | Remote | Linux stack for new silicon, many seniority levels. **Hold until the first Canonical application is answered** | ★★ | [canonical-silicon/](CV/applications/canonical-silicon/README.md) | Ready, not sent |
+| 10 | **Zylo3D** | Senior Embedded C++ / Qt Engineer | Heliopolis | Senior; C++ Qt/QML, embedded Linux, motors and sensors | ★ stretch | [zylo3d/](CV/applications/zylo3d/README.md) | Ready, not sent |
+
 ### Oman check (3 Nov 2026)
 
 LinkedIn, last 30 days, searches for software engineer, embedded, firmware, C++, Python, Linux, backend, IoT, Rust and graduate roles in Oman. **Almost no software-development roles, and none in embedded or systems work like yours.** In the Gulf the employer sponsors the work visa, but Oman reserves many IT jobs for Omani nationals (Omanisation), and several postings say "Omani National only".

@@ -27,6 +27,16 @@ Each folder has everything for one application:
 | Valeo (2nd) | Graduate In Training Program (GIT), Embedded Software | Cairo | [valeo-git/](valeo-git/README.md) |
 | Valeo (3rd) | Junior Software Engineer, BRAIN | Cairo | [valeo-brain/](valeo-brain/README.md) |
 | Igalia (2nd) | Multimedia Developer | Remote | [igalia-multimedia/](igalia-multimedia/README.md) |
+| Valeo | Software Engineer, POWER | Cairo | [valeo-power-sw/](valeo-power-sw/README.md) |
+| Valeo | Software Engineer - Integrator, POWER | Cairo | [valeo-power-integrator/](valeo-power-integrator/README.md) |
+| Hitachi Rail | Software Validation & Test Engineer | Cairo | [hitachi-rail-validation/](hitachi-rail-validation/README.md) |
+| KPEK | Embedded System and IoT Engineer | Maadi | [kpek/](kpek/README.md) |
+| Siemens EDA | Software Development Engineer (6 openings) | New Cairo | [siemens-eda/](siemens-eda/README.md) |
+| eInfochips (Arrow) | Embedded Engineer / Senior | Maadi | [einfochips/](einfochips/README.md) |
+| Valeo | Software Engineer - Test Automation, POWER | Cairo | [valeo-power-test-automation/](valeo-power-test-automation/README.md) |
+| Schneider Electric | Systems Engineer (Junior Application Engineer) | New Heliopolis | [schneider-electric/](schneider-electric/README.md) |
+| Canonical | Linux Software Engineer - Ubuntu for Next-Gen Silicon | Remote | [canonical-silicon/](canonical-silicon/README.md) |
+| Zylo3D | Senior Embedded C++ / Qt Engineer | Heliopolis | [zylo3d/](zylo3d/README.md) |
 
 - **Sent CVs are frozen:** the copies for Canonical, Cloudflare, Igalia and NXP stay exactly as sent. The base CVs and the unsent copies were updated on 2 Nov 2026 after a check of every GitHub repo (see [facts.md](../facts.md#github-check-of-every-own-repo-2-nov-2026)).
 - **What the five share** (timeline overview, mentors, message templates, follow-up rules): [09 — Hiring Process and Outreach](../../09-Hiring-Process-and-Outreach.md).
