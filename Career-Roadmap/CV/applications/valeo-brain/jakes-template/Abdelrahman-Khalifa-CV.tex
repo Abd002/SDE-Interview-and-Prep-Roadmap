@@ -172,9 +172,14 @@
 \section{Projects}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\textbf{AUTOSAR-Based V2X Vehicle} $|$ \emph{graduation project, team; STM32, ESP32}}{\cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}}
+          {\textbf{AUTOSAR-Based V2X Software-Defined Vehicle} $|$ \emph{graduation project, team; STM32, ESP32}}{\cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}}
           \resumeItemListStart
-            \resumeItem{Owned the firmware update path. An ESP32 gateway downloads the image and sends it over UART with UDS services (session control, request download 0x34, transfer data 0x36, transfer exit 0x37, read version); the STM32 bootloader verifies it with the hardware CRC unit, keeps the version in flash and uses two banks with rollback.}
+            \resumeItem{Owned the firmware update path. An ESP32 gateway downloads the image and sends it over UART with UDS services; the STM32 bootloader verifies it with the hardware CRC unit.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{IoT Device Communication} $|$ \emph{C++, Linux, QEMU, Raspberry Pi}}{\cvlink{https://github.com/Abd002/IoT-Comm-System-RPi4-QEMU}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{TCP client--server classes; clients cross-compiled for ARM and run on two QEMU vexpress-a9 boards booted with U-Boot over a bridged TAP network.}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{Seat Heater Control System} $|$ \emph{Tiva C, FreeRTOS}}{\cvlink{https://github.com/Abd002/SeatHeaterControlSystem}{GitHub}}

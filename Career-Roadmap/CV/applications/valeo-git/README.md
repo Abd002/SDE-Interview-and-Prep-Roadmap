@@ -24,7 +24,7 @@
 | [jakes-template/Abdelrahman-Khalifa-CV.pdf](jakes-template/Abdelrahman-Khalifa-CV.pdf) | Same facts in the Jake's Resume template |
 | [job-ad.md](job-ad.md) | The ad as it was on 16 Nov 2026 |
 
-**What the tailored CV changes** (from the LIGHT copy): Title "C, AUTOSAR, Testing". The summary leads with your 2025 degree, C firmware verified on hardware, AUTOSAR drivers tested against the spec, static analysis and CI, and English and Arabic. Skills gain a "Quality & tools" line (testing on the hardware target, clang-tidy, Clippy) and a spoken-languages line.
+**What the tailored CV changes** (from the LIGHT copy): Title "C, AUTOSAR, Testing". The summary leads with your 2025 degree, C firmware verified on hardware, AUTOSAR drivers tested against the spec, static analysis and CI, and English and Arabic. Skills gain a "Quality & tools" line (testing on the hardware target, clang-tidy, Clippy) and a spoken-languages line. **Projects, picked for testing and verification:** AUTOSAR PORT/GPIO drivers written from the specification and tested against it on the board · the graduation bootloader (CRC verification, UDS) · the seat heater (diagnostics and run-time performance measured on the target: CPU load, task and lock times) · CMU BusTub (passes the autograder tests, clean under clang-tidy, no leaks) · the door locker (layered ECUs integrated over UART).
 
 ## 3. Checklist
 

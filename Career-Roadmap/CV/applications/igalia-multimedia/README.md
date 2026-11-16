@@ -24,7 +24,7 @@
 | [application-form.md](application-form.md) | **Cover letter and every form field** |
 | [job-ad.md](job-ad.md) | The ad as it was on 14 Nov 2026 |
 
-**What the tailored CV changes** (from [cv-systems-rust](../../cv-systems-rust.tex)): title "Rust, C, GNU/Linux, Embedded"; the summary says you work across the whole stack, from the UI down to C libraries and microcontroller firmware, and that you're used to remote, self-directed work and upstream review. The CMU database project is left out to keep one page. **No multimedia claims.**
+**What the tailored CV changes** (from [cv-systems-rust](../../cv-systems-rust.tex)): title "Rust, C, GNU/Linux, Embedded"; the summary says you work across the whole stack, from the UI down to C libraries and microcontroller firmware, and that you're used to remote, self-directed work and upstream review. **Projects, picked for low-level Linux and embedded devices:** Kernel Monitor (a Linux character device driver on ARM in QEMU) and IoT device communication (embedded Linux boards booted with U-Boot over the network). Skills keep async/event-driven code, IPC, FFI and kernel modules. **No multimedia claims.**
 
 ## 3. Before you apply (an evening is enough)
 

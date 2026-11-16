@@ -100,10 +100,11 @@ VALEO2=(--drop 'Door Locker Security System' --drop 'Developed the PyQt5 desktop
   --sub ' (calibration and a Mahony filter for orientation):::'
   --sub 'Built custom Linux images with Yocto and Buildroot and wrote a Linux kernel module; scored 100\% in the final evaluation.:::Built Linux images with Yocto and Buildroot and a kernel module; scored 100\% in the final evaluation.'
   --sub ', including crash fixes in libcups'"'"' C code and CI across architectures:::')
-build valeo-git "${VALEO2[@]}" --drop 'AUTOSAR PORT and GPIO drivers' --drop 'Spoken languages'
-build valeo-brain "${VALEO2[@]}" --drop 'AUTOSAR PORT and GPIO drivers' --drop 'Spoken languages'
-build igalia-multimedia --drop 'Desktop \& embedded' --drop 'Kernel Monitor' --drop 'Tested on real HP printers' --drop 'Designed the stack as 5 Rust crates' --drop 'Ran the backend as a varlink IPC service' \
-  --sub 'concurrency (async/event-driven, multithreading), memory management, :::async and multithreaded code, memory management, ' \
+build valeo-git "${VALEO2[@]}" --max-projects 3 --drop 'Spoken languages' --sub ' (session control, request download 0x34, transfer data 0x36, transfer exit 0x37, read version):::' --sub ', keeps the version in flash and uses two banks with rollback:::'
+build valeo-brain "${VALEO2[@]}" --max-projects 3 --drop 'Spoken languages' --sub ' (session control, request download 0x34, transfer data 0x36, transfer exit 0x37, read version):::' --sub ', keeps the version in flash and uses two banks with rollback:::'
+build igalia-multimedia --drop 'Boa: optimized' --drop 'Tooling' --sub ' and a standalone app sharing the same UI: printers grouped by device, status and supply levels, print queue control, test pages, live updates, and an Add Printer flow that sets up legacy printers through Printer Applications (PAPPL) instead of PPD drivers::: and a standalone app: printer status, supply levels, print queues, live updates and an Add Printer flow via Printer Applications' \
+  --sub '; added IPP management operations, Printer Application support, IP/port connections, \texttt{lpoptions} and FFI bindings for the libcups3 DNS-SD API:::; added IPP management, Printer Application support and DNS-SD FFI bindings' \
+  --sub '; worked with device trees, root file systems and hardware flashing. Scored:::. Scored' \
+  --drop 'Desktop \& embedded' --drop 'Tested on real HP printers' --drop 'Designed the stack as 5 Rust crates' --drop 'Ran the backend as a varlink IPC service' \
   --sub '; added remote control and firmware updates through a Node.js/MongoDB backend:::' \
-  --sub ' Graduation project: AUTOSAR V2X vehicle on STM32 with a dual-bank bootloader.:::' \
   --sub '; the standalone app falls back to running it in-process:::'

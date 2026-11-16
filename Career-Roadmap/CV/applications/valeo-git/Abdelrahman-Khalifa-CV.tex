@@ -38,10 +38,11 @@ Computer and Systems Engineering graduate (2025, Very Good with Honors) with ove
 
 \section*{Projects}
 \begin{itemize}
+  \item \textbf{AUTOSAR PORT and GPIO drivers} (C, TM4C): MCAL drivers written from the AUTOSAR specification and tested against its requirements on the target board.
   \item \textbf{AUTOSAR-Based V2X Vehicle} (graduation project, team; STM32, ESP32): owned the firmware update path. An ESP32 gateway downloads the image and sends it over UART with UDS services (session control, request download 0x34, transfer data 0x36, transfer exit 0x37, read version); the STM32 bootloader verifies it with the hardware CRC unit, keeps the version in flash and uses two banks with rollback. \cvlink{https://github.com/Abd002/Graduation-Project}{GitHub}
-  \item \textbf{AUTOSAR PORT and GPIO drivers} (C, TM4C): MCAL drivers developed and tested against the AUTOSAR specification.
-  \item \textbf{Seat Heater Control System} (Tiva C, FreeRTOS): heater controller for two car seats with event groups, a mutex-protected UART display, sensor-failure diagnostics and run-time measurements (CPU load, task times). \cvlink{https://github.com/Abd002/SeatHeaterControlSystem}{GitHub}
-  \item \textbf{Door Locker Security System} (C, two ATmega32): layered HMI and control ECUs over UART; keypad, LCD, EEPROM and a PWM-driven DC motor. \cvlink{https://github.com/Abd002/Door-Locker-Security-Systems}{GitHub}
+  \item \textbf{Seat Heater Control System} (Tiva C, FreeRTOS): heater controller for two car seats with event groups and a mutex-protected UART display; sensor-failure diagnostics logged to memory, and run-time performance measured on the target (CPU load, task execution and lock times, using GPTM). \cvlink{https://github.com/Abd002/SeatHeaterControlSystem}{GitHub}
+  \item \textbf{Database Systems, CMU 15-445} (C++17): thread-safe Count-Min Sketch for the BusTub database; passes the course's autograder tests, clean under clang-tidy and with no memory leaks. \cvlink{https://github.com/Abd002/db-systems-journey}{GitHub}
+  \item \textbf{Door Locker Security System} (C, two ATmega32): layered HMI and control ECUs integrated over UART; keypad, LCD, EEPROM and a PWM-driven DC motor. \cvlink{https://github.com/Abd002/Door-Locker-Security-Systems}{GitHub}
 \end{itemize}
 
 \section*{Technical Skills}

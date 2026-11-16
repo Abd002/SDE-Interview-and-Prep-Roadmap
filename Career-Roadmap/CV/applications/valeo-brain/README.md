@@ -24,7 +24,7 @@
 | [jakes-template/Abdelrahman-Khalifa-CV.pdf](jakes-template/Abdelrahman-Khalifa-CV.pdf) | Same facts in the Jake's Resume template |
 | [job-ad.md](job-ad.md) | The ad as it was on 16 Nov 2026 |
 
-**What the tailored CV changes** (from the LIGHT copy): Title "Embedded C/C++, Automotive, Linux". The summary leads with whole-product embedded work at EKSON (sensor fusion, closed-loop control), the software-defined-vehicle project, upstream work, and clear documentation in English and Arabic. Skills add Linux/Yocto/Buildroot, technical documentation and a spoken-languages line.
+**What the tailored CV changes** (from the LIGHT copy): Title "Embedded C/C++, Automotive, Linux". The summary leads with whole-product embedded work at EKSON (sensor fusion, closed-loop control), the software-defined-vehicle project, upstream work, and clear documentation in English and Arabic. Skills add Linux/Yocto/Buildroot, technical documentation and a spoken-languages line. **Projects, picked for vehicle software and connectivity:** the V2X software-defined-vehicle graduation project · IoT device communication (embedded Linux boards, cross-compiled ARM clients, networking) · the FreeRTOS car seat heater · AUTOSAR MCAL drivers · CMU database work (SQL analytics, for the "data analysis" part of the ad).
 
 ## 3. Checklist
 
