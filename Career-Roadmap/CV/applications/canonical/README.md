@@ -19,6 +19,7 @@
 
 | File | What it is |
 |---|---|
+| [end-to-end-guide.md](end-to-end-guide.md) | **The full plan from the written interview to the offer** (17 Nov 2026): process, your facts per question, GIA practice, Linux interview checklist, calendar |
 | [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf) | **Send this one.** The tailored CV (main template), 1 page |
 | [Abdelrahman-Khalifa-CV.docx](Abdelrahman-Khalifa-CV.docx) | Same CV in Word, only if the site asks for Word |
 | [Abdelrahman-Khalifa-CV.tex](Abdelrahman-Khalifa-CV.tex) | Its LaTeX source |
