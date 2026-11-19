@@ -73,6 +73,16 @@ For **education questions:** a **number + the scale + a reference point** ("119/
 
 **Your advantage over him:** you have far more embedded and Linux depth, real upstream work and an open-source project. **His advantage:** stronger school numbers. So your education section must be **exact and well argued**, and your technical sections must be **deep**.
 
+### 2.4b Real written interviews that candidates published (read for format only, never copy)
+No public written interview is confirmed to have led to a hire. These three at least **passed the written stage**:
+| Document | Outcome known | Length | What to learn from it |
+|---|---|---|---|
+| [Parham Alvani, Software Engineer – Industrial IoT (2023), LaTeX source](https://github.com/1995parham/Canonical/blob/main/src/index.tex) | Moved on to the GIA (his GIA feedback report is in the same repo) | ~4,100 words | Each question in bold, short answer below. **Imperfect English still passed.** Honest "No, I was not a top student" in his home language. Exam rank given as a number out of ~100,000. One human detail (setting up LAN games for friends) |
+| [Jason Madden, Launchpad team](https://seecoresoftware.com/Canonical-JasonMadden-WrittenInterview.pdf) | Not stated | ~3,600 words | Clean question headings; stories with years and specific projects; honest about what he dislikes (managing people) and doesn't know (business) |
+| Your friend's (private) | Passed, then failed the GIA | ~2,500 words | Exact school numbers and rank sources; one-line answers in Context were his weakest part |
+
+**Common pattern:** plain first-person English, every question copied as a heading, numbers and specific stories, honesty about weak areas. Aim for **4,000–6,000 words**.
+
 ### 2.5 Your facts for every question (write the sentences yourself)
 
 #### Software engineering experience
