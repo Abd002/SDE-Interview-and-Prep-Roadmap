@@ -12,7 +12,7 @@
 | **Hours** | 30–40 a week, mostly async (evenings and weekends are fine) plus some meetings |
 | **The work** | Write realistic tasks (features, refactors, bug fixes) from the open-source repo you know best, with reference solutions; review AI-written code, tests and rubrics; build and run the project locally, including with Docker; write the reasoning in your own words |
 | **Process** | Mercor profile + CV upload → AI interview → one-time Persona ID check → wait for a client match. Typical wait to hear back: about 3–4 weeks. Pay goes out weekly via Stripe or Wise |
-| **Status** | **Applied 5 Nov 2026** (Mercor dashboard: Explore → Applications). The form called it "Remote US, W2"; you answered "based in Egypt", so it may be US-only |
+| **Status** | **Rejected 19 Nov 2026** (automated email, no reason; both Mercor roles). Applied 5 Nov 2026 (Mercor dashboard: Explore → Applications). The form called it "Remote US, W2"; you answered "based in Egypt", so it may be US-only |
 
 ## 2. Do you meet the bar? Honestly: almost
 

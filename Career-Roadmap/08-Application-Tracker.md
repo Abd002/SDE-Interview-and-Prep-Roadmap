@@ -240,8 +240,8 @@ Money in parallel with the job search (5 Nov 2026). Exclusivity rules can clash:
 | # | Platform | Role | Pay | Status | Applied on | Next step | Details |
 |---|---|---|---|---|---|---|---|
 | 1 | **micro1** | Paid Photo Contributor (Egypt-based) | Per task | **Applied** | 5 Nov 2026 | Wait for their email | |
-| 2 | **Mercor** (via Cincinnatus LLC) | Open Source Maintainer / Core Contributor – Software Engineer | USD 150/hr listed, 30–40 h/week | **Applied** | 5 Nov 2026 | Link LinkedIn on Mercor; wait for the AI interview invite and ID check. Listed as "Remote US, W2", so it may be US-only | [mercor/](CV/applications/mercor/README.md) |
-| 3 | **Mercor** | Software Engineer – Retail Investing Platforms (Paid Expert Interview) | USD 100–120/hr, one call | **Applied** | 5 Nov 2026 | Long shot: no fintech experience, answered honestly | |
+| 2 | **Mercor** (via Cincinnatus LLC) | Open Source Maintainer / Core Contributor – Software Engineer | USD 150/hr listed, 30–40 h/week | **Rejected 19 Nov 2026** | 5 Nov 2026 | Link LinkedIn on Mercor; wait for the AI interview invite and ID check. Listed as "Remote US, W2", so it may be US-only | [mercor/](CV/applications/mercor/README.md) |
+| 3 | **Mercor** | Software Engineer – Retail Investing Platforms (Paid Expert Interview) | USD 100–120/hr, one call | **Rejected 19 Nov 2026** | 5 Nov 2026 | Long shot: no fintech experience, answered honestly | |
 
 ---
 
@@ -252,14 +252,15 @@ Update these by hand.
 | Metric | Count |
 |---|---|
 | Applications sent (jobs) | 10 (Canonical, Cloudflare, Igalia, NXP, Valeo, Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail) |
-| Side-income applications | 3 (Mercor ×2, micro1) |
+| Side-income applications | 3 (Mercor ×2 rejected 19 Nov; micro1 pending) |
 | Applications sent (master's / scholarships) | 0 |
 | Rejected | 4 (NXP 2 Nov, Igalia 7 Nov, Valeo 13 Nov, CrimsonLogic by 14 Nov) |
 | Assessments | 1 (Vodafone SOVA, invited 13 Nov) |
 | Phone screens | 0 |
 | Interview loops | 0 |
 | Offers | 0 |
-| Last updated | 2026-11-14 |
+| Google | GSoC Preferred Candidate since 18 Nov 2026: any Google application is flagged to recruiters |
+| Last updated | 2026-11-21 |
 
 ---
 
