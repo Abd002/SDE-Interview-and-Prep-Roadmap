@@ -74,6 +74,14 @@ Part-time/remote during military service; still part-time now.
   - **Closed, not merged:** cups-rs #11 (lp/lpstat), #12, #13, #17.
   - CV wording: "11 PRs merged upstream in cups-rs and libcups". Link: github.com/OpenPrinting/cups-rs/pulls?q=is:pr+author:Abd002+is:merged
 - **In review (not merged):** cosmic-settings #2182 and cosmic-settings-daemon #188.
+- **Design (from his GSoC proposal):**
+  - IPP-first.
+  - The UI sits behind a backend trait, so it isn't tied to one libcups generation (CUPS 2 → 3 transition).
+  - A normalisation and grouping stage de-duplicates the same printer seen through several destinations or discovery paths.
+  - Main view: IPP destinations grouped by device or Printer Application, with a button that opens the device's web admin page.
+  - Add Printer suggests a Printer Application for legacy devices, with a manual fallback.
+  - He studied OpenPrinting's GNOME printer-setup work for the CUPS transition, and GNOME/KDE code (built on CUPS 2).
+  - The proposal mentions "Winter of Code 2026" (lp/lpstat in cups-rs). That label and those PRs stay off CVs and the written interview (see "Removed" below).
 - **Testing:** real HP printers (PageWide, LaserJet; DesignJet 800 through a Printer Application). CI runs `ippeveprinter` on several architectures.
 
 ### Orange Digital Center (ODC): Embedded Linux Systems Intern · Dec 2024 – Jan 2025
