@@ -9,10 +9,10 @@
 | **Role** | [Graduate Software Engineer, Open Source and Linux](https://job-boards.greenhouse.io/canonical/jobs/8249005) · alternates: [Junior Ubuntu Software Engineer](https://job-boards.greenhouse.io/canonical/jobs/6707669), [Junior Linux Kernel Engineer](https://job-boards.greenhouse.io/canonical/jobs/5370815) |
 | **Where** | Home based, worldwide |
 | **Why it fits** | Asks for code in Rust or C/C++, Linux experience, personal projects; your GSoC work on the Linux printing stack (OpenPrinting, libcups) |
-| **Status** | **Written interview** (invited 17 Nov 2026 by Alex Cendejas; submit a PDF via the Greenhouse link in his email within two weeks, about 1 Dec 2026; no name or identifying details in the PDF or filename; AI-written answers disqualify) (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b4181a38ea3c73df95101d4)) |
+| **Status** | **Written interview submitted 22 Nov 2026** (invited 16 Nov by Alex Cendejas, the hiring lead; anonymous PDF uploaded through the Greenhouse link). Next, per his email: aptitude tests (GIA) in this same stage, then interviews with two lead engineers, a talent interview with a personality assessment, and final team interviews (update here, in [08](../../../08-Application-Tracker.md) and in the [Notion row](https://app.notion.com/p/3f7f38194b4181a38ea3c73df95101d4)) |
 | **Applied on** | 31 Oct 2026 |
 | **Track it** | Greenhouse sends updates by email; also watch for Canonical's written interview and assessment invitations (check spam) |
-| **Follow up** | 21 Nov 2026, if there is no reply (3 weeks, see [09 §5](../../../09-Hiring-Process-and-Outreach.md#5-follow-up-rules)) |
+| **Follow up** | 13 Dec 2026, if there is no GIA invitation or reply (3 weeks after submitting) (3 weeks, see [09 §5](../../../09-Hiring-Process-and-Outreach.md#5-follow-up-rules)) |
 | **Saved job ad** | [job-ad.md](job-ad.md), in case the posting closes |
 
 ## 2. Files in this folder
