@@ -11,7 +11,7 @@
 | **What they want** | Good written communication, iterating constructively in code review, self-directed remote work. GStreamer or browser-engine experience is "not essential". They ask you to mention: browser tech, GStreamer, FFmpeg, OpenMAX, VA-API, multimedia formats and protocols, **multimedia in embedded devices** or **Rust on GNU/Linux** |
 | **Why it fits** | Rust on GNU/Linux (COSMIC printers, cups-rs), embedded devices (EKSON firmware on Zephyr), whole-stack work from UI to firmware, 11 upstream PRs through review, remote work with mentors from two organizations |
 | **Gap** | No GStreamer, FFmpeg or codec experience. The letter says so plainly |
-| **Status** | **Ready, not sent** |
+| **Status** | **Applied 23 Nov 2026** through igalia.com |
 
 ## 2. Files
 
@@ -36,5 +36,5 @@
 
 - [ ] Do step 3 above
 - [ ] Send the form with the PDF above; tick "send me a copy"
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Fill in **Applied on** here, in 08 and in Notion
 - [ ] Follow up once after 3 weeks with no reply

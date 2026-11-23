@@ -13,7 +13,7 @@
 | **Gap (be honest about it)** | The title says Senior; no years are stated. In the form, say you are applying at Engineer level |
 | **Chance** | ★★ Good technical fit; level is the risk |
 | **Apply** | Arrow Workday: [arrow careers](https://arrow.wd1.myworkdayjobs.com/AC) |
-| **Status** | **Ready, not sent** |
+| **Status** | **Applied 23 Nov 2026** in Arrow's Workday |
 
 ## 2. Files
 
@@ -29,6 +29,6 @@
 
 ## 3. Checklist
 
-- [ ] Apply with the PDF above
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Apply with the PDF above
+- [x] Fill in **Applied on** here, in 08 and in Notion
 - [ ] Follow up once after 3 weeks with no reply

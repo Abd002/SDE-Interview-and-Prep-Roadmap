@@ -13,7 +13,7 @@
 | **Gap (be honest about it)** | No PLC or IEC 61131/61499 experience. Before an interview, watch an intro to IEC 61499 and EcoStruxure Automation Expert. Customer-facing role |
 | **Chance** | ★★ Medium fit, entry level |
 | **Apply** | Schneider careers via the LinkedIn post |
-| **Status** | **Ready, not sent** |
+| **Status** | **Applied 23 Nov 2026** via LinkedIn |
 
 ## 2. Files
 
@@ -29,6 +29,6 @@
 
 ## 3. Checklist
 
-- [ ] Apply with the PDF above
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Apply with the PDF above
+- [x] Fill in **Applied on** here, in 08 and in Notion
 - [ ] Follow up once after 3 weeks with no reply

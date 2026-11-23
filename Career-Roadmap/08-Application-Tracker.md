@@ -129,8 +129,8 @@ Checked on each company's own job board on 14–16 Nov 2026. CVs, ads and letter
 
 | # | Company | Role | Where | Why | CV | Status |
 |---|---|---|---|---|---|---|
-| 1 | **[Igalia](CV/applications/igalia-multimedia/README.md)** | [Multimedia Developer](https://www.igalia.com/jobs/multimedia_developer) | Remote | Asks for Rust on GNU/Linux, multimedia in embedded devices, review culture; GStreamer "not essential". Best Igalia fit after the JS-engine no | [Igalia Multimedia copy](CV/applications/igalia-multimedia/Abdelrahman-Khalifa-CV.pdf) | Ready, not sent; do the small GStreamer step first |
-| 2 | **[Valeo](CV/applications/valeo-git/README.md)** | [Graduate In Training Program (GIT), Embedded Software](https://valeo.wd3.myworkdayjobs.com/valeo_jobs/job/Cairo/Job-Posting-Title-Graduate-In-Training-Program--GIT----Embedded-Software_REQ2026080868) | Cairo | 6-month R&D trainee program for 2025/2026 graduates: C, MISRA-C, testing on hardware, static analysis | [Valeo GIT copy](CV/applications/valeo-git/Abdelrahman-Khalifa-CV.pdf) | Ready, not sent |
+| 1 | **[Igalia](CV/applications/igalia-multimedia/README.md)** | [Multimedia Developer](https://www.igalia.com/jobs/multimedia_developer) | Remote | Asks for Rust on GNU/Linux, multimedia in embedded devices, review culture; GStreamer "not essential". Best Igalia fit after the JS-engine no | [Igalia Multimedia copy](CV/applications/igalia-multimedia/Abdelrahman-Khalifa-CV.pdf) | **Applied 23 Nov 2026** |
+| 2 | **[Valeo](CV/applications/valeo-git/README.md)** | [Graduate In Training Program (GIT), Embedded Software](https://valeo.wd3.myworkdayjobs.com/valeo_jobs/job/Cairo/Job-Posting-Title-Graduate-In-Training-Program--GIT----Embedded-Software_REQ2026080868) | Cairo | 6-month R&D trainee program for 2025/2026 graduates: C, MISRA-C, testing on hardware, static analysis | [Valeo GIT copy](CV/applications/valeo-git/Abdelrahman-Khalifa-CV.pdf) | **Applied 23 Nov 2026** |
 | 3 | **[Valeo](CV/applications/valeo-brain/README.md)** | [Junior Software Engineer, BRAIN](https://valeo.wd3.myworkdayjobs.com/valeo_jobs/job/Cairo/Junior-Software-Engineer--BRAIN_REQ2026079248) | Cairo | Junior R&D role (generic ad), 0–2 years | [Valeo BRAIN copy](CV/applications/valeo-brain/Abdelrahman-Khalifa-CV.pdf) | **Closed** (gone from Valeo's Workday on 23 Nov 2026) |
 | — | Igalia | [Kernel Developer](https://www.igalia.com/jobs/kernel_developer) | Remote | Wants upstream kernel contributions; apply after one patch is accepted in mainline | — | Later |
 
@@ -143,13 +143,13 @@ Checked open on each company's own board (Workday, Greenhouse) or LinkedIn on 16
 | # | Company | Role | Where | What they want | Chance | Folder | Status |
 |---|---|---|---|---|---|---|---|
 | 1 | **Valeo** | Software Engineer, POWER | Cairo | 0–2 years; embedded C drivers (ADC, PWM, SPI, CAN), control, AUTOSAR, MISRA | ★★★ | [valeo-power-sw/](CV/applications/valeo-power-sw/README.md) | **Applied 23 Nov 2026** (Workday) |
-| 2 | **Valeo** | Software Engineer - Integrator, POWER | Cairo | 1+ years; integration, CMake/Python builds, CI, Git, flashing and smoke tests | ★★★ | [valeo-power-integrator/](CV/applications/valeo-power-integrator/README.md) | Ready, not sent |
-| 3 | **Hitachi Rail** | Software Validation & Test Engineer | Cairo | Entry level with training; embedded testing, basic C/C++ | ★★★ | [hitachi-rail-validation/](CV/applications/hitachi-rail-validation/README.md) | Ready, not sent |
-| 4 | **KPEK** | Embedded System and IoT Engineer | Maadi | ESP32/STM32 smart-home firmware, RTOS, cloud, OTA; asks 2+ years | ★★★ | [kpek/](CV/applications/kpek/README.md) | Ready, not sent |
+| 2 | **Valeo** | Software Engineer - Integrator, POWER | Cairo | 1+ years; integration, CMake/Python builds, CI, Git, flashing and smoke tests | ★★★ | [valeo-power-integrator/](CV/applications/valeo-power-integrator/README.md) | **Applied 23 Nov 2026** |
+| 3 | **Hitachi Rail** | Software Validation & Test Engineer | Cairo | Entry level with training; embedded testing, basic C/C++ | ★★★ | [hitachi-rail-validation/](CV/applications/hitachi-rail-validation/README.md) | **Applied 23 Nov 2026** |
+| 4 | **KPEK** | Embedded System and IoT Engineer | Maadi | ESP32/STM32 smart-home firmware, RTOS, cloud, OTA; asks 2+ years | ★★★ | [kpek/](CV/applications/kpek/README.md) | **Applied 23 Nov 2026** |
 | 5 | **Siemens EDA** | Software Development Engineer (6 openings) | New Cairo | C++, Python, sockets, multithreading; experience not required | ★★★ | [siemens-eda/](CV/applications/siemens-eda/README.md) | Ready, not sent |
-| 6 | **eInfochips (Arrow)** | Embedded Engineer / Senior | Maadi | RTOS firmware in C on Cortex-M, unit tests, static analysis | ★★ | [einfochips/](CV/applications/einfochips/README.md) | Ready, not sent |
+| 6 | **eInfochips (Arrow)** | Embedded Engineer / Senior | Maadi | RTOS firmware in C on Cortex-M, unit tests, static analysis | ★★ | [einfochips/](CV/applications/einfochips/README.md) | **Applied 23 Nov 2026** |
 | 7 | **Valeo** | Software Engineer - Test Automation, POWER | Cairo | 1–2 years testing; Python, ECU-TEST, CANoe, CAN/UDS | ★★ | [valeo-power-test-automation/](CV/applications/valeo-power-test-automation/README.md) | Ready, not sent |
-| 8 | **Schneider Electric** | Systems Engineer (Junior Application Engineer) | New Heliopolis | Entry level; OOP + industrial automation (IEC 61499), AI, APIs | ★★ | [schneider-electric/](CV/applications/schneider-electric/README.md) | Ready, not sent |
+| 8 | **Schneider Electric** | Systems Engineer (Junior Application Engineer) | New Heliopolis | Entry level; OOP + industrial automation (IEC 61499), AI, APIs | ★★ | [schneider-electric/](CV/applications/schneider-electric/README.md) | **Applied 23 Nov 2026** |
 | 9 | **Canonical** | Linux Software Engineer - Ubuntu for Next-Gen Silicon | Remote | Linux stack for new silicon, many seniority levels. **Hold until the first Canonical application is answered** | ★★ | [canonical-silicon/](CV/applications/canonical-silicon/README.md) | Ready, not sent |
 | 10 | **Zylo3D** | Senior Embedded C++ / Qt Engineer | Heliopolis | Senior; C++ Qt/QML, embedded Linux, motors and sensors | ★ stretch | [zylo3d/](CV/applications/zylo3d/README.md) | Ready, not sent |
 
@@ -251,7 +251,7 @@ Update these by hand.
 
 | Metric | Count |
 |---|---|
-| Applications sent (jobs) | 11 (Canonical, Cloudflare, Igalia, NXP, Valeo ×2 (LIGHT, POWER SW), Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail) |
+| Applications sent (jobs) | 18 (Canonical, Cloudflare, Igalia ×2 (JS engine, Multimedia), NXP, Valeo ×4 (LIGHT, POWER SW, Integrator POWER, GIT), Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail ×2 (Embedded App Dev, Validation & Test), KPEK, eInfochips, Schneider Electric) |
 | Side-income applications | 3 (Mercor ×2 rejected 19 Nov; micro1 pending) |
 | Applications sent (master's / scholarships) | 0 |
 | Rejected | 4 (NXP 2 Nov, Igalia 7 Nov, Valeo 13 Nov, CrimsonLogic by 14 Nov) |

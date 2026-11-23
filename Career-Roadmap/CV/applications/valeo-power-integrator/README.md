@@ -13,7 +13,7 @@
 | **Gap (be honest about it)** | Jenkins/GitLab CI and A-SPICE are not in your facts (you know GitHub Actions). Read the V-model and A-SPICE basics |
 | **Chance** | ★★★ Strong fit |
 | **Apply** | Workday, same account. Reuse [valeo/application-form.md](../valeo/application-form.md) |
-| **Status** | **Ready, not sent** |
+| **Status** | **Applied 23 Nov 2026** in Workday |
 
 ## 2. Files
 
@@ -29,6 +29,6 @@
 
 ## 3. Checklist
 
-- [ ] Apply with the PDF above
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Apply with the PDF above
+- [x] Fill in **Applied on** here, in 08 and in Notion
 - [ ] Follow up once after 3 weeks with no reply

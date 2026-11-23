@@ -13,7 +13,7 @@
 | **Gap (be honest about it)** | You have about 1.3 years, not 2. MQTT, Zigbee, BLE and Matter aren't in your facts. Apply anyway: the fit is strong |
 | **Chance** | ★★★ Strong fit, small company |
 | **Apply** | Their form via the LinkedIn post (it asks for nationality, date of birth, faculty, graduation date, experience years and a short intro). Short intro: use the first two sentences of the CV summary |
-| **Status** | **Ready, not sent** |
+| **Status** | **Applied 23 Nov 2026** through the form on kpekiot.com/career |
 
 ## 2. Files
 
@@ -29,6 +29,6 @@
 
 ## 3. Checklist
 
-- [ ] Apply with the PDF above
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Apply with the PDF above
+- [x] Fill in **Applied on** here, in 08 and in Notion
 - [ ] Follow up once after 3 weeks with no reply

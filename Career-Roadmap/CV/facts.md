@@ -16,6 +16,9 @@ Every CV, LinkedIn text and interview answer must match this file. It was built 
 | English | Full professional proficiency, as he set it on LinkedIn (IELTS not taken yet) |
 | Languages, self-rated | **Rust, modern C++, C: strong** · Python: good |
 | Linux distribution he uses | **CachyOS** (Arch-based); said on the Canonical form, 31 Oct 2026 |
+| Development environment | **Neovim, tmux and fish**, all set up automatically from his own dotfiles repository, plus **VS Code** (Canonical written interview, 22 Nov 2026) |
+| Networking during military service | Worked with network infrastructure (switches, routers, Cisco equipment) and attended Cisco labs on network security. He rates his networking knowledge **intermediate**; no large-scale production networking |
+| English on job forms | LinkedIn says full professional proficiency; on Workday forms (Nov 2026) he chose **Advanced (4/5)**. Arabic: native |
 
 ## Experience
 
@@ -49,6 +52,9 @@ Part-time/remote during military service; still part-time now.
   - The desktop app downloads it via the REST API.
   - It then flashes the ESP32-S3 with **esptool.py**.
 - **CI:** GitHub Actions for build and test during development.
+- **Custom USB input controller (side project at EKSON):** built the company's custom input controller on an **STM32F4** as a **USB HID** device, so any computer recognises it without a driver.
+- **How he tests firmware:** on the real hardware, and with **Proteus Design Suite** for circuit simulation.
+- **Why MongoDB:** commands and session records change shape as the simulators gain features, so a document store let him add fields without migrations; it also fits Node.js.
 - **Unity proof of concept:** a game scene that sent motion data to the simulator, to prove in-house simulator sessions could be built. Low priority; LinkedIn only.
 - **His own view:** the desktop and web code was built without a senior to guide it, so he doesn't consider it his best code. Present it as **ownership and end-to-end delivery**, not as a code-quality showcase.
 
@@ -61,6 +67,8 @@ Part-time/remote during military service; still part-time now.
   - A **standalone printers app** shares the same UI.
   - PR: **pop-os/cosmic-settings #2182** "feat(printers): add printer setup tool to COSMIC Settings". Open, ready for review since 26 Sep 2026.
 - **Mentors:** Till Kamppeter, Mintu Gogoi, Michael Murphy, Titiksha Bansal.
+- **How it started:** he was already interested in OpenPrinting, found the open issue asking for printer settings in COSMIC Settings (**pop-os/cosmic-settings #1800**), discussed it with the OpenPrinting mentors, then decided to solve it.
+- **Idiomatic Rust (his "recent skill" story):** he already wrote Rust (Boa, Clippy merged Dec 2025), but early in Google Summer of Code small changes or new tests meant editing many files. He then read ***Rust for Rustaceans*** and applied it: easier testing and debugging, cleaner architecture, new features without fighting the code.
 - **5 crates:**
   - `printers-core`: types, grouping queues into physical printers;
   - `printers-client`: async varlink client;
@@ -82,7 +90,13 @@ Part-time/remote during military service; still part-time now.
   - Add Printer suggests a Printer Application for legacy devices, with a manual fallback.
   - He studied OpenPrinting's GNOME printer-setup work for the CUPS transition, and GNOME/KDE code (built on CUPS 2).
   - The proposal mentions "Winter of Code 2026" (lp/lpstat in cups-rs). That label and those PRs stay off CVs and the written interview (see "Removed" below).
-- **Testing:** real HP printers (PageWide, LaserJet; DesignJet 800 through a Printer Application). CI runs `ippeveprinter` on several architectures.
+- **Testing:** real HP printers (PageWide Color MFP P77940, PageWide Color MFP 780, LaserJet M402dn, LaserJet 700 M712, all driverless; DesignJet 800 through a Printer Application) and six Printer Applications on the same network (Ghostscript, Gutenprint, HPLIP, hp-printer-app, LPrint, PostScript). CI runs `ippeveprinter` on several architectures.
+- **Performance (not benchmarked; designed to stay responsive, checked in the code 22 Nov 2026):** blocking libcups calls run in `tokio::task::spawn_blocking`; DNS-SD discovery runs on its own thread; the UI updates from events the server pushes, not polling. `printers-ui` keeps libcups3 optional, so COSMIC Settings never links libcups.
+- **Hardest part:** writing the **DNS-SD FFI module** in cups-rs from scratch (C callbacks from libcups's own Avahi thread, pointers, lifetimes, converting C data to Rust). One shared DNS-SD context, because each context is an Avahi client with its own thread. Porting cups-rs to build for both CUPS 2 and 3 was the easier part.
+- **CUPS 3 status he builds on (check before quoting):** libcups3 is stable (3.0.1); cups-local and cups-sharing aren't released; CUPS 2.5 was still in beta in Nov 2026. cosmic-printers uses libcups3 and talks to cupsd 2.5 through its local socket.
+- **Biggest lesson ("what I'd do differently"):** early on he followed CUPS-2-era advice from experienced community members who didn't design CUPS 3. He asked on the CUPS mailing list how to add an undiscovered IPP printer in CUPS 3.x; the author of CUPS answered, and he deleted a large part of his code for a simpler design. Lesson: go to the primary source early. Don't name the people involved.
+- **Before designing:** read GNOME's printers panel (C) and KDE's print manager (C++), both built on CUPS 2.
+- **cups-rs CI (#23, his):** 4 architectures (amd64 and arm64 native, armhf and riscv64 under QEMU) × 3 CUPS releases (distro 2.4, 2.5 and libcups3 from source) = 12 combinations; each failure is labelled upstream breakage or cups-rs regression, and the from-source legs don't block.
 
 ### Orange Digital Center (ODC): Embedded Linux Systems Intern · Dec 2024 – Jan 2025
 - Built Linux images with **Yocto and Buildroot**.
@@ -99,7 +113,7 @@ Part-time/remote during military service; still part-time now.
 | **cups-rs** (OpenPrinting) | 2026 | 9 merged: #8, #9, #16, #18–#23 | Google Summer of Code (and just before it) |
 | **libcups** (OpenPrinting, C) | 2026 | #164, #165 merged | Google Summer of Code |
 | **COSMIC** settings + daemon | 2026 | **In review** | #2182, #188 |
-| **Turso** (Rust database, MVCC) | Dec 2025 | **Closed, not merged** | tursodatabase/turso #4202 "mvcc: bitpack RowVersion begin/end fields" (285+/185− in `core/mvcc`). **Never list it as a contribution.** You can mention it in a Turso/Supabase interview as "a PR I proposed". |
+| **Turso** (Rust database, MVCC) | Dec 2025 | **Closed, not merged** | tursodatabase/turso #4202 "mvcc: bitpack RowVersion begin/end fields" (285+/185− in `core/mvcc`). **Never list it as a contribution.** You can mention it in a Turso/Supabase interview as "a PR I proposed". **His lesson** (told to Canonical): a TODO comment isn't proof a change is needed; understand the code deeply and prove the change before proposing it. |
 | **TaskScheduler** (Arduino library) | Aug 2025 | **Closed, not merged** | arkhipenko/TaskScheduler #204 (C++20 volatile compound assignments). Don't list. |
 
 **Where these go in a CV:** cups-rs, libcups and COSMIC were Google Summer of Code work, so they appear only inside the GSoC entry under Experience, never again under Open Source (decided 31 Oct 2026). The Open Source section lists only Zephyr, Boa and Rust Clippy.
@@ -112,7 +126,10 @@ Part-time/remote during military service; still part-time now.
 **Zephyr "Technical Contributor":** a real certification/badge. Keep it on LinkedIn.
 
 ## Education
-- **High school: Thanaweya Amma** (Egyptian General Secondary Education Certificate). **Mathematics 119/120** (pure and applied), **Arabic 79/80** (from the Canonical form, 31 Oct 2026; the overall total isn't recorded yet).
+- **High school: Thanaweya Amma** (Egyptian General Secondary Education Certificate). **Total 402.5/410 (98.2%)**, **Mathematics 119/120** (pure and applied), **Arabic 79/80**.
+  - **Rank:** 1st in his school class (out of 25); nationally roughly in the top 2,500 of about 107,000 students (about the top 2.3%). Canonical written interview, 22 Nov 2026.
+  - **What kind of student:** hard-working, strongest in mathematics; took part in a **line-following robot competition**. Friends remember him as the one good at maths. He started competitive programming **at university**, not in high school.
+  - **Why Minia:** he wanted Cairo University, but Egypt's regional admission rules only let him join a university in his home region, even though his score qualified.
 - **B.Sc. Computer and Systems Engineering, Minia University.** 2020 – 2025, **Very Good (84.6%) with Honors**.
 - **Graduation project:** AUTOSAR-based V2X / software-defined vehicle prototype, team project, **STM32**.
   - **His part: FOTA and the bootloader.**
@@ -126,7 +143,8 @@ Part-time/remote during military service; still part-time now.
 - **Codeforces Expert** (max rating 1600–1899), handle _Khalifa.
 - **4-time ECPC finalist, 2021–2024** (Egyptian Collegiate Programming Contest).
 - **IEEE student branch Treasurer:** managed a budget of more than $10k.
-- **ICPC community mentor:** taught problem solving in C++ to 20+ colleagues in his local ICPC community (from the Canonical form, 31 Oct 2026).
+- **ICPC community mentor:** taught problem solving in C++ to 20+ colleagues in his local ICPC community (from the Canonical form, 31 Oct 2026). Recognised as **Golden Mentor of the month** by the ICPC Minia community. Also mentored through the IEEE Minia University Student Branch (MUSB).
+- **VLSI course project lead:** led the team's traffic light controller in Verilog on a Spartan-3E FPGA (xc3s500e): FSM, debounce and delay modules, testbenches. Coursework, so count it as leadership, not an outside initiative.
 - **Removed:** the Deloitte mentorship (not to be listed).
 
 ## Projects to keep

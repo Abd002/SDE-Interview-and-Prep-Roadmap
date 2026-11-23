@@ -11,7 +11,7 @@
 | **What it is** | 6-month on-site trainee program in R&D (renewable): code from component requirements, MISRA-C, configuration, integration, test plans and test cases, verification on the hardware target, static analysis, bug reports. For 2025/2026 graduates; excellent English and Arabic; French a plus |
 | **Why it fits** | Firmware in C on 32-bit MCUs (EKSON), AUTOSAR MCAL drivers tested against the spec, UDS bootloader with CRC on STM32, FreeRTOS seat heater with run-time measurements, clang-tidy and Clippy, CI |
 | **Gap** | **MISRA-C:** not in your facts, so not on the CV. Read the main rules before an interview (no dynamic memory, no recursion, explicit casts, single exit, etc.) and be honest that you know them from reading |
-| **Status** | **Ready, not sent** |
+| **Status** | **Applied 23 Nov 2026** in Workday |
 | **Apply** | In Workday with the same account as before: [valeo userHome](https://valeo.wd3.myworkdayjobs.com/en-US/valeo_jobs/userHome). Reuse the answers in [valeo/application-form.md](../valeo/application-form.md) |
 
 ## 2. Files
@@ -29,5 +29,5 @@
 ## 3. Checklist
 
 - [ ] Apply in Workday with the PDF above
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Fill in **Applied on** here, in 08 and in Notion
 - [ ] Follow up once after 3 weeks with no reply

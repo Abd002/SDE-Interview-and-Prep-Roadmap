@@ -30,6 +30,7 @@ Software engineer working in Rust, C and modern C++ on Linux and embedded system
   \item Built the PyQt5 desktop control app; cut its CPU usage and latency by about 40\% (measured) by using asyncio to wait for ESP32 serial and server messages concurrently, with processing in background threads, off the UI thread.
   \item Engineered remote operation: a web app and a Node.js/Express + MongoDB backend that the desktop app polls over REST, relaying commands to the simulator over UART.
   \item Added firmware updates: new firmware uploaded on the web is downloaded by the desktop app and flashed to the ESP32-S3 with esptool; GitHub Actions CI for builds and tests.
+  \item Built the company's custom USB input controller on an STM32F4 as a USB HID device, recognised by any computer without a driver (side project).
   \item Developed a Unity proof of concept that streams game motion to the simulator.
 \end{itemize}
 \cvjob{Embedded Linux Systems Intern}{Orange Digital Center (ODC)}{Dec 2024 -- Jan 2025}

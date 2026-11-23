@@ -13,7 +13,7 @@
 | **Gap (be honest about it)** | Railway (ETCS) is new, but they train you. Same team as your Embedded Application Developer application (5 Nov); that's fine, it's a different role |
 | **Chance** | ★★★ Very likely to get an interview (entry level, training provided) |
 | **Apply** | Hitachi Workday, same account as before: [hitachi userHome](https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi/userHome) |
-| **Status** | **Ready, not sent** |
+| **Status** | **Applied 23 Nov 2026** in Workday (salary given: EGP 25,000 net/month, inside the 20–30k range from 5 Nov) |
 
 ## 2. Files
 
@@ -29,6 +29,6 @@
 
 ## 3. Checklist
 
-- [ ] Apply with the PDF above
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Apply with the PDF above
+- [x] Fill in **Applied on** here, in 08 and in Notion
 - [ ] Follow up once after 3 weeks with no reply
