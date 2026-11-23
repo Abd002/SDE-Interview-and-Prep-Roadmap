@@ -13,7 +13,7 @@
 | **Gap (be honest about it)** | Power electronics and Simulink/MATLAB control models are not in your facts. Read the basics of inverters, DC-DC converters and BMS before an interview. You use AI tools daily: be ready to say how (not on the CV) |
 | **Chance** | ★★★ Best Valeo fit |
 | **Apply** | Workday, same account as before: [valeo userHome](https://valeo.wd3.myworkdayjobs.com/en-US/valeo_jobs/userHome). Reuse [valeo/application-form.md](../valeo/application-form.md) |
-| **Status** | **Ready, not sent** |
+| **Status** | **Applied 23 Nov 2026** in Workday (Software Engineer, POWER) |
 
 ## 2. Files
 

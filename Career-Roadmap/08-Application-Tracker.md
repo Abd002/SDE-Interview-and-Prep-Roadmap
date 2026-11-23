@@ -142,7 +142,7 @@ Checked open on each company's own board (Workday, Greenhouse) or LinkedIn on 16
 
 | # | Company | Role | Where | What they want | Chance | Folder | Status |
 |---|---|---|---|---|---|---|---|
-| 1 | **Valeo** | Software Engineer, POWER | Cairo | 0–2 years; embedded C drivers (ADC, PWM, SPI, CAN), control, AUTOSAR, MISRA | ★★★ | [valeo-power-sw/](CV/applications/valeo-power-sw/README.md) | Ready, not sent |
+| 1 | **Valeo** | Software Engineer, POWER | Cairo | 0–2 years; embedded C drivers (ADC, PWM, SPI, CAN), control, AUTOSAR, MISRA | ★★★ | [valeo-power-sw/](CV/applications/valeo-power-sw/README.md) | **Applied 23 Nov 2026** (Workday) |
 | 2 | **Valeo** | Software Engineer - Integrator, POWER | Cairo | 1+ years; integration, CMake/Python builds, CI, Git, flashing and smoke tests | ★★★ | [valeo-power-integrator/](CV/applications/valeo-power-integrator/README.md) | Ready, not sent |
 | 3 | **Hitachi Rail** | Software Validation & Test Engineer | Cairo | Entry level with training; embedded testing, basic C/C++ | ★★★ | [hitachi-rail-validation/](CV/applications/hitachi-rail-validation/README.md) | Ready, not sent |
 | 4 | **KPEK** | Embedded System and IoT Engineer | Maadi | ESP32/STM32 smart-home firmware, RTOS, cloud, OTA; asks 2+ years | ★★★ | [kpek/](CV/applications/kpek/README.md) | Ready, not sent |
@@ -251,7 +251,7 @@ Update these by hand.
 
 | Metric | Count |
 |---|---|
-| Applications sent (jobs) | 10 (Canonical, Cloudflare, Igalia, NXP, Valeo, Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail) |
+| Applications sent (jobs) | 11 (Canonical, Cloudflare, Igalia, NXP, Valeo ×2 (LIGHT, POWER SW), Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail) |
 | Side-income applications | 3 (Mercor ×2 rejected 19 Nov; micro1 pending) |
 | Applications sent (master's / scholarships) | 0 |
 | Rejected | 4 (NXP 2 Nov, Igalia 7 Nov, Valeo 13 Nov, CrimsonLogic by 14 Nov) |
