@@ -131,14 +131,14 @@ Checked on each company's own job board on 14–16 Nov 2026. CVs, ads and letter
 |---|---|---|---|---|---|---|
 | 1 | **[Igalia](CV/applications/igalia-multimedia/README.md)** | [Multimedia Developer](https://www.igalia.com/jobs/multimedia_developer) | Remote | Asks for Rust on GNU/Linux, multimedia in embedded devices, review culture; GStreamer "not essential". Best Igalia fit after the JS-engine no | [Igalia Multimedia copy](CV/applications/igalia-multimedia/Abdelrahman-Khalifa-CV.pdf) | Ready, not sent; do the small GStreamer step first |
 | 2 | **[Valeo](CV/applications/valeo-git/README.md)** | [Graduate In Training Program (GIT), Embedded Software](https://valeo.wd3.myworkdayjobs.com/valeo_jobs/job/Cairo/Job-Posting-Title-Graduate-In-Training-Program--GIT----Embedded-Software_REQ2026080868) | Cairo | 6-month R&D trainee program for 2025/2026 graduates: C, MISRA-C, testing on hardware, static analysis | [Valeo GIT copy](CV/applications/valeo-git/Abdelrahman-Khalifa-CV.pdf) | Ready, not sent |
-| 3 | **[Valeo](CV/applications/valeo-brain/README.md)** | [Junior Software Engineer, BRAIN](https://valeo.wd3.myworkdayjobs.com/valeo_jobs/job/Cairo/Junior-Software-Engineer--BRAIN_REQ2026079248) | Cairo | Junior R&D role (generic ad), 0–2 years | [Valeo BRAIN copy](CV/applications/valeo-brain/Abdelrahman-Khalifa-CV.pdf) | Ready, not sent |
+| 3 | **[Valeo](CV/applications/valeo-brain/README.md)** | [Junior Software Engineer, BRAIN](https://valeo.wd3.myworkdayjobs.com/valeo_jobs/job/Cairo/Junior-Software-Engineer--BRAIN_REQ2026079248) | Cairo | Junior R&D role (generic ad), 0–2 years | [Valeo BRAIN copy](CV/applications/valeo-brain/Abdelrahman-Khalifa-CV.pdf) | **Closed** (gone from Valeo's Workday on 23 Nov 2026) |
 | — | Igalia | [Kernel Developer](https://www.igalia.com/jobs/kernel_developer) | Remote | Wants upstream kernel contributions; apply after one patch is accepted in mainline | — | Later |
 
 ### 10 embedded roles (16 Nov 2026)
 
-Checked open on each company's own board (Workday, Greenhouse) or LinkedIn on 16 Nov 2026. Each folder has a tailored CV, a Word copy, a Jake's copy, the saved ad and a README with the fit, the gap and how to apply. Ordered by chance.
+Checked open on each company's own board (Workday, Greenhouse) or LinkedIn on 16 Nov 2026, and **re-checked on 23 Nov 2026: all 10 still open** (KPEK shows 200+ applicants). Each folder has a tailored CV, a Word copy, a Jake's copy, the saved ad and a README with the fit, the gap and how to apply. Ordered by chance.
 
-**Valeo rule:** don't send more than 3 Valeo applications. Recommended: Software Engineer POWER, Integrator POWER and GIT ([valeo-git](CV/applications/valeo-git/README.md)). Keep Test Automation and BRAIN as backups.
+**Valeo rule:** don't send more than 3 Valeo applications. Recommended: Software Engineer POWER, Integrator POWER and GIT ([valeo-git](CV/applications/valeo-git/README.md)). Keep Test Automation as the backup (BRAIN closed by 23 Nov 2026).
 
 | # | Company | Role | Where | What they want | Chance | Folder | Status |
 |---|---|---|---|---|---|---|---|
