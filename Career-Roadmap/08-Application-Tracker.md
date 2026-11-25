@@ -164,6 +164,23 @@ Found on each company's own board (Ashby, Greenhouse) and LinkedIn, all checked 
 | 3 | **BairesDev** | Rust Engineer (Remote) | Remote from anywhere | Rust backend (Axum/Actix, gRPC, async); asks 4+ years | ★ stretch | [bairesdev/rust-engineer/](CV/applications/bairesdev/rust-engineer/README.md) | **Applied 25 Nov 2026** |
 | 4 | **Alignerr** | Back End Developer (AI Infrastructure), contract | Remote, 10–40 h/week | Side income; Rust, Python or Node.js backends | ★★ | [alignerr/backend-developer/](CV/applications/alignerr/backend-developer/README.md) | Ready, not sent |
 
+### 10 more roles (25 Nov 2026)
+
+Checked open on 25 Nov 2026. Skipped: Brightskies IVI Audio and Siemens ECAD (5+ years), Analog Devices Istanbul (no visa sponsorship), Ubiquiti Sweden (must already live there), KAIZEN Toulouse (French), IMC C++ Early Careers (2–3 years), more Valeo roles (3-application limit reached). Order: 7, 8, 1 and 2 first.
+
+| # | Company | Role | Where | Why | Chance | Folder | Status |
+|---|---|---|---|---|---|---|---|
+| 1 | **Siemens EDA** | Software Development Engineer | New Cairo | C++, Python, sockets, multithreading; no years required | ★★★ | [siemens/eda-software-developer/](CV/applications/siemens/eda-software-developer/README.md) | Ready, not sent |
+| 2 | **Siemens EDA** | [QA Test Engineer](https://www.linkedin.com/jobs/view/4494953019) | New Cairo | Python test automation on Linux, Git, CI | ★★★ | No folder yet (use the General SWE CV) | Not started |
+| 3 | **Siemens DISW** | [Software Engineer](https://www.linkedin.com/jobs/view/4481901823) | New Cairo | C++, multithreading, Linux, network-stack performance | ★★ | No folder yet (use the Systems/Rust CV) | Not started |
+| 4 | **Brightskies** | [Test Automation & AI Tools Engineer](https://www.linkedin.com/jobs/view/4494923526) | Cairo | Automotive and embedded testing: Python, CAPL, CI/CD; asks 2–4 years | ★★ | No folder yet (use the Embedded CV) | Not started |
+| 5 | **invygo** | [Backend Engineer](https://www.linkedin.com/jobs/view/4493634024) | Cairo | Node.js + MongoDB, the EKSON stack; asks 2–4 years | ★ | No folder yet (use the General SWE CV) | Not started |
+| 6 | **Zylo3D** | Senior Embedded C++ / Qt Engineer | Heliopolis | C++, embedded Linux, motors and sensors; senior | ★ stretch | [zylo3d/senior-embedded-cpp-qt/](CV/applications/zylo3d/senior-embedded-cpp-qt/README.md) | Ready, not sent |
+| 7 | **Sentry** | [Software Engineer, New Grad (2027)](https://jobs.ashbyhq.com/sentry/f345b525-b2e9-4dc1-bec1-85fb4c3b3cf2) | Vienna, hybrid; relocation and housing help; €80k | Ingest team runs Rust (Relay, Symbolicator); new grads with "equivalent hands-on experience"; needs a work permit | ★★ | [sentry/software-engineer-new-grad-2027/](CV/applications/sentry/software-engineer-new-grad-2027/README.md) | Ready, not sent |
+| 8 | **Bending Spoons** | [Graduate Software Engineer](https://jobs.bendingspoons.com/) | Milan / Madrid / Warsaw; relocation package | Hires on reasoning ability: Codeforces Expert, ECPC; hard online tests | ★★ | [bending-spoons/graduate-software-engineer/](CV/applications/bending-spoons/graduate-software-engineer/README.md) | Ready, not sent |
+| 9 | **IMC** | [Graduate Software Engineer (2027)](https://job-boards.eu.greenhouse.io/imc/jobs/4667814101) | Amsterdam / Aarhus | C++ and algorithms; but final-year students only and mandatory US training (US visa) | ★ | [imc/graduate-software-engineer-2027/](CV/applications/imc/graduate-software-engineer-2027/README.md) | Ready; **email CampusEU@imc.com first** |
+| 10 | **Analog Devices** | [FY27 Software Engineering Graduate](https://www.linkedin.com/jobs/view/4461878231) | Limerick / Cork / Dublin; relocation assistance | Embedded software rotation next to ADI hardware; sponsorship not stated | ★★ | [analog-devices/fy27-software-engineering-graduate/](CV/applications/analog-devices/fy27-software-engineering-graduate/README.md) | Ready, not sent |
+
 ### Oman check (3 Nov 2026)
 
 LinkedIn, last 30 days, searches for software engineer, embedded, firmware, C++, Python, Linux, backend, IoT, Rust and graduate roles in Oman. **Almost no software-development roles, and none in embedded or systems work like yours.** In the Gulf the employer sponsors the work visa, but Oman reserves many IT jobs for Omani nationals (Omanisation), and several postings say "Omani National only".
