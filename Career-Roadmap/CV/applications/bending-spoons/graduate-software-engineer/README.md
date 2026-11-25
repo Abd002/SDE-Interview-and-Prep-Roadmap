@@ -13,7 +13,7 @@
 | **Why it fits** | They hire on verifiable signals of ability. Yours: Codeforces Expert, 4-time ECPC finalist, 11 PRs merged upstream, and owning EKSON's software end to end |
 | **Watch out** | Very selective: if your CV passes, you get one or more hard online tests that can take several hours. Practise timed problem solving before you apply. If you're rejected, you must wait a year to reapply |
 | **Chance** | ★★ Your competitive-programming record is exactly what they screen for; the tests decide |
-| **Status** | Ready, not sent |
+| **Status** | **Applied 25 Nov 2026** on jobs.bendingspoons.com (with the cover letter). Next: online tests if the CV passes screening |
 
 ## 2. Files
 
@@ -28,6 +28,6 @@
 **What the tailored CV changes:** the Summary opens with problem solving (Codeforces Expert, ECPC) and end-to-end ownership, their two main signals; skills are merged into one Backend & tools line; education fits on one line.
 
 ## 3. Checklist
-- [ ] Do 2–3 timed Codeforces virtual contests first, so you're warm for their tests
-- [ ] Apply on jobs.bendingspoons.com with the PDF and the answers in [application-form.md](application-form.md); attach your transcript
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [ ] Keep doing timed Codeforces virtual contests first, so you're warm for their tests
+- [x] Apply on jobs.bendingspoons.com with the PDF and the answers in [application-form.md](application-form.md); attach your transcript
+- [x] Fill in **Applied on** here, in 08 and in Notion

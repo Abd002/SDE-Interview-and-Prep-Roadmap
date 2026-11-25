@@ -14,7 +14,7 @@
 | **Why it fits** | Ingest is Rust on Linux, the same as your Google Summer of Code work. 11 PRs merged upstream after code review covers the GitHub point. Python (asyncio, PyQt5) and Node.js in production at EKSON cover the dynamic-language point. raftkv's crash-safe write-ahead log is the same kind of problem as reliable event ingestion |
 | **Watch out** | You graduated in 2025, so pick **"Other"** for the graduation question; the ad says "recently completed" counts. Needs an Austrian work permit (Red-White-Red Card), so answer the sponsorship question **Yes** |
 | **Chance** | ★★ Strong profile; the new-grad pool is large and the visa adds a step |
-| **Status** | Ready, not sent |
+| **Status** | **Applied 25 Nov 2026** through Ashby |
 
 ## 2. Files
 
@@ -32,6 +32,6 @@
 - Rewrite the two written answers in [application-form.md](application-form.md) in your own words. They are drafts from your facts; Sentry says it cares *how you think and communicate*.
 
 ## 4. Checklist
-- [ ] Apply with the PDF above and the answers in [application-form.md](application-form.md)
-- [ ] Fill in **Applied on** here, in 08 and in Notion
-- [ ] Follow up once after 3 weeks with no reply
+- [x] Apply with the PDF above and the answers in [application-form.md](application-form.md)
+- [x] Fill in **Applied on** here, in 08 and in Notion
+- [ ] Follow up once after 3 weeks with no reply (around 16 Dec 2026)

@@ -21,7 +21,7 @@
 | | |
 |---|---|
 | **Chance** | ★ Strong technical fit, but the eligibility rule and the visa are real blockers |
-| **Status** | Ready, not sent. Email IMC first |
+| **Status** | **Eligibility email sent to CampusEU@imc.com on 25 Nov 2026**; waiting for the answer before applying |
 
 ## 3. Files
 
@@ -35,7 +35,7 @@
 **What the tailored CV changes:** the Summary leads with modern C++ and algorithms (Codeforces Expert in C++, ECPC, ICPC mentoring); CMU 15-445 (C++17, `std::mutex` per row) comes before raftkv; Skills list C++17 first, add Java and a Concepts line (algorithms, multithreading and locking, OS, networking); Education adds Golden Mentor.
 
 ## 4. Checklist
-- [ ] Send the email to CampusEU@imc.com and wait for the answer
+- [x] Send the email to CampusEU@imc.com (25 Nov 2026); wait for the answer. No reply in 2 weeks: apply anyway or drop it
 - [ ] Read IMC's [interview preparation guide](https://cdn.sanity.io/files/l1io23s3/production/cf48d9c14a5315785738597ea3dda644331bac99.pdf) and the [Interview Conduct Policy](https://cdn.sanity.io/files/l1io23s3/production/c810b57c41777c1a76fc21e1d56e74c6ff366d64.pdf)
 - [ ] Get your academic rating from the [mycollab calculator](https://www.mycollab.org/) and prepare your transcript PDF
 - [ ] Apply with the PDF above and the answers in [application-form.md](application-form.md)

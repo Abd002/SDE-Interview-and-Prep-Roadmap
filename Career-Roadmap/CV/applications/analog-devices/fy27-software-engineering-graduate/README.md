@@ -12,7 +12,7 @@
 | **Why it fits** | You write firmware that drives real hardware (Zephyr on ESP32-S3, IMU over I2C, PID control), plus embedded Linux (Yocto, Buildroot, a kernel module) and systems code in Rust and C. ADI makes the kind of sensors and chips you program |
 | **Watch out** | Visa sponsorship isn't stated; Ireland's Critical Skills Employment Permit covers software graduates, but ask the recruiter. The ad doesn't say whether a 2025 graduate counts; apply and mention it if asked. Export-control review may apply for non-US citizens on some teams |
 | **Chance** | ★★ Good fit for the embedded track; the visa question decides |
-| **Status** | Ready, not sent |
+| **Status** | **Applied 25 Nov 2026** in ADI's Workday |
 
 ## 2. Files
 
@@ -26,6 +26,6 @@
 **What the tailored CV changes:** the Summary says "embedded and systems software engineer" and adds Python; EKSON gains the Python control-app bullet (software, not only firmware), which matters because this is a software programme.
 
 ## 3. Checklist
-- [ ] Apply in Workday with the PDF and the answers in [application-form.md](application-form.md)
+- [x] Apply in Workday with the PDF and the answers in [application-form.md](application-form.md)
 - [ ] After applying, ask the recruiter (LinkedIn message) whether the programme sponsors a Critical Skills permit
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Fill in **Applied on** here, in 08 and in Notion

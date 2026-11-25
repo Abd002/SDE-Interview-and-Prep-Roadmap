@@ -25,9 +25,9 @@ Every fact comes from [../facts.md](../facts.md).
 |---|---|---|---|
 | Alignerr | Back End Developer (AI Infrastructure) | [alignerr/backend-developer/](alignerr/backend-developer/README.md) | **Ready, not sent** |
 | Amazon | Software Development Engineer – 2027, AUTA | [amazon/sde-2027/](amazon/sde-2027/README.md) | Preparing |
-| Analog Devices | FY27 Software Engineering Graduate Opportunities | [analog-devices/fy27-software-engineering-graduate/](analog-devices/fy27-software-engineering-graduate/README.md) | **Ready, not sent** |
+| Analog Devices | FY27 Software Engineering Graduate Opportunities | [analog-devices/fy27-software-engineering-graduate/](analog-devices/fy27-software-engineering-graduate/README.md) | **Applied 25 Nov 2026** in Workday |
 | BairesDev | Rust Engineer - Remote Work, REF#290362 | [bairesdev/rust-engineer/](bairesdev/rust-engineer/README.md) | **Applied 25 Nov 2026** via LinkedIn |
-| Bending Spoons | Graduate Software Engineer | [bending-spoons/graduate-software-engineer/](bending-spoons/graduate-software-engineer/README.md) | **Ready, not sent** |
+| Bending Spoons | Graduate Software Engineer | [bending-spoons/graduate-software-engineer/](bending-spoons/graduate-software-engineer/README.md) | **Applied 25 Nov 2026** on jobs.bendingspoons.com |
 | Canonical | Graduate Software Engineer, Open Source and Linux | [canonical/graduate-software-engineer/](canonical/graduate-software-engineer/README.md) | **Written interview submitted 22 Nov 2026** (invited 16 Nov by Alex Cendejas, the hiring l… |
 |  | Linux Software Engineer - Ubuntu for Next-Gen Silicon (multiple roles and seniority levels) | [canonical/next-gen-silicon/](canonical/next-gen-silicon/README.md) | **On hold** until the Graduate role is answered |
 | Cloudflare | Systems Engineer - Network Data Plane Software | [cloudflare/network-data-plane/](cloudflare/network-data-plane/README.md) | **Applied 25 Nov 2026** in Greenhouse (Systems Engineer, Network Data Plane Software, job … |
@@ -39,7 +39,7 @@ Every fact comes from [../facts.md](../facts.md).
 |  | Software Validation & Test Engineer | [hitachi-rail/software-validation-test/](hitachi-rail/software-validation-test/README.md) | **Applied 23 Nov 2026** in Workday (salary given: EGP 25,000 net/month, inside the 20–30k … |
 | Igalia | JavaScript Engine Developer | [igalia/javascript-engine/](igalia/javascript-engine/README.md) | **Rejected 7 Nov 2026.** Asumu Takikawa (Web Languages team): "We appreciated that you hav… |
 |  | Multimedia Developer | [igalia/multimedia/](igalia/multimedia/README.md) | **Applied 23 Nov 2026** through igalia.com |
-| IMC | Graduate Software Engineer (2027) | [imc/graduate-software-engineer-2027/](imc/graduate-software-engineer-2027/README.md) | **Ready; email CampusEU@imc.com first** (final-year students only, US visa needed) |
+| IMC | Graduate Software Engineer (2027) | [imc/graduate-software-engineer-2027/](imc/graduate-software-engineer-2027/README.md) | **Eligibility email sent 25 Nov 2026**; apply after IMC answers (final-year students only, US visa needed) |
 | KPEK | Embedded System and IoT Engineer | [kpek/embedded-iot-engineer/](kpek/embedded-iot-engineer/README.md) | **Applied 23 Nov 2026** through the form on kpekiot.com/career |
 | Merck Group | Software Engineer II (Expert 2), Platform Engineering | [merck/software-engineer-ii-platform/](merck/software-engineer-ii-platform/README.md) | Not started |
 | Mercor | Open Source Maintainer / Core Contributor – Software Engineer | [mercor/open-source-maintainer/](mercor/open-source-maintainer/README.md) | **Rejected 19 Nov 2026** (automated email, no reason; both Mercor roles). Applied 5 Nov 20… |
@@ -48,7 +48,7 @@ Every fact comes from [../facts.md](../facts.md).
 | NXP | Junior Embedded Software Engineer, Secure IoT Firmware | [nxp/junior-embedded-secure-iot/](nxp/junior-embedded-secure-iot/README.md) | **Rejected** on 2 Nov 2026 |
 | Rerun | Software Engineer (Rust) | [rerun/software-engineer-rust/](rerun/software-engineer-rust/README.md) | **Applied 25 Nov 2026** through Ashby (cover answers from application-form.md) |
 | Schneider Electric | Systems Engineer | [schneider-electric/systems-engineer/](schneider-electric/systems-engineer/README.md) | **Applied 23 Nov 2026** via LinkedIn |
-| Sentry | Software Engineer, New Grad (2027) | [sentry/software-engineer-new-grad-2027/](sentry/software-engineer-new-grad-2027/README.md) | **Ready, not sent** |
+| Sentry | Software Engineer, New Grad (2027) | [sentry/software-engineer-new-grad-2027/](sentry/software-engineer-new-grad-2027/README.md) | **Applied 25 Nov 2026** through Ashby |
 | Siemens | Software Development Engineer | [siemens/eda-software-developer/](siemens/eda-software-developer/README.md) | **Ready, not sent** |
 |  | Software Engineer, Graph Lakehouse | [siemens/graph-lakehouse/](siemens/graph-lakehouse/README.md) | Not started |
 | Valeo | Junior Software Engineer, BRAIN | [valeo/brain-junior-software-engineer/](valeo/brain-junior-software-engineer/README.md) | **Closed** (23 Nov 2026) |
