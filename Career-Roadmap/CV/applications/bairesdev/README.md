@@ -12,7 +12,7 @@
 | **Why it fits** | Async Rust services with IPC (varlink, D-Bus) and FFI; a production REST backend (Node.js/Express + MongoDB) at EKSON; SQL in SQL Server and DuckDB; raftkv |
 | **Gap (be honest about it)** | About 1 year of Rust, not 4; no Axum/Actix or PostgreSQL in production. Be honest in the screening; your open-source record is your argument |
 | **Chance** | ★ Stretch, but one of the few Rust roles open to Egypt |
-| **Status** | **Ready, not sent** |
+| **Status** | **Applied 25 Nov 2026** via LinkedIn |
 
 ## 2. Files
 
@@ -28,6 +28,6 @@
 **What the tailored CV changes:** Title "Rust, Backend, Systems"; summary leads with async Rust services and the REST backend; new Backend & data skills line; Projects: raftkv and CMU 15-445.
 
 ## 3. Checklist
-- [ ] Apply with the PDF above and the answers in [application-form.md](application-form.md)
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Apply with the PDF above and the answers in [application-form.md](application-form.md)
+- [x] Fill in **Applied on** here, in 08 and in Notion
 - [ ] Follow up once after 3 weeks with no reply

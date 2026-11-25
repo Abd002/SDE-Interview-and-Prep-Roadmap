@@ -159,9 +159,9 @@ Found on each company's own board (Ashby, Greenhouse) and LinkedIn, all checked 
 
 | # | Company | Role | Where | Why | Chance | Folder | Status |
 |---|---|---|---|---|---|---|---|
-| 1 | **Rerun** | Software Engineer (Rust) | Remote Europe (outside Europe case by case) | Rust UI + data generalist; "no years of production Rust needed"; robotics data | ★★★ | [rerun/](CV/applications/rerun/README.md) | Ready, not sent |
-| 2 | **Cloudflare** | Systems Engineer, Network Data Plane Software (or Network Software Performance) | Lisbon / London, hybrid, visa | Rust packet firewall and XDP load balancer; matches the Zephyr IPv4 work | ★★ | [cloudflare-dataplane/](CV/applications/cloudflare-dataplane/README.md) | Ready, not sent; apply to one of the two |
-| 3 | **BairesDev** | Rust Engineer (Remote) | Remote from anywhere | Rust backend (Axum/Actix, gRPC, async); asks 4+ years | ★ stretch | [bairesdev/](CV/applications/bairesdev/README.md) | Ready, not sent |
+| 1 | **Rerun** | Software Engineer (Rust) | Remote Europe (outside Europe case by case) | Rust UI + data generalist; "no years of production Rust needed"; robotics data | ★★★ | [rerun/](CV/applications/rerun/README.md) | **Applied 25 Nov 2026** |
+| 2 | **Cloudflare** | Systems Engineer, Network Data Plane Software (or Network Software Performance) | Lisbon / London, hybrid, visa | Rust packet firewall and XDP load balancer; matches the Zephyr IPv4 work | ★★ | [cloudflare-dataplane/](CV/applications/cloudflare-dataplane/README.md) | **Applied 25 Nov 2026** (Network Data Plane Software) |
+| 3 | **BairesDev** | Rust Engineer (Remote) | Remote from anywhere | Rust backend (Axum/Actix, gRPC, async); asks 4+ years | ★ stretch | [bairesdev/](CV/applications/bairesdev/README.md) | **Applied 25 Nov 2026** |
 | 4 | **Alignerr** | Back End Developer (AI Infrastructure), contract | Remote, 10–40 h/week | Side income; Rust, Python or Node.js backends | ★★ | [alignerr/](CV/applications/alignerr/README.md) | Ready, not sent |
 
 ### Oman check (3 Nov 2026)
@@ -262,7 +262,7 @@ Update these by hand.
 
 | Metric | Count |
 |---|---|
-| Applications sent (jobs) | 18 (Canonical, Cloudflare, Igalia ×2 (JS engine, Multimedia), NXP, Valeo ×4 (LIGHT, POWER SW, Integrator POWER, GIT), Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail ×2 (Embedded App Dev, Validation & Test), KPEK, eInfochips, Schneider Electric) |
+| Applications sent (jobs) | 21 (Canonical, Cloudflare ×2 (Network Protocols, Network Data Plane), Igalia ×2 (JS engine, Multimedia), NXP, Valeo ×4 (LIGHT, POWER SW, Integrator POWER, GIT), Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail ×2 (Embedded App Dev, Validation & Test), KPEK, eInfochips, Schneider Electric, Rerun, BairesDev) |
 | Side-income applications | 3 (Mercor ×2 rejected 19 Nov; micro1 pending) |
 | Applications sent (master's / scholarships) | 0 |
 | Rejected | 4 (NXP 2 Nov, Igalia 7 Nov, Valeo 13 Nov, CrimsonLogic by 14 Nov) |

@@ -12,7 +12,7 @@
 | **Why it fits** | Zephyr IPv4 networking contribution (multicast loopback through the socket API down to the packet path); IPP and DNS-SD in Rust and C; libcups crash fixes; a Linux kernel module; QEMU networking with bridges and TAP |
 | **Gap (be honest about it)** | No XDP/eBPF and no production packet processing at scale. Read about XDP before an interview; your kernel module and Zephyr work are the bridge |
 | **Chance** | ★★ Strong match in kind, mid-level role. Apply to **one** of the two Cloudflare roles (this one fits your networking work best); you already applied to Systems Engineer, Network Protocols on 31 Oct |
-| **Status** | **Ready, not sent** |
+| **Status** | **Applied 25 Nov 2026** in Greenhouse (Systems Engineer, Network Data Plane Software, job 8401119) |
 
 ## 2. Files
 
@@ -28,6 +28,6 @@
 **What the tailored CV changes:** Title "Rust, C, Networking, Linux"; summary leads with network stack work; separate Networking skills line; Projects: Kernel Monitor and raftkv.
 
 ## 3. Checklist
-- [ ] Apply with the PDF above and the answers in [application-form.md](application-form.md)
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Apply with the PDF above and the answers in [application-form.md](application-form.md)
+- [x] Fill in **Applied on** here, in 08 and in Notion
 - [ ] Follow up once after 3 weeks with no reply
