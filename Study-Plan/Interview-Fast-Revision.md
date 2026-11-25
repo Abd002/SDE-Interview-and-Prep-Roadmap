@@ -134,8 +134,8 @@ The [Practice Bank](Practice-Bank/README.md) holds the **hard** material: univer
 
 | Company | Revise these tracks | Company folder |
 |---|---|---|
-| Canonical | Linux · Operating systems · C and C++ · Rust · Git · Networking (basics) · Behavioral | [canonical](../Career-Roadmap/CV/applications/canonical/README.md) |
-| Cloudflare | Networking · Distributed systems · System design · Rust · Operating systems · Behavioral | [cloudflare](../Career-Roadmap/CV/applications/cloudflare/README.md) |
-| Igalia | C and C++ (CppQuiz too) · Rust · Data structures and algorithms · Git | [igalia](../Career-Roadmap/CV/applications/igalia/README.md) |
-| NXP | C and C++ · Operating systems · Testing · Security (secure boot) · Linux | [nxp](../Career-Roadmap/CV/applications/nxp/README.md) |
-| Amazon | Data structures and algorithms · Behavioral (Leadership Principles) · OOP and design patterns · System design (basics) · Databases | [amazon](../Career-Roadmap/CV/applications/amazon/README.md) |
+| Canonical | Linux · Operating systems · C and C++ · Rust · Git · Networking (basics) · Behavioral | [canonical](../Career-Roadmap/CV/applications/canonical/graduate-software-engineer/README.md) |
+| Cloudflare | Networking · Distributed systems · System design · Rust · Operating systems · Behavioral | [cloudflare](../Career-Roadmap/CV/applications/cloudflare/network-protocols/README.md) |
+| Igalia | C and C++ (CppQuiz too) · Rust · Data structures and algorithms · Git | [igalia](../Career-Roadmap/CV/applications/igalia/javascript-engine/README.md) |
+| NXP | C and C++ · Operating systems · Testing · Security (secure boot) · Linux | [nxp](../Career-Roadmap/CV/applications/nxp/junior-embedded-secure-iot/README.md) |
+| Amazon | Data structures and algorithms · Behavioral (Leadership Principles) · OOP and design patterns · System design (basics) · Databases | [amazon](../Career-Roadmap/CV/applications/amazon/sde-2027/README.md) |
