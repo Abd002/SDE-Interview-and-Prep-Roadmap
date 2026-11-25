@@ -27,21 +27,6 @@ Prepared 25 Nov 2026; every fact comes from [facts.md](../../../facts.md). The q
 | Academic transcripts | Upload your English transcript PDF (max 5 MB) |
 | Anything else? | `Codeforces Expert (handle _Khalifa): https://codeforces.com/profile/_Khalifa. My merged upstream PRs: https://github.com/OpenPrinting/cups-rs/pulls?q=is%3Apr+author%3AAbd002+is%3Amerged` |
 
-## Cover letter (optional; paste between the lines)
+## Cover letter (optional, PDF upload, max 3 MB)
 
----
-
-Hello Bending Spoons team,
-
-I'm Abdelrahman Khalifa, a software engineer in Cairo. I'm applying for the Graduate Software Engineer role because you hire on ability and ownership, and those are the two things I've worked hardest on.
-
-Problem solving is where I started: I'm a Codeforces Expert and reached the ECPC finals four times, and I taught problem solving in C++ to more than 20 colleagues in my university's ICPC community.
-
-Ownership came after. At EKSON I own the software for pneumatic motion simulators end to end: Zephyr firmware on an ESP32-S3, a Python desktop app where asyncio cut CPU use and latency by about 40%, and a Node.js backend for remote control and firmware updates. As a Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting), I took the COSMIC Settings Printers page from nothing to an upstream pull request in Rust, and got 11 PRs merged in cups-rs and libcups on the way.
-
-I like simple designs and I don't mind hard tests. I'd be glad to show you both.
-
-Abdelrahman Khalifa
-https://github.com/Abd002
-
----
+Upload **[Abdelrahman-Khalifa-Cover-Letter.pdf](Abdelrahman-Khalifa-Cover-Letter.pdf)** (source: [.tex](Abdelrahman-Khalifa-Cover-Letter.tex)). It answers their three prompts in order: why this role, why Bending Spoons, why you're a good fit (reasoning, ownership, simple and safe design).

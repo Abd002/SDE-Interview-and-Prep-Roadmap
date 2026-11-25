@@ -21,7 +21,8 @@
 |---|---|
 | [Abdelrahman-Khalifa-CV.pdf](Abdelrahman-Khalifa-CV.pdf) | **Send this one.** Tailored CV, 1 page |
 | [Abdelrahman-Khalifa-CV.tex](Abdelrahman-Khalifa-CV.tex) | LaTeX source (from the General SWE base) |
-| [application-form.md](application-form.md) | Every form answer and a short cover letter |
+| [Abdelrahman-Khalifa-Cover-Letter.pdf](Abdelrahman-Khalifa-Cover-Letter.pdf) | Cover letter, 1 page (upload in the optional "Cover letter" field); [.tex](Abdelrahman-Khalifa-Cover-Letter.tex) source |
+| [application-form.md](application-form.md) | Every form answer |
 | [job-ad.md](job-ad.md) | The ad as it was on 25 Nov 2026 |
 
 **What the tailored CV changes:** the Summary opens with problem solving (Codeforces Expert, ECPC) and end-to-end ownership, their two main signals; skills are merged into one Backend & tools line; education fits on one line.
