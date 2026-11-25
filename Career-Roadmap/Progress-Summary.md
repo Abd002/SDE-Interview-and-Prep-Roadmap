@@ -38,7 +38,7 @@ The order for "tell me about yourself" is always **who I am → what I've built 
 >
 > **Before that**, I did an Embedded Linux internship at Orange Digital Center (Yocto, Buildroot, a kernel module; 100% in the final evaluation), and my first open-source contribution, to Zephyr RTOS. I'm a Codeforces Expert and was an ECPC finalist four times.
 >
-> **Now** I'm studying CMU's database systems course and preparing a Raft-based key-value store in Rust, and I'm looking for a full-time systems or embedded role.
+> **Now** I'm studying CMU's database systems course and building raftkv, a Raft-based key-value store in Rust, and I'm looking for a full-time systems or embedded role.
 
 #### 2 minutes ("walk me through your background")
 Tell it in order, one or two sentences per stage:
@@ -49,7 +49,7 @@ Tell it in order, one or two sentences per stage:
 4. **First open source (March 2025).** "My first contribution was to Zephyr RTOS: the `IP_MULTICAST_LOOP` socket option for IPv4, across six networking modules. Later, in December 2025, I got changes merged in Rust Clippy and in the Boa JavaScript engine."
 5. **EKSON (Aug 2025 – now, part-time, also during my military service).** "I own the software of the motion simulators: Zephyr firmware on the ESP32-S3 with PID control, the IMU and safety stops; the PyQt5 desktop app, where asyncio cut CPU use and latency by about 40%; remote control and firmware updates through a Node.js and MongoDB backend; and CI with GitHub Actions."
 6. **Google Summer of Code 2026 (May – Oct 2026).** "With The Linux Foundation's OpenPrinting project I built the Printers page for COSMIC Settings in Rust, five crates with the backend isolated behind varlink, and got 11 PRs merged in cups-rs and libcups. I passed the final evaluation and I still maintain it."
-7. **Now.** "I'm studying CMU 15-445 on my own (lectures 1 to 7, two homeworks and project 0 done, now the buffer pool project), reading Raft and *Designing Data-Intensive Applications* for my own Raft key-value store in Rust, and reviewing OS, networking and C++ fundamentals."
+7. **Now.** "I'm studying CMU 15-445 on my own (lectures 1 to 7, two homeworks and project 0 done, now the buffer pool project), reading Raft and *Designing Data-Intensive Applications* for raftkv, my Raft key-value store in Rust (the durable storage layer is done), and reviewing OS, networking and C++ fundamentals."
 8. **What I want.** "A full-time systems, Rust/Linux or embedded role in a team with senior engineers, where I can own a component and grow."
 
 **Military service:** completed (say it if an Egyptian employer asks).
@@ -61,7 +61,7 @@ Tell it in order, one or two sentences per stage:
 >
 > First, I'm taking Carnegie Mellon's **database systems course (CMU 15-445)** on my own. I've finished the first seven lectures (relational model, SQL, storage, the buffer pool, storage models and compression, hash tables), homework 1 in SQL, homework 2 on storage and compression, and **project 0**, a thread-safe **Count-Min Sketch** in C++ that passes the course's autograder. Now I'm on **project 1, the buffer pool manager**: I've worked through its **ARC** replacement policy on paper and I'm starting the code.
 >
-> Second, I'm preparing my next big project: a **distributed key-value store in Rust built on Raft**. I've read the whole Raft paper, and the replication, partitioning, and consistency and consensus chapters of *Designing Data-Intensive Applications*. I've also worked through the **Tokio** tutorial, the async runtime I'll build it on.
+> Second, I'm building my next big project, **raftkv: a distributed key-value store in Rust built on Raft** (github.com/Abd002/raftkv). I started with the storage layer: a write-ahead log with CRC-framed records, fsync before acknowledging and crash recovery, with tests and CI. I've read the whole Raft paper, and the replication, partitioning, and consistency and consensus chapters of *Designing Data-Intensive Applications*. I've also worked through the **Tokio** tutorial, the async runtime I'll build it on.
 >
 > Third, I keep my fundamentals sharp: **Codeforces virtual contests**, the whole **OS** track, networking (**DNS, HTTP, routing**), **Git**, and programming paradigms and **OOP**. And I'm applying for full-time roles.
 

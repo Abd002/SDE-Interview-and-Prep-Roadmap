@@ -157,9 +157,9 @@ Profile → Add section → Projects. For each project, set **"Associated with"*
 | 5 | Boa JavaScript engine: faster Latin1 code points | — | Optimized JsStr::code_points() for Latin1 strings, avoiding UTF-16 conversion; with tests. Merged. | github.com/boa-dev/boa/pull/4553 |
 | 6 | Rust Clippy: ref_as_ptr fix | — | Fixed ref_as_ptr false positives for non-temporary references in let/const. Merged. | github.com/rust-lang/rust-clippy/pull/16214 |
 | 7 | AUTOSAR-Based V2X Vehicle (graduation project) | Minia University | Team project on STM32. My part: the firmware update path (an ESP32/Raspberry Pi gateway sends the image over UART) and a dual-bank bootloader with CRC check and rollback. | github.com/Abd002/Graduation-Project |
-| 8 | IoT Device Communication System | — | C++ framework for TCP unicast and UDP multicast between a Raspberry Pi 4 server and QEMU clients; Yocto cross-compilation. | github.com/Abd002/IoT-Comm-System-RPi4-QEMU |
+| 8 | IoT Device Communication System | — | C++ TCP client-server classes between a Raspberry Pi (or PC) server and ARM clients cross-compiled for two QEMU vexpress-a9 boards booted with U-Boot over a bridged TAP network (TFTP). | github.com/Abd002/IoT-Comm-System-RPi4-QEMU |
 | 9 | Seat Heater Control System | — | FreeRTOS real-time controller on Tiva C: temperature monitoring, heater-level control, UART diagnostics, mutexes and event flags. | github.com/Abd002/SeatHeaterControlSystem |
-| later | Raft KV store in Rust (flagship) | — | Add it when the repo is public (study plan step 60), and update the text at each milestone. | — |
+| now | **raftkv** — Raft key-value store in Rust (in progress) | [github.com/Abd002/raftkv](https://github.com/Abd002/raftkv) | Add it now (the repo is public). Text: "Raft-replicated key-value store in Rust, built storage-first: a write-ahead log with CRC32-framed records, fsync before acknowledging and torn-tail recovery; shared conformance tests and CI. In progress." Update it at each milestone. | Rust |
 
 ## 6. Skills
 Add these (LinkedIn allows 100). Then **pin the top 5:** Rust · C++ · Linux · Embedded Systems · Zephyr RTOS.
@@ -197,7 +197,7 @@ Profile → Add section → Featured → Add a link. In this order:
 1. `github.com/Abd002/GSOC-2026`: the Google Summer of Code 2026 final report (title it "Google Summer of Code 2026: Printers page for COSMIC Settings")
 2. `github.com/Abd002/cosmic-printers`: the code
 3. `github.com/pop-os/cosmic-settings/pull/2182`: the COSMIC Settings Printers page PR
-4. Later: the flagship KV store repo
+4. The raftkv repo (pin it on GitHub too)
 
 ## 11. Contact info and open to work
 - **Contact info → Website:** `https://github.com/Abd002`, type "Portfolio".

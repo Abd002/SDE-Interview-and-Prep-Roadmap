@@ -1,174 +1,61 @@
-# CV — master and three one-page versions
+# CV: master, three one-page versions and one folder per application
 
-These implement [07 §5.1](../07-Strategy-and-Roadmap.md#51-three-cv-versions): one master CV plus three one-page versions. Each version reorders the same true facts; nothing is invented.
+**Updated:** 2026-11-25. Every CV uses one format: a one-page LaTeX CV (11pt, single column), the format new-grad software hires and the career subreddits recommend most. The master is two pages.
 
-**Updated:** 2026-10-18.
+**Every fact comes from [facts.md](facts.md).** If a fact changes, update facts.md first, then the CVs and [LinkedIn.md](LinkedIn.md). To prepare for interviews, read **[Interview-Talking-Guide.md](Interview-Talking-Guide.md)**.
 
-**Every fact comes from [facts.md](facts.md)**, the record built from an interview on 11 Oct 2026. If a fact changes, update facts.md first, then the CVs and [LinkedIn.md](LinkedIn.md). To prepare for interviews, read **[Interview-Talking-Guide.md](Interview-Talking-Guide.md)**.
+## The base versions
 
-**Sources:**
-- the interview (11 Oct 2026), recorded in [facts.md](facts.md);
-- his latest CV (Sept 2026);
-- his [Google Summer of Code 2026 final report](https://github.com/Abd002/GSOC-2026);
-- his [GitHub profile README](https://github.com/Abd002);
-- his older LaTeX CVs.
+| Version | PDF | Source | Title line | Send to |
+|---|---|---|---|---|
+| **Systems / Rust / open source** | [cv-systems-rust.pdf](cv-systems-rust.pdf) | [.tex](cv-systems-rust.tex) | Systems Software Engineer \| Rust, C, Linux | Canonical, Red Hat, Collabora, Igalia, System76, Cloudflare, Rust companies |
+| **Embedded** | [cv-embedded.pdf](cv-embedded.pdf) | [.tex](cv-embedded.tex) | Embedded Software Engineer \| C, Zephyr RTOS, Embedded Linux | Valeo, NXP, Nordic, automotive and IoT companies |
+| **General SWE** | [cv-general-swe.pdf](cv-general-swe.pdf) | [.tex](cv-general-swe.tex) | Software Engineer \| Rust, C++, Linux | Big Tech, trading, SaaS, backend |
+| **Master (2 pages)** | [master-cv.pdf](master-cv.pdf) | [.tex](master-cv.tex) | Software Engineer \| Rust, C, C++, Linux, Embedded | The full record: master's applications and the source for new versions |
 
-LinkedIn was compared from its "Save to PDF" export (2 Oct 2026). That fixed the EKSON start date (Aug 2025) and the ECPC count (4-time finalist) in all CVs. **[LinkedIn.md](LinkedIn.md)** lists what is missing on the profile, with ready-to-paste text.
+Sections, in order: Summary → Experience → OSS Projects → Projects → Technical Skills → Education (achievements and activities go under Education).
 
-| Version | PDF | Word | Source | Title line | Section order | Send to |
-|---|---|---|---|---|---|---|
-| **General SWE** | [cv-general-swe.pdf](cv-general-swe.pdf) | [.docx](cv-general-swe.docx) | [.tex](cv-general-swe.tex) | Software Engineer \| Rust, C++, Linux | Summary → Skills → Experience → Open Source Projects → Projects → Achievements → Education | Big Tech, trading firms, SaaS |
-| **Systems / Rust / open source** | [cv-systems-rust.pdf](cv-systems-rust.pdf) | [.docx](cv-systems-rust.docx) | [.tex](cv-systems-rust.tex) | Systems Software Engineer \| Rust, C, Linux | Summary → Experience → Open Source Projects → Projects → Skills → Education (with activities) | Canonical, Red Hat, Collabora, Igalia, System76, JetBrains, Cloudflare, Ferrous Systems |
-| **Embedded** | [cv-embedded.pdf](cv-embedded.pdf) | [.docx](cv-embedded.docx) | [.tex](cv-embedded.tex) | Embedded Software Engineer \| C, Zephyr RTOS, Embedded Linux | Summary → Experience → Open Source Projects → Projects → Skills → Education | Nordic, NXP, Arm, TomTom, Bosch, Valeo, automotive |
-| **Master (2 pages)** | [master-cv.pdf](master-cv.pdf) | [.docx](master-cv.docx) | [.tex](master-cv.tex) | Software Engineer \| Rust, C, C++, Linux, Embedded | Summary → Experience → Skills → Open Source Projects → Projects → Achievements → Courses → Education | Keep as the source. Use for master's applications after adding an academic section. |
+**What's new on 25 Nov 2026:**
+- **raftkv** (Rust, in progress) added to Projects on the master, Systems/Rust and General SWE, worded only as far as it is built (the storage layer).
+- **Master:** the cups-rs CI matrix (4 architectures × 3 CUPS releases), the USB HID controller at EKSON, the Google Summer of Code Preferred Candidate note, Golden Mentor of the month (ICPC Minia), leading the VLSI traffic-light project, the 84.6% grade and the high-school result (98.2%, mathematics 119/120).
 
-**Tailored copies for the current shortlist (18 Oct 2026):** [applications/](applications/) has one copy per company. Each one is a base version with a new title line, summary and skills, matched to that ad. All of them are 1 page and pass the ATS checks below. Send that copy, not the base version.
+## Tailored copies
 
-| Company and role | Built from | What changed for this ad | Ad keywords matched |
-|---|---|---|---|
-| [Canonical](applications/canonical/Abdelrahman-Khalifa-CV.pdf): Graduate Software Engineer | Systems/Rust | Title "Linux, Open Source, Rust, C"; summary adds Python, Ubuntu/Debian, B.Sc. with Honors, Codeforces Expert and ECPC (the ad asks for an exceptional academic record); adds Java; adds firmware and bootloaders | 16 of 23 |
-| [Cloudflare](applications/cloudflare/Abdelrahman-Khalifa-CV.pdf): Systems Engineer, Network Protocols | Systems/Rust | Title "Rust, C, Networking, Linux"; summary leads with the protocol work (IPP over HTTP, DNS-SD, the Zephyr IPv4 multicast option); new Networking skills line | 6 of 13 (base: 5) |
-| [Igalia](applications/igalia/Abdelrahman-Khalifa-CV.pdf): JavaScript Engine Developer | Systems/Rust | Title "Rust, C++, C, Open Source"; summary leads with Boa (a JavaScript engine) and Clippy; Boa listed first | 6 of 12 |
-| [NXP](applications/nxp/Abdelrahman-Khalifa-CV.pdf): Junior Embedded SW Engineer, Secure IoT Firmware | Embedded | Title "C, 32-bit MCUs, Zephyr RTOS"; summary: 32-bit MCUs, the bootloader with CRC/signature check and rollback; new Testing line (unit and integration tests, pytest, Python scripts for build and test automation in CI); adds Java | 17 of 22 (base: 12) |
-| [Amazon](applications/amazon/Abdelrahman-Khalifa-CV.pdf): SDE – 2027 (Dublin) | General SWE | Title "C++, Rust, Python, Linux"; summary leads with algorithms; skills name NoSQL (MongoDB), version control, debugging and troubleshooting | 10 of 17 (base: 7) |
-| [Siemens](applications/siemens/Abdelrahman-Khalifa-CV.pdf): Software Engineer, Graph Lakehouse (New Cairo) | Systems-Rust / General SWE | Title "C++, Multithreading, Database Systems, Linux"; summary leads with C++ and the CMU database course; projects lead with the thread-safe Count-Min Sketch; new "Databases & distributed" skills line | — |
-| [Valeo](applications/valeo/Abdelrahman-Khalifa-CV.pdf): Junior Software Engineer, LIGHT (Cairo) | Embedded | Title "Automotive C, AUTOSAR, RTOS"; EKSON first; graduation project shows the UDS services and hardware CRC check; "Automotive & RTOS" and "Microcontrollers" skills lines | — |
-| [Collabora](applications/collabora/Abdelrahman-Khalifa-CV.pdf): Embedded Linux Consultant Engineer (remote) | Embedded | Title "Embedded Linux Engineer"; summary leads with Yocto/Buildroot, the ARM kernel module and U-Boot/device trees on QEMU; projects: Kernel Monitor, A/B firmware updates, QEMU/U-Boot networking; "Embedded Linux" skills line first | — |
-
-**Kernel Monitor** ([repo](https://github.com/Abd002/kernel-monitor), a Linux kernel character-device driver) was added on 18 Oct 2026. It is the first project on the Systems/Rust CV and its Canonical, Cloudflare and Igalia copies, where it replaces the OS simulator. On the Embedded CV and the NXP copy it replaces the Traffic Light project, and the Master CV has it too. General SWE and Amazon keep the OS simulator and the Inventory system (Java, C#, SQL), which match those ads better. What the code really does, and its weak spots, are in [facts.md](facts.md).
-
-**GitHub check, 2 Nov 2026.** Every own repo was read (code, not just READMEs) and the results are in [facts.md](facts.md#github-check-of-every-own-repo-2-nov-2026). Changes to the base CVs, the Master CV and the unsent Amazon copy:
-- **New project:** CMU 15-445 / BusTub, a thread-safe Count-Min Sketch in C++17 ([db-systems-journey](https://github.com/Abd002/db-systems-journey)), on General SWE, Systems-Rust and Master.
-- **Corrected:** the IoT project only implements TCP; the UDP files in the repo are empty. "UDP multicast" and "Yocto" were removed from it.
-- **Richer:** the graduation project now names the UDS services and the hardware CRC check found in the code. The OS simulator says what your part was (kernel, system calls, processes; team of 3).
-- **PR count:** 11 PRs merged in OpenPrinting (9 cups-rs + 2 libcups; #23 merged 31 Oct 2026), up from "7".
-- The copies already sent (Canonical, Cloudflare, Igalia, NXP) were **not** changed.
-
-**Every version now has a Projects section** (added to Systems/Rust and its Canonical, Cloudflare and Igalia copies on 18 Oct 2026): the IoT TCP/UDP framework and the OS simulator. Canonical's ad asks for "personal projects beyond the curriculum", and other recruiters look for them too. Achievements moved into Education as an Activities line to keep 1 page.
-
-The words still missing are things not in [facts.md](facts.md), such as Go, AWS/cloud, cryptography and V8, so they were not added. **Amazon** lists "experience using AI-assisted development tools" as a basic qualification. Add it to the Amazon copy only if you have really used such tools (for example Copilot or Claude Code), and be ready to talk about it.
-
-To build a copy: `cd applications/<company> && TEXINPUTS=../..: pdflatex Abdelrahman-Khalifa-CV.tex` (run it twice). For Word: `python3 tex2docx.py applications/<company>/Abdelrahman-Khalifa-CV.tex`.
-
-### Second template: Jake's Resume
-
-**Added 19 Oct 2026, alongside the main copies; nothing was overwritten.** Each company folder in [applications/](applications/README.md) has a `jakes-template/` subfolder with the same CV in the original [Jake's Resume](https://github.com/jakegut/resume) template (MIT licence). It's the one-page LaTeX template that new-grad software hires and r/cscareerquestions / r/EngineeringResumes recommend most: [Canonical](applications/canonical/jakes-template/Abdelrahman-Khalifa-CV.pdf) · [Cloudflare](applications/cloudflare/jakes-template/Abdelrahman-Khalifa-CV.pdf) · [Igalia](applications/igalia/jakes-template/Abdelrahman-Khalifa-CV.pdf) · [NXP](applications/nxp/jakes-template/Abdelrahman-Khalifa-CV.pdf) · [Amazon](applications/amazon/jakes-template/Abdelrahman-Khalifa-CV.pdf) · [Siemens](applications/siemens/jakes-template/Abdelrahman-Khalifa-CV.pdf) · [Valeo](applications/valeo/jakes-template/Abdelrahman-Khalifa-CV.pdf) · [Collabora](applications/collabora/jakes-template/Abdelrahman-Khalifa-CV.pdf). Rebuild one company with `tools/build_jake_cvs.sh <company>`.
-
-- **It matches the original template:**
-  - the same preamble and commands (`\resumeSubheading`, `\resumeProjectHeading`, `\resumeItem`);
-  - letter paper, 11pt, the Computer Modern look, small-caps section titles with a rule;
-  - the job title in bold with dates on the right, the company in italics with the location on the right.
-- **Sections (changed 31 Oct 2026):** the same order as the main copies: Summary → Experience → OSS Projects → Projects → Technical Skills → Education (achievements go under Education).
-  - Open source has its own section instead of sharing Projects.
-  - It's titled "OSS Projects" because OpenResume only treats a non-bold title as a section when it has at most 2 words and a keyword such as "project". As "Open Source" it merged the section into Experience and lost 2 of the 3 jobs.
-- **One invisible change:** `\usepackage[T1]{fontenc}` + `lmodern`, which looks the same as the default font. Without it, the OpenResume parser read only **1 of 3 jobs** (it finds job titles by "Bold" in the font name, and the default bold font is called `CMBX10`), and `IP_MULTICAST_LOOP` extracted as `IP MULTICAST LOOP`.
-- **Shorter than the main copy:** to fit 11pt on one page, [tools/build_jake_cvs.sh](tools/build_jake_cvs.sh) drops or shortens a few of the weakest bullets for each company (listed in that script). The main copy keeps everything.
-- **Built by:** [tools/make_jake_cv.py](tools/make_jake_cv.py), which reads the tailored `.tex` and fills the Jake template, so the facts always match. To rebuild all five: `tools/build_jake_cvs.sh`.
-- **PDF only:** for a Word file, use the main copy's `.docx`, which has the same facts.
-- **Checks:**
-  - all five are 1 page, with Type 1 fonts only, no ligature glyphs, all contact details and all six sections;
-  - OpenResume reads all 6 sections and all 3 jobs with their dates, plus the education (checked 31 Oct 2026);
-  - plain-text extraction puts each right-aligned date on its own line, as with any Jake's resume, so the main copies stay the safer choice for ATS;
-  - the header has no Codeforces link, unlike the main copy.
-- **Which to send:** **the main tailored copy by default.** Use the Jake's version when a person, not software, will read it (referrals, emails). A template doesn't decide the outcome; the content and a referral do.
-
-**PDF or Word?** Send the **PDF** by default. Use the **.docx** only when the job site asks for Word, or only accepts .doc/.docx. Both have the same text.
-
-The shared look is in [cv-style.sty](cv-style.sty). Change it once and every version follows.
+[applications/](applications/README.md) has **one folder per company and one subfolder per role**, for example `applications/canonical/graduate-software-engineer/` and `applications/canonical/next-gen-silicon/`. Each role folder has the tailored CV (`Abdelrahman-Khalifa-CV.pdf`, **send this one**, and its `.tex`), the README, the saved job ad, and sometimes form answers or a cover letter. The applications README explains how to add a new role.
 
 ## Build
 
 ```sh
 cd Career-Roadmap/CV
-pdflatex cv-general-swe.tex && pdflatex cv-general-swe.tex   # run twice; same for the others
+pdflatex cv-systems-rust.tex && pdflatex cv-systems-rust.tex   # run twice; same for the others
 ```
 
-- **Packages:** the `lato` font package (in `texlive-fonts-extra`; Overleaf has it), `lmodern`, `titlesec`, `enumitem`, `cmap`, `microtype`, `hyperref`.
-- **On Overleaf:** upload the `.tex` and `cv-style.sty` files together and choose the pdfLaTeX compiler.
+Each `.tex` file is standalone (no shared style file). It needs only standard TeX Live packages: `titlesec`, `enumitem`, `fancyhdr`, `tabularx`, `marvosym`, `hyperref`, `lmodern`. On Overleaf, upload the `.tex` alone and use pdfLaTeX. After every change, check the page count: `pdfinfo <file>.pdf | grep Pages`.
 
-**Word copies:** `python3 tex2docx.py cv-general-swe.tex cv-systems-rust.tex cv-embedded.tex master-cv.tex` (needs `pip install python-docx`). Rebuild them every time you change a `.tex` file.
+**Word:** there are no Word copies any more. If a form only accepts .docx, convert the PDF (for example with LibreOffice or Word's "Open PDF"), then check the text before uploading.
 
 ## The title line under the name
-Each version has one short line under the name: **the job title, then 3 core skills**, for example `Systems Software Engineer | Rust, C, Linux`.
-- **Why this form:** career guides recommend starting with the job title, then a few skills, separated by a pipe, in fewer than 10 words. The job title matches what recruiters and ATS search for.
-- **What's not in it:** achievements like Google Summer of Code 2026 or Codeforces Expert. They are in the Summary and the sections, and a list of them under the name reads like a LinkedIn headline, not a CV.
-- **Before applying:** change the title to the exact title in the job ad if it is true for you (for example "Firmware Engineer" or "Backend Engineer").
 
-## ATS checks (all four PDFs and Word copies pass)
+Each CV has one short line under the name: **the job title, then 3 core skills**, for example `Systems Software Engineer | Rust, C, Linux`.
+- Career guides recommend starting with the job title, then a few skills separated by a pipe, in fewer than 10 words. The title matches what recruiters and ATS search for.
+- Achievements such as Google Summer of Code or Codeforces Expert stay in the Summary and the sections, not in the title line.
+- Before applying, change the title to the exact title in the ad if it is true for you (for example "Firmware Engineer" or "Backend Engineer").
 
-**What an ATS does.** An Applicant Tracking System (Workday, Greenhouse, Lever, Taleo, iCIMS, SmartRecruiters…) is the first thing that reads a CV at most companies. It pulls out the text, splits it into sections, and fills fields: name, email, phone, each job's **title, company and dates**, the school, the degree and the skills. Recruiters then search those fields. If a job lands in the wrong field, or the parser skips a section, a human may never see it.
+## ATS notes
 
-### 1. Tested with a real resume parser
-The CVs were run through the **[OpenResume](https://github.com/xitanggg/open-resume) parser**, an open-source parser built to work like an ATS. It reads the PDF, finds the sections, then fills the fields. Results on 12 Oct 2026, for every PDF and every Word copy:
-
-| Field | Result |
-|---|---|
-| Name, email, LinkedIn URL, Summary | ✅ found |
-| Sections | ✅ Summary, Experience, Open Source Projects, Projects, Technical Skills, Achievements, Education all found |
-| Jobs | ✅ 3 jobs with the right dates. **Google Summer of Code Contributor**, May–Oct 2026: this parser leaves the title field empty and puts the title in the company field, because "Contributor" isn't in its list of job words (see item 3 below) · **Embedded Software Engineer** at EKSON, Aug 2025 – Present · **Embedded Linux Systems Intern** at Orange Digital Center, Dec 2024 – Jan 2025 |
-| Education | ✅ Minia University · Bachelor of Science (B.Sc.), Computer and Systems Engineering · 2020 – 2025 |
-| Phone and city | ⚠️ This parser only knows US formats, so it drops "+20" and "Cairo, Egypt". Commercial ATS (Workday, Greenhouse, Textkernel-based ones) read international numbers. Type your phone and city into the job site's form fields anyway. |
-
-**What the first test found, and what was changed:**
-1. **Google Summer of Code was dropped completely**, because it sat under "Open Source", a heading an ATS doesn't map to work experience. It now sits under **Experience**, and the other contributions are under **Open Source Projects** ("Projects" is a standard heading).
-2. **The job title and company were read as one piece of text** ("Embedded Software Engineer — EKSON"). Now each job line is `Title | Company | Dates`, with the three as separate pieces of text.
-3. **The Google Summer of Code title follows the program's rules, not the parser.** The program asks contributors to always write "Google Summer of Code 2026 contributor" followed by the organization, never the acronym "GSoC", and never to present it as a job at Google or the organization ([LinkedIn.md §2.1](LinkedIn.md#21-google-summer-of-code-rules)). A version titled "Software Developer (Google Summer of Code)" parsed better, but it read like employment at The Linux Foundation, so it was dropped (Oct 2026).
-   - **Job line:** `Google Summer of Code Contributor | The Linux Foundation (OpenPrinting) | May 2026 – Oct 2026`. The year is not in the title, because a number in the title made the parser read "Google Summer of Code 2026 Contributor" as the date and lose May–Oct 2026.
-   - **Every Summary** has the full phrase "Google Summer of Code 2026 contributor with The Linux Foundation (OpenPrinting)", for keyword search.
-   - **Parsed result:** dates ✅. The title lands in the company field, because "Contributor" isn't one of OpenResume's job words. **When a job site pre-fills this entry, fix it by hand:** title "Google Summer of Code 2026 Contributor", company "The Linux Foundation (OpenPrinting)".
-4. **"84.6%" was read as a GPA of 4.6.** The grade is now "Very Good with Honors". Give the percentage when an Egyptian employer's form asks for it.
-5. **A line starting with "~40%"** (the raised "~") was read as the start of a new job. It now says "about 40%".
-6. **Master CV:** the page break fell right before a heading, and the heading got glued to the last line of page 1. Page 2 now starts in the middle of a bullet.
-7. **Word copies:** Word's own bullet symbol isn't known to parsers, and narrow gaps glued the title, company and dates together. The Word copies now use a plain "•" and wide gaps, like the PDFs.
-
-### 2. Text and layout checks
-These rules are built into `cv-style.sty`:
-
-| Check | How it is met | Result |
-|---|---|---|
-| One column, no tables, text boxes, icons, images, headers or footers | Plain paragraphs and lists only (Word copies too: 0 tables, empty header and footer) | ✅ |
-| Text extracts exactly | `glyphtounicode` + `cmap`; ligatures and hyphenation are off, so "finalist" is never extracted as a ligature glyph and "Android" is never split as "An-droid" | ✅ |
-| Three extractors agree | pdftotext, pdfminer.six and PyMuPDF give the same word count for each PDF | ✅ |
-| Word copy = PDF | Every word in each .docx matches the PDF (word-by-word comparison) | ✅ |
-| Fonts | All embedded, with Unicode maps. No Type 3 bitmap fonts. Smallest text 9 pt. | ✅ |
-| Standard section names | Summary, Experience, Open Source Projects, Projects, Technical Skills, Achievements, Education (real Word headings in the .docx) | ✅ |
-| Contact details as text | Email, phone and the full LinkedIn, GitHub and Codeforces URLs are written out, not hidden behind icons | ✅ |
-| Dates | `Mon YYYY – Mon YYYY` or `Present` on the same line as the title and company | ✅ |
-| No first-person words | No "I" or "my" in any CV | ✅ |
-| Spelling | Spell checker (and Enhancv, 18 Oct 2026): only technical terms are flagged, such as Zephyr, Clippy, varlink, devicetree and asyncio. Keep them spelled exactly as they are, because ATS keyword search matches them letter for letter | ✅ |
-| Repeated words | Enhancv flagged "merged" 5 times. Now it is used at most twice per CV; the rest say "accepted", "landed upstream" or name the PR status once in the entry title | ✅ |
-| Links | Every link was opened; all the repos, upstream PRs, the Zephyr issue and the Google Summer of Code report exist. COSMIC PRs #2182 and #188 are open and ready for review (since 26 Sep 2026), so the CVs say "in review". | ✅ |
-| Length | One page for each version; two for the master (PDF and Word). **Send only the 1-page versions** (the program's tips: 1 page for recent graduates); the master is the source | ✅ |
-
-### 3. What no one can promise
-- Every company sets up its ATS differently. Some auto-reject on knockout questions (visa, location, years of experience) no matter what the CV says. Answer those questions honestly on the form.
-- Some ATS rank CVs by how well they match the job ad's words. That's why each application should get the 3–5 exact phrases from the ad (see "Before each application" below).
-- When a job site shows its parsed version of your CV in a form, **always check it and fix any field by hand** before you submit.
-- **File name:** rename the file to `Abdelrahman-Khalifa-CV.pdf` (or `.docx`) before you upload it.
-
-### Keyword match against real job ads (Oct 2026)
-
-Each version's text was compared with real ads from the companies it targets. "Match" is the share of the ad's technical keywords that the CV contains.
-
-| Version | Job ad | Match | Still missing (not in his record, so not added) |
-|---|---|---|---|
-| General SWE | Canonical — Graduate Software Engineer, Open Source and Linux | 72% | Go, cloud, containers/Kubernetes, packaging, security |
-| General SWE | IMC — C++ Software Engineer, Early Careers | 75% | low-latency, profiling |
-| General SWE | Cloudflare — Software Engineer, Egress (Go/Rust) | 63% | Go, cloud/AWS, Kubernetes, distributed systems |
-| Systems/Rust | Canonical — C++/Rust Graphics and Windowing (Mir) | 68% | graphics, OpenGL/Vulkan, Wayland |
-| Systems/Rust | Canonical — Graduate Software Engineer | 69% | Go, cloud, containers, packaging, security |
-| Systems/Rust | Cloudflare — Software Engineer, Egress (Go/Rust) | 58% | Go, cloud/AWS, Kubernetes, distributed systems |
-| Embedded | Canonical — Embedded & Desktop Linux Systems Engineer | 67% | Docker/containers, cloud, graphics, packaging |
-| Embedded | Canonical — Embedded Linux Senior Software Engineer | 67% | Docker/containers, cloud, graphics, packaging |
-
-The missing keywords line up with the gaps in [01 §4](../01-Profile-Analysis.md#4-gaps-and-how-to-close-them). The planned Rust backend service project (Docker, CI, Postgres, metrics) would add Docker, containers, cloud and distributed systems.
+- **Font:** the preamble loads `\usepackage[T1]{fontenc}` + `lmodern`. It looks the same as the default font, but parsers that find job titles by "Bold" in the font name (such as OpenResume) then read every job; without it, OpenResume read only 1 of 3 jobs.
+- **Section name "OSS Projects":** OpenResume treats a short title with the word "project" as a section; "Open Source" was merged into Experience and lost jobs.
+- **Checked with OpenResume (31 Oct 2026):** all 6 sections, all 3 jobs with dates, and the education are read. Plain-text extraction puts each right-aligned date on its own line, which ATS handle.
+- **Google Summer of Code:** the job line is `Google Summer of Code Contributor | The Linux Foundation (OpenPrinting) | May 2026 – Oct 2026`, following the program's rules (never "GSoC", never a job at Google). When a job site pre-fills this entry, fix it by hand: title "Google Summer of Code 2026 Contributor", company "The Linux Foundation (OpenPrinting)", location Remote.
+- **Grade:** written "Very Good with Honors"; parsers read "84.6%" as a GPA of 4.6. Type the percentage into the form when an Egyptian employer asks.
+- **Always** check the parsed fields a job site shows and fix them by hand. Upload the file as `Abdelrahman-Khalifa-CV.pdf`.
 
 **Before each application:**
-1. Copy the version's `.tex` file.
-2. Add the 3–5 exact phrases from the ad that are true for him to the Skills section and the Summary.
-3. Rebuild the PDF.
+1. Copy the closest base `.tex` into the role folder.
+2. Add the 3–5 exact phrases from the ad that are true for you to the Summary and Skills.
+3. Rebuild and check it is still 1 page.
 
 ## Facts left out on purpose
-- **Military service:** none of the versions says anything about it. International employers don't ask. For Egyptian employers, add "Military service: completed" under the contact details.
+- **Military service:** not on any CV. For Egyptian employers, add "Military service: completed" under the contact details only if a form asks.
 - **Removed after the interview:** the Deloitte mentorship, the Winter of Code lp/lpstat PRs (not merged) and the "C++/Qt" wording for the EKSON app (it is PyQt5).
-- **Zephyr issue #86977** is now verified (he was assigned and wrote the merged commit b117036), so the CVs link to it.
+- **raftkv:** only what is built (see facts.md); never claim Raft, SSTables or benchmarks until they exist.

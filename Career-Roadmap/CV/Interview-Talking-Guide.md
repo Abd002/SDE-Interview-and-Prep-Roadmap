@@ -66,7 +66,7 @@ This is almost always the first question. The structure is: **who I am → what 
 >
 > **Before that**, I did an Embedded Linux internship at Orange Digital Center (Yocto, Buildroot, a kernel module; 100% in the final evaluation), and my first open-source contribution, to Zephyr RTOS. I'm a Codeforces Expert and was an ECPC finalist four times.
 >
-> **Now** I'm studying CMU's database systems course and preparing a Raft-based key-value store in Rust, and I'm looking for a full-time systems or embedded role.
+> **Now** I'm studying CMU's database systems course and building raftkv, a Raft-based key-value store in Rust, and I'm looking for a full-time systems or embedded role.
 
 ### 2.3 Two minutes (when they say "walk me through your background")
 Tell it in order, one or two sentences per stage:
@@ -77,7 +77,7 @@ Tell it in order, one or two sentences per stage:
 4. **First open source (March 2025).** "My first contribution was to Zephyr RTOS: the `IP_MULTICAST_LOOP` socket option for IPv4, across six networking modules. Later, in December 2025, I got changes merged in Rust Clippy and in the Boa JavaScript engine."
 5. **EKSON (Aug 2025 – now, part-time, also during my military service).** "I own the software of the motion simulators: Zephyr firmware on the ESP32-S3 with PID control, the IMU and safety stops; the PyQt5 desktop app, where asyncio cut CPU use and latency by about 40%; remote control and firmware updates through a Node.js and MongoDB backend; and CI with GitHub Actions."
 6. **Google Summer of Code 2026 (May – Oct 2026).** "With The Linux Foundation's OpenPrinting project I built the Printers page for COSMIC Settings in Rust, five crates with the backend isolated behind varlink, and got 11 PRs merged in cups-rs and libcups. I passed the final evaluation and I still maintain it."
-7. **Now.** "I'm studying CMU 15-445 on my own (lectures 1 to 7, two homeworks and project 0 done, now the buffer pool project), reading Raft and *Designing Data-Intensive Applications* for my own Raft key-value store in Rust, and reviewing OS, networking and C++ fundamentals."
+7. **Now.** "I'm studying CMU 15-445 on my own (lectures 1 to 7, two homeworks and project 0 done, now the buffer pool project), reading Raft and *Designing Data-Intensive Applications* for raftkv, my Raft key-value store in Rust (the durable storage layer is done), and reviewing OS, networking and C++ fundamentals."
 8. **What I want.** "A full-time systems, Rust/Linux or embedded role in a team with senior engineers, where I can own a component and grow."
 
 **Military service:** completed (say it if an Egyptian employer asks).

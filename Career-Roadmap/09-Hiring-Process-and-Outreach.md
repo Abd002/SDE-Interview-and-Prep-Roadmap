@@ -8,7 +8,7 @@
 >
 > **Two limits:**
 > - **Reddit and LinkedIn block this research environment.** Reddit returns 403 and LinkedIn returns 999, so their threads and profiles could not be read. Reddit-style reports were found on other sites instead.
-> - Engineers at these companies almost never publish their CVs, so "copy the CV of people who got in" was replaced by the CV template that new-grad hires and the career subreddits use most. See [CV/README.md](CV/README.md#second-template-jakes-resume).
+> - Engineers at these companies almost never publish their CVs, so "copy the CV of people who got in" was replaced by the one-page LaTeX CV format that new-grad hires and the career subreddits use most. See [CV/README.md](CV/README.md).
 >
 > **Official** = the company says it. **Reports** = what candidates wrote, which varies by team, country and year.
 
@@ -43,11 +43,11 @@ Everything for one application now lives in that company's folder: the role, the
 
 | Company | Folder | Role |
 |---|---|---|
-| Canonical | [CV/applications/canonical/](CV/applications/canonical/README.md) | Graduate Software Engineer, Open Source and Linux |
-| Cloudflare | [CV/applications/cloudflare/](CV/applications/cloudflare/README.md) | Systems Engineer, Network Protocols & Distributed Systems |
-| Igalia | [CV/applications/igalia/](CV/applications/igalia/README.md) | JavaScript Engine Developer |
-| NXP | [CV/applications/nxp/](CV/applications/nxp/README.md) | Junior Embedded Software Engineer, Secure IoT Firmware |
-| Amazon | [CV/applications/amazon/](CV/applications/amazon/README.md) | Software Development Engineer – 2027 (Dublin) |
+| Canonical | [CV/applications/canonical/](CV/applications/canonical/graduate-software-engineer/README.md) | Graduate Software Engineer, Open Source and Linux |
+| Cloudflare | [CV/applications/cloudflare/](CV/applications/cloudflare/network-protocols/README.md) | Systems Engineer, Network Protocols & Distributed Systems |
+| Igalia | [CV/applications/igalia/](CV/applications/igalia/javascript-engine/README.md) | JavaScript Engine Developer |
+| NXP | [CV/applications/nxp/](CV/applications/nxp/junior-embedded-secure-iot/README.md) | Junior Embedded Software Engineer, Secure IoT Firmware |
+| Amazon | [CV/applications/amazon/](CV/applications/amazon/sde-2027/README.md) | Software Development Engineer – 2027 (Dublin) |
 
 **Before any interview:** read the tracks for that company in [Interview-Fast-Revision.md](../Study-Plan/Interview-Fast-Revision.md#3-which-tracks-for-each-company).
 
@@ -79,7 +79,7 @@ You only had short code-review contact with these people, so ask for advice, not
 | Person (GitHub) | Connection | Use |
 |---|---|---|
 | Zephyr networking reviewers of your PR #87167: **jukkar**, **rlubos**, **pdgendt**; merged by **kartben** | They reviewed or approved your `IP_MULTICAST_LOOP` PR | Ask which open Zephyr networking issues are worth taking next. More Zephyr PRs help with NXP |
-| **Boa maintainers** (the reviewers of your PR #4553) | They reviewed your Boa PR | Ask for a good next issue in Boa or **boa-dev/temporal**. That leads to the Igalia link explained in the [Igalia folder](CV/applications/igalia/README.md) |
+| **Boa maintainers** (the reviewers of your PR #4553) | They reviewed your Boa PR | Ask for a good next issue in Boa or **boa-dev/temporal**. That leads to the Igalia link explained in the [Igalia folder](CV/applications/igalia/javascript-engine/README.md) |
 
 ### Tier 3: people at each company (find them on LinkedIn)
 
