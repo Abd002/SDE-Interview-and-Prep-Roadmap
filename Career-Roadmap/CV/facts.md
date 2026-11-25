@@ -125,6 +125,14 @@ Part-time/remote during military service; still part-time now.
 
 **Zephyr "Technical Contributor":** a real certification/badge. Keep it on LinkedIn.
 
+## raftkv (flagship, in progress)
+- **Repo:** [github.com/Abd002/raftkv](https://github.com/Abd002/raftkv), public, started 24 Nov 2026, MIT OR Apache-2.0. Goal: a Raft-replicated KV store in Rust (plan: `Study-Plan/Flagship-Project.md`).
+- **Done (checked 25 Nov 2026, 11 commits, tests pass, Clippy clean):**
+  - `kv-wal` crate: records framed as `[crc32][len][payload]` (little-endian), 64 MiB record cap, `sync_data()` before a write counts as durable, torn-tail truncation on open, directory fsync when the file is created, and a **poisoned** state after a failed write or fsync.
+  - `kv-storage` crate: `Storage` trait (get/put/delete/scan), an in-memory engine and a durable engine (WAL + replay), command encoding, and one **conformance test suite** shared by both engines.
+  - CI: `cargo fmt`, Clippy with `-D warnings`, tests.
+- **Not done yet — never claim:** SSTables, compaction, gRPC, Raft, benchmarks. CV wording: "raftkv (Rust, in progress)" + the storage-layer facts above.
+
 ## Education
 - **High school: Thanaweya Amma** (Egyptian General Secondary Education Certificate). **Total 402.5/410 (98.2%)**, **Mathematics 119/120** (pure and applied), **Arabic 79/80**.
   - **Rank:** 1st in his school class (out of 25); nationally roughly in the top 2,500 of about 107,000 students (about the top 2.3%). Canonical written interview, 22 Nov 2026.

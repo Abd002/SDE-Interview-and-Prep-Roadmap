@@ -153,6 +153,17 @@ Checked open on each company's own board (Workday, Greenhouse) or LinkedIn on 16
 | 9 | **Canonical** | Linux Software Engineer - Ubuntu for Next-Gen Silicon | Remote | Linux stack for new silicon, many seniority levels. **Hold until the first Canonical application is answered** | ★★ | [canonical-silicon/](CV/applications/canonical-silicon/README.md) | Ready, not sent |
 | 10 | **Zylo3D** | Senior Embedded C++ / Qt Engineer | Heliopolis | Senior; C++ Qt/QML, embedded Linux, motors and sensors | ★ stretch | [zylo3d/](CV/applications/zylo3d/README.md) | Ready, not sent |
 
+### Rust roles (25 Nov 2026)
+
+Found on each company's own board (Ashby, Greenhouse) and LinkedIn, all checked open on 25 Nov 2026. Each folder has a tailored CV (PDF, Word, Jake's copy), the saved ad, a README and an `application-form.md` with every answer ready to paste. Kraken's non-senior Rust roles were skipped: Egypt isn't one of their eligible countries.
+
+| # | Company | Role | Where | Why | Chance | Folder | Status |
+|---|---|---|---|---|---|---|---|
+| 1 | **Rerun** | Software Engineer (Rust) | Remote Europe (outside Europe case by case) | Rust UI + data generalist; "no years of production Rust needed"; robotics data | ★★★ | [rerun/](CV/applications/rerun/README.md) | Ready, not sent |
+| 2 | **Cloudflare** | Systems Engineer, Network Data Plane Software (or Network Software Performance) | Lisbon / London, hybrid, visa | Rust packet firewall and XDP load balancer; matches the Zephyr IPv4 work | ★★ | [cloudflare-dataplane/](CV/applications/cloudflare-dataplane/README.md) | Ready, not sent; apply to one of the two |
+| 3 | **BairesDev** | Rust Engineer (Remote) | Remote from anywhere | Rust backend (Axum/Actix, gRPC, async); asks 4+ years | ★ stretch | [bairesdev/](CV/applications/bairesdev/README.md) | Ready, not sent |
+| 4 | **Alignerr** | Back End Developer (AI Infrastructure), contract | Remote, 10–40 h/week | Side income; Rust, Python or Node.js backends | ★★ | [alignerr/](CV/applications/alignerr/README.md) | Ready, not sent |
+
 ### Oman check (3 Nov 2026)
 
 LinkedIn, last 30 days, searches for software engineer, embedded, firmware, C++, Python, Linux, backend, IoT, Rust and graduate roles in Oman. **Almost no software-development roles, and none in embedded or systems work like yours.** In the Gulf the employer sponsors the work visa, but Oman reserves many IT jobs for Omani nationals (Omanisation), and several postings say "Omani National only".

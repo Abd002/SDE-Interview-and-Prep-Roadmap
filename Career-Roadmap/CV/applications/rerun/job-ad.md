@@ -1,0 +1,77 @@
+# Rerun — Software Engineer (Rust)
+
+> Saved 25 Nov 2026 from https://jobs.ashbyhq.com/rerun/999921b3-b13e-4afd-b670-0893c935ff30 (published 2026-09-11). Location: Remote Europe (remote).
+
+At Rerun, we're building a new multimodal data stack for Physical AI. Large parts of the physical-world economy will be transformed by these technologies, and we're building the data infrastructure and tools that enable it to happen.
+
+Rerun's open source project focuses on visualizing and handling multimodal logs, and is already loved by some of the best teams in the world. A lot of these teams are sitting on petabytes of robot data, far more than any local tool can handle, so we also built Rerun Hub, a database purpose-built for querying and visualizing across the whole archive.
+
+We're an open core company. The viewer and SDKs are open source and stay that way, so a large part of what you build with us directly benefits the Rerun community, whether that's robotics, AR/VR, autonomous systems or more. The rest connects that open source layer to infrastructure operating at a very different scale.
+
+
+
+
+WHAT YOU'LL WORK ON
+
+ - Build and evolve the Rerun viewer and cross-language SDKs, handling large volumes of 2D, 3D, time-series and statistical data in real time.
+
+ - Integrate the viewer seamlessly with Rerun Hub, so users can work with data far larger than their machine without it feeling that way.
+
+ - Make technology and architecture decisions that reach across the full stack, and keep the system maintainable as the volume of data flowing through it grows.
+
+ - Work closely with the Hub, backend and design teams. A lot of the interesting problems live between those boundaries, so reaching a good compromise quickly matters.
+
+ - Profile and optimize user workflows across desktop platforms and the web.
+
+ - Contribute to downstream open source projects when that's what it takes to make progress.
+
+ - Work directly with the people using Rerun, from the open source community to our customers running it on very large datasets, and help them get great results
+   
+   
+
+
+WE WOULD LOVE IF YOU HAVE
+
+ - Strong programming skills in Rust or another compiled language You'll need to be fluent enough to read and work in our Rust codebase, but you don't need years of production Rust behind you.
+
+ - A generalist with UI skills. You'll move between the interface, rendering, data handling and infrastructure rather than staying in one lane, so we need people who can build interfaces that feel good to use.
+
+ - AI-empowered: You embrace AI as a core part of how you engineer software, actively integrating AI tools and agentic workflows into your daily development process while applying strong engineering judgement to the output. Experience integrating agentic features or APIs into your own applications is a plus.
+
+ - Experience with interactive data visualization, particularly large datasets and complex visual structures.
+
+ - Experience building real-time, high-performance applications.
+
+ - Comfort with ambiguity. We're small and move fast, so we need people who find the problem, make a call, and tell everyone, rather than waiting to be told what to do.
+
+ - Great communication skills in English. You'll be working with the community as well as your team.
+
+
+NICE-TO-HAVES
+
+ - Experience contributing to or maintaining open source projects, especially ones with a real community around them.
+
+ - A background in something close to what we do: robotics (RViz is a big plus), simulation, streaming, rendering, or game engines.
+
+ - Knowledge of GPU rendering pipelines like wgpu, and how to get performance out of them.
+
+
+
+
+HOW WE WORK AT RERUN
+
+ - We're a remote company headquartered in Stockholm, Sweden.
+
+ - We meet up in person for a week roughly once a quarter.
+
+ - The team you'll join has members in European and US-east timezones. Everyone is available for synchronous work between 1:30 and 5:00pm CET. Given our current team distribution, candidates outside Europe or the US will be considered case by case, to make sure there's enough overlap for effective collaboration.
+
+ - We've put together an uncommonly talented tech team, value agency and helpfulness highly, and expect everyone to take broad responsibility for what they build.
+
+ - We offer competitive cash and equity compensation, six weeks paid vacation, and whatever hardware and software you need to do your job.
+   
+   
+
+Most of all we hope you're excited to build some really cool technology that will have a real impact on the world with us.
+
+If you find that you don't fit neatly into this or any of the other open roles, we're not that rigid and are generally looking for great developers who can contribute to what we're building. Just go ahead and apply to the one you think is the closest and we'll take it from there.
