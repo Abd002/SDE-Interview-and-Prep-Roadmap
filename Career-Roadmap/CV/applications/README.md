@@ -26,6 +26,7 @@ Every fact comes from [../facts.md](../facts.md).
 | Alignerr | Back End Developer (AI Infrastructure) | [alignerr/backend-developer/](alignerr/backend-developer/README.md) | **Ready, not sent** |
 | Amazon | Software Development Engineer – 2027, AUTA | [amazon/sde-2027/](amazon/sde-2027/README.md) | Preparing |
 | Analog Devices | FY27 Software Engineering Graduate Opportunities | [analog-devices/fy27-software-engineering-graduate/](analog-devices/fy27-software-engineering-graduate/README.md) | **Applied 25 Nov 2026** in Workday |
+| Applied Intuition | Founding Software Integration Engineer, Middle East | [applied-intuition/software-integration-engineer-middle-east/](applied-intuition/software-integration-engineer-middle-east/README.md) | **Ready, not sent** |
 | BairesDev | Rust Engineer - Remote Work, REF#290362 | [bairesdev/rust-engineer/](bairesdev/rust-engineer/README.md) | **Applied 25 Nov 2026** via LinkedIn |
 | Bending Spoons | Graduate Software Engineer | [bending-spoons/graduate-software-engineer/](bending-spoons/graduate-software-engineer/README.md) | **Applied 25 Nov 2026** on jobs.bendingspoons.com |
 | Canonical | Graduate Software Engineer, Open Source and Linux | [canonical/graduate-software-engineer/](canonical/graduate-software-engineer/README.md) | **Written interview submitted 22 Nov 2026** (invited 16 Nov by Alex Cendejas, the hiring l… |
@@ -34,7 +35,9 @@ Every fact comes from [../facts.md](../facts.md).
 |  | Systems Engineer, Network Protocols & Distributed Systems | [cloudflare/network-protocols/](cloudflare/network-protocols/README.md) | **Applied** |
 | Collabora | Embedded Linux Consultant Engineer (Remote/Anywhere) | [collabora/embedded-linux-consultant/](collabora/embedded-linux-consultant/README.md) | **Applied** |
 | CrimsonLogic | Junior System Engineer | [crimsonlogic/junior-system-engineer/](crimsonlogic/junior-system-engineer/README.md) | **Rejected by 14 Nov 2026** (LinkedIn update, no reason given) |
+| DXC Technology | Junior Backend Java Microservices Developer, Fresh Graduates | [dxc/junior-backend-java-microservices/](dxc/junior-backend-java-microservices/README.md) | **Ready, not sent** |
 | eInfochips (Arrow) | Senior Embedded Engineer | [einfochips/embedded-engineer/](einfochips/embedded-engineer/README.md) | **Applied 23 Nov 2026** in Arrow's Workday |
+| Geotab | Software Developer (Dubai) | [geotab/software-developer-dubai/](geotab/software-developer-dubai/README.md) | **Ready, not sent** |
 | Hitachi Rail | Embedded Application Developer | [hitachi-rail/embedded-application-developer/](hitachi-rail/embedded-application-developer/README.md) | **Applied** |
 |  | Software Validation & Test Engineer | [hitachi-rail/software-validation-test/](hitachi-rail/software-validation-test/README.md) | **Applied 23 Nov 2026** in Workday (salary given: EGP 25,000 net/month, inside the 20–30k … |
 | Igalia | JavaScript Engine Developer | [igalia/javascript-engine/](igalia/javascript-engine/README.md) | **Rejected 7 Nov 2026.** Asumu Takikawa (Web Languages team): "We appreciated that you hav… |
@@ -47,10 +50,12 @@ Every fact comes from [../facts.md](../facts.md).
 | noon | Software Development Engineer 1 (Backend) | [noon/sde1-backend/](noon/sde1-backend/README.md) | Not started |
 | NXP | Junior Embedded Software Engineer, Secure IoT Firmware | [nxp/junior-embedded-secure-iot/](nxp/junior-embedded-secure-iot/README.md) | **Rejected** on 2 Nov 2026 |
 | Rerun | Software Engineer (Rust) | [rerun/software-engineer-rust/](rerun/software-engineer-rust/README.md) | **Applied 25 Nov 2026** through Ashby (cover answers from application-form.md) |
+| Revolut | Graduate Programme 2027: Software Engineer (Java) | [revolut/graduate-programme-2027-software-engineer-java/](revolut/graduate-programme-2027-software-engineer-java/README.md) | **Ready, not sent** |
 | Schneider Electric | Systems Engineer | [schneider-electric/systems-engineer/](schneider-electric/systems-engineer/README.md) | **Applied 23 Nov 2026** via LinkedIn |
 | Sentry | Software Engineer, New Grad (2027) | [sentry/software-engineer-new-grad-2027/](sentry/software-engineer-new-grad-2027/README.md) | **Applied 25 Nov 2026** through Ashby |
 | Siemens | Software Development Engineer | [siemens/eda-software-developer/](siemens/eda-software-developer/README.md) | **Ready, not sent** |
 |  | Software Engineer, Graph Lakehouse | [siemens/graph-lakehouse/](siemens/graph-lakehouse/README.md) | Not started |
+| talabat | Software Engineer I, Backend (DMarts Network Management) | [talabat/software-engineer-1-backend/](talabat/software-engineer-1-backend/README.md) | **Ready, not sent** |
 | Valeo | Junior Software Engineer, BRAIN | [valeo/brain-junior-software-engineer/](valeo/brain-junior-software-engineer/README.md) | **Closed** (23 Nov 2026) |
 |  | Graduate In Training Program (GIT), Embedded Software | [valeo/git-embedded-software/](valeo/git-embedded-software/README.md) | **Applied 23 Nov 2026** in Workday |
 |  | Junior Software Engineer, LIGHT | [valeo/light-junior-software-engineer/](valeo/light-junior-software-engineer/README.md) | **Rejected 13 Nov 2026** (Workday email, no reason given) |

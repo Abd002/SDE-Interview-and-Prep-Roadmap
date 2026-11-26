@@ -181,6 +181,18 @@ Checked open on 25 Nov 2026. Skipped: Brightskies IVI Audio and Siemens ECAD (5+
 | 9 | **IMC** | [Graduate Software Engineer (2027)](https://job-boards.eu.greenhouse.io/imc/jobs/4667814101) | Amsterdam / Aarhus | C++ and algorithms; but final-year students only and mandatory US training (US visa) | ★ | [imc/graduate-software-engineer-2027/](CV/applications/imc/graduate-software-engineer-2027/README.md) | **Eligibility email sent 25 Nov 2026**; apply after IMC answers |
 | 10 | **Analog Devices** | [FY27 Software Engineering Graduate](https://www.linkedin.com/jobs/view/4461878231) | Limerick / Cork / Dublin; relocation assistance | Embedded software rotation next to ADI hardware; sponsorship not stated | ★★ | [analog-devices/fy27-software-engineering-graduate/](CV/applications/analog-devices/fy27-software-engineering-graduate/README.md) | **Applied 25 Nov 2026** |
 
+### Gulf roles (26 Nov 2026)
+
+LinkedIn, last 2 weeks, entry to associate level, in Saudi Arabia, UAE, Qatar, Kuwait, Bahrain and Oman; each checked open on 26 Nov 2026. In the Gulf the employer sponsors the work visa. Nothing fitting in Qatar, Kuwait, Bahrain or Oman. Skipped: Scale AI New Grad, Doha (graduating Fall 2026/Spring 2027 only); EDGE, Alfa Laval, Movandi and "think" Linux kernel (5–6+ years); Recruitable (Saudi nationals only).
+
+| # | Company | Role | Where | Why | Chance | Folder | Status |
+|---|---|---|---|---|---|---|---|
+| 1 | **Revolut** | [Graduate Programme 2027: Software Engineer (Java)](https://www.linkedin.com/jobs/view/4419304313) | UAE hub (also PL, PT, ES, UK); visa help | Takes 2025 graduates; international applicants; starts March or September 2027 | ★★★ | [revolut/graduate-programme-2027-software-engineer-java/](CV/applications/revolut/graduate-programme-2027-software-engineer-java/README.md) | Ready, not sent |
+| 2 | **Applied Intuition** | [Founding Software Integration Engineer, Middle East](https://www.linkedin.com/jobs/view/4483649738) | Riyadh, in office; SAR 180K–850K | Python/C++, Linux, embedded, AUTOSAR; asks 2+ years | ★★ | [applied-intuition/software-integration-engineer-middle-east/](CV/applications/applied-intuition/software-integration-engineer-middle-east/README.md) | Ready, not sent |
+| 3 | **Geotab** | [Software Developer](https://www.linkedin.com/jobs/view/4475340211) | Dubai | Vehicle telematics data; Java/Python/Go/SQL; 1–5 years | ★★ | [geotab/software-developer-dubai/](CV/applications/geotab/software-developer-dubai/README.md) | Ready, not sent |
+| 4 | **talabat** | [Software Engineer I, Backend (DMarts)](https://jobs.smartrecruiters.com/DeliveryHero/744000162723199-software-engineer-l-backend-dmarts-network-management-) | Dubai | Entry level; prefers .NET/Go/C# | ★★ | [talabat/software-engineer-1-backend/](CV/applications/talabat/software-engineer-1-backend/README.md) | Ready, not sent |
+| 5 | **DXC Technology** | [Junior Backend Java Microservices Developer, Fresh Graduates](https://www.linkedin.com/jobs/view/4492017507) | Riyadh | 0–2 years; needs Spring Boot | ★ | [dxc/junior-backend-java-microservices/](CV/applications/dxc/junior-backend-java-microservices/README.md) | Ready, not sent |
+
 ### Oman check (3 Nov 2026)
 
 LinkedIn, last 30 days, searches for software engineer, embedded, firmware, C++, Python, Linux, backend, IoT, Rust and graduate roles in Oman. **Almost no software-development roles, and none in embedded or systems work like yours.** In the Gulf the employer sponsors the work visa, but Oman reserves many IT jobs for Omani nationals (Omanisation), and several postings say "Omani National only".
