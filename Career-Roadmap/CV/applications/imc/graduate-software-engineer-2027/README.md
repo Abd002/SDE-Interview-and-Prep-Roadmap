@@ -11,17 +11,18 @@
 | **What they want** | C++ or Java (Python preferred too), algorithms and data structures, strong analytical skills, interest in financial markets. Interviews in C++ or Java |
 | **Why it fits** | Codeforces Expert in C++, 4-time ECPC finalist, ICPC mentor; C++17 database work (CMU 15-445); multithreading and Linux |
 
-## 2. Read this before applying: two eligibility problems
+## 2. Eligibility: confirmed by IMC (26 Nov 2026)
 
-1. **Final-year students only.** The ad asks for candidates "in your ultimate year of study … graduating" and joining in February or August 2027. You graduated in 2025, so the form's year-of-study and graduation questions will show that, and an automatic filter may reject you. Answer honestly (see the form file); don't present yourself as a student.
-2. **US business visa.** Training in the US is mandatory, and they stop applications from people who can't get the visa in time. As an Egyptian citizen you would need a US B-1 visa, and Cairo interview wait times can be long.
-
-**Recommended:** email **CampusEU@imc.com** first and ask whether a 2025 graduate with one year of work experience can join the 2027 graduate intake. A draft is in [application-form.md](application-form.md). Apply if they say yes, or apply anyway and accept that the chance is low. Note: if you're rejected this season, you can't reapply until summer 2027.
+Alejandra Guajardo C. (Recruitment Coordinator, CampusEU@imc.com) answered the eligibility email:
+1. **2025 graduates are eligible.** IMC considers graduate candidates within **two years of graduation**, so you can apply for the 2027 intake.
+2. **Visa:** IMC supports the visa process (including the US business visa for the Global Trainee Programme) if you're successful.
+3. **Watch out:** because your degree is from a university outside Europe, the application **may be screened out automatically on location**. If that happens, email CampusEU@imc.com so they can flag it and reassess.
+4. **After you apply, reply to Alejandra's email** to tell them you've submitted (draft in [application-form.md](application-form.md)).
 
 | | |
 |---|---|
-| **Chance** | ★ Strong technical fit, but the eligibility rule and the visa are real blockers |
-| **Status** | **Eligibility email sent to CampusEU@imc.com on 25 Nov 2026**; waiting for the answer before applying |
+| **Chance** | ★★ Strong technical fit; IMC confirmed eligibility and visa support. The location screen is the remaining risk |
+| **Status** | **Eligible (IMC reply, 26 Nov 2026).** Apply now, then reply to IMC's email |
 
 ## 3. Files
 
@@ -35,8 +36,9 @@
 **What the tailored CV changes:** the Summary leads with modern C++ and algorithms (Codeforces Expert in C++, ECPC, ICPC mentoring); CMU 15-445 (C++17, `std::mutex` per row) comes before raftkv; Skills list C++17 first, add Java and a Concepts line (algorithms, multithreading and locking, OS, networking); Education adds Golden Mentor.
 
 ## 4. Checklist
-- [x] Send the email to CampusEU@imc.com (25 Nov 2026); wait for the answer. No reply in 2 weeks: apply anyway or drop it
+- [x] Send the eligibility email to CampusEU@imc.com (25 Nov 2026); answered 26 Nov: eligible
 - [ ] Read IMC's [interview preparation guide](https://cdn.sanity.io/files/l1io23s3/production/cf48d9c14a5315785738597ea3dda644331bac99.pdf) and the [Interview Conduct Policy](https://cdn.sanity.io/files/l1io23s3/production/c810b57c41777c1a76fc21e1d56e74c6ff366d64.pdf)
 - [ ] Get your academic rating from the [mycollab calculator](https://www.mycollab.org/) and prepare your transcript PDF
 - [ ] Apply with the PDF above and the answers in [application-form.md](application-form.md)
+- [ ] Reply to Alejandra's email saying you've applied (draft in application-form.md)
 - [ ] Fill in **Applied on** here, in 08 and in Notion

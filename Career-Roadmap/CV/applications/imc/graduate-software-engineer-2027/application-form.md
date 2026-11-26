@@ -25,7 +25,7 @@ Abdelrahman Khalifa
 
 ---
 
-## Step 2: Greenhouse form (only if they say you're eligible, or you decide to apply anyway)
+## Step 2: Greenhouse form (IMC confirmed on 26 Nov 2026 that you're eligible)
 
 | Field | What to enter |
 |---|---|
@@ -41,15 +41,30 @@ Abdelrahman Khalifa
 | Country you currently reside in | Egypt |
 | Will you require immigration sponsorship? | **Yes** |
 | Preferred location | Amsterdam |
-| Current year of studies | Pick "Graduated" if it exists; otherwise "Other" and type: `Graduated in 2025 (B.Sc.)` |
+| Current year of studies | Pick "Graduated" if it exists; otherwise "Other" and type: `Graduated in 2025 (B.Sc.); IMC Campus EU confirmed eligibility by email on 26 Nov 2026` |
 | Latest field of study | Computer Engineering (or Computer Science); if not listed: `Computer and Systems Engineering` |
 | Expected year of graduation | 2025 (if the list starts at 2026, pick the earliest and explain in the "not listed" box or the deadlines box) |
 | Expected graduation month | The month on your graduation certificate |
 | Academic performance rating | Use the [mycollab calculator](https://www.mycollab.org/) with 84.6% (Very Good with Honors) and pick the result it gives. Don't guess |
 | Academic transcript | Your English transcript PDF (official or unofficial) |
-| Gender | Male |
+| Gender (required) | Your own answer; pick "Prefer not to say" if offered |
 | Previously applied this season? | No |
 | Existing interview processes, offers or deadlines | `Canonical, Graduate Software Engineer (remote): written interview submitted 22 Nov 2026, next step aptitude tests. Vodafone Egypt, Discover Graduate Program: online assessment stage.` Update this to what's true on the day you apply |
-| Preferred Global Traineeship Cohort | The cohort that matches your real start date |
+| Preferred Global Traineeship Cohort | August 2027 |
 | Privacy Statement / Interview Conduct Policy | Accept (read the policy first) |
 | Voluntary gender question and consent box | Optional |
+
+## Step 3: reply to IMC after applying (reply in the same email thread)
+
+---
+
+Hi Alejandra,
+
+Thank you for the quick and clear answer. I've now submitted my application for the Graduate Software Engineer (2027) role in Amsterdam through the careers website.
+
+As you mentioned, my degree is from a university outside Europe, so please flag my application with the recruitment team in case it's screened out on location.
+
+Best regards,
+Abdelrahman Khalifa
+
+---
