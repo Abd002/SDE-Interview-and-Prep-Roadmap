@@ -14,7 +14,7 @@
 | **Gap** | No production .NET or Go, no cloud. Say you're ready to switch; skim a C#/.NET minimal-API tutorial before interviews |
 | **Watch out** | talabat also posts a Software Engineer II for the same team; this file is for the entry-level **I** |
 | **Chance** | ★★ |
-| **Status** | Ready, not sent |
+| **Status** | **Applied 26 Nov 2026** on SmartRecruiters |
 
 ## 2. Files
 
@@ -28,5 +28,5 @@
 **What the tailored CV changes:** the Summary leads with the production backend; C# and Java come first in Skills; the Inventory Management System (C#, SQL Server) replaces CMU 15-445.
 
 ## 3. Checklist
-- [ ] Apply with the PDF and the answers in [application-form.md](application-form.md)
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Apply with the PDF and the answers in [application-form.md](application-form.md)
+- [x] Fill in **Applied on** here, in 08 and in Notion

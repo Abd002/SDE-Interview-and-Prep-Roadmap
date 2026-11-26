@@ -13,7 +13,7 @@
 | **Why it fits** | You integrate software with real hardware every day at EKSON (Zephyr firmware, IMU, valves); embedded Linux with Yocto and Buildroot; an AUTOSAR-based vehicle prototype with a UDS bootloader (graduation project); Python and C/C++; CI on GitHub Actions |
 | **Gap (be honest)** | About 15 months of work experience against 2+ years; no autonomy or trucking work; you have used UART, I2C and SPI but **not CAN in production** (CAN was tried in the graduation project and dropped). Applied Intuition is a US company ($15B), so the bar is high |
 | **Chance** | ★★ Strong technical overlap; experience and "founding" (first in the region) make it a stretch |
-| **Status** | Ready, not sent |
+| **Status** | **Applied 26 Nov 2026** through LinkedIn / applied.co |
 
 ## 2. Files
 
@@ -28,5 +28,5 @@
 
 ## 3. Checklist
 - [ ] Read applied.co's product pages (Vehicle OS, simulation tools) so you can say what an integration engineer would ship to a customer
-- [ ] Apply with the PDF and the answers in [application-form.md](application-form.md)
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Apply with the PDF and the answers in [application-form.md](application-form.md)
+- [x] Fill in **Applied on** here, in 08 and in Notion

@@ -187,10 +187,10 @@ LinkedIn, last 2 weeks, entry to associate level, in Saudi Arabia, UAE, Qatar, K
 
 | # | Company | Role | Where | Why | Chance | Folder | Status |
 |---|---|---|---|---|---|---|---|
-| 1 | **Revolut** | [Graduate Programme 2027: Software Engineer (Java)](https://www.linkedin.com/jobs/view/4419304313) | UAE hub (also PL, PT, ES, UK); visa help | Takes 2025 graduates; international applicants; starts March or September 2027 | ★★★ | [revolut/graduate-programme-2027-software-engineer-java/](CV/applications/revolut/graduate-programme-2027-software-engineer-java/README.md) | Ready, not sent |
-| 2 | **Applied Intuition** | [Founding Software Integration Engineer, Middle East](https://www.linkedin.com/jobs/view/4483649738) | Riyadh, in office; SAR 180K–850K | Python/C++, Linux, embedded, AUTOSAR; asks 2+ years | ★★ | [applied-intuition/software-integration-engineer-middle-east/](CV/applications/applied-intuition/software-integration-engineer-middle-east/README.md) | Ready, not sent |
+| 1 | **Revolut** | [Graduate Programme 2027: Software Engineer (Java)](https://www.linkedin.com/jobs/view/4419304313) | UAE hub (also PL, PT, ES, UK); visa help | Takes 2025 graduates; international applicants; starts March or September 2027 | ★★★ | [revolut/graduate-programme-2027-software-engineer-java/](CV/applications/revolut/graduate-programme-2027-software-engineer-java/README.md) | **Applied 26 Nov 2026** |
+| 2 | **Applied Intuition** | [Founding Software Integration Engineer, Middle East](https://www.linkedin.com/jobs/view/4483649738) | Riyadh, in office; SAR 180K–850K | Python/C++, Linux, embedded, AUTOSAR; asks 2+ years | ★★ | [applied-intuition/software-integration-engineer-middle-east/](CV/applications/applied-intuition/software-integration-engineer-middle-east/README.md) | **Applied 26 Nov 2026** |
 | 3 | **Geotab** | [Software Developer](https://www.linkedin.com/jobs/view/4475340211) | Dubai | Vehicle telematics data; Java/Python/Go/SQL; 1–5 years | ★★ | [geotab/software-developer-dubai/](CV/applications/geotab/software-developer-dubai/README.md) | Ready, not sent |
-| 4 | **talabat** | [Software Engineer I, Backend (DMarts)](https://jobs.smartrecruiters.com/DeliveryHero/744000162723199-software-engineer-l-backend-dmarts-network-management-) | Dubai | Entry level; prefers .NET/Go/C# | ★★ | [talabat/software-engineer-1-backend/](CV/applications/talabat/software-engineer-1-backend/README.md) | Ready, not sent |
+| 4 | **talabat** | [Software Engineer I, Backend (DMarts)](https://jobs.smartrecruiters.com/DeliveryHero/744000162723199-software-engineer-l-backend-dmarts-network-management-) | Dubai | Entry level; prefers .NET/Go/C# | ★★ | [talabat/software-engineer-1-backend/](CV/applications/talabat/software-engineer-1-backend/README.md) | **Applied 26 Nov 2026** |
 | 5 | **DXC Technology** | [Junior Backend Java Microservices Developer, Fresh Graduates](https://www.linkedin.com/jobs/view/4492017507) | Riyadh | 0–2 years; needs Spring Boot | ★ | [dxc/junior-backend-java-microservices/](CV/applications/dxc/junior-backend-java-microservices/README.md) | Ready, not sent |
 
 ### Oman check (3 Nov 2026)
@@ -291,7 +291,7 @@ Update these by hand.
 
 | Metric | Count |
 |---|---|
-| Applications sent (jobs) | 24 (Canonical, Cloudflare ×2 (Network Protocols, Network Data Plane), Igalia ×2 (JS engine, Multimedia), NXP, Valeo ×4 (LIGHT, POWER SW, Integrator POWER, GIT), Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail ×2 (Embedded App Dev, Validation & Test), KPEK, eInfochips, Schneider Electric, Rerun, BairesDev, Sentry, Bending Spoons, Analog Devices) |
+| Applications sent (jobs) | 27 (Canonical, Cloudflare ×2 (Network Protocols, Network Data Plane), Igalia ×2 (JS engine, Multimedia), NXP, Valeo ×4 (LIGHT, POWER SW, Integrator POWER, GIT), Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail ×2 (Embedded App Dev, Validation & Test), KPEK, eInfochips, Schneider Electric, Rerun, BairesDev, Sentry, Bending Spoons, Analog Devices, Revolut, Applied Intuition, talabat) |
 | Side-income applications | 3 (Mercor ×2 rejected 19 Nov; micro1 pending) |
 | Applications sent (master's / scholarships) | 0 |
 | Rejected | 4 (NXP 2 Nov, Igalia 7 Nov, Valeo 13 Nov, CrimsonLogic by 14 Nov) |

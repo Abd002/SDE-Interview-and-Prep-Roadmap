@@ -13,7 +13,7 @@
 | **Why it fits** | Strong CS fundamentals (Codeforces Expert, ECPC), production backend code at EKSON, Java (OS simulator), concurrency (CMU 15-445 locking, raftkv), tests in CI, 11 upstream PRs |
 | **Gap** | Java isn't your main language and you haven't used Spring or Kubernetes. Revise modern Java (records, streams, `CompletableFuture`, collections) before the coding test |
 | **Chance** | ★★★ Best Gulf fit: no years required, and a graduate role that sponsors the visa |
-| **Status** | Ready, not sent |
+| **Status** | **Applied 26 Nov 2026** on revolut.com/careers (September 2027 start) |
 
 ## 2. Files
 
@@ -28,5 +28,5 @@
 
 ## 3. Checklist
 - [ ] Revise Java and do 3–4 timed LeetCode mediums in Java (Revolut's first step is usually an online coding test)
-- [ ] Apply with the PDF above and the answers in [application-form.md](application-form.md); choose the **September 2027** start if asked
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Apply with the PDF above and the answers in [application-form.md](application-form.md); choose the **September 2027** start if asked
+- [x] Fill in **Applied on** here, in 08 and in Notion
