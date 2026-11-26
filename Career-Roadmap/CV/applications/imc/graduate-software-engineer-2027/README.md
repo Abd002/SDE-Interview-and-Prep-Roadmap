@@ -22,7 +22,7 @@ Alejandra Guajardo C. (Recruitment Coordinator, CampusEU@imc.com) answered the e
 | | |
 |---|---|
 | **Chance** | ★★ Strong technical fit; IMC confirmed eligibility and visa support. The location screen is the remaining risk |
-| **Status** | **Applied 26 Nov 2026** on Greenhouse (C++, Amsterdam, August 2027 cohort). Interview rules and prep: [interview-prep.md](interview-prep.md) |
+| **Status** | **Applied 26 Nov 2026** on Greenhouse (C++, Amsterdam, August 2027 cohort). Track it at [my.greenhouse.io](https://my.greenhouse.io/applications/105455500) (log in). Interview rules and prep: [interview-prep.md](interview-prep.md) |
 
 ## 3. Files
 
