@@ -22,7 +22,7 @@ Alejandra Guajardo C. (Recruitment Coordinator, CampusEU@imc.com) answered the e
 | | |
 |---|---|
 | **Chance** | ★★ Strong technical fit; IMC confirmed eligibility and visa support. The location screen is the remaining risk |
-| **Status** | **Eligible (IMC reply, 26 Nov 2026).** Apply now, then reply to IMC's email |
+| **Status** | **Applied 26 Nov 2026** on Greenhouse (C++, Amsterdam, August 2027 cohort). Interview rules and prep: [interview-prep.md](interview-prep.md) |
 
 ## 3. Files
 
@@ -39,6 +39,6 @@ Alejandra Guajardo C. (Recruitment Coordinator, CampusEU@imc.com) answered the e
 - [x] Send the eligibility email to CampusEU@imc.com (25 Nov 2026); answered 26 Nov: eligible
 - [ ] Read IMC's [interview preparation guide](https://cdn.sanity.io/files/l1io23s3/production/cf48d9c14a5315785738597ea3dda644331bac99.pdf) and the [Interview Conduct Policy](https://cdn.sanity.io/files/l1io23s3/production/c810b57c41777c1a76fc21e1d56e74c6ff366d64.pdf)
 - [ ] Get your academic rating from the [mycollab calculator](https://www.mycollab.org/) and prepare your transcript PDF
-- [ ] Apply with the PDF above and the answers in [application-form.md](application-form.md)
+- [x] Apply with the PDF above and the answers in [application-form.md](application-form.md)
 - [ ] Reply to Alejandra's email saying you've applied (draft in application-form.md)
-- [ ] Fill in **Applied on** here, in 08 and in Notion
+- [x] Fill in **Applied on** here, in 08 and in Notion

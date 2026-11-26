@@ -42,7 +42,7 @@ Every fact comes from [../facts.md](../facts.md).
 |  | Software Validation & Test Engineer | [hitachi-rail/software-validation-test/](hitachi-rail/software-validation-test/README.md) | **Applied 23 Nov 2026** in Workday (salary given: EGP 25,000 net/month, inside the 20–30k … |
 | Igalia | JavaScript Engine Developer | [igalia/javascript-engine/](igalia/javascript-engine/README.md) | **Rejected 7 Nov 2026.** Asumu Takikawa (Web Languages team): "We appreciated that you hav… |
 |  | Multimedia Developer | [igalia/multimedia/](igalia/multimedia/README.md) | **Applied 23 Nov 2026** through igalia.com |
-| IMC | Graduate Software Engineer (2027) | [imc/graduate-software-engineer-2027/](imc/graduate-software-engineer-2027/README.md) | **Eligible (IMC reply 26 Nov 2026)**; apply now, then reply to IMC |
+| IMC | Graduate Software Engineer (2027) | [imc/graduate-software-engineer-2027/](imc/graduate-software-engineer-2027/README.md) | **Applied 26 Nov 2026** on Greenhouse |
 | KPEK | Embedded System and IoT Engineer | [kpek/embedded-iot-engineer/](kpek/embedded-iot-engineer/README.md) | **Applied 23 Nov 2026** through the form on kpekiot.com/career |
 | Merck Group | Software Engineer II (Expert 2), Platform Engineering | [merck/software-engineer-ii-platform/](merck/software-engineer-ii-platform/README.md) | Not started |
 | Mercor | Open Source Maintainer / Core Contributor – Software Engineer | [mercor/open-source-maintainer/](mercor/open-source-maintainer/README.md) | **Rejected 19 Nov 2026** (automated email, no reason; both Mercor roles). Applied 5 Nov 20… |

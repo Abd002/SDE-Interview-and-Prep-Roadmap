@@ -178,7 +178,7 @@ Checked open on 25 Nov 2026. Skipped: Brightskies IVI Audio and Siemens ECAD (5+
 | 6 | **Zylo3D** | Senior Embedded C++ / Qt Engineer | Heliopolis | C++, embedded Linux, motors and sensors; senior | ★ stretch | [zylo3d/senior-embedded-cpp-qt/](CV/applications/zylo3d/senior-embedded-cpp-qt/README.md) | Ready, not sent |
 | 7 | **Sentry** | [Software Engineer, New Grad (2027)](https://jobs.ashbyhq.com/sentry/f345b525-b2e9-4dc1-bec1-85fb4c3b3cf2) | Vienna, hybrid; relocation and housing help; €80k | Ingest team runs Rust (Relay, Symbolicator); new grads with "equivalent hands-on experience"; needs a work permit | ★★ | [sentry/software-engineer-new-grad-2027/](CV/applications/sentry/software-engineer-new-grad-2027/README.md) | **Applied 25 Nov 2026** |
 | 8 | **Bending Spoons** | [Graduate Software Engineer](https://jobs.bendingspoons.com/) | Milan / Madrid / Warsaw; relocation package | Hires on reasoning ability: Codeforces Expert, ECPC; hard online tests | ★★ | [bending-spoons/graduate-software-engineer/](CV/applications/bending-spoons/graduate-software-engineer/README.md) | **Applied 25 Nov 2026** |
-| 9 | **IMC** | [Graduate Software Engineer (2027)](https://job-boards.eu.greenhouse.io/imc/jobs/4667814101) | Amsterdam / Aarhus | C++ and algorithms; IMC confirmed 2025 graduates are eligible (within 2 years) and supports the visa | ★★ | [imc/graduate-software-engineer-2027/](CV/applications/imc/graduate-software-engineer-2027/README.md) | **Eligible (IMC reply 26 Nov 2026)**; apply now |
+| 9 | **IMC** | [Graduate Software Engineer (2027)](https://job-boards.eu.greenhouse.io/imc/jobs/4667814101) | Amsterdam / Aarhus | C++ and algorithms; IMC confirmed 2025 graduates are eligible (within 2 years) and supports the visa | ★★ | [imc/graduate-software-engineer-2027/](CV/applications/imc/graduate-software-engineer-2027/README.md) | **Applied 26 Nov 2026** |
 | 10 | **Analog Devices** | [FY27 Software Engineering Graduate](https://www.linkedin.com/jobs/view/4461878231) | Limerick / Cork / Dublin; relocation assistance | Embedded software rotation next to ADI hardware; sponsorship not stated | ★★ | [analog-devices/fy27-software-engineering-graduate/](CV/applications/analog-devices/fy27-software-engineering-graduate/README.md) | **Applied 25 Nov 2026** |
 
 ### Gulf roles (26 Nov 2026)
@@ -291,7 +291,7 @@ Update these by hand.
 
 | Metric | Count |
 |---|---|
-| Applications sent (jobs) | 27 (Canonical, Cloudflare ×2 (Network Protocols, Network Data Plane), Igalia ×2 (JS engine, Multimedia), NXP, Valeo ×4 (LIGHT, POWER SW, Integrator POWER, GIT), Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail ×2 (Embedded App Dev, Validation & Test), KPEK, eInfochips, Schneider Electric, Rerun, BairesDev, Sentry, Bending Spoons, Analog Devices, Revolut, Applied Intuition, talabat) |
+| Applications sent (jobs) | 28 (Canonical, Cloudflare ×2 (Network Protocols, Network Data Plane), Igalia ×2 (JS engine, Multimedia), NXP, Valeo ×4 (LIGHT, POWER SW, Integrator POWER, GIT), Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail ×2 (Embedded App Dev, Validation & Test), KPEK, eInfochips, Schneider Electric, Rerun, BairesDev, Sentry, Bending Spoons, Analog Devices, Revolut, Applied Intuition, talabat, IMC) |
 | Side-income applications | 3 (Mercor ×2 rejected 19 Nov; micro1 pending) |
 | Applications sent (master's / scholarships) | 0 |
 | Rejected | 4 (NXP 2 Nov, Igalia 7 Nov, Valeo 13 Nov, CrimsonLogic by 14 Nov) |
