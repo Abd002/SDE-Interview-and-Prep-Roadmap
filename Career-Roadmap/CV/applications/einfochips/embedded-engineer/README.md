@@ -13,7 +13,7 @@
 | **Gap (be honest about it)** | The title says Senior; no years are stated. In the form, say you are applying at Engineer level |
 | **Chance** | ★★ Good technical fit; level is the risk |
 | **Apply** | Arrow Workday: [arrow careers](https://arrow.wd1.myworkdayjobs.com/AC) |
-| **Status** | **Applied 23 Nov 2026** in Arrow's Workday |
+| **Status** | **Rejected 27 Nov 2026** (Arrow email: "decided to move forward with other candidates", no reason; R245716, a Senior role). Applied 23 Nov 2026 in Arrow's Workday |
 
 ## 2. Files
 

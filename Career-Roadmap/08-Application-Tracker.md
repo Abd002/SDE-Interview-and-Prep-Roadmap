@@ -147,7 +147,7 @@ Checked open on each company's own board (Workday, Greenhouse) or LinkedIn on 16
 | 3 | **Hitachi Rail** | Software Validation & Test Engineer | Cairo | Entry level with training; embedded testing, basic C/C++ | ★★★ | [hitachi-rail/software-validation-test/](CV/applications/hitachi-rail/software-validation-test/README.md) | **Applied 23 Nov 2026** |
 | 4 | **KPEK** | Embedded System and IoT Engineer | Maadi | ESP32/STM32 smart-home firmware, RTOS, cloud, OTA; asks 2+ years | ★★★ | [kpek/embedded-iot-engineer/](CV/applications/kpek/embedded-iot-engineer/README.md) | **Applied 23 Nov 2026** |
 | 5 | **Siemens EDA** | Software Development Engineer (6 openings) | New Cairo | C++, Python, sockets, multithreading; experience not required | ★★★ | [siemens/eda-software-developer/](CV/applications/siemens/eda-software-developer/README.md) | Ready, not sent |
-| 6 | **eInfochips (Arrow)** | Embedded Engineer / Senior | Maadi | RTOS firmware in C on Cortex-M, unit tests, static analysis | ★★ | [einfochips/embedded-engineer/](CV/applications/einfochips/embedded-engineer/README.md) | **Applied 23 Nov 2026** |
+| 6 | **eInfochips (Arrow)** | Embedded Engineer / Senior | Maadi | RTOS firmware in C on Cortex-M, unit tests, static analysis | ★★ | [einfochips/embedded-engineer/](CV/applications/einfochips/embedded-engineer/README.md) | **Rejected 27 Nov 2026** (applied 23 Nov; Senior role) |
 | 7 | **Valeo** | Software Engineer - Test Automation, POWER | Cairo | 1–2 years testing; Python, ECU-TEST, CANoe, CAN/UDS | ★★ | [valeo/power-test-automation/](CV/applications/valeo/power-test-automation/README.md) | Ready, not sent |
 | 8 | **Schneider Electric** | Systems Engineer (Junior Application Engineer) | New Heliopolis | Entry level; OOP + industrial automation (IEC 61499), AI, APIs | ★★ | [schneider-electric/systems-engineer/](CV/applications/schneider-electric/systems-engineer/README.md) | **Applied 23 Nov 2026** |
 | 9 | **Canonical** | Linux Software Engineer - Ubuntu for Next-Gen Silicon | Remote | Linux stack for new silicon, many seniority levels. **Hold until the first Canonical application is answered** | ★★ | [canonical/next-gen-silicon/](CV/applications/canonical/next-gen-silicon/README.md) | Ready, not sent |
@@ -294,13 +294,13 @@ Update these by hand.
 | Applications sent (jobs) | 28 (Canonical, Cloudflare ×2 (Network Protocols, Network Data Plane), Igalia ×2 (JS engine, Multimedia), NXP, Valeo ×4 (LIGHT, POWER SW, Integrator POWER, GIT), Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail ×2 (Embedded App Dev, Validation & Test), KPEK, eInfochips, Schneider Electric, Rerun, BairesDev, Sentry, Bending Spoons, Analog Devices, Revolut, Applied Intuition, talabat, IMC) |
 | Side-income applications | 3 (Mercor ×2 rejected 19 Nov; micro1 pending) |
 | Applications sent (master's / scholarships) | 0 |
-| Rejected | 4 (NXP 2 Nov, Igalia 7 Nov, Valeo 13 Nov, CrimsonLogic by 14 Nov) |
-| Assessments | 1 (Vodafone SOVA, invited 13 Nov) |
+| Rejected | 5 (NXP 2 Nov, Igalia 7 Nov, Valeo 13 Nov, CrimsonLogic by 14 Nov, eInfochips/Arrow 27 Nov) |
+| Assessments | 2 (Vodafone SOVA, invited 13 Nov; Canonical written interview, submitted 22 Nov) |
 | Phone screens | 0 |
 | Interview loops | 0 |
 | Offers | 0 |
 | Google | GSoC Preferred Candidate since 18 Nov 2026: any Google application is flagged to recruiters |
-| Last updated | 2026-11-21 |
+| Last updated | 2026-11-27 |
 
 ---
 

@@ -36,7 +36,7 @@ Every fact comes from [../facts.md](../facts.md).
 | Collabora | Embedded Linux Consultant Engineer (Remote/Anywhere) | [collabora/embedded-linux-consultant/](collabora/embedded-linux-consultant/README.md) | **Applied** |
 | CrimsonLogic | Junior System Engineer | [crimsonlogic/junior-system-engineer/](crimsonlogic/junior-system-engineer/README.md) | **Rejected by 14 Nov 2026** (LinkedIn update, no reason given) |
 | DXC Technology | Junior Backend Java Microservices Developer, Fresh Graduates | [dxc/junior-backend-java-microservices/](dxc/junior-backend-java-microservices/README.md) | **Ready, not sent** |
-| eInfochips (Arrow) | Senior Embedded Engineer | [einfochips/embedded-engineer/](einfochips/embedded-engineer/README.md) | **Applied 23 Nov 2026** in Arrow's Workday |
+| eInfochips (Arrow) | Senior Embedded Engineer | [einfochips/embedded-engineer/](einfochips/embedded-engineer/README.md) | **Rejected 27 Nov 2026** (applied 23 Nov) |
 | Geotab | Software Developer (Dubai) | [geotab/software-developer-dubai/](geotab/software-developer-dubai/README.md) | **Ready, not sent** |
 | Hitachi Rail | Embedded Application Developer | [hitachi-rail/embedded-application-developer/](hitachi-rail/embedded-application-developer/README.md) | **Applied** |
 |  | Software Validation & Test Engineer | [hitachi-rail/software-validation-test/](hitachi-rail/software-validation-test/README.md) | **Applied 23 Nov 2026** in Workday (salary given: EGP 25,000 net/month, inside the 20–30k … |
