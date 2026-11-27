@@ -12,7 +12,7 @@
 | **Why it fits** | Rust UI work (COSMIC Settings in iced/libcosmic) plus an async varlink backend; real-time sensor data at EKSON (MPU6050 IMU, telemetry over UART); raftkv storage work; Rerun is built for robotics data like yours |
 | **Gap (be honest about it)** | No egui or GPU rendering yet, and no large-dataset visualization. Rerun is open source: read the `re_viewer` crates and build one example before applying, then mention it |
 | **Chance** | ★★★ Best fit of the five; the only open question is the location |
-| **Status** | **Applied 25 Nov 2026** through Ashby (cover answers from application-form.md) |
+| **Status** | **Rejected 27 Nov 2026** (applied 25 Nov through Ashby; no reason given) |
 
 ## 2. Files
 
@@ -28,4 +28,4 @@
 ## 3. Checklist
 - [x] Apply with the PDF above and the answers in [application-form.md](application-form.md)
 - [x] Fill in **Applied on** here, in 08 and in Notion
-- [ ] Follow up once after 3 weeks with no reply
+- [x] Follow up: not needed (rejected 27 Nov 2026)

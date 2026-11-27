@@ -49,7 +49,7 @@ Every fact comes from [../facts.md](../facts.md).
 | MixRank | Junior Software Engineer — Remote, Egypt | [mixrank/junior-software-engineer/](mixrank/junior-software-engineer/README.md) | **Applied** |
 | noon | Software Development Engineer 1 (Backend) | [noon/sde1-backend/](noon/sde1-backend/README.md) | Not started |
 | NXP | Junior Embedded Software Engineer, Secure IoT Firmware | [nxp/junior-embedded-secure-iot/](nxp/junior-embedded-secure-iot/README.md) | **Rejected** on 2 Nov 2026 |
-| Rerun | Software Engineer (Rust) | [rerun/software-engineer-rust/](rerun/software-engineer-rust/README.md) | **Applied 25 Nov 2026** through Ashby (cover answers from application-form.md) |
+| Rerun | Software Engineer (Rust) | [rerun/software-engineer-rust/](rerun/software-engineer-rust/README.md) | **Rejected 27 Nov 2026** (applied 25 Nov) |
 | Revolut | Graduate Programme 2027: Software Engineer (Java) | [revolut/graduate-programme-2027-software-engineer-java/](revolut/graduate-programme-2027-software-engineer-java/README.md) | **Applied 26 Nov 2026** |
 | Schneider Electric | Systems Engineer | [schneider-electric/systems-engineer/](schneider-electric/systems-engineer/README.md) | **Applied 23 Nov 2026** via LinkedIn |
 | Sentry | Software Engineer, New Grad (2027) | [sentry/software-engineer-new-grad-2027/](sentry/software-engineer-new-grad-2027/README.md) | **Applied 25 Nov 2026** through Ashby |

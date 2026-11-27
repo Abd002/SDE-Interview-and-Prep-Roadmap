@@ -159,7 +159,7 @@ Found on each company's own board (Ashby, Greenhouse) and LinkedIn, all checked 
 
 | # | Company | Role | Where | Why | Chance | Folder | Status |
 |---|---|---|---|---|---|---|---|
-| 1 | **Rerun** | Software Engineer (Rust) | Remote Europe (outside Europe case by case) | Rust UI + data generalist; "no years of production Rust needed"; robotics data | ★★★ | [rerun/software-engineer-rust/](CV/applications/rerun/software-engineer-rust/README.md) | **Applied 25 Nov 2026** |
+| 1 | **Rerun** | Software Engineer (Rust) | Remote Europe (outside Europe case by case) | Rust UI + data generalist; "no years of production Rust needed"; robotics data | ★★★ | [rerun/software-engineer-rust/](CV/applications/rerun/software-engineer-rust/README.md) | **Rejected 27 Nov 2026** (applied 25 Nov) |
 | 2 | **Cloudflare** | Systems Engineer, Network Data Plane Software (or Network Software Performance) | Lisbon / London, hybrid, visa | Rust packet firewall and XDP load balancer; matches the Zephyr IPv4 work | ★★ | [cloudflare/network-data-plane/](CV/applications/cloudflare/network-data-plane/README.md) | **Applied 25 Nov 2026** (Network Data Plane Software) |
 | 3 | **BairesDev** | Rust Engineer (Remote) | Remote from anywhere | Rust backend (Axum/Actix, gRPC, async); asks 4+ years | ★ stretch | [bairesdev/rust-engineer/](CV/applications/bairesdev/rust-engineer/README.md) | **Applied 25 Nov 2026** |
 | 4 | **Alignerr** | Back End Developer (AI Infrastructure), contract | Remote, 10–40 h/week | Side income; Rust, Python or Node.js backends | ★★ | [alignerr/backend-developer/](CV/applications/alignerr/backend-developer/README.md) | Ready, not sent |
@@ -294,7 +294,7 @@ Update these by hand.
 | Applications sent (jobs) | 28 (Canonical, Cloudflare ×2 (Network Protocols, Network Data Plane), Igalia ×2 (JS engine, Multimedia), NXP, Valeo ×4 (LIGHT, POWER SW, Integrator POWER, GIT), Collabora, MixRank, Vodafone, CrimsonLogic, Hitachi Rail ×2 (Embedded App Dev, Validation & Test), KPEK, eInfochips, Schneider Electric, Rerun, BairesDev, Sentry, Bending Spoons, Analog Devices, Revolut, Applied Intuition, talabat, IMC) |
 | Side-income applications | 3 (Mercor ×2 rejected 19 Nov; micro1 pending) |
 | Applications sent (master's / scholarships) | 0 |
-| Rejected | 5 (NXP 2 Nov, Igalia 7 Nov, Valeo 13 Nov, CrimsonLogic by 14 Nov, eInfochips/Arrow 27 Nov) |
+| Rejected | 6 (NXP 2 Nov, Igalia 7 Nov, Valeo 13 Nov, CrimsonLogic by 14 Nov, eInfochips/Arrow 27 Nov, Rerun 27 Nov) |
 | Assessments | 2 (Vodafone SOVA, invited 13 Nov; Canonical written interview, submitted 22 Nov) |
 | Phone screens | 0 |
 | Interview loops | 0 |
