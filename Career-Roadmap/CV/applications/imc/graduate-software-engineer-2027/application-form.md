@@ -68,3 +68,20 @@ Best regards,
 Abdelrahman Khalifa
 
 ---
+
+## Step 4: if rejected, ask IMC to reassess (reply in the same thread with Alejandra)
+
+---
+
+Hi Alejandra,
+
+Thank you again for your help last week. I applied for the Graduate Software Engineer (2027) role on 26 November, and today I received a rejection email.
+
+When I asked about eligibility, you mentioned that applications from graduates of universities outside Europe can be screened out on location, and that you could flag my application for the recruitment team to reassess. If that is what happened here, I would be grateful if you could do so.
+
+If the decision was made after a full review, I completely understand, and thank you for your time.
+
+Best regards,
+Abdelrahman Khalifa
+
+---
