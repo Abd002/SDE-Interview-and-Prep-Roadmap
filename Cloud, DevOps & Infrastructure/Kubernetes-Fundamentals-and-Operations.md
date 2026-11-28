@@ -1,6 +1,6 @@
 # Kubernetes Fundamentals and Operations — Workloads, Networking, Config, Storage, Probes, Scaling and Troubleshooting
 
-> **What you'll learn:** the core objects — **Pods, Deployments, ReplicaSets, Services, Ingress** — plus **ConfigMaps, Secrets, namespaces, RBAC and service accounts**; stateful workloads with **PersistentVolumes, StatefulSets and PodDisruptionBudgets**; **readiness/liveness/startup probes** and **rolling deployments**; **requests/limits, HPA, cluster autoscaling and scheduling**; and how to **troubleshoot CrashLoopBackOff, Pending pods and service discovery**. Each part has manifests/`kubectl` snippets and a runnable C++ model of the controller logic.
+> **What you'll learn:** the core objects — **Pods, Deployments, ReplicaSets, Services, Ingress** — plus **ConfigMaps, Secrets, namespaces, RBAC and service accounts**; stateful workloads with **PersistentVolumes, StatefulSets and PodDisruptionBudgets**; **readiness/liveness/startup probes** and **rolling deployments**; **requests/limits, HPA, cluster autoscaling and scheduling**; and how to **troubleshoot CrashLoopBackOff, Pending pods and service discovery**. Each part has manifests/`kubectl` snippets.
 >
 > **Prerequisites:** [Containers and Docker](./Containers-and-Docker.md). Security hardening: [Kubernetes security](../Security%20Engineering%20%26%20Authentication/Infrastructure-Cloud-and-Supply-Chain-Security.md#1-containerkubernetes-security-contexts-rbac-and-network-policies).
 
@@ -52,55 +52,6 @@ subjects: [{ kind: ServiceAccount, name: orders-api, namespace: orders }]
 roleRef: { kind: Role, name: configmap-reader, apiGroup: rbac.authorization.k8s.io }
 ```
 
-#### Modern C++ example — RBAC authorization (`kubectl auth can-i`) and env vs. mounted config updates
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <set>
-#include <string>
-#include <vector>
-
-struct Rule { std::set<std::string> resources, verbs; };
-struct Binding { std::string subject, ns; std::vector<Rule> rules; };
-
-bool can_i(const std::vector<Binding>& bindings, const std::string& who, const std::string& verb, const std::string& resource, const std::string& ns) {
-    for (auto& b : bindings)
-        if (b.subject == who && (b.ns == ns || b.ns == "*"))
-            for (auto& r : b.rules) if (r.resources.count(resource) && r.verbs.count(verb)) return true;
-    return false;                                                   // RBAC is deny-by-default (no deny rules exist)
-}
-
-int main() {
-    std::vector<Binding> bindings{
-        {"system:serviceaccount:orders:orders-api", "orders", {{{"configmaps"}, {"get", "list", "watch"}}}},
-        {"group:sre", "*", {{{"pods", "deployments"}, {"get", "list", "delete"}}, {{"pods/log"}, {"get"}}}},
-    };
-    std::cout << std::boolalpha;
-    for (auto [who, verb, res, ns] : std::vector<std::tuple<std::string, std::string, std::string, std::string>>{
-             {"system:serviceaccount:orders:orders-api", "get", "configmaps", "orders"},
-             {"system:serviceaccount:orders:orders-api", "get", "secrets", "orders"},
-             {"system:serviceaccount:orders:orders-api", "get", "configmaps", "payments"},
-             {"group:sre", "delete", "pods", "payments"}})
-        std::cout << "can-i " << verb << ' ' << res << " -n " << ns << " as " << who.substr(who.rfind(':') + 1) << " -> " << can_i(bindings, who, verb, res, ns) << '\n';
-
-    std::map<std::string, std::string> configmap{{"LOG_LEVEL", "info"}};
-    std::string env_copy = configmap["LOG_LEVEL"];                  // env var: copied once at container start
-    configmap["LOG_LEVEL"] = "debug";                               // kubectl edit configmap
-    std::string mounted_file = configmap["LOG_LEVEL"];              // volume: kubelet syncs the file
-    std::cout << "after editing the ConfigMap: env var still '" << env_copy << "' (needs a rollout), mounted file now '" << mounted_file << "'\n";
-}
-```
-
-**Output:**
-```text
-can-i get configmaps -n orders as orders-api -> true
-can-i get secrets -n orders as orders-api -> false
-can-i get configmaps -n payments as orders-api -> false
-can-i delete pods -n payments as sre -> true
-after editing the ConfigMap: env var still 'info' (needs a rollout), mounted file now 'debug'
-```
-
 ### Interview answer
 "Namespaces partition the cluster for teams and environments and scope RBAC, quotas and network policies. ConfigMaps carry non-secret config and Secrets sensitive values, injected as env vars — read only at start, so I roll the deployment on change — or as mounted files that update in place. Secrets are only base64, so I enable KMS encryption at rest, restrict who can read them, and prefer External Secrets or the CSI driver with a real secrets manager. Each workload gets its own service account, mapped to cloud IAM with IRSA or Pod Identity, and RBAC Roles grant only the verbs and resources it needs, checked with `kubectl auth can-i`."
 
@@ -137,50 +88,6 @@ apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata: { name: redis-pdb, namespace: cache }
 spec: { maxUnavailable: 1, selector: { matchLabels: { app: redis } } }
-```
-
-#### Modern C++ example — StatefulSet identity + per-pod volumes surviving restarts, and a drain respecting a PDB
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-int main() {
-    std::map<std::string, std::string> pvcs;                         // PVC name -> data (outlives pods)
-    std::vector<std::string> pods;
-    for (int i = 0; i < 3; ++i) {                                    // ordered creation: redis-0, then -1, then -2
-        std::string pod = "redis-" + std::to_string(i), pvc = "data-" + pod;
-        pods.push_back(pod);
-        pvcs[pvc] = "keys of shard " + std::to_string(i);
-        std::cout << "created " << pod << " (DNS " << pod << ".redis.cache.svc.cluster.local) with " << pvc << '\n';
-    }
-    std::cout << "redis-1 crashes and is recreated with the SAME name and volume: " << pvcs["data-redis-1"] << '\n';
-
-    // Node drain: 3 pods on 2 nodes; PDB maxUnavailable = 1 -> evictions wait until the previous pod is Ready again.
-    std::map<std::string, std::string> node_of{{"redis-0", "node-a"}, {"redis-1", "node-b"}, {"redis-2", "node-b"}};
-    int max_unavailable = 1, unavailable = 0;
-    for (auto& [pod, node] : node_of) {
-        if (node != "node-b") continue;
-        if (unavailable >= max_unavailable) { std::cout << "evict " << pod << ": BLOCKED by PDB (retry after the previous pod is Ready)\n"; continue; }
-        ++unavailable;
-        std::cout << "evict " << pod << ": allowed (" << unavailable << "/" << max_unavailable << " unavailable)\n";
-    }
-    unavailable = 0;
-    std::cout << "redis-1 rescheduled on node-c and Ready -> retry: evict redis-2 allowed\n";
-}
-```
-
-**Output:**
-```text
-created redis-0 (DNS redis-0.redis.cache.svc.cluster.local) with data-redis-0
-created redis-1 (DNS redis-1.redis.cache.svc.cluster.local) with data-redis-1
-created redis-2 (DNS redis-2.redis.cache.svc.cluster.local) with data-redis-2
-redis-1 crashes and is recreated with the SAME name and volume: keys of shard 1
-evict redis-1: allowed (1/1 unavailable)
-evict redis-2: BLOCKED by PDB (retry after the previous pod is Ready)
-redis-1 rescheduled on node-c and Ready -> retry: evict redis-2 allowed
 ```
 
 ### Interview answer
@@ -234,54 +141,6 @@ spec:
       http: { paths: [{ path: /api/orders, pathType: Prefix, backend: { service: { name: orders, port: { number: 80 } } } }] }
 ```
 
-#### Modern C++ example — a ReplicaSet reconciliation loop and a Service selecting ready pods by label
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Pod { std::string name; std::map<std::string, std::string> labels; bool ready; };
-
-int main() {
-    std::vector<Pod> pods{{"orders-7f9c-a", {{"app", "orders"}}, true}, {"payments-1b2c-x", {{"app", "payments"}}, true}};
-    const int desired = 3;
-    int next = 0;
-    auto reconcile = [&] {                                                    // ReplicaSet controller
-        int have = 0;
-        for (auto& p : pods) have += p.labels["app"] == "orders";
-        for (; have < desired; ++have) { pods.push_back({"orders-7f9c-" + std::string(1, char('b' + next++)), {{"app", "orders"}}, false}); std::cout << "  create " << pods.back().name << '\n'; }
-    };
-    std::cout << "reconcile (desired " << desired << "):\n"; reconcile();
-    for (auto& p : pods) p.ready = true;
-    std::erase_if(pods, [](const Pod& p) { return p.name == "orders-7f9c-a"; });  // a node dies, pod gone
-    std::cout << "node failure removed orders-7f9c-a; reconcile:\n"; reconcile();
-
-    auto endpoints = [&](const std::string& app) {                           // Service: selector + readiness
-        std::vector<std::string> ips;
-        for (auto& p : pods) if (p.labels["app"] == app && p.ready) ips.push_back(p.name);
-        return ips;
-    };
-    std::cout << "Service 'orders' endpoints (ready pods only):";
-    for (auto& e : endpoints("orders")) std::cout << ' ' << e;
-    std::cout << "\nDNS: orders.shop.svc.cluster.local -> ClusterIP -> one of the endpoints above\n";
-}
-```
-
-**Output:**
-```text
-reconcile (desired 3):
-  create orders-7f9c-b
-  create orders-7f9c-c
-node failure removed orders-7f9c-a; reconcile:
-  create orders-7f9c-d
-Service 'orders' endpoints (ready pods only): orders-7f9c-b orders-7f9c-c
-DNS: orders.shop.svc.cluster.local -> ClusterIP -> one of the endpoints above
-```
-
-orders-7f9c-d isn't an endpoint yet — it hasn't passed its readiness check ([section 4](#4-readinesslivenessstartup-probes-and-rolling-deployments)).
-
 ### Interview answer
 "A pod is one or more containers sharing a network namespace and volumes, scheduled together and treated as disposable. A Deployment manages ReplicaSets that reconcile the number of pods matching a label selector, and rolls out a new template by scaling a new ReplicaSet up and the old one down, with history for rollback. A Service gives a stable virtual IP and DNS name in front of ready pods selected by labels — ClusterIP internally, LoadBalancer for cloud load balancers, headless for direct pod DNS. Ingress, implemented by a controller like the AWS Load Balancer Controller, routes external HTTP(S) by host and path, and the Gateway API is its more expressive successor."
 
@@ -323,58 +182,6 @@ spec:
           lifecycle: { preStop: { exec: { command: ["sleep", "5"] } } }
 ```
 
-#### Modern C++ example — a rolling update with maxSurge=1/maxUnavailable=0, and a bad version stopped by readiness
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Pod { std::string version; bool ready; };
-
-void rollout(const std::string& new_version, bool new_version_healthy) {
-    std::vector<Pod> pods(4, Pod{"v1", true});
-    const int desired = 4, max_surge = 1;
-    std::cout << "rolling out " << new_version << (new_version_healthy ? "" : " (broken)") << ":\n";
-    for (int step = 1; step <= 6; ++step) {
-        int old_count = 0, new_ready = 0, new_total = 0;
-        for (auto& p : pods) { old_count += p.version == "v1"; if (p.version == new_version) { ++new_total; new_ready += p.ready; } }
-        if (old_count == 0) { std::cout << "  step " << step << ": rollout complete\n"; return; }
-        if (static_cast<int>(pods.size()) < desired + max_surge) pods.push_back({new_version, false});           // surge one new pod
-        for (auto& p : pods) if (p.version == new_version) p.ready = new_version_healthy;                         // readiness result
-        int ready_total = 0; for (auto& p : pods) ready_total += p.ready;
-        if (ready_total > desired) {                                                                              // only then remove an old pod
-            for (auto it = pods.begin(); it != pods.end(); ++it) if (it->version == "v1") { pods.erase(it); break; }
-        }
-        int serving = 0; for (auto& p : pods) serving += p.ready;
-        std::cout << "  step " << step << ": " << pods.size() << " pods, serving traffic " << serving << '\n';
-        if (!new_version_healthy && step == 3) { std::cout << "  progressDeadline exceeded -> rollout FAILED, old pods still serving -> kubectl rollout undo\n"; return; }
-    }
-}
-
-int main() {
-    rollout("v2", true);
-    rollout("v3", false);
-}
-```
-
-**Output:**
-```text
-rolling out v2:
-  step 1: 4 pods, serving traffic 4
-  step 2: 4 pods, serving traffic 4
-  step 3: 4 pods, serving traffic 4
-  step 4: 4 pods, serving traffic 4
-  step 5: rollout complete
-rolling out v3 (broken):
-  step 1: 5 pods, serving traffic 4
-  step 2: 5 pods, serving traffic 4
-  step 3: 5 pods, serving traffic 4
-  progressDeadline exceeded -> rollout FAILED, old pods still serving -> kubectl rollout undo
-```
-
-With `maxUnavailable: 0`, a broken version never takes capacity away — the old pods keep serving while the new pod fails readiness.
-
 ### Interview answer
 "Readiness controls whether a pod gets traffic and should reflect whether this instance can serve — not every downstream dependency; liveness restarts a stuck process and must be cheap and local to avoid restart storms; a startup probe protects slow starters. Rolling updates use maxSurge and maxUnavailable — I like maxUnavailable 0 — so new pods must pass readiness before old ones go, and a progress deadline marks a broken rollout as failed so I can undo it. Graceful shutdown handles SIGTERM, a short preStop sleep covers endpoint propagation, and the grace period lets in-flight requests finish."
 
@@ -413,63 +220,6 @@ spec:
   metrics: [{ type: Resource, resource: { name: cpu, target: { type: Utilization, averageUtilization: 60 } } }]
 ```
 
-#### Modern C++ example — bin-packing by requests, the HPA formula, and a Pending pod that triggers a new node
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <cmath>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Node { std::string name; int alloc_mcpu, alloc_mib, used_mcpu = 0, used_mib = 0; };
-struct PodSpec { std::string name; int cpu, mem; };
-
-bool schedule(std::vector<Node>& nodes, const PodSpec& p) {
-    for (auto& n : nodes)
-        if (n.alloc_mcpu - n.used_mcpu >= p.cpu && n.alloc_mib - n.used_mib >= p.mem) {   // by REQUESTS, not usage
-            n.used_mcpu += p.cpu; n.used_mib += p.mem;
-            std::cout << "  " << p.name << " -> " << n.name << '\n';
-            return true;
-        }
-    std::cout << "  " << p.name << " -> Pending (0/" << nodes.size() << " nodes: Insufficient cpu/memory)\n";
-    return false;
-}
-
-int main() {
-    // HPA: current 4 replicas at 90% CPU (of requests), target 60%.
-    int current = 4; double metric = 90, target = 60;
-    int desired = static_cast<int>(std::ceil(current * metric / target));
-    std::cout << "HPA: ceil(" << current << " x " << metric << " / " << target << ") = " << desired << " replicas\n";
-
-    std::vector<Node> nodes{{"node-1", 1930, 3400}, {"node-2", 1930, 3400}};          // allocatable after system reserve
-    std::cout << "scheduling " << desired << " replicas requesting 500m CPU / 768Mi:\n";
-    std::vector<std::string> pending;
-    for (int i = 0; i < desired; ++i) {
-        PodSpec p{"orders-" + std::to_string(i), 500, 768};
-        if (!schedule(nodes, p)) pending.push_back(p.name);
-    }
-    if (!pending.empty()) {
-        std::cout << "Karpenter sees " << pending.size() << " pending pod(s) -> launches node-3\n";
-        nodes.push_back({"node-3", 1930, 3400});
-        for (auto& name : pending) schedule(nodes, {name, 500, 768});
-    }
-}
-```
-
-**Output:**
-```text
-HPA: ceil(4 x 90 / 60) = 6 replicas
-scheduling 6 replicas requesting 500m CPU / 768Mi:
-  orders-0 -> node-1
-  orders-1 -> node-1
-  orders-2 -> node-1
-  orders-3 -> node-2
-  orders-4 -> node-2
-  orders-5 -> node-2
-```
-
-Six 500m pods fit exactly on two nodes with 1,930m allocatable each (3 × 500m = 1,500m per node). Raise the request to 700m and you'll see `Pending` and a new node — try it.
-
 ### Interview answer
 "Requests are what the scheduler reserves and places pods by; limits cap usage — exceeding CPU throttles, exceeding memory OOM-kills. I usually set memory request equal to limit and CPU requests without a hard CPU limit, with LimitRanges and quotas per namespace. The HPA scales replicas by ceil of current times metric over target, using CPU relative to requests or custom metrics like queue depth via KEDA, and Cluster Autoscaler or Karpenter adds nodes when pods are Pending for resources and consolidates idle ones. Placement is shaped with node affinity, taints and tolerations, anti-affinity and topology spread constraints across zones."
 
@@ -505,65 +255,6 @@ A doctor's checklist: look at the patient (`get`), read the chart with the nurse
 4. **NetworkPolicy** blocking traffic; Ingress class/host/path mismatch; TLS secret missing.
 
 **Useful commands:** `kubectl get pods -o wide`, `kubectl describe pod X`, `kubectl logs X -c container --previous`, `kubectl get events --sort-by=.lastTimestamp`, `kubectl debug -it X --image=busybox --target=app`, `kubectl top pods`, `kubectl rollout history/undo`.
-
-#### Modern C++ example — a triage assistant mapping pod status, exit codes and events to likely causes
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct PodState { std::string name, status; int exit_code; std::string last_event; int endpoints; };
-
-std::string diagnose(const PodState& p) {
-    if (p.status == "CrashLoopBackOff") {
-        if (p.exit_code == 137) return "OOMKilled: raise the memory limit or fix the leak (kubectl describe -> Last State: OOMKilled)";
-        if (p.exit_code == 0) return "process exits successfully: wrong CMD/args for a long-running service";
-        if (p.last_event.find("Liveness probe failed") != std::string::npos) return "liveness kills it during startup: add a startupProbe / relax thresholds";
-        return "app error: read kubectl logs --previous (missing env var/Secret, bad config, dependency down at boot)";
-    }
-    if (p.status == "ImagePullBackOff") return "image name/tag/digest wrong, registry auth (imagePullSecrets/IRSA), or arch mismatch";
-    if (p.status == "Pending") {
-        if (p.last_event.find("Insufficient") != std::string::npos) return "no node fits the requests: lower requests or let the autoscaler add nodes (check max size)";
-        if (p.last_event.find("taint") != std::string::npos) return "nodes are tainted: add a toleration or target another node pool";
-        if (p.last_event.find("volume node affinity") != std::string::npos) return "PV is in another AZ: use WaitForFirstConsumer storage class";
-        return "check kubectl describe events and namespace quota";
-    }
-    if (p.status == "Running" && p.endpoints == 0) return "Service has no endpoints: selector doesn't match pod labels, or pods not Ready";
-    return "looks healthy";
-}
-
-int main() {
-    std::vector<PodState> pods{
-        {"orders-6d4f", "CrashLoopBackOff", 137, "Back-off restarting failed container", 0},
-        {"billing-77aa", "CrashLoopBackOff", 1, "Back-off restarting failed container", 0},
-        {"search-5c21", "CrashLoopBackOff", 143, "Liveness probe failed: HTTP probe failed with statuscode: 503", 0},
-        {"worker-91bd", "Pending", 0, "0/5 nodes are available: 5 Insufficient memory", 0},
-        {"ml-0", "Pending", 0, "0/5 nodes are available: 5 node(s) had untolerated taint {gpu: true}", 0},
-        {"api-2f3e", "Running", 0, "", 0},
-        {"web-8a7b", "ImagePullBackOff", 0, "Failed to pull image: manifest unknown", 0},
-    };
-    for (auto& p : pods) std::cout << p.name << " [" << p.status << (p.exit_code ? ", exit " + std::to_string(p.exit_code) : "") << "]\n  -> " << diagnose(p) << '\n';
-}
-```
-
-**Output:**
-```text
-orders-6d4f [CrashLoopBackOff, exit 137]
-  -> OOMKilled: raise the memory limit or fix the leak (kubectl describe -> Last State: OOMKilled)
-billing-77aa [CrashLoopBackOff, exit 1]
-  -> app error: read kubectl logs --previous (missing env var/Secret, bad config, dependency down at boot)
-search-5c21 [CrashLoopBackOff, exit 143]
-  -> liveness kills it during startup: add a startupProbe / relax thresholds
-worker-91bd [Pending]
-  -> no node fits the requests: lower requests or let the autoscaler add nodes (check max size)
-ml-0 [Pending]
-  -> nodes are tainted: add a toleration or target another node pool
-api-2f3e [Running]
-  -> Service has no endpoints: selector doesn't match pod labels, or pods not Ready
-web-8a7b [ImagePullBackOff]
-  -> image name/tag/digest wrong, registry auth (imagePullSecrets/IRSA), or arch mismatch
-```
 
 ### Interview answer
 "I go get, describe, logs, exec. For CrashLoopBackOff I read `logs --previous` and the exit code — 137 with OOMKilled means memory, 1 usually config or a dependency at boot, 0 a wrong command, and liveness failures in events mean the probe kills a slow start. For Pending, the scheduler events say why: insufficient resources versus autoscaler limits, taints without tolerations, affinity, quotas, or a volume in another AZ. For service discovery I check that the Service has endpoints — selectors and readiness — then port and targetPort and that the app listens on all interfaces, then DNS from a debug pod with the right namespace, and finally NetworkPolicies and Ingress rules."

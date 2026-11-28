@@ -1,6 +1,6 @@
 # Infrastructure as Code (IaC) — Terraform, CloudFormation/CDK, State, Drift, Environments and Secrets
 
-> **What you'll learn:** how **Terraform** works (providers, resources, modules, **plan/apply**, **state**), how it compares with **CloudFormation and CDK**, how to manage **remote state, locking, drift detection and resource lifecycles**, how to get **environment parity and reproducible provisioning**, and how to handle **secrets and sensitive outputs** safely. Each part has HCL/CDK snippets and a runnable C++ model of the plan/state logic.
+> **What you'll learn:** how **Terraform** works (providers, resources, modules, **plan/apply**, **state**), how it compares with **CloudFormation and CDK**, how to manage **remote state, locking, drift detection and resource lifecycles**, how to get **environment parity and reproducible provisioning**, and how to handle **secrets and sensitive outputs** safely. Each part has HCL/CDK snippets.
 >
 > **Prerequisites:** [Cloud Networking and Identity](./Cloud-Networking-and-Identity.md), [CI/CD and Release Engineering](./CI-CD-and-Release-Engineering.md).
 
@@ -52,46 +52,6 @@ const bucket = new s3.Bucket(this, 'Uploads', {
 });
 ```
 
-#### Modern C++ example — choosing an IaC tool from team context
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Team { std::string name; bool multi_cloud_or_saas, prefers_general_language, wants_auto_rollback, k8s_centric; };
-
-std::string pick(const Team& t) {
-    if (t.multi_cloud_or_saas) return "Terraform / OpenTofu (one workflow for AWS + Cloudflare + GitHub + Datadog)";
-    if (t.k8s_centric) return "Crossplane or Terraform (manage cloud resources from the Kubernetes control plane)";
-    if (t.prefers_general_language) return "AWS CDK (TypeScript/Python constructs -> CloudFormation, with stack rollbacks)";
-    if (t.wants_auto_rollback) return "CloudFormation (native, AWS-managed state, automatic rollback)";
-    return "Terraform / OpenTofu";
-}
-
-int main() {
-    std::vector<Team> teams{
-        {"startup on AWS, TypeScript everywhere", false, true, true, false},
-        {"platform team: AWS + GCP + Cloudflare DNS", true, false, false, false},
-        {"regulated bank, AWS-only, YAML reviews", false, false, true, false},
-        {"Kubernetes platform team", false, false, false, true},
-    };
-    for (auto& t : teams) std::cout << t.name << "\n  -> " << pick(t) << '\n';
-}
-```
-
-**Output:**
-```text
-startup on AWS, TypeScript everywhere
-  -> AWS CDK (TypeScript/Python constructs -> CloudFormation, with stack rollbacks)
-platform team: AWS + GCP + Cloudflare DNS
-  -> Terraform / OpenTofu (one workflow for AWS + Cloudflare + GitHub + Datadog)
-regulated bank, AWS-only, YAML reviews
-  -> CloudFormation (native, AWS-managed state, automatic rollback)
-Kubernetes platform team
-  -> Crossplane or Terraform (manage cloud resources from the Kubernetes control plane)
-```
-
 ### Interview answer
 "CloudFormation is AWS-native: templates, state managed by AWS, change sets and automatic stack rollback. CDK lets you write CloudFormation with real languages and reusable constructs, with tests and loops. Terraform or OpenTofu is declarative HCL across any provider — clouds plus SaaS like DNS, monitoring and GitHub — with a very readable plan, but you manage the state and there's no automatic rollback. AWS-only teams that like code pick CDK; multi-cloud or SaaS-heavy platforms pick Terraform; and each resource is owned by exactly one tool."
 
@@ -127,45 +87,6 @@ module "orders" {
   min_size      = 6
   multi_az      = true
 }
-```
-
-#### Modern C++ example — diffing two environments to show only the intended differences (and catching an unpinned module)
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <set>
-#include <string>
-
-using Config = std::map<std::string, std::string>;
-
-int main() {
-    Config staging{{"module_version", "v1.4.2"}, {"instance_type", "m7g.medium"}, {"min_size", "2"}, {"multi_az", "true"},
-                   {"postgres_version", "16.4"}, {"tls_policy", "TLS13"}, {"log_retention_days", "14"}};
-    Config prod{{"module_version", "main"}, {"instance_type", "m7g.large"}, {"min_size", "6"}, {"multi_az", "true"},
-                {"postgres_version", "16.2"}, {"tls_policy", "TLS13"}, {"log_retention_days", "90"}};
-    const std::set<std::string> allowed_to_differ{"instance_type", "min_size", "log_retention_days"};   // reviewed, intentional
-    int problems = 0;
-    for (auto& [k, v] : staging) {
-        if (prod[k] == v) continue;
-        bool ok = allowed_to_differ.count(k);
-        problems += !ok;
-        std::cout << (ok ? "expected  " : "DRIFT     ") << k << ": staging=" << v << " prod=" << prod[k] << '\n';
-    }
-    if (prod["module_version"] == "main") std::cout << "UNPINNED  prod uses a moving branch (main) instead of a version tag\n";
-    std::cout << problems << " unintended difference(s) -> staging tests don't fully predict prod until fixed\n";
-}
-```
-
-**Output:**
-```text
-expected  instance_type: staging=m7g.medium prod=m7g.large
-expected  log_retention_days: staging=14 prod=90
-expected  min_size: staging=2 prod=6
-DRIFT     module_version: staging=v1.4.2 prod=main
-DRIFT     postgres_version: staging=16.4 prod=16.2
-UNPINNED  prod uses a moving branch (main) instead of a version tag
-2 unintended difference(s) -> staging tests don't fully predict prod until fixed
 ```
 
 ### Interview answer
@@ -207,49 +128,6 @@ variable "partner_api_token" {
 }
 ```
 
-#### Modern C++ example — a pre-merge check for hard-coded secrets and a state-file exposure audit
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <regex>
-#include <sstream>
-#include <string>
-#include <vector>
-
-int main() {
-    std::map<std::string, std::string> files{
-        {"main.tf", "resource \"aws_db_instance\" \"x\" {\n  username = \"admin\"\n  password = \"Sup3rS3cret!\"\n}\n"},
-        {"rds.tf", "resource \"aws_db_instance\" \"y\" {\n  manage_master_user_password = true\n}\n"},
-        {"prod.tfvars", "partner_api_token = \"tok_live_9f8e7d6c5b4a\"\n"},
-        {"outputs.tf", "output \"db_password\" {\n  value = aws_db_instance.x.password\n}\n"},
-    };
-    std::regex literal_secret(R"x((password|secret|token)\s*=\s*"[^"]{6,}")x", std::regex::icase);
-    std::regex secret_output(R"x(output\s+"[^"]*(password|secret|token)[^"]*")x", std::regex::icase);
-    int findings = 0;
-    for (auto& [name, content] : files) {
-        std::istringstream in(content); std::string line; int n = 0;
-        while (std::getline(in, line)) {
-            ++n;
-            if (std::regex_search(line, literal_secret)) { std::cout << name << ':' << n << " hard-coded secret -> use manage_master_user_password / Secrets Manager\n"; ++findings; }
-            if (std::regex_search(line, secret_output) && content.find("sensitive = true") == std::string::npos) { std::cout << name << ':' << n << " secret exposed as a non-sensitive output\n"; ++findings; }
-        }
-    }
-    struct Backend { bool encrypted, versioned, public_access_blocked; std::vector<std::string> readers; };
-    Backend state{true, true, true, {"role/ci-terraform", "role/platform-admins", "role/developers"}};
-    std::cout << findings << " finding(s) in code; state backend: encrypted=" << std::boolalpha << state.encrypted << ", versioned=" << state.versioned
-              << ", readers=" << state.readers.size() << " -> remove role/developers (state holds secrets in plain text)\n";
-}
-```
-
-**Output:**
-```text
-main.tf:3 hard-coded secret -> use manage_master_user_password / Secrets Manager
-outputs.tf:1 secret exposed as a non-sensitive output
-prod.tfvars:1 hard-coded secret -> use manage_master_user_password / Secrets Manager
-3 finding(s) in code; state backend: encrypted=true, versioned=true, readers=3 -> remove role/developers (state holds secrets in plain text)
-```
-
 ### Interview answer
 "Secrets never live in IaC code or tfvars: I let AWS generate and rotate them — manage_master_user_password for RDS, or random_password written straight to Secrets Manager — and pass only the secret's ARN to the application, with IAM limited to that ARN. `sensitive` hides values in plan output but Terraform state still stores them in plain text, so state lives in an encrypted, versioned, tightly permissioned remote backend, never on laptops or in git; ephemeral values in newer Terraform avoid storing some secrets at all. CI uses OIDC instead of static keys, and Checkov or tfsec plus secret scanning run on every PR."
 
@@ -286,57 +164,6 @@ terraform {
 - `ignore_changes = [desired_count]` when something else (autoscaling) manages an attribute.
 - `moved { from = …, to = … }` when renaming/refactoring (no destroy/recreate); `import {}` blocks to adopt existing resources; `removed {}` to stop managing without destroying.
 - **Read the plan:** `-/+` (replace) on a stateful resource is a red flag (e.g. changing an immutable attribute like a DB identifier).
-
-#### Modern C++ example — state locking, drift detection, and a plan that would replace a protected database
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <optional>
-#include <set>
-#include <string>
-
-class StateBackend {
-public:
-    bool lock(const std::string& who) { if (holder_) return false; holder_ = who; return true; }
-    void unlock() { holder_.reset(); }
-    std::optional<std::string> holder() const { return holder_; }
-private:
-    std::optional<std::string> holder_;
-};
-
-int main() {
-    StateBackend s3;
-    std::cout << std::boolalpha << "CI job #41 acquires lock: " << s3.lock("ci-job-41") << '\n';
-    std::cout << "laptop apply at the same time: " << s3.lock("mona-laptop") << " (held by " << *s3.holder() << ")\n";
-    s3.unlock();
-
-    std::map<std::string, std::string> state{{"sg-web.ingress", "443 from 0.0.0.0/0"}, {"db.instance_class", "db.r7g.large"}};
-    std::map<std::string, std::string> real{{"sg-web.ingress", "443 from 0.0.0.0/0, 22 from 0.0.0.0/0"}, {"db.instance_class", "db.r7g.large"}};
-    std::cout << "scheduled drift check (plan -detailed-exitcode):\n";
-    int exit_code = 0;
-    for (auto& [k, v] : state) if (real[k] != v) { exit_code = 2; std::cout << "  ~ " << k << ": real \"" << real[k] << "\" vs code \"" << v << "\"\n"; }
-    std::cout << "  exit code " << exit_code << (exit_code == 2 ? " -> DRIFT: someone opened SSH in the console; revert with apply and alert" : "") << '\n';
-
-    std::set<std::string> prevent_destroy{"aws_db_instance.orders"};
-    std::map<std::string, std::string> plan{{"aws_db_instance.orders", "-/+ replace (identifier changed: forces new resource)"}, {"aws_launch_template.web", "~ update in-place"}};
-    for (auto& [res, action] : plan) {
-        bool blocked = prevent_destroy.count(res) && action.rfind("-/+", 0) == 0;
-        std::cout << res << ": " << action << (blocked ? "  -> ERROR: lifecycle.prevent_destroy, plan rejected" : "") << '\n';
-    }
-}
-```
-
-**Output:**
-```text
-CI job #41 acquires lock: true
-laptop apply at the same time: false (held by ci-job-41)
-scheduled drift check (plan -detailed-exitcode):
-  ~ sg-web.ingress: real "443 from 0.0.0.0/0, 22 from 0.0.0.0/0" vs code "443 from 0.0.0.0/0"
-  exit code 2 -> DRIFT: someone opened SSH in the console; revert with apply and alert
-aws_db_instance.orders: -/+ replace (identifier changed: forces new resource)  -> ERROR: lifecycle.prevent_destroy, plan rejected
-aws_launch_template.web: ~ update in-place
-```
 
 ### Interview answer
 "State lives in a remote, encrypted, versioned backend — S3 with native lockfiles or DynamoDB locking, or Terraform Cloud — split per environment and component, so the team shares one truth and locking prevents concurrent applies. A scheduled plan with detailed exit codes detects drift from console changes, which we either revert or codify, and prod console access is read-only. Lifecycle rules protect stateful resources with prevent_destroy, avoid downtime with create_before_destroy, and ignore attributes owned by autoscalers; refactors use moved, import and removed blocks so nothing is accidentally destroyed — and any replace on a database in a plan is a red flag."
@@ -381,71 +208,6 @@ resource "aws_s3_bucket_versioning" "this" {
 }
 output "bucket_arns" { value = { for k, b in aws_s3_bucket.this : k => b.arn } }
 ```
-
-#### Modern C++ example — a mini Terraform: diff desired vs. state into a plan, then apply in dependency (DAG) order
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <queue>
-#include <set>
-#include <string>
-#include <vector>
-
-struct Res { std::map<std::string, std::string> attrs; std::vector<std::string> depends_on; std::set<std::string> force_new; };
-
-int main() {
-    std::map<std::string, Res> desired{
-        {"aws_vpc.main", {{{"cidr", "10.20.0.0/16"}}, {}, {"cidr"}}},
-        {"aws_subnet.a", {{{"cidr", "10.20.0.0/20"}, {"vpc", "aws_vpc.main"}}, {"aws_vpc.main"}, {"cidr"}}},
-        {"aws_security_group.web", {{{"ingress", "443"}}, {"aws_vpc.main"}, {}}},
-        {"aws_instance.web", {{{"type", "m7g.large"}, {"ami", "ami-0b2"}}, {"aws_subnet.a", "aws_security_group.web"}, {"ami"}}},
-    };
-    std::map<std::string, std::map<std::string, std::string>> state{
-        {"aws_vpc.main", {{"cidr", "10.20.0.0/16"}}},
-        {"aws_security_group.web", {{"ingress", "80"}}},
-        {"aws_instance.web", {{"type", "m7g.medium"}, {"ami", "ami-0a1"}}},
-        {"aws_eip.old", {{"ip", "203.0.113.7"}}},
-    };
-    std::map<std::string, std::string> plan;
-    for (auto& [addr, r] : desired) {
-        if (!state.count(addr)) { plan[addr] = "+ create"; continue; }
-        std::string action;
-        for (auto& [k, v] : r.attrs) if (state[addr][k] != v) action = r.force_new.count(k) ? "-/+ replace (" + k + " forces new)" : (action.empty() ? "~ update " + k : action);
-        if (!action.empty()) plan[addr] = action;
-    }
-    for (auto& [addr, a] : state) if (!desired.count(addr)) plan[addr] = "- destroy";
-    int add = 0, change = 0, destroy = 0;
-    std::cout << "Terraform plan:\n";
-    for (auto& [addr, a] : plan) {
-        std::cout << "  " << a << "  " << addr << '\n';
-        add += a[0] == '+' || a.rfind("-/+", 0) == 0; change += a[0] == '~'; destroy += a[0] == '-';
-    }
-    std::cout << "Plan: " << add << " to add, " << change << " to change, " << destroy << " to destroy.\n";
-
-    std::map<std::string, int> indeg;                             // apply: topological order over depends_on
-    std::map<std::string, std::vector<std::string>> out;
-    for (auto& [addr, r] : desired) { indeg[addr]; for (auto& d : r.depends_on) { out[d].push_back(addr); ++indeg[addr]; } }
-    std::queue<std::string> ready;
-    for (auto& [a, n] : indeg) if (n == 0) ready.push(a);
-    std::cout << "apply order:";
-    while (!ready.empty()) { auto a = ready.front(); ready.pop(); std::cout << ' ' << a; for (auto& b : out[a]) if (--indeg[b] == 0) ready.push(b); }
-    std::cout << '\n';
-}
-```
-
-**Output:**
-```text
-Terraform plan:
-  - destroy  aws_eip.old
-  -/+ replace (ami forces new)  aws_instance.web
-  ~ update ingress  aws_security_group.web
-  + create  aws_subnet.a
-Plan: 2 to add, 1 to change, 2 to destroy.
-apply order: aws_vpc.main aws_security_group.web aws_subnet.a aws_instance.web
-```
-
-A replacement counts as one add **and** one destroy — exactly how Terraform's own summary line counts it.
 
 ### Interview answer
 "Terraform configuration declares resources and data sources through versioned providers, organized into reusable, pinned modules. `init` fetches providers and sets up the backend; `plan` compares configuration with state and real infrastructure and shows creates, in-place updates, replacements and destroys; `apply` executes it in dependency order from a DAG built from references, in parallel where possible. State maps addresses to real resource IDs. I prefer for_each over count for stable addresses, review plans in PRs from CI, and add tflint, terraform test, policy checks and cost estimates."

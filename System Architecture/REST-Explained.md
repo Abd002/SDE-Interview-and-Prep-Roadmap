@@ -8,9 +8,8 @@
 1. [What is REST?](#1-what-is-rest)
 2. [The six REST constraints](#2-the-six-rest-constraints)
 3. [Designing a REST API](#3-designing-a-rest-api)
-4. [Modern C++ example: a REST-style router](#4-modern-c-example-a-rest-style-router)
-5. [REST vs. RPC/gRPC vs. GraphQL](#5-rest-vs-rpcgrpc-vs-graphql)
-6. [Cheat sheet](#cheat-sheet)
+4. [REST vs. RPC/gRPC vs. GraphQL](#4-rest-vs-rpcgrpc-vs-graphql)
+5. [Cheat sheet](#cheat-sheet)
 
 ---
 
@@ -96,123 +95,7 @@ Avoid verbs in URLs (`/getUser`, `/deleteOrder`); the **method** is the verb. Fo
 
 ---
 
-## 4. Modern C++ example: a REST-style router
-
-A tiny in-memory REST API for `/books`: path parameters, methods, status codes, `Location`, `ETag`/conditional GET, and cursor pagination.
-
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <format>
-#include <functional>
-#include <iostream>
-#include <map>
-#include <optional>
-#include <string>
-
-struct Request  { std::string method, path, body, if_none_match; std::map<std::string, std::string> query; };
-struct Response { int status; std::string body; std::map<std::string, std::string> headers; };
-
-class BooksApi {
-public:
-    Response handle(const Request& r) {
-        if (r.path == "/books" && r.method == "GET")  return list(r);
-        if (r.path == "/books" && r.method == "POST") return create(r);
-        if (auto id = id_from(r.path)) {
-            if (r.method == "GET")    return get(*id, r);
-            if (r.method == "PUT")    return replace(*id, r);
-            if (r.method == "DELETE") return books_.erase(*id) ? Response{204, "", {}} : Response{404, R"({"error":"not found"})", {}};
-            return {405, R"({"error":"method not allowed"})", {{"Allow", "GET, PUT, DELETE"}}};
-        }
-        return {404, R"({"error":"no such resource"})", {}};
-    }
-private:
-    static std::optional<int> id_from(const std::string& path) {          // "/books/7" -> 7
-        if (!path.starts_with("/books/")) return std::nullopt;
-        try { return std::stoi(path.substr(7)); } catch (...) { return std::nullopt; }
-    }
-    static std::string etag(const std::string& body) { return '"' + std::to_string(std::hash<std::string>{}(body) % 100000) + '"'; }
-
-    Response create(const Request& r) {
-        int id = next_id_++;
-        books_[id] = r.body;
-        return {201, std::format(R"({{"id":{},"title":"{}"}})", id, r.body), {{"Location", "/books/" + std::to_string(id)}}};
-    }
-    Response get(int id, const Request& r) {
-        auto it = books_.find(id);
-        if (it == books_.end()) return {404, R"({"error":"not found"})", {}};
-        std::string body = std::format(R"({{"id":{},"title":"{}"}})", id, it->second);
-        std::string tag = etag(body);
-        if (r.if_none_match == tag) return {304, "", {{"ETag", tag}}};      // client's copy is still fresh
-        return {200, body, {{"ETag", tag}}};
-    }
-    Response replace(int id, const Request& r) {
-        bool existed = books_.contains(id);
-        books_[id] = r.body;                                               // idempotent full replace
-        return {existed ? 200 : 201, std::format(R"({{"id":{},"title":"{}"}})", id, r.body), {}};
-    }
-    Response list(const Request& r) {                                      // cursor pagination: ?after=ID&limit=N
-        int after = r.query.contains("after") ? std::stoi(r.query.at("after")) : 0;
-        int limit = r.query.contains("limit") ? std::stoi(r.query.at("limit")) : 2;
-        std::string items;
-        int last = after, count = 0;
-        for (auto it = books_.upper_bound(after); it != books_.end() && count < limit; ++it, ++count) {
-            items += (count ? "," : "") + std::format(R"({{"id":{},"title":"{}"}})", it->first, it->second);
-            last = it->first;
-        }
-        bool more = books_.upper_bound(last) != books_.end();
-        std::string next = more ? std::format(R"("/books?after={}&limit={}")", last, limit) : "null";
-        return {200, std::format(R"({{"items":[{}],"next":{}}})", items, next), {}};
-    }
-    std::map<int, std::string> books_;
-    int next_id_ = 1;
-};
-
-void show(const std::string& call, const Response& r) {
-    std::cout << call << "\n  -> " << r.status << ' ' << r.body;
-    for (const auto& [k, v] : r.headers) std::cout << "  [" << k << ": " << v << ']';
-    std::cout << '\n';
-}
-
-int main() {
-    BooksApi api;
-    for (const char* t : {"Dune", "Emma", "Ulysses"}) api.handle({"POST", "/books", t, "", {}});
-
-    show("POST /books  body=Hamlet", api.handle({"POST", "/books", "Hamlet", "", {}}));
-    auto first = api.handle({"GET", "/books/1", "", "", {}});
-    show("GET /books/1", first);
-    show("GET /books/1  If-None-Match: <etag>", api.handle({"GET", "/books/1", "", first.headers["ETag"], {}}));
-    show("GET /books?limit=2", api.handle({"GET", "/books", "", "", {{"limit", "2"}}}));
-    show("GET /books?after=2&limit=2", api.handle({"GET", "/books", "", "", {{"after", "2"}, {"limit", "2"}}}));
-    show("PATCH /books/1", api.handle({"PATCH", "/books/1", "x", "", {}}));
-    show("DELETE /books/2", api.handle({"DELETE", "/books/2", "", "", {}}));
-    show("GET /books/2", api.handle({"GET", "/books/2", "", "", {}}));
-}
-```
-
-**Output (may vary):**
-```text
-POST /books  body=Hamlet
-  -> 201 {"id":4,"title":"Hamlet"}  [Location: /books/4]
-GET /books/1
-  -> 200 {"id":1,"title":"Dune"}  [ETag: "94549"]
-GET /books/1  If-None-Match: <etag>
-  -> 304   [ETag: "94549"]
-GET /books?limit=2
-  -> 200 {"items":[{"id":1,"title":"Dune"},{"id":2,"title":"Emma"}],"next":"/books?after=2&limit=2"}
-GET /books?after=2&limit=2
-  -> 200 {"items":[{"id":3,"title":"Ulysses"},{"id":4,"title":"Hamlet"}],"next":null}
-PATCH /books/1
-  -> 405 {"error":"method not allowed"}  [Allow: GET, PUT, DELETE]
-DELETE /books/2
-  -> 204 
-GET /books/2
-  -> 404 {"error":"not found"}
-```
-(The ETag value depends on your standard library's hash function.)
-
----
-
-## 5. REST vs. RPC/gRPC vs. GraphQL
+## 4. REST vs. RPC/gRPC vs. GraphQL
 
 | | REST | RPC / gRPC | GraphQL |
 |---|---|---|---|

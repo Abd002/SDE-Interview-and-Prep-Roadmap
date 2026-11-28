@@ -1,6 +1,6 @@
 # AWS Storage and Databases — DynamoDB, EBS/EFS/S3, ElastiCache, RDS/Aurora and S3 Features
 
-> **What you'll learn:** how to model **DynamoDB** tables (partition and sort keys, **GSIs**, **hot partitions**, capacity modes), when to use **EBS vs. EFS vs. S3** and what their durability and consistency mean, how to use **ElastiCache/Redis** (invalidation, eviction, replication), how **RDS/Aurora** handle backups, replicas, failover and **connection pooling**, and the key **S3** features (versioning, encryption, lifecycle policies, **presigned URLs**). Each part has config snippets and a runnable C++ model.
+> **What you'll learn:** how to model **DynamoDB** tables (partition and sort keys, **GSIs**, **hot partitions**, capacity modes), when to use **EBS vs. EFS vs. S3** and what their durability and consistency mean, how to use **ElastiCache/Redis** (invalidation, eviction, replication), how **RDS/Aurora** handle backups, replicas, failover and **connection pooling**, and the key **S3** features (versioning, encryption, lifecycle policies, **presigned URLs**). Each part has config snippets; parts built on a real algorithm include a runnable C++ implementation.
 >
 > **Prerequisites:** [Databases → NoSQL](../Databases/NoSQL.md), [Caching Strategies](../System%20Design/Caching-Strategies.md), [Transactions](../Databases/Transactions-and-Isolation.md).
 
@@ -30,56 +30,6 @@ A huge filing cabinet with thousands of drawers. The partition key picks the dra
 - **Consistency:** reads are eventually consistent by default; strongly consistent reads on the base table (not GSIs); **transactions** (`TransactWriteItems`) and **conditional writes** for invariants and idempotency; TTL for expiry; Streams for change data capture.
 - Item size limit **400 KB**; `Scan` is expensive — avoid it in hot paths.
 
-#### Modern C++ example — single-table key design, a sort-key range query, and spotting a hot partition
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Item { std::string pk, sk, data; };
-
-int main() {
-    std::map<std::string, std::map<std::string, std::string>> table;     // PK -> (SK -> data), SK kept sorted
-    auto put = [&](const Item& i) { table[i.pk][i.sk] = i.data; };
-    put({"CUSTOMER#42", "PROFILE", "Mona, Cairo"});
-    put({"CUSTOMER#42", "ORDER#2026-09-30#77", "keyboard"});
-    put({"CUSTOMER#42", "ORDER#2026-10-03#79", "mouse"});
-    put({"CUSTOMER#42", "ORDER#2026-10-17#81", "monitor"});
-    put({"CUSTOMER#7", "ORDER#2026-10-05#80", "cable"});
-
-    // Query: PK = CUSTOMER#42 AND SK BETWEEN ORDER#2026-10-01 AND ORDER#2026-10-31~
-    auto& part = table["CUSTOMER#42"];
-    std::cout << "October orders of customer 42:";
-    for (auto it = part.lower_bound("ORDER#2026-10-01"); it != part.end() && it->first <= "ORDER#2026-10-31~"; ++it)
-        std::cout << ' ' << it->second;
-    std::cout << '\n';
-
-    // Hot partitions: 10,000 writes/s keyed by status vs. by order ID, spread over 8 partitions.
-    auto load = [](const std::function<std::string(int)>& key) {
-        std::vector<int> per_partition(8, 0);
-        for (int i = 0; i < 10000; ++i) ++per_partition[std::hash<std::string>{}(key(i)) % 8];
-        int mx = 0; for (int x : per_partition) mx = std::max(mx, x);
-        return mx;
-    };
-    int by_status = load([](int i) { return i % 10 == 0 ? std::string("STATUS#shipped") : std::string("STATUS#open"); });
-    int by_order = load([](int i) { return "ORDER#" + std::to_string(i); });
-    int sharded = load([](int i) { return "STATUS#open#shard-" + std::to_string(i % 20); });
-    std::cout << "busiest partition (limit ~1000 WCU): by status=" << by_status << " WCU (HOT), by order id=" << by_order
-              << " WCU, status with 20 write shards=" << sharded << " WCU\n";
-}
-```
-
-**Output:**
-```text
-October orders of customer 42: mouse monitor
-busiest partition (limit ~1000 WCU): by status=9000 WCU (HOT), by order id=1303 WCU, status with 20 write shards=2500 WCU
-```
-
-Even "by order id" is above 1,000 WCU per partition here because the toy table only has 8 partitions; real DynamoDB **splits partitions** as traffic grows — but it can't split a **single key**, which is why `STATUS#open` stays hot.
-
 ### Interview answer
 "In DynamoDB I start from access patterns: the partition key spreads data and must appear in every query, the sort key orders items within a partition for range queries, and in single-table designs I use prefixed composite keys like CUSTOMER#42 and ORDER#date#id. GSIs serve other access patterns, eventually consistently. Hot partitions come from low-cardinality or celebrity keys hitting per-partition limits of about 1,000 writes and 3,000 reads per second, so I use high-cardinality keys, write sharding or caching. On-demand suits new or spiky workloads, provisioned with auto scaling suits steady ones, and conditional writes and transactions enforce invariants and idempotency."
 
@@ -107,44 +57,6 @@ EBS is your laptop's hard drive. EFS is a shared network drive the whole office 
 - **Instance store** (NVMe on the host) is fastest but **ephemeral** — lost on stop/terminate.
 - S3 objects are **immutable** — update = rewrite the whole object; no file locks or appends (use DynamoDB/a DB for coordination).
 - **FSx** offers managed Lustre, NetApp ONTAP, Windows File Server, OpenZFS for special needs.
-
-#### Modern C++ example — choosing a storage service from workload requirements
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Need { std::string what; bool shared_by_many, needs_posix, low_latency_random_io, huge_and_cheap, http_access; };
-
-std::string choose(const Need& n) {
-    if (n.huge_and_cheap || n.http_access) return "S3 (objects, 11 nines, lifecycle to cheaper classes)";
-    if (n.shared_by_many && n.needs_posix) return "EFS (shared NFS across AZs)";
-    if (n.low_latency_random_io) return "EBS gp3/io2 (block, single AZ; snapshot for backup)";
-    return "EBS gp3";
-}
-
-int main() {
-    std::vector<Need> needs{
-        {"PostgreSQL data directory on EC2", false, true, true, false, false},
-        {"user-uploaded photos served via CDN", true, false, false, true, true},
-        {"shared WordPress uploads across 6 instances", true, true, false, false, false},
-        {"10 TB of logs kept for 1 year", false, false, false, true, false},
-        {"OS boot volume", false, true, false, false, false},
-    };
-    for (auto& n : needs) std::cout << std::left << std::setw(46) << n.what << "-> " << choose(n) << '\n';
-}
-```
-
-**Output:**
-```text
-PostgreSQL data directory on EC2              -> EBS gp3/io2 (block, single AZ; snapshot for backup)
-user-uploaded photos served via CDN           -> S3 (objects, 11 nines, lifecycle to cheaper classes)
-shared WordPress uploads across 6 instances   -> EFS (shared NFS across AZs)
-10 TB of logs kept for 1 year                 -> S3 (objects, 11 nines, lifecycle to cheaper classes)
-OS boot volume                                -> EBS gp3
-```
 
 ### Interview answer
 "EBS is a block volume for one instance in one AZ with sub-millisecond latency — boot disks and self-managed databases — backed up with snapshots. EFS is a regional NFS file system many instances share, for workloads that need POSIX semantics. S3 is regional object storage with eleven nines of durability, strong read-after-write consistency, cheap storage classes and HTTP access — the default for backups, data lakes, uploads and static assets, as long as I don't need in-place edits, appends or file locks."
@@ -280,46 +192,6 @@ A managed restaurant kitchen: the company does the cleaning, backups of recipes,
 - 500 Lambda environments × 1 connection each can exhaust the DB. **RDS Proxy** pools and multiplexes connections, holds them during failover, and supports IAM auth; or run **PgBouncer** (transaction pooling).
 - Pool size rule of thumb (per HikariCP): connections ≈ (CPU cores × 2) + effective spindles — **more connections don't mean more throughput**.
 
-#### Modern C++ example — connection exhaustion without a pool vs. with a proxy, and replica-lag-aware routing
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <iostream>
-#include <string>
-
-int main() {
-    const int max_connections = 400;                          // e.g. a db.r6g.large-ish PostgreSQL
-    for (int lambdas : {200, 400, 1200}) {
-        int direct = lambdas;                                  // each environment opens its own connection
-        int via_proxy = std::min(lambdas, 60);                 // proxy multiplexes onto a 60-connection pool
-        std::cout << lambdas << " concurrent Lambdas: direct " << direct << " conns -> "
-                  << (direct > max_connections ? "'too many connections' errors" : "ok")
-                  << " | via RDS Proxy " << via_proxy << " DB conns -> ok\n";
-    }
-
-    // Read routing: replicas are async; send read-your-writes traffic to the writer.
-    double replica_lag_ms = 850;
-    auto route = [&](const std::string& query, bool just_wrote) {
-        if (just_wrote || replica_lag_ms > 1000) return query + " -> writer endpoint";
-        return query + " -> reader endpoint (may be " + std::to_string(static_cast<int>(replica_lag_ms)) + " ms stale)";
-    };
-    std::cout << route("GET /orders (dashboard)", false) << '\n'
-              << route("GET /orders/81 right after checkout", true) << '\n';
-    replica_lag_ms = 4000;
-    std::cout << route("GET /orders (dashboard), lag spike", false) << '\n';
-}
-```
-
-**Output:**
-```text
-200 concurrent Lambdas: direct 200 conns -> ok | via RDS Proxy 60 DB conns -> ok
-400 concurrent Lambdas: direct 400 conns -> ok | via RDS Proxy 60 DB conns -> ok
-1200 concurrent Lambdas: direct 1200 conns -> 'too many connections' errors | via RDS Proxy 60 DB conns -> ok
-GET /orders (dashboard) -> reader endpoint (may be 850 ms stale)
-GET /orders/81 right after checkout -> writer endpoint
-GET /orders (dashboard), lag spike -> writer endpoint
-```
-
 ### Interview answer
 "RDS gives managed relational databases with automated backups and point-in-time recovery, Multi-AZ synchronous standbys for failover in a minute or two, and asynchronous read replicas for scaling reads — with lag, so read-your-writes goes to the primary. Aurora uses distributed storage with six copies across three AZs, failover usually under 30 seconds, up to 15 replicas, Global Database and Serverless v2. Apps connect through cluster endpoints and retry on failover. Since connections are expensive, I pool them with RDS Proxy or PgBouncer — essential with Lambda — and size pools small, because more connections don't mean more throughput."
 
@@ -352,63 +224,6 @@ A photo archive: every edit is kept as a new copy (versioning), the archive is l
     "AbortIncompleteMultipartUpload": { "DaysAfterInitiation": 7 }
   }]
 }
-```
-
-#### Modern C++ example — versioning with delete markers, a lifecycle cost estimate, and presigned-URL style expiry checks
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <cstdint>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Version { int id; std::string data; bool delete_marker; };
-
-// TOY signature for the presigned URL (real S3: AWS SigV4 = HMAC-SHA256 chain over the canonical request).
-std::uint64_t toy_sign(const std::string& secret, const std::string& s) { std::uint64_t h = 1469598103934665603ull; for (unsigned char c : secret + s) { h ^= c; h *= 1099511628211ull; } return h; }
-
-int main() {
-    std::map<std::string, std::vector<Version>> bucket;
-    int next = 1;
-    auto put = [&](const std::string& k, const std::string& d) { bucket[k].push_back({next++, d, false}); };
-    auto del = [&](const std::string& k) { bucket[k].push_back({next++, "", true}); };
-    auto get = [&](const std::string& k) -> std::string { auto& v = bucket[k]; return v.empty() || v.back().delete_marker ? "404 (latest is a delete marker)" : v.back().data; };
-    put("report.pdf", "v1 draft"); put("report.pdf", "v2 final"); del("report.pdf");
-    std::cout << "GET report.pdf -> " << get("report.pdf") << '\n';
-    bucket["report.pdf"].pop_back();                                     // restore = remove the delete marker
-    std::cout << "after removing the delete marker -> " << get("report.pdf") << " (" << bucket["report.pdf"].size() << " versions kept)\n";
-
-    // Lifecycle: 10 TB of logs, 30 days Standard, then IA until day 90, then Glacier IR until day 365 (prices USD/GB-month, illustrative).
-    const double gb = 10'000, standard = 0.023, ia = 0.0125, glacier_ir = 0.004;
-    double all_standard = gb * standard * 12, tiered = gb * (standard * 1 + ia * 2 + glacier_ir * 9);
-    std::cout << std::fixed << std::setprecision(0) << "1-year cost: all Standard ~$" << all_standard << ", with lifecycle ~$" << tiered << '\n';
-
-    const std::string secret = "server-side-credentials";
-    auto presign = [&](const std::string& key, long expires) { return std::to_string(expires) + ":" + std::to_string(toy_sign(secret, "GET " + key + " " + std::to_string(expires))); };
-    auto check = [&](const std::string& key, const std::string& url, long now) {
-        long expires = std::stol(url.substr(0, url.find(':')));
-        if (now > expires) return std::string("403 Request has expired");
-        if (url != presign(key, expires)) return std::string("403 SignatureDoesNotMatch");
-        return std::string("200 OK");
-    };
-    long now = 1'760'000'000;
-    std::string url = presign("invoices/81.pdf", now + 900);             // 15-minute download link
-    std::cout << "presigned GET within 15 min: " << check("invoices/81.pdf", url, now + 60) << '\n'
-              << "same URL for another key:    " << check("invoices/82.pdf", url, now + 60) << '\n'
-              << "after expiry:                " << check("invoices/81.pdf", url, now + 1000) << '\n';
-}
-```
-
-**Output:**
-```text
-GET report.pdf -> 404 (latest is a delete marker)
-after removing the delete marker -> v2 final (2 versions kept)
-1-year cost: all Standard ~$2760, with lifecycle ~$840
-presigned GET within 15 min: 200 OK
-same URL for another key:    403 SignatureDoesNotMatch
-after expiry:                403 Request has expired
 ```
 
 ### Interview answer

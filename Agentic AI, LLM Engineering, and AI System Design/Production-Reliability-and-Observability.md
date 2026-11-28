@@ -14,7 +14,7 @@
 > - **streaming, cancellation and timeouts**;
 > - **token, cost and latency budgets**.
 >
-> Each part has a runnable C++ example.
+> Parts built on a real algorithm include a runnable C++ implementation.
 >
 > **Prerequisites:** [Tool Use, Integrations, and Protocols](./Tool-Use-Integrations-and-Protocols.md) and general observability from [Logging, Metrics, and Tracing](../Testing%2C%20Reliability%20%26%20Observability/Logging-Metrics-and-Tracing.md) and [Reliability Engineering (SRE)](../Testing%2C%20Reliability%20%26%20Observability/Reliability-Engineering-SRE.md).
 
@@ -60,58 +60,6 @@ A café that pre-grinds coffee beans for the most common orders (prompt caching)
 | **Retrieval cache** | hash(query, filters incl. ACL, index version) | medium | must include permissions; invalidate on re-index |
 
 - Don't cache personalized or sensitive answers across users. Measure the hit rate and the quality of cache hits.
-
-#### Modern C++ example — an exact response cache keyed by version and tenant, with TTL and invalidation on prompt change
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <cctype>
-#include <functional>
-#include <iostream>
-#include <map>
-#include <string>
-
-struct Entry { std::string answer; int expires_at; };
-
-class ResponseCache {
-    std::map<std::size_t, Entry> m_;
-public:
-    int hits = 0, misses = 0;
-    static std::string normalize(std::string s) {
-        std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return std::tolower(c); });
-        s.erase(std::remove_if(s.begin(), s.end(), [](unsigned char c) { return std::ispunct(c); }), s.end());
-        return s;
-    }
-    static std::size_t key(const std::string& model, const std::string& prompt_v, const std::string& tenant, const std::string& q) {
-        return std::hash<std::string>{}(model + "|" + prompt_v + "|" + tenant + "|" + normalize(q));
-    }
-    std::string get_or_call(std::size_t k, int now, const std::function<std::string()>& llm) {
-        if (auto it = m_.find(k); it != m_.end() && it->second.expires_at > now) { ++hits; return it->second.answer + " (cache)"; }
-        ++misses; auto a = llm(); m_[k] = {a, now + 3600}; return a;
-    }
-};
-
-int main() {
-    ResponseCache cache;
-    auto llm = [] { return std::string("Refunds take 14 days."); };
-    std::cout << cache.get_or_call(ResponseCache::key("m-2026-06", "faq@v3", "acme", "How long do refunds take?"), 0, llm) << '\n';
-    std::cout << cache.get_or_call(ResponseCache::key("m-2026-06", "faq@v3", "acme", "how long do refunds take"), 60, llm) << '\n';
-    std::cout << cache.get_or_call(ResponseCache::key("m-2026-06", "faq@v3", "globex", "how long do refunds take"), 90, llm) << "  <- other tenant: separate entry\n";
-    std::cout << cache.get_or_call(ResponseCache::key("m-2026-06", "faq@v4", "acme", "how long do refunds take"), 120, llm) << "  <- new prompt version: miss\n";
-    std::cout << cache.get_or_call(ResponseCache::key("m-2026-06", "faq@v3", "acme", "how long do refunds take"), 4000, llm) << "  <- TTL expired\n";
-    std::cout << "hits " << cache.hits << ", misses " << cache.misses << '\n';
-}
-```
-
-**Output:**
-```text
-Refunds take 14 days.
-Refunds take 14 days. (cache)
-Refunds take 14 days.  <- other tenant: separate entry
-Refunds take 14 days.  <- new prompt version: miss
-Refunds take 14 days.  <- TTL expired
-hits 1, misses 4
-```
 
 ### Interview answer
 "I cache at several layers. Provider prompt caching is usually the biggest win for agents: I keep the system prompt, tool definitions and static context as a stable prefix with dynamic content last, which cuts cost and time to first token. Exact response caching is keyed by model, prompt version, parameters, normalized input and tenant, with TTLs and invalidation when documents or prompts change. Semantic caching only goes in low-risk domains with a high threshold, because a similar question can need a different answer. Embedding and retrieval caches speed up ingestion and repeated queries, and retrieval keys must include permission filters. I track hit rates and the quality of cached answers."
@@ -223,39 +171,6 @@ Don't send every letter by express courier: most can go by regular post, a few b
 
 - Attribute cost per tenant, feature and step ([section 12](#12-token-usage-per-step-cost-and-latency-budgets)). Validate every optimization against the eval set.
 
-#### Modern C++ example — monthly cost before and after routing, prompt caching and trimming, with the quality check
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-
-struct Config { const char* name; double share_small, in_tokens, out_tokens, cached_fraction, success; };
-
-int main() {
-    const double large_in = 3.0 / 1e6, large_out = 15.0 / 1e6, small_in = 0.25 / 1e6, small_out = 1.25 / 1e6, cache_price = 0.1;
-    const double requests = 3'000'000;                                             // per month
-    Config before{"before", 0.0, 6000, 700, 0.0, 0.92}, after{"after", 0.7, 3500, 450, 0.6, 0.92};
-    std::cout << std::fixed << std::setprecision(0);
-    for (auto& c : {before, after}) {
-        auto cost = [&](double in_p, double out_p) {
-            double in = c.in_tokens * ((1 - c.cached_fraction) + c.cached_fraction * cache_price);
-            return in * in_p + c.out_tokens * out_p;
-        };
-        double per_req = c.share_small * cost(small_in, small_out) + (1 - c.share_small) * cost(large_in, large_out);
-        std::cout << c.name << ": $" << per_req * requests << "/month, $" << std::setprecision(4) << per_req / c.success
-                  << " per successful task, success " << std::setprecision(2) << c.success << std::setprecision(0) << '\n';
-    }
-    std::cout << "changes: 70% routed to small model, 60% of input cached, top-k 8->4 and compact tool results, max output 700->450\n";
-}
-```
-
-**Output:**
-```text
-before: $85500/month, $0.0310 per successful task, success 0.92
-after: $12449/month, $0.0045 per successful task, success 0.92
-changes: 70% routed to small model, 60% of input cached, top-k 8->4 and compact tool results, max output 700->450
-```
-
 ### Interview answer
 "I treat cost as tokens times price times calls and attack each factor. A router or cascade sends easy requests to a small model and escalates hard ones. Prompt caching makes the stable prefix cheap. Context trimming — fewer, better chunks, summaries and compact tool outputs — and tighter output limits cut tokens. Batch APIs handle offline jobs, and better tools or workflows reduce agent steps. For narrow high-volume tasks, a fine-tuned small model can help. I track cost per successful task per feature and tenant, and validate each optimization against the eval set so savings don't quietly reduce quality."
 
@@ -280,51 +195,6 @@ A parcel tracking page for each request: every hand-off is scanned, so you can s
 - **Privacy:** full prompts and outputs may contain PII. Redact them, sample them, restrict access, and set retention.
 - **Backends:** LangSmith, Langfuse, Phoenix, or Datadog/Honeycomb/Grafana Tempo/Jaeger via OTel ([LangSmith](./Agentic-Frameworks-and-Orchestration.md#8-langsmith-traces-datasets-evaluations-and-debugging), [Logging, Metrics, and Tracing](../Testing%2C%20Reliability%20%26%20Observability/Logging-Metrics-and-Tracing.md)).
 - **Uses:** latency breakdowns (critical path), debugging wrong answers, cost attribution, and building eval datasets from real traces.
-
-#### Modern C++ example — nested spans for one agent request, with GenAI attributes and a critical-path latency breakdown
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Span { std::string id, parent, name; int start_ms, end_ms; std::map<std::string, std::string> attrs; };
-
-int main() {
-    const std::string trace_id = "4bf92f3577b34da6a3ce929d0e0e4736";
-    std::vector<Span> spans{
-        {"s1", "", "POST /chat", 0, 3120, {{"tenant", "acme"}, {"thread_id", "th-9"}}},
-        {"s2", "s1", "retrieve", 15, 240, {{"top_k", "5"}, {"doc_ids", "kb-3,kb-9"}}},
-        {"s3", "s1", "chat model (plan)", 245, 1150, {{"gen_ai.request.model", "model-2026-06"}, {"gen_ai.usage.input_tokens", "3180"}, {"gen_ai.usage.output_tokens", "95"}, {"prompt", "support@v8"}}},
-        {"s4", "s1", "tool orders.get_status", 1155, 1960, {{"status", "ok"}, {"order_id", "1042"}}},
-        {"s5", "s1", "chat model (answer)", 1965, 3100, {{"gen_ai.usage.input_tokens", "3420"}, {"gen_ai.usage.output_tokens", "210"}, {"finish_reason", "end_turn"}}},
-    };
-    std::cout << "trace " << trace_id.substr(0, 8) << "...\n";
-    int total = spans[0].end_ms - spans[0].start_ms;
-    for (auto& s : spans) {
-        int d = s.end_ms - s.start_ms;
-        std::cout << (s.parent.empty() ? "" : "  ") << s.name << " " << d << "ms";
-        if (!s.parent.empty()) std::cout << " (" << d * 100 / total << "%)";
-        for (auto& [k, v] : s.attrs) if (k.rfind("gen_ai.usage", 0) == 0 || k == "status" || k == "finish_reason") std::cout << " " << k.substr(k.rfind('.') + 1) << "=" << v;
-        std::cout << '\n';
-    }
-    std::cout << "slowest child: tool orders.get_status at 805ms -> investigate the orders API p95\n";
-}
-```
-
-**Output:**
-```text
-trace 4bf92f35...
-POST /chat 3120ms
-  retrieve 225ms (7%)
-  chat model (plan) 905ms (29%) input_tokens=3180 output_tokens=95
-  tool orders.get_status 805ms (25%) status=ok
-  chat model (answer) 1135ms (36%) finish_reason=end_turn input_tokens=3420 output_tokens=210
-slowest child: tool orders.get_status at 805ms -> investigate the orders API p95
-```
-
-The model calls are the longest spans, but they're expected to be slow. The tool span is the **anomaly** worth investigating: an 805 ms status lookup suggests something is off.
 
 ### Interview answer
 "Each request gets a trace ID propagated through services and queues with OpenTelemetry, and every step is a span: retrieval with doc IDs and scores; each model call with model, prompt version, token counts, latency, time to first token and finish reason, following the GenAI semantic conventions; and each tool call with redacted arguments, status and latency. That gives critical-path latency breakdowns, cost attribution, and the exact context behind a wrong decision. Because prompts can contain PII, I redact, sample and restrict access. Traces feed back into evaluation datasets."
@@ -418,44 +288,6 @@ A restaurant changes its recipe by giving it to a few tables first, watching the
   - **A/B test** for product impact ([online experiments](./Evaluation-and-Testing.md#9-offline-evaluation-vs-online-experiments-and-ab-testing)).
 - **Rollback:** a flag flip to the previous bundle with no deploy. Keep old prompts and indexes available. Sticky assignment per user avoids flip-flopping experiences.
 
-#### Modern C++ example — deterministic percentage rollout of a new bundle, canary metric comparison, and automatic rollback
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iomanip>
-#include <iostream>
-#include <string>
-
-struct Bundle { std::string id, model, prompt; };
-struct Metrics { double error_rate, p95_ms, thumbs_up, cost_cents; };
-
-const Bundle& pick(const std::string& user, int canary_percent, const Bundle& stable, const Bundle& canary) {
-    return std::hash<std::string>{}(user + "salt-1") % 100 < std::size_t(canary_percent) ? canary : stable;   // sticky per user
-}
-
-int main() {
-    Bundle stable{"b-41", "model-2026-03", "support@v7"}, canary{"b-42", "model-2026-06", "support@v8"};
-    int on_canary = 0;
-    for (int u = 0; u < 10000; ++u) on_canary += pick("user-" + std::to_string(u), 5, stable, canary).id == canary.id;
-    std::cout << "5% canary -> " << on_canary << " of 10000 users on " << canary.id << " (" << canary.model << ", " << canary.prompt << ")\n";
-
-    Metrics s{0.004, 3100, 0.81, 0.62}, c{0.004, 2700, 0.74, 0.55};
-    bool regress = c.error_rate > s.error_rate * 1.5 || c.p95_ms > s.p95_ms * 1.2 || c.thumbs_up < s.thumbs_up - 0.03;
-    std::cout << std::fixed << std::setprecision(2) << "canary vs stable: thumbs-up " << c.thumbs_up << " vs " << s.thumbs_up
-              << ", p95 " << int(c.p95_ms) << " vs " << int(s.p95_ms) << "ms, cost " << c.cost_cents << " vs " << s.cost_cents << "c\n";
-    std::cout << (regress ? "ROLLBACK: flag 'support_bundle' -> " + stable.id + " (no deploy needed); investigate the quality drop" : "ramp to 25%") << '\n';
-}
-```
-
-**Output:**
-```text
-5% canary -> 539 of 10000 users on b-42 (model-2026-06, support@v8)
-canary vs stable: thumbs-up 0.74 vs 0.81, p95 2700 vs 3100ms, cost 0.55 vs 0.62c
-ROLLBACK: flag 'support_bundle' -> b-41 (no deploy needed); investigate the quality drop
-```
-
-The new bundle was faster and cheaper but **worse for users**. That's exactly why quality signals are part of the canary gate.
-
 ### Interview answer
 "I version everything that changes behaviour as one release bundle: a pinned model snapshot, prompt version, tool schemas, retrieval settings and sampling parameters, stored as configuration and logged on every request. Changes pass the offline regression suite, then shadow traffic, then a small sticky-per-user canary compared automatically on errors, latency, cost and quality signals like feedback and judge scores, then a gradual ramp or an A/B test. Rollback is a feature-flag flip to the previous bundle with no deploy, and provider model upgrades go through the same pipeline because I never use floating aliases in production."
 
@@ -482,52 +314,6 @@ If your usual taxi company's phone is down, call the second company you already 
   - Queue async jobs.
   - Hand off to humans.
 - Be cautious with failover for **side-effecting agents**: a different model may behave differently, so keep approvals strict. Game-day test the failover path.
-
-#### Modern C++ example — a failover ladder across providers with health checks, ending in a degraded retrieval-only response
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Target { std::string name; bool healthy; bool evaluated_for_task; };
-
-std::string answer(const std::vector<Target>& ladder) {
-    for (auto& t : ladder) {
-        if (!t.evaluated_for_task) { std::cout << "  skip " << t.name << " (not evaluated for this task)\n"; continue; }
-        if (!t.healthy) { std::cout << "  " << t.name << ": unavailable (breaker open)\n"; continue; }
-        return "answer from " + t.name;
-    }
-    return "DEGRADED: \"Our assistant is temporarily limited. Here are the most relevant help articles: [Refund policy], [Track an order].\"";
-}
-
-int main() {
-    std::vector<Target> normal{{"provider-A model-L (eu-west)", true, true}, {"provider-A model-L (eu-central)", true, true}};
-    std::vector<Target> regional_outage{{"provider-A model-L (eu-west)", false, true}, {"provider-A model-L (eu-central)", true, true}};
-    std::vector<Target> provider_outage{{"provider-A model-L (eu-west)", false, true}, {"provider-A model-L (eu-central)", false, true},
-                                        {"provider-B model-X", false, true}, {"self-hosted small model", true, false}};
-    for (auto& [label, ladder] : {std::pair{"normal", normal}, std::pair{"regional outage", regional_outage}, std::pair{"wide outage", provider_outage}}) {
-        std::cout << label << ":\n";
-        std::string result = answer(ladder);                         // prints skipped targets first
-        std::cout << "  " << result << '\n';
-    }
-}
-```
-
-**Output:**
-```text
-normal:
-  answer from provider-A model-L (eu-west)
-regional outage:
-  provider-A model-L (eu-west): unavailable (breaker open)
-  answer from provider-A model-L (eu-central)
-wide outage:
-  provider-A model-L (eu-west): unavailable (breaker open)
-  provider-A model-L (eu-central): unavailable (breaker open)
-  provider-B model-X: unavailable (breaker open)
-  skip self-hosted small model (not evaluated for this task)
-  DEGRADED: "Our assistant is temporarily limited. Here are the most relevant help articles: [Refund policy], [Track an order]."
-```
 
 ### Interview answer
 "I assume providers will fail. Per-provider health metrics and circuit breakers detect it, and a failover ladder moves from another region or deployment of the same model, to an alternate model, to another provider. That requires a model-agnostic gateway, prompts and tool schemas adapted and evaluated for each backup, and reserved quota. If no acceptable model is available I degrade gracefully: disable non-essential features, show retrieval-only results or cached answers, queue async work, or hand off to humans, with honest messaging. Side-effecting agents keep strict approvals on backup models, and I rehearse failover in game days."
@@ -613,50 +399,6 @@ If ten people in a queue all start pressing the lift button repeatedly, the lift
   - A queue redelivers a message (at-least-once delivery).
 - **Idempotency key:** derived from the **logical action** (`run_id:step:tool:hash(args)`), not from the attempt. The server stores `key → result` (with a TTL), returns the stored result on duplicates, and rejects the same key with *different* arguments. Consumers dedupe message IDs ([Tool Use: idempotency](./Tool-Use-Integrations-and-Protocols.md#4-idempotent-operations-retries-backoff-timeouts-and-rate-limits)).
 
-#### Modern C++ example — retry amplification across layers vs. a single layer with a retry budget, plus key-based dedupe
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-
-int calls_with_layers(int layers, int retries_per_layer) { int n = 1; for (int i = 0; i < layers; ++i) n *= (1 + retries_per_layer); return n; }
-
-int main() {
-    std::cout << "worst-case calls to a failing provider per user request:\n";
-    std::cout << "  3 layers x 3 retries each: " << calls_with_layers(3, 3) << '\n';
-    std::cout << "  retries only at 1 layer:   " << calls_with_layers(1, 3) << '\n';
-
-    const int requests = 1000; const double budget_ratio = 0.1;                 // retries <= 10% of requests
-    int retry_tokens = int(requests * budget_ratio), retried = 0;
-    for (int i = 0; i < requests; ++i) { bool failed = true; if (failed && retry_tokens > 0) { --retry_tokens; ++retried; } }
-    std::cout << "during an outage, retry budget allows " << retried << " retries for " << requests << " failing requests (not " << requests * 3 << ")\n";
-
-    std::map<std::string, std::string> idem;                                    // server-side store
-    auto send_email = [&](const std::string& key, const std::string& args) {
-        if (auto it = idem.find(key); it != idem.end()) return it->second == args ? std::string("duplicate ignored, returning original result") : std::string("409 Conflict: key reused with different args");
-        idem[key] = args; return std::string("email sent");
-    };
-    std::string key = "run-31:step-4:send_email:7f3a";
-    std::cout << "attempt 1: " << send_email(key, "to=mona subject=Refund approved") << '\n';
-    std::cout << "redelivery: " << send_email(key, "to=mona subject=Refund approved") << '\n';
-    std::cout << "buggy reuse: " << send_email(key, "to=karim subject=Refund approved") << '\n';
-}
-```
-
-**Output:**
-```text
-worst-case calls to a failing provider per user request:
-  3 layers x 3 retries each: 64
-  retries only at 1 layer:   4
-during an outage, retry budget allows 100 retries for 1000 failing requests (not 3000)
-attempt 1: email sent
-redelivery: duplicate ignored, returning original result
-buggy reuse: 409 Conflict: key reused with different args
-```
-
-(With 3 retries per layer, each layer makes up to 4 attempts, so three layers make 4³ = **64** calls.)
-
 ### Interview answer
 "Retries at every layer multiply. Three layers with three retries each can turn one request into 64 calls against a struggling provider, so I retry at a single layer with exponential backoff, jitter, Retry-After handling, a retry budget of around 10 percent of traffic, and circuit breakers. Agents add duplicate-side-effect risks from repeated tool calls, resumed steps, double submits and at-least-once queues. Every side-effecting tool therefore takes an idempotency key derived from the logical action rather than the attempt. The server stores key to result, replays it for duplicates, and rejects a key reused with different arguments."
 
@@ -692,46 +434,6 @@ For LLM products, define SLIs for **availability, latency (TTFT and end-to-end),
   4. Use traces to locate the failing step.
   5. Write a blameless postmortem with action items, and add an eval case ([Production Incidents](../Testing%2C%20Reliability%20%26%20Observability/Production-Incidents-and-Operational-Excellence.md)).
 
-#### Modern C++ example — compute SLIs against SLOs, the remaining error budget, and correlate an SLO breach with a version change
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Day { int day; long requests, errors, slow_ttft; std::string bundle; };
-
-int main() {
-    std::vector<Day> days{{1, 400000, 220, 9000, "b-41"}, {2, 410000, 230, 9500, "b-41"}, {3, 395000, 210, 8800, "b-41"},
-                          {4, 420000, 2900, 31000, "b-42"}, {5, 415000, 240, 9100, "b-41"}};
-    const double slo_avail = 0.999, slo_ttft = 0.95;
-    long total = 0, errors = 0;
-    std::cout << std::fixed << std::setprecision(4);
-    for (auto& d : days) {
-        double avail = 1 - double(d.errors) / d.requests, ttft = 1 - double(d.slow_ttft) / d.requests;
-        total += d.requests; errors += d.errors;
-        std::cout << "day " << d.day << " [" << d.bundle << "] availability " << avail << (avail < slo_avail ? " BREACH" : "") << ", TTFT<1.5s " << ttft << (ttft < slo_ttft ? " BREACH" : "") << '\n';
-    }
-    double budget = (1 - slo_avail) * total, used = errors;
-    std::cout << std::setprecision(1) << "error budget used: " << used / budget * 100 << "% of " << budget << " allowed failures so far\n";
-    std::cout << "investigation: breach only on day 4, the only day bundle b-42 was live -> rolled back on day 5; postmortem + add failing cases to evals\n";
-}
-```
-
-**Output:**
-```text
-day 1 [b-41] availability 0.9994, TTFT<1.5s 0.9775
-day 2 [b-41] availability 0.9994, TTFT<1.5s 0.9768
-day 3 [b-41] availability 0.9995, TTFT<1.5s 0.9777
-day 4 [b-42] availability 0.9931 BREACH, TTFT<1.5s 0.9262 BREACH
-day 5 [b-41] availability 0.9994, TTFT<1.5s 0.9781
-error budget used: 186.3% of 2040.0 allowed failures so far
-investigation: breach only on day 4, the only day bundle b-42 was live -> rolled back on day 5; postmortem + add failing cases to evals
-```
-
-One bad release spent the whole budget for the period. Under an error-budget policy, that freezes risky launches until reliability work lands.
-
 ### Interview answer
 "I define SLIs that reflect the user experience — availability, time to first token, end-to-end task latency, structured-output validity — plus sampled quality and task-success SLIs, and set SLOs with error budgets. External SLAs are looser than internal SLOs. Burn-rate alerts protect the budget, and exhausting it shifts priority from features to reliability. In an incident I mitigate first by rolling back the bundle, failing over or shedding load, then look for what changed — deploys, prompt or model versions, provider status, traffic mix, index updates — and use traces to find the failing step. I finish with a blameless postmortem whose action items include new eval cases."
 
@@ -762,48 +464,6 @@ Like a waiter bringing dishes as they're ready instead of all at once. If you le
   - Overall run limits ([stop conditions](./Agent%20Fundamentals%20and%20Decision-Making/Stop%20conditions%2C%20turn%20budgets%2C%20iteration%20limits%2C%20and%20fallback%20paths.md)).
 - **Resumable streams:** clients reconnect with a `Last-Event-ID` or run ID and replay buffered events ([stateful runs](./Agentic-Frameworks-and-Orchestration.md#9-stateless-service-architecture-vs-stateful-agent-execution)).
 
-#### Modern C++ example — stream tokens with a cancellation flag and an idle timeout between chunks
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Chunk { int at_ms; std::string text; };
-enum class End { Complete, Cancelled, IdleTimeout };
-
-End stream(const std::vector<Chunk>& chunks, int cancel_at_ms, int idle_timeout_ms, std::string& shown, int& billed_chunks) {
-    int last = 0;
-    for (auto& c : chunks) {
-        if (cancel_at_ms >= 0 && c.at_ms >= cancel_at_ms) return End::Cancelled;          // abort upstream request: stop paying
-        if (c.at_ms - last > idle_timeout_ms) return End::IdleTimeout;
-        shown += c.text; ++billed_chunks; last = c.at_ms;
-    }
-    return End::Complete;
-}
-
-int main() {
-    std::vector<Chunk> normal{{350, "Your "}, {390, "refund "}, {430, "was "}, {470, "approved "}, {510, "on Oct 12."}};
-    std::vector<Chunk> stalled{{350, "Your "}, {390, "refund "}, {9000, "was "}};
-    const char* names[] = {"complete", "cancelled", "idle timeout"};
-    for (auto [label, chunks, cancel] : {std::tuple{"normal", normal, -1}, std::tuple{"user pressed stop", normal, 420}, std::tuple{"provider stalled", stalled, -1}}) {
-        std::string shown; int billed = 0;
-        End e = stream(chunks, cancel, 5000, shown, billed);
-        std::cout << label << ": \"" << shown << "\" -> " << names[int(e)] << ", chunks billed " << billed << " of " << chunks.size()
-                  << (e == End::Complete ? "" : ", UI marks answer as partial") << '\n';
-    }
-    std::cout << "TTFT for the user: 350ms (first chunk) instead of waiting 510ms for the full answer\n";
-}
-```
-
-**Output:**
-```text
-normal: "Your refund was approved on Oct 12." -> complete, chunks billed 5 of 5
-user pressed stop: "Your refund " -> cancelled, chunks billed 2 of 5, UI marks answer as partial
-provider stalled: "Your refund " -> idle timeout, chunks billed 2 of 3, UI marks answer as partial
-TTFT for the user: 350ms (first chunk) instead of waiting 510ms for the full answer
-```
-
 ### Interview answer
 "Streaming tokens over SSE or WebSockets makes perceived latency equal to time to first token. For agents I also stream step progress, and structured outputs are validated when the stream completes. When the user stops or disconnects, I propagate cancellation: abort the upstream model stream to stop token spend, cancel pending tool calls, and checkpoint the run as cancelled. Side-effecting tools are never cut off mid-execution. Every level has timeouts — connect, idle time between chunks, a per-call deadline and an overall run deadline propagated to sub-calls — and partial answers are clearly marked. Clients can reconnect to a run and replay buffered events."
 
@@ -830,47 +490,6 @@ A travel budget: you know what each part of the trip may cost (flights, hotel, f
   - monthly per-tenant quotas.
 - **Latency budget:** e.g. a 5 s p95 target split as retrieval 300 ms + plan call 1.5 s + tools 1.2 s + answer call 1.8 s + overhead 200 ms. A step exceeding its share triggers degradation (skip reranking, use a smaller model).
 - **Unit economics:** cost per successful task and per active user versus revenue. Use it to guide optimization ([cost optimization](#3-cost-optimization-smaller-models-batching-caching-and-routing)).
-
-#### Modern C++ example — per-step token and cost accounting with a run cost cap and a latency budget check
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Step { std::string name; int in_tokens, cached_tokens, out_tokens, latency_ms, budget_ms; };
-
-int main() {
-    const double in_price = 3.0 / 1e6, cached_price = 0.3 / 1e6, out_price = 15.0 / 1e6, max_run_cost = 0.05;
-    std::vector<Step> run{{"plan", 4200, 3000, 120, 1300, 1500}, {"tool:search_orders", 0, 0, 0, 900, 1200},
-                          {"reason over results", 9800, 3000, 300, 2100, 1800}, {"answer", 10400, 3000, 450, 1700, 1800}};
-    double total = 0; int total_ms = 0;
-    std::cout << std::fixed << std::setprecision(4);
-    for (auto& s : run) {
-        double cost = (s.in_tokens - s.cached_tokens) * in_price + s.cached_tokens * cached_price + s.out_tokens * out_price;
-        total += cost; total_ms += s.latency_ms;
-        std::cout << s.name << ": in " << s.in_tokens << " (cached " << s.cached_tokens << "), out " << s.out_tokens << ", $" << cost << ", "
-                  << s.latency_ms << "ms" << (s.latency_ms > s.budget_ms ? " OVER latency budget " + std::to_string(s.budget_ms) + "ms" : "") << '\n';
-        if (total > max_run_cost) { std::cout << "run cost cap $" << max_run_cost << " reached -> stop with partial answer / escalate\n"; break; }
-    }
-    std::cout << "run total: $" << total << ", " << total_ms << "ms (target p95 6000ms)\n";
-    std::cout << "biggest lever: 'reason over results' sends 6800 uncached tokens of raw tool output -> return compact tool results\n";
-}
-```
-
-**Output:**
-```text
-plan: in 4200 (cached 3000), out 120, $0.0063, 1300ms
-tool:search_orders: in 0 (cached 0), out 0, $0.0000, 900ms
-reason over results: in 9800 (cached 3000), out 300, $0.0258, 2100ms OVER latency budget 1800ms
-answer: in 10400 (cached 3000), out 450, $0.0299, 1700ms
-run cost cap $0.0500 reached -> stop with partial answer / escalate
-run total: $0.0620, 6000ms (target p95 6000ms)
-biggest lever: 'reason over results' sends 6800 uncached tokens of raw tool output -> return compact tool results
-```
-
-Here the cap is checked *after* each step, so the run slightly overshoots it. A stricter version estimates the next step's cost **before** calling the model.
 
 ### Interview answer
 "I record usage on every model call — input, output and cached tokens, cost from the price table for that model version, and latency — on the trace span and in a usage table keyed by tenant, feature, prompt version and run. Per-step views reveal the expensive parts, usually repeated long prompts, raw tool outputs or loops. Then I enforce budgets: max output tokens per call, max steps and cost per run with a graceful stop or escalation, per-tenant quotas with alerts, and a latency budget split across retrieval, model calls and tools, where overruns trigger cheaper paths. Cost per successful task becomes the unit-economics metric that guides optimization."

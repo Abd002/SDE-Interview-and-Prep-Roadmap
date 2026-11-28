@@ -1,6 +1,6 @@
 # NoSQL Databases — Explained for Beginners
 
-> **What you'll learn:** what "NoSQL" means and when to choose it over SQL, the four **types** — **document, key-value, column-family, graph** — each modeled in C++, and the most common **MongoDB** and **Redis** interview questions with answers.
+> **What you'll learn:** what "NoSQL" means and when to choose it over SQL, the four **types** — **document, key-value, column-family, graph** (with C++ for graph traversal and a sorted-set leaderboard), and the most common **MongoDB** and **Redis** interview questions with answers.
 >
 > **Prerequisites:** basic understanding of tables ([Normalization](./Normalization.md) helps to see what NoSQL trades away).
 
@@ -66,70 +66,6 @@ Instead of splitting a customer across 5 tables (customer, addresses, phones, pr
 - Examples: **MongoDB**, Couchbase, Firestore, CouchDB, Amazon DocumentDB. (PostgreSQL's `JSONB` gives document features inside SQL.)
 - Great for: content management, catalogs with varied attributes, user profiles, event logging.
 
-### Modern C++ example — a tiny document store with nested fields
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <memory>
-#include <optional>
-#include <sstream>
-#include <string>
-#include <variant>
-#include <vector>
-
-// A JSON-like value: null, number, string, array, or object
-struct Value;
-using Object = std::map<std::string, Value>;
-using Array = std::vector<Value>;
-struct Value : std::variant<std::monostate, double, std::string, std::shared_ptr<Array>, std::shared_ptr<Object>> {
-    using variant::variant;
-};
-Value obj(Object o) { return std::make_shared<Object>(std::move(o)); }
-Value arr(Array a)  { return std::make_shared<Array>(std::move(a)); }
-
-// Get a nested field by dotted path, e.g. "address.city"
-std::optional<Value> get(const Value& v, const std::string& path) {
-    std::istringstream parts(path);
-    std::string key;
-    const Value* cur = &v;
-    while (std::getline(parts, key, '.')) {
-        auto* o = std::get_if<std::shared_ptr<Object>>(cur);
-        if (!o) return std::nullopt;
-        auto it = (*o)->find(key);
-        if (it == (*o)->end()) return std::nullopt;    // field missing: flexible schema!
-        cur = &it->second;
-    }
-    return *cur;
-}
-
-int main() {
-    std::map<std::string, Value> users;                // collection: _id -> document
-    users["u1"] = obj({{"name", std::string("Ana")}, {"address", obj({{"city", std::string("Lisbon")}})},
-                       {"tags", arr({std::string("vip")})}});
-    users["u2"] = obj({{"name", std::string("Ben")}, {"address", obj({{"city", std::string("Porto")}})}});
-    users["u3"] = obj({{"name", std::string("Acme Ltd")}, {"vat", std::string("PT123")},     // different shape
-                       {"address", obj({{"city", std::string("Lisbon")}})}});
-
-    // db.users.find({ "address.city": "Lisbon" })
-    std::cout << "users in Lisbon:";
-    for (const auto& [id, doc] : users) {
-        auto city = get(doc, "address.city");
-        if (city && std::get<std::string>(*city) == "Lisbon")
-            std::cout << ' ' << std::get<std::string>(*get(doc, "name"));
-    }
-    std::cout << '\n';
-    std::cout << "u3 has a VAT field: " << (get(users["u3"], "vat") ? "yes" : "no")
-              << ", u1 has a VAT field: " << (get(users["u1"], "vat") ? "yes" : "no") << '\n';
-}
-```
-
-**Output:**
-```text
-users in Lisbon: Ana Acme Ltd
-u3 has a VAT field: yes, u1 has a VAT field: no
-```
-
 ### Interview answer
 "Document databases store semi-structured JSON/BSON documents in collections with flexible schemas and rich queries and indexes on nested fields. You embed data read together and reference data that is large, shared or unbounded. They suit catalogs, profiles and content; the trade-off is weaker support for joins and multi-document transactions compared with relational databases."
 
@@ -149,60 +85,6 @@ A **coat check**: you hand over your coat (value) and receive ticket #57 (key). 
 - **TTL (time to live)**: keys can expire automatically — perfect for caches and sessions.
 - Scales horizontally by **partitioning keys** with hashing (see [Scalability → Consistent Hashing](../System%20Design/Scalability.md)).
 - Use cases: caching, session storage, shopping carts, feature flags, rate-limit counters, configuration (etcd/Consul).
-
-### Modern C++ example — a key-value store with TTL
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <chrono>
-#include <iostream>
-#include <optional>
-#include <string>
-#include <unordered_map>
-
-using namespace std::chrono_literals;
-using Clock = std::chrono::steady_clock;
-
-class KeyValueStore {
-public:
-    void set(const std::string& key, std::string value,
-             std::optional<std::chrono::seconds> ttl = std::nullopt, Clock::time_point now = Clock::now()) {
-        std::optional<Clock::time_point> expires;
-        if (ttl) expires = now + *ttl;
-        data_[key] = {std::move(value), expires};
-    }
-    std::optional<std::string> get(const std::string& key, Clock::time_point now = Clock::now()) {
-        auto it = data_.find(key);
-        if (it == data_.end()) return std::nullopt;
-        if (it->second.expires && now >= *it->second.expires) {   // lazy expiration
-            data_.erase(it);
-            return std::nullopt;
-        }
-        return it->second.value;
-    }
-    bool del(const std::string& key) { return data_.erase(key) > 0; }
-private:
-    struct Entry { std::string value; std::optional<Clock::time_point> expires; };
-    std::unordered_map<std::string, Entry> data_;                  // O(1) average lookups
-};
-
-int main() {
-    KeyValueStore kv;
-    auto t0 = Clock::now();
-    kv.set("user:42:name", "Ana");
-    kv.set("session:abc", "user=42", 1800s, t0);                    // expires in 30 minutes
-
-    std::cout << "GET user:42:name -> " << kv.get("user:42:name").value_or("(nil)") << '\n';
-    std::cout << "GET session:abc  -> " << kv.get("session:abc", t0 + 60s).value_or("(nil)") << " (after 1 min)\n";
-    std::cout << "GET session:abc  -> " << kv.get("session:abc", t0 + 3600s).value_or("(nil)") << " (after 1 hour)\n";
-}
-```
-
-**Output:**
-```text
-GET user:42:name -> Ana
-GET session:abc  -> user=42 (after 1 min)
-GET session:abc  -> (nil) (after 1 hour)
-```
 
 ### Interview answer
 "Key-value stores map unique keys to opaque values with O(1) get/put/delete, often in memory with TTLs, and partition keys across nodes for horizontal scale. They're ideal for caches, sessions, counters and configuration, but can't query by value — you must know the key."
@@ -237,62 +119,6 @@ SELECT * FROM messages_by_chat WHERE chat_id = ? LIMIT 20;   -- latest 20 messag
 - **Denormalize per query:** one table per access pattern (`messages_by_chat`, `messages_by_user`), no joins.
 - **Tunable consistency:** per query choose `ONE`, `QUORUM`, `ALL` replicas.
 - Use cases: time series, IoT sensor data, messaging (Discord used Cassandra/ScyllaDB), activity feeds, logs at massive scale.
-
-### Modern C++ example — partition key + sorted clustering key
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Message { std::string sender, body; };
-
-class MessagesByChat {
-public:
-    void insert(const std::string& chat_id, long sent_at, Message m) {
-        partitions_[chat_id][sent_at] = std::move(m);          // cheap append into a sorted map
-    }
-    // SELECT * FROM messages_by_chat WHERE chat_id = ? LIMIT n   (newest first)
-    std::vector<std::pair<long, Message>> latest(const std::string& chat_id, std::size_t n) const {
-        std::vector<std::pair<long, Message>> out;
-        auto it = partitions_.find(chat_id);                    // 1 partition lookup (which node)
-        if (it == partitions_.end()) return out;
-        for (const auto& [ts, msg] : it->second) {              // already sorted DESC
-            if (out.size() == n) break;
-            out.emplace_back(ts, msg);
-        }
-        return out;
-    }
-    std::size_t node_for(const std::string& chat_id, std::size_t nodes) const {
-        return std::hash<std::string>{}(chat_id) % nodes;       // partition key -> node
-    }
-private:
-    // partition key -> (clustering key sorted DESC -> row)
-    std::map<std::string, std::map<long, Message, std::greater<>>> partitions_;
-};
-
-int main() {
-    MessagesByChat table;
-    table.insert("chat-A", 1000, {"ana", "hi"});
-    table.insert("chat-A", 1005, {"ben", "hello!"});
-    table.insert("chat-B", 1003, {"cara", "other chat"});
-    table.insert("chat-A", 1010, {"ana", "how are you?"});
-
-    for (const auto& [ts, m] : table.latest("chat-A", 2))
-        std::cout << ts << ' ' << m.sender << ": " << m.body << '\n';
-    std::cout << "chat-A lives on node " << table.node_for("chat-A", 3) << " of 3 (all its rows together)\n";
-}
-```
-
-**Output (may vary):**
-```text
-1010 ana: how are you?
-1005 ben: hello!
-chat-A lives on node 2 of 3 (all its rows together)
-```
-(The node number depends on the hash function of your standard library.)
 
 ### Interview answer
 "Wide-column stores like Cassandra, HBase and Bigtable organize data by partition key, with rows clustered and sorted within a partition, stored in LSM trees for very high write throughput. You design one denormalized table per query pattern, always querying by partition key, with tunable consistency across replicas. They excel at time-series, messaging and event data at huge scale."
@@ -415,46 +241,6 @@ Single-document operations are always atomic. Since 4.0 (replica sets) and 4.2 (
 
 **Q10. MongoDB vs. a relational database?**
 MongoDB: flexible schema, natural JSON mapping, easy horizontal scaling, denormalized reads. Relational: strong schema, joins, mature transactions, ad-hoc analytics. Choose by data shape and access patterns.
-
-### Modern C++ example — the aggregation pipeline idea (`$match` → `$group` → `$sort` → `$limit`)
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <iostream>
-#include <map>
-#include <ranges>
-#include <string>
-#include <vector>
-
-struct Order { std::string customer; std::string status; double amount; };
-
-int main() {
-    const std::vector<Order> orders{
-        {"ana", "paid", 30}, {"ben", "paid", 50}, {"ana", "paid", 40},
-        {"cara", "cancelled", 999}, {"cara", "paid", 10}, {"dan", "paid", 60}};
-
-    // $match: { status: "paid" }
-    auto paid = orders | std::views::filter([](const Order& o) { return o.status == "paid"; });
-    // $group: { _id: "$customer", total: { $sum: "$amount" } }
-    std::map<std::string, double> totals;
-    for (const auto& o : paid) totals[o.customer] += o.amount;
-    // $sort: { total: -1 }
-    std::vector<std::pair<std::string, double>> result(totals.begin(), totals.end());
-    std::ranges::sort(result, std::greater<>{}, &std::pair<std::string, double>::second);
-    // $limit: 3
-    result.resize(std::min<std::size_t>(3, result.size()));
-
-    for (const auto& [customer, total] : result)
-        std::cout << "{ _id: \"" << customer << "\", total: " << total << " }\n";
-}
-```
-
-**Output:**
-```text
-{ _id: "ana", total: 70 }
-{ _id: "dan", total: 60 }
-{ _id: "ben", total: 50 }
-```
 
 ---
 

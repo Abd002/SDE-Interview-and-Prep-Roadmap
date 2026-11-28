@@ -1,6 +1,6 @@
 # Bitbucket — Explained for Beginners
 
-> **What you'll learn:** what Bitbucket is, how it relates to Git, its main features — **repositories and workspaces, pull requests and code review, branch permissions and merge checks, Bitbucket Pipelines (CI/CD), Jira integration** — Cloud vs. Data Center, and how it compares to GitHub and GitLab. Includes a real `bitbucket-pipelines.yml` for a C++ project and C++ models of merge checks and a pipeline.
+> **What you'll learn:** what Bitbucket is, how it relates to Git, its main features — **repositories and workspaces, pull requests and code review, branch permissions and merge checks, Bitbucket Pipelines (CI/CD), Jira integration** — Cloud vs. Data Center, and how it compares to GitHub and GitLab. Includes a real `bitbucket-pipelines.yml` for a C++ project.
 >
 > **Prerequisites:** [Git](./Git-Explained.md).
 
@@ -48,49 +48,6 @@ git clone https://bitbucket.org/acme-workspace/payments-service.git
 - Permissions: **read, write, admin** at workspace/project/repository level; groups for teams.
 - Forks for contributors without write access.
 
-### Modern C++ example — permission inheritance: workspace → project → repository
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <optional>
-#include <string>
-
-enum class Access { None = 0, Read = 1, Write = 2, Admin = 3 };
-const char* name(Access a) {
-    switch (a) { case Access::None: return "none"; case Access::Read: return "read";
-                 case Access::Write: return "write"; case Access::Admin: return "admin"; }
-    return "?";
-}
-
-struct Level { std::map<std::string, Access> grants; };            // user/group -> access
-
-// The effective access is the HIGHEST granted at any level (repository, project or workspace).
-Access effective(const std::string& user, const Level& workspace, const Level& project, const Level& repo) {
-    Access best = Access::None;
-    for (const Level* l : {&workspace, &project, &repo})
-        if (auto it = l->grants.find(user); it != l->grants.end() && it->second > best) best = it->second;
-    return best;
-}
-
-int main() {
-    Level workspace{{{"ana", Access::Admin}, {"ben", Access::Read}, {"cara", Access::Read}}};
-    Level payments_project{{{"ben", Access::Write}}};              // ben develops on the payments project
-    Level payments_repo{{{"cara", Access::Write}}};                // cara only contributes to this repo
-
-    for (const char* user : {"ana", "ben", "cara", "dan"})
-        std::cout << user << " on payments-service: " << name(effective(user, workspace, payments_project, payments_repo)) << '\n';
-}
-```
-
-**Output:**
-```text
-ana on payments-service: admin
-ben on payments-service: write
-cara on payments-service: write
-dan on payments-service: none
-```
-
 ### Interview answer
 "Bitbucket Cloud organizes code as workspaces containing projects containing Git repositories, with read, write and admin permissions at each level, SSH keys or access tokens for authentication, configurable branching models and merge strategies, and forks for outside contributors."
 
@@ -111,68 +68,6 @@ Before a new chapter goes into the official book, it goes on the **editor's desk
 5. **Merge checks** (Premium features on Cloud can *enforce* them): minimum number of approvals, approval from **default reviewers / code owners**, **successful builds**, **no unresolved tasks**, no changes requested.
 6. **Branch permissions** protect `main`/`release/*`: prevent direct pushes, force-pushes (history rewrites) and deletion; only allow merges via PR.
 7. Merge with a chosen strategy (merge commit, squash, fast-forward); optionally delete the source branch.
-
-### Modern C++ example — evaluating merge checks for a pull request
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <set>
-#include <string>
-#include <vector>
-
-struct PullRequest {
-    std::string title;
-    std::set<std::string> approvals;
-    bool changes_requested = false;
-    int open_tasks = 0;
-    std::string build_status;           // "SUCCESSFUL", "FAILED", "INPROGRESS"
-};
-
-struct MergeChecks {
-    int min_approvals = 2;
-    std::set<std::string> code_owners{"lead-ana"};      // at least one must approve
-
-    std::vector<std::string> failures(const PullRequest& pr) const {
-        std::vector<std::string> f;
-        if (static_cast<int>(pr.approvals.size()) < min_approvals)
-            f.push_back("needs " + std::to_string(min_approvals) + " approvals (has " + std::to_string(pr.approvals.size()) + ")");
-        bool owner_ok = false;
-        for (const auto& o : code_owners) owner_ok = owner_ok || pr.approvals.contains(o);
-        if (!owner_ok) f.push_back("needs a code owner approval");
-        if (pr.changes_requested) f.push_back("a reviewer requested changes");
-        if (pr.open_tasks > 0) f.push_back(std::to_string(pr.open_tasks) + " unresolved task(s)");
-        if (pr.build_status != "SUCCESSFUL") f.push_back("last build is " + pr.build_status);
-        return f;
-    }
-};
-
-void evaluate(const MergeChecks& checks, const PullRequest& pr) {
-    auto f = checks.failures(pr);
-    std::cout << pr.title << ": " << (f.empty() ? "MERGE ALLOWED" : "merge blocked") << '\n';
-    for (const auto& reason : f) std::cout << "  - " << reason << '\n';
-}
-
-int main() {
-    MergeChecks checks;
-    PullRequest pr{"PAY-123 Add refund API", {"ben"}, false, 1, "FAILED"};
-    evaluate(checks, pr);
-
-    pr.approvals.insert("lead-ana");     // code owner approves
-    pr.open_tasks = 0;                   // author resolves the task
-    pr.build_status = "SUCCESSFUL";      // fix pushed, Pipelines passes
-    evaluate(checks, pr);
-}
-```
-
-**Output:**
-```text
-PAY-123 Add refund API: merge blocked
-  - needs 2 approvals (has 1)
-  - needs a code owner approval
-  - 1 unresolved task(s)
-  - last build is FAILED
-PAY-123 Add refund API: MERGE ALLOWED
-```
 
 ### Interview answer
 "In Bitbucket, changes go through pull requests with inline comments, tasks, approvals and build status. Branch permissions block direct and force pushes to protected branches, and merge checks can require a minimum number of approvals, code-owner or default-reviewer approval, successful builds and no unresolved tasks before merging with the chosen strategy."
@@ -240,61 +135,6 @@ pipelines:
             - ./scripts/deploy.sh production
 ```
 
-### Modern C++ example — how a pipeline runs: sequential steps, stop on first failure, manual gate
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Step {
-    std::string name;
-    std::function<bool()> script;           // returns true on success (exit code 0)
-    bool manual = false;
-};
-
-void run_pipeline(const std::string& trigger, const std::vector<Step>& steps, bool manual_approved) {
-    std::cout << "Pipeline for " << trigger << ":\n";
-    for (const auto& s : steps) {
-        if (s.manual && !manual_approved) { std::cout << "  [paused]  " << s.name << " (waiting for manual trigger)\n"; return; }
-        bool ok = s.script();
-        std::cout << "  [" << (ok ? "passed" : "FAILED") << "]  " << s.name << '\n';
-        if (!ok) { std::cout << "  pipeline FAILED -> PR shows a red build, merge checks block the merge\n"; return; }
-    }
-    std::cout << "  pipeline SUCCESSFUL\n";
-}
-
-int main() {
-    bool tests_pass = false;
-    std::vector<Step> main_pipeline{
-        {"Build and test", [&] { return tests_pass; }},
-        {"Deploy to staging", [] { return true; }},
-        {"Deploy to production", [] { return true; }, /*manual=*/true},
-    };
-    run_pipeline("commit a1b2c3 on main", main_pipeline, false);
-    tests_pass = true;                                                  // the fix is pushed
-    run_pipeline("commit d4e5f6 on main", main_pipeline, false);
-    run_pipeline("commit d4e5f6 on main (release approved)", main_pipeline, true);
-}
-```
-
-**Output:**
-```text
-Pipeline for commit a1b2c3 on main:
-  [FAILED]  Build and test
-  pipeline FAILED -> PR shows a red build, merge checks block the merge
-Pipeline for commit d4e5f6 on main:
-  [passed]  Build and test
-  [passed]  Deploy to staging
-  [paused]  Deploy to production (waiting for manual trigger)
-Pipeline for commit d4e5f6 on main (release approved):
-  [passed]  Build and test
-  [passed]  Deploy to staging
-  [passed]  Deploy to production
-  pipeline SUCCESSFUL
-```
-
 ### Interview answer
 "Bitbucket Pipelines is CI/CD defined in a versioned bitbucket-pipelines.yml: steps run in Docker containers, triggered by pushes, pull requests, branches, tags or manually, with caches, artifacts, parallel steps, secured variables, reusable pipes, deployment environments with manual gates, and optional self-hosted runners. Build results feed PR merge checks."
 
@@ -318,55 +158,6 @@ git commit -m "PAY-123 #comment Endpoint done #time 2h #in-progress"
 - **Automation rules:** e.g. PR created → move issue to "In Review"; PR merged → "Done".
 - Create a branch directly from a Jira issue.
 - Confluence pages can embed code snippets and link to repos; Bitbucket also integrates with Slack/Teams and IDEs.
-
-### Modern C++ example — extracting Jira issue keys from branches and commits
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <regex>
-#include <set>
-#include <string>
-#include <vector>
-
-// Jira keys look like PROJECT-123: uppercase project code, dash, number.
-std::set<std::string> issue_keys(const std::string& text) {
-    static const std::regex key(R"(\b[A-Z][A-Z0-9]+-\d+\b)");
-    std::set<std::string> keys;
-    for (auto it = std::sregex_iterator(text.begin(), text.end(), key); it != std::sregex_iterator(); ++it)
-        keys.insert(it->str());
-    return keys;
-}
-
-int main() {
-    const std::vector<std::string> activity{
-        "branch: feature/PAY-123-refund-api",
-        "commit: PAY-123 Add refund endpoint",
-        "commit: PAY-123 PAY-130 Validate refund amount",
-        "commit: fix typo in README",
-        "pull request: PAY-123 Refund API",
-    };
-    std::map<std::string, std::vector<std::string>> development_panel;       // issue -> linked activity
-    for (const auto& a : activity)
-        for (const auto& k : issue_keys(a)) development_panel[k].push_back(a);
-
-    for (const auto& [issue, items] : development_panel) {
-        std::cout << issue << " (" << items.size() << " linked):\n";
-        for (const auto& i : items) std::cout << "  " << i << '\n';
-    }
-}
-```
-
-**Output:**
-```text
-PAY-123 (4 linked):
-  branch: feature/PAY-123-refund-api
-  commit: PAY-123 Add refund endpoint
-  commit: PAY-123 PAY-130 Validate refund amount
-  pull request: PAY-123 Refund API
-PAY-130 (1 linked):
-  commit: PAY-123 PAY-130 Validate refund amount
-```
 
 ### Interview answer
 "Bitbucket integrates tightly with Jira: issue keys in branch names, commit messages and PR titles link development activity to issues, Jira's development panel shows branches, commits, PRs, builds and deployments, smart commits can comment or transition issues, and automation can move issues through the workflow as PRs are opened and merged."

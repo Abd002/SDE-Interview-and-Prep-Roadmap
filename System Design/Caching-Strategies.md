@@ -1,6 +1,6 @@
 # Caching Strategies — Cache-Aside, Write-Through, Write-Behind and Stampede Prevention
 
-> **What you'll learn:** what a cache is and the vocabulary around it (hits, misses, TTL, eviction, invalidation), the three classic strategies for keeping a cache and a database together — **cache-aside, write-through, write-behind** — and how to prevent a **cache stampede**. Each comes with a runnable C++ model that counts database calls so you can *see* the difference.
+> **What you'll learn:** what a cache is and the vocabulary around it (hits, misses, TTL, eviction, invalidation), the three classic strategies for keeping a cache and a database together — **cache-aside, write-through, write-behind** — and how to prevent a **cache stampede**. Request coalescing (single-flight) and probabilistic early expiration include runnable C++.
 >
 > **Prerequisites:** none. Helpful: [Key-value stores / Redis](../Databases/NoSQL.md#2-key-value).
 >
@@ -51,56 +51,6 @@ WRITE: db.write(key, value);  cache.delete(key)      // delete, not update (avoi
 - Why **delete** instead of **set** on write: if two writers race, "set" can leave the older value in the cache; delete + lazy reload is safer. (A small race remains; short TTLs bound it.)
 - The **most common** strategy — typical with Redis/Memcached.
 
-### Modern C++ example
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <optional>
-#include <string>
-#include <unordered_map>
-
-struct Database {
-    std::map<std::string, std::string> rows{{"user:1", "Ana"}, {"user:2", "Ben"}};
-    int reads = 0;
-    std::string read(const std::string& k) { ++reads; return rows.at(k); }
-    void write(const std::string& k, const std::string& v) { rows[k] = v; }
-};
-
-class CacheAsideRepo {
-public:
-    explicit CacheAsideRepo(Database& db) : db_(db) {}
-    std::string get(const std::string& key) {
-        if (auto it = cache_.find(key); it != cache_.end()) return it->second;   // HIT
-        std::string value = db_.read(key);                                        // MISS -> DB
-        cache_[key] = value;                                                      // populate lazily
-        return value;
-    }
-    void update(const std::string& key, const std::string& value) {
-        db_.write(key, value);                                                    // DB is the source of truth
-        cache_.erase(key);                                                        // invalidate
-    }
-private:
-    Database& db_;
-    std::unordered_map<std::string, std::string> cache_;
-};
-
-int main() {
-    Database db;
-    CacheAsideRepo repo(db);
-    for (int i = 0; i < 100; ++i) repo.get("user:1");                  // 100 reads of a hot key
-    std::cout << "100 reads -> DB reads: " << db.reads << '\n';
-    repo.update("user:1", "Ana Silva");
-    std::cout << "after update, read: " << repo.get("user:1") << " (DB reads: " << db.reads << ")\n";
-}
-```
-
-**Output:**
-```text
-100 reads -> DB reads: 1
-after update, read: Ana Silva (DB reads: 2)
-```
-
 ### Interview answer
 "In cache-aside the application reads the cache, and on a miss loads from the database and populates the cache with a TTL; writes go to the database and invalidate the cache key. It caches only what's used and tolerates cache outages, but has cold-start misses and possible staleness, and deleting rather than updating on write avoids most races."
 
@@ -121,52 +71,6 @@ READ:  value = cache.get(key)   // usually a hit; on miss, load from DB (often c
 - ✅ Cache and DB stay consistent; reads right after writes are fast and fresh.
 - ❌ Higher write latency (two writes); the cache fills with data that may **never be read** (use TTLs); if one of the two writes fails you need handling (write DB first, or use transactions/retries).
 - Often provided by the caching layer itself ("read-through/write-through" caches such as some DAX/Hazelcast setups).
-
-### Modern C++ example
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-
-struct Database {
-    std::map<std::string, int> rows;
-    int writes = 0, reads = 0;
-    void write(const std::string& k, int v) { ++writes; rows[k] = v; }
-    int read(const std::string& k) { ++reads; return rows.at(k); }
-};
-
-class WriteThroughCache {
-public:
-    explicit WriteThroughCache(Database& db) : db_(db) {}
-    void put(const std::string& k, int v) {
-        db_.write(k, v);          // write to the source of truth...
-        cache_[k] = v;            // ...and to the cache, before returning (synchronous)
-    }
-    int get(const std::string& k) {
-        if (auto it = cache_.find(k); it != cache_.end()) return it->second;
-        return cache_[k] = db_.read(k);
-    }
-private:
-    Database& db_;
-    std::map<std::string, int> cache_;
-};
-
-int main() {
-    Database db;
-    WriteThroughCache cache(db);
-    cache.put("stock:pen", 100);
-    cache.put("stock:pen", 99);
-    std::cout << "read right after write: " << cache.get("stock:pen") << '\n';
-    std::cout << "DB writes: " << db.writes << ", DB reads: " << db.reads << "  (cache always fresh)\n";
-}
-```
-
-**Output:**
-```text
-read right after write: 99
-DB writes: 2, DB reads: 0  (cache always fresh)
-```
 
 ### Interview answer
 "Write-through writes to the cache and the backing store synchronously on every update, keeping them consistent so subsequent reads hit fresh data. The costs are higher write latency and caching data that may never be read, which TTLs mitigate; it's often paired with read-through or cache-aside loading."
@@ -189,58 +93,6 @@ LATER: flush worker: batch = dirty_queue.drain(); db.write_many(batch)
 - ❌ **Risk of data loss** if the cache crashes before flushing; the DB is temporarily behind (other readers of the DB see old data); more complex (ordering, retries, failures).
 - Used for: counters/metrics, view counts, likes, gaming state, analytics — data where losing a few seconds is acceptable. Also how OS page caches and CPU caches work internally.
 - Mitigations: replicate the cache, persist the queue (append-only log), flush frequently.
-
-### Modern C++ example — batching, coalescing, and the crash risk
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <set>
-#include <string>
-
-struct Database {
-    std::map<std::string, int> rows;
-    int write_calls = 0;
-    void write_batch(const std::map<std::string, int>& batch) { ++write_calls; for (auto& [k, v] : batch) rows[k] = v; }
-};
-
-class WriteBehindCache {
-public:
-    explicit WriteBehindCache(Database& db) : db_(db) {}
-    void put(const std::string& k, int v) { cache_[k] = v; dirty_.insert(k); }   // returns immediately
-    void flush() {                                                                // runs periodically
-        if (dirty_.empty()) return;
-        std::map<std::string, int> batch;
-        for (const auto& k : dirty_) batch[k] = cache_[k];                         // latest value only (coalesced)
-        db_.write_batch(batch);
-        dirty_.clear();
-    }
-    void crash() { cache_.clear(); dirty_.clear(); }                               // unflushed writes are lost
-private:
-    Database& db_;
-    std::map<std::string, int> cache_;
-    std::set<std::string> dirty_;
-};
-
-int main() {
-    Database db;
-    WriteBehindCache cache(db);
-    for (int i = 1; i <= 1000; ++i) cache.put("views:video42", i);   // 1000 fast writes
-    cache.put("views:video7", 5);
-    cache.flush();
-    std::cout << "1001 writes -> " << db.write_calls << " DB call; views:video42 = " << db.rows["views:video42"] << '\n';
-
-    cache.put("views:video42", 1500);                                 // not flushed yet...
-    cache.crash();
-    std::cout << "after crash, DB still has " << db.rows["views:video42"] << " (500 views lost)\n";
-}
-```
-
-**Output:**
-```text
-1001 writes -> 1 DB call; views:video42 = 1000
-after crash, DB still has 1000 (500 views lost)
-```
 
 ### Interview answer
 "Write-behind acknowledges writes once they're in the cache and persists them to the database asynchronously, often batched and coalesced, which gives low write latency and reduces database load. The trade-offs are possible data loss if the cache fails before flushing and temporary inconsistency with the database, so it suits counters and analytics rather than financial data, or needs a replicated, persistent write queue."

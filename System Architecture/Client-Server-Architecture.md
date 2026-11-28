@@ -1,6 +1,6 @@
 # Client-Server Architecture — Basics and Communication Protocols
 
-> **What you'll learn:** what the client-server model is, its variations (thin/thick clients, 2-tier/3-tier/n-tier, stateless vs. stateful servers), how it compares to peer-to-peer, and the main **communication protocols** clients and servers use (HTTP/REST, WebSockets, gRPC, GraphQL, message queues, raw TCP/UDP) — with C++ models.
+> **What you'll learn:** what the client-server model is, its variations (thin/thick clients, 2-tier/3-tier/n-tier, stateless vs. stateful servers), how it compares to peer-to-peer, and the main **communication protocols** clients and servers use (HTTP/REST, WebSockets, gRPC, GraphQL, message queues, raw TCP/UDP).
 >
 > **Prerequisites:** none. For the socket-level programming view see [Network Programming](../Programming%20Languages%20and%20Concepts/Network-Programming.md#2-client-server-architecture).
 
@@ -45,59 +45,6 @@ A **library**: readers (clients) come with requests ("I'd like this book"); the 
 
 Advantages of client-server: centralized data and security, easier maintenance/updates, clear separation of concerns. Disadvantages: the server can become a bottleneck or single point of failure (solved with load balancing, replication, caching), and network dependency.
 
-### Modern C++ example — a stateless server handling many clients
-```cpp
-// g++ -std=c++20 -pthread main.cpp && ./a.out
-#include <atomic>
-#include <iostream>
-#include <map>
-#include <mutex>
-#include <string>
-#include <thread>
-#include <vector>
-
-struct Request  { std::string client, auth_token, path; };
-struct Response { int status; std::string body; };
-
-class Server {                                           // owns the data and the rules
-public:
-    Response handle(const Request& r) {
-        ++handled_;
-        if (r.auth_token != "token-" + r.client) return {401, "unauthorized"};        // security centralized
-        std::scoped_lock l(m_);
-        if (r.path == "/balance") return {200, std::to_string(balances_[r.client])};
-        return {404, "not found"};
-    }
-    int handled() const { return handled_; }
-private:
-    std::mutex m_;
-    std::map<std::string, int> balances_{{"ana", 120}, {"ben", 40}};
-    std::atomic<int> handled_ = 0;
-};
-
-int main() {
-    Server server;
-    std::vector<Response> answers(3);
-    {
-        std::vector<std::jthread> clients;                   // several clients at the same time
-        clients.emplace_back([&] { answers[0] = server.handle({"ana", "token-ana", "/balance"}); });
-        clients.emplace_back([&] { answers[1] = server.handle({"ben", "token-ben", "/balance"}); });
-        clients.emplace_back([&] { answers[2] = server.handle({"eve", "stolen", "/balance"}); });
-    }
-    const char* names[] = {"ana", "ben", "eve"};
-    for (int i = 0; i < 3; ++i) std::cout << names[i] << " <- " << answers[i].status << ' ' << answers[i].body << '\n';
-    std::cout << "server handled " << server.handled() << " requests; each request was self-contained (stateless)\n";
-}
-```
-
-**Output:**
-```text
-ana <- 200 120
-ben <- 200 40
-eve <- 401 unauthorized
-server handled 3 requests; each request was self-contained (stateless)
-```
-
 ### Interview answer
 "In client-server architecture, clients initiate requests and centralized servers provide services, own data and enforce rules. Common forms are 2-, 3- and n-tier; stateless servers scale horizontally behind load balancers while stateful ones need sticky routing or shared state. It centralizes control and security at the cost of a potential bottleneck, which replication, caching and load balancing address; peer-to-peer is the decentralized alternative."
 
@@ -126,53 +73,6 @@ Different ways to communicate with a company: **letters** (request/response, HTT
 Choosing: public API → REST (or GraphQL for flexible clients); internal service-to-service → gRPC; real-time bidirectional → WebSocket; server push only → SSE; decoupled/asynchronous work → a message broker.
 
 Also important: **serialization format** (JSON = readable; Protobuf/Avro/MessagePack = compact, schema-based), **TLS** for encryption, and **timeouts/retries/idempotency** on every call.
-
-### Modern C++ example — request/response vs. polling vs. push (the difference in messages)
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <string>
-#include <vector>
-
-// A stock price that changes at a few moments during 10 seconds.
-const std::vector<int> price_changes_at{3, 7};
-
-int count_polling(int every_seconds) {               // client repeatedly asks "anything new?"
-    int requests = 0;
-    for (int t = 0; t < 10; t += every_seconds) ++requests;
-    return requests;
-}
-
-class PushChannel {                                   // WebSocket/SSE style: server sends when data changes
-public:
-    void on_message(std::function<void(int)> f) { handler_ = std::move(f); }
-    void server_update(int t) { ++messages_; handler_(t); }
-    int messages() const { return messages_; }
-private:
-    std::function<void(int)> handler_;
-    int messages_ = 0;
-};
-
-int main() {
-    std::cout << "polling every 1s:  " << count_polling(1) << " requests, updates seen up to 1s late\n";
-    std::cout << "polling every 5s:  " << count_polling(5) << " requests, updates seen up to 5s late\n";
-
-    PushChannel ws;
-    ws.on_message([](int t) { std::cout << "  push received at t=" << t << "s (instantly)\n"; });
-    for (int t : price_changes_at) ws.server_update(t);
-    std::cout << "push (WebSocket/SSE): " << ws.messages() << " messages, zero delay\n";
-}
-```
-
-**Output:**
-```text
-polling every 1s:  10 requests, updates seen up to 1s late
-polling every 5s:  2 requests, updates seen up to 5s late
-  push received at t=3s (instantly)
-  push received at t=7s (instantly)
-push (WebSocket/SSE): 2 messages, zero delay
-```
 
 ### Interview answer
 "Client-server communication is usually HTTP request/response — REST for resource APIs, GraphQL for client-shaped queries, gRPC with Protobuf over HTTP/2 for efficient typed internal calls. For real-time needs, WebSockets provide full-duplex persistent connections and SSE provides server push, replacing inefficient polling. Asynchronous, decoupled communication goes through message brokers using AMQP, MQTT or Kafka. The choice depends on direction, latency, payload efficiency and coupling."

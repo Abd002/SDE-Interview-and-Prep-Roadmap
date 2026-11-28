@@ -1,6 +1,6 @@
 # Event-Driven Architecture (EDA) — Basics, Components, Advantages and Implementations
 
-> **What you'll learn:** what an event is and how event-driven systems work, the **components** (producers, channels/brokers, consumers, event store, schemas), the **advantages** (and costs), related patterns (**event sourcing**, **CQRS**), and how EDA is **implemented with Apache Kafka** — with C++ models throughout.
+> **What you'll learn:** what an event is and how event-driven systems work, the **components** (producers, channels/brokers, consumers, event store, schemas), the **advantages** (and costs), related patterns (**event sourcing**, **CQRS**), and how EDA is **implemented with Apache Kafka** — with a C++ event-sourcing example.
 >
 > **Prerequisites:** [Message Queuing](./Message-Queuing.md). The in-process version of the idea: [Event-driven programming](../Programming%20Languages%20and%20Concepts/Programming-Paradigms.md#6-event-driven-programming) and the [Observer pattern](../System%20Design/Design%20Patterns/Behavioral-Patterns.md#6-observer).
 
@@ -36,49 +36,6 @@ Compare with a **request/command** style: "Café, buy 20 loaves now!" — the se
 - **Topologies:** **broker** (choreography — everyone reacts to events) vs. **mediator** (an orchestrator reacts and emits commands) — see [Choreography vs. Orchestration](../System%20Design/Microservices-Explained.md#1-choreography-vs-orchestration).
 - Communication is **asynchronous** → the system is **eventually consistent**.
 
-### Modern C++ example — publishers and subscribers that don't know each other
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Event { std::string type; int order_id; double total; };
-
-class EventBroker {
-public:
-    void subscribe(const std::string& type, std::function<void(const Event&)> handler) {
-        handlers_[type].push_back(std::move(handler));
-    }
-    void publish(const Event& e) {                       // the publisher doesn't know who listens
-        std::cout << "published " << e.type << " #" << e.order_id << '\n';
-        for (auto& h : handlers_[e.type]) h(e);
-    }
-private:
-    std::map<std::string, std::vector<std::function<void(const Event&)>>> handlers_;
-};
-
-int main() {
-    EventBroker broker;
-    broker.subscribe("OrderPlaced", [](const Event& e) { std::cout << "  email: receipt for order " << e.order_id << '\n'; });
-    broker.subscribe("OrderPlaced", [](const Event& e) { std::cout << "  inventory: reserve items for " << e.order_id << '\n'; });
-    broker.subscribe("OrderPlaced", [](const Event& e) { std::cout << "  analytics: revenue += " << e.total << '\n'; });
-
-    // The order service's code is just this line — it has no idea three services reacted.
-    broker.publish({"OrderPlaced", 42, 59.99});
-}
-```
-
-**Output:**
-```text
-published OrderPlaced #42
-  email: receipt for order 42
-  inventory: reserve items for 42
-  analytics: revenue += 59.99
-```
-
 ### Interview answer
 "Event-driven architecture structures a system around the production and consumption of events — immutable facts about state changes. Producers publish events to a broker without knowing consumers, and consumers react asynchronously, which decouples services in space and time and leads to eventual consistency. Events can be thin notifications, carry state, or form the source of truth in event sourcing."
 
@@ -103,55 +60,6 @@ The announcement board again: the **bakery** (producer) writes notes; the **boar
 | **Dead-letter queue, retries, monitoring, tracing** | Handle failed events, observe lag and flows | DLQ topics, consumer-lag dashboards, OpenTelemetry |
 
 Design details that matter: **idempotent consumers** (at-least-once delivery means duplicates), **ordering** per key/partition, **schema evolution** (add optional fields, never repurpose), and the **transactional outbox** pattern — write the business change and the event to the same database transaction, then a relay publishes it, so you never "save the order but lose the event".
-
-### Modern C++ example — outbox relay + idempotent consumer
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <set>
-#include <string>
-#include <vector>
-
-struct Event { std::string id, type; int order_id; };
-
-// Producer side: the order and its event are saved in ONE local transaction (the outbox).
-struct OrderDatabase {
-    std::vector<int> orders;
-    std::vector<Event> outbox;
-    void place_order(int id) { orders.push_back(id); outbox.push_back({"evt-" + std::to_string(id), "OrderPlaced", id}); }
-};
-
-// Consumer side: remembers processed event ids, so redelivered duplicates are ignored.
-struct IdempotentConsumer {
-    std::set<std::string> processed;
-    int emails_sent = 0;
-    void handle(const Event& e) {
-        if (!processed.insert(e.id).second) { std::cout << "  duplicate " << e.id << " ignored\n"; return; }
-        ++emails_sent;
-        std::cout << "  email sent for order " << e.order_id << '\n';
-    }
-};
-
-int main() {
-    OrderDatabase db;
-    db.place_order(1);
-    db.place_order(2);
-
-    IdempotentConsumer email;
-    // The outbox relay publishes events; the broker redelivers event 1 (at-least-once).
-    for (const auto& e : db.outbox) email.handle(e);
-    email.handle(db.outbox[0]);
-    std::cout << "orders: " << db.orders.size() << ", emails: " << email.emails_sent << " (exactly one per order)\n";
-}
-```
-
-**Output:**
-```text
-  email sent for order 1
-  email sent for order 2
-  duplicate evt-1 ignored
-orders: 2, emails: 2 (exactly one per order)
-```
 
 ### Interview answer
 "The components are event producers, the events themselves, an event channel or broker that routes and persists them, consumers or stream processors that react, an event store for replayable history, and schemas with a registry for compatible evolution, plus DLQs and observability. Key practices are idempotent consumers, per-key ordering, schema evolution rules and the transactional outbox to publish reliably."
@@ -239,93 +147,6 @@ Kafka is a set of giant, ever-growing **diaries** (topics), each split into seve
 - **Exactly-once processing** within Kafka via idempotent producers + transactions.
 - Ecosystem: **Kafka Connect** (import/export: databases via CDC/Debezium, S3, Elasticsearch), **Kafka Streams / ksqlDB / Apache Flink** (stateful stream processing: joins, windows, aggregations), **Schema Registry**.
 - Alternatives: AWS Kinesis/EventBridge, Google Pub/Sub, Azure Event Hubs (Kafka-compatible), Apache Pulsar, Redpanda (Kafka API).
-
-### Modern C++ example — keyed partitions, consumer-group rebalancing and log compaction
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <cstdint>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Record { std::string key, value; };
-
-std::uint32_t stable_hash(const std::string& s) {         // deterministic across platforms
-    std::uint32_t h = 2166136261u;
-    for (unsigned char c : s) { h ^= c; h *= 16777619u; }
-    return h;
-}
-
-struct Topic {
-    std::vector<std::vector<Record>> partitions;
-    explicit Topic(std::size_t n) : partitions(n) {}
-    std::size_t produce(const Record& r) {
-        std::size_t p = stable_hash(r.key) % partitions.size();
-        partitions[p].push_back(r);
-        return p;
-    }
-    // Log compaction: keep only the LATEST record per key (a "current state" topic)
-    std::map<std::string, std::string> compacted() const {
-        std::map<std::string, std::string> latest;
-        for (const auto& part : partitions) for (const auto& r : part) latest[r.key] = r.value;
-        return latest;
-    }
-};
-
-// Assign partitions to the consumers of a group (round-robin assignment)
-std::map<std::string, std::vector<std::size_t>> assign(std::size_t partitions, const std::vector<std::string>& consumers) {
-    std::map<std::string, std::vector<std::size_t>> a;
-    for (std::size_t p = 0; p < partitions; ++p) a[consumers[p % consumers.size()]].push_back(p);
-    return a;
-}
-
-void print_assignment(const std::map<std::string, std::vector<std::size_t>>& a) {
-    for (const auto& [c, ps] : a) {
-        std::cout << "  " << c << " reads partitions";
-        for (auto p : ps) std::cout << ' ' << p;
-        std::cout << '\n';
-    }
-}
-
-int main() {
-    Topic orders(4);
-    for (const auto& [key, status] : std::vector<std::pair<std::string, std::string>>{
-             {"order-42", "placed"}, {"order-7", "placed"}, {"order-42", "paid"}, {"order-42", "shipped"}, {"order-7", "cancelled"}}) {
-        std::size_t p = orders.produce({key, status});
-        std::cout << key << " -> " << status << " (partition " << p << ")\n";
-    }
-    std::cout << "all events of order-42 are in ONE partition, so their order is preserved\n";
-
-    std::cout << "consumer group 'shipping' with 2 consumers:\n";
-    print_assignment(assign(4, {"c1", "c2"}));
-    std::cout << "a third consumer joins -> rebalance:\n";
-    print_assignment(assign(4, {"c1", "c2", "c3"}));
-
-    std::cout << "compacted topic (latest state per key):\n";
-    for (const auto& [k, v] : orders.compacted()) std::cout << "  " << k << " = " << v << '\n';
-}
-```
-
-**Output:**
-```text
-order-42 -> placed (partition 0)
-order-7 -> placed (partition 3)
-order-42 -> paid (partition 0)
-order-42 -> shipped (partition 0)
-order-7 -> cancelled (partition 3)
-all events of order-42 are in ONE partition, so their order is preserved
-consumer group 'shipping' with 2 consumers:
-  c1 reads partitions 0 2
-  c2 reads partitions 1 3
-a third consumer joins -> rebalance:
-  c1 reads partitions 0 3
-  c2 reads partitions 1
-  c3 reads partitions 2
-compacted topic (latest state per key):
-  order-42 = shipped
-  order-7 = cancelled
-```
 
 ### Interview answer
 "Kafka implements EDA as a distributed, replicated commit log: producers append keyed events to partitioned topics, which preserves per-key ordering; events are retained or compacted, and consumer groups divide partitions among members and track offsets, enabling horizontal scaling, independent consumers and replay. With Kafka Connect for CDC integration, Kafka Streams or Flink for stream processing, a schema registry and idempotent/transactional producers, it's the typical backbone for event-driven microservices."

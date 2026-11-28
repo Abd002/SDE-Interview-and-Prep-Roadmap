@@ -1,6 +1,6 @@
 # Stored Procedures, Functions, Triggers and Views
 
-> **What you'll learn:** how to put logic **inside the database**: **stored procedures and functions** (creation, execution, parameters), **triggers** (BEFORE/AFTER types and execution order), and **views** (regular vs. materialized, advantages and use cases) — with SQL (PostgreSQL syntax, with notes for MySQL/SQL Server) and C++ models of how each behaves.
+> **What you'll learn:** how to put logic **inside the database**: **stored procedures and functions** (creation, execution, parameters), **triggers** (BEFORE/AFTER types and execution order), and **views** (regular vs. materialized, advantages and use cases) — with SQL (PostgreSQL syntax, with notes for MySQL/SQL Server).
 >
 > **Prerequisites:** [SQL DML](./SQL-DML.md), [SQL DQL](./SQL-DQL.md).
 
@@ -86,68 +86,6 @@ CALL withdraw(1, 50, NULL);      -- PostgreSQL returns new_balance as a result r
 ```
 **Parameters protect against SQL injection**: values are passed as data, never glued into SQL text (unless you build dynamic SQL with string concatenation inside the procedure — don't).
 
-### Modern C++ example — a procedure registry with IN/OUT parameters, defaults and atomic execution
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <stdexcept>
-#include <string>
-#include <vector>
-
-struct Database {
-    std::map<int, double> accounts{{1, 500}, {2, 100}};
-    std::vector<std::string> audit_log;
-};
-
-// FUNCTION: pure calculation with a default parameter, usable "inside a query"
-constexpr double price_with_tax(double price, double rate = 0.2) { return price * (1 + rate); }
-
-// PROCEDURE: multi-step, IN params (from, to, amount) and an OUT param (new balance).
-// Runs atomically: on any error the database is restored (like an implicit transaction).
-void transfer(Database& db, int from, int to, double amount, double& out_new_balance) {
-    Database backup = db;                                    // BEGIN
-    try {
-        if (amount <= 0) throw std::invalid_argument("amount must be positive");
-        if (db.accounts.at(from) < amount) throw std::runtime_error("insufficient funds");
-        db.accounts.at(from) -= amount;
-        db.accounts.at(to) += amount;                        // .at() throws for unknown ids
-        db.audit_log.push_back(std::to_string(from) + "->" + std::to_string(to));
-        out_new_balance = db.accounts.at(from);              // OUT parameter
-    } catch (...) {
-        db = backup;                                         // ROLLBACK
-        throw;
-    }
-}
-
-int main() {
-    std::cout << "SELECT price_with_tax(10)      -> " << price_with_tax(10) << '\n';
-    std::cout << "SELECT price_with_tax(10, 0.1) -> " << price_with_tax(10, 0.1) << '\n';
-
-    // A registry: the app calls procedures by NAME, like CALL transfer(...)
-    Database db;
-    std::map<std::string, std::function<void(int, int, double, double&)>> procedures{
-        {"transfer", [&](int f, int t, double a, double& out) { transfer(db, f, t, a, out); }}};
-
-    double new_balance = 0;
-    procedures.at("transfer")(1, 2, 100, new_balance);
-    std::cout << "CALL transfer(1, 2, 100)  -> OUT new_balance = " << new_balance << '\n';
-
-    try { procedures.at("transfer")(1, 99, 50, new_balance); }
-    catch (const std::exception&) { std::cout << "CALL transfer(1, 99, 50)  -> ERROR, rolled back; "; }
-    std::cout << "account 1 = " << db.accounts[1] << ", audit entries = " << db.audit_log.size() << '\n';
-}
-```
-
-**Output:**
-```text
-SELECT price_with_tax(10)      -> 12
-SELECT price_with_tax(10, 0.1) -> 11
-CALL transfer(1, 2, 100)  -> OUT new_balance = 400
-CALL transfer(1, 99, 50)  -> ERROR, rolled back; account 1 = 400, audit entries = 1
-```
-
 ### Interview answer
 "Stored procedures and functions are named routines stored in the database. Functions return values and can be used in queries; procedures are invoked with CALL/EXEC, can manage transactions and return data via OUT parameters. They reduce round trips, centralize logic and enable EXECUTE-only security, but are vendor-specific and harder to test and scale, so I use them selectively."
 
@@ -217,96 +155,6 @@ A trigger failing (raising an error) **aborts the whole statement** and rolls it
 
 **Trigger pitfalls:** hidden "magic" behavior surprises developers; cascades of triggers firing other triggers (even recursively); slower bulk writes (row triggers run per row); hard to test. Good uses: auditing, `updated_at`, enforcing complex invariants, maintaining denormalized counters.
 
-### Modern C++ example — BEFORE/AFTER row triggers and their order
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <optional>
-#include <stdexcept>
-#include <string>
-#include <vector>
-
-struct Product { int id; std::string name; double price; long updated_at = 0; };
-struct PriceChange { int id; double old_price, new_price; };
-
-class ProductsTable {
-public:
-    using Before = std::function<std::optional<Product>(const Product& old_row, Product new_row)>;
-    using After  = std::function<void(const Product& old_row, const Product& new_row)>;
-
-    // Triggers are kept sorted by name, like PostgreSQL does.
-    void create_before_trigger(std::string name, Before f) { before_[std::move(name)] = std::move(f); }
-    void create_after_trigger(std::string name, After f)   { after_[std::move(name)] = std::move(f); }
-
-    void insert(Product p) { rows_[p.id] = p; }
-
-    void update(int id, const std::function<void(Product&)>& set) {
-        const Product old_row = rows_.at(id);
-        Product new_row = old_row;
-        set(new_row);
-        for (auto& [name, trig] : before_) {                         // BEFORE ROW, by name
-            std::cout << "  BEFORE trigger " << name << '\n';
-            auto result = trig(old_row, new_row);
-            if (!result) { std::cout << "  -> row skipped\n"; return; }
-            new_row = *result;
-        }
-        if (new_row.price < 0) throw std::runtime_error("CHECK price >= 0 violated");   // constraints
-        rows_[id] = new_row;                                          // write the row
-        std::cout << "  row written\n";
-        for (auto& [name, trig] : after_) {                          // AFTER ROW, by name
-            std::cout << "  AFTER trigger " << name << '\n';
-            trig(old_row, new_row);
-        }
-    }
-    const Product& get(int id) const { return rows_.at(id); }
-
-private:
-    std::map<int, Product> rows_;
-    std::map<std::string, Before> before_;
-    std::map<std::string, After> after_;
-};
-
-int main() {
-    ProductsTable products;
-    std::vector<PriceChange> price_history;
-    long clock = 1000;
-
-    products.create_before_trigger("trg_10_updated_at", [&](const Product&, Product row) {
-        row.updated_at = ++clock;                                      // modify NEW
-        return std::optional(row);
-    });
-    products.create_before_trigger("trg_20_round_price", [](const Product&, Product row) {
-        row.price = static_cast<long>(row.price * 100 + 0.5) / 100.0;  // normalize input
-        return std::optional(row);
-    });
-    products.create_after_trigger("trg_price_audit", [&](const Product& o, const Product& n) {
-        if (o.price != n.price) price_history.push_back({o.id, o.price, n.price});
-    });
-
-    products.insert({1, "pen", 1.50});
-    std::cout << "UPDATE products SET price = 1.999 WHERE id = 1;\n";
-    products.update(1, [](Product& p) { p.price = 1.999; });
-
-    const auto& p = products.get(1);
-    std::cout << "result: price=" << p.price << " updated_at=" << p.updated_at << '\n';
-    std::cout << "price_history: " << price_history.size() << " entry (" << price_history[0].old_price
-              << " -> " << price_history[0].new_price << ")\n";
-}
-```
-
-**Output:**
-```text
-UPDATE products SET price = 1.999 WHERE id = 1;
-  BEFORE trigger trg_10_updated_at
-  BEFORE trigger trg_20_round_price
-  row written
-  AFTER trigger trg_price_audit
-result: price=2 updated_at=1001
-price_history: 1 entry (1.5 -> 2)
-```
-
 ### Interview answer
 "Triggers are routines fired automatically on INSERT, UPDATE or DELETE. BEFORE row triggers can validate or modify NEW or skip the row; AFTER triggers see the final row and are used for auditing and maintaining derived data; INSTEAD OF triggers make views writable. Order is: BEFORE statement, BEFORE row, write plus constraint checks, AFTER row, AFTER statement; same-event triggers run alphabetically in PostgreSQL or in creation order in MySQL. They're powerful but hidden, so I keep them small and well documented."
 
@@ -361,68 +209,6 @@ REFRESH MATERIALIZED VIEW CONCURRENTLY sales_by_month;  -- recompute (e.g. every
 **Use cases:** reporting dashboards, analytics rollups, search pages over joined data, data-warehouse summary tables, exposing a limited slice of data to another team or service.
 
 **Watch out:** views stacked on views on views become slow and hard to debug; materialized views need a refresh strategy (schedule, trigger, or incremental maintenance) and can serve stale data.
-
-### Modern C++ example — a view (computed on demand) vs. a materialized view (cached + refresh)
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Order { std::string month; double total; };
-
-// Regular VIEW: a stored query, re-run on every read -> always fresh
-class SalesByMonthView {
-public:
-    explicit SalesByMonthView(const std::vector<Order>& orders) : orders_(orders) {}
-    std::map<std::string, double> read() const {
-        ++executions;
-        std::map<std::string, double> result;
-        for (const auto& o : orders_) result[o.month] += o.total;   // GROUP BY month
-        return result;
-    }
-    mutable int executions = 0;
-private:
-    const std::vector<Order>& orders_;
-};
-
-// MATERIALIZED VIEW: stores the result; fast reads, stale until refresh()
-class SalesByMonthMaterialized {
-public:
-    explicit SalesByMonthMaterialized(const std::vector<Order>& orders) : view_(orders) { refresh(); }
-    void refresh() { cached_ = view_.read(); }                     // REFRESH MATERIALIZED VIEW
-    const std::map<std::string, double>& read() const { return cached_; }   // no recomputation
-private:
-    SalesByMonthView view_;
-    std::map<std::string, double> cached_;
-};
-
-int main() {
-    std::vector<Order> orders{{"2024-01", 100}, {"2024-01", 50}, {"2024-02", 70}};
-    SalesByMonthView view(orders);
-    SalesByMonthMaterialized mview(orders);
-
-    orders.push_back({"2024-02", 30});                              // new order arrives
-
-    std::cout << "view     Feb = " << view.read().at("2024-02") << "  (fresh)\n";
-    std::cout << "mat.view Feb = " << mview.read().at("2024-02") << "  (stale)\n";
-    mview.refresh();
-    std::cout << "mat.view Feb = " << mview.read().at("2024-02") << "  (after REFRESH)\n";
-
-    for (int i = 0; i < 1000; ++i) { (void)view.read(); (void)mview.read(); }   // a busy dashboard
-    std::cout << "query executions for 1000 reads: view=" << view.executions
-              << ", materialized view=2 (initial + refresh)\n";
-}
-```
-
-**Output:**
-```text
-view     Feb = 100  (fresh)
-mat.view Feb = 70  (stale)
-mat.view Feb = 100  (after REFRESH)
-query executions for 1000 reads: view=1001, materialized view=2 (initial + refresh)
-```
 
 ### Interview answer
 "A view is a named stored query, expanded at query time, so it's always current and is used to simplify queries, provide a stable interface and restrict access to columns or rows. A materialized view persists the result, can be indexed and reads fast, but is stale until refreshed and costs storage and refresh time — ideal for expensive aggregations behind dashboards and reports."

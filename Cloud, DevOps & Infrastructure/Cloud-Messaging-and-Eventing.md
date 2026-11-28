@@ -1,6 +1,6 @@
 # Cloud Messaging and Eventing — EventBridge, SNS, SQS, Kinesis/Kafka, Retries and Backpressure
 
-> **What you'll learn:** how to route events with **EventBridge** buses and rules, fan out with **SNS** topics and **subscription filters**, queue work with **SQS** (standard vs. **FIFO**, **visibility timeout**, **dead-letter queues**), choose between **Kinesis and Kafka** for streaming, and handle **retries, poison messages, deduplication and backpressure** across all of them. Each part has config snippets and a runnable C++ simulation.
+> **What you'll learn:** how to route events with **EventBridge** buses and rules, fan out with **SNS** topics and **subscription filters**, queue work with **SQS** (standard vs. **FIFO**, **visibility timeout**, **dead-letter queues**), choose between **Kinesis and Kafka** for streaming, and handle **retries, poison messages, deduplication and backpressure** across all of them. Each part has config snippets.
 >
 > **Prerequisites:** [Message Queuing](../System%20Architecture/Message-Queuing.md), [Event-Driven Architecture](../System%20Architecture/Event-Driven-Architecture.md), [Queue/event handler testing](../Testing%2C%20Reliability%20%26%20Observability/Backend-and-Distributed-System-Testing.md#5-message-queueevent-handler-tests-ordering-duplication-retry-dlq).
 
@@ -39,52 +39,6 @@ A central post office sorting room: every letter has a label (source, type, deta
 }
 ```
 
-#### Modern C++ example — a mini event bus with pattern rules, multiple targets and a DLQ on target failure
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Event { std::string source, type; std::map<std::string, double> num; std::map<std::string, std::string> str; };
-struct Rule { std::string name; std::function<bool(const Event&)> pattern; std::vector<std::string> targets; };
-
-int main() {
-    std::vector<Rule> rules{
-        {"all-orders-to-analytics", [](const Event& e) { return e.source == "com.acme.orders"; }, {"analytics-firehose"}},
-        {"big-foreign-orders-to-fraud", [](const Event& e) { return e.type == "OrderPlaced" && e.num.at("amount") > 1000 && e.str.at("country") != "EG"; }, {"fraud-lambda", "ops-sqs"}},
-        {"payments-failed-to-support", [](const Event& e) { return e.source == "com.acme.payments" && e.type == "PaymentFailed"; }, {"support-api-destination"}},
-    };
-    std::map<std::string, int> delivered;
-    std::vector<std::string> dlq;
-    auto deliver = [&](const std::string& target, const Event& e) {
-        if (target == "support-api-destination") { dlq.push_back(e.type + " -> " + target + " (HTTP 500 after retries)"); return; }   // failing target
-        ++delivered[target];
-    };
-    std::vector<Event> events{
-        {"com.acme.orders", "OrderPlaced", {{"amount", 250}}, {{"country", "EG"}}},
-        {"com.acme.orders", "OrderPlaced", {{"amount", 4200}}, {{"country", "DE"}}},
-        {"com.acme.orders", "OrderPlaced", {{"amount", 5000}}, {{"country", "EG"}}},
-        {"com.acme.payments", "PaymentFailed", {{"amount", 99}}, {{"country", "EG"}}},
-    };
-    for (auto& e : events)
-        for (auto& r : rules)
-            if (r.pattern(e)) for (auto& t : r.targets) deliver(t, e);
-    for (auto& [t, n] : delivered) std::cout << t << ": " << n << " event(s)\n";
-    for (auto& d : dlq) std::cout << "DLQ: " << d << '\n';
-}
-```
-
-**Output:**
-```text
-analytics-firehose: 3 event(s)
-fraud-lambda: 1 event(s)
-ops-sqs: 1 event(s)
-DLQ: PaymentFailed -> support-api-destination (HTTP 500 after retries)
-```
-
 ### Interview answer
 "EventBridge is a serverless event router: producers put JSON events with a source, detail-type and detail onto a bus, and rules with content-based patterns — exact values, prefixes, numeric ranges, anything-but — send matching events to up to five targets, optionally transformed. Delivery is at least once with retries for up to 24 hours and a per-target DLQ, so consumers are idempotent, and ordering isn't guaranteed. I use it for decoupled domain events between teams and accounts, plus archive and replay, the schema registry, Pipes for point-to-point integrations, and Scheduler for timed events — and Kinesis or Kafka when I need ordered high-throughput streams."
 
@@ -113,65 +67,6 @@ A train line recording every passenger in order on a ticket roll. Different insp
 - **Consumer lag** (records behind the head) is the key metric for scaling consumers; consumers in a group ≤ partitions.
 - **Use a log (Kinesis/Kafka) when:** many independent consumers, replay/reprocessing, ordered per key, very high throughput (clickstreams, IoT, CDC, event sourcing). **Use a queue (SQS) when:** each task is processed once, per-message retries/DLQ, simple scaling.
 
-#### Modern C++ example — keyed partitions, per-key ordering, independent consumer offsets, and replay
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Record { std::string key, value; };
-
-class Topic {
-public:
-    explicit Topic(int partitions) : logs_(partitions) {}
-    void produce(const Record& r) { logs_[std::hash<std::string>{}(r.key) % logs_.size()].push_back(r); }
-    std::vector<Record> poll(const std::string& group, int partition, int max) {
-        auto& off = offsets_[group][partition];
-        std::vector<Record> out;
-        while (off < static_cast<int>(logs_[partition].size()) && static_cast<int>(out.size()) < max) out.push_back(logs_[partition][off++]);
-        return out;
-    }
-    void seek(const std::string& group, int partition, int offset) { offsets_[group][partition] = offset; }
-    int lag(const std::string& group) { int l = 0; for (std::size_t p = 0; p < logs_.size(); ++p) l += static_cast<int>(logs_[p].size()) - offsets_[group][static_cast<int>(p)]; return l; }
-    int partitions() const { return static_cast<int>(logs_.size()); }
-private:
-    std::vector<std::vector<Record>> logs_;
-    std::map<std::string, std::map<int, int>> offsets_;
-};
-
-int main() {
-    Topic orders(3);
-    for (auto [k, v] : std::vector<std::pair<std::string, std::string>>{
-             {"user-1", "created"}, {"user-2", "created"}, {"user-1", "paid"}, {"user-3", "created"}, {"user-1", "shipped"}, {"user-2", "paid"}})
-        orders.produce({k, v});
-
-    std::cout << "billing group reads everything (per-key order preserved):\n";
-    for (int p = 0; p < orders.partitions(); ++p)
-        for (auto& r : orders.poll("billing", p, 100)) std::cout << "  p" << p << ' ' << r.key << ' ' << r.value << '\n';
-    orders.poll("analytics", 2, 1);                                     // a slower, independent group
-    std::cout << "lag: billing=" << orders.lag("billing") << ", analytics=" << orders.lag("analytics") << '\n';
-
-    orders.seek("billing", 0, 0); orders.seek("billing", 1, 0); orders.seek("billing", 2, 0);   // replay after a bug fix
-    std::cout << "billing lag after rewinding to offset 0 (replay): " << orders.lag("billing") << '\n';
-}
-```
-
-**Output:**
-```text
-billing group reads everything (per-key order preserved):
-  p1 user-2 created
-  p1 user-2 paid
-  p2 user-1 created
-  p2 user-1 paid
-  p2 user-3 created
-  p2 user-1 shipped
-lag: billing=0, analytics=5
-billing lag after rewinding to offset 0 (replay): 6
-```
-
 ### Interview answer
 "Kinesis and Kafka are partitioned, append-only logs: records with the same key go to the same shard or partition, so order holds per key, and each consumer group tracks its own offsets, so many teams can read independently and replay history. Kinesis is fully managed with per-shard limits of 1 MB/s in and on-demand scaling; Kafka or MSK gives higher per-partition throughput, long retention and compaction, exactly-once within Kafka, and a big ecosystem with Connect and stream processing, but more operations. I pick a log for high-throughput, multi-consumer, replayable streams like CDC or clickstreams, a queue like SQS for one-time task processing, and I monitor consumer lag and avoid hot keys."
 
@@ -198,57 +93,6 @@ A mail sorter: if an address is temporarily unreachable, try again later; if a l
 - **Deduplication:** idempotency keys stored with a conditional write; or upserts by business key; or FIFO/Kafka exactly-once features within their scope.
 - **Backpressure** protects the database: cap consumer concurrency, use **RDS Proxy**, shed or delay low-priority work; queue depth growing is fine as long as it drains within your SLA.
 
-#### Modern C++ example — a consumer with partial batch failures, max receives → DLQ, idempotent dedup and a concurrency cap
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <deque>
-#include <iostream>
-#include <set>
-#include <string>
-#include <vector>
-
-struct Msg { std::string id, body; int receives = 0; };
-
-int main() {
-    std::deque<Msg> queue{{"m1", "ok"}, {"m2", "flaky"}, {"m3", "corrupt"}, {"m1", "ok"}, {"m4", "ok"}, {"m5", "ok"}, {"m6", "ok"}};   // m1 duplicated
-    std::vector<Msg> dlq;
-    std::set<std::string> done;
-    int flaky_failures_left = 1, processed = 0, db_peak = 0;
-    const int max_receive = 3, batch_size = 3, max_concurrency = 2;       // backpressure: at most 2 batches at once
-
-    for (int round = 1; !queue.empty(); ++round) {
-        int in_flight = std::min<int>(max_concurrency, (static_cast<int>(queue.size()) + batch_size - 1) / batch_size);
-        db_peak = std::max(db_peak, in_flight * batch_size);
-        std::vector<Msg> retry;
-        for (int b = 0; b < in_flight; ++b)
-            for (int i = 0; i < batch_size && !queue.empty(); ++i) {
-                Msg m = queue.front(); queue.pop_front();
-                ++m.receives;
-                if (done.count(m.id)) continue;                                        // dedup: already processed
-                bool fail = m.body == "corrupt" || (m.body == "flaky" && flaky_failures_left-- > 0);
-                if (!fail) { done.insert(m.id); ++processed; continue; }
-                if (m.receives >= max_receive) dlq.push_back(m);                       // poison -> DLQ
-                else retry.push_back(m);                                               // only failed items retried
-            }
-        for (auto& m : retry) queue.push_back(m);
-        std::cout << "round " << round << ": processed so far " << processed << ", retrying " << retry.size() << ", DLQ " << dlq.size() << '\n';
-    }
-    std::cout << "unique messages processed: " << processed << "; DLQ: ";
-    for (auto& m : dlq) std::cout << m.id << " (" << m.receives << " receives) ";
-    std::cout << "\npeak concurrent DB work: " << db_peak << " messages (capped by max concurrency)\n";
-}
-```
-
-**Output:**
-```text
-round 1: processed so far 3, retrying 2, DLQ 0
-round 2: processed so far 5, retrying 1, DLQ 0
-round 3: processed so far 5, retrying 0, DLQ 1
-unique messages processed: 5; DLQ: m3 (3 receives) 
-peak concurrent DB work: 6 messages (capped by max concurrency)
-```
-
 ### Interview answer
 "Delivery is at least once everywhere, so handlers are idempotent, deduplicating by message or business key with conditional writes. Transient failures are retried with backoff — via the SQS visibility timeout, service retry policies, or consumer retries — while permanent or repeatedly failing poison messages go to a DLQ after a receive limit, with alarms and a redrive process once fixed. I report partial batch failures so only failed items are retried, and in streams I use bisect and retry limits so one bad record doesn't block a shard. Backpressure comes from capped consumer concurrency and batch sizes so downstream databases aren't overwhelmed."
 
@@ -271,48 +115,6 @@ A radio station broadcasting announcements. Anyone tuned in hears them; some lis
 
 ```json
 { "country": ["DE", "FR"], "amount": [{ "numeric": [">=", 1000] }] }
-```
-
-#### Modern C++ example — SNS → SQS fan-out with subscription filter policies
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <queue>
-#include <string>
-#include <vector>
-
-struct Message { std::string body; std::map<std::string, std::string> attrs; double amount; };
-struct Subscription { std::string queue; std::function<bool(const Message&)> filter; };
-
-int main() {
-    std::map<std::string, std::queue<std::string>> sqs;
-    std::vector<Subscription> topic{
-        {"billing-queue", nullptr},                                                                   // everything
-        {"shipping-queue", [](const Message& m) { return m.attrs.at("type") == "OrderPlaced"; }},
-        {"eu-vip-queue", [](const Message& m) { auto c = m.attrs.at("country"); return (c == "DE" || c == "FR") && m.amount >= 1000; }},
-    };
-    auto publish = [&](const Message& m) {
-        int copies = 0;
-        for (auto& s : topic) if (!s.filter || s.filter(m)) { sqs[s.queue].push(m.body); ++copies; }
-        std::cout << "publish " << m.body << " -> " << copies << " subscription(s)\n";
-    };
-    publish({"order#81", {{"type", "OrderPlaced"}, {"country", "EG"}}, 250});
-    publish({"order#82", {{"type", "OrderPlaced"}, {"country", "DE"}}, 4200});
-    publish({"refund#9", {{"type", "RefundIssued"}, {"country", "FR"}}, 1500});
-    for (auto& [q, msgs] : sqs) std::cout << q << ": " << msgs.size() << " message(s)\n";
-}
-```
-
-**Output:**
-```text
-publish order#81 -> 2 subscription(s)
-publish order#82 -> 3 subscription(s)
-publish refund#9 -> 2 subscription(s)
-billing-queue: 3 message(s)
-eu-vip-queue: 2 message(s)
-shipping-queue: 2 message(s)
 ```
 
 ### Interview answer
@@ -349,74 +151,6 @@ resource "aws_sqs_queue" "orders" {
   redrive_policy = jsonencode({ deadLetterTargetArn = aws_sqs_queue.orders_dlq.arn, maxReceiveCount = 5 })
 }
 ```
-
-#### Modern C++ example — visibility timeout, a crashed consumer, redelivery, DLQ, and FIFO message groups with dedup
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <optional>
-#include <set>
-#include <string>
-#include <vector>
-
-struct Msg { std::string id, body; int visible_at = 0, receives = 0; bool deleted = false; };
-
-class Queue {
-public:
-    Queue(int visibility, int max_receive) : vis_(visibility), max_(max_receive) {}
-    void send(std::string id, std::string body) { msgs_.push_back({std::move(id), std::move(body)}); }
-    std::optional<std::string> receive(int now) {
-        for (auto& m : msgs_) {
-            if (m.deleted || m.visible_at > now) continue;
-            if (m.receives >= max_) { m.deleted = true; dlq.push_back(m.id); continue; }   // redrive to DLQ
-            ++m.receives; m.visible_at = now + vis_;                                        // invisible while processing
-            return m.id;
-        }
-        return std::nullopt;
-    }
-    void remove(const std::string& id) { for (auto& m : msgs_) if (m.id == id) m.deleted = true; }
-    std::vector<std::string> dlq;
-private:
-    int vis_, max_;
-    std::vector<Msg> msgs_;
-};
-
-int main() {
-    Queue q(30, 3);
-    q.send("job-1", "resize photo"); q.send("job-2", "corrupt file");
-    auto a = q.receive(0);  std::cout << "t=0  consumer A got " << *a << " and CRASHES (no delete)\n";
-    auto b = q.receive(5);  std::cout << "t=5  consumer B got " << *b << " (job-1 is invisible)\n";
-    q.remove(*b == "job-2" ? "x" : *b);
-    auto c = q.receive(31); std::cout << "t=31 job-1 visible again -> " << *c << ", processed and deleted\n";
-    q.remove("job-1");
-    for (int t = 40; t <= 200; t += 40) if (auto m = q.receive(t)) std::cout << "t=" << t << " receive " << *m << " -> fails again\n";
-    std::cout << "DLQ:"; for (auto& id : q.dlq) std::cout << ' ' << id; std::cout << " (after 3 receives)\n";
-
-    // FIFO: strict order within a message group, 5-minute deduplication window.
-    std::map<std::string, std::vector<std::string>> groups;
-    std::set<std::string> dedup_ids;
-    for (auto [group, dedup, body] : std::vector<std::tuple<std::string, std::string, std::string>>{
-             {"account-42", "d1", "deposit 100"}, {"account-7", "d2", "deposit 50"}, {"account-42", "d3", "withdraw 30"},
-             {"account-42", "d3", "withdraw 30"}, {"account-42", "d4", "withdraw 80"}})
-        if (dedup_ids.insert(dedup).second) groups[group].push_back(body);
-    for (auto& [g, ops] : groups) { std::cout << "FIFO group " << g << ':'; for (auto& o : ops) std::cout << " [" << o << ']'; std::cout << '\n'; }
-}
-```
-
-**Output:**
-```text
-t=0  consumer A got job-1 and CRASHES (no delete)
-t=5  consumer B got job-2 (job-1 is invisible)
-t=31 job-1 visible again -> job-1, processed and deleted
-t=40 receive job-2 -> fails again
-t=80 receive job-2 -> fails again
-DLQ: job-2 (after 3 receives)
-FIFO group account-42: [deposit 100] [withdraw 30] [withdraw 80]
-FIFO group account-7: [deposit 50]
-```
-
-The duplicate "withdraw 30" (same deduplication ID within the window) was dropped, and account-42's operations stay in order while account-7 is processed independently.
 
 ### Interview answer
 "SQS is a pull-based managed queue. Standard queues scale almost without limit with at-least-once delivery and best-effort ordering; FIFO queues give ordering per message group and exactly-once processing within a five-minute deduplication window, at lower throughput unless high-throughput mode is on. A received message is hidden for the visibility timeout — which I set above processing time, six times the Lambda timeout for event sources, and extend for long jobs — and reappears if not deleted. A redrive policy moves it to a DLQ after maxReceiveCount, with alarms and redrive once fixed. I use long polling and watch the age of the oldest message."

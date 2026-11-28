@@ -1,6 +1,6 @@
 # The TCP/IP Stack — OSI Layers, TCP and UDP
 
-> **What you'll learn:** how data travels from one computer to another, what "layers" and "protocols" mean, the **OSI model's 7 layers**, the real-world **TCP/IP stack**, and the difference between **TCP and UDP** — with C++ programs that build packets and send real data over sockets.
+> **What you'll learn:** how data travels from one computer to another, what "layers" and "protocols" mean, the **OSI model's 7 layers**, the real-world **TCP/IP stack**, and the difference between **TCP and UDP** — with C++ programs that send real data over sockets.
 >
 > **Prerequisites:** none.
 
@@ -41,56 +41,6 @@ Application data:                             [ "GET /index.html" ]
 → Physical: bits on a wire / radio waves
 ```
 
-### Modern C++ example — encapsulation and decapsulation
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-// Each layer adds its header on the way down...
-std::string wrap(const std::string& header, const std::string& payload) {
-    return "[" + header + "]" + payload;
-}
-// ...and strips it on the way up.
-std::string unwrap(const std::string& data) {
-    return data.substr(data.find(']') + 1);
-}
-
-int main() {
-    std::string msg = "GET /index.html";
-    const std::vector<std::string> headers{
-        "TCP src=51000 dst=80",               // transport: ports
-        "IP src=10.0.0.5 dst=93.184.216.34",  // network: IP addresses
-        "ETH src=aa:aa dst=bb:bb",            // link: MAC addresses
-    };
-
-    std::cout << "SENDER (going down):\n";
-    for (const auto& h : headers) {
-        msg = wrap(h, msg);
-        std::cout << "  " << msg << '\n';
-    }
-
-    std::cout << "RECEIVER (going up):\n";
-    for (std::size_t i = 0; i < headers.size(); ++i) {
-        msg = unwrap(msg);
-        std::cout << "  " << msg << '\n';
-    }
-}
-```
-
-**Output:**
-```text
-SENDER (going down):
-  [TCP src=51000 dst=80]GET /index.html
-  [IP src=10.0.0.5 dst=93.184.216.34][TCP src=51000 dst=80]GET /index.html
-  [ETH src=aa:aa dst=bb:bb][IP src=10.0.0.5 dst=93.184.216.34][TCP src=51000 dst=80]GET /index.html
-RECEIVER (going up):
-  [IP src=10.0.0.5 dst=93.184.216.34][TCP src=51000 dst=80]GET /index.html
-  [TCP src=51000 dst=80]GET /index.html
-  GET /index.html
-```
-
 ### Interview answer
 "Networking is layered so each layer provides a service to the one above and hides the details below. Data is encapsulated with a header per layer on the way down and decapsulated on the way up. Ports identify applications, IP addresses identify hosts, and MAC addresses identify interfaces on a local link."
 
@@ -122,49 +72,6 @@ Key ideas:
 - **ARP** (Address Resolution Protocol) finds the MAC address for an IP address on the local network.
 - In the real TCP/IP world, layers 5–7 are usually merged into "Application".
 
-### Modern C++ example — classify protocols by layer
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <array>
-#include <format>
-#include <iostream>
-#include <map>
-#include <string>
-#include <string_view>
-
-enum class Layer { Physical = 1, DataLink, Network, Transport, Session, Presentation, Application };
-
-constexpr std::array<std::string_view, 8> kNames{
-    "", "Physical", "Data Link", "Network", "Transport", "Session", "Presentation", "Application"};
-
-int main() {
-    const std::map<std::string, Layer> protocols{
-        {"HTTP", Layer::Application}, {"DNS", Layer::Application},
-        {"TLS", Layer::Presentation}, {"TCP", Layer::Transport},
-        {"UDP", Layer::Transport},    {"IP", Layer::Network},
-        {"ICMP", Layer::Network},     {"Ethernet", Layer::DataLink},
-        {"ARP", Layer::DataLink},     {"Fiber", Layer::Physical},
-    };
-    for (const auto& [name, layer] : protocols) {
-        int n = static_cast<int>(layer);
-        std::cout << std::format("{:9} -> L{} {}\n", name, n, kNames[n]);
-    }
-}
-```
-
-**Output:**
-```text
-ARP       -> L2 Data Link
-DNS       -> L7 Application
-Ethernet  -> L2 Data Link
-Fiber     -> L1 Physical
-HTTP      -> L7 Application
-ICMP      -> L3 Network
-IP        -> L3 Network
-TCP       -> L4 Transport
-TLS       -> L6 Presentation
-UDP       -> L4 Transport
-```
 (Where TLS "belongs" is debated — it's often placed between layers 4 and 7. Interviewers mostly care that you know it provides encryption above TCP.)
 
 ### Common mistakes

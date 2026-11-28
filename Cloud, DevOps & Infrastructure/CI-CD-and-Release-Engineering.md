@@ -1,6 +1,6 @@
 # CI/CD and Release Engineering — Pipelines, GitHub Actions, Release Strategies, Rollbacks, Migrations and Provenance
 
-> **What you'll learn:** how to design **build → test → package → deploy** pipelines with **quality gates**, write **GitHub Actions** workflows (syntax, runners, permissions, artifacts, OIDC), release safely with **rolling, blue-green, canary and feature-flag** strategies, handle **rollbacks, database migrations and backward compatibility**, and secure the pipeline with **artifact provenance, dependency scanning and supply-chain controls**. Each part has workflow/config snippets and a runnable C++ model.
+> **What you'll learn:** how to design **build → test → package → deploy** pipelines with **quality gates**, write **GitHub Actions** workflows (syntax, runners, permissions, artifacts, OIDC), release safely with **rolling, blue-green, canary and feature-flag** strategies, handle **rollbacks, database migrations and backward compatibility**, and secure the pipeline with **artifact provenance, dependency scanning and supply-chain controls**. Each part has workflow/config snippets.
 >
 > **Prerequisites:** [Git](../Version%20Control%20Systems/Git-Explained.md), [Containers and Docker](./Containers-and-Docker.md), [Safe rollouts and change management](../Testing%2C%20Reliability%20%26%20Observability/Production-Incidents-and-Operational-Excellence.md#2-change-management-feature-flags-safe-rollouts-and-rollback).
 
@@ -38,49 +38,6 @@ steps:
   - uses: actions/attest-build-provenance@v2
     with: { subject-name: ghcr.io/acme/orders, subject-digest: ${{ steps.push.outputs.digest }}, push-to-registry: true }
 # deploy side: gh attestation verify oci://ghcr.io/acme/orders@sha256:... --owner acme
-```
-
-#### Modern C++ example — admission check: deploy only artifacts with valid provenance from the expected repo and branch
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <optional>
-#include <string>
-#include <vector>
-
-struct Provenance { std::string digest, repo, ref, workflow, builder; bool signature_valid; };
-
-std::string admit(const std::string& image_digest, const std::map<std::string, Provenance>& attestations) {
-    auto it = attestations.find(image_digest);
-    if (it == attestations.end()) return "REJECT: no provenance attestation";
-    const Provenance& p = it->second;
-    if (!p.signature_valid) return "REJECT: attestation signature invalid";
-    if (p.repo != "acme/orders") return "REJECT: built from " + p.repo;
-    if (p.ref != "refs/heads/main" && p.ref.rfind("refs/tags/v", 0) != 0) return "REJECT: built from " + p.ref + " (not main or a release tag)";
-    if (p.builder != "github-hosted") return "REJECT: untrusted builder " + p.builder;
-    return "ADMIT (built by " + p.workflow + " at " + p.ref + ")";
-}
-
-int main() {
-    std::map<std::string, Provenance> rekor{
-        {"sha256:aaa1", {"sha256:aaa1", "acme/orders", "refs/heads/main", "build.yml", "github-hosted", true}},
-        {"sha256:bbb2", {"sha256:bbb2", "acme/orders", "refs/heads/feature-x", "build.yml", "github-hosted", true}},
-        {"sha256:ccc3", {"sha256:ccc3", "evil/fork", "refs/heads/main", "build.yml", "github-hosted", true}},
-        {"sha256:ddd4", {"sha256:ddd4", "acme/orders", "refs/tags/v2.4.1", "release.yml", "laptop", true}},
-    };
-    for (std::string d : {"sha256:aaa1", "sha256:bbb2", "sha256:ccc3", "sha256:ddd4", "sha256:eee5"})
-        std::cout << d << " -> " << admit(d, rekor) << '\n';
-}
-```
-
-**Output:**
-```text
-sha256:aaa1 -> ADMIT (built by build.yml at refs/heads/main)
-sha256:bbb2 -> REJECT: built from refs/heads/feature-x (not main or a release tag)
-sha256:ccc3 -> REJECT: built from evil/fork
-sha256:ddd4 -> REJECT: untrusted builder laptop
-sha256:eee5 -> REJECT: no provenance attestation
 ```
 
 ### Interview answer
@@ -122,54 +79,6 @@ spec:
         - setWeight: 100
 ```
 
-#### Modern C++ example — progressive canary with automated analysis vs. blue-green switch
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Metrics { double error_rate, p99_ms; };
-
-bool healthy(const Metrics& base, const Metrics& canary) { return canary.error_rate <= base.error_rate * 1.5 + 0.001 && canary.p99_ms <= base.p99_ms * 1.2; }
-
-void canary_release(const std::string& version, const std::vector<Metrics>& canary_by_stage) {
-    const Metrics baseline{0.002, 220};
-    const std::vector<int> weights{1, 5, 25, 50, 100};
-    std::cout << "canary " << version << ":\n" << std::fixed << std::setprecision(1);
-    for (std::size_t i = 0; i < weights.size(); ++i) {
-        const Metrics& m = canary_by_stage[std::min(i, canary_by_stage.size() - 1)];
-        bool ok = healthy(baseline, m);
-        std::cout << "  " << std::setw(3) << weights[i] << "% traffic: errors " << m.error_rate * 100 << "%, p99 " << m.p99_ms << " ms -> " << (ok ? "pass" : "FAIL") << '\n';
-        if (!ok) { std::cout << "  automatic rollback: 100% back to the stable version; users exposed at most " << weights[i] << "%\n"; return; }
-    }
-    std::cout << "  promoted to 100%\n";
-}
-
-int main() {
-    canary_release("v2.5.0", {{0.002, 210}, {0.0021, 225}, {0.0019, 230}});
-    canary_release("v2.6.0", {{0.002, 215}, {0.012, 240}});                // error spike appears at 5%
-    std::cout << "blue-green v2.6.0: switch 100% -> errors seen by everyone until the switch back (seconds, but everyone)\n";
-}
-```
-
-**Output:**
-```text
-canary v2.5.0:
-    1% traffic: errors 0.2%, p99 210.0 ms -> pass
-    5% traffic: errors 0.2%, p99 225.0 ms -> pass
-   25% traffic: errors 0.2%, p99 230.0 ms -> pass
-   50% traffic: errors 0.2%, p99 230.0 ms -> pass
-  100% traffic: errors 0.2%, p99 230.0 ms -> pass
-  promoted to 100%
-canary v2.6.0:
-    1% traffic: errors 0.2%, p99 215.0 ms -> pass
-    5% traffic: errors 1.2%, p99 240.0 ms -> FAIL
-  automatic rollback: 100% back to the stable version; users exposed at most 5%
-blue-green v2.6.0: switch 100% -> errors seen by everyone until the switch back (seconds, but everyone)
-```
-
 ### Interview answer
 "Rolling updates replace instances in batches and are cheap, but old and new versions run together, so changes must be compatible. Blue-green keeps a full second environment and switches traffic at once with instant rollback, at double cost and with a shared database that must support both versions. Canary sends a small, growing share of real traffic to the new version with automated comparison of errors, latency and business metrics, rolling back automatically if they regress — the smallest blast radius. Feature flags decouple deploy from release, give kill switches and per-user rollout, and need cleanup to avoid flag debt."
 
@@ -196,62 +105,6 @@ commit → [lint, format, compile, unit tests, SAST, SCA]  ~5 min   (every push 
 - **Trunk-based development** with short-lived branches + feature flags beats long-lived release branches for CI.
 - **Pipeline as code** (GitHub Actions, GitLab CI, Jenkinsfile, Buildkite, Tekton); track **DORA metrics**: deployment frequency, lead time for changes, change failure rate, time to restore.
 - **Flaky tests** erode trust — quarantine briefly with an owner and fix ([test isolation](../Testing%2C%20Reliability%20%26%20Observability/Testing-Foundations.md#4-test-isolation-deterministic-fixtures-and-repeatable-environments)).
-
-#### Modern C++ example — a staged pipeline that stops at the first failing gate and reports where time goes
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Stage { std::string name; int minutes; std::function<bool()> gate; };
-
-void run(const std::string& commit, const std::vector<Stage>& stages) {
-    int elapsed = 0;
-    std::cout << "pipeline for " << commit << ":\n";
-    for (auto& s : stages) {
-        elapsed += s.minutes;
-        bool ok = s.gate();
-        std::cout << "  [" << (ok ? "pass" : "FAIL") << "] " << s.name << " (t+" << elapsed << " min)\n";
-        if (!ok) { std::cout << "  stopped: feedback after " << elapsed << " min; nothing deployed\n"; return; }
-    }
-    std::cout << "  deployed the SAME artifact that was tested (sha256 digest promoted)\n";
-}
-
-int main() {
-    auto pass = [] { return true; };
-    std::vector<Stage> good{{"lint + compile + unit tests", 4, pass}, {"SAST + dependency scan", 2, pass}, {"package image + SBOM + sign", 2, pass},
-                            {"integration tests (containers)", 6, pass}, {"deploy staging + smoke/E2E", 8, pass}, {"canary 5% + analysis", 15, pass}, {"promote 100%", 5, pass}};
-    run("a1b2c3 (feature: coupon codes)", good);
-    auto broken_unit = good;
-    broken_unit[0].gate = [] { return false; };                       // a unit test fails
-    run("d4e5f6 (refactor)", broken_unit);
-    auto vuln = good;
-    vuln[1].gate = [] { return false; };                              // new critical CVE in a dependency
-    run("0f9e8d (bump library)", vuln);
-}
-```
-
-**Output:**
-```text
-pipeline for a1b2c3 (feature: coupon codes):
-  [pass] lint + compile + unit tests (t+4 min)
-  [pass] SAST + dependency scan (t+6 min)
-  [pass] package image + SBOM + sign (t+8 min)
-  [pass] integration tests (containers) (t+14 min)
-  [pass] deploy staging + smoke/E2E (t+22 min)
-  [pass] canary 5% + analysis (t+37 min)
-  [pass] promote 100% (t+42 min)
-  deployed the SAME artifact that was tested (sha256 digest promoted)
-pipeline for d4e5f6 (refactor):
-  [FAIL] lint + compile + unit tests (t+4 min)
-  stopped: feedback after 4 min; nothing deployed
-pipeline for 0f9e8d (bump library):
-  [pass] lint + compile + unit tests (t+4 min)
-  [FAIL] SAST + dependency scan (t+6 min)
-  stopped: feedback after 6 min; nothing deployed
-```
 
 ### Interview answer
 "My pipeline runs fast checks first — lint, compile, unit tests, SAST and dependency scans — under ten minutes on every PR with caching and parallelism, then packages one immutable, signed artifact tagged by commit with an SBOM, runs integration and contract tests with real dependencies, deploys to staging for smoke, E2E and DAST, and releases to production progressively with automated analysis. Quality gates stop a change at the earliest stage that can catch the problem, the same digest is promoted everywhere, and I track DORA metrics and fix flaky tests quickly."
@@ -306,60 +159,6 @@ jobs:
 - **Reuse:** composite actions, **reusable workflows** (`workflow_call`), and pinned third-party actions (by SHA).
 - **Artifacts vs. cache:** artifacts = outputs you want to keep/pass between jobs; cache = speed-up for dependencies (may be evicted).
 
-#### Modern C++ example — resolving job order from `needs`, running a matrix, and enforcing least-privilege permissions
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <set>
-#include <string>
-#include <vector>
-
-struct Job { std::vector<std::string> needs; std::vector<std::string> matrix; std::set<std::string> permissions; };
-
-int main() {
-    std::map<std::string, Job> wf{
-        {"lint", {{}, {}, {"contents:read"}}},
-        {"test", {{}, {"gcc-14", "clang-18"}, {"contents:read"}}},
-        {"package", {{"lint", "test"}, {}, {"contents:read", "packages:write", "id-token:write", "attestations:write"}}},
-        {"deploy", {{"package"}, {}, {"contents:read", "id-token:write", "contents:write"}}},
-    };
-    const std::map<std::string, std::set<std::string>> allowed{
-        {"lint", {"contents:read"}}, {"test", {"contents:read"}},
-        {"package", {"contents:read", "packages:write", "id-token:write", "attestations:write"}},
-        {"deploy", {"contents:read", "id-token:write"}}};
-
-    std::set<std::string> done;                                    // schedule waves: jobs whose needs are all done run in parallel
-    for (int wave = 1; done.size() < wf.size(); ++wave) {
-        std::vector<std::string> ready;
-        for (auto& [name, j] : wf) {
-            if (done.count(name)) continue;
-            bool ok = true; for (auto& n : j.needs) ok = ok && done.count(n);
-            if (ok) ready.push_back(name);
-        }
-        std::cout << "wave " << wave << ":";
-        for (auto& r : ready) {
-            auto& j = wf[r];
-            if (j.matrix.empty()) std::cout << ' ' << r;
-            else for (auto& m : j.matrix) std::cout << ' ' << r << '(' << m << ')';
-        }
-        std::cout << '\n';
-        for (auto& r : ready) done.insert(r);
-    }
-    for (auto& [name, j] : wf)
-        for (auto& p : j.permissions)
-            if (!allowed.at(name).count(p)) std::cout << "policy violation: job '" << name << "' requests " << p << " (not needed to deploy)\n";
-}
-```
-
-**Output:**
-```text
-wave 1: lint test(gcc-14) test(clang-18)
-wave 2: package
-wave 3: deploy
-policy violation: job 'deploy' requests contents:write (not needed to deploy)
-```
-
 ### Interview answer
 "A GitHub Actions workflow is YAML under .github/workflows triggered by events like push, pull_request, schedule or workflow_dispatch; jobs run in parallel on runners unless ordered with `needs`, matrices fan out variants, and steps either use actions — pinned by SHA — or run shell commands. I set minimal `permissions` for the GITHUB_TOKEN per job, use OIDC with `id-token: write` to assume a cloud role instead of storing keys, protect production with environments and required reviewers, pass build outputs as artifacts, speed up with caches and concurrency cancellation, and reuse logic with reusable workflows. Self-hosted runners should be ephemeral and never run untrusted fork code."
 
@@ -393,60 +192,6 @@ At every step, the **previous release still works** with the current schema → 
 - **Feature flag:** turn it off — fastest.
 - **Data:** usually **roll forward** with a corrective migration; restore from PITR only for disasters (data loss trade-off).
 - **API compatibility:** additive changes, tolerant readers, versioned events — consumers and producers deploy independently ([contracts](../Testing%2C%20Reliability%20%26%20Observability/Backend-and-Distributed-System-Testing.md#1-api-contract-tests-schema-compatibility-and-consumer-driven-contracts)).
-
-#### Modern C++ example — checking each release against the schema of its neighbours (can we roll back?)
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <set>
-#include <string>
-#include <vector>
-
-struct Release { std::string name; std::set<std::string> schema_after; std::set<std::string> code_reads, code_writes; };
-
-bool compatible(const std::set<std::string>& schema, const Release& code) {
-    for (auto& c : code.code_reads) if (!schema.count(c)) return false;
-    for (auto& c : code.code_writes) if (!schema.count(c)) return false;
-    return true;
-}
-
-void check(const std::string& title, const std::vector<Release>& rs) {
-    std::cout << title << ":\n";
-    for (std::size_t i = 1; i < rs.size(); ++i) {
-        bool new_ok = compatible(rs[i].schema_after, rs[i]);
-        bool rollback_ok = compatible(rs[i].schema_after, rs[i - 1]);        // previous code on the new schema
-        std::cout << "  " << rs[i].name << ": new code " << (new_ok ? "ok" : "BROKEN") << ", rollback to " << rs[i - 1].name << ' '
-                  << (rollback_ok ? "safe" : "UNSAFE (old code needs a column that is gone)") << '\n';
-    }
-}
-
-int main() {
-    std::vector<Release> big_bang{
-        {"r0", {"id", "name"}, {"name"}, {"name"}},
-        {"r1 rename in one step", {"id", "full_name"}, {"full_name"}, {"full_name"}},
-    };
-    std::vector<Release> expand_contract{
-        {"r0", {"id", "name"}, {"name"}, {"name"}},
-        {"r1 expand", {"id", "name", "full_name"}, {"name"}, {"name", "full_name"}},
-        {"r2 migrate+read new", {"id", "name", "full_name"}, {"full_name"}, {"name", "full_name"}},
-        {"r3 stop writing old", {"id", "name", "full_name"}, {"full_name"}, {"full_name"}},
-        {"r4 contract", {"id", "full_name"}, {"full_name"}, {"full_name"}},
-    };
-    check("big-bang rename", big_bang);
-    check("expand -> migrate -> contract", expand_contract);
-}
-```
-
-**Output:**
-```text
-big-bang rename:
-  r1 rename in one step: new code ok, rollback to r0 UNSAFE (old code needs a column that is gone)
-expand -> migrate -> contract:
-  r1 expand: new code ok, rollback to r0 safe
-  r2 migrate+read new: new code ok, rollback to r1 expand safe
-  r3 stop writing old: new code ok, rollback to r2 migrate+read new safe
-  r4 contract: new code ok, rollback to r3 stop writing old safe
-```
 
 ### Interview answer
 "Fast rollback depends on backward compatibility, so every release must work with the schema and APIs of its neighbours. Schema changes go through expand, migrate and contract over several releases — add the new column, dual-write and backfill in batches, switch reads, stop old writes, and only then drop — so I can always redeploy the previous digest. Migrations are small, forward-only, run before the code by one runner with locking, avoid long table locks with concurrent index builds and online schema tools, and are tested on production-sized data. Feature flags are the fastest rollback; for bad data I usually roll forward with a corrective migration rather than restore."

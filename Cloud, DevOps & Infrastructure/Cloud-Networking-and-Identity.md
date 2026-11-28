@@ -1,6 +1,6 @@
 # Cloud Networking and Identity — DNS, CDN, WAF, IAM, VPCs, Security Groups, NACLs and Connectivity
 
-> **What you'll learn:** how a request reaches your app through **cloud DNS, CDN, TLS termination and WAF**; how **IAM roles, policies and temporary credentials** work and how to keep them least-privilege; how a **VPC** is built from **public/private subnets, route tables, internet and NAT gateways**; the difference between **security groups and network ACLs**; and how networks connect with **private endpoints, peering, transit gateways and hybrid links**. Each part has config snippets and a runnable C++ model.
+> **What you'll learn:** how a request reaches your app through **cloud DNS, CDN, TLS termination and WAF**; how **IAM roles, policies and temporary credentials** work and how to keep them least-privilege; how a **VPC** is built from **public/private subnets, route tables, internet and NAT gateways**; the difference between **security groups and network ACLs**; and how networks connect with **private endpoints, peering, transit gateways and hybrid links**. Each part has config snippets; parts built on a real algorithm include a runnable C++ implementation.
 >
 > **Prerequisites:** [DNS](../Networking/DNS.md), [TCP/IP stack](../Networking/TCP-IP-Stack.md), [Infrastructure security](../Security%20Engineering%20%26%20Authentication/Infrastructure-Cloud-and-Supply-Chain-Security.md). Names are AWS; Azure (VNet, NSG, Front Door) and GCP (VPC, firewall rules, Cloud CDN/Armor) are equivalent.
 
@@ -40,64 +40,6 @@ DNS is the phone book that gives the address of the nearest branch. The CDN is a
 - Managed rule groups (OWASP core rules, known bad inputs, SQLi/XSS), IP reputation lists, **rate-based rules**, geo blocking, bot control, custom rules (block `/admin` from the internet).
 - Deploy rules in **count mode** first, watch logs, then block; DDoS protection with **AWS Shield** (Standard always on; Advanced for big targets).
 
-#### Modern C++ example — a request through DNS failover, CDN cache, WAF rules and TLS policy
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <set>
-#include <string>
-#include <vector>
-
-struct Req { std::string ip, path, query, tls; };
-
-int main() {
-    // DNS failover: primary region health check fails -> answer with the secondary.
-    std::map<std::string, bool> healthy{{"eu-central-1 ALB", false}, {"eu-west-1 ALB", true}};
-    std::string answer = healthy["eu-central-1 ALB"] ? "eu-central-1 ALB" : "eu-west-1 ALB";
-    std::cout << "DNS app.example.com -> " << answer << " (failover record, TTL 60 s)\n";
-
-    std::set<std::string> cache;                              // CDN edge cache, key = path (query ignored for static)
-    std::map<std::string, int> rate;
-    int origin_hits = 0;
-    auto edge = [&](const Req& r) -> std::string {
-        if (r.tls != "TLSv1.3" && r.tls != "TLSv1.2") return "426 TLS too old";
-        if (++rate[r.ip] > 3) return "403 WAF rate-based rule";
-        if (r.query.find("' OR ") != std::string::npos || r.query.find("<script") != std::string::npos) return "403 WAF managed rule (SQLi/XSS)";
-        if (r.path.rfind("/admin", 0) == 0) return "403 WAF custom rule (admin not public)";
-        bool static_asset = r.path.rfind("/static/", 0) == 0;
-        if (static_asset && cache.count(r.path)) return "200 from edge cache";
-        ++origin_hits;
-        if (static_asset) cache.insert(r.path);
-        return "200 from origin (" + answer + ")";
-    };
-    std::vector<Req> reqs{
-        {"198.51.100.4", "/static/app.3f9c.js", "", "TLSv1.3"}, {"198.51.100.5", "/static/app.3f9c.js", "", "TLSv1.3"},
-        {"198.51.100.6", "/api/orders", "id=81", "TLSv1.3"}, {"203.0.113.9", "/api/orders", "id=1' OR '1'='1", "TLSv1.3"},
-        {"203.0.113.10", "/admin/users", "", "TLSv1.3"}, {"192.0.2.1", "/api/orders", "", "TLSv1.0"},
-        {"192.0.2.66", "/api/a", "", "TLSv1.3"}, {"192.0.2.66", "/api/b", "", "TLSv1.3"}, {"192.0.2.66", "/api/c", "", "TLSv1.3"}, {"192.0.2.66", "/api/d", "", "TLSv1.3"},
-    };
-    for (auto& r : reqs) std::cout << r.ip << ' ' << r.path << (r.query.empty() ? "" : "?" + r.query) << " -> " << edge(r) << '\n';
-    std::cout << "origin requests: " << origin_hits << " of " << reqs.size() << '\n';
-}
-```
-
-**Output:**
-```text
-DNS app.example.com -> eu-west-1 ALB (failover record, TTL 60 s)
-198.51.100.4 /static/app.3f9c.js -> 200 from origin (eu-west-1 ALB)
-198.51.100.5 /static/app.3f9c.js -> 200 from edge cache
-198.51.100.6 /api/orders?id=81 -> 200 from origin (eu-west-1 ALB)
-203.0.113.9 /api/orders?id=1' OR '1'='1 -> 403 WAF managed rule (SQLi/XSS)
-203.0.113.10 /admin/users -> 403 WAF custom rule (admin not public)
-192.0.2.1 /api/orders -> 426 TLS too old
-192.0.2.66 /api/a -> 200 from origin (eu-west-1 ALB)
-192.0.2.66 /api/b -> 200 from origin (eu-west-1 ALB)
-192.0.2.66 /api/c -> 200 from origin (eu-west-1 ALB)
-192.0.2.66 /api/d -> 403 WAF rate-based rule
-origin requests: 5 of 10
-```
-
 ### Interview answer
 "Route 53 answers with alias records and routing policies — latency, weighted for canaries, failover with health checks — using short TTLs for anything I might fail over. CloudFront caches at the edge with a minimal cache key and versioned asset names, protects origins with Origin Access Control, and terminates TLS with ACM certificates under a TLS 1.2+ policy, re-encrypting to the ALB. AWS WAF on CloudFront or the ALB applies managed OWASP rules, IP reputation, rate-based rules and custom rules, rolled out in count mode first, with Shield for DDoS."
 
@@ -133,62 +75,6 @@ A company badge system: your badge (role) opens specific doors (actions on resou
 ```
 This **trust policy** lets only the `main` branch of `acme/orders` deploy — no static AWS keys in GitHub.
 
-#### Modern C++ example — IAM-style policy evaluation: explicit deny, allow, conditions, SCP guardrail, expiry
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Ctx { std::string action, resource; std::map<std::string, std::string> cond; long now, cred_expiry; };
-struct Statement { bool allow; std::string action_prefix, resource_prefix; std::function<bool(const Ctx&)> condition; };
-
-bool matches(const Statement& s, const Ctx& c) {
-    return c.action.rfind(s.action_prefix, 0) == 0 && c.resource.rfind(s.resource_prefix, 0) == 0 && (!s.condition || s.condition(c));
-}
-
-std::string evaluate(const std::vector<Statement>& identity, const std::vector<Statement>& scp, const Ctx& c) {
-    if (c.now >= c.cred_expiry) return "DENY (temporary credentials expired)";
-    for (auto& s : identity) if (!s.allow && matches(s, c)) return "DENY (explicit deny)";
-    for (auto& s : scp) if (!s.allow && matches(s, c)) return "DENY (organization SCP)";
-    for (auto& s : identity) if (s.allow && matches(s, c)) return "ALLOW";
-    return "DENY (implicit)";
-}
-
-int main() {
-    std::vector<Statement> role{
-        {true, "s3:GetObject", "arn:aws:s3:::invoices-prod/reports/", [](const Ctx& c) { return c.cond.count("vpce") && c.cond.at("vpce") == "vpce-0abc"; }},
-        {true, "dynamodb:", "arn:aws:dynamodb:eu-central-1:123:table/orders", nullptr},
-        {false, "dynamodb:DeleteTable", "", nullptr},
-    };
-    std::vector<Statement> scp{{false, "", "", [](const Ctx& c) { return c.cond.at("region") != "eu-central-1"; }}};   // EU-only
-    long now = 1000, exp = 1000 + 3600;
-    std::vector<std::pair<std::string, Ctx>> tests{
-        {"read report via VPC endpoint", {"s3:GetObject", "arn:aws:s3:::invoices-prod/reports/q3.pdf", {{"vpce", "vpce-0abc"}, {"region", "eu-central-1"}}, now, exp}},
-        {"read report from the internet", {"s3:GetObject", "arn:aws:s3:::invoices-prod/reports/q3.pdf", {{"region", "eu-central-1"}}, now, exp}},
-        {"query orders table", {"dynamodb:Query", "arn:aws:dynamodb:eu-central-1:123:table/orders", {{"region", "eu-central-1"}}, now, exp}},
-        {"delete orders table", {"dynamodb:DeleteTable", "arn:aws:dynamodb:eu-central-1:123:table/orders", {{"region", "eu-central-1"}}, now, exp}},
-        {"anything in us-east-1", {"dynamodb:Query", "arn:aws:dynamodb:eu-central-1:123:table/orders", {{"region", "us-east-1"}}, now, exp}},
-        {"read billing bucket", {"s3:GetObject", "arn:aws:s3:::billing/x.csv", {{"vpce", "vpce-0abc"}, {"region", "eu-central-1"}}, now, exp}},
-        {"query orders 2 hours later", {"dynamodb:Query", "arn:aws:dynamodb:eu-central-1:123:table/orders", {{"region", "eu-central-1"}}, now + 7200, exp}},
-    };
-    for (auto& [name, ctx] : tests) std::cout << name << " -> " << evaluate(role, scp, ctx) << '\n';
-}
-```
-
-**Output:**
-```text
-read report via VPC endpoint -> ALLOW
-read report from the internet -> DENY (implicit)
-query orders table -> ALLOW
-delete orders table -> DENY (explicit deny)
-anything in us-east-1 -> DENY (organization SCP)
-read billing bucket -> DENY (implicit)
-query orders 2 hours later -> DENY (temporary credentials expired)
-```
-
 ### Interview answer
 "IAM evaluates principal, action, resource and conditions: an explicit deny anywhere wins, then organization SCPs and permission boundaries must allow, then an identity or resource policy must allow — otherwise it's an implicit deny. Humans use SSO and workloads use roles, so everyone gets short-lived STS credentials; trust policies control who can assume a role, for example only a specific GitHub repository and branch through OIDC federation. I keep policies to specific actions and resources with conditions like the source VPC endpoint or MFA, and use Access Analyzer to generate and trim them."
 
@@ -216,44 +102,6 @@ Private corridors between buildings: a private door into the post office (endpoi
 - **Hybrid DNS:** Route 53 Resolver inbound/outbound endpoints so cloud and on-prem resolve each other's names.
 - Private endpoints also cut **NAT gateway** data-processing costs for heavy S3/ECR traffic.
 
-#### Modern C++ example — peering is not transitive, a transit gateway is; and segmentation with TGW route tables
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <set>
-#include <string>
-#include <vector>
-
-int main() {
-    // Peering: A<->B and B<->C. Can A reach C? Only via an explicit A<->C peering (no transit through B).
-    std::set<std::pair<std::string, std::string>> peerings{{"A", "B"}, {"B", "C"}};
-    auto peered = [&](std::string x, std::string y) { return peerings.count({x, y}) || peerings.count({y, x}); };
-    std::cout << std::boolalpha << "peering: A->B " << peered("A", "B") << ", B->C " << peered("B", "C") << ", A->C " << peered("A", "C") << " (not transitive)\n";
-    for (int n : {5, 20, 50}) std::cout << "  full mesh of " << n << " VPCs needs " << n * (n - 1) / 2 << " peerings vs " << n << " TGW attachments\n";
-
-    // Transit Gateway with two route tables: prod VPCs see shared + on-prem; dev sees shared only.
-    std::map<std::string, std::string> rt_of{{"prod-orders", "prod"}, {"prod-payments", "prod"}, {"dev-sandbox", "dev"}, {"shared-services", "shared"}, {"on-prem", "shared"}};
-    std::map<std::string, std::set<std::string>> propagations{{"prod", {"prod", "shared"}}, {"dev", {"dev", "shared"}}, {"shared", {"prod", "dev", "shared"}}};
-    auto reach = [&](const std::string& from, const std::string& to) { return propagations[rt_of[from]].count(rt_of[to]) > 0; };
-    for (auto [f, t] : std::vector<std::pair<std::string, std::string>>{{"prod-orders", "prod-payments"}, {"prod-orders", "on-prem"},
-                                                                        {"dev-sandbox", "shared-services"}, {"dev-sandbox", "prod-payments"}})
-        std::cout << "TGW " << f << " -> " << t << ": " << (reach(f, t) ? "routed" : "no route (segmented)") << '\n';
-}
-```
-
-**Output:**
-```text
-peering: A->B true, B->C true, A->C false (not transitive)
-  full mesh of 5 VPCs needs 10 peerings vs 5 TGW attachments
-  full mesh of 20 VPCs needs 190 peerings vs 20 TGW attachments
-  full mesh of 50 VPCs needs 1225 peerings vs 50 TGW attachments
-TGW prod-orders -> prod-payments: routed
-TGW prod-orders -> on-prem: routed
-TGW dev-sandbox -> shared-services: routed
-TGW dev-sandbox -> prod-payments: no route (segmented)
-```
-
 ### Interview answer
 "For private access to AWS services I use gateway endpoints for S3 and DynamoDB and interface endpoints for the rest, with endpoint policies; PrivateLink also exposes one service behind an NLB to other accounts without network-level access. VPC peering connects two VPCs but isn't transitive and needs non-overlapping CIDRs, so beyond a handful of VPCs I use a Transit Gateway hub with separate route tables to segment prod, dev and shared services. On-prem connects with Site-to-Site VPN for speed or Direct Connect for consistent bandwidth, made redundant, with Route 53 Resolver endpoints for hybrid DNS and CIDRs planned centrally."
 
@@ -279,56 +127,6 @@ A security group is a doorman for one apartment who remembers who left so they c
 - Reference **security groups instead of IP ranges** — rules follow instances as they scale.
 - Restrict **outbound** too for sensitive tiers (DBs don't need the internet).
 - Remember stateless NACLs when debugging "inbound works, responses vanish": the ephemeral-port outbound rule is missing.
-
-#### Modern C++ example — a stateful security group vs. a stateless NACL for the same HTTPS conversation
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <set>
-#include <string>
-#include <tuple>
-#include <vector>
-
-struct Packet { std::string dir; std::string remote; int port; };   // port: destination port for inbound, client port for outbound reply
-
-struct SecurityGroup {                                     // stateful
-    std::set<int> inbound_allow{443};
-    std::set<std::tuple<std::string, int>> tracked;        // connections we accepted
-    bool pass(const Packet& p) {
-        if (p.dir == "in") { if (inbound_allow.count(p.port)) { tracked.insert({p.remote, p.port}); return true; } return false; }
-        for (auto& [r, port] : tracked) if (r == p.remote) return true;   // reply to a tracked connection
-        return false;
-    }
-};
-
-struct NaclRule { int num; std::string dir; int lo, hi; bool allow; };
-bool nacl_pass(const std::vector<NaclRule>& rules, const Packet& p) {   // stateless, first match wins
-    for (auto& r : rules) if (r.dir == p.dir && p.port >= r.lo && p.port <= r.hi) return r.allow;
-    return false;                                           // implicit deny (*)
-}
-
-int main() {
-    Packet request{"in", "198.51.100.4", 443}, reply{"out", "198.51.100.4", 53122};   // reply goes to the client's ephemeral port
-    SecurityGroup sg;
-    std::cout << std::boolalpha << "security group: request " << sg.pass(request) << ", reply " << sg.pass(reply) << " (state tracked)\n";
-
-    std::vector<NaclRule> missing_ephemeral{{100, "in", 443, 443, true}, {100, "out", 443, 443, true}};
-    std::vector<NaclRule> fixed{{100, "in", 443, 443, true}, {100, "out", 1024, 65535, true}};
-    std::cout << "NACL without ephemeral rule: request " << nacl_pass(missing_ephemeral, request) << ", reply " << nacl_pass(missing_ephemeral, reply) << "  <- responses dropped\n";
-    std::cout << "NACL with 1024-65535 out:    request " << nacl_pass(fixed, request) << ", reply " << nacl_pass(fixed, reply) << '\n';
-
-    std::vector<NaclRule> with_deny{{90, "in", 0, 65535, false}, {100, "in", 443, 443, true}};   // rule 90 blocks a bad range first
-    std::cout << "NACL deny rule 90 before allow 100: request " << nacl_pass(with_deny, request) << " (first match wins)\n";
-}
-```
-
-**Output:**
-```text
-security group: request true, reply true (state tracked)
-NACL without ephemeral rule: request true, reply false  <- responses dropped
-NACL with 1024-65535 out:    request true, reply true
-NACL deny rule 90 before allow 100: request false (first match wins)
-```
 
 ### Interview answer
 "Security groups are stateful allow-lists on network interfaces — replies are automatic, all rules are evaluated together, and they can reference other security groups, so I model tiers like ALB to app to database with them. Network ACLs are stateless, ordered allow-and-deny rules on subnets with first match winning, so return traffic on ephemeral ports must be allowed explicitly. I rely on security groups for real access control and use NACLs only as a coarse subnet guardrail, for example blocking a known bad range."

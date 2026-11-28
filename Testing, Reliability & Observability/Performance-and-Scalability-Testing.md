@@ -1,6 +1,6 @@
 # Performance and Scalability Testing — Baselines, Test Types, Profiling, Latency Percentiles and Workload Modeling
 
-> **What you'll learn:** how to set **capacity baselines** and catch **performance regressions** in CI, the difference between **load, stress, spike and soak** tests, how to **profile** CPU, memory, I/O and database queries, how to read **throughput, latency percentiles (p50/p95/p99) and error rates** correctly, and how to **model realistic workloads** and **diagnose bottlenecks**. Each part has a runnable C++ example.
+> **What you'll learn:** how to set **capacity baselines** and catch **performance regressions** in CI, the difference between **load, stress, spike and soak** tests, how to **profile** CPU, memory, I/O and database queries, how to read **throughput, latency percentiles (p50/p95/p99) and error rates** correctly, and how to **model realistic workloads** and **diagnose bottlenecks**. Parts built on a real algorithm include a runnable C++ implementation.
 >
 > **Prerequisites:** [Complexity Analysis](../Problem-solving%20and%20Coding/Complexity-Analysis.md), [Optimization → Profiling tools](../Problem-solving%20and%20Coding/Optimization.md#3-profiling-tools), [RED and USE](./Logging-Metrics-and-Tracing.md#6-red-rate-errors-duration-and-use-utilization-saturation-errors).
 
@@ -121,61 +121,6 @@ export const options = { scenarios: { spike: {
   stages: [ { target: 50, duration: '2m' }, { target: 1000, duration: '10s' }, { target: 1000, duration: '3m' }, { target: 50, duration: '1m' } ] } },
   thresholds: { http_req_failed: ['rate<0.01'], http_req_duration: ['p(99)<500'] } };
 ```
-
-#### Modern C++ example — simulating a service under load, stress, spike and soak patterns
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <iomanip>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Result { double served, dropped, max_queue, final_mem_mb; };
-
-// Discrete simulation: capacity 100 req/s, queue limit 300 (load shedding beyond), a small leak per request.
-Result run(const std::vector<double>& arrivals_per_s, double leak_kb_per_req) {
-    const double capacity = 100, queue_limit = 300;
-    double queue = 0, served = 0, dropped = 0, max_q = 0, mem_mb = 200;
-    for (double a : arrivals_per_s) {
-        queue += a;
-        if (queue > queue_limit) { dropped += queue - queue_limit; queue = queue_limit; }   // shed load, don't fall over
-        double s = std::min(queue, capacity);
-        queue -= s; served += s;
-        max_q = std::max(max_q, queue);
-        mem_mb += s * leak_kb_per_req / 1024;
-    }
-    return {served, dropped, max_q, mem_mb};
-}
-
-std::vector<double> shape(std::initializer_list<std::pair<int, double>> stages) {   // (seconds, req/s)
-    std::vector<double> v;
-    for (auto [secs, rate] : stages) v.insert(v.end(), secs, rate);
-    return v;
-}
-
-int main() {
-    std::cout << std::fixed << std::setprecision(0);
-    auto print = [](const std::string& name, Result r) {
-        std::cout << std::left << std::setw(7) << name << " served " << std::setw(8) << r.served << " dropped " << std::setw(6) << r.dropped
-                  << " max queue " << std::setw(4) << r.max_queue << " memory " << r.final_mem_mb << " MB\n";
-    };
-    print("load", run(shape({{600, 80}}), 0.0));                      // 80% of capacity: fine
-    print("stress", run(shape({{120, 100}, {120, 150}, {120, 200}}), 0.0));   // past capacity: queue fills, sheds
-    print("spike", run(shape({{60, 50}, {10, 1000}, {60, 50}}), 0.0));   // short burst: queue absorbs part
-    print("soak", run(shape({{72 * 3600, 60}}), 0.1));                 // 72 h at 60 req/s with a 0.1 KB/request leak
-}
-```
-
-**Output:**
-```text
-load    served 48000    dropped 0      max queue 0    memory 200 MB
-stress  served 36000    dropped 17800  max queue 200  memory 200 MB
-spike   served 7200     dropped 8800   max queue 200  memory 200 MB
-soak    served 15552000 dropped 0      max queue 0    memory 1719 MB
-```
-
-Only the soak test reveals the leak: a tiny 0.1 KB per request becomes 1.5 GB after three days.
 
 ### Interview answer
 "Load tests confirm the SLO at expected peak; stress tests go past capacity to find the breaking point and check we degrade gracefully — shedding load instead of cascading; spike tests check autoscaling, queues and rate limits react to sudden jumps; and soak tests run normal load for hours or days to find leaks and slow degradation. I use open-model arrival rates in tools like k6 or wrk2 to avoid coordinated omission, and thresholds on p99 and error rate to pass or fail."
@@ -361,67 +306,6 @@ Testing a supermarket by sending 1,000 people who all buy only milk at 9:00 tell
 2. The **first resource to saturate** is the bottleneck; latency "knees" right there.
 3. Fix or scale it, and repeat — the bottleneck **moves** (CPU → DB connections → DB CPU → a lock …).
 4. **Amdahl/USL thinking:** if doubling instances doesn't double throughput, a shared resource (DB, lock, coordinator) limits you.
-
-#### Modern C++ example — a weighted, Zipf-skewed workload and a step test that finds the first saturated resource
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <cmath>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <random>
-#include <string>
-#include <vector>
-
-int main() {
-    std::mt19937 rng(3);
-    // 1) Endpoint mix from access logs.
-    std::vector<std::string> endpoints{"browse", "search", "add_to_cart", "checkout"};
-    std::discrete_distribution<int> mix({70, 20, 8, 2});
-    // 2) Zipf-like popularity over 10,000 products: a few items get most traffic.
-    const int N = 10000;
-    std::vector<double> w(N);
-    for (int k = 0; k < N; ++k) w[k] = 1.0 / (k + 1);
-    std::discrete_distribution<int> product(w.begin(), w.end());
-    std::map<std::string, int> count;
-    int top10_hits = 0;
-    const int requests = 100000;
-    for (int i = 0; i < requests; ++i) { ++count[endpoints[mix(rng)]]; top10_hits += product(rng) < 10; }
-    std::cout << "mix:";
-    for (auto& e : endpoints) std::cout << ' ' << e << '=' << count[e] * 100 / requests << '%';
-    std::cout << "\ntop 10 of 10,000 products receive " << top10_hits * 100 / requests << "% of product views (uniform would be 0.1%)\n";
-
-    // 3) Step test: per-request cost on each resource -> utilization at each load step.
-    struct Resource { std::string name; double capacity, cost_per_req; };
-    std::vector<Resource> res{{"app-CPU", 8000, 4.0},          // 8 cores = 8000 CPU-ms per second; 4 ms per request
-                              {"DB-conns", 20, 0.012},         // 20 connections; each request holds one for 12 ms
-                              {"DB-CPU", 4000, 1.5},
-                              {"network", 125, 0.03}};         // 125 MB/s; 30 KB per request
-    std::cout << std::fixed << std::setprecision(0);
-    for (double rps : {500.0, 1000.0, 1500.0, 2000.0}) {
-        std::cout << "load " << std::setw(4) << rps << " req/s:";
-        std::string worst; double worst_u = 0;
-        for (auto& r : res) {
-            double u = rps * r.cost_per_req / r.capacity * 100;
-            std::cout << "  " << r.name << ' ' << std::setw(3) << u << '%';
-            if (u > worst_u) { worst_u = u; worst = r.name; }
-        }
-        std::cout << (worst_u >= 90 ? "  <- bottleneck: " + worst : "") << '\n';
-    }
-}
-```
-
-**Output:**
-```text
-mix: browse=69% search=20% add_to_cart=7% checkout=2%
-top 10 of 10,000 products receive 29% of product views (uniform would be 0.1%)
-load  500 req/s:  app-CPU  25%  DB-conns  30%  DB-CPU  19%  network  12%
-load 1000 req/s:  app-CPU  50%  DB-conns  60%  DB-CPU  38%  network  24%
-load 1500 req/s:  app-CPU  75%  DB-conns  90%  DB-CPU  56%  network  36%  <- bottleneck: DB-conns
-load 2000 req/s:  app-CPU 100%  DB-conns 120%  DB-CPU  75%  network  48%  <- bottleneck: DB-conns
-```
-
-The **DB connection pool** saturates first (90% at 1,500 req/s, while app CPU is at 75%): adding app servers wouldn't help; a bigger pool (DB CPU still has room) or shorter transactions would.
 
 ### Interview answer
 "I model workloads from production data: the endpoint mix, arrival rates and peaks, realistic data sizes and a skewed key distribution — real traffic has hot keys, and uniform keys give misleading cache and contention results — or I replay sampled, scrubbed production traffic. Then I step the load up while recording RED for the service and USE for every resource, including pools, locks and queues; the first resource to saturate is the bottleneck. After fixing it I repeat, because the bottleneck moves."

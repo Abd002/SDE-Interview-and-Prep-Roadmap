@@ -1,6 +1,6 @@
 # DNS (Domain Name System) — Explained for Beginners
 
-> **What you'll learn:** what DNS is, how domain names are organized, the common record types, and — the roadmap topic — the **resolution process**: exactly what happens, step by step, when your computer looks up `www.example.com`. You'll build a working DNS resolver simulator with caching in C++.
+> **What you'll learn:** what DNS is, how domain names are organized, the common record types, and — the roadmap topic — the **resolution process**: exactly what happens, step by step, when your computer looks up `www.example.com`. You'll build a TTL cache in C++.
 >
 > **Prerequisites:** [TCP/IP Stack](./TCP-IP-Stack.md) (IP addresses, UDP).
 
@@ -105,118 +105,6 @@ Step by step:
 5. The resolver caches every answer and referral for its TTL and replies to the client.
 
 **Recursive vs. iterative:** the client→resolver query is *recursive* ("do all the work for me"); resolver→root/TLD/authoritative queries are *iterative* ("tell me what you know, I'll ask the next one").
-
-### Modern C++ example — a DNS resolver simulator (with CNAME following and caching)
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <optional>
-#include <string>
-#include <variant>
-#include <vector>
-
-// A server's reply is either the final answer, an alias, or a referral to another server.
-struct Answer   { std::string ip; };
-struct Alias    { std::string target; };        // CNAME
-struct Referral { std::string next_server; };   // "ask them instead"
-using Reply = std::variant<Answer, Alias, Referral>;
-
-// Each "server" is a tiny table: which names it knows (by suffix) and what it replies.
-using Server = std::map<std::string, Reply>;
-
-std::map<std::string, Server> internet{
-    {"root",            {{".com", Referral{"com-tld"}}, {".org", Referral{"org-tld"}}}},
-    {"com-tld",         {{"example.com", Referral{"ns1.example.com"}}}},
-    {"ns1.example.com", {{"www.example.com", Alias{"example.com"}},
-                         {"example.com", Answer{"93.184.216.34"}}}},
-};
-
-bool ends_with(const std::string& name, const std::string& suffix) {
-    return name.size() >= suffix.size() &&
-           name.compare(name.size() - suffix.size(), suffix.size(), suffix) == 0;
-}
-
-class RecursiveResolver {
-public:
-    std::optional<std::string> resolve(std::string name) {
-        for (int hops = 0; hops < 10; ++hops) {                     // guard against CNAME loops
-            if (auto it = cache_.find(name); it != cache_.end()) {
-                std::cout << "  cache hit for " << name << '\n';
-                return it->second;
-            }
-            std::string server = "root";                           // always start at the root
-            while (true) {
-                std::cout << "  ask " << server << " about " << name << '\n';
-                const Reply* reply = lookup(server, name);
-                if (!reply) return std::nullopt;                   // NXDOMAIN
-                if (auto* a = std::get_if<Answer>(reply)) {
-                    cache_[name] = a->ip;
-                    for (auto& alias : pending_aliases_) cache_[alias] = a->ip;
-                    pending_aliases_.clear();
-                    return a->ip;
-                }
-                if (auto* c = std::get_if<Alias>(reply)) {
-                    std::cout << "  " << name << " is an alias (CNAME) of " << c->target << '\n';
-                    pending_aliases_.push_back(name);
-                    name = c->target;                              // restart with the target
-                    break;
-                }
-                server = std::get<Referral>(*reply).next_server;   // follow the referral
-            }
-        }
-        return std::nullopt;
-    }
-
-private:
-    static const Reply* lookup(const std::string& server, const std::string& name) {
-        const Reply* best = nullptr;
-        std::size_t best_len = 0;
-        for (const auto& [suffix, reply] : internet.at(server))    // longest matching suffix
-            if (ends_with(name, suffix) && suffix.size() > best_len) {
-                best = &reply;
-                best_len = suffix.size();
-            }
-        return best;
-    }
-    std::map<std::string, std::string> cache_;
-    std::vector<std::string> pending_aliases_;
-};
-
-int main() {
-    RecursiveResolver resolver;
-    for (const auto& [title, name] : {std::pair{"first lookup", "www.example.com"},
-                                      std::pair{"second lookup", "www.example.com"},
-                                      std::pair{"unknown name", "nothing.net"}}) {
-        std::cout << title << ":\n";
-        auto ip = resolver.resolve(name);          // resolve first, so its log prints first
-        std::cout << "=> " << ip.value_or("NXDOMAIN") << "\n\n";
-    }
-}
-```
-
-**Output:**
-```text
-first lookup:
-  ask root about www.example.com
-  ask com-tld about www.example.com
-  ask ns1.example.com about www.example.com
-  www.example.com is an alias (CNAME) of example.com
-  ask root about example.com
-  ask com-tld about example.com
-  ask ns1.example.com about example.com
-=> 93.184.216.34
-
-second lookup:
-  cache hit for www.example.com
-=> 93.184.216.34
-
-unknown name:
-  ask root about nothing.net
-=> NXDOMAIN
-
-```
-(A real resolver would also cache the referrals, so the second part of the CNAME chase would jump straight to `ns1.example.com`.)
 
 ### Common mistakes
 - Thinking the root servers know every domain. They only know who runs each TLD.

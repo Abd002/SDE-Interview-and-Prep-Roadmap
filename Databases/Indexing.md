@@ -39,47 +39,6 @@ Key vocabulary:
 - **Covering index:** contains all columns a query needs, so the table itself isn't touched ("index-only scan").
 - **Selectivity:** how well a value narrows results. `email` is highly selective; `is_active` (true/false) isn't — B-tree indexes on low-selectivity columns rarely help (but bitmap indexes can, see section 3).
 
-### Modern C++ example — full scan vs. index lookup
-```cpp
-// g++ -std=c++20 -O2 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct User { int id; std::string email; };
-
-int main() {
-    std::vector<User> table;                                    // the "heap" of rows
-    for (int i = 0; i < 1'000'000; ++i) table.push_back({i, "user" + std::to_string(i) + "@example.com"});
-
-    const std::string target = "user987654@example.com";
-
-    // Full table scan: compare row by row
-    long comparisons = 0;
-    for (const auto& u : table) { ++comparisons; if (u.email == target) break; }
-    std::cout << "full scan:    " << comparisons << " comparisons\n";
-
-    // Index: a sorted structure from email -> row position (std::map is a balanced tree)
-    std::map<std::string, std::size_t> idx_users_email;
-    for (std::size_t pos = 0; pos < table.size(); ++pos) idx_users_email[table[pos].email] = pos;
-
-    long steps = 0;
-    auto less = [&](const std::string& a, const std::string& b) { ++steps; return a < b; };
-    std::map<std::string, std::size_t, decltype(less)> counted(less);
-    counted.insert(idx_users_email.begin(), idx_users_email.end());
-    steps = 0;
-    auto it = counted.find(target);
-    std::cout << "index lookup: " << steps << " comparisons -> row id " << table[it->second].id << '\n';
-}
-```
-
-**Output (may vary):**
-```text
-full scan:    987655 comparisons
-index lookup: 25 comparisons -> row id 987654
-```
-
 ### Interview answer
 "An index is an auxiliary sorted structure mapping key values to row locations so lookups take logarithmic time instead of a full scan. It speeds reads, joins, sorting and uniqueness checks at the cost of storage and slower writes. Effective indexes target selective columns and common predicates, respecting the leftmost-prefix rule for composite indexes."
 

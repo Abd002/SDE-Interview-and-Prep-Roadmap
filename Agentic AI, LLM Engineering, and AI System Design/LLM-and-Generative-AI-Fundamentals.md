@@ -1,6 +1,6 @@
 # LLM and Generative AI Fundamentals — How Models Work, How They're Trained, and How to Choose and Use Them
 
-> **What you'll learn:** how **transformers, attention, embeddings and autoregressive generation** work; what **tokens, context windows and output limits** are; how **inference parameters** (temperature, top-p, seed, stop sequences) change outputs; the training stages (**pretraining, instruction tuning, fine-tuning, alignment**); why models **hallucinate** and how **grounding** helps; **closed- vs. open-weight** models and **hosted vs. self-hosted** inference; how to **select a model**; and when to use **prompting vs. RAG vs. fine-tuning**. Each part has a runnable C++ example built on tiny, transparent toy models.
+> **What you'll learn:** how **transformers, attention, embeddings and autoregressive generation** work; what **tokens, context windows and output limits** are; how **inference parameters** (temperature, top-p, seed, stop sequences) change outputs; the training stages (**pretraining, instruction tuning, fine-tuning, alignment**); why models **hallucinate** and how **grounding** helps; **closed- vs. open-weight** models and **hosted vs. self-hosted** inference; how to **select a model**; and when to use **prompting vs. RAG vs. fine-tuning**. Parts built on a real algorithm include a runnable C++ implementation.
 >
 > **Prerequisites:** basic linear algebra (vectors, dot products) and [Complexity Analysis](../Problem-solving%20and%20Coding/Complexity-Analysis.md). Next: [Prompt Engineering and Structured Outputs](./Prompt-Engineering-and-Structured-Outputs.md).
 
@@ -40,39 +40,6 @@ Closed-weight is a restaurant: great food, no kitchen work, but you eat on their
 - Middle grounds: open models through **managed APIs** (Amazon Bedrock, Google Vertex AI, Azure AI Foundry, Together, Groq), and private deployments of closed models inside your cloud account.
 - "Open-weight" ≠ "open source": training data and code are usually not released; licences vary.
 
-#### Modern C++ example — monthly cost of a hosted API vs. a self-hosted GPU deployment across volumes
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <cmath>
-#include <iomanip>
-#include <iostream>
-
-int main() {
-    // Illustrative numbers: API $3 / 1M input tokens, $15 / 1M output tokens.
-    // Self-hosted: one GPU node $2.50/hour serves ~1,500 tokens/s output at good batching; 2 nodes minimum for HA.
-    const double in_price = 3.0 / 1e6, out_price = 15.0 / 1e6, gpu_hour = 2.50, node_tokens_per_s = 1500;
-    std::cout << std::fixed << std::setprecision(0);
-    for (double requests_per_day : {1'000.0, 50'000.0, 1'000'000.0}) {
-        double in_tokens = requests_per_day * 30 * 1500, out_tokens = requests_per_day * 30 * 400;
-        double api = in_tokens * in_price + out_tokens * out_price;
-        double peak_out_per_s = out_tokens / (30 * 86400) * 3;                       // assume peak = 3x average
-        double nodes = std::max(2.0, std::ceil(peak_out_per_s / node_tokens_per_s));
-        double self = nodes * gpu_hour * 24 * 30 + 4000;                               // + ~$4k/month engineering/ops share
-        std::cout << requests_per_day << " req/day: API ~$" << api << "/month, self-hosted ~$" << self << "/month (" << nodes << " GPU nodes) -> "
-                  << (api < self ? "API" : "self-host") << '\n';
-    }
-}
-```
-
-**Output:**
-```text
-1000 req/day: API ~$315/month, self-hosted ~$7600/month (2 GPU nodes) -> API
-50000 req/day: API ~$15750/month, self-hosted ~$7600/month (2 GPU nodes) -> self-host
-1000000 req/day: API ~$315000/month, self-hosted ~$22000/month (10 GPU nodes) -> self-host
-```
-
-Real decisions also weigh quality differences (a smaller self-hosted model may need more tokens or fail more tasks), privacy rules and team expertise — cost alone is rarely the deciding factor.
-
 ### Interview answer
 "Closed-weight models are available only through the provider's API — usually the most capable, with no infrastructure, but data leaves our network and we're bound to their pricing and limits. Open-weight models publish weights, so we can self-host with vLLM or TGI, keep data private, fine-tune and control decoding, at the cost of GPUs and operations; their licences vary. Hosted APIs win for low or spiky volume and fast iteration; self-hosting can win at high steady volume, strict data residency, or heavy customization. Managed hosting of open models is a middle ground, and I keep an abstraction layer to avoid lock-in."
 
@@ -100,50 +67,6 @@ A very well-read person who never says "I don't know" — if you ask about a boo
 | **Evaluation** | measure groundedness and hallucination rate continuously ([metrics](../Testing%2C%20Reliability%20%26%20Observability/LLM-and-Agent-Evaluation.md#4-hallucination-grounding-task-success-and-retrieval-metrics)) |
 
 **Other limitations to design around:** knowledge cutoff (use retrieval for recent facts), non-determinism, character-level tasks (tokenization hides letters — see [section 7](#7-tokens-tokenization-context-windows-and-output-limits)), prompt sensitivity, bias inherited from data, and vulnerability to [prompt injection](../Security%20Engineering%20%26%20Authentication/LLM-and-Agent-Security.md#3-prompt-injection-vs-instruction-following-untrusted-retrieved-content).
-
-#### Modern C++ example — self-consistency as an uncertainty signal, plus abstention when sources don't contain the answer
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-// Several sampled answers from the same (fake) model. Agreement ~ confidence.
-std::pair<std::string, double> majority(const std::vector<std::string>& samples) {
-    std::map<std::string, int> votes;
-    for (auto& s : samples) ++votes[s];
-    auto best = std::max_element(votes.begin(), votes.end(), [](auto& a, auto& b) { return a.second < b.second; });
-    return {best->first, double(best->second) / samples.size()};
-}
-
-std::string grounded_answer(const std::string& question, const std::map<std::string, std::string>& sources) {
-    for (auto& [id, text] : sources)
-        if (question.find("refund window") != std::string::npos && text.find("refund") != std::string::npos)
-            return text + " [" + id + "]";
-    return "I can't find this in the provided documents.";          // abstain instead of guessing
-}
-
-int main() {
-    auto [a1, c1] = majority({"14 days", "14 days", "14 days", "14 days", "30 days"});
-    auto [a2, c2] = majority({"1987", "1991", "1989", "1987", "1993"});
-    std::cout << "Q: refund window?      samples agree " << c1 * 100 << "% -> '" << a1 << "' (likely reliable)\n";
-    std::cout << "Q: founding year?      samples agree " << c2 * 100 << "% -> '" << a2 << "' (LOW confidence: verify or abstain)\n";
-
-    std::map<std::string, std::string> docs{{"policy-3", "Customers can request a refund within 14 days of delivery."}, {"faq-1", "Shipping takes 2-5 days."}};
-    std::cout << "grounded: " << grounded_answer("What is the refund window?", docs) << '\n';
-    std::cout << "grounded: " << grounded_answer("Who is the CEO?", docs) << '\n';
-}
-```
-
-**Output:**
-```text
-Q: refund window?      samples agree 80% -> '14 days' (likely reliable)
-Q: founding year?      samples agree 40% -> '1987' (LOW confidence: verify or abstain)
-grounded: Customers can request a refund within 14 days of delivery. [policy-3]
-grounded: I can't find this in the provided documents.
-```
 
 ### Interview answer
 "LLMs predict plausible tokens, so they can produce confident falsehoods, especially for missing or recent knowledge, ambiguous questions, and facts buried in long contexts. I reduce hallucinations by grounding answers in retrieved sources with required citations that I verify, explicitly allowing and rewarding abstention, using tools for facts and math, and adding verification steps or judges. Uncertainty can be estimated from agreement across samples, log-probs or retrieval scores. And I measure groundedness and hallucination rates continuously instead of trusting spot checks."
@@ -262,47 +185,6 @@ You don't hire a senior surgeon to apply plasters. Test candidates on the real j
 - **Routing / cascades:** a small model handles easy requests; escalate to a large model when confidence is low or the task is hard — often cutting cost several-fold with the same quality.
 - Re-evaluate when new models ship; keep the model ID **pinned** per release ([versioning](./Production-Reliability-and-Observability.md#6-model-and-prompt-versioning-release-controls-and-rollback)).
 
-#### Modern C++ example — choose by cost per successful task under latency and privacy constraints
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Model { std::string name; double success_rate, in_per_m, out_per_m; int ttft_ms; bool eu_data_residency; };
-
-int main() {
-    std::vector<Model> candidates{                                   // success rates from OUR golden set; prices illustrative
-        {"large-frontier", 0.96, 15.0, 75.0, 1400, true},
-        {"medium", 0.93, 3.0, 15.0, 600, true},
-        {"small", 0.71, 0.25, 1.25, 250, true},
-        {"cheap-no-eu", 0.92, 0.5, 2.0, 400, false},
-    };
-    const double in_tokens = 3000, out_tokens = 500;                 // per task
-    const int max_ttft_ms = 1000; const bool need_eu = true; const double min_success = 0.90;
-    std::cout << std::fixed << std::setprecision(4);
-    std::string best; double best_cost = 1e9;
-    for (auto& m : candidates) {
-        double cost_per_call = in_tokens / 1e6 * m.in_per_m + out_tokens / 1e6 * m.out_per_m;
-        double cost_per_success = cost_per_call / m.success_rate;
-        std::string why = m.success_rate < min_success ? "fails quality bar" : m.ttft_ms > max_ttft_ms ? "too slow" : (need_eu && !m.eu_data_residency) ? "no EU residency" : "eligible";
-        std::cout << m.name << ": $" << cost_per_success << " per successful task, TTFT " << m.ttft_ms << " ms -> " << why << '\n';
-        if (why == "eligible" && cost_per_success < best_cost) { best_cost = cost_per_success; best = m.name; }
-    }
-    std::cout << "choose: " << best << " (consider routing easy requests to 'small' and escalating hard ones)\n";
-}
-```
-
-**Output:**
-```text
-large-frontier: $0.0859 per successful task, TTFT 1400 ms -> too slow
-medium: $0.0177 per successful task, TTFT 600 ms -> eligible
-small: $0.0019 per successful task, TTFT 250 ms -> fails quality bar
-cheap-no-eu: $0.0027 per successful task, TTFT 400 ms -> no EU residency
-choose: medium (consider routing easy requests to 'small' and escalating hard ones)
-```
-
 ### Interview answer
 "I select models empirically: build a golden set for the task and measure pass rate, then compare cost per successful task — tokens times price divided by success rate — time to first token and throughput at our concurrency, effective context length, and required features like tool calling or structured outputs. Privacy and deployment constraints, like data residency or self-hosting, filter the list first. I pick the smallest model that clears the quality bar, often with a router that escalates hard requests to a larger model, pin model versions, and re-run the evaluation when new models appear."
 
@@ -326,54 +208,6 @@ School years reading every book in the library (pretraining), then job training 
 **Fine-tuning methods:** full fine-tuning (all weights), **parameter-efficient** (LoRA / QLoRA adapters — train small matrices, swap per task), distillation (train a small model on a big model's outputs).
 
 **When fine-tuning helps:** consistent output format/style, domain jargon, classification/extraction at scale with a small model, latency/cost reduction. **When it doesn't:** adding fresh or frequently changing knowledge (use RAG), or fixing a missing capability. It can also degrade other abilities ("catastrophic forgetting") and needs an eval set to prove it helped.
-
-#### Modern C++ example — the same "model" at three stages: completion, instruction following, preference-aligned
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-// Toy illustration of what each stage changes. Real models learn this from data, not rules.
-std::string base_model(const std::string& prompt) {                     // continues text like a document
-    return prompt + " Write a haiku about the Nile. Write a haiku about the desert. Write a haiku about...";
-}
-std::string instruction_tuned(const std::string& prompt) {              // learned the chat/instruction format
-    if (prompt.find("haiku about the Nile") != std::string::npos) return "Silver river flows / ancient stones remember it / palms lean to listen";
-    return "Sure — here is an answer.";
-}
-std::string aligned(const std::string& prompt) {                        // preference-tuned: helpful, honest, harmless
-    if (prompt.find("password of my colleague") != std::string::npos) return "I can't help get into someone else's account, but I can explain how to request access from IT.";
-    return instruction_tuned(prompt);
-}
-
-int main() {
-    std::string p1 = "Write a haiku about the Nile.";
-    std::cout << "pretrained only:   " << base_model(p1) << '\n';
-    std::cout << "instruction-tuned: " << instruction_tuned(p1) << '\n';
-    std::string p2 = "Find the password of my colleague's email.";
-    std::cout << "instruction-tuned: " << instruction_tuned(p2) << '\n';
-    std::cout << "aligned:           " << aligned(p2) << '\n';
-
-    // A fine-tuning dataset is just many (input, ideal output) pairs for YOUR task:
-    std::vector<std::pair<std::string, std::string>> sft{
-        {"Invoice: ACME Ltd, total 1,250.00 EGP, due 2026-11-01", R"({"vendor":"ACME Ltd","total":1250.00,"currency":"EGP","due":"2026-11-01"})"},
-        {"Bill from Nile Tech, amount EGP 990, pay by 5 Dec 2026", R"({"vendor":"Nile Tech","total":990.00,"currency":"EGP","due":"2026-12-05"})"},
-    };
-    std::cout << "fine-tuning example: " << sft[0].first << "\n  -> " << sft[0].second << '\n';
-}
-```
-
-**Output:**
-```text
-pretrained only:   Write a haiku about the Nile. Write a haiku about the Nile. Write a haiku about the desert. Write a haiku about...
-instruction-tuned: Silver river flows / ancient stones remember it / palms lean to listen
-instruction-tuned: Sure — here is an answer.
-aligned:           I can't help get into someone else's account, but I can explain how to request access from IT.
-fine-tuning example: Invoice: ACME Ltd, total 1,250.00 EGP, due 2026-11-01
-  -> {"vendor":"ACME Ltd","total":1250.00,"currency":"EGP","due":"2026-11-01"}
-```
 
 ### Interview answer
 "Pretraining learns language and knowledge by next-token prediction over huge corpora; instruction tuning, supervised fine-tuning on prompt and ideal-answer pairs, turns that into an assistant that follows instructions; alignment with preference data — RLHF, DPO or Constitutional AI — makes it more helpful, honest and harmless. Fine-tuning on our own examples, often with LoRA, specializes a model for format, tone, a narrow task or a cheaper model through distillation. It's not the right tool for fresh or changing knowledge — that's RAG — and it needs an eval set to show improvement without regressions."
@@ -401,50 +235,6 @@ fine-tuning example: Invoice: ACME Ltd, total 1,250.00 EGP, due 2026-11-01
 | Risk | prompt brittleness | retrieval misses, injection via docs | data quality, forgetting, maintenance |
 
 **Practical path:** prompt engineering + evals → add RAG for knowledge → add tools for actions/facts → fine-tune (or distill) only when evals show a behaviour gap or cost/latency demands it. **Long-context prompting** (just paste all the docs) is an option for small, static corpora — simpler than RAG but costlier per request and weaker at needle-finding at scale ([RAG vs. long context](./Retrieval-Augmented-Generation.md#9-rag-vs-long-context-prompting-vs-fine-tuning-when-to-use-which)).
-
-#### Modern C++ example — a decision helper for which technique (or combination) to use
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct UseCase { std::string name; bool private_or_changing_knowledge, needs_citations, strict_format_or_style, high_volume_narrow_task, corpus_small_static; };
-
-std::string recommend(const UseCase& u) {
-    std::vector<std::string> parts{"prompting + evals"};
-    if (u.private_or_changing_knowledge || u.needs_citations) parts.push_back(u.corpus_small_static ? "long-context (paste docs)" : "RAG");
-    if (u.strict_format_or_style || u.high_volume_narrow_task) parts.push_back("fine-tune / distill a smaller model");
-    std::string out;
-    for (std::size_t i = 0; i < parts.size(); ++i) out += (i ? " + " : "") + parts[i];
-    return out;
-}
-
-int main() {
-    std::vector<UseCase> cases{
-        {"HR policy Q&A with sources (policies change monthly)", true, true, false, false, false},
-        {"marketing tagline brainstorming", false, false, false, false, false},
-        {"extract fields from 2M invoices/day into JSON", false, false, true, true, false},
-        {"support bot for a 20-page product manual", true, true, false, false, true},
-        {"legal clause classifier in the firm's style, with precedents", true, true, true, false, false},
-    };
-    for (auto& c : cases) std::cout << c.name << "\n  -> " << recommend(c) << '\n';
-}
-```
-
-**Output:**
-```text
-HR policy Q&A with sources (policies change monthly)
-  -> prompting + evals + RAG
-marketing tagline brainstorming
-  -> prompting + evals
-extract fields from 2M invoices/day into JSON
-  -> prompting + evals + fine-tune / distill a smaller model
-support bot for a 20-page product manual
-  -> prompting + evals + long-context (paste docs)
-legal clause classifier in the firm's style, with precedents
-  -> prompting + evals + RAG + fine-tune / distill a smaller model
-```
 
 ### Interview answer
 "I start with prompting and an eval set because it's fastest to iterate. If the model needs private or frequently changing knowledge, or answers must cite sources, I add RAG — updating knowledge is just re-indexing. Fine-tuning is for behaviour: strict formats, tone, a narrow high-volume task, or distilling into a smaller, cheaper, faster model — not for facts that change. For a small static corpus, long-context prompting can replace RAG. They combine well, and each step is justified by an eval gap or a cost or latency target."

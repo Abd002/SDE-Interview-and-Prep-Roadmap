@@ -1,6 +1,6 @@
 # Database Constraints — Primary Key, Foreign Key, Unique, Check and Default
 
-> **What you'll learn:** what constraints are and why they're your database's "bodyguards", then each of the five in detail — **primary key, foreign key, unique, check, default** — with SQL and a C++ model that enforces the same rule.
+> **What you'll learn:** what constraints are and why they're your database's "bodyguards", then each of the five in detail — **primary key, foreign key, unique, check, default** — with SQL.
 >
 > **Prerequisites:** [CREATE TABLE](./SQL-DDL-DCL-TCL.md#1-create-statement), [INSERT](./SQL-DML.md#2-insert-statement).
 
@@ -56,54 +56,6 @@ CREATE TABLE enrollments (                                   -- composite primar
 - **Natural key** (real-world value like email, ISBN) vs. **surrogate key** (meaningless generated ID like `id` or a UUID). Surrogate keys are usually preferred: natural values change (people change emails).
 - Auto-increment IDs are compact and ordered; **UUIDs** are globally unique (good for distributed systems) but bigger and random (UUIDv7 is time-ordered, which helps index locality).
 
-### Modern C++ example
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <optional>
-#include <stdexcept>
-#include <string>
-
-class UsersTable {
-public:
-    // id is generated (surrogate key); callers can't choose it
-    long insert(const std::string& email) {
-        long id = next_id_++;
-        rows_.emplace(id, email);
-        return id;
-    }
-    // Inserting with an explicit key must respect uniqueness and NOT NULL
-    void insert_with_id(std::optional<long> id, const std::string& email) {
-        if (!id) throw std::runtime_error("null value in column \"id\" violates not-null constraint");
-        if (!rows_.emplace(*id, email).second)
-            throw std::runtime_error("duplicate key value violates unique constraint \"users_pkey\"");
-    }
-    const std::string& find(long id) const { return rows_.at(id); }   // O(log n) via the key index
-private:
-    std::map<long, std::string> rows_;     // ordered by primary key, like a clustered index
-    long next_id_ = 1;
-};
-
-int main() {
-    UsersTable users;
-    long ana = users.insert("ana@example.com");
-    users.insert("ben@example.com");
-    std::cout << "user " << ana << " = " << users.find(ana) << '\n';
-    for (auto bad : {std::optional<long>{1}, std::optional<long>{}}) {
-        try { users.insert_with_id(bad, "x@example.com"); }
-        catch (const std::exception& e) { std::cout << "ERROR: " << e.what() << '\n'; }
-    }
-}
-```
-
-**Output:**
-```text
-user 1 = ana@example.com
-ERROR: duplicate key value violates unique constraint "users_pkey"
-ERROR: null value in column "id" violates not-null constraint
-```
-
 ### Interview answer
 "A primary key uniquely identifies rows: it's unique and not null, one per table, possibly composite, and automatically indexed — often clustered. I usually prefer immutable surrogate keys (identity or UUIDv7) over natural keys that can change."
 
@@ -138,62 +90,6 @@ Notes:
 - **Index your foreign key columns** (`CREATE INDEX ON orders(customer_id)`) — joins and parent deletes need it; PostgreSQL doesn't create it automatically.
 - A self-referencing FK models hierarchies: `employees.manager_id REFERENCES employees(id)`.
 - Some high-scale systems drop FKs for write speed or sharding and enforce integrity in the app — a conscious trade-off.
-
-### Modern C++ example — enforcing a foreign key with RESTRICT and CASCADE
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <set>
-#include <stdexcept>
-#include <string>
-
-enum class OnDelete { Restrict, Cascade };
-
-class Shop {
-public:
-    std::set<int> customers{1, 2};
-    std::map<int, int> orders;          // order_id -> customer_id (the foreign key)
-    OnDelete policy = OnDelete::Restrict;
-
-    void insert_order(int order_id, int customer_id) {
-        if (!customers.contains(customer_id))
-            throw std::runtime_error("insert violates foreign key: customer " +
-                                     std::to_string(customer_id) + " does not exist");
-        orders[order_id] = customer_id;
-    }
-    void delete_customer(int id) {
-        bool has_children = false;
-        for (auto& [oid, cid] : orders) has_children = has_children || cid == id;
-        if (has_children && policy == OnDelete::Restrict)
-            throw std::runtime_error("delete violates foreign key: orders still reference customer " + std::to_string(id));
-        std::erase_if(orders, [id](const auto& kv) { return kv.second == id; });   // CASCADE
-        customers.erase(id);
-    }
-};
-
-int main() {
-    Shop shop;
-    shop.insert_order(100, 1);
-    try { shop.insert_order(101, 42); }
-    catch (const std::exception& e) { std::cout << "ERROR: " << e.what() << '\n'; }
-
-    try { shop.delete_customer(1); }
-    catch (const std::exception& e) { std::cout << "ERROR: " << e.what() << '\n'; }
-
-    shop.policy = OnDelete::Cascade;
-    shop.delete_customer(1);
-    std::cout << "after ON DELETE CASCADE: customers=" << shop.customers.size()
-              << " orders=" << shop.orders.size() << '\n';
-}
-```
-
-**Output:**
-```text
-ERROR: insert violates foreign key: customer 42 does not exist
-ERROR: delete violates foreign key: orders still reference customer 1
-after ON DELETE CASCADE: customers=1 orders=0
-```
 
 ### Interview answer
 "A foreign key requires values in the child column to exist in the referenced parent key, enforcing referential integrity on inserts, updates and parent deletes. Referential actions — RESTRICT, CASCADE, SET NULL, SET DEFAULT — define what happens to children. FK columns should be indexed; some large-scale systems relax FKs for sharding and enforce integrity in application code."
@@ -232,53 +128,6 @@ CREATE UNIQUE INDEX one_active_sub ON subscriptions(user_id) WHERE status = 'act
 
 Unique constraints are what make [UPSERT](./SQL-DML.md#7-upsert-operations) and race-free "register if not taken" possible.
 
-### Modern C++ example — unique email (case-insensitive) and NULL handling
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <cctype>
-#include <iostream>
-#include <optional>
-#include <set>
-#include <stdexcept>
-#include <string>
-
-std::string lower(std::string s) {
-    std::ranges::transform(s, s.begin(), [](unsigned char c) { return std::tolower(c); });
-    return s;
-}
-
-class Users {
-public:
-    void insert(std::optional<std::string> email) {
-        if (!email) { ++rows_; return; }                           // NULLs never conflict
-        if (!emails_.insert(lower(*email)).second)                 // UNIQUE (LOWER(email))
-            throw std::runtime_error("duplicate key value violates unique constraint \"uq_users_email_lower\"");
-        ++rows_;
-    }
-    int rows() const { return rows_; }
-private:
-    std::set<std::string> emails_;                                 // the unique index
-    int rows_ = 0;
-};
-
-int main() {
-    Users users;
-    users.insert("Ana@Example.com");
-    users.insert(std::nullopt);
-    users.insert(std::nullopt);                                    // two NULLs: allowed
-    try { users.insert("ana@example.COM"); }
-    catch (const std::exception& e) { std::cout << "ERROR: " << e.what() << '\n'; }
-    std::cout << "rows: " << users.rows() << '\n';
-}
-```
-
-**Output:**
-```text
-ERROR: duplicate key value violates unique constraint "uq_users_email_lower"
-rows: 3
-```
-
 ### Interview answer
 "A unique constraint prevents duplicate values in a column or column combination and is backed by a unique index. Unlike a primary key there can be several per table and they usually allow NULLs. Expression and partial unique indexes handle case-insensitive or conditional uniqueness, and unique constraints are what make upserts and race-free registration work."
 
@@ -311,52 +160,6 @@ CREATE TABLE bookings (
 - `NOT NULL` is itself a special, very common constraint.
 - MySQL ignored CHECK constraints before 8.0.16 — be aware on old versions.
 
-### Modern C++ example — a row validator
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <set>
-#include <stdexcept>
-#include <string>
-#include <vector>
-
-struct Product { int id; double price; double discount; std::string status; };
-
-struct Check { std::string name; std::function<bool(const Product&)> rule; };
-
-const std::vector<Check> checks{
-    {"price_non_negative", [](const Product& p) { return p.price >= 0; }},
-    {"discount_range",     [](const Product& p) { return p.discount >= 0 && p.discount <= 1; }},
-    {"status_valid",       [](const Product& p) {
-         static const std::set<std::string> ok{"draft", "active", "retired"};
-         return ok.contains(p.status); }},
-};
-
-void insert(std::vector<Product>& table, const Product& p) {
-    for (const auto& c : checks)
-        if (!c.rule(p)) throw std::runtime_error("new row violates check constraint \"" + c.name + "\"");
-    table.push_back(p);
-}
-
-int main() {
-    std::vector<Product> products;
-    for (const auto& p : {Product{1, 9.99, 0.1, "active"}, Product{2, -5, 0, "active"},
-                          Product{3, 5, 1.5, "draft"}, Product{4, 5, 0, "deleted"}}) {
-        try { insert(products, p); std::cout << "product " << p.id << ": inserted\n"; }
-        catch (const std::exception& e) { std::cout << "product " << p.id << ": ERROR " << e.what() << '\n'; }
-    }
-}
-```
-
-**Output:**
-```text
-product 1: inserted
-product 2: ERROR new row violates check constraint "price_non_negative"
-product 3: ERROR new row violates check constraint "discount_range"
-product 4: ERROR new row violates check constraint "status_valid"
-```
-
 ### Interview answer
 "A CHECK constraint enforces a boolean condition on each row during inserts and updates; it passes when the expression is true or unknown, so it's often combined with NOT NULL. It's limited to the current row — cross-row or cross-table rules need triggers, exclusion constraints or application logic."
 
@@ -387,47 +190,6 @@ INSERT INTO orders (id, status) VALUES (4, NULL);             -- ERROR: explicit
 - The default applies only when the column is **omitted** (or `DEFAULT` is written) — an explicit `NULL` is stored as NULL (or rejected by `NOT NULL`).
 - Defaults also fill existing rows when you `ALTER TABLE ... ADD COLUMN ... DEFAULT ...`.
 - Useful for timestamps, status flags, counters, generated IDs.
-
-### Modern C++ example — defaults vs. explicit NULL
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <optional>
-#include <stdexcept>
-#include <string>
-
-struct Order { int id; std::string status; int quantity; };
-
-// A column value in an INSERT can be: omitted (use DEFAULT), NULL, or a value.
-template <class T> using Col = std::optional<std::optional<T>>;   // outer: provided? inner: NULL?
-
-Order insert(int id, Col<std::string> status = std::nullopt, Col<int> quantity = std::nullopt) {
-    auto resolve = [](auto col, auto def, const char* name) {
-        if (!col) return def;                                     // omitted -> DEFAULT
-        if (!*col) throw std::runtime_error(std::string("null value in column \"") + name +
-                                            "\" violates not-null constraint");
-        return **col;                                             // explicit value wins
-    };
-    return {id, resolve(status, std::string("pending"), "status"), resolve(quantity, 1, "quantity")};
-}
-
-int main() {
-    auto print = [](const Order& o) {
-        std::cout << "order " << o.id << ": status=" << o.status << " quantity=" << o.quantity << '\n';
-    };
-    print(insert(1));                                             // both defaults
-    print(insert(2, std::optional<std::string>("paid")));         // explicit status
-    try { insert(4, std::optional<std::string>(std::nullopt)); }  // explicit NULL
-    catch (const std::exception& e) { std::cout << "order 4: ERROR " << e.what() << '\n'; }
-}
-```
-
-**Output:**
-```text
-order 1: status=pending quantity=1
-order 2: status=paid quantity=1
-order 4: ERROR null value in column "status" violates not-null constraint
-```
 
 ### Interview answer
 "A DEFAULT supplies a column value when an INSERT omits it or specifies DEFAULT; it can be a constant or an expression evaluated at insert time, like CURRENT_TIMESTAMP. An explicit NULL is not the same as omitting the column, so defaults are typically paired with NOT NULL."

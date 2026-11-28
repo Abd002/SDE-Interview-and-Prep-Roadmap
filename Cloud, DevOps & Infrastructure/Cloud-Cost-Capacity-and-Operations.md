@@ -1,6 +1,6 @@
 # Cloud Cost, Capacity, and Operations — Capacity Planning, FinOps, Multi-Region, Managed vs. Self-Hosted, Purchasing Options
 
-> **What you'll learn:** how to **plan capacity** from throughput, utilization and **p95 latency**; how to make cost visible and controllable with **tagging, cost allocation, budgets and cost observability** (FinOps); how to run **multi-region architectures** with **backup/restore drills and runbooks**; how to decide between **managed services and self-hosting**; and when to use **on-demand, reserved/Savings Plans and Spot** capacity. Each part has a runnable C++ calculator.
+> **What you'll learn:** how to **plan capacity** from throughput, utilization and **p95 latency**; how to make cost visible and controllable with **tagging, cost allocation, budgets and cost observability** (FinOps); how to run **multi-region architectures** with **backup/restore drills and runbooks**; how to decide between **managed services and self-hosting**; and when to use **on-demand, reserved/Savings Plans and Spot** capacity.
 >
 > **Prerequisites:** [Cloud Computing Fundamentals](./Cloud-Computing-Fundamentals.md), [Performance and Scalability Testing](../Testing%2C%20Reliability%20%26%20Observability/Performance-and-Scalability-Testing.md), [SRE](../Testing%2C%20Reliability%20%26%20Observability/Reliability-Engineering-SRE.md). Prices below are illustrative list prices — always check the current pricing pages.
 
@@ -29,46 +29,6 @@ A bridge's sign says "max 30 trucks at once" — not because it collapses at 31,
 5. **Little's law** for concurrency: `L = λ × W` (in-flight requests = arrival rate × time in system) — sizes thread pools, connection pools and Lambda concurrency.
 6. Check **all** resources: CPU, memory, connections, IOPS, network, downstream quotas, licences, API rate limits.
 
-#### Modern C++ example — sizing a fleet from a load test, peak, growth, utilization target and AZ-loss headroom
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <cmath>
-#include <iomanip>
-#include <iostream>
-#include <vector>
-
-int main() {
-    // Load test of ONE instance: throughput (rps) vs. p95 latency (ms). SLO: p95 <= 300 ms.
-    std::vector<std::pair<double, double>> test{{100, 80}, {200, 95}, {300, 130}, {400, 210}, {450, 290}, {500, 520}, {550, 1400}};
-    double per_instance = 0;
-    for (auto [rps, p95] : test) if (p95 <= 300) per_instance = rps;
-    std::cout << "usable capacity per instance (p95 <= 300 ms): " << per_instance << " rps (CPU would 'allow' more, latency doesn't)\n";
-
-    const double peak_today = 6000, growth = 0.40, target_util = 0.65;
-    const int azs = 3;
-    double peak_next_year = peak_today * (1 + growth);
-    double needed = std::ceil(peak_next_year / (per_instance * target_util));
-    double per_az = std::ceil(needed / (azs - 1));                       // still enough with one AZ down
-    std::cout << std::fixed << std::setprecision(0)
-              << "peak next year: " << peak_next_year << " rps -> " << needed << " instances at 65% utilization\n"
-              << "survive losing 1 of 3 AZs: " << per_az << " per AZ x " << azs << " = " << per_az * azs << " instances\n";
-
-    // Little's law: in-flight = arrival rate x time in system.
-    double rps = peak_next_year, avg_latency_s = 0.120;
-    std::cout << "Little's law: " << rps << " rps x " << std::setprecision(2) << avg_latency_s << std::setprecision(0) << " s = ~" << rps * avg_latency_s
-              << " requests in flight -> size DB pools / workers for that, spread over " << per_az * azs << " instances\n";
-}
-```
-
-**Output:**
-```text
-usable capacity per instance (p95 <= 300 ms): 450 rps (CPU would 'allow' more, latency doesn't)
-peak next year: 8400 rps -> 29 instances at 65% utilization
-survive losing 1 of 3 AZs: 15 per AZ x 3 = 45 instances
-Little's law: 8400 rps x 0.12 s = ~1008 requests in flight -> size DB pools / workers for that, spread over 45 instances
-```
-
-
 ### Interview answer
 "I load-test one unit to find the throughput where p95 still meets the SLO, which is lower than the CPU-saturation point, and plan at 60–70% of that because queueing makes latency explode near saturation. Then I size for peak, not average, plus seasonal events and growth, and add failure headroom — enough capacity in two of three AZs — and deploy surge. Little's law turns rate times latency into in-flight requests to size pools and concurrency, and I check every resource including connections, IOPS and downstream quotas, then verify with load tests and production metrics."
 
@@ -94,58 +54,6 @@ provider "aws" {
   region = "eu-central-1"
   default_tags { tags = { team = "payments", service = "checkout", env = "prod", cost-center = "CC-210" } }
 }
-```
-
-#### Modern C++ example — allocating a monthly bill by tags, flagging untagged spend, budget forecast and unit cost
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct LineItem { std::string resource; double usd; std::map<std::string, std::string> tags; };
-
-int main() {
-    std::vector<LineItem> bill{
-        {"eks-node-group", 4200, {{"team", "platform"}, {"env", "prod"}}},
-        {"rds-orders", 2600, {{"team", "orders"}, {"env", "prod"}}},
-        {"lambda-payments", 380, {{"team", "payments"}, {"env", "prod"}}},
-        {"nat-gateway", 1450, {{"team", "platform"}, {"env", "prod"}}},
-        {"ec2-i-0abc (no tags)", 900, {}},
-        {"rds-orders-staging", 700, {{"team", "orders"}, {"env", "staging"}}},
-        {"ebs-unattached-x12", 240, {}},
-    };
-    std::map<std::string, double> by_team;
-    double untagged = 0, total = 0;
-    for (auto& li : bill) {
-        total += li.usd;
-        auto it = li.tags.find("team");
-        if (it == li.tags.end()) { untagged += li.usd; continue; }
-        by_team[it->second] += li.usd;
-    }
-    std::cout << std::fixed << std::setprecision(0);
-    for (auto& [team, usd] : by_team) std::cout << team << ": $" << usd << '\n';
-    std::cout << "UNTAGGED: $" << untagged << " (" << untagged * 100 / total << "% of $" << total << ") -> enforce tag policy, investigate owners\n";
-
-    const double budget = 10000, day = 18, days_in_month = 30;
-    double forecast = total / day * days_in_month;
-    std::cout << "month-to-date $" << total << " on day " << day << " -> forecast $" << forecast << " vs budget $" << budget
-              << (forecast > budget ? " -> ALERT (forecast over budget)" : "") << '\n';
-    double orders_this_month = 410'000;
-    std::cout << std::setprecision(3) << "unit cost: $" << total / orders_this_month * 1000 << " per 1,000 orders so far\n";
-}
-```
-
-**Output:**
-```text
-orders: $3300
-payments: $380
-platform: $5650
-UNTAGGED: $1140 (11% of $10470) -> enforce tag policy, investigate owners
-month-to-date $10470 on day 18 -> forecast $17450 vs budget $10000 -> ALERT (forecast over budget)
-unit cost: $25.537 per 1,000 orders so far
 ```
 
 ### Interview answer
@@ -186,46 +94,6 @@ Trigger:  region health dashboard red > 10 min OR AWS Health event for eu-centra
 Rollback / failback: only after root cause known; reverse replication first, then switch in a quiet window
 ```
 
-#### Modern C++ example — a timed failover drill: measured RTO/RPO vs. objectives, with the step that blew the budget
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Step { std::string what; int minutes; };
-
-int main() {
-    const int rto_objective = 30, rpo_objective_s = 60;
-    const int replication_lag_s = 4;                                       // Aurora Global typical lag at failover time
-    std::vector<Step> drill{
-        {"detect + confirm (alerts, synthetic checks)", 6}, {"decision by incident commander", 3},
-        {"promote secondary database", 4}, {"flip routing control", 1},
-        {"scale standby fleet to baseline (quota limit hit, ticket raised!)", 22}, {"verify + status page", 4},
-    };
-    int total = 0, worst = 0; std::string worst_step;
-    for (auto& s : drill) { total += s.minutes; if (s.minutes > worst) { worst = s.minutes; worst_step = s.what; } std::cout << "  +" << s.minutes << " min  " << s.what << '\n'; }
-    std::cout << "measured RTO " << total << " min vs objective " << rto_objective << " -> " << (total <= rto_objective ? "met" : "MISSED") << '\n';
-    std::cout << "measured RPO ~" << replication_lag_s << " s vs objective " << rpo_objective_s << " s -> met\n";
-    if (total > rto_objective) std::cout << "action item: \"" << worst_step << "\" -> pre-raise quotas and keep standby warm at 50%\n";
-}
-```
-
-**Output:**
-```text
-  +6 min  detect + confirm (alerts, synthetic checks)
-  +3 min  decision by incident commander
-  +4 min  promote secondary database
-  +1 min  flip routing control
-  +22 min  scale standby fleet to baseline (quota limit hit, ticket raised!)
-  +4 min  verify + status page
-measured RTO 40 min vs objective 30 -> MISSED
-measured RPO ~4 s vs objective 60 s -> met
-action item: "scale standby fleet to baseline (quota limit hit, ticket raised!)" -> pre-raise quotas and keep standby warm at 50%
-```
-
-This is exactly what drills are for: the quota problem was found on a calm Tuesday instead of during a real outage.
-
 ### Interview answer
 "I go multi-region only when RTO, RPO, latency or regulation require it. Active-passive with warm standby and async replication like Aurora Global Database or S3 replication is the common choice; active-active needs multi-writer data with conflict handling or home-region ownership per tenant and roughly double capacity. Failover runs through data-plane controls like Route 53 ARC with health checks, and the standby region must already have IaC, secrets, multi-region keys, replicated images and raised quotas. I run timed restore and failover drills against RTO and RPO, and keep runbooks with triggers, owners, exact commands and verification steps."
 
@@ -245,40 +113,6 @@ Renting a car with insurance and servicing included vs. owning a car and fixing 
 - **Consider self-hosting when:** very large steady scale where the premium is huge, special versions/extensions/tuning, data-sovereignty or portability needs, or deep in-house expertise already exists.
 - **Middle grounds:** Kubernetes operators (CloudNativePG, Strimzi), "bring your own cloud" vendors, serverless tiers, open-source-compatible managed services to keep an **exit path**.
 - **Watch for:** vendor lock-in (proprietary APIs), managed-service limits and maintenance windows, cost cliffs (per-request pricing at high volume), and support quality.
-
-#### Modern C++ example — 3-year TCO: managed vs. self-hosted PostgreSQL, including people and incident risk
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-#include <string>
-
-struct Option { std::string name; double infra_per_month, engineer_fte, incidents_per_year, hours_down_per_incident; };
-
-double tco_3y(const Option& o, double fte_cost_per_year, double downtime_cost_per_hour) {
-    return 36 * o.infra_per_month + 3 * o.engineer_fte * fte_cost_per_year + 3 * o.incidents_per_year * o.hours_down_per_incident * downtime_cost_per_hour;
-}
-
-int main() {
-    const double fte = 60'000, downtime = 5'000;                // per-year engineer cost; revenue lost per hour down
-    std::cout << std::fixed << std::setprecision(0);
-    for (double scale : {1.0, 8.0}) {                             // small workload vs. 8x bigger
-        Option managed{"managed (Aurora PostgreSQL)", 3'200 * scale, 0.1, 0.5, 0.5};
-        Option self{"self-hosted (EC2 + Patroni)", 1'900 * scale, 0.8, 1.5, 2.0};
-        double a = tco_3y(managed, fte, downtime), b = tco_3y(self, fte, downtime);
-        std::cout << "scale x" << scale << ": " << managed.name << " $" << a << " vs " << self.name << " $" << b
-                  << " -> " << (a <= b ? "managed" : "self-hosted") << " is cheaper over 3 years\n";
-    }
-}
-```
-
-**Output:**
-```text
-scale x1: managed (Aurora PostgreSQL) $136950 vs self-hosted (EC2 + Patroni) $257400 -> managed is cheaper over 3 years
-scale x8: managed (Aurora PostgreSQL) $943350 vs self-hosted (EC2 + Patroni) $736200 -> self-hosted is cheaper over 3 years
-```
-
-The crossover only appears at large scale — and only if you really have the expertise to keep incidents rare.
 
 ### Interview answer
 "I compare total cost of ownership: infrastructure plus the engineers to run, patch, back up, fail over and be on call for it, plus the risk cost of incidents. For most teams managed services like RDS, MSK or ElastiCache win, because the premium is smaller than the toil and they bring HA, backups and compliance built in. Self-hosting makes sense at large steady scale, for special tuning or extensions, for portability or sovereignty, or where we already have deep expertise — and Kubernetes operators or open-source-compatible managed services keep an exit path either way."
@@ -304,43 +138,6 @@ Phone plans: pay per minute (on-demand), a yearly contract with cheaper minutes 
 - Commit to the **floor** you're confident about (e.g. the minimum of the last 30 days, or 70–80% of steady usage), not the peak; review monthly; ladder commitments over time.
 - **Spot best practices:** diversify across many instance types and AZs (capacity-optimized allocation), handle the interruption notice (drain/checkpoint), keep state off the instance, mix with on-demand in ASGs (e.g. base on-demand + Spot above it), Karpenter for Spot in Kubernetes.
 - Also: Graviton (better price-performance), right-sizing **before** committing, turning off non-prod at night (a 12h/5-day schedule cuts ~64%).
-
-#### Modern C++ example — covering a daily usage curve with Savings Plans + on-demand + Spot, compared with all on-demand
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <iomanip>
-#include <iostream>
-#include <vector>
-
-int main() {
-    std::vector<int> instances_by_hour{20, 18, 18, 18, 20, 24, 32, 44, 52, 56, 58, 60, 60, 58, 56, 54, 52, 50, 46, 40, 34, 28, 24, 22};
-    const double od = 0.10, sp_discount = 0.45, spot_discount = 0.70;      // $/instance-hour, illustrative
-    const int committed = 20;                                              // ~the daily minimum
-    double all_od = 0, mixed = 0, interruptions_exposed = 0;
-    for (int n : instances_by_hour) {
-        all_od += n * od;
-        int base = std::min(n, committed);
-        int burst = n - base;
-        int spot = burst * 6 / 10;                                         // 60% of the burst is interruption-tolerant workers
-        int on_demand = burst - spot;
-        mixed += committed * od * (1 - sp_discount)                        // commitment is paid even if unused
-               + on_demand * od + spot * od * (1 - spot_discount);
-        interruptions_exposed += spot;
-    }
-    std::cout << std::fixed << std::setprecision(2)
-              << "daily cost all on-demand:            $" << all_od << '\n'
-              << "Savings Plan base + on-demand + Spot: $" << mixed << " (" << std::setprecision(0) << (1 - mixed / all_od) * 100 << "% cheaper)\n"
-              << "Spot instance-hours that could be interrupted: " << interruptions_exposed << " -> only stateless workers/batch run there\n";
-}
-```
-
-**Output:**
-```text
-daily cost all on-demand:            $94.40
-Savings Plan base + on-demand + Spot: $54.15 (43% cheaper)
-Spot instance-hours that could be interrupted: 275 -> only stateless workers/batch run there
-```
 
 ### Interview answer
 "On-demand is flexible with no commitment; Savings Plans or Reserved Instances discount a committed steady baseline by roughly 30 to 70 percent for one or three years; Spot gives up to about 90 percent off spare capacity that can be reclaimed with a two-minute notice. I right-size first, commit only to the confident floor of usage — Compute Savings Plans for flexibility — cover bursts with on-demand, and run interruption-tolerant, stateless work like batch, CI and worker pools on diversified Spot with graceful draining. Non-production schedules and Graviton add further savings."

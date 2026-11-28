@@ -1,6 +1,6 @@
 # Reliability Engineering (SRE) — Availability, SLOs, Resilience Patterns, Chaos and Disaster Recovery
 
-> **What you'll learn:** how to **calculate availability** across dependency chains, monitor **capacity and saturation**, run **chaos experiments and game days**, practise **disaster recovery** and verify **backups by restoring them**, design for **fault tolerance** (redundancy, graceful degradation, bulkheads), use **retries with backoff and jitter** and **circuit breakers** safely, define **SLIs, SLOs, SLAs and error budgets**, and protect services with **timeouts, cancellation, rate limiting and backpressure**. Each part has a runnable C++ example.
+> **What you'll learn:** how to **calculate availability** across dependency chains, monitor **capacity and saturation**, run **chaos experiments and game days**, practise **disaster recovery** and verify **backups by restoring them**, design for **fault tolerance** (redundancy, graceful degradation, bulkheads), use **retries with backoff and jitter** and **circuit breakers** safely, define **SLIs, SLOs, SLAs and error budgets**, and protect services with **timeouts, cancellation, rate limiting and backpressure**. Parts built on a real algorithm include a runnable C++ implementation.
 >
 > **Prerequisites:** [Distributed Systems → Fault tolerance](../System%20Design/Distributed-Systems.md#5-fault-tolerance-and-resilience), [Microservices → Circuit Breaker](../System%20Design/Microservices-Explained.md#3-circuit-breaker-pattern), [Logging, Metrics, and Tracing](./Logging-Metrics-and-Tracing.md).
 
@@ -161,55 +161,6 @@ A fire drill. You don't wait for a real fire to learn the exits are blocked. You
 
 **Game day:** pick a scenario ("primary DB fails over at peak"), assign roles (incident commander, operators, observers), run it live, time detection and recovery, test **runbooks, alerts, dashboards and communication**, then write a short report with action items.
 
-#### Modern C++ example — a chaos experiment with a steady-state hypothesis and an abort condition
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-#include <random>
-#include <vector>
-
-struct Cluster {
-    std::vector<bool> up{true, true, true};                     // 3 payment instances behind a load balancer
-    bool retry_on_other_instance = true;                        // the resilience feature under test
-    bool handle(std::mt19937& rng) {
-        std::uniform_int_distribution<int> pick(0, 2);
-        int i = pick(rng);
-        if (up[i]) return true;
-        if (!retry_on_other_instance) return false;
-        for (int j = 0; j < 3; ++j) if (up[j]) return true;      // LB retries a healthy instance
-        return false;
-    }
-};
-
-double success_rate(Cluster& c, std::mt19937& rng, int n) { int ok = 0; for (int i = 0; i < n; ++i) ok += c.handle(rng); return 100.0 * ok / n; }
-
-void experiment(bool retries, std::mt19937& rng) {
-    Cluster c; c.retry_on_other_instance = retries;
-    const double steady_state = 99.5;                           // hypothesis: success stays >= 99.5%
-    double before = success_rate(c, rng, 10000);
-    c.up[1] = false;                                            // inject: kill instance 1
-    double during = success_rate(c, rng, 10000);
-    bool abort = during < 95.0;                                 // stop button: too much user impact
-    c.up[1] = true;                                             // always roll back the fault
-    std::cout << std::fixed << std::setprecision(1) << (retries ? "with LB retries:    " : "without LB retries: ")
-              << "before " << before << "%, during " << during << "% -> "
-              << (abort ? "ABORTED, hypothesis false: fix before next run" : during >= steady_state ? "hypothesis holds" : "hypothesis false") << '\n';
-}
-
-int main() {
-    std::mt19937 rng(11);
-    experiment(false, rng);
-    experiment(true, rng);
-}
-```
-
-**Output:**
-```text
-without LB retries: before 100.0%, during 66.7% -> ABORTED, hypothesis false: fix before next run
-with LB retries:    before 100.0%, during 100.0% -> hypothesis holds
-```
-
 ### Interview answer
 "Chaos engineering is running controlled experiments: define steady state with SLO metrics, state a hypothesis like 'losing one instance doesn't hurt checkout', inject a realistic fault with a small blast radius and an abort condition, observe, then fix what we learned and automate the experiment. Game days rehearse whole scenarios with the team — alerts, runbooks, roles and communication — so the first time we see a failure isn't during a real incident."
 
@@ -240,62 +191,6 @@ Having a spare key is useless if it's for the wrong lock. Backups are the same: 
 - **Verify automatically:** restore into a scratch environment on a schedule, run integrity checks (row counts, checksums, app smoke tests), and **measure the restore time** against RTO.
 - **DR drills:** fail over a region or rebuild from backups at least yearly (quarterly for critical systems); include DNS, secrets, IAM, and the runbook.
 
-#### Modern C++ example — backup with checksums, an automated restore test, and RPO/RTO checks
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <cstdint>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-using Table = std::map<int, std::string>;
-std::uint64_t checksum(const Table& t) {                    // order-independent fingerprint of the data
-    std::uint64_t h = 1469598103934665603ull;
-    for (auto& [k, v] : t) { for (char c : std::to_string(k) + "=" + v) { h ^= static_cast<unsigned char>(c); h *= 1099511628211ull; } }
-    return h;
-}
-
-struct Backup { Table snapshot; std::uint64_t sum; int taken_at_min; bool corrupted = false; };
-
-Backup take_backup(const Table& live, int now) { return {live, checksum(live), now}; }
-
-bool restore_and_verify(const Backup& b, int restore_minutes, int rto_minutes, std::string& report) {
-    Table restored = b.snapshot;
-    if (b.corrupted) restored.erase(restored.begin());       // simulate a silently broken backup
-    bool data_ok = checksum(restored) == b.sum && !restored.empty();
-    bool rto_ok = restore_minutes <= rto_minutes;
-    report = std::string(data_ok ? "checksum ok" : "CHECKSUM MISMATCH") + ", restore took " + std::to_string(restore_minutes) +
-             " min (RTO " + std::to_string(rto_minutes) + ") " + (rto_ok ? "ok" : "TOO SLOW");
-    return data_ok && rto_ok;
-}
-
-int main() {
-    Table orders{{1, "paid"}, {2, "shipped"}, {3, "paid"}};
-    const int rpo_min = 15, rto_min = 60;
-    std::vector<Backup> backups{take_backup(orders, 0)};
-    orders[4] = "paid";
-    backups.push_back(take_backup(orders, 15));
-    backups.back().corrupted = true;                         // bit rot / bad upload nobody noticed
-
-    int now = 20;
-    std::cout << "data written since last backup: " << now - backups.back().taken_at_min << " min (RPO " << rpo_min << ") -> "
-              << (now - backups.back().taken_at_min <= rpo_min ? "within RPO" : "RPO breached") << '\n';
-    for (std::size_t i = 0; i < backups.size(); ++i) {
-        std::string report;
-        bool ok = restore_and_verify(backups[i], 35 + static_cast<int>(i) * 40, rto_min, report);
-        std::cout << "restore test of backup #" << i + 1 << ": " << report << " -> " << (ok ? "PASS" : "FAIL, alert the owners") << '\n';
-    }
-}
-```
-
-**Output:**
-```text
-data written since last backup: 5 min (RPO 15) -> within RPO
-restore test of backup #1: checksum ok, restore took 35 min (RTO 60) ok -> PASS
-restore test of backup #2: CHECKSUM MISMATCH, restore took 75 min (RTO 60) TOO SLOW -> FAIL, alert the owners
-```
-
 ### Interview answer
 "I start from RPO and RTO — how much data we can lose and how long we can be down — which choose between backup-and-restore, pilot light, warm standby and active-active. Backups follow 3-2-1 with an immutable off-site copy and recoverable encryption keys, plus point-in-time recovery for databases. Most importantly, restores are tested automatically on a schedule with integrity checks and timed against the RTO, and we run real failover drills, because an untested backup is just a hope."
 
@@ -314,75 +209,6 @@ A ship is split into watertight compartments (bulkheads): a hole floods one comp
 - **Load shedding:** when overloaded, reject low-priority requests early (HTTP 503/429) to protect high-priority ones.
 - **Bulkheads:** separate **thread pools / connection pools / queues / instances** per dependency or tenant, so a slow dependency exhausts only its own pool. Also: per-tenant quotas, cell-based architecture (shard customers into independent cells).
 - **Static stability:** the system keeps working with its last known good state even if the control plane (config service, autoscaler) is down.
-
-#### Modern C++ example — a product page with bulkheads per dependency and graceful degradation
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <optional>
-#include <string>
-
-class Bulkhead {                                        // a fixed number of concurrent slots per dependency
-public:
-    explicit Bulkhead(int slots) : free_(slots) {}
-    bool try_acquire() { if (free_ == 0) return false; --free_; return true; }
-    void release() { ++free_; }
-private:
-    int free_;
-};
-
-struct Dependencies {
-    bool recommendations_slow = false;                  // a slow call holds its slot (simulated)
-    std::optional<std::string> price(int) { return "499 EGP"; }
-    std::optional<std::string> recommendations(int) { if (recommendations_slow) return std::nullopt; return "similar: mouse, pad"; }
-};
-
-class ProductPage {
-public:
-    explicit ProductPage(Dependencies& d) : deps_(d) {}
-    std::string render(int id) {
-        std::string page = "product " + std::to_string(id);
-        // Critical: price. Its own bulkhead, so a reco outage can't take its slots.
-        if (!price_pool_.try_acquire()) return page + " | 503 busy (shed load)";
-        auto p = deps_.price(id); price_pool_.release();
-        if (!p) return page + " | error: price unavailable";
-        page += " | price " + *p;
-        // Optional: recommendations. Degrade to cached or hidden.
-        if (reco_pool_.try_acquire()) {
-            auto r = deps_.recommendations(id);
-            if (r) { cache_[id] = *r; reco_pool_.release(); page += " | " + *r; return page; }
-            // slow call: in real code the slot stays held until a timeout fires
-        }
-        page += cache_.count(id) ? " | " + cache_[id] + " (cached)" : " | (recommendations hidden)";
-        return page;
-    }
-private:
-    Dependencies& deps_;
-    Bulkhead price_pool_{10}, reco_pool_{2};
-    std::map<int, std::string> cache_;
-};
-
-int main() {
-    Dependencies deps;
-    ProductPage page(deps);
-    std::cout << page.render(7) << '\n';
-    deps.recommendations_slow = true;                   // recommendations service degrades
-    for (int i = 0; i < 3; ++i) std::cout << page.render(7) << '\n';
-    std::cout << page.render(8) << '\n';                // no cache for this product
-}
-```
-
-**Output:**
-```text
-product 7 | price 499 EGP | similar: mouse, pad
-product 7 | price 499 EGP | similar: mouse, pad (cached)
-product 7 | price 499 EGP | similar: mouse, pad (cached)
-product 7 | price 499 EGP | similar: mouse, pad (cached)
-product 8 | price 499 EGP | (recommendations hidden)
-```
-
-The recommendation slots are exhausted by slow calls, but the price — the critical part — keeps its own pool, and the page never fails.
 
 ### Interview answer
 "I design for failure: redundancy across failure domains with health checks and automatic failover, so no single instance, zone or person is a single point of failure. I classify features as critical or optional, and optional ones degrade to cached data, defaults or nothing. Bulkheads — separate pools, queues or cells per dependency or tenant — keep one slow dependency from exhausting everything, and under overload I shed low-priority traffic early to protect the critical path."

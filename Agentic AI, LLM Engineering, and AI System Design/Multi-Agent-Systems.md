@@ -10,7 +10,7 @@
 > - the **single- vs. multi-agent** trade-offs;
 > - the **supervisor/worker and coordinator/specialist** patterns.
 >
-> Each part has a runnable C++ example.
+> Parts built on a real algorithm include a runnable C++ implementation.
 >
 > **Prerequisites:** [Agentic Frameworks and Orchestration](./Agentic-Frameworks-and-Orchestration.md) and [Memory, State, and Context Management](./Memory-State-and-Context-Management.md).
 
@@ -48,54 +48,6 @@ Departments in a company communicate with standard forms (purchase requests, del
   - **MCP** handles agent-to-tool communication ([MCP](./Tool-Use-Integrations-and-Protocols.md#5-model-context-protocol-mcp-clients-servers-tools-and-resources)).
 - Treat messages from other agents as **untrusted input** if they process external content. Injection can propagate between agents.
 
-#### Modern C++ example — typed task request/result messages validated at the boundary between a coordinator and a specialist
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <optional>
-#include <string>
-#include <vector>
-
-struct TaskRequest { std::string task_id, from, to, goal; std::vector<std::string> input_refs; int budget_tokens = 0; std::string output_schema; };
-struct TaskResult { std::string task_id, status; std::string output; double confidence = 0; std::vector<std::string> sources = {}; };
-
-std::optional<std::string> validate(const TaskRequest& r) {
-    if (r.task_id.empty() || r.goal.empty()) return "task_id and goal are required";
-    if (r.budget_tokens <= 0 || r.budget_tokens > 50'000) return "budget_tokens must be in (0, 50000]";
-    if (r.output_schema.empty()) return "output_schema is required";
-    return std::nullopt;
-}
-std::optional<std::string> validate(const TaskResult& r, const TaskRequest& req) {
-    if (r.task_id != req.task_id) return "result for unknown task " + r.task_id;
-    if (r.status == "ok" && r.sources.empty()) return "ok results must cite sources";
-    if (r.confidence < 0 || r.confidence > 1) return "confidence must be in [0,1]";
-    return std::nullopt;
-}
-
-TaskResult pricing_specialist(const TaskRequest& r) { return {r.task_id, "ok", R"({"cheapest":"Plan B","monthly_egp":450})", 0.86, {"doc:pricing-2026"}}; }
-
-int main() {
-    TaskRequest bad{"t-7", "coordinator", "pricing", "", {}, 0, ""};
-    if (auto e = validate(bad)) std::cout << "rejected request: " << *e << '\n';
-
-    TaskRequest req{"t-8", "coordinator", "pricing", "Find the cheapest plan with 5 seats", {"artifact:requirements-v2"}, 8000, "{cheapest:string, monthly_egp:number}"};
-    if (!validate(req)) {
-        auto res = pricing_specialist(req);
-        auto err = validate(res, req);
-        std::cout << "result " << res.task_id << " [" << res.status << ", conf " << res.confidence << "]: " << res.output << " sources=" << res.sources[0] << (err ? " INVALID: " + *err : " (valid)") << '\n';
-    }
-    TaskResult no_sources{"t-8", "ok", "Plan C", 0.9};
-    if (auto e = validate(no_sources, req)) std::cout << "rejected result: " << *e << '\n';
-}
-```
-
-**Output:**
-```text
-rejected request: task_id and goal are required
-result t-8 [ok, conf 0.86]: {"cheapest":"Plan B","monthly_egp":450} sources=doc:pricing-2026 (valid)
-rejected result: ok results must cite sources
-```
-
 ### Interview answer
 "Agents should talk through typed contracts, not free-form chat. A task request carries the task ID, parent, sender and recipient, goal, inputs passed as references to shared artifacts, constraints, budget, deadline and the expected output schema. A result carries status, output, confidence, sources and cost, and errors carry a code and a retryable flag. Messages are validated on both sides and versioned. Only the context the receiver needs is passed. Transport can be in-process, queues, or protocols like A2A for cross-vendor agents and MCP for tools. Inter-agent messages are treated as untrusted when upstream agents read external content, because injections propagate."
 
@@ -122,39 +74,6 @@ Adding more people to a small job often slows it down: more meetings, more hand-
 - **Ownership:** separate teams evaluate and release separately.
 
 **Overhead math:** coordinator calls + worker calls + aggregation call. Multi-agent research systems can use **several times more tokens** than a single agent. That's worth it only when the task value justifies it.
-
-#### Modern C++ example — estimate cost, latency and failure probability for 1 agent vs. N agents, and compare with the measured quality gain
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <cmath>
-#include <iomanip>
-#include <iostream>
-
-int main() {
-    const double cost_per_call = 0.02, call_latency_s = 3.0, call_failure = 0.02;
-    std::cout << std::fixed << std::setprecision(2);
-    struct Design { const char* name; int sequential_calls, parallel_workers, calls_per_worker; double success_rate; };
-    for (Design d : {Design{"single agent (6 tool loops)", 6, 0, 0, 0.84}, Design{"coordinator + 4 parallel workers", 2, 4, 4, 0.87},
-                     Design{"chain of 5 agents (sequential)", 15, 0, 0, 0.83}}) {
-        int calls = d.sequential_calls + d.parallel_workers * d.calls_per_worker;
-        double latency = (d.sequential_calls + d.calls_per_worker) * call_latency_s;
-        double p_any_failure = 1 - std::pow(1 - call_failure, calls);
-        std::cout << d.name << ": " << calls << " calls, $" << calls * cost_per_call << ", ~" << latency << "s, P(some call fails) "
-                  << p_any_failure << ", task success " << d.success_rate << '\n';
-    }
-    std::cout << "verdict: the parallel design buys +3 pts for 3x the cost; the sequential chain costs more and is worse -> don't build it\n";
-}
-```
-
-**Output:**
-```text
-single agent (6 tool loops): 6 calls, $0.12, ~18.00s, P(some call fails) 0.11, task success 0.84
-coordinator + 4 parallel workers: 18 calls, $0.36, ~18.00s, P(some call fails) 0.30, task success 0.87
-chain of 5 agents (sequential): 15 calls, $0.30, ~45.00s, P(some call fails) 0.26, task success 0.83
-verdict: the parallel design buys +3 pts for 3x the cost; the sequential chain costs more and is worse -> don't build it
-```
-
-Whether +3 points is worth 3× the cost and 3× the failure exposure depends on the value of each task. That's a business decision, made with the numbers.
 
 ### Interview answer
 "I start with a single agent and well-designed tools, because every extra agent adds calls, latency, cost, failure points and information loss at handoffs, and makes debugging harder. I split only for a concrete reason: the tool set or instructions overload one context, there's genuinely parallel independent work, different permissions call for isolation such as a quarantined reader of untrusted content, or capabilities are owned and evaluated by different teams. Even then I measure the quality gain against cost and latency on the eval set. If agents always run in a fixed order, it's really a workflow and should be built as one."
@@ -186,46 +105,6 @@ Two doctors disagree. You don't just count votes: you look at the test results, 
 
 - **Consensus limits:** agreement among copies of the same model is weak evidence. Diversify (different models, prompts, data sources) when you rely on agreement. Track **disagreement rate** as a signal of uncertainty and a good source of eval cases.
 
-#### Modern C++ example — arbitration: verified answers win, then evidence-weighted votes, else escalate on low agreement
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <sstream>
-#include <string>
-#include <vector>
-
-struct Answer { std::string agent, value; double confidence; bool has_citation; bool tool_verified; };
-
-std::string arbitrate(const std::vector<Answer>& answers) {
-    for (auto& a : answers) if (a.tool_verified) return "'" + a.value + "' (tool-verified by " + a.agent + ")";
-    std::map<std::string, double> score; double total = 0;
-    for (auto& a : answers) { double w = a.confidence * (a.has_citation ? 1.0 : 0.5); score[a.value] += w; total += w; }
-    std::string best; double bs = 0;
-    for (auto& [v, s] : score) if (s > bs) { bs = s; best = v; }
-    double agreement = bs / total;
-    std::ostringstream os; os << std::fixed << std::setprecision(2) << agreement;
-    if (agreement < 0.6) return "ESCALATE to human (agreement " + os.str() + ")";
-    return "'" + best + "' (weighted agreement " + os.str() + ")";
-}
-
-int main() {
-    std::cout << "refund window: " << arbitrate({{"policy_agent", "14 days", 0.8, true, false}, {"support_agent", "30 days", 0.7, false, false}, {"faq_agent", "14 days", 0.6, true, false}}) << '\n';
-    std::cout << "order total:   " << arbitrate({{"agent_a", "1,250 EGP", 0.9, false, false}, {"agent_b", "1,520 EGP", 0.6, false, true}}) << '\n';
-    std::cout << "contract risk: " << arbitrate({{"legal_agent", "high", 0.6, true, false}, {"finance_agent", "low", 0.7, true, false}, {"ops_agent", "medium", 0.5, true, false}}) << '\n';
-}
-```
-
-**Output:**
-```text
-refund window: '14 days' (weighted agreement 0.80)
-order total:   '1,520 EGP' (tool-verified by agent_b)
-contract risk: ESCALATE to human (agreement 0.39)
-```
-
-Note the second case: the **more confident** agent was wrong, and the tool check overrode it.
-
 ### Interview answer
 "I resolve disagreements with an explicit policy instead of letting agents argue indefinitely. First, verify with tools where facts are checkable. Then weigh evidence: cited, verified sources beat unsupported claims. Respect domain ownership, so the pricing agent owns prices. For open-ended questions, use a calibrated judge or confidence-weighted voting. Escalate to a human when stakes are high or agreement is low. I'm careful with consensus: copies of the same model share blind spots, so agreement is weak evidence unless models, prompts or data sources are diverse. I track the disagreement rate as an uncertainty signal and a source of eval cases."
 
@@ -256,60 +135,6 @@ Note the second case: the **more confident** agent was wrong, and the tool check
   - Timeouts with fallback.
   - Human escalation as a first-class handoff target ([human-in-the-loop](./Agent%20Fundamentals%20and%20Decision-Making/Human-in-the-loop%20reviews%2C%20approvals%20and%20escalation.md)).
 - Frameworks: OpenAI Agents SDK handoffs, LangGraph `Command(goto=...)` / swarm patterns, and agents-as-tools.
-
-#### Modern C++ example — an ownership registry with allowed handoffs, a handoff package, a ping-pong limit, and delegation that keeps ownership
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <set>
-#include <string>
-
-struct HandoffPackage { std::string summary, user_goal, facts, reason; };
-
-class Ownership {
-    std::map<std::string, std::string> owner_;
-    std::map<std::string, int> handoffs_;
-    std::map<std::string, std::set<std::string>> allowed_{{"triage", {"billing", "shipping", "human"}}, {"billing", {"human", "shipping"}}, {"shipping", {"billing", "human"}}};
-public:
-    void open(const std::string& task, const std::string& agent) { owner_[task] = agent; }
-    std::string handoff(const std::string& task, const std::string& to, const HandoffPackage& p) {
-        auto from = owner_[task];
-        if (!allowed_[from].count(to)) return "REJECTED " + from + " -> " + to + " (not an allowed transition)";
-        if (++handoffs_[task] > 2 && to != "human") { owner_[task] = "human"; return "LIMIT: too many handoffs -> escalated to human"; }
-        owner_[task] = to;
-        return from + " -> " + to + " | package: goal='" + p.user_goal + "' facts='" + p.facts + "' reason='" + p.reason + "'";
-    }
-    const std::string& owner(const std::string& task) { return owner_[task]; }
-};
-
-std::string delegate_research(const std::string& q) { return "research result for '" + q + "'"; }       // agent-as-tool: returns to caller
-
-int main() {
-    Ownership o;
-    o.open("T-1", "triage");
-    HandoffPackage p{"customer charged twice for order 1042", "get refund for duplicate charge", "order=1042, verified=yes", "billing issue"};
-    std::cout << o.handoff("T-1", "billing", p) << '\n';
-    std::cout << "billing delegates: " << delegate_research("duplicate charge policy") << " (owner still " << o.owner("T-1") << ")\n";
-    std::cout << o.handoff("T-1", "shipping", {"", "", "", "maybe shipping?"}) << '\n';
-    std::cout << o.handoff("T-1", "billing", {"", "", "", "back to billing"}) << '\n';
-    std::cout << "owner now: " << o.owner("T-1") << '\n';
-    o.open("T-2", "billing");
-    std::cout << o.handoff("T-2", "triage", p) << '\n';
-}
-```
-
-**Output:**
-```text
-triage -> billing | package: goal='get refund for duplicate charge' facts='order=1042, verified=yes' reason='billing issue'
-billing delegates: research result for 'duplicate charge policy' (owner still billing)
-billing -> shipping | package: goal='' facts='' reason='maybe shipping?'
-LIMIT: too many handoffs -> escalated to human
-owner now: human
-REJECTED billing -> triage (not an allowed transition)
-```
-
-The billing → shipping handoff also shows a **bad package**: an empty goal and facts. In a real system the contract validation from [section 1](#1-agent-to-agent-communication-and-typed-message-contracts) would reject it.
 
 ### Interview answer
 "A handoff transfers control — triage to the billing agent, or the bot to a human — so the receiver now owns the task and talks to the user. Delegation keeps ownership with the caller, which uses another agent like a tool and gets a result back. Either way I make ownership explicit: one owner per task in a registry with atomic, logged transfers; a handoff package with the goal, collected facts, what was tried and why, so users never repeat themselves; an allowed-transitions graph; a cap on handoffs to stop ping-pong; timeouts; and human escalation as a first-class target."
@@ -423,52 +248,6 @@ A project team has a shared board with the plan, decisions and deliverables. Eac
 - **Publishing:** an agent returns `{summary, facts with sources, artifacts refs}` and the coordinator merges it into the shared state.
 - **Permissions:** a quarantined agent that read untrusted content publishes only **constrained** outputs (e.g. validated fields), not raw text ([security](./Security-Privacy-and-Safety.md#6-prompt-injection-direct-and-indirect-attacks-via-retrieved-contenttools)).
 
-#### Modern C++ example — private scratchpads with explicit publishing to a shared board through a reducer that only accepts curated fields
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Published { std::string agent, summary; std::vector<std::string> facts; };
-struct SharedBoard { std::string goal; std::vector<std::string> facts; std::map<std::string, std::string> summaries; };
-
-struct Agent {
-    std::string name;
-    std::vector<std::string> scratchpad;                                 // private: never copied to the board
-    Published work() {
-        scratchpad = {"raw search page 1 (4,000 tokens)", "raw search page 2 (3,500 tokens)", "retry after timeout", "draft reasoning..."};
-        return {name, name + " found 2 relevant facts", {name + ": fact A [src]", name + ": fact B [src]"}};
-    }
-};
-
-void publish(SharedBoard& b, const Published& p) {                       // reducer: only curated fields, size-limited
-    b.summaries[p.agent] = p.summary.substr(0, 200);
-    for (auto& f : p.facts) if (b.facts.size() < 20) b.facts.push_back(f);
-}
-
-int main() {
-    SharedBoard board{"Compare 2 vendors for the CRM migration", {}, {}};
-    std::vector<Agent> agents{{"vendor_a_researcher", {}}, {"vendor_b_researcher", {}}};
-    std::size_t private_items = 0;
-    for (auto& a : agents) { publish(board, a.work()); private_items += a.scratchpad.size(); }
-    std::cout << "shared board: goal='" << board.goal << "', " << board.facts.size() << " facts, " << board.summaries.size() << " summaries\n";
-    for (auto& f : board.facts) std::cout << "  " << f << '\n';
-    std::cout << "private scratchpad items kept out of the shared context: " << private_items << '\n';
-}
-```
-
-**Output:**
-```text
-shared board: goal='Compare 2 vendors for the CRM migration', 4 facts, 2 summaries
-  vendor_a_researcher: fact A [src]
-  vendor_a_researcher: fact B [src]
-  vendor_b_researcher: fact A [src]
-  vendor_b_researcher: fact B [src]
-private scratchpad items kept out of the shared context: 8
-```
-
 ### Interview answer
 "I separate shared state — goal, plan or task board, decisions, verified facts with sources, and artifact references — from each agent's private state: scratchpad, raw tool outputs, retries and intermediate reasoning. Agents publish distilled results through a reducer that accepts curated, size-limited fields, and the coordinator owns writes to shared keys, which avoids races and keeps every agent's context small. In LangGraph that maps to a parent graph state with subgraphs that have their own schemas. It also enforces security boundaries: an agent that read untrusted content publishes only validated, constrained outputs."
 
@@ -495,47 +274,6 @@ A skilled generalist handles most jobs end to end without miscommunication. A te
 | Best for | most support, coding and workflow tasks | breadth-first research, large analyses, separate security domains |
 
 - **Decision path:** start single-agent → improve tools and prompts → add a **workflow** for fixed structure → introduce multiple agents when the evals show a context or parallelism bottleneck ([proliferation](#2-avoiding-unnecessary-agent-proliferation-and-coordination-overhead), [workflows vs. agents](./Agent%20Fundamentals%20and%20Decision-Making/LLM%20workflows%20vs.%20autonomous%20agents%3A%20when%20each%20is%20appropriate.md)).
-
-#### Modern C++ example — a decision helper scoring a task's characteristics for single- vs. multi-agent design
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Task { std::string name; int independent_subtasks; int distinct_tool_domains; bool separate_permissions; bool tight_latency; bool low_value_per_task; };
-
-std::string decide(const Task& t) {
-    int multi = 0, single = 0;
-    multi += t.independent_subtasks >= 3 ? 2 : 0;
-    multi += t.distinct_tool_domains >= 3 ? 1 : 0;
-    multi += t.separate_permissions ? 2 : 0;
-    single += t.tight_latency ? 1 : 0;
-    single += t.low_value_per_task ? 2 : 0;
-    single += 1;                                                         // default bias: simplicity
-    return multi > single ? "multi-agent (coordinator + specialists)" : "single agent with good tools";
-}
-
-int main() {
-    std::vector<Task> tasks{
-        {"customer support chat", 1, 2, false, true, true},
-        {"market research across 10 competitors", 10, 2, false, false, false},
-        {"email triage that reads untrusted mail and can send replies", 2, 2, true, false, false},
-        {"code fix in one repository", 1, 2, false, false, false},
-    };
-    for (auto& t : tasks) std::cout << t.name << " -> " << decide(t) << '\n';
-}
-```
-
-**Output:**
-```text
-customer support chat -> single agent with good tools
-market research across 10 competitors -> multi-agent (coordinator + specialists)
-email triage that reads untrusted mail and can send replies -> multi-agent (coordinator + specialists)
-code fix in one repository -> single agent with good tools
-```
-
-The email case is "multi-agent" for **security** (a quarantined reader separate from the agent that can send), not for speed.
 
 ### Interview answer
 "A single agent with good tools is my default: it's simpler, cheaper, keeps all context in one place and gives one trajectory to debug and evaluate, which covers most support, coding and workflow tasks. Multi-agent designs pay off for breadth-first work that parallelizes, like researching many sources, for tasks needing very different tools, prompts or models, and for security isolation such as separating a reader of untrusted content from an agent that can act. They cost more tokens, add coordination failures and lose information at handoffs, so I move to them only when evals show a context, parallelism or isolation bottleneck."
@@ -568,52 +306,6 @@ Both keep **one accountable owner** of the overall task, unlike peer-to-peer "sw
   - The supervisor reviews results and can re-dispatch.
   - Enforce a **global budget** (steps, tokens, time) across all agents.
 - Frameworks: LangGraph supervisor and hierarchical teams; agents-as-tools in the OpenAI Agents SDK and Claude Agent SDK subagents; CrewAI hierarchical process ([frameworks](./Agentic-Frameworks-and-Orchestration.md#1-compare-langgraph-autogen-crewai-and-sdk-native-agent-approaches)).
-
-#### Modern C++ example — a supervisor dispatching specs to workers, a coordinator routing to specialists, and a global budget across agents
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Budget { int tokens_left; bool spend(int n) { if (n > tokens_left) return false; tokens_left -= n; return true; } };
-
-int main() {
-    Budget budget{30'000};
-    // Supervisor / worker: identical workers on non-overlapping specs.
-    std::vector<std::string> specs{"summarize Q3 sales (region: Cairo)", "summarize Q3 sales (region: Alexandria)", "summarize Q3 sales (region: Delta)"};
-    std::cout << "supervisor plan -> " << specs.size() << " workers\n";
-    for (auto& s : specs) std::cout << "  worker: " << s << (budget.spend(6'000) ? " [ok]" : " [budget exhausted]") << '\n';
-    std::cout << "  supervisor aggregates 3 summaries -> " << (budget.spend(4'000) ? "report ready" : "stop: budget") << '\n';
-
-    // Coordinator / specialist: route each sub-task to the agent that owns the domain and its tools.
-    std::map<std::string, std::function<std::string(const std::string&)>> specialists{
-        {"billing", [](const std::string& t) { return "billing specialist (tools: invoices, refunds) handled: " + t; }},
-        {"shipping", [](const std::string& t) { return "shipping specialist (tools: tracking, carriers) handled: " + t; }}};
-    auto route = [](const std::string& t) { return t.find("refund") != std::string::npos || t.find("invoice") != std::string::npos ? "billing" : "shipping"; };
-    for (std::string sub : {"where is parcel 77?", "refund the delivery fee"}) {
-        bool ok = budget.spend(5'000);
-        std::cout << "coordinator -> " << (ok ? specialists[route(sub)](sub) : std::string("budget exhausted: escalate with partial results")) << '\n';
-    }
-    std::cout << "global budget left: " << budget.tokens_left << " tokens\n";
-}
-```
-
-**Output:**
-```text
-supervisor plan -> 3 workers
-  worker: summarize Q3 sales (region: Cairo) [ok]
-  worker: summarize Q3 sales (region: Alexandria) [ok]
-  worker: summarize Q3 sales (region: Delta) [ok]
-  supervisor aggregates 3 summaries -> report ready
-coordinator -> shipping specialist (tools: tracking, carriers) handled: where is parcel 77?
-coordinator -> budget exhausted: escalate with partial results
-global budget left: 3000 tokens
-```
-
-A **global** budget shared across agents stops a multi-agent run from spending without limit: the second specialist call didn't fit.
 
 ### Interview answer
 "In supervisor/worker, a central agent decomposes the task into explicit, non-overlapping sub-task specs, dispatches them to workers, often in parallel, reviews results, re-dispatches if needed and aggregates. That suits research and batch analysis. In coordinator/specialist, the coordinator routes each sub-task to a domain specialist with its own prompt, tools and permissions, like billing or shipping, which suits multi-domain assistants. Both keep one accountable owner, unlike peer handoff swarms. The risks are supervisor context growth, overlapping workers and routing errors, so I use clear specs, agents-as-tools or graph edges, and a global budget for steps, tokens and time across all agents."

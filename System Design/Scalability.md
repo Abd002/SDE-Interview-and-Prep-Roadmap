@@ -1,6 +1,6 @@
 # Scalability — Replication, Partitioning, Consistent Hashing and Auto-scaling
 
-> **What you'll learn:** what "scalability" means (vertical vs. horizontal scaling), the two fundamental ways to spread data across machines — **replication vs. partitioning** — how **consistent hashing** lets you add or remove servers without reshuffling everything, and how **auto-scaling** adds capacity automatically. Every idea has a C++ simulation.
+> **What you'll learn:** what "scalability" means (vertical vs. horizontal scaling), the two fundamental ways to spread data across machines — **replication vs. partitioning** — how **consistent hashing** lets you add or remove servers without reshuffling everything, and how **auto-scaling** adds capacity automatically. Consistent hashing has a runnable C++ implementation.
 >
 > **Prerequisites:** none. Helpful: [Database Indexing](../Databases/Indexing.md), [NoSQL](../Databases/NoSQL.md).
 
@@ -70,77 +70,6 @@ Real systems do **both**: data is partitioned, and each partition is replicated 
 | **Geographic / tenant** | By region or customer | Data locality, compliance | Uneven sizes |
 
 Partitioning challenges: choosing a **shard key** that spreads load and matches queries, **cross-shard queries/joins/transactions**, **rebalancing** when adding shards, and **hot keys** (a celebrity's account).
-
-### Modern C++ example — leader–follower replication with lag, and hash partitioning
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-// ---------- Replication: one leader, followers apply the leader's log later ----------
-struct Replica { std::map<std::string, std::string> data; std::size_t applied = 0; };
-
-class ReplicatedStore {
-public:
-    explicit ReplicatedStore(int followers) : followers_(followers) {}
-    void write(const std::string& k, const std::string& v) {      // writes go to the leader
-        leader_.data[k] = v;
-        log_.push_back({k, v});
-    }
-    void replicate(std::size_t follower) {                          // async: happens "later"
-        auto& f = followers_[follower];
-        for (; f.applied < log_.size(); ++f.applied) f.data[log_[f.applied].first] = log_[f.applied].second;
-    }
-    std::string read(std::size_t follower, const std::string& k) {  // reads spread over followers
-        auto& d = followers_[follower].data;
-        return d.contains(k) ? d[k] : "(not found)";
-    }
-private:
-    Replica leader_;
-    std::vector<Replica> followers_;
-    std::vector<std::pair<std::string, std::string>> log_;
-};
-
-// ---------- Partitioning: each key lives on exactly one shard ----------
-class ShardedStore {
-public:
-    explicit ShardedStore(std::size_t n) : shards_(n) {}
-    std::size_t shard_for(const std::string& key) const { return std::hash<std::string>{}(key) % shards_.size(); }
-    void write(const std::string& k, const std::string& v) { shards_[shard_for(k)][k] = v; }
-    std::vector<std::size_t> sizes() const {
-        std::vector<std::size_t> s;
-        for (const auto& shard : shards_) s.push_back(shard.size());
-        return s;
-    }
-private:
-    std::vector<std::map<std::string, std::string>> shards_;
-};
-
-int main() {
-    ReplicatedStore db(2);
-    db.write("user:1:name", "Ana");
-    std::cout << "replica 0 before replication: " << db.read(0, "user:1:name") << "  <- replication lag\n";
-    db.replicate(0);
-    std::cout << "replica 0 after replication:  " << db.read(0, "user:1:name") << '\n';
-
-    ShardedStore sharded(4);
-    for (int i = 0; i < 10'000; ++i) sharded.write("user:" + std::to_string(i), "data");
-    std::cout << "keys per shard:";
-    std::size_t total = 0;
-    for (auto n : sharded.sizes()) { std::cout << ' ' << n; total += n; }
-    std::cout << " (total " << total << ", each key stored once)\n";
-}
-```
-
-**Output (may vary):**
-```text
-replica 0 before replication: (not found)  <- replication lag
-replica 0 after replication:  Ana
-keys per shard: 2521 2486 2485 2508 (total 10000, each key stored once)
-```
 
 ### Interview answer
 "Replication copies the same data to multiple nodes for availability, durability and read scaling — leader-follower, multi-leader or leaderless quorum, synchronous or asynchronous with lag. Partitioning splits data across nodes by range, hash or directory for write and storage scaling, at the cost of cross-shard queries, rebalancing and hot spots. Production systems partition and then replicate each partition."
@@ -280,62 +209,6 @@ Requirements and pitfalls:
 - Scaling reacts after the fact — keep headroom or use scheduled/predictive scaling for sudden spikes.
 - The database often becomes the bottleneck when app servers scale out.
 - Always set a **max** (cost protection against a bug or attack).
-
-### Modern C++ example — a target-tracking autoscaler with cooldown
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <cmath>
-#include <format>
-#include <iostream>
-#include <vector>
-
-struct Autoscaler {
-    double target_util = 0.60;        // keep each instance ~60% busy
-    int min_instances = 2, max_instances = 10;
-    int cooldown_ticks = 2;           // wait between scale-downs to avoid flapping
-    int last_scale_down = -100;
-
-    int decide(int tick, int current, double demand /* in "instances worth of work" */) {
-        int desired = static_cast<int>(std::ceil(demand / target_util));
-        desired = std::clamp(desired, min_instances, max_instances);
-        if (desired < current) {                                   // scale DOWN slowly
-            if (tick - last_scale_down < cooldown_ticks) return current;
-            last_scale_down = tick;
-            return current - 1;
-        }
-        return desired;                                            // scale UP immediately
-    }
-};
-
-int main() {
-    Autoscaler as;
-    int instances = 2;
-    const std::vector<double> demand{1.0, 1.2, 3.0, 4.5, 4.8, 2.0, 1.0, 1.0, 1.0, 1.0};  // traffic over time
-    std::cout << "tick demand instances utilization\n";
-    for (int t = 0; t < static_cast<int>(demand.size()); ++t) {
-        instances = as.decide(t, instances, demand[t]);
-        std::cout << std::format("{:>4} {:>6.1f} {:>9} {:>10.0f}%\n", t, demand[t], instances,
-                                 100.0 * demand[t] / instances);
-    }
-}
-```
-
-**Output:**
-```text
-tick demand instances utilization
-   0    1.0         2         50%
-   1    1.2         2         60%
-   2    3.0         5         60%
-   3    4.5         8         56%
-   4    4.8         8         60%
-   5    2.0         7         29%
-   6    1.0         7         14%
-   7    1.0         6         17%
-   8    1.0         6         17%
-   9    1.0         5         20%
-```
-Up quickly when traffic spikes, down one step at a time after the spike — trading a little cost for stability.
 
 ### Interview answer
 "Auto-scaling adjusts capacity automatically using policies — target tracking on metrics like CPU or requests per instance, step, scheduled or predictive scaling — within min/max bounds and with cooldowns to prevent flapping. It requires stateless, fast-starting instances behind a load balancer, typically scales up aggressively and down conservatively, and must be paired with a scalable data tier."

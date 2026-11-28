@@ -1,6 +1,6 @@
 # Git — Explained for Beginners
 
-> **What you'll learn:** what version control is and how Git works *inside*: the working tree, staging area and commits; why commits are **snapshots identified by hashes**; what **branches** and **HEAD** really are; how **merging** (fast-forward and three-way) and **conflicts** work; **rebase**; **remotes** (clone, fetch, pull, push); how to **undo** things safely; and team **workflows**. Every concept shows the real `git` commands **and** a small C++ model of what Git does internally.
+> **What you'll learn:** what version control is and how Git works *inside*: the working tree, staging area and commits; why commits are **snapshots identified by hashes**; what **branches** and **HEAD** really are; how **merging** (fast-forward and three-way) and **conflicts** work; **rebase**; **remotes** (clone, fetch, pull, push); how to **undo** things safely; and team **workflows**. Every concept shows the real `git` commands; three-way merge also has a C++ implementation.
 >
 > **Prerequisites:** none. A longer command reference: [Git.md](./Git.md).
 
@@ -55,56 +55,6 @@ git commit -m "Fix login timeout" # seal the staged snapshot into history
 git log --oneline --graph         # view history
 ```
 
-### Modern C++ example — the three areas as a model
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-using Files = std::map<std::string, std::string>;       // filename -> content
-
-struct Commit { std::string message; Files snapshot; };
-
-struct Repo {
-    Files working_tree;                                  // what you edit
-    Files staging;                                       // what the next commit will contain
-    std::vector<Commit> history;                         // sealed snapshots
-
-    void add(const std::string& file) { staging[file] = working_tree.at(file); }
-    void commit(const std::string& msg) { history.push_back({msg, staging}); }
-    void status() const {
-        for (const auto& [f, content] : working_tree) {
-            auto it = staging.find(f);
-            std::cout << "  " << f << ": "
-                      << (it == staging.end() ? "untracked" : it->second == content ? "staged/clean" : "modified, not staged")
-                      << '\n';
-        }
-    }
-};
-
-int main() {
-    Repo repo;
-    repo.working_tree = {{"login.cpp", "timeout=10"}, {"notes.txt", "todo"}};
-    repo.add("login.cpp");                              // only the file that belongs in this commit
-    repo.commit("Add login");
-    repo.working_tree["login.cpp"] = "timeout=30";      // edit after committing
-    std::cout << "git status:\n";
-    repo.status();
-    std::cout << "commit #1 contains " << repo.history[0].snapshot.size() << " file(s): login.cpp = "
-              << repo.history[0].snapshot.at("login.cpp") << '\n';
-}
-```
-
-**Output:**
-```text
-git status:
-  login.cpp: modified, not staged
-  notes.txt: untracked
-commit #1 contains 1 file(s): login.cpp = timeout=10
-```
-
 ### Interview answer
 "Git tracks three areas: the working tree you edit, the index or staging area where you assemble the next commit, and the repository of committed snapshots. `git add` moves changes into the index and `git commit` records the index as a new commit, which enables small, focused commits."
 
@@ -130,64 +80,6 @@ Git is a **content-addressed** store. Its four object types:
 - `git cat-file -p <hash>` shows any object; `git log` walks parent pointers backward.
 - Git compresses objects and packs deltas in "packfiles" for storage, but *conceptually* every commit is a full snapshot.
 
-### Modern C++ example — content-addressed objects and a hash chain
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <cstdint>
-#include <format>
-#include <iostream>
-#include <map>
-#include <string>
-
-// Stand-in for SHA-1: a stable 32-bit FNV-1a hash, shown as 8 hex digits.
-std::string hash_of(const std::string& content) {
-    std::uint32_t h = 2166136261u;
-    for (unsigned char c : content) { h ^= c; h *= 16777619u; }
-    return std::format("{:08x}", h);
-}
-
-class ObjectStore {
-public:
-    std::string put(const std::string& content) {        // store once per unique content
-        std::string id = hash_of(content);
-        objects_.emplace(id, content);
-        return id;
-    }
-    std::size_t size() const { return objects_.size(); }
-private:
-    std::map<std::string, std::string> objects_;
-};
-
-int main() {
-    ObjectStore store;
-    std::string readme = store.put("blob:# My project");
-    std::string main1  = store.put("blob:int main() {}");
-    std::string tree1  = store.put("tree:README.md=" + readme + ";main.cpp=" + main1);
-    std::string c1     = store.put("commit:tree=" + tree1 + ";parent=none;msg=Initial commit");
-
-    std::string main2  = store.put("blob:int main() { return 0; }");                 // only main.cpp changed
-    std::string readme_again = store.put("blob:# My project");                         // same content -> same id
-    std::string tree2  = store.put("tree:README.md=" + readme_again + ";main.cpp=" + main2);
-    std::string c2     = store.put("commit:tree=" + tree2 + ";parent=" + c1 + ";msg=Return 0");
-
-    std::cout << "commit " << c2 << " -> parent " << c1 << '\n';
-    std::cout << "README unchanged, reused blob: " << (readme == readme_again ? "yes" : "no") << '\n';
-    std::cout << "objects stored: " << store.size() << " (the README blob is stored only once)\n";
-
-    // Tamper with history: change the first commit's message -> its id changes, breaking the chain.
-    std::string tampered = hash_of("commit:tree=" + tree1 + ";parent=none;msg=Initial commit!!");
-    std::cout << "edited old commit gets a new id: " << tampered << " != " << c1 << '\n';
-}
-```
-
-**Output:**
-```text
-commit 60fcb87a -> parent 41c3f383
-README unchanged, reused blob: yes
-objects stored: 7 (the README blob is stored only once)
-edited old commit gets a new id: 6fbe5565 != 41c3f383
-```
-
 ### Interview answer
 "Git is a content-addressed object database of blobs, trees, commits and tags. A commit records a full snapshot via its root tree plus parent pointers and metadata, and is named by the hash of its content, so identical files are deduplicated and history is tamper-evident: changing any commit changes its hash and all descendants'."
 
@@ -210,59 +102,6 @@ git log --oneline --graph --all   # see where every label points
 ```
 - A new commit's parent is the commit HEAD points to; then the current branch label moves to the new commit.
 - **Detached HEAD:** HEAD points directly at a commit (e.g. after `git checkout <hash>`); new commits aren't on any branch unless you create one.
-
-### Modern C++ example — branches are pointers
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Commit { std::string msg; int parent; };
-
-struct Repo {
-    std::vector<Commit> commits;                          // index = commit id
-    std::map<std::string, int> branches;                  // branch name -> commit id
-    std::string head = "main";
-
-    void commit(const std::string& msg) {
-        int parent = branches.contains(head) ? branches[head] : -1;
-        commits.push_back({msg, parent});
-        branches[head] = static_cast<int>(commits.size()) - 1;   // the CURRENT branch moves forward
-    }
-    void branch(const std::string& name) { branches[name] = branches[head]; }   // just a new label
-    void switch_to(const std::string& name) { head = name; }
-    void log() const {
-        std::cout << "log of " << head << ":";
-        for (int c = branches.at(head); c != -1; c = commits[c].parent) std::cout << " [" << c << ' ' << commits[c].msg << ']';
-        std::cout << '\n';
-    }
-};
-
-int main() {
-    Repo r;
-    r.commit("init");
-    r.commit("add README");
-    r.branch("feature");                 // costs nothing: one integer
-    r.switch_to("feature");
-    r.commit("start feature");
-    r.switch_to("main");
-    r.commit("hotfix");
-    for (const auto& [name, id] : r.branches) std::cout << name << " -> commit " << id << '\n';
-    r.log();
-    r.switch_to("feature");
-    r.log();
-}
-```
-
-**Output:**
-```text
-feature -> commit 2
-main -> commit 3
-log of main: [3 hotfix] [1 add README] [0 init]
-log of feature: [2 start feature] [1 add README] [0 init]
-```
 
 ### Interview answer
 "A Git branch is a lightweight movable reference to a commit, and HEAD references the currently checked-out branch. Creating a branch just writes a pointer, and each commit advances the current branch; a detached HEAD points straight at a commit."
@@ -374,47 +213,6 @@ git push --force-with-lease # needed after rebasing a branch you already pushed
 
 **Golden rule:** never rebase commits that **others have already based work on** (shared/public branches); rebase your own local or feature branches only.
 
-### Modern C++ example — replaying commits onto a new base
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <cstdint>
-#include <format>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Commit { std::string id, msg; };
-
-std::string new_id(const std::string& parent, const std::string& msg) {   // the id hashes the PARENT too
-    std::uint32_t h = 2166136261u;
-    for (unsigned char c : parent + "|" + msg) { h ^= c; h *= 16777619u; }
-    return std::format("{:07x}", h & 0xfffffff);
-}
-
-int main() {
-    std::vector<Commit> main_branch{{"a1", "init"}, {"b2", "main: update deps"}, {"c3", "main: fix typo"}};
-    std::vector<Commit> feature_only{{"x7", "feat: add parser"}, {"y8", "feat: add tests"}};   // branched from a1
-
-    std::vector<Commit> rebased = main_branch;
-    for (const auto& c : feature_only) {                    // replay each commit on the new tip
-        Commit replayed{new_id(rebased.back().id, c.msg), c.msg};
-        std::cout << "replay " << c.id << " (" << c.msg << ") -> new commit " << replayed.id << '\n';
-        rebased.push_back(replayed);
-    }
-    std::cout << "linear history:";
-    for (const auto& c : rebased) std::cout << ' ' << c.id;
-    std::cout << '\n';
-}
-```
-
-**Output:**
-```text
-replay x7 (feat: add parser) -> new commit cda667d
-replay y8 (feat: add tests) -> new commit d5d7a92
-linear history: a1 b2 c3 cda667d d5d7a92
-```
-Same changes, new identities — which is exactly why rebasing shared history confuses everyone who still has the old commits.
-
 ### Interview answer
 "Rebase re-applies a branch's commits onto a new base, producing new commits and a linear history, whereas merge preserves the true topology with merge commits. Interactive rebase can squash and reorder commits. Because it rewrites hashes, I only rebase private branches and use --force-with-lease when updating a pushed branch."
 
@@ -438,55 +236,6 @@ git push -u origin feature-login                # publish a branch and set upstr
 - **Remote-tracking branches** (`origin/main`) are your local, read-only record of where the remote's branches were at the last fetch.
 - A push is **rejected** if the remote has commits you don't have ("non-fast-forward") → fetch/pull first, integrate, then push.
 - Forks: your own server-side copy of someone else's repository, used for open-source contributions via pull requests.
-
-### Modern C++ example — why a push gets rejected, and how pull fixes it
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <iostream>
-#include <string>
-#include <vector>
-
-using History = std::vector<std::string>;             // commits in order
-
-bool is_prefix(const History& a, const History& b) {   // is a an ancestor-line of b?
-    return a.size() <= b.size() && std::equal(a.begin(), a.end(), b.begin());
-}
-
-bool push(History& remote, const History& local) {
-    if (!is_prefix(remote, local)) return false;       // remote has commits we don't: non-fast-forward
-    remote = local;
-    return true;
-}
-
-int main() {
-    History remote{"c1", "c2"};
-    History ana = remote, ben = remote;                 // both clone
-
-    ben.push_back("ben-fix");
-    std::cout << "ben pushes: " << (push(remote, ben) ? "accepted" : "rejected") << '\n';
-
-    ana.push_back("ana-feature");
-    std::cout << "ana pushes: " << (push(remote, ana) ? "accepted" : "rejected (fetch first!)") << '\n';
-
-    // ana: git pull --rebase  -> take remote history, replay her commit on top
-    History fetched = remote;
-    fetched.push_back("ana-feature'");
-    ana = fetched;
-    std::cout << "ana pushes after pull --rebase: " << (push(remote, ana) ? "accepted" : "rejected") << '\n';
-    std::cout << "remote history:";
-    for (const auto& c : remote) std::cout << ' ' << c;
-    std::cout << '\n';
-}
-```
-
-**Output:**
-```text
-ben pushes: accepted
-ana pushes: rejected (fetch first!)
-ana pushes after pull --rebase: accepted
-remote history: c1 c2 ben-fix ana-feature'
-```
 
 ### Interview answer
 "Remotes are other copies of the repository. Clone copies one and sets up origin; fetch downloads new objects and updates remote-tracking branches without touching my work; pull is fetch plus merge or rebase; push uploads my commits and is rejected if it wouldn't be a fast-forward, in which case I integrate the remote changes first."
@@ -515,43 +264,6 @@ remote history: c1 c2 ben-fix ana-feature'
 | Save work-in-progress temporarily | `git stash` / `git stash pop` |
 | "I lost a commit!" | `git reflog` — every position HEAD had, to recover it |
 | Find which commit introduced a bug | `git bisect start/bad/good` — binary search over history |
-
-### Modern C++ example — reset vs. revert
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Commit { std::string msg; int balance_change; };
-
-int balance(const std::vector<Commit>& h) { int b = 0; for (const auto& c : h) b += c.balance_change; return b; }
-void show(const char* label, const std::vector<Commit>& h) {
-    std::cout << label << ":";
-    for (const auto& c : h) std::cout << " [" << c.msg << "]";
-    std::cout << "  -> balance " << balance(h) << '\n';
-}
-
-int main() {
-    std::vector<Commit> history{{"deposit 100", 100}, {"buggy fee", -30}, {"deposit 50", 50}};
-    show("original       ", history);
-
-    auto reset = history;                        // git reset --hard HEAD~2  (rewrites history)
-    reset.resize(1);
-    show("reset (local)  ", reset);              // later commits are gone -> dangerous if shared
-
-    auto revert = history;                       // git revert <buggy fee>  (adds an inverse commit)
-    revert.push_back({"Revert \"buggy fee\"", +30});
-    show("revert (shared)", revert);             // history intact, effect undone
-}
-```
-
-**Output:**
-```text
-original       : [deposit 100] [buggy fee] [deposit 50]  -> balance 120
-reset (local)  : [deposit 100]  -> balance 100
-revert (shared): [deposit 100] [buggy fee] [deposit 50] [Revert "buggy fee"]  -> balance 150
-```
 
 ### Interview answer
 "For uncommitted changes I use restore; for local commits, amend or reset with soft, mixed or hard depending on whether to keep the changes; for commits already shared, revert, which adds an inverse commit instead of rewriting history. Reflog recovers 'lost' commits, stash parks work in progress, and bisect finds the commit that introduced a bug."

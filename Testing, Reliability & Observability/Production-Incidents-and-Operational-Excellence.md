@@ -1,6 +1,6 @@
 # Production Incidents and Operational Excellence — Handling, Learning From and Preventing Outages
 
-> **What you'll learn:** how to classify and run an **incident** (severity, triage, mitigation, communication), how **on-call** works (handoffs, runbooks, escalation, ownership), how to do **root-cause analysis** with timelines and evidence, how to write **blameless postmortems** with real follow-ups, how to ship safely with **change management, feature flags, canaries and rollback**, and which **architectural trade-offs** matter for reliability. Includes runnable C++ examples and copy-paste templates.
+> **What you'll learn:** how to classify and run an **incident** (severity, triage, mitigation, communication), how **on-call** works (handoffs, runbooks, escalation, ownership), how to do **root-cause analysis** with timelines and evidence, how to write **blameless postmortems** with real follow-ups, how to ship safely with **change management, feature flags, canaries and rollback**, and which **architectural trade-offs** matter for reliability. Includes copy-paste templates and a runnable C++ feature-flag example.
 >
 > **Prerequisites:** [Reliability Engineering (SRE)](./Reliability-Engineering-SRE.md), [Logging, Metrics, and Tracing](./Logging-Metrics-and-Tracing.md).
 
@@ -51,42 +51,6 @@ Action items (owner, due, priority):
   [P2] Per-region panels on the checkout dashboard — @observability, 10-31
   [P2] Status-page update within 10 min added to the IC checklist — @incident-mgmt, 10-20
 Lessons: config is code; it needs the same safety net.
-```
-
-#### Modern C++ example — tracking postmortem action items so they don't silently rot
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct ActionItem { std::string title, owner; int due_day; int priority; bool done; };
-
-int main() {
-    const int today = 30;
-    std::vector<ActionItem> items{
-        {"staged rollout for config pushes", "@platform", 26, 1, false},
-        {"CI validation for pool sizes", "@payments", 24, 1, true},
-        {"per-region checkout panels", "@observability", 31, 2, false},
-        {"status page update in IC checklist", "", 20, 2, false},           // no owner = won't happen
-    };
-    int open = 0;
-    for (const auto& a : items) {
-        if (a.done) continue;
-        ++open;
-        std::string problem = a.owner.empty() ? "NO OWNER" : a.due_day < today ? "OVERDUE by " + std::to_string(today - a.due_day) + " days" : "on track";
-        std::cout << "[P" << a.priority << "] " << a.title << " (" << (a.owner.empty() ? "?" : a.owner) << ") -> " << problem << '\n';
-    }
-    std::cout << open << " open item(s); P1 items overdue should be raised in the weekly ops review\n";
-}
-```
-
-**Output:**
-```text
-[P1] staged rollout for config pushes (@platform) -> OVERDUE by 4 days
-[P2] per-region checkout panels (@observability) -> on track
-[P2] status page update in IC checklist (?) -> NO OWNER
-3 open item(s); P1 items overdue should be raised in the weekly ops review
 ```
 
 ### Interview answer
@@ -202,55 +166,6 @@ At an accident scene, paramedics first stop the bleeding and get the patient to 
 
 **Communication:** declare the incident early (it's cheap to downgrade); updates at a fixed cadence (e.g. every 30 min) even if "no news": impact, what we're doing, next update time.
 
-#### Modern C++ example — severity classification and a mitigation-first triage checklist
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Signal { std::string feature; bool core; double users_affected_pct; bool data_loss; bool security; bool workaround; };
-
-int severity(const Signal& s) {
-    if (s.data_loss || s.security || (s.core && s.users_affected_pct >= 20)) return 1;
-    if (s.core && s.users_affected_pct >= 1) return 2;
-    if (s.users_affected_pct > 0 && !s.workaround) return 2;
-    if (s.users_affected_pct > 0) return 3;
-    return 4;
-}
-
-struct Change { std::string what; int minutes_before_start; bool reversible; };
-
-int main() {
-    std::vector<Signal> signals{
-        {"checkout", true, 18, false, false, false},
-        {"login", true, 35, false, false, false},
-        {"profile avatars", false, 60, false, false, true},
-        {"export reports", false, 0.5, false, false, false},
-        {"orders db", true, 0.1, true, false, false},
-    };
-    for (auto& s : signals) std::cout << "SEV" << severity(s) << "  " << s.feature << " (" << s.users_affected_pct << "% users)\n";
-
-    std::vector<Change> recent{{"config v83 pushed", 2, true}, {"deploy payments 2.4.1", 45, true}, {"traffic +8%", 0, false}};
-    std::cout << "triage for checkout SEV2: suspect the most recent reversible change first\n";
-    for (auto& c : recent)
-        if (c.reversible && c.minutes_before_start <= 60) { std::cout << "  MITIGATE: roll back \"" << c.what << "\" (" << c.minutes_before_start << " min before start)\n"; break; }
-    std::cout << "  then: post status update, next update in 30 min; root cause after recovery\n";
-}
-```
-
-**Output:**
-```text
-SEV2  checkout (18% users)
-SEV1  login (35% users)
-SEV3  profile avatars (60% users)
-SEV2  export reports (0.5% users)
-SEV1  orders db (0.1% users)
-triage for checkout SEV2: suspect the most recent reversible change first
-  MITIGATE: roll back "config v83 pushed" (2 min before start)
-  then: post status update, next update in 30 min; root cause after recovery
-```
-
 ### Interview answer
 "I classify severity by user impact — core feature, share of users, data loss or security — and declare early, since downgrading is cheap. An incident commander coordinates while experts investigate and a comms lead updates the status page on a fixed cadence. Triage asks who's affected, since when and what changed, and I mitigate before diagnosing: roll back the most recent change, flip a flag, fail over or shed load. Root cause comes after users are safe, and the scribe's timeline feeds the postmortem."
 
@@ -280,52 +195,6 @@ Mitigate:  1. If a deploy/config change in the last 60 min: roll back  (deployct
            3. If DB pool saturated: raise pool to 40 via flag `payments.pool_size`
 Escalate:  no improvement in 20 min -> page payments secondary + DB on-call
 Afterwards: open an incident doc; keep the timeline in #inc-checkout
-```
-
-#### Modern C++ example — an escalation policy simulated over time
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <optional>
-#include <string>
-#include <vector>
-
-struct Level { std::string who; int wait_min; };          // page `who`, wait this long for an ack
-
-std::string escalate(const std::vector<Level>& policy, std::optional<std::pair<std::string, int>> ack) {
-    int t = 0;
-    std::string log;
-    for (const auto& l : policy) {
-        log += "  t=" + std::to_string(t) + "m page " + l.who + "\n";
-        if (ack && ack->first == l.who && ack->second <= t + l.wait_min)
-            return log + "  t=" + std::to_string(ack->second) + "m ACK by " + l.who + "\n";
-        t += l.wait_min;
-    }
-    return log + "  t=" + std::to_string(t) + "m nobody acked -> page the incident-management team\n";
-}
-
-int main() {
-    std::vector<Level> policy{{"primary (mona)", 5}, {"secondary (omar)", 10}, {"team lead (lina)", 15}};
-    std::cout << "primary acks after 3 min:\n" << escalate(policy, std::pair{std::string("primary (mona)"), 3});
-    std::cout << "primary asleep, secondary acks at minute 9:\n" << escalate(policy, std::pair{std::string("secondary (omar)"), 9});
-    std::cout << "nobody answers:\n" << escalate(policy, std::nullopt);
-}
-```
-
-**Output:**
-```text
-primary acks after 3 min:
-  t=0m page primary (mona)
-  t=3m ACK by primary (mona)
-primary asleep, secondary acks at minute 9:
-  t=0m page primary (mona)
-  t=5m page secondary (omar)
-  t=9m ACK by secondary (omar)
-nobody answers:
-  t=0m page primary (mona)
-  t=5m page secondary (omar)
-  t=15m page team lead (lina)
-  t=30m nobody acked -> page the incident-management team
 ```
 
 ### Interview answer
@@ -359,32 +228,6 @@ A car with two engines is less likely to break down, but it's heavier, costs mor
 - **Cell-based architecture / sharding** limits blast radius at the cost of routing complexity.
 - Write decisions down as **ADRs** (Architecture Decision Records) with the trade-off and the conditions that would change it.
 
-#### Modern C++ example — sync vs. async replication: latency cost vs. data lost on failover
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-
-int main() {
-    const double local_write_ms = 2.0, cross_az_rtt_ms = 1.5, cross_region_rtt_ms = 70.0;
-    const double writes_per_s = 2000, async_lag_s = 0.5;          // typical async replication lag
-    std::cout << std::fixed << std::setprecision(1);
-    std::cout << "sync replica in another AZ:     write latency " << local_write_ms + cross_az_rtt_ms << " ms, data lost on failover 0 writes\n";
-    std::cout << "sync replica in another region: write latency " << local_write_ms + cross_region_rtt_ms << " ms, data lost on failover 0 writes\n";
-    std::cout << "async replica in another region: write latency " << local_write_ms << " ms, data lost on failover ~"
-              << static_cast<int>(writes_per_s * async_lag_s) << " writes (RPO ~" << async_lag_s << " s)\n";
-    std::cout << "common choice: sync within the region (across AZs), async to the DR region\n";
-}
-```
-
-**Output:**
-```text
-sync replica in another AZ:     write latency 3.5 ms, data lost on failover 0 writes
-sync replica in another region: write latency 72.0 ms, data lost on failover 0 writes
-async replica in another region: write latency 2.0 ms, data lost on failover ~1000 writes (RPO ~0.5 s)
-common choice: sync within the region (across AZs), async to the DR region
-```
-
 ### Interview answer
 "I treat reliability as a trade-off against consistency, latency, cost and complexity, sized by the SLO and the business impact of failure — each extra nine costs about ten times more. Examples: synchronous replication avoids data loss but adds latency and couples availability, so a common choice is synchronous across zones and asynchronous to a DR region; async messaging removes hard dependencies but makes the system eventually consistent; cells limit blast radius but add routing. I record these decisions in ADRs with the conditions that would change them."
 
@@ -405,66 +248,6 @@ Like a detective: collect the facts in order, suggest suspects, check each suspe
 5. **Confirm:** reproduce in staging, or show that reverting the change fixed it (and re-applying would break it).
 6. **Dig deeper:** the trigger (config) is not the end — **why** was a bad config possible to ship? (5 Whys → missing validation, no staged rollout.) Avoid stopping at "human error".
 - Beware **confirmation bias** and **correlation ≠ causation** (two things happening at the same time).
-
-#### Modern C++ example — merging sources into a timeline and testing hypotheses against every observation
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <functional>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Event { int t; std::string source, what; };
-struct Observation { std::string fact; };
-struct Hypothesis { std::string name; std::function<bool(const std::string&)> explains; };
-
-int main() {
-    std::vector<Event> timeline{
-        {1402, "metrics", "EU checkout errors rise to 18%"},
-        {1400, "deploy-log", "config v83 pushed globally (pool_size=10)"},
-        {1345, "deploy-log", "frontend 7.1 deployed"},
-        {1409, "pager", "burn-rate alert pages on-call"},
-        {1438, "deploy-log", "config rolled back to v82"},
-        {1449, "metrics", "EU error rate back to normal"},
-        {1405, "metrics", "US error rate unchanged"},
-    };
-    std::sort(timeline.begin(), timeline.end(), [](auto& a, auto& b) { return a.t < b.t; });
-    std::cout << "timeline (UTC):\n";
-    for (auto& e : timeline) std::cout << "  " << e.t / 100 << ':' << (e.t % 100 < 10 ? "0" : "") << e.t % 100 << "  [" << e.source << "] " << e.what << '\n';
-
-    std::vector<Observation> obs{{"started 14:02"}, {"EU only"}, {"ended after config rollback"}, {"no traffic spike"}};
-    std::vector<Hypothesis> hyps{
-        {"frontend 7.1 deploy", [](auto& f) { return f != "started 14:02" && f != "ended after config rollback"; }},   // too early, not rolled back
-        {"traffic spike", [](auto& f) { return f != "no traffic spike"; }},
-        {"config v83 pool_size too small for EU load", [](auto&) { return true; }},
-    };
-    for (auto& h : hyps) {
-        std::vector<std::string> contradicted;
-        for (auto& o : obs) if (!h.explains(o.fact)) contradicted.push_back(o.fact);
-        std::cout << (contradicted.empty() ? "KEEP    " : "DISCARD ") << h.name;
-        if (!contradicted.empty()) { std::cout << " (contradicts:"; for (auto& c : contradicted) std::cout << " '" << c << "'"; std::cout << ')'; }
-        std::cout << '\n';
-    }
-    std::cout << "5 whys: bad pool size -> no load-based validation -> config skips canary -> config not treated as code\n";
-}
-```
-
-**Output:**
-```text
-timeline (UTC):
-  13:45  [deploy-log] frontend 7.1 deployed
-  14:00  [deploy-log] config v83 pushed globally (pool_size=10)
-  14:02  [metrics] EU checkout errors rise to 18%
-  14:05  [metrics] US error rate unchanged
-  14:09  [pager] burn-rate alert pages on-call
-  14:38  [deploy-log] config rolled back to v82
-  14:49  [metrics] EU error rate back to normal
-DISCARD frontend 7.1 deploy (contradicts: 'started 14:02' 'ended after config rollback')
-DISCARD traffic spike (contradicts: 'no traffic spike')
-KEEP    config v83 pool_size too small for EU load
-5 whys: bad pool size -> no load-based validation -> config skips canary -> config not treated as code
-```
 
 ### Interview answer
 "I start with a precise UTC timeline merged from metrics, deploy and audit logs, alerts and chat, and scope the symptom — who, where, exactly when. Then I list several hypotheses, write down what each predicts, and keep only those consistent with all the evidence, confirming the winner by reproduction or by showing the rollback fixed it. I go past the trigger with 5 Whys to the contributing factors — why the bad change could ship — and stay alert to confirmation bias and coincidental timing."

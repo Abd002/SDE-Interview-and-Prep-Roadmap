@@ -419,38 +419,6 @@ Best practices:
 - Keep `main` always releasable; CI runs tests on every PR.
 - Rebase/merge regularly to avoid painful conflicts; tag releases.
 
-### Modern C++ example — why commits are snapshots: a toy history with checkout
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Commit { std::string message; std::string file_content; };
-
-int main() {
-    std::vector<Commit> history;
-    history.push_back({"Add greeting", "print('hello')"});
-    history.push_back({"Make greeting friendlier", "print('hello, friend!')"});
-    history.push_back({"Refactor: oops, broke it", "prnt('hello, friend!')"});
-
-    std::cout << "git log:\n";
-    for (std::size_t i = history.size(); i-- > 0;) std::cout << "  " << i << "  " << history[i].message << '\n';
-    std::cout << "current file: " << history.back().file_content << "   <- bug!\n";
-    std::cout << "git checkout 1 -> " << history[1].file_content << "   <- last good version, instantly\n";
-}
-```
-
-**Output:**
-```text
-git log:
-  2  Refactor: oops, broke it
-  1  Make greeting friendlier
-  0  Add greeting
-current file: prnt('hello, friend!')   <- bug!
-git checkout 1 -> print('hello, friend!')   <- last good version, instantly
-```
-
 ### Interview answer
 "Version control like Git tracks the full history of the code, enables parallel work on branches merged through reviewed pull requests, and allows reverting to any point. I make small, well-described commits, use short-lived feature branches, keep main releasable with CI, and keep secrets and build outputs out of the repository."
 

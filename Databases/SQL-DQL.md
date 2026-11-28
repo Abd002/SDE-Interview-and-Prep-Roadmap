@@ -1,6 +1,6 @@
 # SQL Data Query Language (DQL) — Subqueries, Aggregates, GROUP BY/HAVING and Window Functions
 
-> **What you'll learn:** the four query tools that take you from "list some rows" to real reporting: **subqueries**, **aggregate functions** (SUM, AVG, COUNT…), **GROUP BY and HAVING**, and **window functions** (RANK, ROW_NUMBER, running totals). Every query is shown with its result and re-implemented in C++ so you can see exactly what the database computes.
+> **What you'll learn:** the four query tools that take you from "list some rows" to real reporting: **subqueries**, **aggregate functions** (SUM, AVG, COUNT…), **GROUP BY and HAVING**, and **window functions** (RANK, ROW_NUMBER, running totals). Every query is shown with its result; GROUP BY and the window functions are also implemented in C++ so you can see exactly what the database computes.
 >
 > **Prerequisites:** [SELECT basics](./SQL-DML.md#1-select-statement).
 
@@ -73,50 +73,6 @@ Tips:
 - `NOT IN` with a subquery that can return `NULL` returns **no rows** (because `x <> NULL` is unknown). Prefer `NOT EXISTS`.
 - Correlated subqueries can be slow (conceptually one inner query per row); modern optimizers often rewrite them as joins. **CTEs** (`WITH avg_by_dept AS (...) SELECT ...`) make complex subqueries readable.
 
-### Modern C++ example — scalar vs. correlated subquery
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <numeric>
-#include <string>
-#include <vector>
-
-struct Employee { int id; std::string name, dept; int salary; };
-
-const std::vector<Employee> employees{
-    {1, "Ana", "Eng", 120}, {2, "Ben", "Eng", 100}, {3, "Cara", "Eng", 100}, {4, "Gia", "Eng", 90},
-    {5, "Dan", "Sales", 70}, {6, "Eve", "Sales", 90}, {7, "Finn", "HR", 60}};
-
-// (SELECT AVG(salary) FROM employees x WHERE <filter>)
-template <class Filter>
-double avg_salary(Filter filter) {
-    int sum = 0, count = 0;
-    for (const auto& x : employees) if (filter(x)) { sum += x.salary; ++count; }
-    return count ? double(sum) / count : 0.0;
-}
-
-int main() {
-    // Scalar subquery: computed ONCE, then used for every row.
-    const double company_avg = avg_salary([](const Employee&) { return true; });
-    std::cout << "above company average (" << company_avg << "):";
-    for (const auto& e : employees) if (e.salary > company_avg) std::cout << ' ' << e.name;
-    std::cout << '\n';
-
-    // Correlated subquery: re-evaluated for EACH outer row, using that row's dept.
-    std::cout << "above own department average:";
-    for (const auto& e : employees)
-        if (e.salary > avg_salary([&](const Employee& x) { return x.dept == e.dept; }))
-            std::cout << ' ' << e.name;
-    std::cout << '\n';
-}
-```
-
-**Output:**
-```text
-above company average (90): Ana Ben Cara
-above own department average: Ana Eve
-```
-
 ### Interview answer
 "A subquery is a nested SELECT used as a scalar, a list for IN, a derived table in FROM, or an EXISTS test. Correlated subqueries reference the outer row and are logically evaluated per row, so optimizers often rewrite them as joins. I avoid NOT IN over nullable columns in favor of NOT EXISTS, and use CTEs for readability."
 
@@ -145,45 +101,6 @@ FROM employees;
 - Watch integer division: in some databases `AVG` of integers returns an integer (SQL Server), in others a decimal.
 
 Other aggregates: `STRING_AGG` / `GROUP_CONCAT` (join strings), `ARRAY_AGG`, `STDDEV`, `PERCENTILE_CONT` (median).
-
-### Modern C++ example — aggregates with NULLs (`std::optional`)
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <format>
-#include <iostream>
-#include <limits>
-#include <optional>
-#include <ranges>
-#include <vector>
-
-int main() {
-    // A column where one value is NULL (e.g. a bonus not decided yet)
-    const std::vector<std::optional<int>> bonus{10, std::nullopt, 20, 30};
-
-    std::size_t count_star = bonus.size();                                   // COUNT(*)
-    auto non_null = bonus | std::views::filter([](auto& v) { return v.has_value(); })
-                          | std::views::transform([](auto& v) { return *v; });
-    int count_col = 0, sum = 0;
-    int mn = std::numeric_limits<int>::max(), mx = std::numeric_limits<int>::min();
-    for (int v : non_null) { ++count_col; sum += v; mn = std::min(mn, v); mx = std::max(mx, v); }
-
-    std::cout << std::format("COUNT(*)     = {}\n", count_star);
-    std::cout << std::format("COUNT(bonus) = {}   (NULL not counted)\n", count_col);
-    std::cout << std::format("SUM(bonus)   = {}\n", sum);
-    std::cout << std::format("AVG(bonus)   = {}   (60 / 3, not 60 / 4)\n", double(sum) / count_col);
-    std::cout << std::format("MIN / MAX    = {} / {}\n", mn, mx);
-}
-```
-
-**Output:**
-```text
-COUNT(*)     = 4
-COUNT(bonus) = 3   (NULL not counted)
-SUM(bonus)   = 60
-AVG(bonus)   = 20   (60 / 3, not 60 / 4)
-MIN / MAX    = 10 / 30
-```
 
 ### Interview answer
 "Aggregates collapse a set of rows into one value: COUNT, SUM, AVG, MIN, MAX and others. They ignore NULLs except COUNT(*), SUM over no rows returns NULL, and COUNT(column) differs from COUNT(*) when the column has NULLs."

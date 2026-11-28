@@ -1,6 +1,6 @@
 # Microservices Architecture — Explained for Beginners
 
-> **What you'll learn:** what microservices are, and the roadmap topics: **choreography vs. orchestration**, the **API gateway**, the **circuit breaker** pattern, the **saga** pattern, **caching**, and **load balancing** (DNS load balancing, CDNs, anycast routing, adaptive algorithms) — each with a C++ model.
+> **What you'll learn:** what microservices are, and the roadmap topics: **choreography vs. orchestration**, the **API gateway**, the **circuit breaker** pattern, the **saga** pattern, **caching**, and **load balancing** (DNS load balancing, CDNs, anycast routing, adaptive algorithms) — with runnable C++ for the circuit breaker and adaptive load balancing.
 >
 > **Prerequisites:** [Client-server architecture](../System%20Architecture/Client-Server-Architecture.md), [HTTP](../Networking/HTTP.md). A longer reference with 76 interview questions: [Microservices.md](./Microservices.md).
 
@@ -57,77 +57,6 @@ Rule of thumb: start with a well-structured (modular) monolith; split into servi
 | Risk | Orchestrator becomes a bottleneck / "god service" | Hard to see the big picture; cyclic event chains |
 | Good for | Complex workflows with many steps, timeouts, compensation | Simple flows, highly decoupled domains, fan-out |
 
-### Modern C++ example — the same order flow both ways
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <queue>
-#include <string>
-#include <vector>
-
-// "Services"
-void charge_payment(int order)    { std::cout << "    payment: charged order " << order << '\n'; }
-void reserve_inventory(int order) { std::cout << "    inventory: reserved items for " << order << '\n'; }
-void ship(int order)              { std::cout << "    shipping: shipped order " << order << '\n'; }
-
-// ---------- Orchestration: one coordinator calls each step explicitly ----------
-void order_orchestrator(int order) {
-    charge_payment(order);
-    reserve_inventory(order);
-    ship(order);
-}
-
-// ---------- Choreography: services subscribe to events on a bus ----------
-class EventBus {
-public:
-    void subscribe(const std::string& event, std::function<void(int)> handler) { subs_[event].push_back(std::move(handler)); }
-    void publish(const std::string& event, int order) { queue_.push({event, order}); }
-    void run() {
-        while (!queue_.empty()) {
-            auto [event, order] = queue_.front(); queue_.pop();
-            std::cout << "  event: " << event << '\n';
-            for (auto& h : subs_[event]) h(order);
-        }
-    }
-private:
-    std::map<std::string, std::vector<std::function<void(int)>>> subs_;
-    std::queue<std::pair<std::string, int>> queue_;
-};
-
-int main() {
-    std::cout << "ORCHESTRATION:\n";
-    order_orchestrator(1);
-
-    std::cout << "CHOREOGRAPHY:\n";
-    EventBus bus;
-    // Each service only knows which event it reacts to and which event it emits.
-    bus.subscribe("OrderPlaced",       [&](int o) { charge_payment(o);    bus.publish("PaymentCompleted", o); });
-    bus.subscribe("PaymentCompleted",  [&](int o) { reserve_inventory(o); bus.publish("InventoryReserved", o); });
-    bus.subscribe("InventoryReserved", [&](int o) { ship(o); });
-    bus.subscribe("OrderPlaced",       [](int o) { std::cout << "    analytics: counted order " << o << '\n'; }); // added freely
-    bus.publish("OrderPlaced", 2);
-    bus.run();
-}
-```
-
-**Output:**
-```text
-ORCHESTRATION:
-    payment: charged order 1
-    inventory: reserved items for 1
-    shipping: shipped order 1
-CHOREOGRAPHY:
-  event: OrderPlaced
-    payment: charged order 2
-    analytics: counted order 2
-  event: PaymentCompleted
-    inventory: reserved items for 2
-  event: InventoryReserved
-    shipping: shipped order 2
-```
-
 ### Interview answer
 "Orchestration uses a central coordinator that invokes services and holds the workflow state, making complex flows explicit and observable but centralizing logic. Choreography has services react to each other's events with no coordinator, maximizing decoupling and extensibility but making the overall flow implicit and harder to trace. Many systems mix them: orchestrate complex business workflows, choreograph simple reactions."
 
@@ -151,56 +80,6 @@ Responsibilities:
 
 Examples: Kong, NGINX, Envoy, AWS API Gateway, Azure API Management, Spring Cloud Gateway, Apigee.
 Pitfalls: a **single point of failure** (run several instances behind a load balancer), a potential bottleneck, and a place where business logic shouldn't accumulate.
-
-### Modern C++ example — routing, auth, rate limiting and aggregation
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <map>
-#include <string>
-
-using Service = std::function<std::string(const std::string& path)>;
-
-class ApiGateway {
-public:
-    void route(const std::string& prefix, Service s) { routes_[prefix] = std::move(s); }
-
-    std::string handle(const std::string& path, const std::string& token) {
-        if (token != "valid-jwt") return "401 Unauthorized";                         // auth at the edge
-        if (++requests_[token] > 3) return "429 Too Many Requests";                   // rate limit
-        if (path == "/dashboard")                                                     // aggregation (BFF)
-            return "200 {" + routes_.at("/users")("/users/me") + ", " + routes_.at("/orders")("/orders?mine") + "}";
-        for (const auto& [prefix, service] : routes_)                                 // routing
-            if (path.starts_with(prefix)) return "200 " + service(path);
-        return "404 Not Found";
-    }
-private:
-    std::map<std::string, Service> routes_;
-    std::map<std::string, int> requests_;
-};
-
-int main() {
-    ApiGateway gw;
-    gw.route("/users",  [](const std::string&) { return std::string("\"user\":\"ana\""); });
-    gw.route("/orders", [](const std::string&) { return std::string("\"orders\":[1,2]"); });
-
-    std::cout << gw.handle("/users/me", "valid-jwt") << '\n';
-    std::cout << gw.handle("/dashboard", "valid-jwt") << '\n';
-    std::cout << gw.handle("/orders", "stolen-token") << '\n';
-    std::cout << gw.handle("/payments", "valid-jwt") << '\n';
-    std::cout << gw.handle("/users/me", "valid-jwt") << '\n';     // 4th request from this token
-}
-```
-
-**Output:**
-```text
-200 "user":"ana"
-200 {"user":"ana", "orders":[1,2]}
-401 Unauthorized
-404 Not Found
-429 Too Many Requests
-```
 
 ### Interview answer
 "An API gateway is the single entry point for clients: it routes requests to services and centralizes cross-cutting concerns — authentication, rate limiting, TLS termination, caching, logging and tracing — and can aggregate multiple service calls into one response, the backend-for-frontend pattern. It must be highly available and should stay free of business logic."
@@ -324,60 +203,6 @@ Booking a trip: book the flight, then the hotel, then the rental car. If the car
 - Consequences: no isolation — other transactions can see intermediate states ("hotel booked, flight pending"), so design for it (pending states, semantic locks).
 - Contrast with **two-phase commit (2PC)**: 2PC gives atomicity across databases but blocks and couples services; sagas trade isolation for availability.
 
-### Modern C++ example — orchestrated saga with compensations
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <functional>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Step {
-    std::string name;
-    std::function<bool()> action;           // local transaction in one service
-    std::function<void()> compensate;       // semantic undo
-};
-
-bool run_saga(const std::vector<Step>& steps) {
-    std::vector<const Step*> done;
-    for (const auto& s : steps) {
-        if (s.action()) { std::cout << "  ok:   " << s.name << '\n'; done.push_back(&s); continue; }
-        std::cout << "  FAIL: " << s.name << " -> compensating\n";
-        for (auto it = done.rbegin(); it != done.rend(); ++it) (*it)->compensate();   // reverse order
-        return false;
-    }
-    return true;
-}
-
-int main() {
-    for (bool car_available : {true, false}) {
-        std::cout << (car_available ? "Trip where everything works:\n" : "Trip where the car rental fails:\n");
-        bool ok = run_saga({
-            {"book flight", [] { return true; }, [] { std::cout << "  undo: cancel flight (refund)\n"; }},
-            {"book hotel",  [] { return true; }, [] { std::cout << "  undo: cancel hotel\n"; }},
-            {"rent car",    [=] { return car_available; }, [] { std::cout << "  undo: cancel car\n"; }},
-        });
-        std::cout << "  => trip " << (ok ? "CONFIRMED" : "CANCELLED, all steps compensated") << "\n";
-    }
-}
-```
-
-**Output:**
-```text
-Trip where everything works:
-  ok:   book flight
-  ok:   book hotel
-  ok:   rent car
-  => trip CONFIRMED
-Trip where the car rental fails:
-  ok:   book flight
-  ok:   book hotel
-  FAIL: rent car -> compensating
-  undo: cancel hotel
-  undo: cancel flight (refund)
-  => trip CANCELLED, all steps compensated
-```
-
 ### Interview answer
 "A saga implements a cross-service business transaction as a sequence of local transactions, each with a compensating transaction executed in reverse order when a later step fails, giving eventual consistency without distributed locks or 2PC. It can be orchestrated by a coordinator or choreographed via events; compensations must be idempotent, and since there's no isolation, intermediate states must be handled explicitly."
 
@@ -418,48 +243,6 @@ Calling a company's single phone number and being routed to different call cente
 - **Weighted / failover records:** send 10% to a canary region; stop returning IPs of an unhealthy region.
 - Limits: clients and resolvers **cache** answers for the TTL, so changes and failover are slow and uneven; DNS doesn't know real server load; clients may keep using a dead IP. That's why DNS is used for **coarse, global** balancing, with real load balancers inside each region.
 
-#### Modern C++ example — round-robin and geo-aware DNS answers
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-class DnsLoadBalancer {
-public:
-    std::map<std::string, std::vector<std::string>> regions{
-        {"eu", {"185.1.1.1", "185.1.1.2"}}, {"us", {"34.2.2.1", "34.2.2.2", "34.2.2.3"}}};
-    std::map<std::string, bool> region_healthy{{"eu", true}, {"us", true}};
-
-    // Answer with the client's nearest healthy region, rotating the IPs (round robin).
-    std::string resolve(const std::string& client_region) {
-        std::string region = region_healthy[client_region] ? client_region : fallback(client_region);
-        auto& ips = regions[region];
-        auto& i = cursor_[region];
-        return ips[i++ % ips.size()] + " (" + region + ")";
-    }
-private:
-    std::string fallback(const std::string& r) { return r == "eu" ? "us" : "eu"; }
-    std::map<std::string, std::size_t> cursor_;
-};
-
-int main() {
-    DnsLoadBalancer dns;
-    for (int i = 0; i < 3; ++i) std::cout << "EU client -> " << dns.resolve("eu") << '\n';
-    dns.region_healthy["eu"] = false;                         // EU data center down
-    std::cout << "EU down, EU client -> " << dns.resolve("eu") << '\n';
-}
-```
-
-**Output:**
-```text
-EU client -> 185.1.1.1 (eu)
-EU client -> 185.1.1.2 (eu)
-EU client -> 185.1.1.1 (eu)
-EU down, EU client -> 34.2.2.1 (us)
-```
-
 #### Interview answer
 "DNS load balancing returns different addresses for one name — round robin, weighted, geo or latency-based — to spread users across servers or regions. It's simple and global but coarse: TTL caching delays changes and failover, and DNS is unaware of real load, so it's combined with regional L4/L7 load balancers."
 
@@ -479,53 +262,6 @@ Instead of every customer in the world ordering books from one warehouse in Seat
 - Content: images, video (streaming segments), JS/CSS, downloads; increasingly dynamic content and **edge compute** (Cloudflare Workers, Lambda@Edge).
 - Providers: Cloudflare, Akamai, Fastly, Amazon CloudFront, Google Cloud CDN.
 
-#### Modern C++ example — edge caches in front of an origin
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Origin {
-    int requests = 0;
-    std::string fetch(const std::string& path) { ++requests; return "<content of " + path + ">"; }
-};
-
-class EdgeServer {
-public:
-    EdgeServer(std::string city, Origin& origin) : city_(std::move(city)), origin_(origin) {}
-    std::string get(const std::string& path) {
-        if (auto it = cache_.find(path); it != cache_.end()) { ++hits_; return it->second; }  // served locally
-        ++misses_;
-        return cache_[path] = origin_.fetch(path);                                             // go to origin once
-    }
-    void report() const { std::cout << "  edge " << city_ << ": " << hits_ << " hits, " << misses_ << " misses\n"; }
-private:
-    std::string city_;
-    Origin& origin_;
-    std::map<std::string, std::string> cache_;
-    int hits_ = 0, misses_ = 0;
-};
-
-int main() {
-    Origin origin;
-    std::vector<EdgeServer> edges{{"Paris", origin}, {"Tokyo", origin}, {"Sao Paulo", origin}};
-    for (int user = 0; user < 3000; ++user)                      // 3000 users, 1000 per city
-        edges[user % 3].get(user % 2 ? "/logo.png" : "/app.js");
-    for (const auto& e : edges) e.report();
-    std::cout << "origin handled " << origin.requests << " of 3000 requests\n";
-}
-```
-
-**Output:**
-```text
-  edge Paris: 998 hits, 2 misses
-  edge Tokyo: 998 hits, 2 misses
-  edge Sao Paulo: 998 hits, 2 misses
-origin handled 6 of 3000 requests
-```
-
 #### Interview answer
 "A CDN caches content on geographically distributed edge servers; users are routed to a nearby PoP by DNS or anycast, hits are served locally and misses are fetched from the origin. It cuts latency and origin load, absorbs spikes and DDoS, and relies on Cache-Control headers, versioned URLs and purges for freshness; modern CDNs also run edge compute."
 
@@ -542,44 +278,6 @@ An emergency number like **911/112**: everyone dials the same number, but your c
 - Great for **short, stateless** exchanges: DNS (all 13 root server identities are anycast), CDNs (Cloudflare), DDoS mitigation (attack traffic is split across all sites), public resolvers like 1.1.1.1 and 8.8.8.8.
 - Caveat: a routing change mid-connection can send a long TCP connection to a different site; CDNs handle this with careful engineering.
 - "Nearest" means fewest network hops by routing policy, not always lowest latency.
-
-#### Modern C++ example — routing to the nearest site announcing the same IP
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <limits>
-#include <map>
-#include <string>
-
-struct Site { std::string name; bool announcing = true; };
-
-// BGP-like choice: among sites announcing 1.1.1.1, pick the one with the shortest path from the user.
-std::string route(const std::map<std::string, int>& hops_from_user, const std::map<std::string, Site>& sites) {
-    std::string best = "unreachable";
-    int best_hops = std::numeric_limits<int>::max();
-    for (const auto& [id, site] : sites)
-        if (site.announcing && hops_from_user.at(id) < best_hops) { best_hops = hops_from_user.at(id); best = site.name; }
-    return best;
-}
-
-int main() {
-    std::map<std::string, Site> sites{{"fra", {"Frankfurt"}}, {"sin", {"Singapore"}}, {"iad", {"Virginia"}}};
-    std::map<std::string, int> berlin_user{{"fra", 2}, {"sin", 9}, {"iad", 6}};
-    std::map<std::string, int> tokyo_user{{"fra", 10}, {"sin", 3}, {"iad", 8}};
-
-    std::cout << "Berlin user -> 1.1.1.1 served by " << route(berlin_user, sites) << '\n';
-    std::cout << "Tokyo user  -> 1.1.1.1 served by " << route(tokyo_user, sites) << '\n';
-    sites["fra"].announcing = false;                           // Frankfurt fails: route withdrawn
-    std::cout << "Frankfurt down, Berlin user -> " << route(berlin_user, sites) << '\n';
-}
-```
-
-**Output:**
-```text
-Berlin user -> 1.1.1.1 served by Frankfurt
-Tokyo user  -> 1.1.1.1 served by Singapore
-Frankfurt down, Berlin user -> Virginia
-```
 
 #### Interview answer
 "Anycast advertises the same IP prefix from multiple locations via BGP, so the network delivers each client to the topologically nearest site, with automatic failover when a site withdraws its route. It's ideal for stateless, short-lived traffic like DNS and CDN edges and spreads DDoS load, but route changes can disrupt long-lived connections."

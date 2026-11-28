@@ -1,6 +1,6 @@
 # Retrieval-Augmented Generation (RAG) — Grounding LLM Answers in Your Own Data
 
-> **What you'll learn:** how a RAG system works end to end: **ingestion** (parsing, cleaning, dedup, metadata), **chunking**, **embeddings** and similarity, **dense vs. sparse (BM25) vs. hybrid** retrieval, **vector indexes** (HNSW, IVF) and **vector databases**, **query rewriting**, **reranking** and top-k, **grounded answers with citations and abstention**, **multi-tenant ACL filtering and freshness**, how to **evaluate retrieval** (recall@k, precision@k, MRR, nDCG) and **answers** (faithfulness, correctness, relevance), and **when to use RAG vs. long context vs. fine-tuning**. Each part has a runnable C++ example.
+> **What you'll learn:** how a RAG system works end to end: **ingestion** (parsing, cleaning, dedup, metadata), **chunking**, **embeddings** and similarity, **dense vs. sparse (BM25) vs. hybrid** retrieval, **vector indexes** (HNSW, IVF) and **vector databases**, **query rewriting**, **reranking** and top-k, **grounded answers with citations and abstention**, **multi-tenant ACL filtering and freshness**, how to **evaluate retrieval** (recall@k, precision@k, MRR, nDCG) and **answers** (faithfulness, correctness, relevance), and **when to use RAG vs. long context vs. fine-tuning**. Parts built on a real algorithm include a runnable C++ implementation.
 >
 > **Prerequisites:** [LLM and Generative AI Fundamentals](./LLM-and-Generative-AI-Fundamentals.md) and [Hash Tables](../Data%20Structures/Hash-Tables.md) / [Trees](../Data%20Structures/Trees.md) basics. Related: [LLM and Agent Evaluation](../Testing%2C%20Reliability%20%26%20Observability/LLM-and-Agent-Evaluation.md).
 
@@ -51,44 +51,6 @@ A student's essay can fail in three ways: they made things up that aren't in the
 - **Diagnose by combining:** low retrieval recall + low correctness → fix retrieval; good recall + low faithfulness → fix the prompt/model.
 - Tools: RAGAS, TruLens, DeepEval, LangSmith evaluators; calibrate LLM judges against human labels ([LLM-as-judge](./Evaluation-and-Testing.md#7-llm-as-judge-rubrics-calibration-bias-and-limitations)).
 
-#### Modern C++ example — claim-level faithfulness, correctness vs. a reference, and a stage diagnosis
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-#include <string>
-#include <vector>
-
-bool supported(const std::string& claim, const std::vector<std::string>& context) {   // stand-in for an NLI model / judge
-    for (auto& c : context) if (c.find(claim) != std::string::npos) return true;
-    return false;
-}
-
-int main() {
-    std::vector<std::string> context{"Refunds are issued within 14 days of receiving the return.", "Shipping is free for orders over 500 EGP."};
-    std::vector<std::string> claims{"within 14 days", "free for orders over 500 EGP", "refunds go to a store credit by default"};
-    int ok = 0;
-    for (auto& c : claims) { bool s = supported(c, context); ok += s; std::cout << (s ? "supported   " : "UNSUPPORTED ") << c << '\n'; }
-    double faithfulness = double(ok) / claims.size();
-    bool correct = true;                                       // reference answer: "14 days" -> key fact matches
-    double retrieval_recall = 1.0;                             // the gold passage was retrieved
-    std::cout << std::fixed << std::setprecision(2) << "faithfulness " << faithfulness << ", correct key fact " << std::boolalpha << correct
-              << ", retrieval recall " << retrieval_recall << '\n';
-    if (retrieval_recall < 0.8) std::cout << "diagnosis: fix retrieval (chunking, hybrid search, reranking)\n";
-    else if (faithfulness < 0.9) std::cout << "diagnosis: retrieval fine, generation adds unsupported claims -> tighten prompt, require citations\n";
-    else std::cout << "diagnosis: healthy\n";
-}
-```
-
-**Output:**
-```text
-supported   within 14 days
-supported   free for orders over 500 EGP
-UNSUPPORTED refunds go to a store credit by default
-faithfulness 0.67, correct key fact true, retrieval recall 1.00
-diagnosis: retrieval fine, generation adds unsupported claims -> tighten prompt, require citations
-```
-
 ### Interview answer
 "I evaluate RAG answers separately from retrieval. Faithfulness checks that every claim in the answer is supported by the retrieved context — I split the answer into claims and verify each with an NLI model or a calibrated LLM judge. Factual correctness compares against reference answers, and answer relevance checks it actually addresses the question; I also check citation accuracy and include unanswerable questions to test abstention. Combining these with retrieval recall tells me where to fix: poor recall means retrieval, good recall but low faithfulness means the prompt or model."
 
@@ -112,51 +74,6 @@ Cutting a cookbook into index cards: one card per recipe is better than cutting 
 
 - **Too small:** missing context, many chunks; **too large:** diluted embeddings, wasted prompt tokens. Tune chunk size on your **retrieval eval** ([section 11](#11-retrieval-evaluation-recallk-precisionk-mrr-and-ndcg)).
 - Store metadata per chunk: document ID, section path, position, page, timestamps, ACLs.
-
-#### Modern C++ example — fixed-size chunks with overlap vs. heading-aware chunks with section metadata
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <vector>
-
-std::vector<std::string> words_of(const std::string& s) { std::istringstream in(s); std::vector<std::string> w; std::string t; while (in >> t) w.push_back(t); return w; }
-
-int main() {
-    std::string doc = "# Returns\nYou can return items within 30 days. Items must be unused.\n"
-                      "# Refunds\nRefunds are paid to the original card within 14 days after we receive the item.\n";
-
-    auto w = words_of(doc);
-    const std::size_t size = 10, overlap = 3;
-    std::cout << "fixed-size (" << size << " words, overlap " << overlap << "):\n";
-    for (std::size_t start = 0; start < w.size(); start += size - overlap) {
-        std::string chunk;
-        for (std::size_t i = start; i < std::min(w.size(), start + size); ++i) chunk += w[i] + " ";
-        std::cout << "  [" << chunk << "]\n";
-        if (start + size >= w.size()) break;
-    }
-
-    std::cout << "heading-aware:\n";
-    std::istringstream lines(doc); std::string line, section;
-    while (std::getline(lines, line)) {
-        if (line.rfind("# ", 0) == 0) { section = line.substr(2); continue; }
-        std::cout << "  {section: \"" << section << "\"} \"" << section << ": " << line << "\"\n";   // header prepended for context
-    }
-}
-```
-
-**Output:**
-```text
-fixed-size (10 words, overlap 3):
-  [# Returns You can return items within 30 days. Items ]
-  [30 days. Items must be unused. # Refunds Refunds are ]
-  [Refunds Refunds are paid to the original card within 14 ]
-  [card within 14 days after we receive the item. ]
-heading-aware:
-  {section: "Returns"} "Returns: You can return items within 30 days. Items must be unused."
-  {section: "Refunds"} "Refunds: Refunds are paid to the original card within 14 days after we receive the item."
-```
 
 ### Interview answer
 "Chunking decides what can be retrieved. Fixed-size chunks with 10 to 20 percent overlap are simple but cut across sentences and topics; recursive or structural chunking splits on headings, paragraphs and sentences and is my usual default; semantic chunking splits at topic shifts; and hierarchical chunking indexes small chunks for precise matching but returns the parent section for context. I keep tables and code intact, prepend the document title and section path to each chunk, store rich metadata, and tune chunk size and overlap against a retrieval evaluation set rather than guessing."
@@ -313,47 +230,6 @@ An honest research assistant: every sentence has a footnote you can check, and w
 - **UX:** show sources as links with highlighted passages; distinguish "not found" from "error".
 - Measure abstention on unanswerable questions ([answer evaluation](#1-answer-evaluation-faithfulness-factual-correctness-and-relevance)).
 
-#### Modern C++ example — gate on retrieval score, build a cited answer, and verify each citation's quote exists in its source
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-
-struct Hit { std::string id, text; double score; };
-struct Citation { std::string sentence, source_id, quote; };
-
-std::string answer(const std::string& q, const std::vector<Hit>& hits, const std::vector<Citation>& model_output) {
-    if (hits.empty() || hits[0].score < 0.5) return "Q: " + q + "\nA: I couldn't find this in the knowledge base. (top score too low -> abstained, model not called)\n";
-    std::map<std::string, std::string> by_id; for (auto& h : hits) by_id[h.id] = h.text;
-    std::string out = "Q: " + q + "\nA:";
-    for (auto& c : model_output) {
-        auto it = by_id.find(c.source_id);
-        bool ok = it != by_id.end() && it->second.find(c.quote) != std::string::npos;
-        out += ok ? " " + c.sentence + " [" + c.source_id + "]" : " (removed unsupported sentence citing " + c.source_id + ")";
-    }
-    return out + "\n";
-}
-
-int main() {
-    std::vector<Hit> hits{{"S1", "Refunds are paid to the original card within 14 days.", 0.86}, {"S2", "Returns are accepted for 30 days.", 0.71}};
-    std::vector<Citation> out{{"Refunds go back to your original card within 14 days.", "S1", "within 14 days"},
-                              {"You have 30 days to return an item.", "S2", "30 days"},
-                              {"Express refunds take 24 hours.", "S2", "24 hours"}};
-    std::cout << answer("How do refunds work?", hits, out);
-    std::cout << answer("What is the CEO's salary?", {{"S9", "Our team is based in Cairo.", 0.21}}, {});
-}
-```
-
-**Output:**
-```text
-Q: How do refunds work?
-A: Refunds go back to your original card within 14 days. [S1] You have 30 days to return an item. [S2] (removed unsupported sentence citing S2)
-Q: What is the CEO's salary?
-A: I couldn't find this in the knowledge base. (top score too low -> abstained, model not called)
-```
-
 ### Interview answer
 "I give the model numbered sources and instruct it to answer only from them, cite a source ID — ideally with a supporting quote — for each claim, and say it doesn't know when the sources are insufficient. Before generating, I gate on retrieval confidence: if the best reranked score is too low I abstain or ask a clarifying question. After generating, I verify citations in code — the source exists and the quote or claim is supported — and remove or flag unsupported sentences. The UI shows the cited passages, and the eval set includes unanswerable questions so abstention is measured, not hoped for."
 
@@ -380,54 +256,6 @@ Before books go on the library shelves you remove duplicate copies, tear out the
 - **Quality checks:** empty or garbled text rates, parse failures, chunk length distribution; dead-letter queue for failures ([DLQs](./Production-Reliability-and-Observability.md#2-circuit-breakers-dead-letter-queues-and-recovery-workflows)).
 - **Security:** scan for PII/secrets, carry ACLs end-to-end, treat documents as potentially containing injections.
 
-#### Modern C++ example — clean, deduplicate by normalized content hash, attach metadata, and skip unchanged documents
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <cctype>
-#include <functional>
-#include <iostream>
-#include <map>
-#include <regex>
-#include <set>
-#include <string>
-#include <vector>
-
-struct RawDoc { std::string id, source, html, modified; std::vector<std::string> acl; };
-
-std::string clean(const std::string& html) {
-    std::string t = std::regex_replace(html, std::regex(R"(<(nav|footer)[\s\S]*?</\1>)"), "");    // boilerplate
-    t = std::regex_replace(t, std::regex(R"(<[^>]+>)"), " ");
-    return std::regex_replace(std::regex_replace(t, std::regex(R"(\s+)"), " "), std::regex(R"(^ | $)"), "");
-}
-std::size_t content_hash(std::string s) { for (auto& c : s) c = std::tolower(static_cast<unsigned char>(c)); return std::hash<std::string>{}(s); }
-
-int main() {
-    std::map<std::string, std::string> last_indexed{{"kb-3", "2026-10-01"}};          // doc id -> modified time already indexed
-    std::vector<RawDoc> batch{
-        {"kb-1", "confluence", "<nav>Home | Docs</nav><h1>Refunds</h1><p>Refunds take 14 days.</p><footer>(c) NileShop</footer>", "2026-10-15", {"group:support"}},
-        {"kb-2", "gdrive", "<h1>REFUNDS</h1>  <p>Refunds take 14 days.</p>", "2026-10-16", {"group:support"}},
-        {"kb-3", "confluence", "<h1>Shipping</h1><p>2-5 days.</p>", "2026-10-01", {"group:all"}},
-        {"kb-4", "sharepoint", "<h1>Salaries</h1><p>Band table...</p>", "2026-10-16", {"group:hr"}},
-    };
-    std::set<std::size_t> seen;
-    for (auto& d : batch) {
-        if (last_indexed.count(d.id) && last_indexed[d.id] == d.modified) { std::cout << d.id << ": unchanged, skip\n"; continue; }
-        auto text = clean(d.html);
-        auto h = content_hash(text);
-        if (!seen.insert(h).second) { std::cout << d.id << ": near-duplicate of an earlier doc, skip\n"; continue; }
-        std::cout << d.id << ": index \"" << text << "\" {source:" << d.source << ", modified:" << d.modified << ", acl:" << d.acl[0] << "}\n";
-    }
-}
-```
-
-**Output:**
-```text
-kb-1: index "Refunds Refunds take 14 days." {source:confluence, modified:2026-10-15, acl:group:support}
-kb-2: near-duplicate of an earlier doc, skip
-kb-3: unchanged, skip
-kb-4: index "Salaries Band table..." {source:sharepoint, modified:2026-10-16, acl:group:hr}
-```
-
 ### Interview answer
 "Ingestion is a data pipeline: connectors pull from sources with IDs, URLs, permissions and modified times; layout-aware parsers extract text, headings and tables, with OCR for scans; cleaning removes boilerplate and normalizes text; exact and near-duplicate detection keeps duplicates from wasting top-k slots; and every chunk gets metadata — document, section, page, timestamps, language, tenant and ACLs — before embedding and upserting with stable IDs. It runs incrementally on changes, deletes chunks for removed documents, monitors parse quality with a dead-letter queue for failures, and scans for PII and secrets."
 
@@ -446,51 +274,6 @@ A shared office printer room: everyone can use the printer, but you can only pic
 - **Permission freshness:** sync ACL changes quickly (events from the source system), or check permissions live against the source for top results ("late binding").
 - **Content freshness:** incremental ingestion, `updated_at` metadata, recency boosting, expiry for time-bound docs (prices, policies), show "last updated" in answers.
 - **Caches** must be keyed by tenant and permission set too ([cache strategies](./Production-Reliability-and-Observability.md#1-cache-strategies-prompt-response-embedding-and-retrieval-caching)).
-
-#### Modern C++ example — pre-filter by tenant and ACL groups, then boost fresh documents
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <cmath>
-#include <iomanip>
-#include <iostream>
-#include <set>
-#include <string>
-#include <vector>
-
-struct Chunk { std::string id, tenant; std::set<std::string> groups; double similarity; int age_days; };
-struct Caller { std::string user, tenant; std::set<std::string> groups; };                 // from the auth token, not the model
-
-int main() {
-    std::vector<Chunk> index{{"acme/pricing-2026", "acme", {"sales"}, 0.82, 10}, {"acme/pricing-2024", "acme", {"sales"}, 0.85, 700},
-                             {"acme/salaries", "acme", {"hr"}, 0.90, 30}, {"globex/pricing", "globex", {"sales"}, 0.95, 5},
-                             {"acme/faq", "acme", {"all"}, 0.60, 90}};
-    Caller c{"omar", "acme", {"sales", "all"}};
-    std::vector<std::pair<double, std::string>> results;
-    for (auto& ch : index) {
-        if (ch.tenant != c.tenant) continue;                                                  // tenant filter in the query
-        bool allowed = std::any_of(ch.groups.begin(), ch.groups.end(), [&](auto& g) { return c.groups.count(g); });
-        if (!allowed) continue;                                                               // ACL pre-filter
-        double freshness = std::exp(-ch.age_days / 365.0);                                    // decay over ~a year
-        results.push_back({0.8 * ch.similarity + 0.2 * freshness, ch.id});
-    }
-    std::sort(results.rbegin(), results.rend());
-    std::cout << std::fixed << std::setprecision(3) << "results for " << c.user << "@" << c.tenant << ":\n";
-    for (auto& [s, id] : results) std::cout << "  " << id << " score=" << s << '\n';
-    std::cout << "never visible: globex/pricing (other tenant), acme/salaries (hr only)\n";
-}
-```
-
-**Output:**
-```text
-results for omar@acme:
-  acme/pricing-2026 score=0.851
-  acme/pricing-2024 score=0.709
-  acme/faq score=0.636
-never visible: globex/pricing (other tenant), acme/salaries (hr only)
-```
-
-The 2026 price list now outranks the slightly more similar but two-year-old one.
 
 ### Interview answer
 "Every retrieval runs with the caller's identity from authentication — never from model output — and applies tenant and ACL filters inside the vector query as pre-filters, so unauthorized chunks are never candidates. I choose between per-tenant indexes for strong isolation and easy deletion, or a shared index with a mandatory tenant filter enforced in the data-access layer. ACL and content changes sync via events, with live permission checks on top results for sensitive sources; freshness comes from incremental ingestion, updated-at metadata, recency boosting and expiry of time-bound documents. Caches are keyed by tenant and permissions too."
@@ -516,48 +299,6 @@ A good librarian first figures out what you actually mean ("the blue one we talk
 
 - Costs an extra (small, fast) model call — cache rewrites; evaluate whether it improves recall ([section 11](#11-retrieval-evaluation-recallk-precisionk-mrr-and-ndcg)).
 - Keep the **original query** too (in fusion and in the final prompt) so rewriting can't drift.
-
-#### Modern C++ example — rewrite with history, route by keywords, and decompose a comparison question
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <string>
-#include <vector>
-
-std::string rewrite(const std::string& q, const std::string& last_topic) {          // stand-in for a small rewrite model
-    std::string out = q;
-    if (auto p = out.find(" it"); p != std::string::npos) out.replace(p, 3, " the " + last_topic);
-    return out;
-}
-std::string route(const std::string& q) {
-    if (q.find("salary") != std::string::npos || q.find("leave") != std::string::npos) return "hr_policies_index";
-    if (q.find("how many") != std::string::npos || q.find("revenue") != std::string::npos) return "sql_analytics_tool";
-    return "product_docs_index";
-}
-std::vector<std::string> decompose(const std::string& q) {
-    auto p = q.find(" vs ");
-    if (p == std::string::npos) return {q};
-    std::string topic = "refund policy in ";
-    return {topic + q.substr(q.find("in ") + 3, p - q.find("in ") - 3), topic + q.substr(p + 4)};
-}
-
-int main() {
-    std::string q1 = rewrite("how much does it cost per month?", "Pro plan");
-    std::cout << "rewrite: " << q1 << " -> route: " << route(q1) << '\n';
-    std::cout << "route: \"how many orders were refunded last week?\" -> " << route("how many orders were refunded last week?") << '\n';
-    std::cout << "route: \"annual leave days for new staff\" -> " << route("annual leave days for new staff") << '\n';
-    for (auto& sub : decompose("refund policy in Egypt vs UAE")) std::cout << "sub-query: " << sub << " -> " << route(sub) << '\n';
-}
-```
-
-**Output:**
-```text
-rewrite: how much does the Pro plan cost per month? -> route: product_docs_index
-route: "how many orders were refunded last week?" -> sql_analytics_tool
-route: "annual leave days for new staff" -> hr_policies_index
-sub-query: refund policy in Egypt -> product_docs_index
-sub-query: refund policy in UAE -> product_docs_index
-```
 
 ### Interview answer
 "Raw user queries are often conversational or underspecified, so I add a query-understanding step: a small model rewrites follow-ups into standalone questions using chat history; expansion generates paraphrases or a hypothetical answer, HyDE-style, and fuses results; a router picks the right index, a SQL tool, or no retrieval; and complex or comparative questions are decomposed into sub-queries retrieved separately and then combined. I keep the original query in the mix to avoid drift, cache rewrites, and keep each technique only if it improves recall on the eval set."
@@ -585,37 +326,6 @@ sub-query: refund policy in UAE -> product_docs_index
 
 **Rules of thumb:** a single 50-page contract → long context; a 2M-document knowledge base with permissions → RAG; consistent JSON extraction from a narrow domain at scale → fine-tune a small model (perhaps with RAG for reference data). Also see [Prompting vs. RAG vs. fine-tuning](./LLM-and-Generative-AI-Fundamentals.md#6-prompting-vs-rag-vs-fine-tuning-decision-criteria-and-trade-offs).
 
-#### Modern C++ example — per-request cost of long context vs. RAG for different corpus sizes, with a fit check
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iomanip>
-#include <iostream>
-
-int main() {
-    const double price_per_m_input = 3.0, cached_discount = 0.1;     // cached input billed at 10% (illustrative)
-    const int window = 200'000, rag_tokens = 4'000;                    // RAG sends ~8 chunks of 500 tokens
-    std::cout << std::fixed << std::setprecision(4);
-    for (int corpus : {30'000, 150'000, 5'000'000}) {
-        bool fits = corpus + 2'000 <= window;
-        double rag = rag_tokens / 1e6 * price_per_m_input;
-        std::cout << corpus << " tokens corpus: RAG $" << rag << "/req";
-        if (fits) {
-            double lc = corpus / 1e6 * price_per_m_input, lc_cached = lc * cached_discount;
-            std::cout << ", long-context $" << lc << "/req ($" << lc_cached << " with prompt caching)";
-            std::cout << (corpus <= 50'000 ? " -> long context is simplest" : " -> RAG cheaper; long context ok for low volume");
-        } else std::cout << ", long-context: does not fit -> RAG";
-        std::cout << '\n';
-    }
-}
-```
-
-**Output:**
-```text
-30000 tokens corpus: RAG $0.0120/req, long-context $0.0900/req ($0.0090 with prompt caching) -> long context is simplest
-150000 tokens corpus: RAG $0.0120/req, long-context $0.4500/req ($0.0450 with prompt caching) -> RAG cheaper; long context ok for low volume
-5000000 tokens corpus: RAG $0.0120/req, long-context: does not fit -> RAG
-```
-
 ### Interview answer
 "RAG is for large, frequently changing or permissioned knowledge where we need citations — updating means re-indexing, and each request only pays for a few chunks. Long-context prompting is the simplest option when the corpus is small and fairly static, or the task is about one long document; it avoids retrieval misses but costs more per request, though prompt caching helps, and accuracy can drop for facts buried in the middle. Fine-tuning changes behaviour — format, tone, a narrow skill or a cheaper model — and is the wrong tool for facts. They combine: a fine-tuned small model can still use RAG for reference data."
 
@@ -634,57 +344,6 @@ A quick first sweep pulls 50 maybe-relevant files off the shelf; then an expert 
 - **Top-k selection:** fixed k, or **score threshold** + max k; ensure diversity (avoid 5 near-identical chunks — MMR, maximal marginal relevance); order the final chunks (most relevant first or last).
 - **Contextual compression:** extract only relevant sentences per chunk (LLM or extractive model), or merge adjacent chunks into one passage.
 - Trade-off: reranking adds ~50–300 ms; measure recall@k/nDCG before and after ([section 11](#11-retrieval-evaluation-recallk-precisionk-mrr-and-ndcg)).
-
-#### Modern C++ example — rerank candidates, apply a score threshold with MMR-style deduplication, and compress to relevant sentences
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <iomanip>
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <vector>
-
-struct Cand { std::string id, text; double retrieval, rerank; };
-
-std::string compress(const std::string& text, const std::string& keyword) {          // keep sentences mentioning the topic
-    std::istringstream in(text); std::string s, out;
-    while (std::getline(in, s, '.')) if (s.find(keyword) != std::string::npos) out += s + ".";
-    return out;
-}
-
-int main() {
-    std::vector<Cand> c{{"d7", "Our office is in Cairo. Refunds take 14 days. We love cats.", 0.71, 0.92},
-                        {"d2", "Refunds take 14 days for card payments.", 0.80, 0.90},          // near-duplicate of d7's key fact
-                        {"d9", "Shipping is free over 500 EGP.", 0.83, 0.20},
-                        {"d4", "Cash on delivery refunds are paid as store credit.", 0.62, 0.81},
-                        {"d5", "Careers: we are hiring engineers.", 0.60, 0.05}};
-    std::sort(c.begin(), c.end(), [](auto& a, auto& b) { return a.rerank > b.rerank; });
-    std::cout << std::fixed << std::setprecision(2) << "after rerank:";
-    for (auto& x : c) std::cout << ' ' << x.id << '(' << x.rerank << ')';
-    std::cout << "\nselected (rerank >= 0.5, max 3, skip near-duplicates):\n";
-    std::vector<std::string> kept_facts; int k = 0;
-    for (auto& x : c) {
-        if (x.rerank < 0.5 || k == 3) break;
-        auto comp = compress(x.text, "efund");
-        bool dup = std::any_of(kept_facts.begin(), kept_facts.end(), [&](auto& f) { return comp.find("14 days") != std::string::npos && f.find("14 days") != std::string::npos; });
-        if (dup) { std::cout << "  skip " << x.id << " (redundant)\n"; continue; }
-        kept_facts.push_back(comp); ++k;
-        std::cout << "  " << x.id << ": \"" << comp << "\" (compressed from " << x.text.size() << " to " << comp.size() << " chars)\n";
-    }
-}
-```
-
-**Output:**
-```text
-after rerank: d7(0.92) d2(0.90) d4(0.81) d9(0.20) d5(0.05)
-selected (rerank >= 0.5, max 3, skip near-duplicates):
-  d7: " Refunds take 14 days." (compressed from 59 to 22 chars)
-  skip d2 (redundant)
-  d4: "Cash on delivery refunds are paid as store credit." (compressed from 50 to 50 chars)
-```
-
-Note how **d9** ranked highest in first-stage retrieval but the reranker correctly pushed it down for a refund question.
 
 ### Interview answer
 "First-stage retrieval with bi-encoders and BM25 is fast but imprecise, so I retrieve a generous candidate set — say 50 — and rerank with a cross-encoder that reads query and passage together, which is far more accurate and affordable on that small set. Then I select the final context by score threshold with a max k, removing near-duplicates with MMR so the slots carry diverse evidence, and optionally compress chunks to only the relevant sentences to save tokens and reduce distraction. I check the latency cost and measure recall and nDCG before and after to justify it."
@@ -775,58 +434,6 @@ A warehouse for "meaning coordinates": every item has a barcode (ID), a label (m
 - **Re-indexing:** new embedding model → build a **new index in parallel**, backfill, evaluate, switch an alias (blue/green), then drop the old one.
 - **Filtering:** metadata filters (tenant, ACL, date) combined with ANN — check how your DB does it (pre-filter vs. filtered HNSW traversal).
 - **Ops:** memory sizing, replicas for QPS, backups, monitoring recall/latency.
-
-#### Modern C++ example — upsert by stable chunk IDs, tombstone deletes, compaction, and an alias switch for re-indexing
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <set>
-#include <string>
-#include <vector>
-
-struct Record { std::vector<float> vec; std::string text; bool deleted = false; };
-
-class Collection {
-public:
-    std::string name;
-    std::map<std::string, Record> records;
-    explicit Collection(std::string n) : name(std::move(n)) {}
-    void upsert_document(const std::string& doc_id, const std::vector<std::string>& chunks) {
-        for (auto& [id, r] : records) if (id.rfind(doc_id + "#", 0) == 0) r.deleted = true;     // old chunks of this doc
-        for (std::size_t i = 0; i < chunks.size(); ++i) records[doc_id + "#" + std::to_string(i)] = {{0.1f * i}, chunks[i], false};
-    }
-    void delete_document(const std::string& doc_id) { for (auto& [id, r] : records) if (id.rfind(doc_id + "#", 0) == 0) r.deleted = true; }
-    int live() const { int n = 0; for (auto& [id, r] : records) n += !r.deleted; return n; }
-    int compact() { int removed = 0; for (auto it = records.begin(); it != records.end();) if (it->second.deleted) { it = records.erase(it); ++removed; } else ++it; return removed; }
-};
-
-int main() {
-    Collection v1("kb_v1_embed-small");
-    v1.upsert_document("refunds", {"Refunds take 14 days.", "Card refunds go to the card.", "Cash refunds are store credit."});
-    v1.upsert_document("refunds", {"Refunds take 10 days.", "Card refunds go to the card."});    // doc edited, now 2 chunks
-    v1.upsert_document("gdpr-user-77", {"Notes about user 77."});
-    v1.delete_document("gdpr-user-77");                                                          // erasure request
-    std::cout << v1.name << ": " << v1.records.size() << " stored, " << v1.live() << " live\n";
-    std::cout << "compaction physically removed " << v1.compact() << " records\n";
-
-    std::map<std::string, std::string> alias{{"kb_current", v1.name}};
-    Collection v2("kb_v2_embed-large");
-    v2.upsert_document("refunds", {"Refunds take 10 days.", "Card refunds go to the card."});    // backfill with the new model
-    bool eval_passed = true;                                                                     // recall@5 0.86 -> 0.91 on the golden set
-    if (eval_passed) alias["kb_current"] = v2.name;
-    std::cout << "alias kb_current -> " << alias["kb_current"] << " (old index kept for rollback, then dropped)\n";
-}
-```
-
-**Output:**
-```text
-kb_v1_embed-small: 4 stored, 2 live
-compaction physically removed 2 records
-alias kb_current -> kb_v2_embed-large (old index kept for rollback, then dropped)
-```
-
-Here re-upserting "refunds" overwrote `#0` and `#1` in place and tombstoned the now-extra `#2`, and the erased user note was tombstoned — compaction removed both.
 
 ### Interview answer
 "A vector database stores embeddings with IDs and metadata and serves filtered approximate nearest-neighbour search; pgvector is a good default at millions of vectors if we already run Postgres, with dedicated engines like Qdrant, Weaviate, Milvus or Pinecone for larger scale or features. The lifecycle matters as much as search: stable chunk IDs derived from document ID and position so re-ingestion upserts and stale chunks get removed; deletes are tombstones filtered at query time, then compacted — which is also how we honour erasure requests; and changing the embedding model means building a new index in parallel, evaluating it and switching an alias, keeping the old one for rollback. Plus replicas, backups and recall and latency monitoring."

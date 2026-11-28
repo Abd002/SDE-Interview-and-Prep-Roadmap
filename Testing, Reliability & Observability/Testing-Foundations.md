@@ -1,6 +1,6 @@
 # Software Testing Foundations — Kinds of Tests, Test Doubles, Coverage, Isolation and Strategy
 
-> **What you'll learn:** the difference between **functional and non-functional** testing, the four **levels** of tests (unit, integration, E2E, acceptance), the **test doubles** (mocks, stubs, fakes, spies) and where to put **contract boundaries**, what **coverage** does and doesn't tell you, how to make tests **isolated and deterministic**, and how to choose tests with the **testing pyramid / trophy** and **risk**. Each part has a runnable C++ example using a tiny self-made test helper (in real projects: GoogleTest, Catch2 or doctest).
+> **What you'll learn:** the difference between **functional and non-functional** testing, the four **levels** of tests (unit, integration, E2E, acceptance), the **test doubles** (mocks, stubs, fakes, spies) and where to put **contract boundaries**, what **coverage** does and doesn't tell you, how to make tests **isolated and deterministic**, and how to choose tests with the **testing pyramid / trophy** and **risk**. Most parts have a runnable C++ example using a tiny self-made test helper (in real projects: GoogleTest, Catch2 or doctest).
 >
 > **Prerequisites:** [Coding Best Practices → Testing](../Problem-solving%20and%20Coding/Coding-Best-Practices.md#6-testing) and [Dependency injection](../Low-Level%20Design%20%26%20Object-Oriented%20Design/Design-Patterns-in-Practice.md#5-dependency-injection-and-inversion-of-control).
 
@@ -372,48 +372,6 @@ You can't inspect every brick of a building. You check the foundations and load-
 - Test **high-risk** areas deeply (payments, auth, data migrations, concurrency); test **low-risk** areas lightly.
 - In CI, run **changed-area tests first** (test impact analysis), the full suite before merge or nightly.
 
-#### Modern C++ example — ranking features by risk to decide where tests go
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <algorithm>
-#include <iomanip>
-#include <iostream>
-#include <string>
-#include <vector>
-
-struct Area { std::string name; int likelihood, impact; };   // each 1..5
-
-int main() {
-    std::vector<Area> areas{
-        {"payment capture + refunds", 4, 5},
-        {"login + password reset", 3, 5},
-        {"order history page", 2, 2},
-        {"CSV export", 3, 2},
-        {"DB migration v12", 4, 4},
-        {"footer links", 1, 1},
-    };
-    std::sort(areas.begin(), areas.end(), [](auto& a, auto& b) { return a.likelihood * a.impact > b.likelihood * b.impact; });
-    std::cout << std::left;
-    for (auto& a : areas) {
-        int risk = a.likelihood * a.impact;
-        const char* plan = risk >= 16 ? "unit + integration + E2E happy path + failure cases"
-                         : risk >= 6  ? "unit + one integration test"
-                                      : "smoke test only";
-        std::cout << std::setw(28) << a.name << " risk " << std::setw(3) << risk << plan << '\n';
-    }
-}
-```
-
-**Output:**
-```text
-payment capture + refunds    risk 20 unit + integration + E2E happy path + failure cases
-DB migration v12             risk 16 unit + integration + E2E happy path + failure cases
-login + password reset       risk 15 unit + one integration test
-CSV export                   risk 6  unit + one integration test
-order history page           risk 4  smoke test only
-footer links                 risk 1  smoke test only
-```
-
 ### Interview answer
 "The pyramid favours many fast unit tests and few slow E2E tests; the trophy shifts weight to integration tests on top of static analysis, because in service code many bugs are in the wiring. I pick the shape per codebase — algorithms lean pyramid, CRUD services lean trophy — and avoid the ice-cream cone. Within that, I spend testing effort by risk, likelihood times impact, so payments, auth and migrations get deep coverage and the footer gets a smoke test."
 
@@ -436,76 +394,6 @@ Building a car: test a spark plug on a bench (unit), test the engine with its fu
 
 - **Acceptance tests** are often written in **BDD** style (Cucumber/Gherkin, behave): `Given a cart with 2 items, When I apply code SAVE10, Then the total is 10% lower`. **UAT** (user acceptance testing) is the manual version done by users.
 - Other names you'll hear: **smoke** tests (a quick "does it start?"), **regression** tests (old bugs stay fixed), **component** tests (one service with its dependencies faked), **contract** tests (see [Backend testing](./Backend-and-Distributed-System-Testing.md#1-api-contract-tests-schema-compatibility-and-consumer-driven-contracts)).
-
-#### Modern C++ example — the same feature tested at unit, integration, E2E and acceptance level
-```cpp
-// g++ -std=c++20 main.cpp && ./a.out
-#include <iostream>
-#include <map>
-#include <sstream>
-#include <string>
-
-// ---- units ----
-long apply_discount(long cents, const std::string& code) { return code == "SAVE10" ? cents - cents / 10 : cents; }
-
-class CartRepository {                                    // "real" storage: serializes to text like a DB would
-public:
-    void save(const std::string& user, long cents) { rows_[user] = std::to_string(cents); }
-    long load(const std::string& user) const { auto it = rows_.find(user); return it == rows_.end() ? 0 : std::stol(it->second); }
-private:
-    std::map<std::string, std::string> rows_;
-};
-
-class CartService {
-public:
-    explicit CartService(CartRepository& r) : repo_(r) {}
-    void add(const std::string& user, long cents) { repo_.save(user, repo_.load(user) + cents); }
-    long checkout(const std::string& user, const std::string& code) { return apply_discount(repo_.load(user), code); }
-private:
-    CartRepository& repo_;
-};
-
-// ---- the "whole system": a text API, like an HTTP endpoint ----
-std::string handle(CartService& svc, const std::string& request) {
-    std::istringstream in(request);
-    std::string cmd, user, arg;
-    in >> cmd >> user >> arg;
-    if (cmd == "ADD") { svc.add(user, std::stol(arg)); return "200 OK"; }
-    if (cmd == "CHECKOUT") return "200 TOTAL " + std::to_string(svc.checkout(user, arg));
-    return "400 BAD REQUEST";
-}
-
-int failures = 0;
-void check(bool ok, const char* name) { std::cout << (ok ? "PASS " : "FAIL ") << name << '\n'; failures += !ok; }
-
-int main() {
-    check(apply_discount(1000, "SAVE10") == 900 && apply_discount(1000, "BOGUS") == 1000, "unit: discount rule");
-
-    CartRepository repo; CartService svc(repo);
-    svc.add("ali", 300); svc.add("ali", 700);
-    check(repo.load("ali") == 1000, "integration: service + repository persist the sum");
-
-    CartRepository repo2; CartService system(repo2);
-    check(handle(system, "ADD mona 2000") == "200 OK" && handle(system, "CHECKOUT mona SAVE10") == "200 TOTAL 1800"
-          && handle(system, "DELETE mona x") == "400 BAD REQUEST", "e2e: API journey add -> checkout");
-
-    // Acceptance (Given/When/Then): "A returning customer with code SAVE10 pays 10% less."
-    CartRepository repo3; CartService shop(repo3);
-    handle(shop, "ADD omar 5000");                                    // Given a cart worth 50.00
-    std::string result = handle(shop, "CHECKOUT omar SAVE10");          // When they check out with SAVE10
-    check(result == "200 TOTAL 4500", "acceptance: SAVE10 gives 10% off");   // Then they pay 45.00
-    std::cout << failures << " failure(s)\n";
-}
-```
-
-**Output:**
-```text
-PASS unit: discount rule
-PASS integration: service + repository persist the sum
-PASS e2e: API journey add -> checkout
-PASS acceptance: SAVE10 gives 10% off
-0 failure(s)
-```
 
 ### Interview answer
 "Unit tests check one function or class with its dependencies doubled — fast and precise. Integration tests check pieces together with real infrastructure like the database, which catches wiring, SQL and serialization bugs. E2E tests run user journeys through the deployed system — valuable but slow and flaky, so I keep few. Acceptance tests express business requirements as Given/When/Then scenarios and prove we built the right thing; they can run at any level."
